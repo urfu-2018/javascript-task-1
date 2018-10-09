@@ -44,6 +44,9 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
+    if (!/^#[\dA-F]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    }
 
     const getColorOrThrow = colorString => {
         const value = parseInt(colorString, 16);
@@ -77,8 +80,8 @@ function fibonacciProblem(n) {
     }
 
     function getFibonacciNumber(position) {
-        if (position === 1 || position === 0) {
-            return 1;
+        if (position < 2) {
+            return position;
         }
 
         return getFibonacciNumber(position - 1) + getFibonacciNumber(position - 2);
