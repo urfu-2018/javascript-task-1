@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('input values should be a integer');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError('input value should be a integer');
+    }
+    const yearInSenture = 100;
+
+    return Math.trunc(year / yearInSenture) + 1;
 }
 
 /**
@@ -30,7 +39,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('input value should be a string');
+    }
+
+    const isHexColorRegex = /#[0-9A-Fa-f]{6}/g;
+
+    if (!isHexColorRegex.test(hexColor)) {
+        throw new RangeError();
+    }
+    const r = parseInt(hexColor.substring(1, 3), 16);
+    const g = parseInt(hexColor.substring(3, 5), 16);
+    const b = parseInt(hexColor.substring(5), 16);
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -41,7 +63,19 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (Number.isNaN(n)) {
+        throw new TypeError('input argument should be a number');
+    }
+
+    if (!Number.isInteger(n) || n < 0) {
+        throw new RangeError('input argument should be a positive integer');
+    }
+
+    if (n === 1 || n === 2) {
+        return 1;
+    }
+
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
@@ -51,7 +85,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!(matrix instanceof Array) || matrix[0].constructor !== Array) {
+        throw new TypeError('matrix should be 2d array');
+    }
+
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -63,7 +101,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (Number.isNaN(n) || Number.isNaN(targetNs)) {
+        throw new TypeError('input arguments should be a numbet');
+    }
+
+    if (targetNs > 36 || targetNs < 2) {
+        throw new RangeError('targetNs shoud be in range [2, 36]');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +118,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const phoneNumberRegex = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g;
+
+    return phoneNumberRegex.test(phoneNumber);
 }
 
 /**
@@ -82,7 +130,18 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('input argument should be a string');
+    }
+
+    let count = 0;
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === ')') {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 /**
@@ -92,7 +151,43 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if (isFinishFieldForPlayer(field, 'x')) {
+        return 'x';
+    }
+
+    if (isFinishFieldForPlayer(field, 'o')) {
+        return 'o';
+    }
+
+    return 'draw';
+}
+
+/**
+ * Определяет победил ли игрок в игре "Крестики-нолики"
+ * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
+ * @param {String} value Символ хода интересующего игрока
+ * @returns {Boolean} Выиграл ли интересующий игрок
+ */
+function isFinishFieldForPlayer(field, value) {
+    let diagonal1 = true;
+    let diagonal2 = true;
+    for (let x = 0; x < 3; x++) {
+        let cols = true;
+        let rows = true;
+
+        diagonal1 = diagonal1 && (field[x][x] === value);
+        diagonal2 = diagonal2 && (field[2 - x][x] === value);
+        for (let y = 0; y < 3; y++) {
+            cols = cols && field[x][y] === value;
+            rows = rows && field[y][x] === value;
+        }
+
+        if (rows || cols) {
+            return true;
+        }
+    }
+
+    return diagonal1 || diagonal2;
 }
 
 module.exports = {
