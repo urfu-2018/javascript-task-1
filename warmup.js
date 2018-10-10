@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('В качестве года передано не число');
     }
-    if (year < 0) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('Год – отрицательное значение');
     }
 
@@ -84,17 +84,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    const badDimensionsError = new TypeError('В функцию передаётся не двумерный массив');
-    if (matrix.constructor !== Array) {
-        throw badDimensionsError;
+    const errorText = 'В функцию передаётся не двумерный массив';
+    if (matrix.constructor !== Array || matrix.length === 0) {
+        throw new TypeError(errorText);
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].constructor !== Array) {
-            throw badDimensionsError;
+        if (matrix[i].constructor !== Array || matrix[i].length !== matrix[0].length) {
+            throw new TypeError(errorText);
         }
-    }
-    if (matrix.length === 0) {
-        return [];
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
