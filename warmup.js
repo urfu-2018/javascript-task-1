@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('input values should be a integer');
     }
 
@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('input value should be a integer');
     }
 
-    if (!Number.isInteger(year) || year < 0) {
+    if (year < 0) {
         throw new RangeError('year should be a positive number');
     }
 
