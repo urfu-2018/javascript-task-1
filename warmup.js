@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError('В аргументы переданы не числа');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError('В качестве года передано не число');
+    }
+    if (year < 0) {
+        throw new RangeError('Год – отрицательное значение');
+    }
+
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
@@ -30,7 +41,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError('Цвет передан не строкой');
+    }
+    if (!/^#[A-Fa-f0-9]{6}$/.test(hexColor)) {
+        throw new RangeError('Значения цвета выходят за пределы допустимых');
+    }
+    const colors = [];
+    for (let i = 0; i < 3; i++) {
+        colors.push(parseInt(hexColor.slice(2 * i + 1, 2 * i + 3), 16));
+    }
+
+    return '(' + colors.join(', ') + ')';
 }
 
 /**
@@ -41,7 +63,18 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('В качестве года передано не число');
+    }
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('Положение в ряде не является целым положительным числом');
+    }
+    let [a, b] = [1, 1];
+    for (let i = 0; i < n - 2; i++) {
+        [a, b] = [b, a + b];
+    }
+
+    return b;
 }
 
 /**
@@ -51,7 +84,20 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    const badDimensionsError = new TypeError('В функцию передаётся не двумерный массив');
+    if (matrix.constructor !== Array) {
+        throw badDimensionsError;
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i].constructor !== Array) {
+            throw badDimensionsError;
+        }
+    }
+    if (matrix.length === 0) {
+        return [];
+    }
+
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -63,7 +109,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError('Переданы аргументы некорректного типа');
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('Система счисления выходит за пределы значений [2, 36]');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +135,19 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('В качестве аргумента передаётся не строка');
+    }
+
+    return text.split(':-)').length + text.split('(-:').length - 2;
+}
+
+function getTacToeWinner(row) {
+    if (row[0] === row[1] && row[1] === row[2]) {
+        return row[0] === 'x' ? 1 : 2;
+    }
+
+    return 0;
 }
 
 /**
@@ -92,7 +157,18 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let result = [0, 0, 0];
+    result[getTacToeWinner([field[0][0], field[1][1], field[2][2]])]++;
+    result[getTacToeWinner([field[2][0], field[1][1], field[0][2]])]++;
+    for (let i = 0; i < 3; i++) {
+        result[getTacToeWinner([field[i][0], field[i][1], field[i][2]])]++;
+        result[getTacToeWinner([field[0][i], field[1][i], field[2][i]])]++;
+    }
+    if ((result[1] === 0 && result[2] === 0) || (result[1] > 0 && result[2] > 0)) {
+        return 'draw';
+    }
+
+    return result[1] ? 'x' : 'o';
 }
 
 module.exports = {
