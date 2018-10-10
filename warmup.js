@@ -123,7 +123,7 @@ function numberSystemProblem(n, targetNs) {
     }
     const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let result = '';
-    while (n !== 0) {
+    while (n > 0) {
         result = alphabet[n % targetNs] + result;
         n = Math.floor(n / targetNs);
     }
