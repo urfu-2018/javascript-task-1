@@ -87,22 +87,16 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError('Incorrect params');
     }
-    if (!Array.isArray(matrix[0])) {
-        throw new TypeError('Incorrect params');
-    }
-    if (matrix[0].length === 0) {
+    if (matrix.length === 0) {
         return [[]];
     }
-    let result = [];
-    for (let j = 0; j < matrix[0].length; j++) {
-        let row = [];
-        for (let i = 0; i < matrix.length; i++) {
-            row.push(matrix[i][j]);
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+            throw new TypeError('Incorrect params');
         }
-        result.push(row);
     }
 
-    return result;
+    return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
 
 /**
