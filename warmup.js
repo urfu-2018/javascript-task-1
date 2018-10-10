@@ -29,12 +29,9 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError('year must be positive');
     }
-    let preCentury = parseInt(year / 100);
-    if (year % 100 !== 0) {
-        preCentury += 1;
-    }
+    const preCentury = Math.floor(year / 100);
     
-    return preCentury;
+    return preCentury + 1;
 }
 
 /**
@@ -48,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor must be string');
     }
-    if (hexColor.length !== 7 || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
+    if (hexColor.length !== 7) {
         throw new RangeError('Incorrect params');
     }
     const hexChar = hexColor.substr(1).split('');
@@ -133,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/g.test(phoneNumber);
 }
 
 /**
