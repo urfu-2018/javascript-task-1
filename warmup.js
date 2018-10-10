@@ -142,7 +142,7 @@ function smilesProblem(text) {
     const leftSmile = /:-\)/g;
     const rightSmile = /\(-:/g;
 
-    return text.match(leftSmile).length + text.match(rightSmile).length;
+    return (text.match(leftSmile) || []).length + (text.match(rightSmile) || []).length;
 }
 
 /**
@@ -154,7 +154,6 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     let winner = checkRows(field);
     if (winner) {
-        console.log('Выиграл ряд!')
         return winner;
     }
 
@@ -209,9 +208,3 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
-
-console.log(ticTacToeProblem([
-    ['x', 'x', 'o'],
-    ['o', 'o', 'x'],
-    ['x', 'o', 'x']
-]))
