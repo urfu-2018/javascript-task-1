@@ -46,17 +46,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor should be string');
     }
-    if (hexColor.length !== 7 || hexColor[0] !== '#') {
-    }
     if (/#[A-Fa-f\d]{6}/.test(hexColor)) {
-        let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str)=>parseInt(str, 16));
+        let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str) => parseInt(str, 16));
 
         return `(${colors.join(', ')})`;
     }
-    else {
-        throw new RangeError('hexColor should look like "#rrggbb" ' +
-            'and every digit should be in [0,9] u [a,f] u [A,F]');
-    }
+    throw new RangeError('hexColor should look like "#rrggbb" ' +
+        'and every digit should be in [0,9] u [a,f] u [A,F]');
 }
 
 /**
