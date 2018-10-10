@@ -91,7 +91,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (Array.isArray(matrix)) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError('Wrong argument type, expected 2D array.');
     }
 
@@ -115,7 +115,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (Number.isInteger(n) || Number.isInteger(targetNs)) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Wrong argument(s) type, expected number.');
     }
 
