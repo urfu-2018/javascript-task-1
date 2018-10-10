@@ -125,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     const phoneNumberRegex = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g;
 
-    return phoneNumberRegex.test(phoneNumber);
+    return phoneNumberRegex.test(phoneNumber) && phoneNumber.length === 15;
 }
 
 /**
