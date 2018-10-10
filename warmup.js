@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || b !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('a and b must be Number');
     }
 
@@ -23,11 +23,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('year must be Number');
     }
     if (year < 0) {
-        throw new RangeError('year must be positive');
+        throw new RangeError("year must be positive");
     }
     const preCentury = parseInt(year / 100);
 
@@ -64,7 +64,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(n)) {
+    if (typeof year !== 'number') {
         throw new TypeError('n is not Number');
     }
     if (n < 0 || n % 1 !== 0) {
