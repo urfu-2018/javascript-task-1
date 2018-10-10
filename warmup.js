@@ -8,9 +8,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError('At least one of the arguments is not a number');
+    function checkNumber(x) {
+        if (typeof x !== 'number' || !Number.isInteger(x)) {
+            throw new TypeError();
+        }
     }
+
+    checkNumber(a);
+    checkNumber(b);
 
     return a + b;
 }
@@ -30,7 +35,12 @@ function centuryByYearProblem(year) {
         throw new RangeError('Year is negative');
     }
 
-    return Math.trunc(year / 100) + 1;
+    const century = Math.trunc(year / 100) + 1;
+    if (year % 100 === 0) {
+        return century - 1;
+    }
+
+    return century;
 }
 
 /**
@@ -44,7 +54,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[\dA-F]{6}$/.test(hexColor)) {
+    if (!/^#[\dA-F]{6}$/i.test(hexColor)) {
         throw new RangeError();
     }
 
