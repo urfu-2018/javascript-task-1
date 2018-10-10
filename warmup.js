@@ -35,12 +35,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Year is negative');
     }
 
-    const century = Math.trunc(year / 100) + 1;
-    if (year % 100 === 0) {
-        return century - 1;
-    }
-
-    return century;
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
@@ -54,7 +49,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[\dA-F]{6}$/i.test(hexColor)) {
+    if (!/^#[\dA-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -187,18 +182,18 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     for (let i = 0; i < field.length; i++) {
-        const rowIsStriked = field[i][0] === field[i][1] && field[i][1] === field[i][2];
-        const columnIsStriked = field[0][i] === field[1][i] && field[1][i] === field[2][i];
-        if (rowIsStriked) {
+        const rowIsStrike = field[i][0] === field[i][1] && field[i][1] === field[i][2];
+        const columnIsStrike = field[0][i] === field[1][i] && field[1][i] === field[2][i];
+        if (rowIsStrike) {
             return field[i][0];
         }
-        if (columnIsStriked) {
+        if (columnIsStrike) {
             return field[0][i];
         }
     }
-    const diagonalOneIsStriked = field[0][0] === field[1][1] && field[1][1] === field[2][2];
-    const diagonalTwoIsStriked = field[0][2] === field[1][1] && field[1][1] === field[2][0];
-    if (diagonalOneIsStriked || diagonalTwoIsStriked) {
+    const diagonalOneIsStrike = field[0][0] === field[1][1] && field[1][1] === field[2][2];
+    const diagonalTwoIsStrike = field[0][2] === field[1][1] && field[1][1] === field[2][0];
+    if (diagonalOneIsStrike || diagonalTwoIsStrike) {
         return field[1][1];
     }
 
