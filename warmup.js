@@ -106,7 +106,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (isNaN(n) || isNaN(targetNs) || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
 
