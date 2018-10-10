@@ -9,8 +9,9 @@
  */
 function abProblem(a, b) {
     if (isNaN(a) || isNaN(b)) {
-        throw new TypeError("Arguments must be numbers");
+        throw new TypeError('Arguments must be numbers');
     }
+
     return parseInt(a) + parseInt(b);
 }
 
@@ -28,7 +29,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    return Math.floor(year / 100) + 1
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -39,15 +41,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof (hexColor) != "string") {
+    if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length != 7) {
+    if (hexColor.length !== 7) {
         throw new RangeError();
     }
     var first = parseInt(hexColor.slice(1, 3), 16);
     var second = parseInt(hexColor.slice(3, 5), 16);
-    var thirth = parseInt(hexColor.slice(5, 7), 16)
+    var thirth = parseInt(hexColor.slice(5, 7), 16);
+
     return `(${first}, ${second}, ${thirth})`;
 }
 
@@ -60,10 +63,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (isNaN(n)) {
-        throw new TypeError("n is not a number");
+        throw new TypeError('n is not a number');
     }
     if (n <= 0) {
-        throw new RangeError("n must be greater than zero");
+        throw new RangeError('n must be greater than zero');
     }
     if (n === 1 || n === 2) {
         return 1;
@@ -75,6 +78,7 @@ function fibonacciProblem(n) {
         fib1 = fib2;
         fib2 = current;
     }
+
     return fib2;
 }
 
@@ -85,14 +89,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    var copy = [];
+    var copy = getMatrixCopy(matrix);
     for (var i = 0; i < matrix.length; ++i) {
         for (var j = 0; j < matrix[i].length; ++j) {
-            if (matrix[i][j] === undefined) continue;
-            if (copy[j] === undefined) copy[j] = [];
-            copy[j][i] = matrix[i][j];
+            copy[i][j] = matrix[j][i];
         }
     }
+
+    return copy;
+}
+
+function getMatrixCopy(matrix) {
+    var copy = [];
+    for (var i = 0; i < matrix.length; ++i) {
+        copy[i] = matrix[i].slice();
+    }
+
     return copy;
 }
 
@@ -106,11 +118,12 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError("Переданные аргументы некорректного типа");
+        throw new TypeError('Переданные аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError("Система счисления выходит за пределы значений [2, 36]");
+        throw new RangeError('Система счисления выходит за пределы значений [2, 36]');
     }
+
     return n.toString(targetNs);
 }
 
@@ -121,6 +134,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var re = /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g;
+
     return re.test(phoneNumber);
 }
 
@@ -150,15 +164,15 @@ function ticTacToeProblem(field) {
         [field[2][0], field[2][1], field[2][2]],
         [field[0][0], field[1][1], field[2][2]],
         [field[0][2], field[1][1], field[2][0]]
-    ]
+    ];
 
     for (var i = 0; i < AllWinningLines.length; i++) {
         var current = AllWinningLines[i];
-        if (getWinner(current) != null) {
+        if (getWinner(current) !== undefined) {
             return getWinner(current);
         }
     }
-    throw new Error("Меня жестоко обманули");
+    throw new Error('Меня жестоко обманули');
 }
 
 function getWinner(list) {
@@ -166,7 +180,6 @@ function getWinner(list) {
     if (set.size === 1) {
         return set.values().next().value;
     }
-    return null;
 }
 
 module.exports = {
