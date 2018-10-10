@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use strict';
 
 /**
@@ -9,7 +8,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    return a + b;
+    let sum;
+    try {
+        sum = parseInt(a) + parseInt(b);
+    } catch (error) {
+        throw error('Could not parse numbers.');
+    }
+
+    return sum;
 }
 
 /**
@@ -20,7 +26,21 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError('Wrong argument type, expected number');
+    }
+    if (year < 0) {
+        throw new RangeError('Negative year given.');
+    }
+
+    let age;
+    try {
+        age = Math.trunc(year / 100) + 1;
+    } catch (error) {
+        throw error('Not a number.');
+    }
+
+    return age;
 }
 
 /**
@@ -31,7 +51,28 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('Wrong argument type, expected string.');
+    }
+    if (hexColor[0] !== '#') {
+        throw new TypeError('Expected # at start of the argument.');
+    }
+    const onlyNumbers = hexColor.substr(1);
+    const acceptableSymbols = /[0-F]/g;
+    for (let char in onlyNumbers) {
+        if (!char.match(acceptableSymbols)) {
+            throw new RangeError('Unacceptable values.');
+        }
+    }
+
+    const hexColorsSeparate = onlyNumbers.match(/(..?)/g); // [ 'FF', 'FF', 'FF' ]
+    let rgbColorsSep = [];
+    for (let i = 0; i < 3; i++) {
+        rgbColorsSep.push(parseInt(hexColorsSeparate[i], 16));
+    }
+
+
+    return '(' + rgbColorsSep[0] + ', ' + rgbColorsSep[1] + ', ' + rgbColorsSep[2] + ')';
 }
 
 /**
@@ -42,7 +83,16 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('Wrong argument type, expected number.');
+    }
+    if (n < 0) {
+        throw new RangeError('Wrong argument, expected positive value.');
+    }
+
+    const phi = 1.61803398875;
+
+    return Math.round(Math.pow(phi, n) / Math.sqrt(5)); // Binet's formula.
 }
 
 /**
@@ -52,7 +102,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (typeof matrix !== 'object') {
+        throw new TypeError('Wrong argument type, expected 2D array.');
+    }
+
+    const M = matrix.length;
+    const N = matrix[0].length;
+    for (let i = 1; i < M; i++) {
+        if (matrix[i].length !== N) {
+            throw new TypeError('Wrong argument type, expected 2D array.');
+        }
+    }
+
+    return matrix.map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -64,7 +126,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError('Wrong argument(s) type, expected number.');
+    }
+
+    if (n < 2 || n > 36) {
+        throw new RangeError('Wrong base, expected base in range [2, 36].');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -73,7 +143,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return phoneNumber.match(/8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g).length > 0;
 }
 
 /**
@@ -83,7 +153,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('Wrong argument type, expected string');
+    }
+
+    return text.match(/(:-\)|\(-:)/g).length;
 }
 
 /**
@@ -92,8 +166,19 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-function ticTacToeProblem(field) {
-    // Ваше решение
+function ticTacToeProblem(field) { // I presume this alg needs some explanation to do.
+    const fieldInline = field[0].concat(field[1], field[2]);
+    const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
+        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]];
+
+    for (let i in winStates) {
+        if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
+            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]]) {
+            return fieldInline[winStates[i][0]];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
