@@ -9,10 +9,8 @@
  */
 function abProblem(a, b) {
     if (!Number.isInteger(a) ||
-        !Number.isInteger(b) ||
-        !Number.isFinite(a) ||
-        !Number.isFinite(b)) {
-        throw new TypeError('a and b should be numbers');
+        !Number.isInteger(b)) {
+        throw new TypeError('a and b should be integers');
     }
 
     return a + b;
