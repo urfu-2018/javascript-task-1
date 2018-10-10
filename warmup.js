@@ -106,10 +106,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
-    if (targetNs < 2 || targetNs > 36) {
+    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new RangeError('Система счисления выходит за пределы значений [2, 36]');
     }
 
