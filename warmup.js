@@ -9,8 +9,9 @@
  */
 function abProblem(a, b) {
     if (isNaN(a) || isNaN(b)) {
-        throw new TypeError("a and b must be Number");
+        throw new TypeError('a and b must be Number');
     }
+
     return a + b;
 }
 
@@ -23,9 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (isNaN(year)) {
-        throw new TypeError("year must be Number");
+        throw new TypeError('year must be Number');
     }
     const preCentury = parseInt(year / 100);
+
     return preCentury + 1;
 }
 
@@ -38,16 +40,17 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor != 'string') {
-        throw new TypeError("hexColor must be string");
+        throw new TypeError('hexColor must be string');
     }
     if (!hexColor.match(/#[\dA-Fa-f]{6}/)) {
-        throw new RangeError("Incorrect params");
+        throw new RangeError('Incorrect params');
     }
-    const hexChar = hexColor.substr(1).split("");
+    const hexChar = hexColor.substr(1).split('');
     const r = parseInt(hexChar[0] + hexChar[1], 16);
     const g = parseInt(hexChar[2] + hexChar[3], 16);
     const b = parseInt(hexChar[4] + hexChar[5], 16);
-    return "(" + r + ", " + g + ", " + b + ")"
+
+    return '(' + r + ', ' + g + ', ' + b + ')'
 }
 
 /**
@@ -59,14 +62,15 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (isNaN(n)) {
-        throw new TypeError("n is not Number");
+        throw new TypeError('n is not Number');
     }
     if (n < 0 || n % 1 != 0) {
-        throw new RangeError("n must be positive and not float");
+        throw new RangeError('n must be positive and not float');
     }
     if (n === 1 || n === 2) {
         return 1;
     }
+
     return fibonacciProblem(n-1) + fibonacciProblem(n-2);
 }
 
@@ -78,10 +82,10 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        throw new TypeError("Incorrect params");
+        throw new TypeError('Incorrect params');
     }
     if (!Array.isArray(matrix[0])) {
-        throw new TypeError("Incorrect params");
+        throw new TypeError('Incorrect params');
     }
 
     let result = [];
@@ -92,6 +96,7 @@ function matrixProblem(matrix) {
         }
         result.push(row);
     }
+
     return result;
 }
 
@@ -105,11 +110,12 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (isNaN(n) || isNaN(targetNs)) {
-        throw new TypeError("Incorrect params");
+        throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError("targetNs must be beetween 2 and 36");
+        throw new RangeError('targetNs must be beetween 2 and 36');
     }
+
     return n.toString(targetNs);
 }
 
@@ -130,39 +136,40 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text != 'string') {
-        throw new TypeError("text must be string");
+        throw new TypeError('text must be string');
     }
+
     return text.match(/((:-\))|(\(-:))/g).length;
 }
 
 /**
- * Определяет победителя в игре "Крестики-нолики"
+ * Определяет победителя в игре 'Крестики-нолики'
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
     if (!Array.isArray(field)) {
-        throw new TypeError("Incorrect params");
+        throw new TypeError('Incorrect params');
     }
     if (!Array.isArray(field[0])) {
-        throw new TypeError("Incorrect params");
+        throw new TypeError('Incorrect params');
     }
     for (let i = 0; i < 4;i++) {
-        if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) {
-            return field[i][0]
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
         }
     }
     for (let i = 0; i < 4;i++) {
-        if (field[0][i] == field[1][i] && field[1][i] == field[2][i]) {
-            return field[0][i]
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
         }
     }
-    if (field[0][0] == field[1][1] && field[1][1] == field[2][2]) {
-        return field[0][i]
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][i];
     }    
-    if (field[2][0] == field[1][1] && field[1][1] == field[0][2]) {
-        return field[0][i]
+    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+        return field[0][i];
     }
 }
 
