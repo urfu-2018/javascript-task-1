@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('input value should be a integer');
     }
 
-    if (year < 0) {
+    if (!Number.isInteger(year) || year < 0) {
         throw new RangeError('year should be a positive number');
     }
 
