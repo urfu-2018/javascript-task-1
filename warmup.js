@@ -85,20 +85,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.constructor !== Array ||
-        matrix[0].constructor !== Array) {
+    if (!Array.isArray(matrix || matrix.length === 0)) {
         throw new TypeError();
     }
 
     const n = matrix.length;
     const m = matrix[0].length;
 
-    if (m === 0) {
-        return [[]];
-    }
-
     for (let i = 1; i < n; i++) {
-        if (matrix[i].length !== m) {
+        if (matrix[i].length !== m || matrix[i].length === 0) {
             throw new TypeError();
         }
     }
