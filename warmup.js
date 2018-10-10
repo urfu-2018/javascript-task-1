@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string' || hexColor.length !== 7) {
         throw new TypeError();
     }
-    const regExp = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+    const regExp = /^#?([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
     if (!regExp.test(hexColor)) {
         throw new RangeError();
     }
@@ -146,7 +146,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    const regExp = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+    const regExp = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
     return regExp.test(phoneNumber) && phoneNumber.length === 15;
 }
