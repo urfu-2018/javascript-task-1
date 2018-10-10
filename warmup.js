@@ -26,12 +26,16 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (year < 0) {
-        throw RangeError('Negative year given.');
+    if (typeof year !== 'number') {
+        throw new TypeError('Wrong argument type, expected number');
     }
+    if (year < 0) {
+        throw new RangeError('Negative year given.');
+    }
+
     let age;
     try {
-        age = Math.trunc(parseInt(year) / 100) + 1;
+        age = Math.trunc(year / 100) + 1;
     } catch (error) {
         throw error('Not a number.');
     }
@@ -48,16 +52,16 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw TypeError('Passed argument is not a string');
+        throw new TypeError('Wrong argument type, expected string.');
     }
     if (hexColor[0] !== '#') {
-        throw TypeError('Expected # at start of the argument.');
+        throw new TypeError('Expected # at start of the argument.');
     }
     const onlyNumbers = hexColor.substr(1);
     const acceptableSymbols = /[0-F]/g;
     for (let char in onlyNumbers) {
         if (!char.match(acceptableSymbols)) {
-            throw RangeError('Unacceptable values.');
+            throw new RangeError('Unacceptable values.');
         }
     }
 
@@ -80,10 +84,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw TypeError('Wrong argument type, expected number.');
+        throw new TypeError('Wrong argument type, expected number.');
     }
     if (n < 0) {
-        throw RangeError('Wrong argument, expected positive value.');
+        throw new RangeError('Wrong argument, expected positive value.');
     }
 
     const phi = 1.61803398875;
@@ -99,14 +103,14 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (typeof matrix !== 'object') {
-        throw TypeError('Wrong argument type, expected 2D array.');
+        throw new TypeError('Wrong argument type, expected 2D array.');
     }
 
     const M = matrix.length;
     const N = matrix[0].length;
     for (let i = 1; i < M; i++) {
         if (matrix[i].length !== N) {
-            throw TypeError('Wrong argument type, expected 2D array.');
+            throw new TypeError('Wrong argument type, expected 2D array.');
         }
     }
 
@@ -123,11 +127,11 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw TypeError('Wrong argument(s) type, expected number.');
+        throw new TypeError('Wrong argument(s) type, expected number.');
     }
 
     if (n < 2 || n > 36) {
-        throw RangeError('Wrong base, expected base in range [2, 36].');
+        throw new RangeError('Wrong base, expected base in range [2, 36].');
     }
 
     return n.toString(targetNs);
@@ -150,7 +154,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw TypeError('Wrong argument type, expected string');
+        throw new TypeError('Wrong argument type, expected string');
     }
 
     return text.match(/(:-\)|\(-:)/g).length;
@@ -162,20 +166,15 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-function ticTacToeProblem(field) {
+function ticTacToeProblem(field) { // I presume this alg needs some explanation to do.
     const fieldInline = field[0].concat(field[1], field[2]);
-    const magicSquare = [4, 3, 8, 9, 5, 1, 2, 7, 6];
     const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
         [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]];
 
     for (let i in winStates) {
         if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
             fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]]) {
-            if (magicSquare[winStates[i][0]] +
-                magicSquare[winStates[i][1]] +
-                magicSquare[winStates[i][2]] === 15) {
-                return fieldInline[winStates[i][0]];
-            }
+            return fieldInline[winStates[i][0]];
         }
     }
 
