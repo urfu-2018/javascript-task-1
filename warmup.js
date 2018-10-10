@@ -32,6 +32,9 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError('year отрицательное');
     }
+    if (year % 1 !== 0) {
+        throw new RangeError('year не целое');
+    }
 
     return Math.trunc(year / 100) + 1;
 }
@@ -48,7 +51,8 @@ function colorsProblem(hexColor) {
         throw new TypeError('hexColor не является строкой');
     }
     for (let i = 1; i < hexColor.length; i++) {
-        if (isNaN(parseInt(i)) && (i < 'A' || i > 'F')) {
+        const hex = hexColor[i];
+        if (isNaN(parseInt(hex)) && (hex < 'A' || hex > 'F')) {
             throw new RangeError('values of hexColor are not in valid range');
         }
     }
