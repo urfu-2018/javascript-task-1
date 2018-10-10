@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('year should be positive');
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
