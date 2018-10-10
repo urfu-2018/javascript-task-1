@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' ||
-        typeof b !== 'number' ||
+    if (isNaN(a) ||
+        isNaN(b) ||
         !Number.isInteger(a) ||
         !Number.isInteger(b)) {
         throw new TypeError();
