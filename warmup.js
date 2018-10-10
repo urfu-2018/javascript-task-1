@@ -48,7 +48,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('input value should be a string');
     }
 
-    const isHexColorRegex = /#[0-9A-Fa-f]{6}/g;
+    const isHexColorRegex = /#[0-9A-Fa-f]{6}$/g;
 
     if (!isHexColorRegex.test(hexColor)) {
         throw new RangeError();
@@ -72,7 +72,7 @@ function fibonacciProblem(n) {
         throw new TypeError('input argument should be a number');
     }
 
-    if (!Number.isInteger(n) || n < 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('input argument should be a positive integer');
     }
 
@@ -90,7 +90,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array) || matrix[0].constructor !== Array) {
+    if (!(matrix instanceof Array) ||
+        !(matrix[0] instanceof Array) ||
+          matrix[0][0] instanceof Array) {
         throw new TypeError('matrix should be 2d array');
     }
 
