@@ -48,7 +48,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('Expected # at start of the argument.');
     }
     if (hexColor.length !== 7) {
-        throw new RangeError('Expected argument length of 7');
+        throw new TypeError('Expected argument length of 7');
     }
     const onlyNumbers = hexColor.substr(1);
     if (!onlyNumbers.match(/^[0-9A-Fa-f]+$/g)) {
@@ -72,10 +72,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError('Wrong argument type, expected number.');
     }
-    if (!Number.isInteger(n) || n < 0) {
+    if (n < 1) {
         throw new RangeError('Wrong argument, expected positive integer.');
     }
 
