@@ -8,10 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || isNaN(a)) {
+    if (typeof a !== 'number' || !isFinite(a)) {
         throw new TypeError('a не является числом');
     }
-    if (typeof b !== 'number' || isNaN(b)) {
+    if (typeof b !== 'number' || !isFinite(b)) {
         throw new TypeError('b не является числом');
     }
 
@@ -26,7 +26,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || isNaN(year)) {
+    if (typeof year !== 'number' || !isFinite(year)) {
         throw new TypeError('year не является числом');
     }
     if (year < 0) {
@@ -77,7 +77,7 @@ function hexToRgb(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number' || isNaN(n)) {
+    if (typeof n !== 'number' || !isFinite(n)) {
         throw new TypeError('n не является числом');
     }
     if (n < 0 || n % 1 !== 0) {
@@ -140,24 +140,37 @@ function transposeMatrix(matrix) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
+
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || isNaN(n)) {
+    if (isNInvalid(n)) {
         throw new TypeError('n не является числом');
     }
-    if (typeof targetNs !== 'number' || isNaN(targetNs)) {
+    if (isTargetNsNotNumber(targetNs)) {
         throw new TypeError('targetNs не является числом');
     }
-    if (targetNs % 1 !== 0) {
-        throw new TypeError('targetNs не является целым числом');
-    }
-    if (targetNs < 2 || targetNs > 36) {
+    if (isTargetNsNotInRange(targetNs)) {
         throw new RangeError('targetNs выходит за допустимые пределы значений');
     }
 
-    return convertNumToOtherNumSystem(n, targetNs);
+    return convertNumToTargetNs(n, targetNs);
 }
 
-function convertNumToOtherNumSystem(n, targetNs) {
+function isNInvalid(n) {
+    return (typeof n !== 'number' || !isFinite(n));
+}
+
+function isTargetNsNotNumber(targetNs) {
+    return (typeof targetNs !== 'number' || !isFinite(targetNs));
+}
+
+function isTargetNsNotInRange(targetNs) {
+    const minValue = 2;
+    const maxValue = 36;
+
+    return (targetNs % 1 !== 0 || targetNs < minValue || targetNs > maxValue);
+}
+
+function convertNumToTargetNs(n, targetNs) {
     const unicodeOfA = 65;
     const shift = 10;
     let converted = '';
