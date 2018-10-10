@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (isNaN(a) || isNaN(b)) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (isNaN(year)) {
+        throw new TypeError();
+    }
+
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.round(year / 100) + 1;
 }
 
 /**
@@ -30,7 +42,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    const regExp = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+    if (!regExp.test(hexColor)) {
+        throw new RangeError();
+    }
+    const rgb = regExp.exec(hexColor);
+
+    return `(${parseInt(rgb[1], 16)}, ${parseInt(rgb[2], 16)}, ${parseInt(rgb[3], 16)})`;
 }
 
 /**
@@ -41,7 +62,19 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (isNaN(n)) {
+        throw new TypeError();
+    }
+
+    if (!Number.isInteger(n) || n <= 0) {
+        throw new RangeError();
+    }
+
+    if (n === 1 || n === 2) {
+        return 1;
+    }
+
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
@@ -106,3 +139,4 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
+
