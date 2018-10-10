@@ -64,20 +64,20 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n should be number');
-    }
-    if (n < 0 || !Number.isInteger(n)) {
+    } else if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError('n should be integer positive number');
-    }
-    let f0 = 0;
-    let f1 = 1;
-    let f2 = 1;
-    for (let i = 0; i < n; i++) {
-        f0 = f1;
-        f1 = f2;
-        f2 = f0 + f1;
-    }
+    } else {
+        let f0 = 0;
+        let f1 = 1;
+        let f2 = 1;
+        for (let i = 0; i < n; i++) {
+            f0 = f1;
+            f1 = f2;
+            f2 = f0 + f1;
+        }
 
-    return f0;
+        return f0;
+    }
 }
 
 /**
