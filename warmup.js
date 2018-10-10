@@ -87,7 +87,7 @@ function matrixProblem(matrix) {
     const m = matrix.length;
 
     const n = matrix[0].length;
-    if (!Array.isArray(matrix) || !m || !n) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
 
@@ -109,12 +109,12 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
-    }
-
     if (!isTypeCorrect(n, targetNs)) {
         throw new TypeError();
+    }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
