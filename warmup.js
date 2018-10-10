@@ -44,15 +44,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor should be string');
     }
-    if (/^#[A-Fa-f\d]{6}$/.test(hexColor)) {
+    if (!/^#[A-Fa-f0-9]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    } else {
         let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str) => parseInt(str, 16));
 
         return `(${colors.join(', ')})`;
-    } else if (/^#[A-Za-z\d]+$/.test(hexColor)) {
-        throw new RangeError();
     }
-    throw new RangeError('hexColor should look like "#rrggbb" ' +
-        'and every digit should be in [0,9] u [a,f] u [A,F]');
 }
 
 /**
