@@ -23,13 +23,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    const century = Number(year);
-    if (Number.isNaN(century)) {
+    if (typeof year !== 'number') {
         throw new TypeError('В качестве года передано не число!');
-    } else if (century < 0) {
+    } else if (year < 0) {
         throw new RangeError('В качестве года передано отрицательное значение!');
     } else {
-        return Math.trunc(century / 100) + 1;
+        return Math.trunc(year / 100) + 1;
     }
 }
 
@@ -41,16 +40,13 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const hexColorPattern = new RegExp('^#[A-Fa-f0-9]{6}');
     if (typeof hexColor !== 'string') {
         throw new TypeError('Передана не строка!');
-    } else if (hexColorPattern.test(hexColor)) {
-        const colorBytes = hexColor.substring(1);
-
+    } else if (/^#[A-Fa-f0-9]{6}/.test(hexColor)) {
         return '(' + [
-            parseInt(colorBytes.slice(0, 2), 16),
-            parseInt(colorBytes.slice(2, 4), 16),
-            parseInt(colorBytes.slice(4, 6), 16)
+            parseInt(hexColor.slice(1, 3), 16),
+            parseInt(hexColor.slice(3, 5), 16),
+            parseInt(hexColor.slice(5, 7), 16)
         ].join(', ') + ')';
     } else {
         throw new RangeError('Значения цвета выходят за пределы допустимых!');
@@ -65,15 +61,14 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    const number = Number(n);
-    if (Number.isNaN(number)) {
+    if (typeof n !== 'number') {
         throw new TypeError('Передано не число!');
-    } else if (number <= 0) {
+    } else if (n <= 0) {
         throw new RangeError('Передано не целое положительное число!');
     } else {
         let a = 1;
         let b = 1;
-        for (let i = 3; i <= number; i++) {
+        for (let i = 3; i <= n; i++) {
             let c = a + b;
             a = b;
             b = c;
@@ -90,7 +85,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix[0].constructor === Array && matrix[0][0].constructor !== Array) {
+    if (matrix.constructor === Array &&
+        matrix[0].constructor === Array &&
+        matrix[0][0].constructor !== Array) {
         return matrix[0].map((column, i) => matrix.map(row => row[i]));
     }
     throw new TypeError('Передан не двумерный массив!');
@@ -105,12 +102,12 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (Number.isNaN(n) || Number.isNaN(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Переданы аргументы некорректного типа');
-    } else if (Number(targetNs) < 2 && Number(targetNs) > 36) {
+    } else if (targetNs < 2 && targetNs > 36) {
         throw new RangeError('Система счисления выходит за пределы значений!');
     } else {
-        return Number(n).toString(targetNs);
+        return n.toString(targetNs);
     }
 }
 
@@ -120,9 +117,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const phoneNumberPattern = new RegExp('^8-800-[0-9]{3}(-[0-9]{2}){2}');
-
-    return phoneNumberPattern.test(phoneNumber);
+    return /^8-800-[0-9]{3}(-[0-9]{2}){2}/.test(phoneNumber);
 }
 
 /**
