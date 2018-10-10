@@ -8,16 +8,16 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' ||
-        typeof b !== 'number') {
+    if ([a, b].some((x)=>typeof x !== 'number')) {
         throw new TypeError('a and b should be numbers');
-    }
-    if (Number.isNaN(a) ||
-        Number.isNaN(b)) {
+    } else if (Number.isNaN(a) ||
+        Number.isNaN(b) ||
+        !Number.isFinite(a) ||
+        !Number.isFinite(b)) {
         throw new RangeError('');
+    } else {
+        return a + b;
     }
-
-    return a + b;
 }
 
 /**
