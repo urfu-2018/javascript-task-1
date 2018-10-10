@@ -24,11 +24,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || year !== Math.round(year)) {
+    if (typeof year !== 'number' ||
+        !Number.isInteger(year)) {
         throw new TypeError('year should be integer number');
     }
     if (year < 0) {
-        throw new RangeError('Year should be positive');
+        throw new RangeError('year should be positive');
     }
 
     return Math.floor(year / 100) + 1;
@@ -43,22 +44,19 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError('Color should be string');
+        throw new TypeError('hexColor should be string');
     }
-    if (hexColor.length !== 7 && hexColor.length !== 4 || hexColor[0] !== '#') {
-        throw new RangeError('Color should look like "#rgb" or "#rrggbb"');
+    if (hexColor.length !== 7 || hexColor[0] !== '#') {
     }
-    const hex = hexColor.slice(1);
-    let array = [];
-    if (hex.length === 3) {
-        array = hex.split('').map((x)=>x + x);
-    } else {
-        for (let i = 0; i < hex.length; i += 2) {
-            array.push(hex.slice(i, i + 2));
-        }
-    }
+    if (/#[A-Fa-f\d]{6}/.test(hexColor)) {
+        let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str)=>parseInt(str, 16));
 
-    return `(${array.map((str)=>parseInt(str, 16)).join(', ')})`;
+        return `(${colors.join(', ')})`;
+    }
+    else {
+        throw new RangeError('hexColor should look like "#rrggbb" ' +
+            'and every digit should be in [0,9] u [a,f] u [A,F]');
+    }
 }
 
 /**
@@ -72,7 +70,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n should be number');
     }
-    if (n < 0 || n !== Math.floor(n)) {
+    if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError('n should be integer positive number');
     }
     let f0 = 0;
