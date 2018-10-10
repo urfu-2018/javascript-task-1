@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     const isHexColorRegex = /^#[0-9A-Fa-f]{6}$/g;
 
     if (!isHexColorRegex.test(hexColor)) {
-        throw new RangeError();
+        throw new RangeError('out of range');
     }
     const r = parseInt(hexColor.substring(1, 3), 16);
     const g = parseInt(hexColor.substring(3, 5), 16);
@@ -160,7 +160,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('input argument should be a string');
     }
-    const smileRegex = /:-\)/g;
+    const smileRegex = /:-\)|\(-:/g;
     const allSmiles = text.match(smileRegex);
 
     return allSmiles === null ? 0 : allSmiles.length;
