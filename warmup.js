@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use strict';
 
 /**
@@ -32,7 +31,7 @@ function centuryByYearProblem(year) {
     }
     let age;
     try {
-        age = parseInt(year) % 100 + 1;
+        age = Math.trunc(parseInt(year) / 100) + 1;
     } catch (error) {
         throw error('Not a number.');
     }
@@ -54,18 +53,20 @@ function colorsProblem(hexColor) {
     if (hexColor[0] !== '#') {
         throw TypeError('Expected # at start of the argument.');
     }
+    const onlyNumbers = hexColor.substr(1);
     const acceptableSymbols = /[0-F]/g;
-    for (let i = 1; i < 7; i++) {
-        if (!hexColor[i].match(acceptableSymbols)) {
+    for (let char in onlyNumbers) {
+        if (!char.match(acceptableSymbols)) {
             throw RangeError('Unacceptable values.');
         }
     }
 
-    const hexColorsSeparate = hexColor.match(/.{1,3}/g);
+    const hexColorsSeparate = onlyNumbers.match(/(..?)/g); // [ 'FF', 'FF', 'FF' ]
     let rgbColorsSep = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
         rgbColorsSep.push(parseInt(hexColorsSeparate[i], 16));
     }
+
 
     return '(' + rgbColorsSep[0] + ', ' + rgbColorsSep[1] + ', ' + rgbColorsSep[2] + ')';
 }
@@ -152,7 +153,7 @@ function smilesProblem(text) {
         throw TypeError('Wrong argument type, expected string');
     }
 
-    return text.match(/(:-\)|\(-:)/g).length > 0;
+    return text.match(/(:-\)|\(-:)/g).length;
 }
 
 /**
@@ -164,17 +165,16 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     const fieldInline = field[0].concat(field[1], field[2]);
     const magicSquare = [4, 3, 8, 9, 5, 1, 2, 7, 6];
+    const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
+        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]];
 
-    for (let i = 0; i < 7; i++) {
-        for (let j = 1; j < 8; j++) {
-            for (let k = 2; k < 9; k++) {
-                if (i !== j && j !== k && i !== k) {
-                    if (fieldInline[i] === fieldInline[j] && fieldInline[j] === fieldInline[k]) {
-                        if (magicSquare[i] + magicSquare[j] + magicSquare[k] === 15) {
-                            return fieldInline[i];
-                        }
-                    }
-                }
+    for (let i in winStates) {
+        if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
+            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]]) {
+            if (magicSquare[winStates[i][0]] +
+                magicSquare[winStates[i][1]] +
+                magicSquare[winStates[i][2]] === 15) {
+                return fieldInline[winStates[i][0]];
             }
         }
     }
