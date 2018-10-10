@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (Number.isNaN(a) || Number.isNaN(b)) {
         throw new TypeError('input values should be a integer');
     }
 
@@ -26,6 +26,11 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('input value should be a integer');
     }
+
+    if (year < 0) {
+        throw new RangeError('year should be a positive number');
+    }
+
     const yearInSenture = 100;
 
     return Math.trunc(year / yearInSenture) + 1;
@@ -102,7 +107,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (Number.isNaN(n) || Number.isNaN(targetNs)) {
-        throw new TypeError('input arguments should be a numbet');
+        throw new TypeError('input arguments should be a number');
     }
 
     if (targetNs > 36 || targetNs < 2) {
