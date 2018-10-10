@@ -24,6 +24,14 @@ console.info(colorsProblem('#FFFFFF'));
 // Выведет `1`
 console.info(fibonacciProblem(1));
 
+const a =
+    [[1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+
+console.info(Array.isArray(a));
+
 // Выведет `[
 //    [1, 4, 7],
 //    [2, 5, 8],

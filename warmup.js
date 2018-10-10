@@ -8,7 +8,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number') {
+        throw new TypeError('a не является числом');
+    }
+    if (typeof b !== 'number') {
+        throw new TypeError('b не является числом');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +26,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError('year не является числом');
+    }
+    if (year < 0) {
+        throw new RangeError('year отрицательное');
+    }
+
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
@@ -30,7 +44,25 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('hexColor не является строкой');
+    }
+    for (let i = 1; i < hexColor.length; i++) {
+        if (isNaN(parseInt(i)) && (i < 'A' || i > 'F')) {
+            throw new RangeError('values of hexColor are not in valid range');
+        }
+    }
+
+    return hexToRgb(hexColor);
+}
+
+function hexToRgb(hexColor) {
+    let rgbArr = [];
+    for (let i = 1; i < hexColor.length; i += 2) {
+        rgbArr.push(parseInt(hexColor.substring(i, i + 2), 16));
+    }
+
+    return '(' + rgbArr.join(', ') + ')';
 }
 
 /**
@@ -41,6 +73,18 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (typeof n !== 'number') {
+        throw new TypeError('n не является числом');
+    }
+    if (n < 0 || n % 1 !== 0) {
+        throw new RangeError('n is not positive integer');
+    }
+    let fibTable = [0, 1];
+    for (let i = 2; i <= n; i++) {
+        fibTable[i] = fibTable[i - 1] + fibTable[i - 2];
+    }
+
+    return fibTable[n];
     // Ваше решение
 }
 
@@ -51,7 +95,37 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('matrix не является двумерным массивом');
+    }
+    let matrixLen;
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
+            throw new TypeError('matrix не является двумерным массивом');
+        }
+        if (i === 0) {
+            matrixLen = matrix[i].length;
+        }
+        if (matrix[i].length !== matrixLen) {
+            throw new TypeError('matrix не является двумерным массивом');
+        }
+    }
+
+    return transposeMatrix(matrix);
+}
+
+function transposeMatrix(matrix) {
+    const columnsCount = matrix.length;
+    const rowsCount = matrix[0].length;
+    let transposedMatrix = new Array(rowsCount);
+    for (let i = 0; i < matrix.length; i++) {
+        transposedMatrix[i] = new Array(columnsCount);
+        for (let j = 0; j < rowsCount; j++) {
+            transposedMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -63,7 +137,40 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('n не является числом');
+    }
+    if (typeof targetNs !== 'number') {
+        throw new TypeError('targetNs не является числом');
+    }
+    if (targetNs % 1 !== 0) {
+        throw new TypeError('targetNs не является целым числом');
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('targetNs выходит за допустимые пределы значений');
+    }
+
+    return convertNumToOtherNumSystem(n, targetNs);
+}
+
+function convertNumToOtherNumSystem(n, targetNs) {
+    const unicodeOfA = 65;
+    const shift = 10;
+    let converted = '';
+    while (n >= targetNs) {
+        let remainder = n % targetNs;
+        if (remainder > 9) {
+            remainder = String.fromCharCode(unicodeOfA + remainder - shift);
+        }
+        converted = remainder + converted;
+        n = Math.trunc(n / targetNs);
+    }
+    if (n > 9) {
+        n = String.fromCharCode(unicodeOfA + n - shift);
+    }
+    converted = n + converted;
+
+    return converted;
 }
 
 /**
@@ -72,7 +179,58 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const hyphensIndices = [1, 5, 9, 12];
+    const immutableDigitsIndices = [0, 2, 3, 4];
+    const immutableDigits = ['8', '8', '0', '0'];
+    const mutableDigitsIndices = [6, 7, 8, 10, 11, 13, 14];
+    const isCorrectLength = phoneNumber.length === 15;
+    const hyphensInPlaces = areHyphensInPlaces(phoneNumber, hyphensIndices);
+    const correctImmutableDigits =
+        areCorrectImmutableDigits(phoneNumber, immutableDigitsIndices, immutableDigits);
+    const validMutableDigits = areValidNutableDigits(phoneNumber, mutableDigitsIndices);
+
+    return hyphensInPlaces && isCorrectLength &&
+           correctImmutableDigits && validMutableDigits;
+}
+
+function areHyphensInPlaces(phoneNumber, hyphensIndices) {
+    let result = true;
+    for (let i = 0; i < hyphensIndices.length; i++) {
+        const index = hyphensIndices[i];
+        if (phoneNumber[index] !== '-') {
+            result = false;
+            break;
+        }
+    }
+
+    return result;
+}
+
+function areCorrectImmutableDigits(phoneNumber, immutableDigitsIndices,
+    immutableDigits) {
+    let result = true;
+    for (let i = 0; i < immutableDigitsIndices.length; i++) {
+        const index = immutableDigitsIndices[i];
+        if (phoneNumber[index] !== immutableDigits[i]) {
+            result = false;
+            break;
+        }
+    }
+
+    return result;
+}
+
+function areValidNutableDigits(phoneNumber, mutableDigitsIndices) {
+    let result = true;
+    for (let i = 0; i < mutableDigitsIndices.length; i++) {
+        const index = mutableDigitsIndices[i];
+        if (phoneNumber[index] < '0' || phoneNumber[index] > '9') {
+            result = false;
+            break;
+        }
+    }
+
+    return result;
 }
 
 /**
@@ -82,7 +240,17 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('text не является строкой');
+    }
+    let smilesCount = 0;
+    for (let i = 0; i < text.length - 2; i++) {
+        if (text.substring(i, i + 3) === ':-)' || text.substring(i, i + 3) === '(-:') {
+            smilesCount++;
+        }
+    }
+
+    return smilesCount;
 }
 
 /**
@@ -92,7 +260,56 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const horizontalWinner = getHorizontalWinner(field);
+    if (horizontalWinner !== undefined) {
+        return horizontalWinner;
+    }
+    const verticalWinner = getVerticalWinner(field);
+    if (verticalWinner !== undefined) {
+        return verticalWinner;
+    }
+    const diagonalWinner = getDiagonalWinner(field);
+    if (diagonalWinner !== undefined) {
+        return diagonalWinner;
+    }
+
+    return 'draw';
+}
+
+function getHorizontalWinner(field) {
+    let winner;
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            winner = field[i][0];
+            break;
+        }
+    }
+
+    return winner;
+}
+
+function getVerticalWinner(field) {
+    let winner;
+    for (let i = 0; i < 3; i++) {
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            winner = field[0][i];
+            break;
+        }
+    }
+
+    return winner;
+}
+
+function getDiagonalWinner(field) {
+    let winner;
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        winner = field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        winner = field[0][2];
+    }
+
+    return winner;
 }
 
 module.exports = {
