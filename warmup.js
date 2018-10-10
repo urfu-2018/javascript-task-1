@@ -97,6 +97,10 @@ function matrixProblem(matrix) {
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
+function isGoodNS(ns) {
+    return Number.isInteger(ns) && ns >= 2 && ns <= 36;
+}
+
 /**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
@@ -109,7 +113,7 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
-    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (!isGoodNS(targetNs) || !Number.isInteger(targetNs)) {
         throw new RangeError('Система счисления выходит за пределы значений [2, 36]');
     }
 
