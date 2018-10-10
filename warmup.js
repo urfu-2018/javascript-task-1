@@ -149,10 +149,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (!Array.isArray(field) || !Array.isArray(field[0])) {
-        throw new TypeError('Incorrect params');
-    }
-
     let result = 'draw';
     for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
