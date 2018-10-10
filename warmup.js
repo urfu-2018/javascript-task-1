@@ -1,5 +1,9 @@
 'use strict';
 
+function isNotNumberNotFiniteNotInteger(elem) {
+    return (typeof elem !== 'number' || !isFinite(elem) || elem % 1 !== 0);
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -7,16 +11,30 @@
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
+
 function abProblem(a, b) {
-    if (typeof a !== 'number' || !isFinite(a)) {
+    if (isNotNumberNotFiniteNotInteger(a)) {
         throw new TypeError('a не является числом');
     }
-    if (typeof b !== 'number' || !isFinite(b)) {
+    if (isNotNumberNotFiniteNotInteger(b)) {
         throw new TypeError('b не является числом');
     }
 
     return a + b;
 }
+
+/*
+
+function abProblem(a, b) {
+    if (typeof a !== 'number' || !isFinite(a) || a % 1 !== 0) {
+        throw new TypeError('a не является числом');
+    }
+    if (typeof b !== 'number' || !isFinite(b) || b % 1 !== 0) {
+        throw new TypeError('b не является числом');
+    }
+
+    return a + b;
+}*/
 
 /**
  * Определяет век по году
