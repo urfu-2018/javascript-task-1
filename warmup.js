@@ -36,7 +36,7 @@ function checkTypeUnsafe(arg, argName, expectedTypeName) {
 function checkInteger(arg, argName) {
     checkType(arg, argName, 'number');
     checkType(argName, 'argName', 'string');
-    if (arg % 1 !== 0) {
+    if (arg % 1 !== 0 || !Number.isFinite(arg)) {
         throw new TypeError(argName + ' must be integer');
     }
 }
