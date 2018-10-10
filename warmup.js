@@ -116,7 +116,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('n and targetNs should be numbers');
     }
 
-    return n.toString(targetNs);
+    return n.toString(targetNs).toUpperCase();
 }
 
 /**
