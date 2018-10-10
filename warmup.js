@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('');
-    } else if (hexColor[0] !== '#' || isNaN(parseInt(hexColor.slice(1), 16))) {
+    } else if (!(/^#[a-fA-F]{6}$/.test(hexColor))) {
         throw new RangeError('');
     } else {
         return ['(', ')'].join(
@@ -121,7 +121,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
