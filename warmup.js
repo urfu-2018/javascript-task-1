@@ -29,9 +29,12 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError('year must be positive');
     }
-    const preCentury = parseInt(year / 100);
-
-    return preCentury + 1;
+    let preCentury = parseInt(year / 100);
+    if (year % 100 !== 0) {
+        preCentury += 1;
+    }
+    
+    return preCentury;
 }
 
 /**
