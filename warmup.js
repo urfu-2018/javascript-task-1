@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if ([a, b].some((x)=>typeof x !== 'number' || !Number.isFinite(x))) {
+    if ([a, b].some((x)=>typeof x !== 'number')) {
         throw new TypeError('a and b should be numbers');
     } else {
         return a + b;
@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('year should be positive');
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
