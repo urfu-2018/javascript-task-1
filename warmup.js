@@ -143,7 +143,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.match(/8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g).length > 0;
+    return phoneNumber.match(/8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g) !== null;
 }
 
 /**
@@ -157,7 +157,12 @@ function smilesProblem(text) {
         throw new TypeError('Wrong argument type, expected string');
     }
 
-    return text.match(/(:-\)|\(-:)/g).length;
+    const smiles = text.match(/(:-\)|\(-:)/g);
+    if (smiles !== null) {
+        return smiles.length;
+    }
+
+    return 0;
 }
 
 /**
