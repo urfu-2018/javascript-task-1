@@ -86,12 +86,16 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (matrix.constructor !== Array ||
-        matrix.length === 0 ||
         matrix[0].constructor !== Array) {
         throw new TypeError();
     }
+
     const n = matrix.length;
     const m = matrix[0].length;
+
+    if (m === 0) {
+        return [[]];
+    }
 
     for (let i = 1; i < n; i++) {
         if (matrix[i].length !== m) {
