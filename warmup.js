@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return a + b;
+    return 10 * (a + b) / 10;
 }
 
 /**
@@ -95,7 +95,7 @@ function matrixProblem(matrix) {
 
     const n = matrix[0].length;
 
-    for (let i = 0; i < matrix.length; i++) {
+    for (let i = 0; i < m; i++) {
         if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
             throw new TypeError();
         }
