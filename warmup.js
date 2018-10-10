@@ -10,11 +10,6 @@
 function abProblem(a, b) {
     if ([a, b].some((x)=>typeof x !== 'number')) {
         throw new TypeError('a and b should be numbers');
-    } else if (Number.isNaN(a) ||
-        Number.isNaN(b) ||
-        !Number.isFinite(a) ||
-        !Number.isFinite(b)) {
-        throw new RangeError('');
     } else {
         return a + b;
     }
