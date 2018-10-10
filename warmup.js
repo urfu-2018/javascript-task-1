@@ -23,6 +23,9 @@ function abProblem(a, b) {
     if (!isTypeOf(a, 'number') || !isTypeOf(b, 'number')) {
         throw new TypeError();
     }
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
 
     return a + b;
 }
