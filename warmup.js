@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (Number.isNaN(a) || Number.isNaN(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('input values should be a integer');
     }
 
@@ -68,7 +68,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (Number.isNaN(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('input argument should be a number');
     }
 
