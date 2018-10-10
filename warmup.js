@@ -49,9 +49,6 @@ function colorsProblem(hexColor) {
         throw new RangeError('Color should look like "#rgb" or "#rrggbb"');
     }
     const hex = hexColor.slice(1);
-    function hexToDec(str) {
-        return parseInt(str, 16);
-    }
     let array = [];
     if (hex.length === 3) {
         array = hex.split('').map((x)=>x + x);
@@ -61,7 +58,7 @@ function colorsProblem(hexColor) {
         }
     }
 
-    return `(${array.map(hexToDec).join(', ')})`;
+    return `(${array.map((str)=>parseInt(str, 16)).join(', ')})`;
 }
 
 /**
