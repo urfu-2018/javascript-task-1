@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('year must be positive');
     }
     const preCentury = Math.floor(year / 100);
-    
+
     return preCentury + 1;
 }
 
