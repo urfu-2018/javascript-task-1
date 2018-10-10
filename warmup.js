@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (typeof a !== 'number' || b !== 'number') {
         throw new TypeError('a and b must be Number');
     }
 
@@ -25,6 +25,9 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (isNaN(year)) {
         throw new TypeError('year must be Number');
+    }
+    if (year < 0) {
+        throw new RangeError("year must be positive");
     }
     const preCentury = parseInt(year / 100);
 
@@ -50,7 +53,7 @@ function colorsProblem(hexColor) {
     const g = parseInt(hexChar[2] + hexChar[3], 16);
     const b = parseInt(hexChar[4] + hexChar[5], 16);
 
-    return '(' + r + ', ' + g + ', ' + b + ')';
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -109,7 +112,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -150,7 +153,7 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     let result = 'draw';
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 2; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             result = field[i][0];
         }
