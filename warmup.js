@@ -130,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('Wrong argument(s) type, expected number.');
     }
 
-    if (n < 2 || n > 36) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('Wrong base, expected base in range [2, 36].');
     }
 
