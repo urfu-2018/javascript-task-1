@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor should be string');
     }
-    if (/#[A-Fa-f\d]{6}/.test(hexColor)) {
+    if (/^#[A-Fa-f\d]{6}$/.test(hexColor)) {
         let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str) => parseInt(str, 16));
 
         return `(${colors.join(', ')})`;
@@ -134,7 +134,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return Boolean(/8-800-\d{3}(-\d{2}){2}/.test(phoneNumber));
+    return Boolean(/^8-800-\d{3}(-\d{2}){2}$/.test(phoneNumber));
 }
 
 /**
