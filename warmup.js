@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('В аргументы переданы не числа');
     }
 
@@ -140,7 +140,7 @@ function smilesProblem(text) {
         throw new TypeError('В качестве аргумента передаётся не строка');
     }
 
-    return text.split(':-)').length + text.split('(-:').length - 2;
+    return text.split(':-)').length + text.split('(-:').length - 1 - text.split('(-:-)').length;
 }
 
 function getTacToeWinner(row) {
