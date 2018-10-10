@@ -102,7 +102,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' ||
+        typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs) ||
+        Number.isNaN(n)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     } else if (targetNs < 2 && targetNs > 36) {
         throw new RangeError('Система счисления выходит за пределы значений!');
