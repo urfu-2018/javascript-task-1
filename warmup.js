@@ -41,6 +41,19 @@ function checkInteger(arg, argName) {
 }
 
 /**
+ * Проверяет, что число не NaN
+ * @param {Number} arg Проверяемое число
+ * @param {String} argName Название числа
+ * @throws {TypeError} Если arg не число или NaN
+ */
+function checkNotNaN(arg, argName) {
+    checkType(arg, argName, 'number');
+    if (Number.isNaN(arg)) {
+        throw new TypeError(`${argName} is NaN`);
+    }
+}
+
+/**
  * Проверяет, что число конечное
  * @param {Number} arg Число
  * @param {String} argName Название числа
@@ -121,8 +134,8 @@ function checkRange(min, value, max, valueName = 'value') {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    checkInteger(a, 'a');
-    checkInteger(b, 'b');
+    checkNotNaN(a, 'a');
+    checkNotNaN(b, 'b');
 
     return a + b;
 }
