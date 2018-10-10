@@ -67,7 +67,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n is not Number');
     }
-    if (n < 0 || n % 1 !== 0) {
+    if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError('n must be positive and not float');
     }
     if (n === 1 || n === 2) {
@@ -114,7 +114,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || !Number.isFinite(n) || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -130,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/g.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -154,21 +154,30 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let result = 'draw';
-    for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            result = field[i][0];
-        }
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            result = field[2][i];
-        }
+    let win = checkRows(field);
+    if (win) {
+        return win;
     }
+
+    win = checkRows(matrixProblem(field));
+    if (win) {
+        return win;
+    }
+
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
      (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
         result = field[1][1];
     }
 
-    return result;
+    return 'draw';
+}
+
+function checkRows(field) {
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+    }
 }
 
 module.exports = {
