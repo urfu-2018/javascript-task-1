@@ -115,14 +115,13 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
         typeof targetNs !== 'number' ||
-        !Number.isInteger(targetNs)) {
+        !Number.isInteger(targetNs) ||
+        !Number.isFinite(n)) {
         throw new TypeError('n and targetNs should be numbers');
+    } else if (targetNs >= 2 && targetNs <= 36) {
+        return n.toString(targetNs);
     }
-    if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('targetNs should be in [2,36]');
-    }
-
-    return n.toString(targetNs);
+    throw new RangeError('targetNs should be in [2,36]');
 }
 
 /**
