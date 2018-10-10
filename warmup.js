@@ -49,6 +49,8 @@ function colorsProblem(hexColor) {
         let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str) => parseInt(str, 16));
 
         return `(${colors.join(', ')})`;
+    } else if (/^#[A-Za-z\d]+$/.test(hexColor)) {
+        throw new RangeError();
     }
     throw new RangeError('hexColor should look like "#rrggbb" ' +
         'and every digit should be in [0,9] u [a,f] u [A,F]');
