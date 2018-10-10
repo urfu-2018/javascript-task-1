@@ -91,7 +91,7 @@ function matrixProblem(matrix) {
         return [[]];
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError('Incorrect params');
         }
     }
