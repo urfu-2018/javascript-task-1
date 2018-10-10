@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Передана не строка!');
-    } else if (/^#[A-Fa-f0-9]{6}/.test(hexColor)) {
+    } else if (/^#[A-Fa-f0-9]{6}$/.test(hexColor)) {
         return '(' + [
             parseInt(hexColor.slice(1, 3), 16),
             parseInt(hexColor.slice(3, 5), 16),
@@ -117,7 +117,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-[0-9]{3}(-[0-9]{2}){2}/.test(phoneNumber);
+    return /^8-800-[0-9]{3}(-[0-9]{2}){2}$/.test(phoneNumber);
 }
 
 /**
