@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Color should be string');
     }
-    if (hexColor.length !== 7 && hexColor.length !== 4) {
+    if (hexColor.length !== 7 && hexColor.length !== 4 || hexColor[0] !== '#') {
         throw new RangeError('Color should look like "#rgb" or "#rrggbb"');
     }
     const hex = hexColor.slice(1);
