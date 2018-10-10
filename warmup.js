@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     } else if (hexColor[0] !== '#' || isNaN(parseInt(hexColor.slice(1), 16))) {
         throw new RangeError('');
     } else {
-        return ['(', ")"].join(
+        return ['(', ')'].join(
             hexColor
                 .slice(1)
                 .split(/(..)/)
