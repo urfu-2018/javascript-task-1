@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('year must be Number');
     }
     if (year < 0) {
-        throw new RangeError("year must be positive");
+        throw new RangeError('year must be positive');
     }
     const preCentury = parseInt(year / 100);
 
