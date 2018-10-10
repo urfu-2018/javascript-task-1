@@ -84,7 +84,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (matrix.constructor !== Array) {
+        throw new TypeError();
+    }
+    const rowLength = matrix[0].length;
+    matrix.forEach(row => {
+        if (matrix[0].constructor !== Array || row.length !== rowLength) {
+            throw new TypeError();
+        }
+    });
+
+    return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
 
 /**
@@ -96,7 +106,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (isNaN(n) || isNaN(targetNs)) {
+        throw new TypeError();
+    }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -105,7 +123,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const regExp = /8-800-\d{3}-\d{2}-\d{2}/i;
+
+    return regExp.test(phoneNumber) && phoneNumber.length === 15;
 }
 
 /**
@@ -115,7 +135,14 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    const leftSmile = /:-\)/g;
+    const rightSmile = /\(-:/g;
+
+    return text.match(leftSmile).length + text.match(rightSmile).length;
 }
 
 /**
@@ -125,7 +152,50 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let winner = checkRows(field);
+    if (winner) {
+        console.log('Выиграл ряд!')
+        return winner;
+    }
+
+    const transField = matrixProblem(field);
+    winner = checkRows(transField);
+    if (winner) {
+        return winner;
+    }
+
+    winner = checkDiagonals(field);
+    if (winner) {
+        return winner;
+    }
+
+    return 'draw';
+}
+
+function checkDiagonals(field) {
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][3]) {
+        return field[0][0];
+    }
+
+    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[0][2];
+    }
+
+    return false;
+}
+
+function checkRows(field) {
+    for (let i = 0; i < field.length; i++) {
+        if (checkRow(field[i])) {
+            return field[i][0];
+        }
+    }
+
+    return false;
+}
+
+function checkRow(fieldRow) {
+    return new Set(fieldRow).size === 1;
 }
 
 module.exports = {
@@ -140,3 +210,8 @@ module.exports = {
     ticTacToeProblem
 };
 
+console.log(ticTacToeProblem([
+    ['x', 'x', 'o'],
+    ['o', 'o', 'x'],
+    ['x', 'o', 'x']
+]))
