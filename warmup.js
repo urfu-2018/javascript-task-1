@@ -114,7 +114,8 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
-        typeof targetNs !== 'number') {
+        typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs)) {
         throw new TypeError('n and targetNs should be numbers');
     }
     if (targetNs < 2 || targetNs > 36) {
