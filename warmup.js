@@ -23,9 +23,6 @@ function abProblem(a, b) {
     if (!isTypeOf(a, 'number') || !isTypeOf(b, 'number')) {
         throw new TypeError();
     }
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError();
-    }
 
     return a + b;
 }
@@ -99,8 +96,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix[0].constructor !== Array) {
+    if (matrix.constructor !== Array || matrix[0].constructor !== Array) {
         throw new TypeError();
+    }
+    if (matrix[0].length === 0) {
+        return [[]];
     }
     const transMatrix = new Array(matrix[0].length);
     for (let n = 0; n < matrix[0].length; n++) {
