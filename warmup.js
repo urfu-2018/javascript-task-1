@@ -64,7 +64,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof year !== 'number') {
+    if (typeof n !== 'number') {
         throw new TypeError('n is not Number');
     }
     if (n < 0 || n % 1 !== 0) {
