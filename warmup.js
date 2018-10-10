@@ -8,10 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number') {
+    if (typeof a !== 'number' || isNaN(a)) {
         throw new TypeError('a не является числом');
     }
-    if (typeof b !== 'number') {
+    if (typeof b !== 'number' || isNaN(b)) {
         throw new TypeError('b не является числом');
     }
 
@@ -26,7 +26,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || isNaN(year)) {
         throw new TypeError('year не является числом');
     }
     if (year < 0) {
@@ -77,7 +77,7 @@ function hexToRgb(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || isNaN(n)) {
         throw new TypeError('n не является числом');
     }
     if (n < 0 || n % 1 !== 0) {
@@ -141,10 +141,10 @@ function transposeMatrix(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || isNaN(n)) {
         throw new TypeError('n не является числом');
     }
-    if (typeof targetNs !== 'number') {
+    if (typeof targetNs !== 'number' || isNaN(targetNs)) {
         throw new TypeError('targetNs не является числом');
     }
     if (targetNs % 1 !== 0) {

@@ -14,6 +14,7 @@ const {
 
 // Выведет `2`
 console.info(abProblem(1, 1));
+console.info(abProblem(NaN, 1));
 
 // Выведет `21`
 console.info(centuryByYearProblem(2018));
