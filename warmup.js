@@ -161,16 +161,12 @@ function ticTacToeProblem(field) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             result = field[i][0];
         }
-    }
-    for (let i = 0; i < 4; i++) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
             result = field[2][i];
         }
     }
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        result = field[0][0];
-    } else if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
-        result = field[2][0];
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) || (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
+        result = field[1][1];
     } else {
         result = 'draw';
     }
