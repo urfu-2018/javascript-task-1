@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
         throw new RangeError('Expected argument length of 7');
     }
     const onlyNumbers = hexColor.substr(1);
-    if (!onlyNumbers.match(/^[0-9A-F]+$/g)) {
+    if (!onlyNumbers.match(/^[0-9A-Fa-f]+$/g)) {
         throw new RangeError('Unacceptable values.');
     }
 
@@ -91,14 +91,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Wrong argument type, expected 2D array.');
     }
 
     const M = matrix.length;
     const N = matrix[0].length;
-    for (let i = 1; i < M; i++) {
-        if (matrix[i].length !== N) {
+    for (let i = 1; i < M; i++) { // i = 1 because 0 is used to get N.
+        if (matrix[i].length !== N || !Array.isArray(matrix[i])) {
             throw new TypeError('Wrong argument type, expected 2D array.');
         }
     }
@@ -116,7 +116,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError('Wrong argument(s) type, expected number.');
+        throw new TypeError('Wrong argument(s) type, expected integer.');
     }
 
     if (targetNs < 2 || targetNs > 36) {
@@ -132,7 +132,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.match(/^(8-800-[0-9]{3}-[0-9]{2}-[0-9]{2})$/g) !== null;
+    return phoneNumber.match(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g) !== null;
 }
 
 /**
@@ -160,10 +160,10 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-function ticTacToeProblem(field) { // I presume this alg needs some explanation to do.
+function ticTacToeProblem(field) {
     const fieldInline = field[0].concat(field[1], field[2]);
     const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
-        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]];
+        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]]; // all 8 3-in-a-rows in the game
 
     for (let i in winStates) {
         if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
