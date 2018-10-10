@@ -10,9 +10,9 @@
 function abProblem(a, b) {
     if ([a, b].some((x)=>typeof x !== 'number')) {
         throw new TypeError('a and b should be numbers');
-    } else {
-        return a + b;
     }
+
+    return a + b;
 }
 
 /**
@@ -25,8 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('year should be integer number');
-    }
-    if (year < 0) {
+    } else if (year < 0) {
         throw new RangeError('year should be positive');
     }
 
@@ -43,14 +42,15 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor should be string');
-    }
-    if (!/^#[A-Fa-f0-9]{6}$/.test(hexColor)) {
+    } else if (!/^#[A-Fa-f0-9]{6}$/.test(hexColor)) {
         throw new RangeError();
-    } else {
-        let colors = hexColor.match(/([A-Fa-f\d]{2})/g).map((str) => parseInt(str, 16));
-
-        return `(${colors.join(', ')})`;
     }
+
+    return ['(', ')'].join(
+        hexColor.match(/([A-Fa-f\d]{2})/g)
+            .map((str) => parseInt(str, 16))
+            .join(', ')
+    );
 }
 
 /**
