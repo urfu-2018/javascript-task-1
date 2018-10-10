@@ -149,10 +149,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (!Array.isArray(field)) {
-        throw new TypeError('Incorrect params');
-    }
-    if (!Array.isArray(field[0])) {
+    if (!Array.isArray(field) || !Array.isArray(field[0])) {
         throw new TypeError('Incorrect params');
     }
 
@@ -165,7 +162,8 @@ function ticTacToeProblem(field) {
             result = field[2][i];
         }
     }
-    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) || (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+     (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
         result = field[1][1];
     } else {
         result = 'draw';
