@@ -34,10 +34,23 @@ function checkTypeUnsafe(arg, argName, expectedTypeName) {
  * @throws {TypeError} Если arg не число или не целое
  */
 function checkInteger(arg, argName) {
+    checkFiniteNumber(arg, argName);
+    if (arg % 1 !== 0) {
+        throw new TypeError(argName + ' must be integer');
+    }
+}
+
+/**
+ * Проверяет, что число конечное
+ * @param {Number} arg Число
+ * @param {String} argName Название числа
+ * @throws {TypeError} Если arg не число или не конечное
+ */
+function checkFiniteNumber(arg, argName) {
     checkType(arg, argName, 'number');
     checkType(argName, 'argName', 'string');
-    if (arg % 1 !== 0 || !Number.isFinite(arg)) {
-        throw new TypeError(argName + ' must be integer');
+    if (!Number.isFinite(arg)) {
+        throw new TypeError(argName + ' is not finite');
     }
 }
 
@@ -90,9 +103,9 @@ function checkRangeUnsafe(min, value, max, valueName) {
  * @throws {RangeError} Если min > max или value не входит в диапазон
  */
 function checkRange(min, value, max, valueName = 'value') {
-    checkType(min, 'min', 'number');
-    checkType(value, 'value', 'number');
-    checkType(max, 'max', 'number');
+    checkFiniteNumber(min, 'min');
+    checkFiniteNumber(value, 'value');
+    checkFiniteNumber(max, 'max');
     checkType(valueName, 'valueName', 'string');
     if (min > max) {
         throw new RangeError(`min must be less or equal than max, got min (${min}) > max (${max})`);
