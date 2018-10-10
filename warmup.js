@@ -167,7 +167,8 @@ function ticTacToeProblem(field) {
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         result = field[1][1];
     }
-    result = checkRows(field) || checkRows(matrixProblem(field)) || result;
+    result = checkRows(field) ||
+        checkRows(field[0].map((_, c) => field.map(row => row[c]))) || result;
 
     return result;
 }
