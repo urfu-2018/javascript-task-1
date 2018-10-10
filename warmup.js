@@ -113,15 +113,27 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) || isNaN(targetNs) || !Number.isInteger(targetNs)) {
-        throw new TypeError();
-    }
-
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
+    if (!isTypeCorrect(n, targetNs)) {
+        throw new TypeError();
+    }
+
     return n.toString(targetNs);
+}
+
+function isTypeCorrect(n, targetNs) {
+    if (isNaN(n) || isNaN(targetNs)) {
+        return false;
+    }
+
+    if (!Number.isFinite(n) || !Number.isInteger(targetNs)) {
+        return false;
+    }
+
+    return true;
 }
 
 /**
