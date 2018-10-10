@@ -48,7 +48,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('input value should be a string');
     }
 
-    const isHexColorRegex = /#[0-9A-Fa-f]{6}$/g;
+    const isHexColorRegex = /^#[0-9A-Fa-f]{6}$/g;
 
     if (!isHexColorRegex.test(hexColor)) {
         throw new RangeError();
@@ -103,7 +103,6 @@ function matrixProblem(matrix) {
     if (!checkIfRectangleMatrix(matrix)) {
         throw new TypeError('matrix should be rectangle matrix');
     }
-
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
