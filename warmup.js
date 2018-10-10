@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError('');
-    } else if (year <= 0) {
+    } else if (year < 0) {
         throw new RangeError('');
     } else {
         return Math.ceil(year / 100);
