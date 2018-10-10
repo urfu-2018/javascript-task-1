@@ -85,6 +85,9 @@ function matrixProblem(matrix) {
     if (matrix.length === 0) {
         throw new TypeError('');
     }
+    if (!(matrix[0] instanceof Array)) {
+        throw new TypeError('');
+    }
     let m = matrix[0].length;
     if (matrix.some(row=>!(row instanceof Array) || row.length !== m)) {
         throw new TypeError('');
