@@ -85,9 +85,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    const checkAllLengths = function (m) {
+        let result = true;
+        for (let i = 0; i < m.length - 1; i++) {
+            result = result && matrix[i].length === matrix[i + 1].length;
+        }
+
+        return result;
+    };
     if (matrix.constructor === Array &&
         matrix[0].constructor === Array &&
-        matrix[0][0].constructor !== Array) {
+        matrix[0][0].constructor !== Array &&
+        checkAllLengths(matrix)) {
         return matrix[0].map((column, i) => matrix.map(row => row[i]));
     }
     throw new TypeError('Передан не двумерный массив!');
@@ -105,7 +114,7 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
         typeof targetNs !== 'number' ||
         !Number.isInteger(targetNs) ||
-        Number.isNaN(n)) {
+        !Number.isFinite(n)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     } else if (targetNs < 2 && targetNs > 36) {
         throw new RangeError('Система счисления выходит за пределы значений!');
