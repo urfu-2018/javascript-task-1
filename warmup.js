@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string' || hexColor.length !== 7) {
         throw new TypeError();
     }
-    const regExp = /^#?([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
+    const regExp = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
     if (!regExp.test(hexColor)) {
         throw new RangeError();
     }
