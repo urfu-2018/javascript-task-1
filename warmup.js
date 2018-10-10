@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if ([a, b].some(e=>typeof(e) !== "number")) {
-        throw new TypeError("");
+    if ([a, b].some(e=>typeof(e) !== 'number')) {
+        throw new TypeError('');
     } else {
         return a + b;
     }
@@ -23,14 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== "number") {
-        throw new TypeError("");
+    if (typeof(year) !== 'number') {
+        throw new TypeError('');
     } else if (year < 0) {
-        throw new RangeError("");
+        throw new RangeError('');
     } else {
         return Math.floor(year / 100) + 1;
     }
 }
+
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
@@ -39,18 +40,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== "string") {
-        throw new TypeError("");
-    } else if (hexColor[0] !== "#" || isNaN(parseInt(hexColor.slice(1), 16))) {
-        throw new RangeError("");
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError('');
+    } else if (hexColor[0] !== '#' || isNaN(parseInt(hexColor.slice(1), 16))) {
+        throw new RangeError('');
     } else {
-        return ["(", ")"].join(
+        return ['(', ")"].join(
             hexColor
                 .slice(1)
                 .split(/(..)/)
-                .filter(ch => ch !== "")
+                .filter(ch => ch !== '')
                 .map(str=>parseInt(str, 16))
-                .join(", "));
+                .join(', '));
     }
 }
 
@@ -62,10 +63,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== "number") {
-        throw new TypeError("");
+    if (typeof(n) !== 'number') {
+        throw new TypeError('');
     } else if (n <= 0) {
-        throw new RangeError("");
+        throw new RangeError('');
     } else {
         return n === 1 || n === 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
     }
@@ -79,15 +80,16 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!(matrix instanceof Array)) {
-        throw new TypeError("");
+        throw new TypeError('');
     }
     if (matrix.length === 0) {
-        throw new TypeError("");
+        throw new TypeError('');
     }
     let m = matrix[0].length;
     if (matrix.some(row=>!(row instanceof Array) || row.length !== m)) {
-        throw new TypeError("");
+        throw new TypeError('');
     }
+
     return Object.keys(matrix[0]).map(clm=> matrix.map(row=>row[clm]));
 }
 
@@ -101,10 +103,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if ([n, targetNs].some(e=>typeof(e) !== "number")) {
-        throw new TypeError("");
+    if ([n, targetNs].some(e=>typeof(e) !== 'number')) {
+        throw new TypeError('');
     } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError("");
+        throw new RangeError('');
     } else {
         return n.toString(targetNs);
     }
@@ -126,8 +128,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== "string")
-        throw new TypeError("");
+    if (typeof(text) !== 'string') {
+        throw new TypeError('');
+    }
+
     return [].concat(text.match(/:-\)/g))
         .concat(text.match(/\(-:/g))
         .filter(e=>e !== null)
@@ -135,7 +139,7 @@ function smilesProblem(text) {
 }
 
 /**
- * Определяет победителя в игре "Крестики-нолики"
+ * Определяет победителя в игре 'Крестики-нолики'
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
@@ -153,6 +157,7 @@ function ticTacToeProblem(field) {
     } else if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
         return field[0][2];
     }
+
     return 'draw';
 }
 
