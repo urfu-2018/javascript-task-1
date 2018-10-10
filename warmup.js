@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (year < 0 || !Number.isInteger(year)) {
+    if (year <= 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
