@@ -94,30 +94,17 @@ function matrixProblem(matrix) {
         throw new TypeError('matrix should be 2d array');
     }
 
-    for (let i = 0; i < matrix.length; i++) {
+    const n = matrix.length;
+
+    for (let i = 0; i < n; i++) {
         if (!(matrix[i] instanceof Array)) {
             throw new TypeError('matrix should be 2d array');
         }
     }
 
-    if (!checkIfRectangleMatrix(matrix)) {
-        throw new TypeError('matrix should be rectangle matrix');
-    }
-
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
-function checkIfRectangleMatrix(matrix) {
-    const m = matrix[0].length;
-
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length !== m) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 /**
  * Переводит число в другую систему счисления
