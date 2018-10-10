@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('');
-    } else if (!(/^#[a-fA-F]{6}$/.test(hexColor))) {
+    } else if (!(/^#[a-fA-F0-9]{6}$/.test(hexColor))) {
         throw new RangeError('');
     } else {
         return ['(', ')'].join(
