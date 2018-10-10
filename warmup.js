@@ -23,7 +23,8 @@ function abProblem(a, b) {
     if (!isTypeOf(a, 'number') || !isTypeOf(b, 'number')) {
         throw new TypeError();
     }
-    if (isNaN(a) || isNaN(b)) {
+
+    if (isFinite(a) || isFinite(b)) {
         throw new TypeError();
     }
 
