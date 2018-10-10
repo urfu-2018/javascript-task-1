@@ -115,7 +115,7 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
         !Number.isInteger(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
-    } else if (targetNs < 2 && targetNs > 36) {
+    } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('Система счисления выходит за пределы значений!');
     } else {
         return n.toString(targetNs);
@@ -144,9 +144,9 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Передана не строка!');
-    } else {
-        return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
     }
+
+    return (text.match(/\(-:/g) || []).length + (text.match(/:-\)/g) || []).length;
 }
 
 /**
