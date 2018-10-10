@@ -125,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
 }
 
 function isTypeCorrect(n, targetNs) {
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         return false;
     }
 
