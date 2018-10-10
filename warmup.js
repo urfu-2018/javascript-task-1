@@ -85,21 +85,21 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    const checkAllLengths = function (m) {
-        let result = true;
-        for (let i = 0; i < m.length - 1; i++) {
-            result = result && matrix[i].length === matrix[i + 1].length;
-        }
-
-        return result;
-    };
-    if (matrix.constructor === Array &&
-        matrix[0].constructor === Array &&
-        matrix[0][0].constructor !== Array &&
-        checkAllLengths(matrix)) {
-        return matrix[0].map((column, i) => matrix.map(row => row[i]));
+    if (matrix.constructor !== Array ||
+        matrix.length === 0 ||
+        matrix[0].constructor !== Array) {
+        throw new TypeError();
     }
-    throw new TypeError('Передан не двумерный массив!');
+    const n = matrix.length;
+    const m = matrix[0].length;
+
+    for (let i = 1; i < n; i++) {
+        if (matrix[i].length !== m) {
+            throw new TypeError();
+        }
+    }
+
+    return matrix[0].map((column, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -129,6 +129,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     return /^8-800-[0-9]{3}(-[0-9]{2}){2}$/.test(phoneNumber);
 }
 
