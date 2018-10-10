@@ -138,6 +138,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!isTypeOf(phoneNumber, 'string')) {
+        return false;
+    }
     const temp = phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/);
 
     return temp !== null;
