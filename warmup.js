@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor must be string');
     }
-    if (hexColor.length !== 7) {
+    if (hexColor.length !== 7 || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
         throw new RangeError('Incorrect params');
     }
     const hexChar = hexColor.substr(1).split('');
