@@ -92,6 +92,12 @@ function matrixProblem(matrix) {
         !Array.isArray(matrix[0])) {
         throw new TypeError('matrix should be at least two dimensional array');
     }
+    let width = matrix[0].length;
+    for (let row in matrix) {
+        if (row.length !== width) {
+            throw new TypeError('matrix should have equal width rows');
+        }
+    }
 
     return matrix[0].map((_, c) => matrix.map(row => row[c]));
 }
