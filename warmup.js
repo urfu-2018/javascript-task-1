@@ -87,10 +87,8 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError('Incorrect params');
     }
-    for (let i = 1; i < matrix[0].length; i++) {
-        if (matrix[i].length !== matrix.length || !Array.isArray(matrix[i])) {
-            throw new TypeError('Incorrect params');
-        }
+    if (!Array.isArray(matrix[0])) {
+        throw new TypeError('Incorrect params');
     }
     if (matrix[0].length === 0) {
         return [[]];
