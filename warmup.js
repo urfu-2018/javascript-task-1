@@ -12,6 +12,10 @@ function abProblem(a, b) {
         typeof b !== 'number') {
         throw new TypeError('a and b should be numbers');
     }
+    if (Number.isNaN(a) ||
+        Number.isNaN(b)) {
+        throw new RangeError('');
+    }
 
     return a + b;
 }
