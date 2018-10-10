@@ -146,17 +146,12 @@ function smilesProblem(text) {
         throw new TypeError('Wrong argument type, expected string');
     }
 
-    const smilesRight = text.match(/:-\)/g);
-    const smilesLeft = text.match(/\(-:/g);
-    let smilesAmount = 0;
-    if (smilesRight !== null || smilesLeft !== null) {
-        smilesAmount += smilesRight.length;
-    }
-    if (smilesLeft !== null) {
-        smilesAmount += smilesLeft.length;
+    const smiles = text.match(/(:-\)|\(-:)/g);
+    if (smiles !== null) {
+        return smiles.length;
     }
 
-    return smilesAmount;
+    return 0;
 }
 
 /**
