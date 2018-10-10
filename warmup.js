@@ -90,34 +90,33 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array)) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError('matrix should be 2d array');
     }
 
-    for (let i = 0; i < matrix.length; i++) {
-        if (!(matrix[i] instanceof Array)) {
-            throw new TypeError('matrix should be 2d array');
+    const m = matrix[0].length;
+
+    function checkIfAllElementsIsArray() {
+        for (let i = 1; i < matrix.length; i++) {
+            if (!Array.isArray(matrix[i]) || matrix[i].length !== m) {
+                return false;
+            }
         }
+
+        return true;
     }
 
-    if (!checkIfRectangleMatrix(matrix)) {
-        throw new TypeError('matrix should be rectangle matrix');
+    if (!checkIfAllElementsIsArray(matrix)) {
+        throw new TypeError('matrix should be 2d array');
+    }
+
+    if (matrix[0].length === 0) {
+        return [[]];
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
-function checkIfRectangleMatrix(matrix) {
-    const m = matrix[0].length;
-
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length !== m) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 /**
  * Переводит число в другую систему счисления
@@ -128,7 +127,7 @@ function checkIfRectangleMatrix(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('input arguments should be a integer number');
     }
 
