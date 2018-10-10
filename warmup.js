@@ -26,11 +26,11 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('Wrong argument type, expected integer');
     }
-    if (year < 0) {
-        throw new RangeError('Negative year given.');
+    if (year < 1) {
+        throw new RangeError('Only years from a.d. are allowed.');
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
