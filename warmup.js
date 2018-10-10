@@ -118,17 +118,8 @@ function numberSystemProblem(n, targetNs) {
         typeof targetNs !== 'number') {
         throw new TypeError('n and targetNs should be numbers');
     }
-    if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('targetNs should be in [2, 36]');
-    }
-    const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let result = '';
-    while (n > 0) {
-        result = alphabet[n % targetNs] + result;
-        n = Math.floor(n / targetNs);
-    }
 
-    return result;
+    return n.toString(targetNs);
 }
 
 /**
