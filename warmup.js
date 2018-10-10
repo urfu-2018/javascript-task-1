@@ -65,7 +65,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('');
-    } else if (n <= 0) {
+    } else if (n < 0) {
         throw new RangeError('');
     } else {
         return n === 1 || n === 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
