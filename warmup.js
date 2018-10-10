@@ -90,7 +90,7 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix[0])) {
         throw new TypeError('Incorrect params');
     }
-   if (matrix[0].length === 0) {
+    if (matrix[0].length === 0) {
         return [[]];
     }
     let result = [];
