@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (isNaN(a) || isNaN(b)) {
+        throw new TypeError("Arguments must be numbers");
+    }
+    return parseInt(a) + parseInt(b);
 }
 
 /**
@@ -19,7 +22,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+    return Math.floor(year / 100) + 1
 }
 
 /**
@@ -30,7 +39,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof (hexColor) != "string") {
+        throw new TypeError();
+    }
+    if (hexColor.length != 7) {
+        throw new RangeError();
+    }
+    var first = parseInt(hexColor.slice(1, 3), 16);
+    var second = parseInt(hexColor.slice(3, 5), 16);
+    var thirth = parseInt(hexColor.slice(5, 7), 16)
+    return `(${first}, ${second}, ${thirth})`;
 }
 
 /**
@@ -41,7 +59,23 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (isNaN(n)) {
+        throw new TypeError("n is not a number");
+    }
+    if (n <= 0) {
+        throw new RangeError("n must be greater than zero");
+    }
+    if (n === 1 || n === 2) {
+        return 1;
+    }
+    var fib1 = 1;
+    var fib2 = 1;
+    for (var i = 3; i <= n; i++) {
+        var current = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = current;
+    }
+    return fib2;
 }
 
 /**
@@ -51,7 +85,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    var copy = [];
+    for (var i = 0; i < matrix.length; ++i) {
+        for (var j = 0; j < matrix[i].length; ++j) {
+            if (matrix[i][j] === undefined) continue;
+            if (copy[j] === undefined) copy[j] = [];
+            copy[j][i] = matrix[i][j];
+        }
+    }
+    return copy;
 }
 
 /**
@@ -63,7 +105,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError("Переданные аргументы некорректного типа");
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError("Система счисления выходит за пределы значений [2, 36]");
+    }
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +120,8 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    var re = /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g;
+    return re.test(phoneNumber);
 }
 
 /**
@@ -82,7 +131,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
 }
 
 /**
@@ -92,7 +141,32 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    var AllWinningLines = [
+        field[0],
+        field[1],
+        field[2],
+        [field[0][0], field[0][1], field[0][2]],
+        [field[1][0], field[1][1], field[1][2]],
+        [field[2][0], field[2][1], field[2][2]],
+        [field[0][0], field[1][1], field[2][2]],
+        [field[0][2], field[1][1], field[2][0]]
+    ]
+
+    for (var i = 0; i < AllWinningLines.length; i++) {
+        var current = AllWinningLines[i];
+        if (getWinner(current) != null) {
+            return getWinner(current);
+        }
+    }
+    throw new Error("Меня жестоко обманули");
+}
+
+function getWinner(list) {
+    var set = new Set(list);
+    if (set.size === 1) {
+        return set.values().next().value;
+    }
+    return null;
 }
 
 module.exports = {
