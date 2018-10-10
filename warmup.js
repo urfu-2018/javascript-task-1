@@ -129,6 +129,7 @@ function numberSystemProblem(n, targetNs) {
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
+ * @throws {TypeError} Когда в качестве аргумента передаётся не строка
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
