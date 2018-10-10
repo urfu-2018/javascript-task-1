@@ -24,7 +24,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    if (isFinite(a) || isFinite(b)) {
+    if (!isFinite(a) || !isFinite(b)) {
         throw new TypeError();
     }
 
