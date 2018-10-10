@@ -117,6 +117,9 @@ function numberSystemProblem(n, targetNs) {
         typeof targetNs !== 'number') {
         throw new TypeError('n and targetNs should be numbers');
     }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('targetNs should be in [2,36]');
+    }
 
     return n.toString(targetNs);
 }
