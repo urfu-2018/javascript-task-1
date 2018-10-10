@@ -88,8 +88,8 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) ||
         !Array.isArray(matrix[0]) ||
-        !matrix.length ||
-        !matrix[0].length) {
+        matrix.length === 0 ||
+        matrix[0].length === 0) {
         throw new TypeError('matrix should be at least two dimensional array');
     }
     matrix.map((x)=>x.length).reduce((prev, next) => {
@@ -114,8 +114,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
         typeof targetNs !== 'number' ||
-        !Number.isInteger(targetNs) ||
-        !Number.isFinite(n)) {
+        !Number.isInteger(targetNs)) {
         throw new TypeError('n and targetNs should be numbers');
     } else if (targetNs >= 2 && targetNs <= 36) {
         return n.toString(targetNs);
