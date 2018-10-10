@@ -31,9 +31,9 @@ function centuryByYearProblem(year) {
         throw new RangeError('year should be a positive number');
     }
 
-    const yearInSenture = 100;
+    const yearInCentury = 100;
 
-    return Math.trunc(year / yearInSenture) + 1;
+    return Math.trunc(year / yearInCentury) + 1;
 }
 
 /**
@@ -113,7 +113,7 @@ function numberSystemProblem(n, targetNs) {
     }
 
     if (targetNs > 36 || targetNs < 2) {
-        throw new RangeError('targetNs shoud be in range [2, 36]');
+        throw new RangeError('targetNs should be in range [2, 36]');
     }
 
     return n.toString(targetNs);
@@ -125,9 +125,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const phoneNumberRegex = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g;
+    const phoneNumberRegex = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g;
 
-    return phoneNumberRegex.test(phoneNumber) && phoneNumber.length === 15;
+    return phoneNumberRegex.test(phoneNumber);
 }
 
 /**
@@ -143,7 +143,7 @@ function smilesProblem(text) {
     const smileRegex = /:-\)/g;
     const allSmiles = text.match(smileRegex);
 
-    return allSmiles.length;
+    return allSmiles === null ? 0 : allSmiles.length;
 }
 
 /**
