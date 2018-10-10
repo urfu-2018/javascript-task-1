@@ -136,7 +136,7 @@ function smilesProblem(text) {
     }
 
     return [].concat(text.match(/:-\)/g))
-        .concat(text.match(/\(-:)/g)
+        .concat(text.match(/\(-:/g))
         .filter(e=>e !== null)
         .length;
 }
