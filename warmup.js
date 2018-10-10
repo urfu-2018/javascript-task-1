@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return 10 * (a + b) / 10;
+    return a + b;
 }
 
 /**
@@ -164,8 +164,11 @@ function smilesProblem(text) {
 
     const leftSmile = /:-\)/g;
     const rightSmile = /\(-:/g;
+    const doubleSmile = /\(-:-\)/g;
 
-    return (text.match(leftSmile) || []).length + (text.match(rightSmile) || []).length;
+    return (text.match(leftSmile) || []).length +
+        (text.match(rightSmile) || []).length -
+        (text.match(doubleSmile) || []).length;
 }
 
 /**
@@ -231,3 +234,4 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
+
