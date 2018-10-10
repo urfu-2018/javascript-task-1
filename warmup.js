@@ -106,8 +106,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (Number.isNaN(n) || Number.isNaN(targetNs)) {
-        throw new TypeError('input arguments should be a number');
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError('input arguments should be a integer number');
     }
 
     if (targetNs > 36 || targetNs < 2) {
@@ -138,15 +138,10 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('input argument should be a string');
     }
+    const smileRegex = /:-\)/g;
+    const allSmiles = text.match(smileRegex);
 
-    let count = 0;
-    for (let i = 0; i < text.length; i++) {
-        if (text[i] === ')') {
-            count++;
-        }
-    }
-
-    return count;
+    return allSmiles.length;
 }
 
 /**
