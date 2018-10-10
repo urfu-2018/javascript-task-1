@@ -56,7 +56,7 @@ function colorsProblem(hexColor) {
     const g = parseInt(hexChar[2] + hexChar[3], 16);
     const b = parseInt(hexChar[4] + hexChar[5], 16);
 
-    return `(${r}, ${g}, ${b})`;
+    return '(${r}, ${g}, ${b})';
 }
 
 /**
