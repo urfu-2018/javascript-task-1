@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('В аргументы переданы не числа');
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError('В качестве года передано не число');
     }
     if (year < 0) {
@@ -125,6 +125,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('Не строка');
+    }
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
