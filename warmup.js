@@ -90,10 +90,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array) ||
-        !(matrix[0] instanceof Array) ||
-          matrix[0][0] instanceof Array) {
+    if (!(matrix instanceof Array)) {
         throw new TypeError('matrix should be 2d array');
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!(matrix[i] instanceof Array)) {
+            throw new TypeError('matrix should be 2d array');
+        }
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
