@@ -143,7 +143,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.match(/8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g) !== null;
+    return phoneNumber.match(/^(8-800-[0-9]{3}-[0-9]{2}-[0-9]{2})$/g) !== null;
 }
 
 /**
