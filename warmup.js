@@ -94,11 +94,12 @@ function matrixProblem(matrix) {
     }
 
     const n = matrix[0].length;
-    matrix.forEach(row => {
-        if (!Array.isArray(row) || row.length !== n) {
+
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
             throw new TypeError();
         }
-    });
+    }
 
     return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
