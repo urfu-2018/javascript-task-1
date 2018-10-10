@@ -130,16 +130,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Передана не строка!');
     } else {
-        const smiles = text.split(' ');
-
-        return smiles.reduce(function (sum, current) {
-            if ((current.startsWith('(') && current.endsWith(':')) ||
-                (current.startsWith(':') && current.endsWith(')'))) {
-                return sum + 1;
-            }
-
-            return sum;
-        }, 0);
+        return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
     }
 }
 
