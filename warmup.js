@@ -125,10 +125,6 @@ function isTypeCorrect(n, targetNs) {
         return false;
     }
 
-    if (!Number.isFinite(n) || !Number.isInteger(targetNs)) {
-        return false;
-    }
-
     return true;
 }
 
@@ -144,7 +140,7 @@ function phoneProblem(phoneNumber) {
 
     const regExp = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
-    return regExp.test(phoneNumber) && phoneNumber.length === 15;
+    return regExp.test(phoneNumber);
 }
 
 /**
