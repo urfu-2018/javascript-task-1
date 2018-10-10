@@ -234,11 +234,3 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
-
-console.info(ticTacToeProblem([
-    ['o', 'o', 'x'],
-    ['o', 'x', 'o'],
-    ['x', 'x', 'o']
-]))
-
-console.info(smilesProblem('(-::-)'))
