@@ -154,28 +154,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let result = 'draw';
-    function checkRows(fld) {
-        for (const row of fld) {
-            let check = true;
-            let c = row[0];
-            for (let i = 0; i < row.length; i++) {
-                check = check && c === row[i];
-            }
-            if (check) {
-                return c;
-            }
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
         }
     }
-
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
-        result = field[1][1];
+        return field[1][1];
     }
-    result = checkRows(field) ||
-        checkRows(field[0].map((_, c) => field.map(row => row[c]))) || result;
 
-    return result;
+    return 'draw';
 }
 
 module.exports = {
