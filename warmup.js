@@ -130,6 +130,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     const regExp = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/i;
 
     return regExp.test(phoneNumber) && phoneNumber.length === 15;
