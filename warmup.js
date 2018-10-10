@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (isNaN(a) || isNaN(B)) {
+        throw new TypeError()
+    }
+
+    return Number(a) + Number(b);
 }
 
 /**
@@ -19,7 +23,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (isNaN(year)) {
+        throw new TypeError()
+    }
+
+    return ceil(year / 100);
 }
 
 /**
@@ -30,7 +38,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    return (255, 255, 255);
 }
 
 /**
@@ -41,7 +49,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    return n <= 1 ? n : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
@@ -51,7 +59,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    return matrix;
 }
 
 /**
@@ -63,7 +71,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (isNaN(n) || isNaN(targetNs)) {
+        throw new TypeError();
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return Number(n, targetNs);
 }
 
 /**
@@ -72,8 +86,15 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
-}
+    /*let splitedPhoneNumber = phoneNumber.split('-');
+    if (splitedPhoneNumber.length !== 5 || splitedPhoneNumber[0] !== '0' || splitedPhoneNumber[1] !== '800' ||
+        splitedPhoneNumber[2].length !== 3 || splitedPhoneNumber[3].length !== 4 || splitedPhoneNumber[4].length !== 2) {
+            return false;
+        }
+    return true;*/
+
+    return false;
+    }
 
 /**
  * Определяет количество улыбающихся смайликов в строке
@@ -82,7 +103,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    return 0;
 }
 
 /**
@@ -92,7 +113,12 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let x = 0; x < field.length; x++) {
+        for (let y = 0; y < field.length; y++) {
+
+        }
+    }
+    return 'x';
 }
 
 module.exports = {
