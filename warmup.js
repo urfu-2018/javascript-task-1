@@ -87,12 +87,6 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
-    const m = matrix.length;
-
-    if (m === 0) {
-        return [[]];
-    }
-
     const n = matrix[0].length;
     matrix.forEach(row => {
         if (!Array.isArray(row) || row.length !== n) {
