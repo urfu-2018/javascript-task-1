@@ -155,22 +155,27 @@ function ticTacToeProblem(field) {
     if (!Array.isArray(field[0])) {
         throw new TypeError('Incorrect params');
     }
+
+    let result;
     for (let i = 0; i < 4; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            return field[i][0];
+            result = field[i][0];
         }
     }
     for (let i = 0; i < 4; i++) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
+            result = field[2][i];
         }
     }
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return field[0][0];
+        result = field[0][0];
+    } else if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+        result = field[2][0];
+    } else {
+        result = 'draw';
     }
-    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
-        return field[0][2];
-    }
+
+    return result;
 }
 
 module.exports = {
