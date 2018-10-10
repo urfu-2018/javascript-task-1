@@ -27,15 +27,11 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (year <= 0 || !Number.isInteger(year)) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
-    if (year % 100 === 0) {
-        return year / 100;
-    }
-
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
