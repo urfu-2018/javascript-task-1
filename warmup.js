@@ -89,15 +89,18 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) ||
-        !Array.isArray(matrix[0])) {
+        !Array.isArray(matrix[0]) ||
+        !matrix.length ||
+        !matrix[0].length) {
         throw new TypeError('matrix should be at least two dimensional array');
     }
-    let width = matrix[0].length;
-    for (let row in matrix) {
-        if (row.length !== width) {
+    matrix.map((x)=>x.length).reduce((prev, next) => {
+        if (prev !== next) {
             throw new TypeError('matrix should have equal width rows');
+        } else {
+            return next;
         }
-    }
+    });
 
     return matrix[0].map((_, c) => matrix.map(row => row[c]));
 }
