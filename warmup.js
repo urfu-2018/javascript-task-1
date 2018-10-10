@@ -8,14 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    let sum;
-    try {
-        sum = parseInt(a) + parseInt(b);
-    } catch (error) {
-        throw error('Could not parse numbers.');
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Wrong argument type, expected integer.');
     }
 
-    return sum;
+    return a + b;
 }
 
 /**
@@ -26,21 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
-        throw new TypeError('Wrong argument type, expected number');
+    if (!Number.isInteger(year)) {
+        throw new TypeError('Wrong argument type, expected integer');
     }
     if (year < 0) {
         throw new RangeError('Negative year given.');
     }
 
-    let age;
-    try {
-        age = Math.trunc(year / 100) + 1;
-    } catch (error) {
-        throw error('Not a number.');
-    }
-
-    return age;
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
@@ -57,12 +47,12 @@ function colorsProblem(hexColor) {
     if (hexColor[0] !== '#') {
         throw new TypeError('Expected # at start of the argument.');
     }
+    if (hexColor.length !== 7) {
+        throw new RangeError('Expected argument length of 7');
+    }
     const onlyNumbers = hexColor.substr(1);
-    const acceptableSymbols = /[0-F]/g;
-    for (let char in onlyNumbers) {
-        if (!char.match(acceptableSymbols)) {
-            throw new RangeError('Unacceptable values.');
-        }
+    if (!onlyNumbers.match(/^[0-9A-F]+$/g)) {
+        throw new RangeError('Unacceptable values.');
     }
 
     const hexColorsSeparate = onlyNumbers.match(/(..?)/g); // [ 'FF', 'FF', 'FF' ]
@@ -70,7 +60,6 @@ function colorsProblem(hexColor) {
     for (let i = 0; i < 3; i++) {
         rgbColorsSep.push(parseInt(hexColorsSeparate[i], 16));
     }
-
 
     return '(' + rgbColorsSep[0] + ', ' + rgbColorsSep[1] + ', ' + rgbColorsSep[2] + ')';
 }
@@ -86,8 +75,8 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('Wrong argument type, expected number.');
     }
-    if (n < 0) {
-        throw new RangeError('Wrong argument, expected positive value.');
+    if (!Number.isInteger(n) || n < 0) {
+        throw new RangeError('Wrong argument, expected positive integer.');
     }
 
     const phi = 1.61803398875;
@@ -102,7 +91,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (typeof matrix !== 'object') {
+    if (Array.isArray(matrix)) {
         throw new TypeError('Wrong argument type, expected 2D array.');
     }
 
@@ -126,7 +115,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (Number.isInteger(n) || Number.isInteger(targetNs)) {
         throw new TypeError('Wrong argument(s) type, expected number.');
     }
 
