@@ -89,7 +89,7 @@ function matrixProblem(matrix) {
         throw new TypeError('');
     }
     let m = matrix[0].length;
-    if (matrix.some(row=>!(row instanceof Array) || row.length !== m)) {
+    if (m === 0 || matrix.some(row=>!(row instanceof Array) || row.length !== m)) {
         throw new TypeError('');
     }
 
