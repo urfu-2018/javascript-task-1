@@ -167,7 +167,8 @@ function ticTacToeProblem(field) {
 
     for (let i in winStates) {
         if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
-            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]]) {
+            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]] &&
+            (fieldInline[winStates[i][0]] === 'x' || fieldInline[winStates[i][0]] === 'o')) {
             return fieldInline[winStates[i][0]];
         }
     }
