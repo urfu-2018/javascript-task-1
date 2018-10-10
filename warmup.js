@@ -114,7 +114,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isFinite(n) || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -166,7 +166,7 @@ function ticTacToeProblem(field) {
 
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
      (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
-        result = field[1][1];
+        return field[1][1];
     }
 
     return 'draw';
