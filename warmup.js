@@ -113,9 +113,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
-        typeof targetNs !== 'number' ||
-        !Number.isInteger(targetNs) ||
-        !Number.isFinite(n)) {
+        !Number.isInteger(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     } else if (targetNs < 2 && targetNs > 36) {
         throw new RangeError('Система счисления выходит за пределы значений!');
