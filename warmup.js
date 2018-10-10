@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('В качестве года передано не число!');
-    } else if (year < 0) {
+    } else if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('В качестве года передано отрицательное значение!');
     } else {
         return Math.trunc(year / 100) + 1;
