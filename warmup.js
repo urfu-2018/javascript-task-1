@@ -1,5 +1,17 @@
 'use strict';
 
+function isTypeOf(variable, type) {
+    return typeof variable === type;
+}
+
+function fibonacci(n) {
+    if (n <= 2) {
+        return 1;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -8,7 +20,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!isTypeOf(a, 'number') || !isTypeOf(b, 'number')) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +35,18 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!isTypeOf(year, 'number')) {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+    let century = Math.floor(year / 100);
+    if (year % 100 !== 0) {
+        century += 1;
+    }
+
+    return century;
 }
 
 /**
@@ -30,7 +57,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (!isTypeOf(hexColor, 'string')) {
+        throw new TypeError();
+    }
+    if (hexColor.length > 7) {
+        throw new RangeError();
+    }
+    const rgb = [hexColor.slice(1, 3), hexColor.slice(3, 5), hexColor.slice(5)];
+    rgb.forEach(function (part, index, theArray) {
+        theArray[index] = parseInt(theArray[index], 16);
+    });
+
+    return `(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
 }
 
 /**
@@ -41,7 +79,14 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!isTypeOf(n, 'number')) {
+        throw new TypeError();
+    }
+    if (n < 0) {
+        throw new RangeError();
+    }
+
+    return fibonacci(n);
 }
 
 /**
@@ -51,7 +96,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (matrix[0].constructor !== Array) {
+        throw new TypeError();
+    }
+    const transMatrix = new Array(matrix[0].length);
+    for (let n = 0; n < matrix[0].length; n++) {
+        transMatrix[n] = new Array(matrix.length);
+        for (let m = 0; m < matrix.length; m++) {
+            transMatrix[n][m] = matrix[m][n];
+        }
+    }
+
+    return transMatrix;
 }
 
 /**
@@ -63,7 +119,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!isTypeOf(n, 'number') || !isTypeOf(targetNs, 'number')) {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +135,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const temp = phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/);
+
+    return temp !== null;
 }
 
 /**
@@ -82,7 +147,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (!isTypeOf(text, 'string')) {
+        throw new TypeError();
+    }
+
+    return (text.match(/\(-:/g) || []).length + (text.match(/:-\)/g) || []).length;
 }
 
 /**
@@ -92,8 +161,33 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    function getWinner(combination) {
+        const containsX = combination.includes('x');
+        const containsO = combination.includes('o');
+        if (containsO && !containsX) {
+            return 'o';
+        }
+        if (containsX && !containsO) {
+            return 'x';
+        }
+    }
+
+    const combinations = [];
+    field.forEach(x => combinations.push(x.reduce((t, s) => t + s)));
+    matrixProblem(field).forEach(x => combinations.push(x.reduce((t, s) => t + s)));
+    combinations.push(field[0][0] + field[1][1] + field[2][2]);
+    combinations.push(field[0][2] + field[1][1] + field[2][0]);
+
+    for (let i = 0; i < combinations.length; i++) {
+        const winner = getWinner(combinations[i]);
+        if (winner !== undefined) {
+            return winner;
+        }
+    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
