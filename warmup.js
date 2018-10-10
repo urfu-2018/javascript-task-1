@@ -153,7 +153,7 @@ function ticTacToeProblem(field) {
         throw new TypeError('Incorrect params');
     }
 
-    let result;
+    let result = 'draw';
     for (let i = 0; i < 4; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             result = field[i][0];
@@ -165,8 +165,6 @@ function ticTacToeProblem(field) {
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
      (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
         result = field[1][1];
-    } else {
-        result = 'draw';
     }
 
     return result;
