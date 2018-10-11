@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a === 'number' && typeof b === 'number' && a === parseFloat(a) && b === parseFloat(b)) {
+    if (typeof a === 'number' && typeof b === 'number' &&
+        a === parseFloat(a) && b === parseFloat(b)) {
         return a + b;
     }
     throw new TypeError('В функцию были переданы не целые числа');
