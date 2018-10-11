@@ -75,15 +75,22 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
-    } else if (n < 0 || Math.floor(n) !== n) {
+    } else if (n < 1 || Math.floor(n) !== n) {
         throw new RangeError();
     }
 
+    return fibonacciResolve(n);
+}
+
+function fibonacciResolve(n) {
+    if (n === 0) {
+        return 0;
+    }
     if (n === 1) {
         return 1;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return fibonacciResolve(n - 1) + fibonacciResolve(n - 2);
 }
 
 /**
@@ -103,11 +110,13 @@ function matrixProblem(matrix) {
         return [];
     }
 
-    return matrix[0].map(function (col, colIndex) {
+    const res = matrix[0].map(function (col, colIndex) {
         return matrix.map(function (row, rowIndex) {
             return matrix[rowIndex][colIndex];
         });
     });
+
+    return res.length === 0 ? [[]] : res;
 }
 
 /**
