@@ -8,6 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if (!isNumber(a) || !isNumber(b)) {
+        throw new TypeError();
+    }
     return a + b;
 }
 
