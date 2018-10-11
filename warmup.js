@@ -79,6 +79,9 @@ function splitColors(color) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
     if (Number.isInteger(n)) {
         if (n < 0) {
             throw new RangeError();
@@ -101,12 +104,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (checkInputMatrix(matrix)) {
         throw new TypeError();
-    }
-
-    if (matrix.length === 0) {
-        return [];
     }
     var newMatrix = [];
     var a = 0;
@@ -118,7 +117,11 @@ function matrixProblem(matrix) {
         a += 1;
     }
 
-    return newMatrix;
+    return (newMatrix.length === 0) ? [[]] : newMatrix;
+}
+
+function checkInputMatrix(matrix) {
+    return !Array.isArray(matrix) || !Array.isArray(matrix[0]) || matrix[0].length === 0;
 }
 
 /**
