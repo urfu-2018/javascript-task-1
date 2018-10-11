@@ -92,7 +92,7 @@ function fibonacciProblem(n) {
 
     let first = 0;
     let second = 1;
-    for (let i = 0; i < n - 1; i++) {
+    for (let i = 0; i < n; i++) {
         const temp = first + second;
         first = second;
         second = temp;
