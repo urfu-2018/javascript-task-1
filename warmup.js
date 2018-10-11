@@ -255,8 +255,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    checkInteger(n, 'n');
-    checkInteger(targetNs, 'targetNs');
+    checkType(n, 'n', 'number');
+    checkType(targetNs, 'targetNs', 'number');
     checkRange(2, targetNs, 36, 'targetNs');
 
     return n.toString(targetNs);
