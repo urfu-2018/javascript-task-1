@@ -152,6 +152,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('phone number is not a string');
+    }
     const PHONE_PATTERN = /^8-800-\d{3}(-\d{2}){2}$/;
 
     return PHONE_PATTERN.test(phoneNumber);
