@@ -87,6 +87,7 @@ function checkColor(color) {
  */
 function fibonacciProblem(n) {
     checkIsNumber(n);
+    checkIsInteger(n);
     checkIsPositive(n);
 
     let first = 0;
@@ -103,6 +104,12 @@ function fibonacciProblem(n) {
 function checkIsPositive(number) {
     if (number <= 0) {
         throw new RangeError(`${number} должен быть положительным`);
+    }
+}
+
+function checkIsInteger(number) {
+    if (!Number.isInteger(number)) {
+        throw new RangeError(`${number} не целое`);
     }
 }
 
