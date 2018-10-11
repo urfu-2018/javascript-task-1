@@ -78,7 +78,7 @@ function checkColor(color) {
     }
 
     if (!color.match(/#[0-9a-f]{6}/i)) {
-        throw new RangeError(`${color} - некорректное значение цвета`);
+        throw new TypeError(`${color} - некорректное значение цвета`);
     }
 }
 
