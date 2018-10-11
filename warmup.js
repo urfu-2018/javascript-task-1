@@ -22,7 +22,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
     if (year < 0) {
@@ -46,21 +46,19 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7) {
+    // if (hexColor.length !== 7) {
+    //     throw new RangeError();
+    // }
+    if (hexColor.match(/^#[0-9a-f]{6}$/i) === null) {
         throw new RangeError();
     }
     const colors = splitColors(hexColor);
     const redValue = colors[0];
     const greenValue = colors[1];
     const blueValue = colors[2];
-    const lessThen = (redValue && greenValue && blueValue) <= 255;
-    const moreThen = (redValue && greenValue && blueValue) >= 0;
 
-    if (moreThen && lessThen) {
-        return '(' + redValue + ', ' + greenValue + ', ' + blueValue + ')';
-    }
+    return '(' + redValue + ', ' + greenValue + ', ' + blueValue + ')';
 
-    throw new RangeError();
 }
 
 function splitColors(color) {
@@ -79,17 +77,12 @@ function splitColors(color) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // if (typeof n !== 'number') {
-    //     throw new TypeError();
-    // }
-    if (Number.isInteger(n)) {
-        if (n <= 0) {
-            throw new RangeError();
-        }
-    } else {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-
+    if (n <= 0) {
+        throw new RangeError();
+    }
     function fib(d) {
         return (d === 1 || d === 2) ? 1 : fib(d - 1) + fib(d - 2);
     }
