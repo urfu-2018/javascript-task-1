@@ -137,27 +137,22 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'string') {
         throw TypeError;
     }
-    var res = 0;
-    for (var i = 0; i < text.length; i++) {
-        if (text[i] === ':') {
-            if (text[i + 1] === '-' && text[i + 2] === ')') {
-                res++;
-                i += 2;
-            }
+    let res = 0;
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === ':' && text[i + 1] === '-' && text[i + 2] === ')') {
+            res++;
+            i += 2;
         }
-        if (text[i] === '(') {
-            if (text[i + 1] === '-' && text[i + 2] === ':') {
-                res++;
-                i += 2;
-            }
+        if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
+            res++;
+            i += 2;
         }
     }
 
     return res;
-    // Ваше решение
 }
 
 /**
