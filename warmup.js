@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-    if (isNaN(a) || isNaN(b)) {
+    if (Number.isNaN(a) || Number.isNaN(b)) {
         throw TypeError;
     } else {
         return a + b;
@@ -25,12 +25,12 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (!isNaN(year)) {
+    if (Number.isNaN(year)) {
         throw TypeError;
     } else if (year < 0) {
         throw RangeError;
     } else {
-        return (year - year % 100) / 100 + 1;
+        return (year - year % 100) / 100;
     }
 }
 
@@ -69,14 +69,14 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    if (isNaN(n)) {
-        throw TypeError;
-    }
-    if (!isInteger(n)) {
-        throw RangeError;
-    }
+    if (!Number.isNaN(n)) {
+        if (!isInteger(n)) {
+            throw RangeError;
+        }
 
-    return Math.round((Math.pow(((1 + Math.sqrt(5)) / 2), n)) / (Math.sqrt(5)));
+        return Math.round((Math.pow(((1 + Math.sqrt(5)) / 2), n)) / (Math.sqrt(5)));
+    }
+    throw TypeError;
 }
 
 function isInteger(x) {
@@ -108,7 +108,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (Number.isNaN(n) || Number.isNaN(targetNs)) {
         throw TypeError;
     }
     if (targetNs < 2 || targetNs > 32) {
