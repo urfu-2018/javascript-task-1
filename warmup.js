@@ -58,14 +58,15 @@ function isString(obj) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (!isString(hexColor)) {
+    if (!isString(hexColor) || hexColor.length !== 7 || !hexColor.startsWith('#')) {
         throw new TypeError();
     }
-    const correctHexColor = /^#[A-Fa-f\d]{6}$/;
+    hexColor = hexColor.substring(1);
+    const correctHexColor = /[A-Fa-f\d]{6}/;
     if (!correctHexColor.test(hexColor)) {
         throw new RangeError();
     }
-    hexColor = hexColor.substring(1);
+
     let rgbColor = {
         R: 0,
         G: 0,
