@@ -53,18 +53,11 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Wrong argument type, expected string.');
     }
-    if (hexColor[0] !== '#') {
-        throw new TypeError('Expected # at start of the argument.');
-    }
-    if (hexColor.length !== 7) {
-        throw new TypeError('Expected argument length of 7');
-    }
-    const onlyNumbers = hexColor.substr(1);
-    if (!onlyNumbers.match(/^[0-9A-Fa-f]+$/g)) {
+    if (!hexColor.match(/^(#[0-9A-Fa-f]{6})$/g)) {
         throw new RangeError('Unacceptable values.');
     }
 
-    const hexColorsSeparate = onlyNumbers.match(/(..?)/g); // [ 'FF', 'FF', 'FF' ]
+    const hexColorsSeparate = hexColor.substr(1).match(/(..?)/g); // [ 'FF', 'FF', 'FF' ]
     let rgbColorsSep = [];
     for (let i = 0; i < 3; i++) {
         rgbColorsSep.push(parseInt(hexColorsSeparate[i], 16));
@@ -124,7 +117,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isInteger(n) || !isInteger(targetNs)) {
+    if (!isNumber(n) || !isInteger(targetNs)) {
         throw new TypeError('Wrong argument(s) type, expected integer.');
     }
 
