@@ -43,7 +43,11 @@ function colorsProblem(hexColor) {
 
     if (typeof hexColor === 'string' && hexColor[0] === '#' && hexColor.length === 7) {
         if (hexColor.match(rangeRegexp)) {
-            return `(${parseInt(hexColor.slice(0, 1), 16)}), (${parseInt(hexColor.slice(2, 3), 16)}), (${parseInt(hexColor.slice(4, 5), 16)}),`;
+            return (
+                `(${parseInt(hexColor.slice(1, 3), 16)}, ` +
+                `${parseInt(hexColor.slice(3, 5), 16)}, ` +
+                `${parseInt(hexColor.slice(5, 7), 16)})`
+            );
         }
         throw new RangeError('значения цвета выходят за пределы допустимых');
     }
@@ -72,7 +76,7 @@ function fibonacciProblem(n) {
             secondFib = accumulator;
         }
 
-        return accumulator;
+        return secondFib;
     }
     throw new RangeError('Введите целое положительное число');
 }
@@ -145,9 +149,19 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text === 'string') {
+    let smilesCounter = 0;
 
+    if (typeof text === 'string') {
+        [].forEach.call(text, (_, i) => {
+            if (text.slice(i, 3 + i) === ':-)' && text.slice(i - 2, i + 1) !== '(-:' ||
+                text.slice(i, 3 + i) === '(-:') {
+                smilesCounter += 1;
+            }
+        });
+
+        return smilesCounter;
     }
+    throw new TypeError('в качестве аргумента передаётся не строка');
 }
 
 /**
@@ -157,7 +171,31 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const a = lineCompare(field);
+    const b = lineCompare(matrixProblem(field));
+
+    return a || b ? a || b : diagonalCompare(field) || false;
+
+}
+
+function diagonalCompare(field) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    } else if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
+    }
+
+    return false;
+}
+
+function lineCompare(field) {
+    for (const line of field) {
+        if (line[0] === line[1] && line[1] === line[2]) {
+            return line[0];
+        }
+
+        return false;
+    }
 }
 
 module.exports = {
