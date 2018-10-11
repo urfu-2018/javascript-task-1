@@ -105,13 +105,11 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    const res = matrix[0].map(function (col, colIndex) {
+    return matrix[0].map(function (col, colIndex) {
         return matrix.map(function (row, rowIndex) {
             return matrix[rowIndex][colIndex];
         });
     });
-
-    return res.length === 0 ? [[]] : res;
 }
 
 /**
