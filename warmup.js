@@ -97,7 +97,7 @@ function fibonacciProblem(n) {
         second = temp;
     }
 
-    return second;
+    return first;
 }
 
 function checkIsPositive(number) {
@@ -154,7 +154,7 @@ function checkIsMatrix(variable) {
 function numberSystemProblem(n, targetNs) {
     checkIsNumber(n);
     checkIsNumber(targetNs);
-    checkInRange(n, 2, 36);
+    checkInRange(targetNs, 2, 36);
 
     return n.toString(targetNs);
 }
