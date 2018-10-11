@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
-    } else if (year < 0) {
+    } else if (year <= 0) {
         throw new RangeError();
     }
 
@@ -42,13 +42,13 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
-    } else if (!/#(\d|[a-f]|[A-F]){6}/.test(hexColor)) {
+    } else if (!/^#(\d|[a-f]|[A-F]){6}$/.test(hexColor)) {
         throw new RangeError();
     }
 
-    return '(' + parseInt(hexColor.substr(1, 2), 16) + ', ' +
-            parseInt(hexColor.substr(3, 2), 16) + ', ' +
-            parseInt(hexColor.substr(5, 2), 16) + ')';
+    return `(${parseInt(hexColor.substr(1, 2), 16)}, ` +
+            `${parseInt(hexColor.substr(3, 2), 16)}, ` +
+            `${parseInt(hexColor.substr(5, 2), 16)})`;
 }
 
 /**
@@ -61,14 +61,14 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
-    } else if (n < 0 || Math.floor(n) !== n) {
+    } else if (n <= 0 || Math.floor(n) !== n) {
         throw new RangeError();
     }
-    var recurceFibonacci = function (currentN) {
-        return currentN < 2 ? 1 : recurceFibonacci(currentN - 1) * recurceFibonacci(currentN - 2);
+    let recurceFib = currentN => {
+        return currentN < 2 ? 1 : recurceFib(currentN - 1) * recurceFib(currentN - 2);
     };
 
-    return recurceFibonacci(n);
+    return recurceFib(n);
 }
 
 /**
@@ -78,21 +78,21 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !function () {
-        for (var matrixString in matrix) {
-            if (!Array.isArray(matrixString)) {
+    if (!Array.isArray(matrix) || !(() => {
+        for (let i = 0; i < matrix.length; i++) {
+            if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
                 return false;
             }
         }
 
         return true;
-    }) {
+    })) {
         throw new TypeError();
     }
-    var transposedMatrix = new Array(matrix[0].length);
-    for (var i = 0; i < matrix[0].length; i++) {
+    let transposedMatrix = new Array(matrix[0].length);
+    for (let i = 0; i < matrix[0].length; i++) {
         transposedMatrix[i] = new Array(matrix.length);
-        for (var j = 0; j < matrix.length; j++) {
+        for (let j = 0; j < matrix.length; j++) {
             transposedMatrix[i][j] = matrix[j][i];
         }
     }
@@ -118,9 +118,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    var reg = /^8-800-\d{3}-\d{2}-\d{2}$/;
+    const REG = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
-    return reg.test(phoneNumber);
+    return REG.test(phoneNumber);
 }
 
 /**
@@ -130,13 +130,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    var countLeftSmile = text.match(/:-\)/) || [];
-    var countRightSmile = text.match(/\(-:/) || [];
-    var countStitchedSmiles = text.match(/\(-:-\)/) || [];
+    const COUNT_LEFT_SMILES = text.match(/:-\)/) || [];
+    const COUNT_RIGHT_SMILES = text.match(/\(-:/) || [];
+    const COUNT_STITCHED_SMILES = text.match(/\(-:-\)/) || [];
 
-    return countLeftSmile.length +
-        countRightSmile.length -
-        countStitchedSmiles.length;
+    return COUNT_LEFT_SMILES.length +
+        COUNT_RIGHT_SMILES.length -
+        COUNT_STITCHED_SMILES.length;
 }
 
 /**
@@ -146,7 +146,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < field.length; i++) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i] ||
             field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
 
