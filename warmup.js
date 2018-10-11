@@ -28,8 +28,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    if (year % 1000 === 0) {
-        return Math.truck(year / 100);
+    if (year % 100 === 0) {
+        return Math.trunc(year / 100);
     }
 
     return Math.trunc(year / 100 + 1);
@@ -98,6 +98,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    if (matrix.length === 0) {
+        return [];
+    }
     var newMatrix = [];
     var a = 0;
     for (var i = 0; i < matrix.length; i++) { // m
