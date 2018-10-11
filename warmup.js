@@ -1,11 +1,11 @@
 'use strict';
 
 function isNumber(n) {
-    return typeof n === 'number';
+    return typeof n === 'number' && !isNaN(parseFloat(n));
 }
 
 function isInteger(n) {
-    return typeof n === 'number' && Number.isInteger(n);
+    return typeof n === 'number' && !isNaN(parseFloat(n)) && Number.isInteger(n);
 
 }
 
