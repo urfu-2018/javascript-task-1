@@ -272,8 +272,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return typeof phoneNumber === 'string' &&
-        phoneNumber.match(/^8-800-\d\d\d-\d\d-\d\d$/) !== null;
+    return phoneNumber.match(/^8-800-\d\d\d-\d\d-\d\d$/) !== null;
 }
 
 /**
