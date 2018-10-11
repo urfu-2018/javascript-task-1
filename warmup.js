@@ -151,9 +151,8 @@ function smilesProblem(text) {
     }
     const firstSmileMatch = text.match(/:-\)/g) || [];
     const secondSmileMatch = text.match(/\(-:/g) || [];
-    const strangeSmileMatch = text.match(/\(-:\)/g) || [];
 
-    return firstSmileMatch.length + secondSmileMatch.length - strangeSmileMatch.length;
+    return firstSmileMatch.length + secondSmileMatch.length;
 }
 
 /**
