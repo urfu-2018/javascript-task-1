@@ -31,12 +31,13 @@ function checkTypeUnsafe(arg, argName, expectedTypeName) {
  * Проверяет, что число целое
  * @param {Number} arg Число
  * @param {String} argName Название числа
- * @throws {TypeError} Если arg не число или не целое
+ * @throws {TypeError} Если arg не число
+ * @throws {RangeError} Если arg не целое
  */
 function checkInteger(arg, argName) {
     checkFiniteNumber(arg, argName);
     if (arg % 1 !== 0) {
-        throw new TypeError(argName + ' must be integer');
+        throw new RangeError(argName + ' must be integer');
     }
 }
 
@@ -57,13 +58,14 @@ function checkNotNaN(arg, argName) {
  * Проверяет, что число конечное
  * @param {Number} arg Число
  * @param {String} argName Название числа
- * @throws {TypeError} Если arg не число или не конечное
+ * @throws {TypeError} Если arg не число
+ * @throws {RangeError} Если arg не конечное или NaN
  */
 function checkFiniteNumber(arg, argName) {
     checkType(arg, argName, 'number');
     checkType(argName, 'argName', 'string');
     if (!Number.isFinite(arg)) {
-        throw new TypeError(argName + ' is not finite');
+        throw new RangeError(argName + ' is not finite');
     }
 }
 
