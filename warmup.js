@@ -92,10 +92,10 @@ const fibCache = {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isNumber(n)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
 
