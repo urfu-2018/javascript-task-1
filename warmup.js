@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (n <= 0 || Math.floor(n) !== n) {
         throw new RangeError();
     }
     let a = 1;
@@ -122,7 +122,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs) || Math.floor(targetNs) !== targetNs) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
