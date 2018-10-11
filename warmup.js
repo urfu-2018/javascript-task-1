@@ -88,7 +88,7 @@ function matrixProblem(matrix) {
         }
     }
 
-    return matrix[0].map((collumn, i) => matrix.map(row => row[i]));
+    return matrix[0].map((column, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -143,7 +143,35 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    return 'x';
+    const winCombinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]];
+    function getPositions(symbol) {
+        return field
+            .map((column, x) => column
+                .map((cell, y) => cell === symbol ? y + x * field.length : -1))
+            .join(',')
+            .split(',')
+            .map(cell => Number(cell))
+            .filter(cell => cell >= 0);
+    }
+    const xPositions = getPositions('x');
+    const oPositions = getPositions('o');
+    function isWin(positions) {
+        return winCombinations
+            .filter(combination => combination.every(position => position in positions))
+            .length > 0;
+    }
+
+    if (isWin(xPositions)) {
+        return 'x';
+    }
+    if (isWin(oPositions)) {
+        return 'o';
+    }
+
+    return 'draw';
 }
 
 module.exports = {
