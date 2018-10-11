@@ -103,8 +103,6 @@ function fibonacciResolve(n) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
-    } else if (matrix.length !== 0 && !Array.isArray(matrix[0])) {
-        throw new TypeError();
     }
 
     if (matrix.length === 0) {
