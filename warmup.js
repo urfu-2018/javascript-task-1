@@ -8,7 +8,13 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    var numb = typeof(a);
+    var numb1 = typeof(b);
+    if(numb !== Number || numb1 !== Number){
+        throw new TypeError("ВВедите цифры!");
+    }
+
+    return a+b;
 }
 
 /**
@@ -19,7 +25,17 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    var ye = typeof(year);
+    if(ye !== Number){
+        throw new TypeError("ВВедите цифры!");
+    } else if(year<0){
+        throw new RangeError("Год не может быть отрицательным");
+    } 
+    if(year <= 100 || year == 0){
+        return 1;
+    }
+
+    return (year/100)+1;
 }
 
 /**
