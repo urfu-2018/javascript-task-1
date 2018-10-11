@@ -181,15 +181,13 @@ function ticTacToeProblem(field) {
     }
     checkedFieldInRow += diag + reverseDiag;
 
-    /* if (checkedFieldInRow.includes('xxx')) {
+    if (checkedFieldInRow.includes('xxx')) {
         return 'x';
     } else if (checkedFieldInRow.includes('ooo')) {
         return 'o';
     }
 
-    return 'draw';*/
-
-    return checkedFieldInRow;
+    return 'draw';
 }
 
 module.exports = {
