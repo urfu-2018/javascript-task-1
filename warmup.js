@@ -149,12 +149,11 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    const firstSmileMatch = text.match(/:-\)/g);
-    const secondSmileMatch = text.match(/\(-:/g);
-    let result = firstSmileMatch === null ? 0 : firstSmileMatch.length;
-    result = secondSmileMatch === null ? result : result + secondSmileMatch.length;
+    const firstSmileMatch = text.match(/:-\)/g) || [];
+    const secondSmileMatch = text.match(/\(-:/g) || [];
+    const strangeSmileMatch = text.match(/\(-:\)/g) || [];
 
-    return result;
+    return firstSmileMatch.length + secondSmileMatch.length - strangeSmileMatch.length;
 }
 
 /**
