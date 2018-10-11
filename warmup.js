@@ -26,15 +26,11 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
-    if (year % 100 !== 0) {
-        return Math.round(year / 100) + 1;
-    }
-
-    return Math.round(year / 100);
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -73,17 +69,16 @@ function fibonacciProblem(n) {
     }
 
     let current = 1;
-    let last = 0;
+    let last = 1;
     let temp;
 
-    while (n >= 0) {
-        temp = current;
-        current = current + last;
-        last = temp;
-        n--;
+    for (let i = 2; i < n; i++) {
+        temp = current + last;
+        last = current;
+        current = temp;
     }
 
-    return last;
+    return current;
 }
 
 /**
@@ -93,7 +88,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (isDoubleArray(matrix)) {
         throw new TypeError();
     }
 
@@ -106,6 +101,11 @@ function matrixProblem(matrix) {
     }
 
     return matrix;
+}
+
+function isDoubleArray(matrix) {
+    return !Array.isArray(matrix) || !Array.isArray(matrix[0]) ||
+          matrix.length === 0 || matrix[0].length === 0;
 }
 
 /**
@@ -135,12 +135,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     var regex = /8-800-\d{3}-\d{2}-\d{2}/;
 
-    if (phoneNumber.match(regex)) {
-        return true;
-    }
-
-    return false;
-
+    return regex.test(phoneNumber);
 }
 
 /**
@@ -154,6 +149,10 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     let smiles = text.match(/(:-\)|\(-:)/g);
+    let doubleSmiles = text.match(/\(-:-\)/);
+    if (smiles && doubleSmiles) {
+        return smiles.length - doubleSmiles.length;
+    }
     if (smiles) {
         return smiles.length;
     }
