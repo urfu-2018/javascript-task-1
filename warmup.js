@@ -35,7 +35,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Year is negative');
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -181,23 +181,44 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < field.length; i++) {
-        const rowIsStrike = field[i][0] === field[i][1] && field[i][1] === field[i][2];
-        const columnIsStrike = field[0][i] === field[1][i] && field[1][i] === field[2][i];
-        if (rowIsStrike) {
-            return field[i][0];
-        }
-        if (columnIsStrike) {
-            return field[0][i];
-        }
+    const columnsAndRowsCheckResult = checkRowsAndColumns(field);
+    if (columnsAndRowsCheckResult.gameIsFinished) {
+        return columnsAndRowsCheckResult.winner;
     }
-    const diagonalOneIsStrike = field[0][0] === field[1][1] && field[1][1] === field[2][2];
-    const diagonalTwoIsStrike = field[0][2] === field[1][1] && field[1][1] === field[2][0];
-    if (diagonalOneIsStrike || diagonalTwoIsStrike) {
-        return field[1][1];
+
+    const diagonalCheckResult = checkDiagonals(field);
+    if (diagonalCheckResult.gameIsFinished) {
+        return diagonalCheckResult.winner;
     }
 
     return 'draw';
+}
+
+function checkDiagonals(field) {
+    const diagonalOneIsStrike = field[0][0] === field[1][1] && field[1][1] === field[2][2];
+    const diagonalTwoIsStrike = field[0][2] === field[1][1] && field[1][1] === field[2][0];
+    if (diagonalOneIsStrike || diagonalTwoIsStrike) {
+        return { gameIsFinished: true, winner: field[1][1] };
+    }
+
+    return { gameIsFinished: false, winner: undefined };
+}
+
+function checkRowsAndColumns(field) {
+    for (let i = 0; i < field.length; i++) {
+        const rowStart = field[i][0];
+        const rowIsStrike = rowStart === field[i][1] && field[i][1] === field[i][2];
+        const columnStart = field[0][i];
+        const columnIsStrike = columnStart === field[1][i] && field[1][i] === field[2][i];
+        if ((rowStart === 'x' || columnStart === 'o') && rowIsStrike) {
+            return { gameIsFinished: true, winner: rowStart };
+        }
+        if ((columnStart === 'x' || columnStart === 'o') && columnIsStrike) {
+            return { gameIsFinished: true, winner: columnStart };
+        }
+    }
+
+    return { gameIsFinished: false, winner: undefined };
 }
 
 module.exports = {
