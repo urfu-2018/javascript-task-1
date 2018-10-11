@@ -134,7 +134,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return parseInt(n, 10).toString(targetNs);
+    return n.toString(targetNs);
 }
 
 /**
@@ -181,13 +181,15 @@ function ticTacToeProblem(field) {
     }
     checkedFieldInRow += diag + reverseDiag;
 
-    if (checkedFieldInRow.includes('xxx')) {
+    /* if (checkedFieldInRow.includes('xxx')) {
         return 'x';
     } else if (checkedFieldInRow.includes('ooo')) {
         return 'o';
     }
 
-    return 'draw';
+    return 'draw';*/
+
+    return checkedFieldInRow;
 }
 
 module.exports = {
