@@ -152,7 +152,7 @@ function smilesProblem(text) {
     function getCountByRegex(str, regex) {
         const allValid = str.match(regex);
 
-        return allValid === null ? 0 : allValid.length;
+        return (allValid || []).length;
     }
 
     return getCountByRegex(text, /:-\)/g) + getCountByRegex(text, /\(-:/g);
