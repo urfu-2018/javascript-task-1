@@ -10,11 +10,11 @@
 function abProblem(a, b) {
     var numb = typeof(a);
     var numb1 = typeof(b);
-    if(numb !== Number || numb1 !== Number){
-        throw new TypeError("ВВедите цифры!");
+    if (numb !== 'number' || numb1 !== 'number') {
+        throw new TypeError('ВВедите цифры!');
     }
 
-    return a+b;
+    return a + b;
 }
 
 /**
@@ -26,16 +26,16 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     var ye = typeof(year);
-    if(ye !== Number){
-        throw new TypeError("ВВедите цифры!");
-    } else if(year<0){
-        throw new RangeError("Год не может быть отрицательным");
+    if (ye !== 'number') {
+        throw new TypeError('ВВедите цифры!');
+    } else if ( year < 0 ) {
+        throw new RangeError('Год не может быть отрицательным');
     } 
-    if(year <= 100 || year == 0){
+    if (year < 100 || year == 0) {
         return 1;
     }
 
-    return (year/100)+1;
+    return ((year/100) - (year/100)%1) + 1;
 }
 
 /**
@@ -46,7 +46,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError('ВВедите строку!');
+    } 
+    var betterHexColor = hexColor.replace('#', '');
+    var bigint = parseInt(betterHexColor, 16);
+    var r = (bigint >> 16) & 255;
+    var g = (bigint >> 8) & 255;
+    var b = bigint & 255;
+    if (r > 255 || g > 255 || b > 255) {
+        throw new RangeError('Выход за пределы 255!');
+    }
+
+    return '(' + r + ',' + g + ',' + b + ')';
 }
 
 /**
