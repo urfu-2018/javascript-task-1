@@ -99,8 +99,14 @@ function matrixProblem(matrix) {
         throw new TypeError('specified matrix is not a two-dimensional array');
     }
     const TRANSPOSED_MATRIX = [];
+    let matrixRowLength = 0;
     matrix.forEach(function (row) {
         if (!Array.isArray(row) || Array.isArray(row) && !row.length) {
+            throw new TypeError('specified matrix is not a two-dimensional array');
+        }
+        if (!matrixRowLength) {
+            matrixRowLength = row.length;
+        } else if (row.length !== matrixRowLength) {
             throw new TypeError('specified matrix is not a two-dimensional array');
         }
         row.forEach(function (cellValue, cellIndex) {
