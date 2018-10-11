@@ -76,11 +76,14 @@ function fibonacciProblem(n) {
         throw new RangeError('input argument should be a positive integer');
     }
 
-    if (n === 1 || n === 2) {
-        return 1;
+    let a = 1;
+    let b = 1;
+    for (let i = 1; i < n; i++) {
+        a += b;
+        b = a - b;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return b;
 }
 
 /**
