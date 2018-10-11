@@ -137,7 +137,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -171,15 +171,12 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    let count = 0;
-    for (let i = 0; i < text.length - 2; i++) {
-        const substring = text.slice(i, i + 3);
-        if (substring === ':-)' || substring === '(-:') {
-            count++;
-        }
+    const smiles = /(\(-:|:-\))/.exec(text);
+    if (smiles !== null) {
+        return smiles.length;
     }
 
-    return count;
+    return 0;
 }
 
 /**
