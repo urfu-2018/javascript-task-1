@@ -8,7 +8,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!isIntegerNumber(a)) {
+        throw new TypeError(a + ' is not an integer number');
+    }
+    if (!isIntegerNumber(b)) {
+        throw new TypeError(b + ' is not an integer number');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +26,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!isIntegerNumber(year)) {
+        throw new TypeError(year + ' is not a number');
+    }
+    if (year < 0) {
+        throw new RangeError(year + ' is not a positive integer number');
+    }
+    const YEARS_IN_CENTURY = 100;
+
+    return Math.floor(year / YEARS_IN_CENTURY) + 1;
 }
 
 /**
@@ -30,7 +45,26 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError(hexColor + ' is not a string');
+    }
+    const HEX_FORMAT_PATTERN = /^#[\da-z]{6}$/i;
+    const isInHEXFormat = HEX_FORMAT_PATTERN.test(hexColor);
+    if (!isInHEXFormat) {
+        throw new TypeError(hexColor + ' is not a HEX color');
+    }
+    const VALID_HEX_COLOR_PATTERN = /^#([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i;
+    const isValidHEXColor = VALID_HEX_COLOR_PATTERN.test(hexColor);
+    if (!isValidHEXColor) {
+        throw new RangeError(hexColor + ' is not a valid HEX color');
+    }
+    const RGB_PARTS = hexColor.match(VALID_HEX_COLOR_PATTERN).slice(1);
+    const HEXADECIMAL_RADIX = 16;
+    RGB_PARTS.forEach(function (value, index) {
+        RGB_PARTS[index] = parseInt(value, HEXADECIMAL_RADIX);
+    });
+
+    return '(' + RGB_PARTS.join(', ') + ')';
 }
 
 /**
@@ -41,7 +75,25 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!isIntegerNumber(n)) {
+        throw new TypeError(n + ' is not an integer number');
+    }
+    if (n <= 0) {
+        throw new RangeError(n + ' is not a positive integer number');
+    }
+    let previous = 0;
+    let current = 1;
+    let counter = 1;
+    while (counter <= n) {
+        current += previous;
+        if (!isFinite(current)) {
+            throw new RangeError(n + ' is out of range [0, ' + counter + ']');
+        }
+        previous = current;
+        counter++;
+    }
+
+    return current;
 }
 
 /**
@@ -51,7 +103,28 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('matrix is not an array');
+    }
+    const ROWS_COUNT = matrix.length;
+    if (ROWS_COUNT === 0) {
+        throw new TypeError('matrix is not a two-dimensional array');
+    }
+    const TRANSPOSED_MATRIX = [];
+    matrix.forEach(function (row) {
+        if (!Array.isArray(row)) {
+            throw new TypeError('matrix is not a two-dimensional array');
+        }
+        row.forEach(function (cellValue, cellIndex) {
+            // по индексам столбцов матрицы создаём строки в транспонированном массиве
+            if (TRANSPOSED_MATRIX.length < (cellIndex + 1)) {
+                TRANSPOSED_MATRIX[cellIndex] = [];
+            }
+            TRANSPOSED_MATRIX[cellIndex].push(cellValue);
+        });
+    });
+
+    return TRANSPOSED_MATRIX;
 }
 
 /**
@@ -63,7 +136,19 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!isIntegerNumber(n)) {
+        throw new TypeError(n + ' is not an integer number');
+    }
+    if (!isIntegerNumber(targetNs)) {
+        throw new TypeError(targetNs + ' is not an integer number');
+    }
+    const RADIX_MIN = 2;
+    const RADIX_MAX = 36;
+    if (targetNs < RADIX_MIN || targetNs > RADIX_MAX) {
+        throw new RangeError(targetNs + ' is out of range [' + RADIX_MIN + ', ' + RADIX_MAX + ']');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +157,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const PHONE_PATTERN = /^8-800-\d{3}(-\d{2}){2}$/;
+
+    return PHONE_PATTERN.test(phoneNumber);
 }
 
 /**
@@ -82,7 +169,23 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError(text + ' is not a string');
+    }
+    const EMOJI_PATTERN = /\(-:|:-\)/g;
+    const EMOJI_MATCHES = text.match(EMOJI_PATTERN);
+    if (!EMOJI_MATCHES) {
+        return 0;
+    }
+    // если в строке находится строка вида (-:-) то регулярным выражением выше
+    // объединённые смайлики будут считаться за 2, а не за один, хотя должен быть 1
+    const MERGED_EMOJI_PATTERN = /\(-:-\)/g;
+    let MERGED_EMOJI_MATCHES = text.match(MERGED_EMOJI_PATTERN);
+    if (!MERGED_EMOJI_MATCHES) {
+        MERGED_EMOJI_MATCHES = 0;
+    }
+
+    return EMOJI_MATCHES.length - MERGED_EMOJI_MATCHES;
 }
 
 /**
@@ -92,7 +195,76 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const WIN_COMBINATIONS = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9],
+        [1, 5, 9],
+        [3, 5, 7]
+    ];
+    const FIELD_SIZE = 3;
+
+    /**
+     * Возвращает индекс строки по номеру ячейки игрового поля
+     * @param {Number} cellIndex номер ячейки игрового поля от 1 до 9
+     * @returns {Number}
+     */
+    function fieldRowIndex(cellIndex) {
+        return Math.floor(cellIndex / FIELD_SIZE);
+    }
+
+    /**
+     * Возвращает индекс столбца по номеру ячейки игрового поля
+     * @param {Number} cellIndex номер ячейки игрового поля от 1 до 9
+     * @returns {Number}
+     */
+    function fieldColumnIndex(cellIndex) {
+        return cellIndex % FIELD_SIZE;
+    }
+
+    const WINNER_COMBINATIONS = WIN_COMBINATIONS.filter(function (values) {
+        // индексы входных данных начинаются с 1, в массивах с 0, вычитаем 1
+        values.forEach(function (value, i, arr) {
+            arr[i]--;
+        });
+        let isWinCombination = true;
+        // значение ячейки игрового поля, номер которой указан первым в values
+        // с ним сравниваются значения из других ячеек (i > 0)
+        let previous = field[fieldRowIndex(values[0])][fieldColumnIndex(values[0])];
+        let current;
+        for (let i = 1; i < field.length; i++) {
+            current = field[fieldRowIndex(values[i])][fieldColumnIndex(values[i])];
+            isWinCombination = isWinCombination && (current === previous);
+        }
+
+        return isWinCombination;
+    });
+    let winner = 'draw';
+    if (WINNER_COMBINATIONS.length) {
+        const WINNER_VALUE_INDEX = WINNER_COMBINATIONS[0][0];
+        winner = field[fieldRowIndex(WINNER_VALUE_INDEX)][fieldColumnIndex(WINNER_VALUE_INDEX)];
+    }
+
+    return winner;
+}
+
+/**
+ * Проверяет, является ли переданное значение целым числом
+ * @param {Number} num значение
+ * @returns {Boolean}
+ */
+function isIntegerNumber(num) {
+    if (typeof num !== 'number') {
+        return false;
+    }
+    if (!isFinite(num)) {
+        return false;
+    }
+
+    return num === Math.floor(num); // return num === +num.toFixed(0);
 }
 
 module.exports = {
@@ -104,5 +276,6 @@ module.exports = {
     numberSystemProblem,
     phoneProblem,
     smilesProblem,
-    ticTacToeProblem
+    ticTacToeProblem,
+    isIntegerNumber
 };
