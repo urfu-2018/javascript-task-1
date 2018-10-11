@@ -74,7 +74,7 @@ function colorsProblem(hexColor) {
 }
 
 function checkColorLength(color) {
-    if (!color.length !== 7) {
+    if (color.length !== 7) {
         throw new TypeError(`Цвет ${color} должен быть передан строкой из 7 символов`);
     }
 }
