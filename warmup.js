@@ -8,10 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) != Number || typeof(b) != Number) {
-    throw new TypeError();
+    if (typeof(a) !== Number || typeof(b) !== Number) {
+        throw new TypeError();
     }
-    else return a + b;
+    else {
+        return a + b;
+    }
 }
 
 /**
