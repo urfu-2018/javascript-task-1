@@ -24,12 +24,11 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== Number) {
         throw new TypeError();
     }
-    var bigint = parseInt(hex, 16);
-    var r = (bigint >> 16) & 255;
-    var g = (bigint >> 8) & 255;
-    var b = bigint & 255;
+    else if (year < 0) {
+        throw new RangeError();
+    }
 
-    return "(" + r + "," + g + "," + b + ")";
+    return Math.trunc(year);
 }
 
 /**
@@ -43,10 +42,12 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== String) {
         throw new TypeError();
     }
-    else if (year < 0) {
-        throw new RangeError();
-    }
-    return Math.trunc(year);
+    var bigint = parseInt(hex, 16);
+    var r = (bigint >> 16) & 255;
+    var g = (bigint >> 8) & 255;
+    var b = bigint & 255;
+
+    return "(" + r + "," + g + "," + b + ")";
 }
 
 /**
