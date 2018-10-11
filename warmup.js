@@ -11,6 +11,7 @@ function abProblem(a, b) {
     if (!isNumber(a) || !isNumber(b)) {
         throw new TypeError();
     }
+
     return a + b;
 }
 
@@ -62,6 +63,10 @@ function colorsProblem(hexColor) {
     }
     if (hexColor.startsWith('#')) {
         hexColor = hexColor.slice(1);
+    } else if (hexColor.startsWith('0x') || hexColor.startsWith('0h')) {
+        hexColor = hexColor.slice(2);
+    } else {
+        throw new TypeError();
     }
     let rgbColor = { R: 0, G: 0, B: 0 };
     if (hexColor.length === 6) {
