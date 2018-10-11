@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     function checkNumber(x) {
-        if (typeof x !== 'number' || !Number.isInteger(x)) {
+        if (typeof x !== 'number') {
             throw new TypeError();
         }
     }
