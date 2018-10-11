@@ -113,10 +113,10 @@ function checkDoubleArray(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError();
     }
-    if (targetNs < 2 || targetNs > 36) {
+    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
         throw new RangeError();
     }
 
@@ -147,13 +147,11 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    let smiles = text.match(/(:-\)|\(-:)/g);
+    let leftSmiles = text.match(/:-\)/g) || [];
+    let rightSmiles = text.match(/\(-:/g) || [];
+    let doubleSmiles = text.match(/\(-:-\)/g) || [];
 
-    if (smiles) {
-        return smiles.length;
-    }
-
-    return 0;
+    return leftSmiles.length + rightSmiles.length - doubleSmiles.length;
 }
 
 /**
