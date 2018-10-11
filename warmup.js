@@ -95,6 +95,14 @@ function fibonacciProblem(n) {
     return getFibonacciNumber(n);
 }
 
+function transposeMatrix(matrix, resultingMatrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix.length; j++) {
+            resultingMatrix[j].push(matrix[i][j]);
+        }
+    }
+}
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -102,20 +110,20 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array) || !(matrix[0] instanceof Array)) {
+    if (!(matrix instanceof Array) || matrix.length === 0) {
         throw new TypeError();
     }
 
+    const firstRowLength = matrix[0].length;
     const resultingMatrix = [];
     for (let i = 0; i < matrix.length; i++) {
+        if (!(matrix[i] instanceof Array) || matrix[i].length !== firstRowLength) {
+            throw new TypeError();
+        }
         resultingMatrix.push([]);
     }
 
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix.length; j++) {
-            resultingMatrix[j].push(matrix[i][j]);
-        }
-    }
+    transposeMatrix(matrix, resultingMatrix);
 
     return resultingMatrix;
 }
