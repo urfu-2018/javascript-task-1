@@ -157,7 +157,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.split(':-)').length - 1) + (text.split('(-:').length - 1);
+    return (text.split(':-)').length - 1);
 }
 
 /**
