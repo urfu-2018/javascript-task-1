@@ -8,10 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) ||
-        !Number.isInteger(b) ||
-        Math.floor(a) !== a ||
-        Math.floor(b) !== b) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
