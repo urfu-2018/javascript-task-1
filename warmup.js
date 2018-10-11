@@ -8,9 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== Number || typeof(b) !== Number) {
-        throw new TypeError();
-    }
+    if (typeof(a) !== Number || typeof(b) !== Number) { throw new TypeError(); }
+
     return a + b;
 }
 
@@ -28,6 +27,7 @@ function centuryByYearProblem(year) {
     else if (year < 0) {
         throw new RangeError();
     }
+
     return Math.trunc(year);
 }
 
@@ -39,7 +39,13 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== String) {
+        throw new TypeError();
+    }
+    else if (year < 0) {
+        throw new RangeError();
+    }
+    return Math.trunc(year);
 }
 
 /**
