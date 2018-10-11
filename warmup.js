@@ -62,7 +62,6 @@ function checkIsNonNegative(number) {
  */
 function colorsProblem(hexColor) {
     checkIsString(hexColor);
-    checkColorLength(hexColor);
     checkColor(hexColor);
     let colors = [];
     for (let i = 0; i < 3; i++) {
@@ -73,13 +72,11 @@ function colorsProblem(hexColor) {
     return `(${colors.join(', ')})`;
 }
 
-function checkColorLength(color) {
-    if (color.length !== 7) {
+function checkColor(color) {
+    if (color.length !== 7 || color[0] !== '#') {
         throw new TypeError(`Цвет ${color} должен быть передан строкой из 7 символов`);
     }
-}
 
-function checkColor(color) {
     if (!color.match(/#[0-9a-f]{6}/i)) {
         throw new RangeError(`${color} - некорректное значение цвета`);
     }
