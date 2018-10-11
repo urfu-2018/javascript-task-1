@@ -1,11 +1,11 @@
 'use strict';
 
 function isNumber(n) {
-    return typeof n === 'number' && !isNaN(parseFloat(n));
+    return typeof n === 'number';
 }
 
 function isInteger(n) {
-    return typeof n === 'number' && !isNaN(parseFloat(n) && Number.isInteger(n));
+    return typeof n === 'number' && Number.isInteger(n);
 
 }
 
@@ -84,7 +84,7 @@ function fibonacciProblem(n) {
     if (!isInteger(n)) {
         throw new TypeError('Wrong argument type, expected number.');
     }
-    if (n < 1) {
+    if (n < 0) {
         throw new RangeError('Wrong argument, expected positive integer.');
     }
 
@@ -102,7 +102,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Wrong argument type, expected 2D array.');
-    } // third check needed because 0 is skipped in next for.
+    }
 
     const M = matrix.length;
     const N = matrix[0].length;
@@ -141,6 +141,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('Wrong argument type, expected string');
+    }
+    
     return phoneNumber.match(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g) !== null;
 }
 
