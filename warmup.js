@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,16 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    } else if (year < 0) {
+        throw new RangeError();
+    }
+
+    const remainder = year % 100;
+    const century = Math.floor(year / 100);
+
+    return remainder === 0 ? century : century + 1;
 }
 
 /**
@@ -30,7 +43,26 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string' || hexColor.search('^#[0-9,a-fA-F]{6}$') === -1) {
+        throw new TypeError();
+    }
+
+    const hexColorWithRemovedStartSymbol = hexColor.slice(1);
+
+    let colorInRGB = '(';
+
+    for (let i = 0; i < hexColorWithRemovedStartSymbol.length - 1; i += 2) {
+        const currentHexColor = hexColorWithRemovedStartSymbol.substring(i, i + 2);
+        const currentColor = parseInt(currentHexColor, 16);
+
+        if (currentColor < 0 || currentColor > 255) {
+            throw new RangeError();
+        }
+
+        colorInRGB += currentColor + ', ';
+    }
+
+    return colorInRGB.substring(0, colorInRGB.length - 2) + ')';
 }
 
 /**
@@ -41,7 +73,17 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError();
+    } else if (n < 0 || Math.floor(n) !== n) {
+        throw new RangeError();
+    }
+
+    if (n === 1) {
+        return 1;
+    }
+
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
@@ -51,7 +93,21 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    } else if (matrix.length !== 0 && !Array.isArray(matrix[0])) {
+        throw new TypeError();
+    }
+
+    if (matrix.length === 0) {
+        return [];
+    }
+
+    return matrix[0].map(function (col, colIndex) {
+        return matrix.map(function (row, rowIndex) {
+            return matrix[rowIndex][colIndex];
+        });
+    });
 }
 
 /**
@@ -63,7 +119,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +134,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return phoneNumber.search('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$') !== -1;
 }
 
 /**
@@ -82,7 +144,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    return (text.split(':-)').length - 1) + (text.split('(-:').length - 1);
 }
 
 /**
@@ -92,7 +158,27 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let diag = '';
+    let reverseDiag = ' ';
+    let checkedFieldInRow = ' ';
+    for (let i = 0; i < field.length; i++) {
+        const row = field[i][0] + field[i][1] + field[i][2] + ' ';
+        const col = field[0][i] + field[1][i] + field[2][i] + ' ';
+
+        diag += field[i][i];
+        reverseDiag += field[i][field.length - (i + 1)];
+
+        checkedFieldInRow += row + col;
+    }
+    checkedFieldInRow += diag + reverseDiag;
+
+    if (checkedFieldInRow.includes('xxx')) {
+        return 'x';
+    } else if (checkedFieldInRow.includes('ooo')) {
+        return 'o';
+    }
+
+    return 'draw';
 }
 
 module.exports = {
