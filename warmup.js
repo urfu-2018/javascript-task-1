@@ -163,6 +163,9 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     checkType(hexColor, 'hexColor', 'string');
+    if (!hexColor.match(/^#[a-f\d]{6,}$/i)) {
+        throw new TypeError('Invalid HEX color string');
+    }
     checkRange(7, hexColor.length, 7, 'hexColor string length');
     const red = parseInt(hexColor.slice(1, 3), 16);
     const green = parseInt(hexColor.slice(3, 5), 16);
@@ -232,7 +235,6 @@ function getTwoDimArraySize(array) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    checkTwoDimArray(matrix, 'matrix');
     const matrixSize = getTwoDimArraySize(matrix);
     const resultMatrix = [];
 
