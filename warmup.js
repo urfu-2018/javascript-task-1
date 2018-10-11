@@ -38,7 +38,7 @@ function centuryByYearProblem(year) {
     if (!isTypeOf(year, 'number')) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
     let century = Math.floor(year / 100);
