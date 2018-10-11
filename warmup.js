@@ -43,10 +43,9 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-
-    /* if (typeof hexColor !== 'string' || hexColor.search('^#[0-9,a-fA-F]{6}$') === -1) {
+    if (typeof hexColor !== 'string' || hexColor.search('^#[0-9,a-fA-F]{6}$') === -1) {
         throw new TypeError();
-    }*/
+    }
 
     const hexColorWithRemovedStartSymbol = hexColor.slice(1);
 
@@ -135,7 +134,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return n.toString(targetNs);
+    return parseInt(n, 10).toString(targetNs);
 }
 
 /**
