@@ -91,9 +91,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError('Wrong argument type, expected 2D array.');
-    }
+    } // third check needed because 0 is skipped in next for.
 
     const M = matrix.length;
     const N = matrix[0].length;
