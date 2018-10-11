@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 0 || !Number.isInteger(year)) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    let parseStr = /^#?([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})$/i.exec(hexColor);
+    let parseStr = /^#([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})$/i.exec(hexColor);
     if (!parseStr) {
         throw new RangeError();
     }
@@ -113,10 +113,10 @@ function checkDoubleArray(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
-    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
@@ -132,7 +132,7 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError();
     }
-    var regex = /8-800-\d{3}-\d{2}-\d{2}/;
+    var regex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return regex.test(phoneNumber);
 }
@@ -147,11 +147,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    let leftSmiles = text.match(/:-\)/g) || [];
-    let rightSmiles = text.match(/\(-:/g) || [];
-    let doubleSmiles = text.match(/\(-:-\)/g) || [];
+    let smiles = text.match(/(\(-:|:-\))/g) || [];
 
-    return leftSmiles.length + rightSmiles.length - doubleSmiles.length;
+    return smiles.length;
 }
 
 /**
