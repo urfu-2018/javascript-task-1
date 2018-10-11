@@ -164,11 +164,9 @@ function smilesProblem(text) {
     }
 
     let count = 0;
-    for (let i = 0; i < text.length - 4; i++) {
-        const substring = text.slice(i, i + 5);
-        const firstHalfIsSmile = substring.slice(0, 3) === '(-:';
-        const secondHalfIsSmile = substring.slice(2, 5) === ':-)';
-        if ((firstHalfIsSmile || secondHalfIsSmile) && !(firstHalfIsSmile && secondHalfIsSmile)) {
+    for (let i = 0; i < text.length - 2; i++) {
+        const substring = text.slice(i, i + 3);
+        if (substring === ':-)' || substring === '(-:') {
             count++;
         }
     }
