@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('a and b must be Number');
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError('year must be Number');
     }
     if (year < 0) {
@@ -64,10 +64,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('n is not Number');
     }
-    if (n < 0) {
+    if (!Number.isInteger(n) || n < 0) {
         throw new RangeError('n must be positive');
     }
     if (n < 3) {
@@ -84,14 +84,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError('Incorrect params');
     }
     if (matrix.length === 0) {
-        return [[]];
+        throw new TypeError('Incorrect params');
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+        if (matrix[i].length !== matrix[0].length) {
             throw new TypeError('Incorrect params');
         }
     }
@@ -108,7 +108,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
+        !Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -124,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/g.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
