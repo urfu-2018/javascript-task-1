@@ -84,7 +84,7 @@ function fibonacciProblem(n) {
     if (!isInteger(n)) {
         throw new TypeError('Wrong argument type, expected number.');
     }
-    if (n < 0) {
+    if (n < 1) {
         throw new RangeError('Wrong argument, expected positive integer.');
     }
 
