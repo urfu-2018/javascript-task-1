@@ -64,11 +64,14 @@ function fibonacciProblem(n) {
     } else if (n <= 0 || Math.floor(n) !== n) {
         throw new RangeError();
     }
-    let recurceFib = currentN => {
-        return currentN < 3 ? 1 : recurceFib(currentN - 1) + recurceFib(currentN - 2);
-    };
+    let fibNumber = 1;
+    let prevFibNumber = 1;
+    for (let i = 2; i < n; i++) {
+        fibNumber += prevFibNumber;
+        prevFibNumber = fibNumber - prevFibNumber;
+    }
 
-    return recurceFib(n);
+    return fibNumber;
 }
 
 /**
@@ -89,7 +92,7 @@ function matrixProblem(matrix) {
     })) {
         throw new TypeError();
     }
-    let transposedMatrix = new Array(matrix[0].length);
+    const transposedMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix[0].length; i++) {
         transposedMatrix[i] = new Array(matrix.length);
         for (let j = 0; j < matrix.length; j++) {
@@ -124,9 +127,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const REG = /^8-800-\d{3}-\d{2}-\d{2}$/;
+    const reg = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
-    return REG.test(phoneNumber);
+    return reg.test(phoneNumber);
 }
 
 /**
@@ -139,13 +142,13 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    const COUNT_LEFT_SMILES = text.match(/:-\)/g) || [];
-    const COUNT_RIGHT_SMILES = text.match(/\(-:/g) || [];
-    const COUNT_STITCHED_SMILES = text.match(/\(-:-\)/g) || [];
+    const countLeftSmiles = text.match(/:-\)/g) || [];
+    const countRightSmiles = text.match(/\(-:/g) || [];
+    const countStitchedSmiles = text.match(/\(-:-\)/g) || [];
 
-    return COUNT_LEFT_SMILES.length +
-        COUNT_RIGHT_SMILES.length -
-        COUNT_STITCHED_SMILES.length;
+    return countLeftSmiles.length +
+        countRightSmiles.length -
+        countStitchedSmiles.length;
 }
 
 /**
