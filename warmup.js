@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== Number || typeof(b) !== Number) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
 
@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc(year) + 1;
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
@@ -44,12 +44,15 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    var arrBuff = new ArrayBuffer(4);
-    var vw = new DataView(arrBuff);
-    vw.setUint32(0,parseInt(hexColor, 16),false);
-    var arrByte = new Uint8Array(arrBuff);
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+    var r = parseInt(result[1], 16);
+    var g = parseInt(result[2], 16);
+    var b = parseInt(result[3], 16);
+    if (r <= 0 && r > 255 || g <= 0 && g > 255 || b <= 0 && b > 255 ) {
+        throw new RangeError();
+    }
 
-    return '(' + arrByte[1] + ',' + arrByte[2] + ',' + arrByte[3] + ')';
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 /**
@@ -63,7 +66,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    else if (year <= 0 || Math.trunc(n) !== 0) {
+    else if (n <= 0 || n % 1 !== 0) {
         throw new RangeError();
     }
     var a = 1, b = 1;
@@ -102,7 +105,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || n % 1 !== 0 || targetNs % 1 !== 0) {
+        throw new TypeError();
+    } else if (targetNs < 2 || targetNs >36) {
+        throw new RangeError();
+    }
+
+    return parseInt(n, targetNs);
 }
 
 /**
