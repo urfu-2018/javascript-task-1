@@ -168,21 +168,9 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError();
     }
-    const leftSmile = /\(-:/g;
-    const leftSmilesCount = getOccurencesCount(text, leftSmile);
-    if (leftSmilesCount !== 0) {
-        text = text.replace(leftSmile, '');
-    }
-    const rightSmilesCount = getOccurencesCount(text, /:-\)/g);
+    const regexp = /(\(-:|:-\))+/g;
+    const match = text.match(regexp);
 
-    return leftSmilesCount + rightSmilesCount;
-}
-
-function getOccurencesCount(text, regexp) {
-    return getMatchesCount(text.match(regexp));
-}
-
-function getMatchesCount(match) {
     return match ? match.length : 0;
 }
 
