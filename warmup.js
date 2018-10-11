@@ -43,9 +43,10 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (hexColor.search('^#[0-9,a-fA-F]{6}$') === -1) {
+
+    /* if (typeof hexColor !== 'string' || hexColor.search('^#[0-9,a-fA-F]{6}$') === -1) {
         throw new TypeError();
-    }
+    }*/
 
     const hexColorWithRemovedStartSymbol = hexColor.slice(1);
 
