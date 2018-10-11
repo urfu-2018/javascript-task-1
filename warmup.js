@@ -105,10 +105,6 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    if (matrix.length === 0) {
-        return [];
-    }
-
     const res = matrix[0].map(function (col, colIndex) {
         return matrix.map(function (row, rowIndex) {
             return matrix[rowIndex][colIndex];
