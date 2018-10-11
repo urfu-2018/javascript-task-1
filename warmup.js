@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a === 'number' && typeof b === 'number' && a === parseInt(a) && b === parseInt(b)) {
+    if (typeof a === 'number' && typeof b === 'number' && a === parseFloat(a) && b === parseFloat(b)) {
         return a + b;
     }
     throw new TypeError('В функцию были переданы не целые числа');
@@ -171,14 +171,15 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const a = lineCompare(field);
-    const b = lineCompare(matrixProblem(field));
+    const horizontalWinner = findLineWinner(field);
+    const verticalWinner = findLineWinner(matrixProblem(field));
+    const diagonalWinner = findDiagonalWinner(field);
+    const winner = horizontalWinner || verticalWinner || diagonalWinner;
 
-    return a || b ? a || b : diagonalCompare(field) || false;
-
+    return winner || 'draw';
 }
 
-function diagonalCompare(field) {
+function findDiagonalWinner(field) {
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
     } else if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
@@ -188,7 +189,7 @@ function diagonalCompare(field) {
     return false;
 }
 
-function lineCompare(field) {
+function findLineWinner(field) {
     for (const line of field) {
         if (line[0] === line[1] && line[1] === line[2]) {
             return line[0];
