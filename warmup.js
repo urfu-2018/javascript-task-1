@@ -5,7 +5,7 @@ function isNumber(n) {
 }
 
 function isInteger(n) {
-    return typeof n === 'number' && !isNaN(parseFloat(n)) && Number.isInteger(n);
+    return typeof n === 'number' && !isNaN(parseFloat(n) && Number.isInteger(n));
 
 }
 
