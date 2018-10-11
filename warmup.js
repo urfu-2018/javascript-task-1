@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
-    } else if (!/^#(\d|[a-f]|[A-F]){6}$/.test(hexColor)) {
+    } else if (!/^#(\d|[a-fA-F]){6}$/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -65,7 +65,7 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
     let recurceFib = currentN => {
-        return currentN < 2 ? 1 : recurceFib(currentN - 1) * recurceFib(currentN - 2);
+        return currentN < 3 ? 1 : recurceFib(currentN - 1) + recurceFib(currentN - 2);
     };
 
     return recurceFib(n);
