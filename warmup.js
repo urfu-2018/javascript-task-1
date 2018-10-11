@@ -28,14 +28,14 @@ function centuryByYearProblem(year) {
     var ye = typeof(year);
     if (ye !== 'number') {
         throw new TypeError('ВВедите цифры!');
-    } else if ( year < 0 ) {
+    } else if (year < 0) {
         throw new RangeError('Год не может быть отрицательным');
-    } 
-    if (year < 100 || year == 0) {
+    }
+    if (year < 100 || year === 0) {
         return 1;
     }
 
-    return ((year/100) - (year/100)%1) + 1;
+    return ((year / 100) - (year / 100)%1) + 1;
 }
 
 /**
@@ -51,9 +51,9 @@ function colorsProblem(hexColor) {
     } 
     var betterHexColor = hexColor.replace('#', '');
     var bigint = parseInt(betterHexColor, 16);
-    var r = (bigint >> 16) & 255;
-    var g = (bigint >> 8) & 255;
-    var b = bigint & 255;
+    var r = (bigint>>16)&255;
+    var g = (bigint>>8)&255;
+    var b = bigint&255;
     if (r > 255 || g > 255 || b > 255) {
         throw new RangeError('Выход за пределы 255!');
     }
