@@ -21,7 +21,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== Number) {
+    if (typeof(year) !== "number") {
         throw new TypeError();
     }
     else if (year < 0) {
@@ -39,7 +39,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== String) {
+    if (typeof(hexColor) !== "string") {
         throw new TypeError();
     }
     var bigint = parseInt(hex, 16);
@@ -58,7 +58,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== Number) {
+    if (typeof(n) !== "number") {
         throw new TypeError();
     }
     else if (year <= 0 || Math.trunc(n) !== 0) {
@@ -81,6 +81,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (matrix.length !== 0 && typeof(matrix[0][0]) !== "number") { throw new TypeError(); }
     var m = matrix.length, n = matrix[0].length, matrixTransformed = [];
     for (var i = 0; i < n; i++) { 
         matrixTransformed[i] = [];
