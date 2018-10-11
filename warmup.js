@@ -86,7 +86,7 @@ function fibonacciProblem(n) {
 
     function getFibonacciNumber(position) {
         if (position < 2) {
-            return 1;
+            return position;
         }
 
         return getFibonacciNumber(position - 1) + getFibonacciNumber(position - 2);
