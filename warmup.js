@@ -28,7 +28,7 @@ function centuryByYearProblem(year) {
     } else if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('В качестве года передано отрицательное значение!');
     } else {
-        return Math.trunc(year / 100) + 1;
+        return Math.ceil(year / 100);
     }
 }
 
