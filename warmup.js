@@ -145,7 +145,7 @@ function isUndefined(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !isNumber(targetNs) || !Number.isInteger(targetNs)) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
