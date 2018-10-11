@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number' || isNaN(a) || isNaN(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('a and b must be Number');
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError('year must be Number');
     }
     if (year < 0) {
@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor must be string');
     }
-    if (hexColor.length !== 7 || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
+    if (hexColor.length !== 7) {
         throw new RangeError('Incorrect params');
     }
     const hexChar = hexColor.substr(1).split('');
@@ -64,13 +64,13 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError('n is not Number');
     }
-    if (n < 0 || !Number.isInteger(n)) {
-        throw new RangeError('n must be positive and not float');
+    if (n < 0) {
+        throw new RangeError('n must be positive');
     }
-    if (n === 1 || n === 2) {
+    if (n < 3) {
         return 1;
     }
 
@@ -108,7 +108,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -124,7 +124,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/g.test(phoneNumber);
 }
 
 /**
@@ -160,7 +160,7 @@ function ticTacToeProblem(field) {
 
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
      (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
-        return field[1][1];
+        result = field[1][1];
     }
 
     return 'draw';
