@@ -39,7 +39,7 @@ function centuryByYearProblem(year) {
 }
 
 function isTypeOf(obj, type) {
-    return obj && typeof obj === type;
+    return typeof obj === type;
 }
 
 function isNumber(obj) {
@@ -161,10 +161,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const regexp = /^8-800-\d{3}-\d{2}-\d{2}$/;
-    const match = phoneNumber.match(regexp);
-
-    return match && match.index === 0;
+    return /^\s*8-800-\d{3}-\d{2}-\d{2}\s*$/.test(phoneNumber);
 }
 
 /**
