@@ -168,9 +168,8 @@ function checkIsMatrix(variable) {
 function numberSystemProblem(n, targetNs) {
     checkIsNumber(n);
     checkIsNumber(targetNs);
+    checkIsInteger(targetNs);
     checkInRange(targetNs, 2, 36);
-
-    checkIsInteger(n);
 
     return n.toString(targetNs);
 }
@@ -199,8 +198,8 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     checkIsString(text);
-    const firstSmiles = text.match(/\(-:/gm);
-    const secondSmiles = text.match(/:-\)/gm);
+    const firstSmiles = text.match(/\(-:(?!-\))/gm);
+    const secondSmiles = text.match(/(?!\(-):-\)/gm);
 
     let smiles = 0;
     if (firstSmiles !== null) {
