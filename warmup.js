@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if ((typeof a !== 'number') || (typeof b !== 'number')) {
         throw new TypeError();
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
     if (year < 0) {
@@ -52,9 +52,6 @@ function colorsProblem(hexColor) {
     let result = [];
     for (let i = 0; i < slice.length; i++) {
         const color = parseInt(slice[i], 16);
-        if (color < 0 || color > 255) {
-            throw new RangeError();
-        }
         result.push(color);
     }
 
