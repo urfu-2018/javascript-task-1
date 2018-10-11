@@ -1,9 +1,5 @@
 'use strict';
 
-function isTypeOf(variable, type) {
-    return typeof variable === type;
-}
-
 function fibonacci(n) {
     if (n <= 2) {
         return 1;
@@ -11,6 +7,11 @@ function fibonacci(n) {
 
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
+
+function isTypeOf(variable, type) {
+    return typeof variable === type;
+}
+
 
 /**
  * Складывает два целых числа
