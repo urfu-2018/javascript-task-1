@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year === 'number') {
+    if (typeof year === 'number' && year === parseFloat(year)) {
         if (year >= 0) {
             return year % 100 ? parseInt(year / 100) + 1 : parseInt(year / 100);
         }
@@ -70,7 +70,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('Введите число!');
     }
-    if (n > 0 && n === parseInt(n)) {
+    if (n > 0 && n === parseFloat(n)) {
         for (let i = 2; i <= n; i++) {
             accumulator = firstFib + secondFib;
             firstFib = secondFib;
@@ -106,9 +106,9 @@ function matrixProblem(matrix) {
 
 function checkMatrix(matrix) {
     for (let i = 0; i < matrix.length - 1; i++) {
-        if (!Array.isArray(matrix[i]) ||
-            !Array.isArray(matrix[i + 1]) ||
-            matrix[i].length !== matrix[i + 1].length) {
+        if ((!Array.isArray(matrix[i]) ||
+                !Array.isArray(matrix[i + 1]) ||
+                matrix[i].length !== matrix[i + 1].length) && matrix[i].length !== 0) {
             return false;
         }
     }
@@ -126,7 +126,7 @@ function checkMatrix(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n === 'number' && typeof targetNs === 'number') {
-        if (targetNs >= 2 && targetNs <= 36) {
+        if (targetNs >= 2 && targetNs <= 36 && targetNs === parseFloat(targetNs)) {
             return n.toString(targetNs);
         }
         throw new RangeError('система счисления выходит за пределы значений [2, 36]');
