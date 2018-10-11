@@ -171,9 +171,9 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    const smiles = /(\(-:|:-\))/.exec(text);
+    const smiles = /(\(-:|:-\))/g.exec(text);
     if (smiles !== null) {
-        return smiles.length;
+        return smiles.length - 1;
     }
 
     return 0;
