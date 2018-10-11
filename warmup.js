@@ -137,10 +137,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
-    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
@@ -215,10 +215,10 @@ function checkRowsAndColumns(field) {
         const rowIsStrike = rowStart === field[i][1] && field[i][1] === field[i][2];
         const columnStart = field[0][i];
         const columnIsStrike = columnStart === field[1][i] && field[1][i] === field[2][i];
-        if ((rowStart === 'x' || columnStart === 'o') && rowIsStrike) {
+        if (rowIsStrike) {
             return { gameIsFinished: true, winner: rowStart };
         }
-        if ((columnStart === 'x' || columnStart === 'o') && columnIsStrike) {
+        if (columnIsStrike) {
             return { gameIsFinished: true, winner: columnStart };
         }
     }
