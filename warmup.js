@@ -190,74 +190,42 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let {
-        crossWin,
-        circleWin
-    } = checkWinningSequences(field);
-
-    if (crossWin === circleWin) {
-        return 'draw';
-    }
-    if (circleWin) {
-        return 'o';
-    }
-
-    return 'x';
-}
-
-function checkWinningSequences(field) {
     const transported = matrixProblem(field);
     const allFields = [field, transported];
-    let {
-        crossWin,
-        circleWin
-    } = checkRowsAndColumns(allFields);
-
-    for (let j = 0; j < 2; j++) {
-        crossWin = crossWin || checkMainDiagonal(allFields[j], 'x');
-        circleWin = circleWin || checkMainDiagonal(allFields[j], 'o');
+    for (let i = 0; i < 3; i++) {
+        const winner = checkRowAndColumn(allFields, i);
+        if (winner) {
+            return winner;
+        }
+    }
+    if ((field[0][0] === field[1][1]) && (field[1][1] === field[2][2])) {
+        return field[0][0];
+    }
+    if ((field[2][0] === field[1][1]) && (field[1][1] === field[0][2])) {
+        return field[2][0];
     }
 
-    return {
-        crossWin: crossWin,
-        circleWin: circleWin
-    };
+    return 'draw';
 }
 
-function checkRowsAndColumns(allFields) {
-    let {
-        crossWin,
-        circleWin
-    } = false;
-
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 2; j++) {
-            let field = allFields[j];
-            crossWin = crossWin || checkRow(field, i, 'x');
-            circleWin = circleWin || checkRow(field, i, 'o');
+function checkRowAndColumn(allFields, i) {
+    for (let j = 0; j < 2; j++) {
+        let field = allFields[j];
+        let winner = checkRow(field, i);
+        if (winner) {
+            return winner;
         }
     }
 
-    return {
-        crossWin: crossWin,
-        circleWin: circleWin
-    };
+    return undefined;
 }
 
-function checkRow(field, i, player) {
+function checkRow(field, i) {
     if ((field[i][0] === field[i][1]) && (field[i][1] === field[i][2])) {
-        return field[i][0] === player;
+        return field[i][0];
     }
 
-    return false;
-}
-
-function checkMainDiagonal(field, player) {
-    if ((field[0][0] === field[1][1]) && (field[1][1] === field[2][2])) {
-        return field[0][0] === player;
-    }
-
-    return false;
+    return undefined;
 }
 
 
