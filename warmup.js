@@ -151,7 +151,7 @@ function centuryByYearProblem(year) {
     checkInteger(year, 'year');
     checkRange(0, year, Number.MAX_VALUE, 'year');
 
-    return Math.floor(year / 100) + 1;
+    return Math.floor(year / 100) + (year % 100 !== 0 ? 1 : 0);
 }
 
 /**
