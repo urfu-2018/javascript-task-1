@@ -90,28 +90,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('matrix should be 2d array');
     }
 
-    const m = matrix[0].length;
-
-    if (m === 0) {
-        throw new TypeError('matrix should be 2d array');
-    }
-
-    function checkIfAllElementsIsArray() {
-        for (let i = 1; i < matrix.length; i++) {
-            if (!Array.isArray(matrix[i]) || matrix[i].length !== m) {
-                return false;
-            }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError('matrix should be 2d array');
         }
-
-        return true;
-    }
-
-    if (!checkIfAllElementsIsArray(matrix)) {
-        throw new TypeError('matrix should be 2d array');
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
