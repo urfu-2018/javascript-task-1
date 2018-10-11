@@ -250,8 +250,9 @@ function determineWinnerByColumns(field) {
 }
 
 function determineWinner(firstField, secondField, thirdField) {
-    if (firstField === secondField && secondField === thirdField) {
-        return firstField;
+    if (firstField === secondField && secondField === thirdField &&
+        (thirdField === 'o' || thirdField === 'x')) {
+        return thirdField;
     }
 
     return null;
