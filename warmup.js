@@ -212,30 +212,42 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
 
-    for (let lineNumber = 0; lineNumber < 3; lineNumber++) {
-        if (isFieldsEqual(field[lineNumber][0], field[lineNumber][1], field[lineNumber][2])) {
-            return field[lineNumber][0];
+    return determineWinnerByRows(field) ||
+        determineWinnerByColumns(field) ||
+        determineWinner(field[0][0], field[1][1], field[2][2]) ||
+        determineWinner(field[0][2], field[1][1], field[2][0]) ||
+        'draw';
+}
+
+function determineWinnerByRows(field) {
+    for (let row = 0; row < 3; row++) {
+        let winner = determineWinner(field[row][0], field[row][1], field[row][2]);
+        if (winner !== null) {
+            return winner;
         }
     }
 
-    for (let columnNumber = 0; columnNumber < 3; columnNumber++) {
-        if (isFieldsEqual(field[0][columnNumber], field[1][columnNumber], field[2][columnNumber])) {
-            return field[0][columnNumber];
+    return null;
+}
+
+function determineWinnerByColumns(field) {
+    for (let column = 0; column < 3; column++) {
+        let winner = determineWinner(field[0][column], field[1][column], field[2][column]);
+        if (winner !== null) {
+            return winner;
         }
     }
 
-    if (isFieldsEqual(field[0][0], field[1][1], field[2][2]) ||
-        isFieldsEqual(field[0][2], field[1][1], field[2][0])) {
-        return field[1][1];
+    return null;
+}
+
+function determineWinner(firstField, secondField, thirdField) {
+    if (firstField === secondField && secondField === thirdField) {
+        return firstField;
     }
 
-    return 'draw';
+    return null;
 }
-
-function isFieldsEqual(first, second, third) {
-    return first === second && second === third;
-}
-
 
 module.exports = {
     abProblem,
