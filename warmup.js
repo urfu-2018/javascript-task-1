@@ -37,21 +37,21 @@ function checkType(variable, type) {
  */
 function centuryByYearProblem(year) {
     checkIsNumber(year);
-    checkIsNonNegative(year);
+    checkIsPositive(year);
 
-    // if (year % 100 === 0) {
-    //     return Math.trunc(year / 100);
-    // }
+    if (year % 100 === 0) {
+        return Math.trunc(year / 100);
+    }
 
     return Math.trunc(year / 100) + 1;
 }
 
 
-function checkIsNonNegative(number) {
-    if (number < 0) {
-        throw new RangeError(`${number} должно быть больше нуля`);
-    }
-}
+// function checkIsNonNegative(number) {
+//     if (number < 0) {
+//         throw new RangeError(`${number} должно быть больше нуля`);
+//     }
+// }
 
 /**
  * Переводит цвет из формата HEX в формат RGB
