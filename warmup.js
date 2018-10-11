@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (!Number.isInteger(a) ||
+        !Number.isInteger(b) ||
+        Math.floor(a) !== a ||
+        Math.floor(b) !== b) {
         throw new TypeError();
     }
 
@@ -157,7 +160,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.split(':-)').length - 1);
+    return (text.split(':-)').length - 1) + (text.split('(-:').length - 1);
 }
 
 /**
