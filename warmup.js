@@ -1,11 +1,11 @@
 'use strict';
 
 function isNumber(n) {
-    return typeof n === 'number' && !isNaN(parseFloat(n));
+    return typeof n === 'number';
 }
 
 function isInteger(n) {
-    return typeof n === 'number' && !isNaN(parseFloat(n)) && Number.isInteger(n);
+    return typeof n === 'number' && Number.isInteger(n);
 
 }
 
@@ -141,10 +141,6 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber !== 'string') {
-        throw new TypeError('Wrong argument type, expected string');
-    }
-
     return phoneNumber.match(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g) !== null;
 }
 
