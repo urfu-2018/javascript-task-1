@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a === 'number' && typeof b === 'number' && a === parseInt(a) && b === parseInt(b)) {
+        return a + b;
+    }
+    throw new TypeError('В функцию были переданы не целые числа');
 }
 
 /**
@@ -19,7 +22,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year === 'number') {
+        if (year >= 0) {
+            return year % 100 ? parseInt(year / 100) + 1 : parseInt(year / 100);
+        }
+        throw new RangeError('Введите положительный год!');
+    }
+    throw new TypeError('Вы должны ввести число!');
 }
 
 /**
@@ -30,7 +39,15 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    const rangeRegexp = /#[A-F0-9]{6}\b/gi;
+
+    if (typeof hexColor === 'string' && hexColor[0] === '#' && hexColor.length === 7) {
+        if (hexColor.match(rangeRegexp)) {
+            return `(${parseInt(hexColor.slice(0, 1), 16)}), (${parseInt(hexColor.slice(2, 3), 16)}), (${parseInt(hexColor.slice(4, 5), 16)}),`;
+        }
+        throw new RangeError('значения цвета выходят за пределы допустимых');
+    }
+    throw new TypeError('цвет передан не строкой');
 }
 
 /**
@@ -41,7 +58,23 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    let firstFib = 0;
+    let secondFib = 1;
+    let accumulator = 0;
+
+    if (typeof n !== 'number') {
+        throw new TypeError('Введите число!');
+    }
+    if (n > 0 && n === parseInt(n)) {
+        for (let i = 2; i <= n; i++) {
+            accumulator = firstFib + secondFib;
+            firstFib = secondFib;
+            secondFib = accumulator;
+        }
+
+        return accumulator;
+    }
+    throw new RangeError('Введите целое положительное число');
 }
 
 /**
@@ -51,7 +84,31 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    const transparentMatrix = [];
+
+    if (checkMatrix(matrix)) {
+        for (let i = 0; i < matrix[0].length; i++) {
+            const newLine = [];
+
+            matrix.forEach(line => newLine.push(line[i]));
+            transparentMatrix.push(newLine);
+        }
+
+        return transparentMatrix;
+    }
+    throw new TypeError('Матрица кривая!');
+}
+
+function checkMatrix(matrix) {
+    for (let i = 0; i < matrix.length - 1; i++) {
+        if (!Array.isArray(matrix[i]) ||
+            !Array.isArray(matrix[i + 1]) ||
+            matrix[i].length !== matrix[i + 1].length) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /**
@@ -63,7 +120,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n === 'number' && typeof targetNs === 'number') {
+        if (targetNs >= 2 && targetNs <= 36) {
+            return n.toString(targetNs);
+        }
+        throw new RangeError('система счисления выходит за пределы значений [2, 36]');
+    }
+    throw new TypeError('переданы аргументы некорректного типа');
 }
 
 /**
@@ -72,7 +135,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return /8-800-\d{3}-\d{2}-\d{2}$/gi.test(phoneNumber);
 }
 
 /**
@@ -82,7 +145,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text === 'string') {
+
+    }
 }
 
 /**
