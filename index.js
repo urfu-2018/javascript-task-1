@@ -25,7 +25,7 @@ console.info(colorsProblem('#FFFFFF'));
 console.info(fibonacciProblem(1));
 
 // Выведет `[
-//    [1, 4, 7],
+//    [1, 4, 7] ,
 //    [2, 5, 8],
 //    [3, 6, 9]
 // ]`
