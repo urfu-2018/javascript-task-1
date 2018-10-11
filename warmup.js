@@ -1,11 +1,7 @@
 'use strict';
 
 function isNumberActually(n) {
-    if (typeof a !== 'number') {
-        return false;
-    }
-
-    return !isNaN(parseFloat(n)) && isFinite(n);
+    return typeof n === 'number' && !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 /**
