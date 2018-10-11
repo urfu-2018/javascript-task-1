@@ -46,6 +46,9 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
+    if (hexColor.length !== 7 || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
+        throw new RangeError();
+    }
     const colors = splitColors(hexColor);
     const redValue = colors[0];
     const greenValue = colors[1];
@@ -101,6 +104,7 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
+
     if (matrix.length === 0) {
         return [];
     }
