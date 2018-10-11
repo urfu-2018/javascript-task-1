@@ -107,18 +107,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (isTypeOf(matrix[0][0], 'undefined') || matrix[0][0].constructor === Array) {
+    if (isTypeOf(matrix[0][0], 'undefined') ||
+        matrix[0].constructor !== Array ||
+        matrix[0][0].constructor === Array) {
         throw new TypeError();
     }
+
     const M = matrix.length;
     const N = matrix[0].length;
 
     var transported = new Array(N);
     for (let i = 0; i < N; i++) {
         transported[i] = new Array(M);
-    }
-
-    for (let i = 0; i < N; i++) {
         for (let j = 0; j < M; j++) {
             transported[i][j] = matrix[j][i];
         }
