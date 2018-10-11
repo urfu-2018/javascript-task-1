@@ -44,15 +44,17 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    const m = hexColor.slice(1).match(/.{2}/g);
-    const red = parseInt(m[0], 16);
-    const green = parseInt(m[1], 16);
-    const blue = parseInt(m[2], 16);
-    if (red > 255 || green > 255 || blue > 255) {
-        throw new RangeError();
+    const slice = hexColor.slice(1).match(/.{2}/g);
+    let result = [];
+    for (let i = 0; i < slice.length; i++) {
+        const color = parseInt(slice[i], 16);
+        if (color < 0 || color > 255) {
+            throw new RangeError();
+        }
+        result.push(color);
     }
 
-    return '(' + red + ', ' + green + ', ' + blue + ')';
+    return '(' + result.join(', ') + ')';
 }
 
 /**
