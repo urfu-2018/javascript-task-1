@@ -136,6 +136,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
     const COUNT_LEFT_SMILES = text.match(/:-\)/g) || [];
     const COUNT_RIGHT_SMILES = text.match(/\(-:/g) || [];
     const COUNT_STITCHED_SMILES = text.match(/\(-:-\)/g) || [];
