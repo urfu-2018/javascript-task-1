@@ -81,9 +81,6 @@ function fibonacciProblem(n) {
     let counter = 1;
     while (counter <= n) {
         current += previous;
-        if (!isFinite(current)) {
-            throw new RangeError(n + ' is out of range [0, ' + counter + ']');
-        }
         previous = current;
         counter++;
     }
@@ -98,17 +95,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
-        throw new TypeError('matrix is not an array');
-    }
-    const ROWS_COUNT = matrix.length;
-    if (ROWS_COUNT === 0) {
-        throw new TypeError('matrix is not a two-dimensional array');
+    if (!Array.isArray(matrix) || Array.isArray(matrix) && !matrix.length) {
+        throw new TypeError('specified matrix is not a two-dimensional array');
     }
     const TRANSPOSED_MATRIX = [];
     matrix.forEach(function (row) {
-        if (!Array.isArray(row)) {
-            throw new TypeError('matrix is not a two-dimensional array');
+        if (!Array.isArray(row) || Array.isArray(row) && !row.length) {
+            throw new TypeError('specified matrix is not a two-dimensional array');
         }
         row.forEach(function (cellValue, cellIndex) {
             // по индексам столбцов матрицы создаём строки в транспонированном массиве
@@ -175,15 +168,8 @@ function smilesProblem(text) {
     if (!EMOJI_MATCHES) {
         return 0;
     }
-    // если в строке находится строка вида (-:-) то регулярным выражением выше
-    // объединённые смайлики будут считаться за 2, а не за один, хотя должен быть 1
-    const MERGED_EMOJI_PATTERN = /\(-:-\)/g;
-    let MERGED_EMOJI_MATCHES = text.match(MERGED_EMOJI_PATTERN);
-    if (!MERGED_EMOJI_MATCHES) {
-        MERGED_EMOJI_MATCHES = 0;
-    }
 
-    return EMOJI_MATCHES.length - MERGED_EMOJI_MATCHES;
+    return EMOJI_MATCHES.length;
 }
 
 /**
