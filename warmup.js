@@ -121,6 +121,7 @@ function checkIsInteger(number) {
  */
 function matrixProblem(matrix) {
     checkIsMatrix(matrix);
+
     const transposedMatrix = [];
     const m = matrix.length;
     const n = matrix[0].length;
@@ -168,6 +169,8 @@ function numberSystemProblem(n, targetNs) {
     checkIsNumber(n);
     checkIsNumber(targetNs);
     checkInRange(targetNs, 2, 36);
+
+    checkIsInteger(targetNs);
 
     return n.toString(targetNs);
 }
