@@ -106,7 +106,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return Number(n, targetNs);
+    return n.toString(targetNs);
 }
 
 /**
