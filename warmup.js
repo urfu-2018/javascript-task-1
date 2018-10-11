@@ -69,11 +69,8 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n < 0 || Math.floor(n) !== n) {
+    if (n <= 0 || Math.floor(n) !== n) {
         throw new RangeError();
-    }
-    if (n === 0) {
-        return 0;
     }
     let a = 1;
     let b = 1;
