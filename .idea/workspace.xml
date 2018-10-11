@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7eebe98-cff1-4887-aa63-aa2232565013" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../warmup.js" beforeDir="false" afterPath="$PROJECT_DIR$/../warmup.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -63,19 +64,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1109" />
+          <entry key="js" value="1110" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="1109" />
+          <entry key="JavaScript" value="1110" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="196">
@@ -84,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+            <state relative-caret-position="196">
+              <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="43" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -102,8 +103,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/warmup.js" />
-        <option value="$PROJECT_DIR$/../warmup.js" />
         <option value="$PROJECT_DIR$/../index.js" />
+        <option value="$PROJECT_DIR$/../warmup.js" />
       </list>
     </option>
   </component>
@@ -211,12 +212,12 @@
       <workItem from="1539102019328" duration="10251000" />
       <workItem from="1539236304943" duration="319000" />
       <workItem from="1539250189667" duration="3380000" />
-      <workItem from="1539254323192" duration="2794000" />
+      <workItem from="1539254323192" duration="2865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16744000" />
+    <option name="totallyTimeSpent" value="16815000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -269,17 +270,17 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../warmup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="54" column="37" lean-forward="true" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../warmup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="7" selection-end-line="43" selection-end-column="8" />
         </state>
       </provider>
     </entry>

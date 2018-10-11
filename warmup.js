@@ -38,11 +38,10 @@ function checkType(variable, type) {
 function centuryByYearProblem(year) {
     checkIsNumber(year);
     checkIsNonNegative(year);
-    checkIsInteger(year);
 
-    if (year % 100 === 0) {
-        return Math.trunc(year / 100);
-    }
+    // if (year % 100 === 0) {
+    //     return Math.trunc(year / 100);
+    // }
 
     return Math.trunc(year / 100) + 1;
 }
