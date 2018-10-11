@@ -42,10 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
-    } else if (hexColor[0] !== '#' ||
-            hexColor.substr(1, 2) > 'FF' ||
-            hexColor.substr(3, 2) > 'FF' ||
-            hexColor.substr(5, 2) > 'FF') {
+    } else if (!/#(\d|[a-f]|[A-F]){6}/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -121,7 +118,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    var reg = /^8-800-[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$/;
+    var reg = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return reg.test(phoneNumber);
 }
