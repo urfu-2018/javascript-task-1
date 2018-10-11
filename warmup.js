@@ -149,11 +149,15 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('input argument should be a string');
     }
-    const smileRegex = /:-\)|\(-:/g;
-    const allSmiles = text.match(smileRegex);
+    function getCountByRegex(str, regex) {
+        const allValid = str.match(regex);
 
-    return allSmiles === null ? 0 : allSmiles.length;
+        return allValid === null ? 0 : allValid.length;
+    }
+
+    return getCountByRegex(text, /:-\)/g) + getCountByRegex(text, /\(-:/g);
 }
+
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
