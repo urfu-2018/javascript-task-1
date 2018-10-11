@@ -27,14 +27,14 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!isIntegerNumber(year)) {
-        throw new TypeError(year + ' is not a number');
+        throw new TypeError(year + ' is not an integer number');
     }
     if (year < 0) {
         throw new RangeError(year + ' is not a positive integer number');
     }
     const YEARS_IN_CENTURY = 100;
 
-    return Math.floor(year / YEARS_IN_CENTURY) + 1;
+    return Math.ceil(year / YEARS_IN_CENTURY);
 }
 
 /**
@@ -48,17 +48,12 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError(hexColor + ' is not a string');
     }
-    const HEX_FORMAT_PATTERN = /^#[\da-z]{6}$/i;
-    const isInHEXFormat = HEX_FORMAT_PATTERN.test(hexColor);
-    if (!isInHEXFormat) {
-        throw new TypeError(hexColor + ' is not a HEX color');
-    }
-    const VALID_HEX_COLOR_PATTERN = /^#([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i;
-    const isValidHEXColor = VALID_HEX_COLOR_PATTERN.test(hexColor);
+    const HEX_COLOR_PATTERN = /^#([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i;
+    const isValidHEXColor = HEX_COLOR_PATTERN.test(hexColor);
     if (!isValidHEXColor) {
         throw new RangeError(hexColor + ' is not a valid HEX color');
     }
-    const RGB_PARTS = hexColor.match(VALID_HEX_COLOR_PATTERN).slice(1);
+    const RGB_PARTS = hexColor.match(HEX_COLOR_PATTERN).slice(1);
     const HEXADECIMAL_RADIX = 16;
     RGB_PARTS.forEach(function (value, index) {
         RGB_PARTS[index] = parseInt(value, HEXADECIMAL_RADIX);
@@ -136,15 +131,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isIntegerNumber(n)) {
-        throw new TypeError(n + ' is not an integer number');
+    if (typeof n !== 'number') {
+        throw new TypeError(n + ' is not a number');
     }
-    if (!isIntegerNumber(targetNs)) {
-        throw new TypeError(targetNs + ' is not an integer number');
+    if (typeof targetNs !== 'number') {
+        throw new TypeError(targetNs + ' is not a number');
     }
     const RADIX_MIN = 2;
     const RADIX_MAX = 36;
-    if (targetNs < RADIX_MIN || targetNs > RADIX_MAX) {
+    if (!isIntegerNumber(targetNs) || targetNs < RADIX_MIN || targetNs > RADIX_MAX) {
         throw new RangeError(targetNs + ' is out of range [' + RADIX_MIN + ', ' + RADIX_MAX + ']');
     }
 
@@ -264,7 +259,7 @@ function isIntegerNumber(num) {
         return false;
     }
 
-    return num === Math.floor(num); // return num === +num.toFixed(0);
+    return Number.isInteger(num); // num === +num.toFixed(0);
 }
 
 module.exports = {
