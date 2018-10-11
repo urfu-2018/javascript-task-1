@@ -9,6 +9,11 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    if (isNaN(a) || isNaN(b)) {
+        throw TypeError;
+    } else {
+        return a + b;
+    }
 }
 
 /**
@@ -20,6 +25,13 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    if (isNaN(year)) {
+        throw TypeError;
+    } else if (year < 0) {
+        throw RangeError;
+    } else {
+        return (year - year % 100) / 100 + 1;
+    }
 }
 
 /**
@@ -31,6 +43,21 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw TypeError;
+    }
+    hexColor = hexColor.substr(1, hexColor.length - 1);
+    if (hexColor.length !== 6) {
+        throw RangeError;
+    }
+    let res = '(';
+    for (let i = 0; i < 3; i++) {
+        res += parseInt(hexColor.substr(i * 2, 2), 16) + ', ';
+    }
+    res = res.substr(0, res.length - 2);
+    res += ')';
+
+    return res;
 }
 
 /**
@@ -42,6 +69,18 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    if (isNaN(n)) {
+        throw TypeError;
+    }
+    if (!isInteger(n)) {
+        throw RangeError;
+    }
+
+    return Math.round((Math.pow(((1 + Math.sqrt(5)) / 2), n)) / (Math.sqrt(5)));
+}
+
+function isInteger(x) {
+    return x % 1 === 0;
 }
 
 /**
@@ -52,6 +91,11 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw TypeError;
+    }
+
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -64,6 +108,14 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    if (isNaN(n) || isNaN(targetNs)) {
+        throw TypeError;
+    }
+    if (targetNs < 2 || targetNs > 32) {
+        throw RangeError;
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,6 +124,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    const regexp = new RegExp('8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}');
+
+    return (regexp.test(phoneNumber));
     // Ваше решение
 }
 
@@ -82,6 +137,26 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof text === 'string') {
+        throw TypeError;
+    }
+    var res = 0;
+    for (var i = 0; i < text.length; i++) {
+        if (text[i] === ':') {
+            if (text[i + 1] === '-' && text[i + 2] === ')') {
+                res++;
+                i += 2;
+            }
+        }
+        if (text[i] === '(') {
+            if (text[i + 1] === '-' && text[i + 2] === ':') {
+                res++;
+                i += 2;
+            }
+        }
+    }
+
+    return res;
     // Ваше решение
 }
 
@@ -92,7 +167,55 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if (diagonalCheck(field) !== 'n') {
+        return diagonalCheck(field);
+    } else if (verticalCheck(field) !== 'n') {
+        return verticalCheck(field);
+    } else if (horizontalCheck(field) !== 'n') {
+        return horizontalCheck(field);
+    }
+
+    return 'draw';
+
+}
+
+function diagonalCheck(field) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[1][1];
+    } else if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+        return field[1][1];
+    }
+
+    return 'n';
+}
+
+function verticalCheck(field) {
+    field = matrixProblem(field);
+    for (let i = 0; i < 3; i++) {
+        if (checkLine(field[i]) === 'o' || checkLine(field[i]) === 'x') {
+            return checkLine(field[i]);
+        }
+    }
+
+    return 'n';
+}
+
+function horizontalCheck(field) {
+    for (let i = 0; i < 3; i++) {
+        if (checkLine(field[i]) === 'o' || checkLine(field[i]) === 'x') {
+            return checkLine(field[i]);
+        }
+    }
+
+    return 'n';
+}
+
+function checkLine(line) {
+    if (line[0] === line[1] && line[1] === line[2]) {
+        return line[0];
+    }
+
+    return 'n';
 }
 
 module.exports = {
