@@ -57,4 +57,3 @@ console.info(fibonacciProblem(4));
 // Выведет 20
 console.info(centuryByYearProblem(2000));
 
-console.info(colorsProblem('#0000000'));

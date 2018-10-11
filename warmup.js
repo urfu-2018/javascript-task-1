@@ -38,6 +38,7 @@ function checkType(variable, type) {
 function centuryByYearProblem(year) {
     checkIsNumber(year);
     checkIsNonNegative(year);
+    checkIsInteger(year);
 
     if (year % 100 === 0) {
         return Math.trunc(year / 100);
@@ -162,8 +163,6 @@ function numberSystemProblem(n, targetNs) {
     checkIsNumber(n);
     checkIsNumber(targetNs);
     checkInRange(targetNs, 2, 36);
-    checkIsInteger(n);
-    checkIsInteger(targetNs);
 
     return n.toString(targetNs);
 }
