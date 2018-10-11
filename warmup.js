@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (Number.isInteger(a) && Number.isInteger(b)) {
+    if (typeof a === 'number' && typeof b === 'number') {
         return a + b;
     }
     throw new TypeError();
@@ -29,10 +29,10 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
     if (year % 100 === 0) {
-        return Math.trunc(year / 100);
+        return Math.floor(year / 100);
     }
 
-    return Math.trunc(year / 100 + 1);
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7 || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
+    if (hexColor.length !== 7) {
         throw new RangeError();
     }
     const colors = splitColors(hexColor);
@@ -83,7 +83,7 @@ function fibonacciProblem(n) {
     //     throw new TypeError();
     // }
     if (Number.isInteger(n)) {
-        if (n < 0) {
+        if (n <= 0) {
             throw new RangeError();
         }
     } else {
@@ -104,12 +104,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (matrix.constructor !== Array || matrix[0].constructor !== Array) {
         throw new TypeError();
     }
-
-    if (matrix.length === 0) {
-        return [];
+    if (matrix[0].length === 0) {
+        return [[]];
     }
     var newMatrix = [];
     var a = 0;
@@ -133,7 +132,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(targetNs) || typeof n !== 'number') {
+    if (!typeof targetNs === 'number' || typeof n !== 'number') {
         throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
@@ -149,7 +148,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.match('8-800-/d{3}-/d{2}-/d{2}') === null;
+    return phoneNumber.match(/8-800-\d{3}-\d{2}-\d{2}/) !== null;
 }
 
 /**
