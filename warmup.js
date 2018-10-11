@@ -1,11 +1,11 @@
 'use strict';
 
-// function isNumberActually(n) {
-//     return typeof n === 'number' && !isNaN(parseFloat(n)) && isFinite(n);
-// }
-
-function isNumberWithInfinity(n) {
+function isNumber(n) {
     return typeof n === 'number' && !isNaN(parseFloat(n));
+}
+
+function isInteger(n) {
+    return typeof n === 'number' && !isNaN(parseFloat(n) && Number.isInteger(n));
 
 }
 
@@ -17,7 +17,7 @@ function isNumberWithInfinity(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumberWithInfinity(a) || !isNumberWithInfinity(b)) {
+    if (!isNumber(a) || !isNumber(b)) {
         throw new TypeError('Wrong argument type, expected integer.');
     }
 
@@ -32,7 +32,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isNumberWithInfinity(year) && !Number.isInteger(year)) {
+    if (!isInteger(year)) {
         throw new TypeError('Wrong argument type, expected integer');
     }
     if (year < 1) {
@@ -81,7 +81,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isNumberWithInfinity(n) && !Number.isInteger(n)) {
+    if (!isInteger(n)) {
         throw new TypeError('Wrong argument type, expected number.');
     }
     if (n < 1) {
@@ -124,8 +124,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumberWithInfinity(n) || !isNumberWithInfinity(targetNs) ||
-        !Number.isInteger(targetNs)) {
+    if (!isInteger(n) || !isInteger(targetNs)) {
         throw new TypeError('Wrong argument(s) type, expected integer.');
     }
 
@@ -171,14 +170,13 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const fieldInline = field[0].concat(field[1], field[2]);
+    const fieldInline = field[0].concat(field[1], field[2]); // btw, this is only due to max-depth
     const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
         [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]]; // all 3-in-a-rows in the game
 
     for (let i in winStates) {
         if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
-            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]] &&
-            (fieldInline[winStates[i][0]] === 'x' || fieldInline[winStates[i][0]] === 'o')) {
+            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]]) {
             return fieldInline[winStates[i][0]];
         }
     }
