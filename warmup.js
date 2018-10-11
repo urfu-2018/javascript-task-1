@@ -74,7 +74,7 @@ function colorsProblem(hexColor) {
 
 function checkColor(color) {
     if (!color.match(/#[0-9a-f]{6}/i)) {
-        throw new RangeError(`${color} - некорректное значение цвета`);
+        throw new TypeError(`${color} - некорректное значение цвета`);
     }
 }
 
@@ -211,12 +211,16 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < 3; i++) {
-        if (isFieldsEqual(field[i][0], field[i][1], field[i][2])) {
-            return field[i][0];
+
+    for (let lineNumber = 0; lineNumber < 3; lineNumber++) {
+        if (isFieldsEqual(field[lineNumber][0], field[lineNumber][1], field[lineNumber][2])) {
+            return field[lineNumber][0];
         }
-        if (isFieldsEqual(field[0][i], field[1][i], field[2][i])) {
-            return field[0][i];
+    }
+
+    for (let columnNumber = 0; columnNumber < 3; columnNumber++) {
+        if (isFieldsEqual(field[0][columnNumber], field[1][columnNumber], field[2][columnNumber])) {
+            return field[0][columnNumber];
         }
     }
 
