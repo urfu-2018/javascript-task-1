@@ -62,6 +62,7 @@ function checkIsNonNegative(number) {
  */
 function colorsProblem(hexColor) {
     checkIsString(hexColor);
+    checkColorLength(hexColor);
     checkColor(hexColor);
     let colors = [];
     for (let i = 0; i < 3; i++) {
@@ -70,6 +71,12 @@ function colorsProblem(hexColor) {
     }
 
     return `(${colors.join(', ')})`;
+}
+
+function checkColorLength(color) {
+    if (!color.length !== 7) {
+        throw new TypeError(`Цвет ${color} должен быть передан строкой из 7 символов`);
+    }
 }
 
 function checkColor(color) {

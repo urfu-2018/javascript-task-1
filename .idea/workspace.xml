@@ -64,12 +64,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="875" />
+          <entry key="js" value="1023" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="875" />
+          <entry key="JavaScript" value="1023" />
         </counts>
       </usages-collector>
     </session>
@@ -88,8 +88,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+            <state relative-caret-position="135">
+              <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -212,12 +212,12 @@
       <workItem from="1539102019328" duration="10251000" />
       <workItem from="1539236304943" duration="319000" />
       <workItem from="1539250189667" duration="3380000" />
-      <workItem from="1539254323192" duration="329000" />
+      <workItem from="1539254323192" duration="654000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14279000" />
+    <option name="totallyTimeSpent" value="14604000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -279,8 +279,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../warmup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        <state relative-caret-position="135">
+          <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
         </state>
       </provider>
     </entry>
