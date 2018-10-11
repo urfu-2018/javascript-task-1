@@ -4,6 +4,11 @@ function isNumberActually(n) {
     return typeof n === 'number' && !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function isNumberWithInfinity(n) {
+    return typeof n === 'number' && !isNaN(parseFloat(n));
+
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -12,7 +17,7 @@ function isNumberActually(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumberActually(a) && !isNumberActually(b)) {
+    if (!isNumberWithInfinity(a) || !isNumberWithInfinity(b)) {
         throw new TypeError('Wrong argument type, expected integer.');
     }
 
