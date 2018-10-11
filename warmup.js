@@ -28,7 +28,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc(year);
+    return Math.trunc(year) + 1;
 }
 
 /**
@@ -58,7 +58,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof(n) !== Number) {
+        throw new TypeError();
+    }
+    else if (year <= 0 || Math.trunc(n) !== 0) {
+        throw new RangeError();
+    }
+    var a = 1, b = 1;
+    for (var i = 3; i <= n; i++) {
+        var c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
 
 /**
@@ -68,7 +81,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    var m = matrix.length, n = matrix[0].length, matrixTransformed = [];
+    for (var i = 0; i < n; i++) { 
+        matrixTransformed[i] = [];
+        for (var j = 0; j < m; j++) matrixTransformed[i][j] = matrix[j][i];
+    }
+
+    return matrixTransformed;
 }
 
 /**
