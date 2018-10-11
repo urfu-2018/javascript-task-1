@@ -163,7 +163,6 @@ function ticTacToeProblem(field) {
             .filter(combination => combination.every(position => position in positions))
             .length > 0;
     }
-
     if (isWin(xPositions)) {
         return 'x';
     }
