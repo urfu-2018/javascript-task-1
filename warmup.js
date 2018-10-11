@@ -90,10 +90,6 @@ function fibonacciProblem(n) {
     checkIsInteger(n);
     checkIsPositive(n);
 
-    if (n === 0) {
-        return 0;
-    }
-
     let first = 0;
     let second = 1;
     for (let i = 0; i < n - 1; i++) {
@@ -151,6 +147,12 @@ function checkIsMatrix(variable) {
     checkIsArray(variable);
     for (let i = 0; i < variable.length; i++) {
         checkIsArray(variable[i]);
+    }
+    const matrixLength = variable[0].length;
+    for (let i = 1; i < variable.length; i++) {
+        if (variable[i].length !== matrixLength) {
+            throw new TypeError(`Все строки ${variable} должны быть одинаковой длины`);
+        }
     }
 }
 
