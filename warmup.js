@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
 
     const yearInCentury = 100;
 
-    return Math.trunc(year / yearInCentury) + 1;
+    return Math.ceil(year / yearInCentury);
 }
 
 /**
@@ -127,7 +127,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('input arguments should be a integer number');
     }
 
