@@ -60,7 +60,8 @@ function colorsProblem(hexColor) {
     if (!isTypeOf(hexColor, 'string')) {
         throw new TypeError();
     }
-    if (hexColor.length !== 7) {
+    const temp = hexColor.match(/^#[0-9a-f]{6}$/i);
+    if (temp === null) {
         throw new RangeError();
     }
     const rgb = [hexColor.slice(1, 3), hexColor.slice(3, 5), hexColor.slice(5)];
