@@ -90,9 +90,13 @@ function fibonacciProblem(n) {
     checkIsInteger(n);
     checkIsPositive(n);
 
-    let first = 1;
+    if (n === 0) {
+        return 0;
+    }
+
+    let first = 0;
     let second = 1;
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < n - 1; i++) {
         const temp = first + second;
         first = second;
         second = temp;
