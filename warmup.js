@@ -86,13 +86,7 @@ function fibonacciProblem(n) {
     return b;
 }
 
-/**
- * Транспонирует матрицу
- * @param {(Any[])[]} matrix Матрица размерности MxN
- * @throws {TypeError} Когда в функцию передаётся не двумерный массив
- * @returns {(Any[])[]} Транспонированная матрица размера NxM
- */
-function matrixProblem(matrix) {
+function checkMatrix(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
@@ -106,6 +100,16 @@ function matrixProblem(matrix) {
             throw new TypeError();
         }
     }
+}
+
+/**
+ * Транспонирует матрицу
+ * @param {(Any[])[]} matrix Матрица размерности MxN
+ * @throws {TypeError} Когда в функцию передаётся не двумерный массив
+ * @returns {(Any[])[]} Транспонированная матрица размера NxM
+ */
+function matrixProblem(matrix) {
+    checkMatrix(matrix);
     const m = matrix.length;
     const n = matrix[0].length;
     const transposedMatrix = [];
