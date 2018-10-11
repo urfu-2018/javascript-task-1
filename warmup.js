@@ -136,9 +136,9 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('Wrong argument type, expected string');
+    } else {
+        return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
     }
-
-    return phoneNumber.match(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g) !== null;
 }
 
 /**
