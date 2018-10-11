@@ -130,13 +130,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    const COUNT_LEFT_SMILES = text.match(/:-\)/) || [];
-    const COUNT_RIGHT_SMILES = text.match(/\(-:/) || [];
-    const COUNT_STITCHED_SMILES = text.match(/\(-:-\)/) || [];
+    const COUNT_LEFT_SMILES = text.match(/:-\)/g) || [];
+    const COUNT_RIGHT_SMILES = text.match(/\(-:/g) || [];
 
-    return COUNT_LEFT_SMILES.length +
-        COUNT_RIGHT_SMILES.length -
-        COUNT_STITCHED_SMILES.length;
+    return COUNT_LEFT_SMILES.length + COUNT_RIGHT_SMILES.length;
 }
 
 /**
