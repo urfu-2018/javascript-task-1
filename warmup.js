@@ -73,12 +73,8 @@ function colorsProblem(hexColor) {
 }
 
 function checkColor(color) {
-    if (color.length !== 7 || color[0] !== '#') {
-        throw new TypeError(`Цвет ${color} должен быть передан строкой из 7 символов`);
-    }
-
-    if (!color.match(/#[0-9a-f]{6}/i)) {
-        throw new TypeError(`${color} - некорректное значение цвета`);
+    if (!color.match(/^#[0-9a-f]{6}$/i)) {
+        throw new RangeError(`${color} - некорректное значение цвета`);
     }
 }
 
