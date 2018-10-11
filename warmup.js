@@ -186,7 +186,7 @@ function checkInRange(number, min, max) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return Boolean(phoneNumber.match(/8-800-\d{3}-\d{2}-\d{2}/i));
+    return Boolean(phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/i));
 }
 
 
