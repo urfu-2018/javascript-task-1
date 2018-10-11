@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError('Invalid argument type');
     }
 
@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
 
     const yearsInCentury = 100;
 
-    return Math.trunc(year / yearsInCentury) + 1;
+    return Math.ceil(year / yearsInCentury);
 }
 
 /**
@@ -50,6 +50,7 @@ function colorsProblem(hexColor) {
 
     const hexColorRegex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
     const matchResult = hexColor.match(hexColorRegex);
+
     if (matchResult.length !== 4) {
         throw new RangeError('invalid hexColor string format!');
     }
@@ -73,7 +74,7 @@ function fibonacciProblem(n) {
         throw new TypeError('Invalid argument type');
     }
 
-    if (n < 0) {
+    if (!Number.isInteger(n) || n < 0) {
         throw new RangeError('n must be positive');
     }
 
@@ -86,6 +87,10 @@ function fibonacciProblem(n) {
 
 function matrixProblem(matrix, shouldValidate = true) {
     function isCorrectMatrix(matrixArray) {
+        if (!Array.isArray(matrixArray) || !Array.isArray(matrixArray[0])) {
+            return false;
+        }
+
         const n = matrixArray.length;
         if (n === 0) {
             return false;
@@ -121,7 +126,8 @@ function matrixProblem(matrix, shouldValidate = true) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs) || !Number.isInteger(n)) {
         throw new TypeError('invalid argument\'s type');
     }
 
