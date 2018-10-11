@@ -25,7 +25,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (isNaN(year)) {
+    if (!isNaN(year)) {
         throw TypeError;
     } else if (year < 0) {
         throw RangeError;
