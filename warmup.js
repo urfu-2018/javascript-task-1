@@ -111,9 +111,6 @@ function matrixProblem(matrix) {
     if (matrix.length === 0) {
         return [];
     }
-    // if (checkInputMatrix(matrix)) {
-    //     throw new TypeError();
-    // }
     var newMatrix = [];
     var a = 0;
     for (var i = 0; i < matrix.length; i++) { // m
@@ -124,13 +121,8 @@ function matrixProblem(matrix) {
         a += 1;
     }
 
-    // return (newMatrix.length === 0) ? [[]] : newMatrix;
     return newMatrix;
 }
-
-// function checkInputMatrix(matrix) {
-//     return !Array.isArray(matrix) || !Array.isArray(matrix[0]) || matrix[0].length === 0;
-// }
 
 /**
  * Переводит число в другую систему счисления
