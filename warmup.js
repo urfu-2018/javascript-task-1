@@ -83,6 +83,9 @@ function fibonacciProblem(n) {
     if (!isTypeOf(n, 'number')) {
         throw new TypeError();
     }
+    if (!Number.isInteger(n)) {
+        throw new TypeError();
+    }
     if (n < 0) {
         throw new RangeError();
     }
