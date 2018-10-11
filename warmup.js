@@ -156,28 +156,6 @@ function smilesProblem(text) {
     return result;
 }
 
-function checkRows(field, symbol) {
-    const height = field.length;
-    for (let i = 0; i < height; i++) {
-        if (field[i][0] === symbol && field[i][1] === symbol && field[i][2] === symbol) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function checkDiagonals(field, symbol) {
-    if (field[0][0] === symbol && field[1][1] === symbol && field[2][2] === symbol) {
-        return true;
-    }
-    if (field[0][2] === symbol && field[1][1] === symbol && field[2][0] === symbol) {
-        return true;
-    }
-
-    return false;
-}
-
 /**
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
@@ -185,14 +163,22 @@ function checkDiagonals(field, symbol) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (checkRows(field, 'x')) {
-        return 'x';
-    } else if (checkRows(field, 'o')) {
-        return 'o';
+    const height = field.length;
+    let diagonal = '';
+    let inverseDiagonal = '';
+    const results = [];
+    for (let i = 0; i < height; i++) {
+        results.push(field[i][0] + field[i][1] + field[i][2]);
+        results.push(field[0][i] + field[1][i] + field[2][i]);
+
+        diagonal += field[i][i];
+        inverseDiagonal += field[i][field.length - (i + 1)];
     }
-    if (checkDiagonals(field, 'x')) {
+    results.push(diagonal);
+    results.push(inverseDiagonal);
+    if (results.indexOf('xxx') !== -1) {
         return 'x';
-    } else if (checkDiagonals(field, 'o')) {
+    } else if (results.indexOf('ooo') !== -1) {
         return 'o';
     }
 
