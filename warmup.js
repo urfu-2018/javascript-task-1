@@ -78,11 +78,17 @@ function fibonacciProblem(n) {
         throw new RangeError('n must be positive');
     }
 
-    if (n <= 1) {
-        return 1;
+    let count = 2;
+    let first = 1;
+    let second = 1;
+    while (count !== n) {
+        let temp = first + second;
+        second = first;
+        first = temp;
+        count++;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return first;
 }
 
 function matrixProblem(matrix, shouldValidate = true) {
