@@ -170,7 +170,7 @@ function numberSystemProblem(n, targetNs) {
     checkIsNumber(targetNs);
     checkInRange(targetNs, 2, 36);
 
-    checkIsInteger(targetNs);
+    checkIsInteger(n);
 
     return n.toString(targetNs);
 }
