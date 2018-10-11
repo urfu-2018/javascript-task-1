@@ -11,6 +11,9 @@ function abProblem(a, b) {
     checkIsNumber(a);
     checkIsNumber(b);
 
+    checkIsInteger(a);
+    checkIsInteger(b);
+
     return a + b;
 }
 
@@ -74,7 +77,7 @@ function colorsProblem(hexColor) {
 
 function checkColor(color) {
     if (!color.match(/#[0-9a-f]{6}/i)) {
-        throw new TypeError(`${color} - некорректное значение цвета`);
+        throw new RangeError(`${color} - некорректное значение цвета`);
     }
 }
 
