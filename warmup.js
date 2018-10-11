@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError('Invalid argument type');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,17 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError('Invalid argument type');
+    }
+
+    if (year < 0) {
+        throw new RangeError('Year must be positive');
+    }
+
+    const yearsInCentury = 100;
+
+    return Math.trunc(year / yearsInCentury) + 1;
 }
 
 /**
@@ -30,7 +44,21 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('expecting hexColor as String');
+    }
+
+    const hexColorRegex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
+    const matchResult = hexColor.match(hexColorRegex);
+    if (matchResult.length !== 4) {
+        throw new RangeError('invalid hexColor string format!');
+    }
+
+    const red = parseInt(matchResult[1], 16);
+    const green = parseInt(matchResult[2], 16);
+    const blue = parseInt(matchResult[3], 16);
+
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -41,18 +69,48 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('Invalid argument type');
+    }
+
+    if (n < 0) {
+        throw new RangeError('n must be positive');
+    }
+
+    if (n <= 1) {
+        return 1;
+    }
+
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
-/**
- * Транспонирует матрицу
- * @param {(Any[])[]} matrix Матрица размерности MxN
- * @throws {TypeError} Когда в функцию передаётся не двумерный массив
- * @returns {(Any[])[]} Транспонированная матрица размера NxM
- */
-function matrixProblem(matrix) {
-    // Ваше решение
+function matrixProblem(matrix, shouldValidate = true) {
+    function isCorrectMatrix(matrixArray) {
+        const n = matrixArray.length;
+        if (n === 0) {
+            return false;
+        }
+        const m = matrixArray[0].length;
+
+        for (let i = 1; i < n; i++) {
+            const currentRowLength = matrixArray[i].length;
+            if (currentRowLength !== m) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    if (shouldValidate) {
+        if (!isCorrectMatrix(matrix)) {
+            throw new TypeError('expecting matrix as 2D array');
+        }
+    }
+
+    return matrix[0].map((x, i) => matrix.map(y => y[i]));
 }
+
 
 /**
  * Переводит число в другую систему счисления
@@ -63,7 +121,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError('invalid argument\'s type');
+    }
+
+    if (n < 2 && n > 36) {
+        throw new RangeError('invalid targetNs range');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +138,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
+
+    return phoneRegex.test(phoneNumber);
 }
 
 /**
@@ -82,7 +150,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('expected \'text\' as string');
+    }
+
+    const smileRegex = /:-\)|\(-:/g;
+
+    return text.match(smileRegex).length;
 }
 
 /**
@@ -92,7 +166,33 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    function distinctArray(array) {
+        return array.filter(function (elem, pos) {
+            return array.indexOf(elem) === pos;
+        });
+    }
+
+    function checkRows(matrix) {
+        for (let i = 0; i < 3; i++) {
+            if (distinctArray(matrix[i]).length === 1) {
+                return matrix[i][0];
+            }
+        }
+
+        return false;
+    }
+
+    const rowWin = checkRows(field);
+    if (rowWin) {
+        return rowWin;
+    }
+
+    const columnWin = checkRows(matrixProblem(field));
+    if (columnWin) {
+        return columnWin;
+    }
+
+    return 'draw';
 }
 
 module.exports = {
