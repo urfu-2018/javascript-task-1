@@ -161,6 +161,10 @@ function checkIsMatrix(variable) {
 function numberSystemProblem(n, targetNs) {
     checkIsNumber(n);
     checkIsNumber(targetNs);
+
+    checkIsInteger(n);
+    checkIsInteger(targetNs);
+
     checkInRange(targetNs, 2, 36);
 
     return n.toString(targetNs);
