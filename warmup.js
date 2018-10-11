@@ -1,5 +1,13 @@
 'use strict';
 
+function isNumberActually(n) {
+    if (typeof a !== 'number') {
+        return false;
+    }
+
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -8,7 +16,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number' || Number.isNaN(a) || Number.isNaN(b)) {
+    if (!isNumberActually(a) && !isNumberActually(b)) {
         throw new TypeError('Wrong argument type, expected integer.');
     }
 
@@ -23,7 +31,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (!isNumberActually(year) && !Number.isInteger(year)) {
         throw new TypeError('Wrong argument type, expected integer');
     }
     if (year < 1) {
@@ -72,7 +80,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (!isNumberActually(n) && !Number.isInteger(n)) {
         throw new TypeError('Wrong argument type, expected number.');
     }
     if (n < 1) {
@@ -115,7 +123,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
+    if (!isNumberActually(n) || !isNumberActually(targetNs) || !Number.isInteger(targetNs)) {
         throw new TypeError('Wrong argument(s) type, expected integer.');
     }
 
