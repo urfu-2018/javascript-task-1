@@ -96,6 +96,10 @@ function matrixProblem(matrix) {
 
     const m = matrix[0].length;
 
+    if (m === 0) {
+        throw new TypeError('matrix should be 2d array');
+    }
+
     function checkIfAllElementsIsArray() {
         for (let i = 1; i < matrix.length; i++) {
             if (!Array.isArray(matrix[i]) || matrix[i].length !== m) {
@@ -108,10 +112,6 @@ function matrixProblem(matrix) {
 
     if (!checkIfAllElementsIsArray(matrix)) {
         throw new TypeError('matrix should be 2d array');
-    }
-
-    if (matrix[0].length === 0) {
-        return [[]];
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
