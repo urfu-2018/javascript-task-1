@@ -34,7 +34,7 @@ function centuryByYearProblem(year) {
     }
     const YEARS_IN_CENTURY = 100;
 
-    return Math.floor(year / YEARS_IN_CENTURY) + 1;
+    return Math.ceil(year / YEARS_IN_CENTURY);
 }
 
 /**
@@ -81,9 +81,6 @@ function fibonacciProblem(n) {
     let counter = 1;
     while (counter <= n) {
         current += previous;
-        if (!isFinite(current)) {
-            throw new RangeError(n + ' is out of range [0, ' + counter + ']');
-        }
         previous = current;
         counter++;
     }
