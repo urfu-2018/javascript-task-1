@@ -66,15 +66,19 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
-    if (n === 1 || n === 2) {
-        return 1;
+    let result = 1;
+    let prevResult = 1;
+    for (let i = 2; i < n; i++) {
+        const temp = result + prevResult;
+        prevResult = result;
+        result = temp;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return result;
 }
 
 /**
