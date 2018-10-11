@@ -56,7 +56,8 @@ function colorsProblem(hexColor) {
         const currentHexColor = hexColor.substring(i, i + 2);
         const currentColor = parseInt(currentHexColor, 16);
 
-        if (hexColor.search('^[0-9,a-fA-F]{2}$') === -1 || currentColor < 0 || currentColor > 255) {
+        if (currentHexColor.search('^[0-9,a-fA-F]{2}$') === -1 ||
+            currentColor < 0 || currentColor > 255) {
             throw new RangeError();
         }
 
