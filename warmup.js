@@ -61,21 +61,15 @@ function colorsProblem(hexColor) {
     if (!isString(hexColor)) {
         throw new TypeError();
     }
-    if (hexColor.startsWith('#')) {
-        hexColor = hexColor.slice(1);
-    } else if (hexColor.startsWith('0x') || hexColor.startsWith('0h')) {
-        hexColor = hexColor.slice(2);
-    } else {
-        throw new TypeError();
-    }
-    let rgbColor = { R: 0, G: 0, B: 0 };
-    if (hexColor.length === 6) {
-        rgbColor.R = parseInt(hexColor[0] + hexColor[1], 16);
-        rgbColor.G = parseInt(hexColor[1] + hexColor[2], 16);
-        rgbColor.B = parseInt(hexColor[3] + hexColor[4], 16);
-    } else {
+    const correctHexColor = /^#[A-Fa-f\d]{6}$/;
+    if (!correctHexColor.test(hexColor)) {
         throw new RangeError();
     }
+    hexColor = hexColor.substring(1);
+    let rgbColor = { R: 0, G: 0, B: 0 };
+    rgbColor.R = parseInt(hexColor[0] + hexColor[1], 16);
+    rgbColor.G = parseInt(hexColor[1] + hexColor[2], 16);
+    rgbColor.B = parseInt(hexColor[3] + hexColor[4], 16);
 
     return `(${rgbColor.R}, ${rgbColor.G}, ${rgbColor.B})`;
 }
