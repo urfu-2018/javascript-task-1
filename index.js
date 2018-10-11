@@ -50,3 +50,10 @@ console.info(ticTacToeProblem([
     ['o', 'o', 'x'],
     ['o', 'x', 'o']
 ]));
+
+// Выведет 3
+// console.info(fibonacciProblem(4));
+//
+// // Выведет 20
+// console.info(centuryByYearProblem(2000));
+
