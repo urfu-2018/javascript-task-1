@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('Wrong argument type, expected integer.');
     }
 
@@ -163,7 +163,7 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     const fieldInline = field[0].concat(field[1], field[2]);
     const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
-        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]]; // all 8 3-in-a-rows in the game
+        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]]; // all 3-in-a-rows in the game
 
     for (let i in winStates) {
         if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
