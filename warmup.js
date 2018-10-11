@@ -11,9 +11,6 @@ function abProblem(a, b) {
     checkIsNumber(a);
     checkIsNumber(b);
 
-    checkIsInteger(a);
-    checkIsInteger(b);
-
     return a + b;
 }
 
