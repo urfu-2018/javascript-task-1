@@ -72,22 +72,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number' || !Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n < 1) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
-    function getFibonacciNumber(position) {
-        if (position < 2) {
-            return position;
-        }
-
-        return getFibonacciNumber(position - 1) + getFibonacciNumber(position - 2);
+    let current = 1;
+    let previous = 1;
+    for (let i = 0; i < n - 2; i++) {
+        const sum = current + previous;
+        previous = current;
+        current = sum;
     }
 
-    return getFibonacciNumber(n);
+    return current;
 }
 
 function transposeMatrix(matrix, resultingMatrix) {
