@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number' || isNaN(a) || isNaN(b)) {
         throw new TypeError('a and b must be Number');
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('year must be Number');
     }
     if (year < 0) {
@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor must be string');
     }
-    if (hexColor.length !== 7) {
+    if (hexColor.length !== 7 || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
         throw new RangeError('Incorrect params');
     }
     const hexChar = hexColor.substr(1).split('');
@@ -67,10 +67,10 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n is not Number');
     }
-    if (!Number.isInteger(n) || n < 0) {
-        throw new RangeError('n must be positive');
+    if (n < 0 || !Number.isInteger(n)) {
+        throw new RangeError('n must be positive and not float');
     }
-    if (n < 3) {
+    if (n === 1 || n === 2) {
         return 1;
     }
 
@@ -84,14 +84,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError('Incorrect params');
     }
     if (matrix.length === 0) {
-        throw new TypeError('Incorrect params');
+        return [[]];
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length !== matrix[0].length) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError('Incorrect params');
         }
     }
@@ -108,8 +108,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        !Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
