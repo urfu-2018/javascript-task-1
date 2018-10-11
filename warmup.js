@@ -37,7 +37,7 @@ function checkType(variable, type) {
  */
 function centuryByYearProblem(year) {
     checkIsNumber(year);
-    checkIsPositive(year);
+    checkIsNonNegative(year);
 
     if (year % 100 === 0) {
         return Math.trunc(year / 100);
@@ -47,11 +47,11 @@ function centuryByYearProblem(year) {
 }
 
 
-// function checkIsNonNegative(number) {
-//     if (number < 0) {
-//         throw new RangeError(`${number} должно быть больше нуля`);
-//     }
-// }
+function checkIsNonNegative(number) {
+    if (number < 0) {
+        throw new RangeError(`${number} должно быть больше нуля`);
+    }
+}
 
 /**
  * Переводит цвет из формата HEX в формат RGB
@@ -90,7 +90,7 @@ function fibonacciProblem(n) {
     checkIsInteger(n);
     checkIsPositive(n);
 
-    let first = 0;
+    let first = 1;
     let second = 1;
     for (let i = 0; i < n; i++) {
         const temp = first + second;
