@@ -43,7 +43,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || hexColor.length !== 7) {
+    if (typeof hexColor !== 'string' || hexColor.length !== 7 || !hexColor.startsWith('#')) {
         throw new TypeError();
     }
 
