@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof a !== 'number') {
         throw new TypeError();
     }
 
@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(year) || year < 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -68,7 +68,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n < 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
 
@@ -93,7 +93,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
 
@@ -117,7 +117,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -153,17 +153,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    let backSmiles = text.match(/\(-:/g);
-    let straightSmiles = text.match(/:-\)/g);
-
-    if (backSmiles && straightSmiles) {
-        return backSmiles.length + straightSmiles.length;
-    }
-    if (backSmiles) {
-        return backSmiles.length;
-    }
-    if (straightSmiles) {
-        return straightSmiles.length;
+    let smiles = text.match(/(:-\)|\(-:)/g);
+    if (smiles) {
+        return smiles.length;
     }
 
     return 0;
