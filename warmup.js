@@ -96,6 +96,8 @@ function matrixProblem(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i])) {
             throw new TypeError();
+        } else if (matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
         }
     }
     const m = matrix.length;
