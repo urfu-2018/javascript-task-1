@@ -66,7 +66,11 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
     hexColor = hexColor.substring(1);
-    let rgbColor = { R: 0, G: 0, B: 0 };
+    let rgbColor = {
+        R: 0,
+        G: 0,
+        B: 0
+    };
     rgbColor.R = parseInt(hexColor[0] + hexColor[1], 16);
     rgbColor.G = parseInt(hexColor[1] + hexColor[2], 16);
     rgbColor.B = parseInt(hexColor[3] + hexColor[4], 16);
@@ -74,7 +78,10 @@ function colorsProblem(hexColor) {
     return `(${rgbColor.R}, ${rgbColor.G}, ${rgbColor.B})`;
 }
 
-const fibCache = { 0: 0, 1: 1 };
+const fibCache = {
+    0: 0,
+    1: 1
+};
 
 /**
  * Находит n-ое число Фибоначчи
@@ -107,15 +114,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (isTypeOf(matrix[0][0], 'undefined') ||
-        matrix[0].constructor !== Array ||
-        matrix[0][0].constructor === Array) {
+    if (isUndefined(matrix) ||
+        matrix[0].constructor !== Array || matrix[0][0].constructor === Array) {
         throw new TypeError();
     }
-
     const M = matrix.length;
     const N = matrix[0].length;
-
     var transported = new Array(N);
     for (let i = 0; i < N; i++) {
         transported[i] = new Array(M);
@@ -125,6 +129,10 @@ function matrixProblem(matrix) {
     }
 
     return transported;
+}
+
+function isUndefined(matrix) {
+    return !matrix || !matrix[0];
 }
 
 /**
@@ -181,7 +189,10 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let { crossWin, circleWin } = checkWinningSequences(field);
+    let {
+        crossWin,
+        circleWin
+    } = checkWinningSequences(field);
 
     if (crossWin === circleWin) {
         return 'draw';
@@ -192,21 +203,31 @@ function ticTacToeProblem(field) {
 
     return 'x';
 }
+
 function checkWinningSequences(field) {
     const transported = matrixProblem(field);
     const allFields = [field, transported];
-    let { crossWin, circleWin } = checkRowsAndColumns(allFields);
+    let {
+        crossWin,
+        circleWin
+    } = checkRowsAndColumns(allFields);
 
     for (let j = 0; j < 2; j++) {
         crossWin = crossWin || checkMainDiagonal(allFields[j], 'x');
         circleWin = circleWin || checkMainDiagonal(allFields[j], 'o');
     }
 
-    return { crossWin: crossWin, circleWin: circleWin };
+    return {
+        crossWin: crossWin,
+        circleWin: circleWin
+    };
 }
 
 function checkRowsAndColumns(allFields) {
-    let { crossWin, circleWin } = false;
+    let {
+        crossWin,
+        circleWin
+    } = false;
 
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 2; j++) {
@@ -216,7 +237,10 @@ function checkRowsAndColumns(allFields) {
         }
     }
 
-    return { crossWin: crossWin, circleWin: circleWin };
+    return {
+        crossWin: crossWin,
+        circleWin: circleWin
+    };
 }
 
 function checkRow(field, i, player) {
