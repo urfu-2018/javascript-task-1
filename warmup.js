@@ -172,43 +172,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (isFinishFieldForPlayer(field, 'x')) {
-        return 'x';
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+         field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[1][1];
     }
 
-    if (isFinishFieldForPlayer(field, 'o')) {
-        return 'o';
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
 
     return 'draw';
-}
-
-/**
- * Определяет победил ли игрок в игре "Крестики-нолики"
- * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
- * @param {String} value Символ хода интересующего игрока
- * @returns {Boolean} Выиграл ли интересующий игрок
- */
-function isFinishFieldForPlayer(field, value) {
-    let diagonal1 = true;
-    let diagonal2 = true;
-    for (let x = 0; x < 3; x++) {
-        let cols = true;
-        let rows = true;
-
-        diagonal1 = diagonal1 && (field[x][x] === value);
-        diagonal2 = diagonal2 && (field[2 - x][x] === value);
-        for (let y = 0; y < 3; y++) {
-            cols = cols && field[x][y] === value;
-            rows = rows && field[y][x] === value;
-        }
-
-        if (rows || cols) {
-            return true;
-        }
-    }
-
-    return diagonal1 || diagonal2;
 }
 
 module.exports = {
