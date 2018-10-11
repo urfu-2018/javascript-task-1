@@ -113,11 +113,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('input arguments should be a integer number');
     }
 
-    if (targetNs > 36 || targetNs < 2) {
+    if (!Number.isInteger(targetNs) || targetNs > 36 || targetNs < 2) {
         throw new RangeError('targetNs should be in range [2, 36]');
     }
 
