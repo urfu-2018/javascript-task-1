@@ -80,13 +80,13 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(n)) {
+    if (!Number.isInteger(n) || n < 1) {
         throw new RangeError();
     }
 
     function getFibonacciNumber(position) {
         if (position < 2) {
-            return position;
+            return 1;
         }
 
         return getFibonacciNumber(position - 1) + getFibonacciNumber(position - 2);
