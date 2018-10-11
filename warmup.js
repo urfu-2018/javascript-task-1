@@ -38,7 +38,7 @@ function centuryByYearProblem(year) {
     if (!isTypeOf(year, 'number')) {
         throw new TypeError();
     }
-    if (year < 0 || !Number.isInteger(year)) {
+    if (year < 0) {
         throw new RangeError();
     }
     let century = Math.floor(year / 100);
@@ -83,9 +83,6 @@ function fibonacciProblem(n) {
     if (!isTypeOf(n, 'number')) {
         throw new TypeError();
     }
-    if (!Number.isInteger(n)) {
-        throw new RangeError();
-    }
     if (n < 0) {
         throw new RangeError();
     }
@@ -126,7 +123,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isTypeOf(n, 'number') || !isTypeOf(targetNs, 'number') || n < 0) {
+    if (!isTypeOf(n, 'number') || !isTypeOf(targetNs, 'number')) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
