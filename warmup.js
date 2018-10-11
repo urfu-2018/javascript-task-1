@@ -190,8 +190,8 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     checkIsString(text);
-    const firstSmiles = text.match(/\(-:/g);
-    const secondSmiles = text.match(/:-\)/g);
+    const firstSmiles = text.match(/\(-:/gm);
+    const secondSmiles = text.match(/:-\)/gm);
 
     let smiles = 0;
     if (firstSmiles !== null) {
