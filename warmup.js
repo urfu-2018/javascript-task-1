@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 1) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -171,9 +171,9 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    const smiles = /(\(-:|:-\))/g.exec(text);
+    const smiles = text.match(/(\(-:|:-\))/g);
     if (smiles !== null) {
-        return smiles.length - 1;
+        return smiles.length;
     }
 
     return 0;
