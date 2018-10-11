@@ -91,13 +91,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Wrong argument type, expected 2D array.');
     } // third check needed because 0 is skipped in next for.
 
     const M = matrix.length;
     const N = matrix[0].length;
-    for (let i = 1; i < M; i++) { // i = 1 because 0 is used to get N.
+    for (let i = 0; i < M; i++) { // i = 0 because I still need to check it for being an array.
         if (matrix[i].length !== N || !Array.isArray(matrix[i])) {
             throw new TypeError('Wrong argument type, expected 2D array.');
         }
