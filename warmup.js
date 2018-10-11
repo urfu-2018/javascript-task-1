@@ -134,8 +134,8 @@ function checkRange(min, value, max, valueName = 'value') {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    checkNotNaN(a, 'a');
-    checkNotNaN(b, 'b');
+    checkType(a, 'a', 'number');
+    checkType(b, 'b', 'number');
 
     return a + b;
 }
