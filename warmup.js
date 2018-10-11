@@ -113,11 +113,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('input arguments should be a integer number');
     }
 
-    if (!Number.isInteger(targetNs) || targetNs > 36 || targetNs < 2) {
+    if (targetNs > 36 || targetNs < 2) {
         throw new RangeError('targetNs should be in range [2, 36]');
     }
 
@@ -149,15 +149,12 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('input argument should be a string');
     }
-    function getCountByRegex(str, regex) {
-        const allValid = str.match(regex);
 
-        return (allValid || []).length;
-    }
+    const smileRegex = /:-\)|\(-:/g;
+    const allSmiles = text.match(smileRegex);
 
-    return getCountByRegex(text, /:-\)/g) + getCountByRegex(text, /\(-:/g);
+    return allSmiles === null ? 0 : allSmiles.length;
 }
-
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
