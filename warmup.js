@@ -116,9 +116,9 @@ function checkRangeUnsafe(min, value, max, valueName) {
  * @throws {RangeError} Если min > max или value не входит в диапазон
  */
 function checkRange(min, value, max, valueName = 'value') {
-    checkFiniteNumber(min, 'min');
-    checkFiniteNumber(value, 'value');
-    checkFiniteNumber(max, 'max');
+    checkNotNaN(min, 'min');
+    checkNotNaN(value, 'value');
+    checkNotNaN(max, 'max');
     checkType(valueName, 'valueName', 'string');
     if (min > max) {
         throw new RangeError(`min must be less or equal than max, got min (${min}) > max (${max})`);
@@ -148,8 +148,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    checkInteger(year, 'year');
-    checkRange(0, year, Number.MAX_VALUE, 'year');
+    checkFiniteNumber(year, 'year');
+    checkRange(0, year, Infinity, 'year');
 
     return Math.floor(year / 100) + (year % 100 !== 0 ? 1 : 0);
 }
