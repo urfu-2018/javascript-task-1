@@ -8,7 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== Number || typeof(b) !== Number) { throw new TypeError(); }
+    if (typeof(a) !== Number || typeof(b) !== Number) {
+        throw new TypeError();
+    }
 
     return a + b;
 }
@@ -21,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== "number") {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
     else if (year < 0) {
@@ -39,15 +41,15 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== "string") {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    var bigint = parseInt(hex, 16);
-    var r = (bigint >> 16) & 255;
-    var g = (bigint >> 8) & 255;
-    var b = bigint & 255;
+    var arrBuff = new ArrayBuffer(4);
+    var vw = new DataView(arrBuff);
+    vw.setUint32(0,parseInt(hexColor, 16),false);
+    var arrByte = new Uint8Array(arrBuff);
 
-    return "(" + r + "," + g + "," + b + ")";
+    return '(' + arrByte[1] + ',' + arrByte[2] + ',' + arrByte[3] + ')';
 }
 
 /**
@@ -58,7 +60,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== "number") {
+    if (typeof(n) !== 'number') {
         throw new TypeError();
     }
     else if (year <= 0 || Math.trunc(n) !== 0) {
@@ -81,7 +83,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length !== 0 && typeof(matrix[0][0]) !== "number") { throw new TypeError(); }
+    if (matrix.length !== 0 && typeof(matrix[0][0]) !== 'number') { throw new TypeError(); }
     var m = matrix.length, n = matrix[0].length, matrixTransformed = [];
     for (var i = 0; i < n; i++) { 
         matrixTransformed[i] = [];
