@@ -72,7 +72,7 @@ function fibonacciProblem(n) {
     let last = 1;
     let temp;
 
-    for (let i = 2; i < n; i++) {
+    for (let i = 0; i < n - 2; i++) {
         temp = current + last;
         last = current;
         current = temp;
@@ -88,24 +88,20 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (isDoubleArray(matrix)) {
-        throw new TypeError();
-    }
+    checkDoubleArray(matrix);
 
-    for (var i = 0; i < matrix.length; i++) {
-        for (var j = 0; j < i; j++) {
-            var temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
-        }
-    }
-
-    return matrix;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
-function isDoubleArray(matrix) {
-    return !Array.isArray(matrix) || !Array.isArray(matrix[0]) ||
-          matrix.length === 0 || matrix[0].length === 0;
+function checkDoubleArray(matrix) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
+    }
 }
 
 /**
