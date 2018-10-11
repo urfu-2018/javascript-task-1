@@ -43,11 +43,12 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    const regex = new RegExp('[0-9A-Fa-f]{6}');
     if (typeof hexColor !== 'string') {
         throw TypeError;
     }
     hexColor = hexColor.substr(1, hexColor.length - 1);
-    if (hexColor.length !== 6) {
+    if (!regex.test(hexColor)) {
         throw RangeError;
     }
     let res = '(';
@@ -70,17 +71,13 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     // Ваше решение
     if (!Number.isNaN(n)) {
-        if (!isInteger(n)) {
+        if (!Number.isInteger(n)) {
             throw RangeError;
         }
 
         return Math.round((Math.pow(((1 + Math.sqrt(5)) / 2), n)) / (Math.sqrt(5)));
     }
     throw TypeError;
-}
-
-function isInteger(x) {
-    return x % 1 === 0;
 }
 
 /**
@@ -93,6 +90,13 @@ function matrixProblem(matrix) {
     // Ваше решение
     if (!Array.isArray(matrix) || matrix.length === 0) {
         throw TypeError;
+    }
+    const M = matrix.length;
+    const N = matrix[0].length;
+    for (let i = 0; i < M; i++) {
+        if (matrix[i].length !== N || !Array.isArray(matrix[i])) {
+            throw TypeError;
+        }
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
@@ -108,7 +112,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (Number.isNaN(n) || Number.isNaN(targetNs)) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw TypeError;
     }
     if (targetNs < 2 || targetNs > 32) {
@@ -124,7 +128,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const regexp = new RegExp('8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}');
+    const regexp = new RegExp('8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
     return (regexp.test(phoneNumber));
     // Ваше решение
