@@ -49,22 +49,17 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[\dA-Fa-f]{6}$/.test(hexColor)) {
+    if (!/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
         throw new RangeError();
     }
 
-    const getColorOrThrow = colorString => {
-        const value = parseInt(colorString, 16);
-        if (value > 255) {
-            throw new RangeError();
-        }
-
-        return value;
+    const getColor = colorString => {
+        return parseInt(colorString, 16);
     };
 
-    const r = getColorOrThrow(hexColor.slice(1, 3));
-    const g = getColorOrThrow(hexColor.slice(3, 5));
-    const b = getColorOrThrow(hexColor.slice(5, 7));
+    const r = getColor(hexColor.slice(1, 3));
+    const g = getColor(hexColor.slice(3, 5));
+    const b = getColor(hexColor.slice(5, 7));
 
     return `(${r}, ${g}, ${b})`;
 }
@@ -77,10 +72,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n < 1) {
+    if (n < 1) {
         throw new RangeError();
     }
 
