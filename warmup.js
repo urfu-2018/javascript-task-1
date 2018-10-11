@@ -8,6 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
+
     return a + b;
 }
 
@@ -19,6 +23,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
     return Math.trunc(year / 100) + 1;
 }
 
@@ -30,10 +41,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
     const m = hexColor.slice(1).match(/.{2}/g);
     const red = parseInt(m[0], 16);
     const green = parseInt(m[1], 16);
     const blue = parseInt(m[2], 16);
+    if (red > 255 || green > 255 || blue > 255) {
+        throw new RangeError();
+    }
 
     return '(' + red + ', ' + green + ', ' + blue + ')';
 }
@@ -46,6 +63,12 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (!Number.isInteger(n)) {
+        throw new TypeError();
+    }
+    if (n < 0) {
+        throw new RangeError();
+    }
     let a = 1;
     let b = 1;
     for (let i = 3; i <= n; i++) {
@@ -64,6 +87,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
+            throw new TypeError();
+        }
+    }
     const m = matrix.length;
     const n = matrix[0].length;
     const transposedMatrix = [];
@@ -86,6 +117,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
     return n.toString(targetNs);
 }
 
@@ -105,6 +143,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
     const firstSmileMatch = text.match(/:-\)/g);
     const secondSmileMatch = text.match(/\(-:/g);
     let result = firstSmileMatch === null ? 0 : firstSmileMatch.length;
