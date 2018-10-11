@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
     let count = 2;
     let first = 1;
     let second = 1;
-    while (count !== n) {
+    while (count < n) {
         let temp = first + second;
         second = first;
         first = temp;
@@ -199,7 +199,7 @@ function ticTacToeProblem(field) {
         return rowWin;
     }
 
-    const columnWin = checkRows(matrixProblem(field));
+    const columnWin = checkRows(matrixProblem(field, false));
     if (columnWin) {
         return columnWin;
     }
