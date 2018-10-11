@@ -144,7 +144,7 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('Wrong argument type, expected string');
     }
-    
+
     return phoneNumber.match(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g) !== null;
 }
 
