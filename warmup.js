@@ -29,8 +29,9 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
+    const yearsInCentury = 100;
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / yearsInCentury);
 }
 
 /**
@@ -68,7 +69,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
     let a = 1;
