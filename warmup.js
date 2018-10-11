@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
     }
 
     const remainder = year % 100;
-    const century = year / 100;
+    const century = Math.floor(year / 100);
 
     return remainder === 0 ? century : century + 1;
 }
