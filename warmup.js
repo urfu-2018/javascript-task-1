@@ -150,7 +150,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.split(':-)').length - 1) + (text.split('(-:').length - 1);
+    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
 }
 
 /**
