@@ -98,16 +98,16 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!(matrix instanceof Array)) {
         throw new TypeError('specified matrix is not an array');
     }
     if (!matrix.length) {
         throw new TypeError('specified matrix is not a two-dimensional array');
     }
-    const TRANSPOSED_MATRIX = [];
+    const TRANSPOSED_MATRIX = [[]];
     const MATRIX_ROW_LENGTH = matrix[0].length;
     matrix.forEach(function (row) {
-        if (!Array.isArray(row) || Array.isArray(row) && !row.length) {
+        if (!(row instanceof Array)) {
             throw new TypeError('specified matrix is not a two-dimensional array');
         }
         if (MATRIX_ROW_LENGTH !== row.length) {
