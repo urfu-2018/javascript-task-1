@@ -73,7 +73,7 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    return n === 1 || n === 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return n <= 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
