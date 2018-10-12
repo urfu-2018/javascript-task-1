@@ -76,8 +76,8 @@ function fibonacciProblem(n) {
     let b = 1;
     for (let i = 3; i <= n; i++) {
         const c = a + b;
-        a = c;
-        b = a;
+        a = b;
+        b = c;
     }
 
     return b;
