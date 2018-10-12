@@ -112,7 +112,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    if (matrix.length === 0 || matrix[0].length === 0) {
+    if (matrix.length === 0 || matrix[0].length === 0 || !Array.isArray(matrix)) {
         throw new TypeError ('Не двумерный массив');
     }
     for (let i = 1; i < matrix.length; i++) {
