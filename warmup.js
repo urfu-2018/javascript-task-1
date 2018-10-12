@@ -45,13 +45,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
+    const parsed = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+    if (!parsed) {
         throw new RangeError();
     }
-    const slice = hexColor.slice(1).match(/.{2}/g);
-    let result = [];
-    for (let i = 0; i < slice.length; i++) {
-        const color = parseInt(slice[i], 16);
+    const result = [];
+    for (let i = 1; i < parsed.length; i++) {
+        const color = parseInt(parsed[i], 16);
         result.push(color);
     }
 
