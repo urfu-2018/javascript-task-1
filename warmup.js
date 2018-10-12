@@ -291,6 +291,19 @@ function phoneProblem(phoneNumber) {
     return phoneNumber.match(/^8-800-\d\d\d-\d\d-\d\d$/) !== null;
 }
 
+
+/**
+ * Ищет количество вхождений регулярного выражения в строке
+ * @param {String} string Строка
+ * @param {RegExp} regexp Регулярное выражение
+ * @returns {Number} Количество вхождений
+ */
+function count(string, regexp) {
+    const searchResult = string.match(regexp);
+
+    return searchResult === null ? 0 : searchResult.length;
+}
+
 /**
  * Определяет количество улыбающихся смайликов в строке
  * @param {String} text Строка в которой производится поиск
@@ -299,9 +312,12 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     checkType(text, 'text', 'string');
-    const searchResult = text.match(/(\(-:|:-\))/g);
 
-    return searchResult === null ? 0 : searchResult.length;
+    const leftSmiles = count(text, /\(-:/g);
+    const rightSmiles = count(text, /:-\)/g);
+    const duplicateSmiles = count(text, /\(-:-\)/g);
+
+    return leftSmiles + rightSmiles - duplicateSmiles;
 }
 
 /**
