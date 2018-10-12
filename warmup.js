@@ -28,7 +28,6 @@ function centuryByYearProblem(year) {
     } else if (year < 0) {
         throw new RangeError('Negative year');
     } else {
-
         return Math.ceil(year / 100);
     }
 }
@@ -42,9 +41,9 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError('Invalid arguments');
+        throw new TypeError('Hexcolor is not string');
     }
-    if (!/^#[0-9a-fA-F]{6}$/.test(hexColor)) {
+    if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
         throw new RangeError('Incorrect color range');
     }
     const rgbColor = [];
@@ -63,20 +62,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    function getFibonacciValue(m) {
-        if (m === 1 || m === 2) {
-            return 1;
-        }
-
-        return getFibonacciValue(m - 1) + getFibonacciValue(m - 2);
-    }
-
     if (typeof n !== 'number') {
         throw new TypeError('Arg is not a number');
-    } else if (parseInt(n) !== n || n <= 0) {
+    } else if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('Number is not positive entire');
     } else {
-        return getFibonacciValue(n);
+        let first = 1;
+        let second = 1;
+        for (let i = 3; i <= n; i++) {
+            const sum = first + second;
+            first = second;
+            second = sum;
+        }
+
+        return second;
     }
 }
 
@@ -95,9 +94,13 @@ function matrixProblem(matrix) {
     if (!isMatrix) {
         throw new TypeError('Array is not demension of two');
     }
+    const isEqualLength = matrix.every(item => item.length === matrix[0].length);
+    if (!isEqualLength) {
+        throw new TypeError('Arrays have different length');
+    }
     let transMatrix = [];
     for (let i = 0; i < matrix.length; i++) {
-        transMatrix[i] = [];
+        transMatrix.push([]);
         for (let j = 0; j < matrix[i].length; j++) {
             transMatrix[i][j] = matrix[j][i];
         }
@@ -115,7 +118,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('Args are not numbers');
     } else if (targetNs > 36 || targetNs < 2) {
         throw new RangeError('Invalig range of argument');
