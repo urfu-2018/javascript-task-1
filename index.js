@@ -61,6 +61,7 @@ console.info(matrixProblem([
 // Выведет "1010101"
 console.info('numberSystemProblem');
 console.info(numberSystemProblem(85, 2));
+console.info(numberSystemProblem(-85, 2));
 
 // Выведет `true`
 console.info('phoneProblem');
@@ -79,3 +80,49 @@ console.info(ticTacToeProblem([
     ['o', 'o', 'x'],
     ['o', 'x', 'o']
 ]));
+console.info(ticTacToeProblem([
+    ['o', 'o', 'o'],
+    ['o', 'o', 'x'],
+    ['o', 'x', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'o', 'o'],
+    ['x', 'x', 'x'],
+    ['o', 'x', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['o', 'x', 'x'],
+    ['o', 'x', 'x'],
+    ['o', 'o', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'o', 'x'],
+    ['x', 'o', 'x'],
+    ['x', 'x', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'x', 'o'],
+    ['o', 'x', 'x'],
+    ['o', 'x', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'x', 'o'],
+    ['o', 'x', 'x'],
+    ['o', 'x', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'o', 'x'],
+    ['o', 'o', 'x'],
+    ['o', 'x', 'x']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'x', 'o'],
+    ['o', 'x', 'x'],
+    ['o', 'o', 'x']
+]));
+console.info(ticTacToeProblem([
+    ['o', 'x', 'x'],
+    ['o', 'x', 'o'],
+    ['x', 'x', 'o']
+]));
+
