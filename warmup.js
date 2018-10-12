@@ -174,7 +174,7 @@ function ticTacToeProblem(field) {
             return trasporentField[i][0];
         }
     }
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][1]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
     }
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
