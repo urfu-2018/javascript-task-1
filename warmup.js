@@ -25,7 +25,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (Number.isNaN(year)) {
+    if (Number.isInteger(year)) {
         throw TypeError;
     } else if (year < 1) {
         throw RangeError;
@@ -43,7 +43,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    const regex = new RegExp('#[0-9A-Fa-f]{6}$');
+    const regex = new RegExp('^#[0-9A-Fa-f]{6}$');
     if (typeof hexColor !== 'string') {
         throw TypeError;
     }
@@ -70,14 +70,14 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    var cur = 1;
-    var prev = 1;
-    var next = 2;
+    let cur = 1;
+    let prev = 1;
+    let next = 2;
     if (!isNaN(n)) {
         if (!Number.isInteger(n)) {
             throw RangeError;
         }
-        for (var i = 0; i < n; i++) {
+        for (let i = 0; i < n - 1; i++) {
             next = cur + prev;
             prev = cur;
             cur = next;
@@ -119,11 +119,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
     if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw TypeError;
     }
-    if (targetNs < 2 || targetNs > 32) {
+    if (targetNs < 2 || targetNs > 36) {
         throw RangeError;
     }
 
@@ -136,7 +135,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const regexp = new RegExp('8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+    const regexp = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
     return (regexp.test(phoneNumber));
     // Ваше решение
@@ -183,7 +182,6 @@ function ticTacToeProblem(field) {
     }
 
     return 'draw';
-
 }
 
 function diagonalCheck(field) {
