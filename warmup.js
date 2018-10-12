@@ -165,10 +165,9 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     checkType(hexColor, 'hexColor', 'string');
-    if (!hexColor.match(/^#[a-f\d]{6,}$/i)) {
-        throw new TypeError('Invalid HEX color string');
+    if (!hexColor.match(/^#[a-f\d]{6}$/i)) {
+        throw new RangeError('Invalid HEX color string');
     }
-    checkRange(7, hexColor.length, 7, 'hexColor string length');
     const red = parseInt(hexColor.slice(1, 3), 16);
     const green = parseInt(hexColor.slice(3, 5), 16);
     const blue = parseInt(hexColor.slice(5, 7), 16);
