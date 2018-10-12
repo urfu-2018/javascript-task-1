@@ -82,10 +82,8 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError('Argument must be a 2-dim array');
-    } else if (matrix[0].length === 0) {
-        return [[]];
     }
-    let result = [];
+    let result = [[]];
     matrix.forEach((row, i) => {
         row.forEach((column, j) => {
             result[j] = result[j] === undefined ? [] : result[j];
@@ -130,6 +128,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof(text) !== 'string') {
+        throw new TypeError('Argument must be a string');
+    }
+
     return text.match(/(:-\))|(\(-:)/g).length;
 }
 
