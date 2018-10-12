@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!(/^#[0-9a-fA-F]{6}/.test(hexColor))){
+    if (!(/^#[0-9a-fA-F]{6}/.test(hexColor))) {
         throw new RangeError();
     }
     const rgb = [];
@@ -92,7 +92,7 @@ function matrixProblem(matrix) {
     }
 
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+        if (!Array.isArray(matrix[i])) {
             throw new TypeError();
         }
     }
