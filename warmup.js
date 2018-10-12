@@ -43,14 +43,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    const regex = new RegExp('[0-9A-Fa-f]{6}');
+    const regex = new RegExp('#[0-9A-Fa-f]{6}$');
     if (typeof hexColor !== 'string') {
         throw TypeError;
     }
-    hexColor = hexColor.substr(1, hexColor.length - 1);
     if (!regex.test(hexColor)) {
         throw RangeError;
     }
+    hexColor = hexColor.substr(1, hexColor.length - 1);
     let res = '(';
     for (let i = 0; i < 3; i++) {
         res += parseInt(hexColor.substr(i * 2, 2), 16) + ', ';
@@ -70,12 +70,20 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    if (!Number.isNaN(n)) {
+    var cur = 1;
+    var prev = 1;
+    var next = 2;
+    if (!isNaN(n)) {
         if (!Number.isInteger(n)) {
             throw RangeError;
         }
+        for (var i = 0; i < n; i++) {
+            next = cur + prev;
+            prev = cur;
+            cur = next;
+        }
 
-        return Math.round((Math.pow(((1 + Math.sqrt(5)) / 2), n)) / (Math.sqrt(5)));
+        return prev;
     }
     throw TypeError;
 }
