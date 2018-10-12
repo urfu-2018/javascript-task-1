@@ -23,8 +23,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if (typeof year !== 'number') {
+        throw new TypeError('Year is not a number');
+    }
     if (!Number.isInteger(year)) {
-        throw new TypeError('Year is not integer');
+        throw new RangeError('Year is not integer');
     } else if (year < 0) {
         throw new RangeError('Negative year');
     } else {
@@ -42,8 +45,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Hexcolor is not string');
-    }
-    if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
+    } else if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
         throw new RangeError('Incorrect color range');
     }
     const rgbColor = [];
@@ -89,14 +91,13 @@ function matrixProblem(matrix) {
 
     if (!Array.isArray(matrix)) {
         throw new TypeError('Arg is not array!');
+    } else if (matrix.length === 0) {
+        throw new TypeError('Array is empty');
     }
-    const isMatrix = matrix.every(item => Array.isArray(item));
-    if (!isMatrix) {
-        throw new TypeError('Array is not demension of two');
-    }
-    const isEqualLength = matrix.every(item => item.length === matrix[0].length);
-    if (!isEqualLength) {
-        throw new TypeError('Arrays have different length');
+    const isGoodMatrix = matrix.every(item => Array.isArray(item) && item.length !== 0 &&
+    item.length === matrix[0].length);
+    if (!isGoodMatrix) {
+        throw new TypeError('Array is not a matrix to transparent');
     }
     let transMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
@@ -133,7 +134,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('PhoneNumber is not string');
+    } else {
+        return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    }
 }
 
 /**
