@@ -90,7 +90,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     const transparentMatrix = [];
 
-    if (checkMatrix(matrix)) {
+    if (matrix.length && checkMatrix(matrix)) {
         for (let i = 0; i < matrix[0].length; i++) {
             const newLine = [];
 
@@ -104,14 +104,13 @@ function matrixProblem(matrix) {
 }
 
 function checkMatrix(matrix) {
-    if (!matrix.length) {
-        return false;
-    }
     for (let i = 0; i < matrix.length - 1; i++) {
-        if (!Array.isArray(matrix[i]) ||
+        if (
+            !Array.isArray(matrix[i]) ||
             !Array.isArray(matrix[i + 1]) ||
-            matrix[i].length !== matrix[i + 1].length) {
-
+            matrix[i].length !== matrix[i + 1].length ||
+            !matrix[i].length
+        ) {
             return false;
         }
     }
@@ -157,8 +156,10 @@ function smilesProblem(text) {
 
     if (typeof text === 'string') {
         [].forEach.call(text, (_, i) => {
-            if (text.slice(i, 3 + i) === ':-)' && text.slice(i - 2, i + 1) !== '(-:' ||
-                text.slice(i, 3 + i) === '(-:') {
+            if (
+                (text.slice(i, 3 + i) === ':-)' && text.slice(i - 2, i + 1) !== '(-:') ||
+                text.slice(i, 3 + i) === '(-:'
+            ) {
                 smilesCounter += 1;
             }
         });
