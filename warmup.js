@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError();
     }
-    if (year <= 0 || !Number.isInteger(year)) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
     if (year % 100 === 0) {
@@ -121,11 +121,10 @@ function numberSystemProblem(n, targetNs) {
     if (!typeof targetNs === 'number' || typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
-    if (targetNs > 36 || targetNs < 2) {
-        throw new RangeError();
+    if (targetNs >= 2 && targetNs <= 36) {
+        return n.toString(targetNs);
     }
-
-    return n.toString(targetNs);
+    throw new RangeError();
 }
 
 /**
