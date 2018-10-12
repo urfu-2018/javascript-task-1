@@ -64,8 +64,8 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (isNaN(n)) {
         throw new TypeError('Argument is NaN');
-    } else if (n <= 0) {
-        throw new TypeError('Argument must be positive');
+    } else if (n <= 0 || n % 1 !== 0) {
+        throw new TypeError('Argument must be a positive integer');
     } else if (n < 3) {
         return 1;
     }
