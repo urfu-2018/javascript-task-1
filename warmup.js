@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError('One or more arguments are NaN');
     }
 
-    return parseFloat(a) + parseFloat(b);
+    return a + b;
 }
 
 /**
@@ -23,8 +23,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
-        throw new TypeError('Argument is NaN');
+    if (isNaN(year) || year % 1 !== 0) {
+        throw new TypeError('Argument must be an integer number');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
     }
