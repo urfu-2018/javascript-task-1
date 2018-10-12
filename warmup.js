@@ -178,10 +178,8 @@ function smilesProblem(text) {
     if (!EMOJI_MATCHES) {
         return 0;
     }
-    const MERGED_EMOJI_PATTERN = /\(-:-\)/g;
-    const MERGED_EMOJI_MATCHES = text.match(MERGED_EMOJI_PATTERN);
 
-    return EMOJI_MATCHES.length - (MERGED_EMOJI_MATCHES ? MERGED_EMOJI_MATCHES.length : 0);
+    return EMOJI_MATCHES.length;
 }
 
 /**
