@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
-    } else if (year < 0) {
+    } else if (year <= 0 || Math.floor(year) !== year) {
         throw new RangeError();
     }
 
@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
-    } else if (/^#(\d|[a-fA-F]){6}$/.test(hexColor) === null) {
+    } else if (!/^#(\d|[a-fA-F]){6}$/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !(() => {
+    if (!Array.isArray(matrix) || !(() => {
         for (let i = 0; i < matrix.length; i++) {
             if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
                 return false;
@@ -91,6 +91,9 @@ function matrixProblem(matrix) {
         return true;
     })) {
         throw new TypeError();
+    }
+    if (matrix.length === 0) {
+        return [[]];
     }
     const transposedMatrix = [];
     for (let i = 0; i < matrix[0].length; i++) {
@@ -144,8 +147,11 @@ function smilesProblem(text) {
     }
     const countLeftSmiles = text.match(/:-\)/g) || [];
     const countRightSmiles = text.match(/\(-:/g) || [];
+    const countStitchedSmiles = text.match(/\(-:-\)/g) || [];
 
-    return countLeftSmiles.length + countRightSmiles.length;
+    return countLeftSmiles.length +
+        countRightSmiles.length -
+        countStitchedSmiles.length;
 }
 
 /**
