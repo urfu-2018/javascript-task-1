@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError('One or more arguments are NaN');
     }
 
-    return a + b;
+    return parseFloat(a) + parseFloat(b);
 }
 
 /**
