@@ -137,12 +137,12 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number') {
         throw new TypeError(n + ' is not a number');
     }
-    if (typeof targetNs !== 'number') {
+    if (!isIntegerNumber(targetNs)) {
         throw new TypeError(targetNs + ' is not a number');
     }
     const RADIX_MIN = 2;
     const RADIX_MAX = 36;
-    if (!isIntegerNumber(targetNs) || targetNs < RADIX_MIN || targetNs > RADIX_MAX) {
+    if (targetNs < RADIX_MIN || targetNs > RADIX_MAX) {
         throw new RangeError(targetNs + ' is out of range [' + RADIX_MIN + ', ' + RADIX_MAX + ']');
     }
 
