@@ -90,19 +90,33 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array) || matrix.length === 0) {
+    if (!isMatrixCorrect(matrix)) {
         throw new TypeError();
     }
     var result = [];
-    for (var i = 0; i < matrix[0].length; ++i) {
+    for (var i = 0; i < matrix[0].length; i++) {
         var currentLine = [];
-        for (var j = 0; j < matrix.length; ++j) {
+        for (var j = 0; j < matrix.length; j++) {
             currentLine.push(matrix[j][i]);
         }
         result.push(currentLine);
     }
 
     return result;
+}
+
+function isMatrixCorrect(matrix) {
+    if (!(matrix instanceof Array) || matrix.length === 0) {
+        return false;
+    }
+    var dimension = matrix[0].length;
+    for (var i = 0; i < matrix.length; i++) {
+        if (!(matrix[i] instanceof Array) || matrix[i].length !== dimension) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /**
