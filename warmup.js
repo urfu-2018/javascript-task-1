@@ -143,30 +143,31 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const winCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]];
-    function getPositions(symbol) {
-        return field
-            .map((column, x) => column
-                .map((cell, y) => cell === symbol ? y + x * field.length : -1))
-            .join(',')
-            .split(',')
-            .map(cell => Number(cell))
-            .filter(cell => cell >= 0);
+    const transporatedField = field
+        .map((column, i) => column
+            .map((cell, j) => field[field.length - j - 1][i]));
+    function getMainDiagonal(matrix) {
+        return matrix.map((column, i) => matrix[i][i]);
     }
-    const xPositions = getPositions('x');
-    const oPositions = getPositions('o');
-    function isWin(positions) {
-        return winCombinations
-            .filter(combination => combination.every(position => position in positions))
-            .length > 0;
+    const diagonals = [getMainDiagonal(field), getMainDiagonal(transporatedField)];
+    function isWinLine(line, symbol) {
+        return line.every(mark => mark === symbol);
     }
-    if (isWin(xPositions)) {
+    function isWin(symbol) {
+        for (let i = 0; i < field.length; i++) {
+            if (isWinLine(field[i], symbol) || isWinLine(transporatedField[i], symbol) ||
+                    isWinLine(diagonals[Math.min(i, diagonals.length - 1)], symbol)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    if (isWin('x')) {
         return 'x';
     }
-    if (isWin(oPositions)) {
+    if (isWin('o')) {
         return 'o';
     }
 
