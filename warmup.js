@@ -137,7 +137,7 @@ function numberSystemProblem(n, targetNs) {
     if (typeDefinitionNumber(n) || typeDefinitionNumber(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
-    if (targetNs < 2 && targetNs > 36) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError ('Cистема счисления выходит за пределы значений [2, 36]');
     }
 
@@ -171,7 +171,7 @@ function smilesProblem(text) {
         throw new TypeError ('В качестве аргумента передаётся не строка');
     }
 
-    return (text.match(/(:-\)|\(-:)/g)).length;
+    return (text.match(/(:-\)|\(-:)/g) || []).length;
 
 }
 
