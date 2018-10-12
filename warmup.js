@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number' ||
+        Math.floor(a) !== a || Math.floor(b) !== b) {
         throw new TypeError();
     }
 
@@ -25,7 +26,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
-    } else if (year <= 0 || Math.floor(year) !== year) {
+    } else if (year < 0) {
         throw new RangeError();
     }
 
@@ -42,7 +43,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
-    } else if (!/^#(\d|[a-fA-F]){6}$/.test(hexColor)) {
+    } else if (!/^#[0-9a-f]{6}$/i.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -92,7 +93,7 @@ function matrixProblem(matrix) {
     })) {
         throw new TypeError();
     }
-    if (matrix.length === 0) {
+    if (matrix[0].length === 0) {
         return [[]];
     }
     const transposedMatrix = [];
@@ -145,13 +146,10 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    const countLeftSmiles = text.match(/:-\)/g) || [];
-    const countRightSmiles = text.match(/\(-:/g) || [];
-    const countStitchedSmiles = text.match(/\(-:-\)/g) || [];
+    const leftSmiles = text.match(/:-\)/g) || [];
+    const rightSmiles = text.match(/\(-:/g) || [];
 
-    return countLeftSmiles.length +
-        countRightSmiles.length -
-        countStitchedSmiles.length;
+    return leftSmiles.length + rightSmiles.length;
 }
 
 /**
@@ -161,7 +159,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < field.length; i++) {
+    for (let i = 0; i < 3; i++) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i] ||
             field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
 
@@ -170,8 +168,7 @@ function ticTacToeProblem(field) {
     }
 
     return field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
-        field[2][0] === field[1][1] && field[1][1] === field[0][2]
-        ? field[1][1] : 'draw';
+        field[2][0] === field[1][1] && field[1][1] === field[0][2] ? field[1][1] : 'draw';
 }
 
 module.exports = {
