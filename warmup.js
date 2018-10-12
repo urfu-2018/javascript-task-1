@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a === 'number' && typeof b === 'number') {
+    if (typeof a === 'number' && typeof b === 'number' && !Number.isNaN(a) && !Number.isNaN(b)) {
         return a + b;
     }
     throw new TypeError('В функцию были переданы не целые числа');
@@ -22,7 +22,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year === 'number' && year === parseInt(year)) {
+    if (typeof year === 'number' && year === parseInt(year) && !Number.isNaN(year)) {
         if (year >= 0) {
             return year % 100 ? parseInt(year / 100) + 1 : parseInt(year / 100);
         }
@@ -64,9 +64,9 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     let firstFib = 0;
     let secondFib = 1;
-    let accumulator = 0;
+    let accumulator = 1;
 
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || Number.isNaN(n)) {
         throw new TypeError('Введите число!');
     }
     if (n > 0 && n === parseInt(n)) {
@@ -76,7 +76,7 @@ function fibonacciProblem(n) {
             secondFib = accumulator;
         }
 
-        return secondFib;
+        return accumulator;
     }
     throw new RangeError('Введите целое положительное число');
 }
@@ -127,7 +127,12 @@ function checkMatrix(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n === 'number' && typeof targetNs === 'number') {
+    if (
+        typeof n === 'number' &&
+        typeof targetNs === 'number' &&
+        !Number.isNaN(n) &&
+        !Number.isNaN(targetNs)
+    ) {
         if (targetNs >= 2 && targetNs <= 36 && targetNs === parseInt(targetNs)) {
             return n.toString(targetNs);
         }
@@ -179,9 +184,8 @@ function ticTacToeProblem(field) {
     const horizontalWinner = findLineWinner(field);
     const verticalWinner = findLineWinner(matrixProblem(field));
     const diagonalWinner = findDiagonalWinner(field);
-    const winner = horizontalWinner || verticalWinner || diagonalWinner;
 
-    return winner || 'draw';
+    return horizontalWinner || verticalWinner || diagonalWinner || 'draw';
 }
 
 function findDiagonalWinner(field) {
