@@ -73,7 +73,7 @@ function fibonacciProblem(n) {
     if (!isIntegerNumber(n)) {
         throw new TypeError(n + ' is not an integer number');
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError(n + ' is not a positive integer number');
     }
     let previous = 0;
@@ -172,8 +172,10 @@ function smilesProblem(text) {
     if (!EMOJI_MATCHES) {
         return 0;
     }
+    const MERGED_EMOJI_PATTERN = /\(-:-\)/g;
+    const MERGED_EMOJI_MATCHES = text.match(MERGED_EMOJI_PATTERN);
 
-    return EMOJI_MATCHES.length;
+    return EMOJI_MATCHES.length - (MERGED_EMOJI_MATCHES ? MERGED_EMOJI_MATCHES.length : 0);
 }
 
 /**
