@@ -133,7 +133,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(/(\(-:)/ || /(:-\))/) || []).length;
+    return (text.match(/(\(-:)+/ || /(:-\))+/) || []).length;
 }
 
 /**
@@ -147,7 +147,8 @@ function ticTacToeProblem(field) {
         .map((column, i) => column
             .map((cell, j) => field[field.length - j - 1][i]));
     function getMainDiagonal(matrix) {
-        return matrix.map((column, i) => matrix[i][i]);
+        return matrix
+            .map((column, i) => matrix[i][i]);
     }
     const diagonals = [getMainDiagonal(field), getMainDiagonal(transporatedField)];
     function isWinLine(line, symbol) {
@@ -163,7 +164,6 @@ function ticTacToeProblem(field) {
 
         return false;
     }
-
     if (isWin('x')) {
         return 'x';
     }
