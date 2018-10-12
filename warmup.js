@@ -27,6 +27,8 @@ function centuryByYearProblem(year) {
         throw new TypeError('Argument is NaN');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
+    } else if (year === 0) {
+        return -1;
     }
 
     return Math.ceil(year / 100);
