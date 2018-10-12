@@ -128,11 +128,12 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string') {
+    if (text === undefined || typeof(text) !== 'string') {
         throw new TypeError('Argument must be a string');
     }
+    let match = text.match(/(:-\))|(\(-:)/g);
 
-    return text.match(/(:-\))|(\(-:)/g).length;
+    return match === undefined ? 0 : match.length;
 }
 
 /**
