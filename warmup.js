@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || year % 1 !== 0) {
+    if (typeof(year) !== 'number') {
         throw new TypeError('Argument must be non-negative positive number');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
@@ -67,12 +67,9 @@ function fibonacciProblem(n) {
     } else if (n <= 0 || n % 1 !== 0) {
         throw new RangeError('Argument must be a positive integer');
     }
-
     let first = 1;
     let second = 1;
-    let index = 2;
-    while (index < n) {
-        index++;
+    for (let index = 2; index < n; index++) {
         second = first + second;
         first = second - first;
     }
@@ -130,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return typeof(phoneNumber) === 'string' && /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
