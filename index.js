@@ -32,7 +32,7 @@ console.info(colorsProblem('#000000'));
 
 // Выведет `1`
 console.info('fibbonacciProblem');
-console.info([fibonacciProblem(1), fibonacciProblem(2), fibonacciProblem(3), fibonacciProblem(4)]);
+console.info(fibonacciProblem(100));
 
 
 // Выведет `[
