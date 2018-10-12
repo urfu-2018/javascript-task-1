@@ -8,7 +8,7 @@
  * @throws {TypeError} Если тип другой или тип аргументов неверный
  */
 function checkType(arg, argName, expectedTypeName) {
-    checkTypeUnsafe(argName, 'arg', 'string');
+    checkTypeUnsafe(argName, 'argName', 'string');
     checkTypeUnsafe(expectedTypeName, 'expectedTypeName', 'string');
     checkTypeUnsafe(arg, argName, expectedTypeName);
 }
