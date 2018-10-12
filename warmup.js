@@ -112,14 +112,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    let firstMatrix = matrix[0].length;
-    let basicMatrix = matrix.length;
-    if (basicMatrix === 0 || firstMatrix === 0 || !Array.isArray(matrix) ||
+    if (matrix.length === 0 || !Array.isArray(matrix) ||
         !Array.isArray(matrix[0])) {
         throw new TypeError ('Не двумерный массив');
     }
-    for (let i = 1; i < basicMatrix; i++) {
-        if (matrix[i].length !== firstMatrix) {
+    for (let i = 1; i < matrix.length; i++) {
+        if (matrix[i].length !== matrix[0].length) {
             throw new TypeError ('Строки должны быть одного размера');
         }
     }
