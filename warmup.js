@@ -81,12 +81,11 @@ function fibonacciProblem(n) {
 }
 
 function fibonacciResolve(n) {
-    let i = 1;
     let result = 1;
-    let firstElem = 1;
+    let firstElem = 0;
     let secondElem = 1;
 
-    while (++i < n) {
+    for (let i = 2; i <= n; i++) {
         result = firstElem + secondElem;
         firstElem = secondElem;
         secondElem = result;
