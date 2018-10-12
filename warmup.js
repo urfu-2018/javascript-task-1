@@ -27,6 +27,9 @@ function abProblem(a, b) {
     if (typeDefinitionNumber(a) || typeDefinitionNumber(b)) {
         throw new TypeError('Введены неверные данные');
     }
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Числа должны быть целыми');
+    }
 
     return a + b;
 
@@ -41,8 +44,8 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (typeDefinitionNumber(year)) {
-        throw new TypeError('Параметр должен быть числом');
+    if (typeDefinitionNumber(year) || !Number.isInteger(year)) {
+        throw new TypeError('Параметр должен быть целым числом ');
     }
     if (year < 0) {
         throw new RangeError ('Параметр должен быть больше 0');
@@ -111,10 +114,9 @@ function matrixProblem(matrix) {
         !Array.isArray(matrix[0])) {
         throw new TypeError ('Не двумерный массив');
     }
-    for (let i = 1; i < matrix.length; i++) {
-        if (matrix[i].length !== matrix[0].length) {
-            throw new TypeError ('Строки должны быть одного размера');
-        }
+    let arr = matrix[0].length;
+    if (arr === 0 || matrix.some(row=>!(Array.isArray(row)) || row.length !== arr)) {
+        throw new TypeError('Ошибка');
     }
 
     return matrix[0].map((column, a) => matrix.map(row => row[a]));
@@ -179,11 +181,14 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
-    if ((field[0][0] === field[1][1] === field[2][2]) ||
-        (field[0][2] === field[1][1] === field[2][0])) {
-        return field[1][1];
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
+        return field[0][0];
     }
-    for (let i = 0; i < 3; i++) {
+    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[0][2];
+    }
+
+    for (let i = 0; i < 3; ++i) {
         if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
             return field[i][0];
         }

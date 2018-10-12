@@ -46,7 +46,7 @@ console.info(smilesProblem(':-) (-:'));
 
 // Выведет "x"
 console.info(ticTacToeProblem([
-    ['x', 'x', 'x'],
-    ['o', 'o', 'x'],
-    ['o', 'x', 'o']
+    ['x', 'o', 'x'],
+    ['x', 'x', 'o'],
+    ['o', 'x', 'x']
 ]));
