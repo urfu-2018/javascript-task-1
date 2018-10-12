@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw RangeError;
     }
 
-    let century = Math.trunc(year / 100);
+    const century = Math.trunc(year / 100);
     if (year % 100 === 0) {
         return century;
     }
@@ -50,12 +50,15 @@ function colorsProblem(hexColor) {
     if (!(typeof hexColor === 'string')) {
         throw TypeError;
     }
-    let result = [];
-    result[0] = parseInt(hexColor.slice(1, 3), 16);
-    result[1] = parseInt(hexColor.slice(3, 5), 16);
-    result[2] = parseInt(hexColor.slice(5, 7), 16);
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5, 7), 16);
 
-    return '(' + result[0] + ', ' + result[1] + ', ' + result[2] + ')';
+    if (red > 255 || green > 255 || blue > 255) {
+        throw RangeError;
+    }
+
+    return '(' + red + ', ' + green + ', ' + blue + ')';
 }
 
 /**
@@ -74,17 +77,15 @@ function fibonacciProblem(n) {
     }
     let fib1 = 1;
     let fib2 = 1;
-    let fibSum = 1;
     let i = 2;
     while (i < n) {
-        fibSum = fib2 + fib1;
+        const fibSum = fib2 + fib1;
         fib1 = fib2;
         fib2 = fibSum;
         i += 1;
     }
 
-    return (fibSum);
-
+    return (fib2);
 }
 
 /**
@@ -97,13 +98,11 @@ function matrixProblem(matrix) {
     if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))) {
         throw TypeError;
     }
-    let result = [];
-    for (let i = 0; i < matrix[0].length; i++) {
-        result[i] = [];
-    }
+    const result = [];
     for (let i = 0; i < matrix.length; i++) {
+        result[i] = [];
         for (let j = 0; j < matrix[i].length; j++) {
-            result[j][i] = matrix[i][j];
+            result[i][j] = matrix[j][i];
         }
     }
 
@@ -125,17 +124,8 @@ function numberSystemProblem(n, targetNs) {
     if (!(targetNs >= 2 <= 36)) {
         throw RangeError;
     }
-    let result = [];
-    let counter = 0;
-    let next = n;
-    while (next >= targetNs) {
-        result[counter] = next % targetNs;
-        next = Math.trunc(next / targetNs);
-        counter += 1;
-    }
-    result[counter] = next;
 
-    return result.reverse().join('');
+    return n.toString(targetNs);
 }
 
 /**
