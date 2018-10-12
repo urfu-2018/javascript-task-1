@@ -85,7 +85,7 @@ function matrixProblem(matrix) {
     }
     let result = [];
     matrix.forEach((row, i) => {
-        matrix.forEach((column, j) => {
+        row.forEach((column, j) => {
             result[j] = result[j] === undefined ? [] : result[j];
             result[j][i] = row[j];
         });
