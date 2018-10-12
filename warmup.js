@@ -185,7 +185,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     checkInteger(n, 'n');
-    checkRange(1, n, Number.MAX_VALUE, 'n');
+    checkRange(1, n, Infinity, 'n');
 
     return fibonacciUnsafe(n);
 }
