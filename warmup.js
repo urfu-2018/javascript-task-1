@@ -51,12 +51,6 @@ function centuryByYearProblem(year) {
         throw new RangeError('year неположительное');
     }
 
-    /*
-    if (year % 1 !== 0) {
-        throw new RangeError('year не целое');
-    }
-    */
-
     return Math.ceil(year / 100);
 }
 
@@ -71,6 +65,12 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor не является строкой');
     }
+
+    if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
+        throw new RangeError('hexColor представлен в неправильном диапазоне');
+    }
+
+    /*
     if (hexColor.length !== 7) {
         throw new RangeError('hexColor неправильной длины');
     }
@@ -83,6 +83,7 @@ function colorsProblem(hexColor) {
             throw new RangeError('значения hexColor находятся вне валидного диапазона');
         }
     }
+    */
 
     return hexToRgb(hexColor);
 }
