@@ -93,11 +93,6 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
-    /* for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
-            throw new TypeError();
-        }
-    } */
 
     return matrix[0].map((_, i) => matrix.map(row => row[i]));
 }
@@ -130,7 +125,7 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError();
     }
-    
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
