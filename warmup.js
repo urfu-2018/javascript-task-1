@@ -129,7 +129,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    var re = /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g;
+    var re = /8-800-(\d\d\d)-(\d\d)-(\d\d)/g;
 
     return re.test(phoneNumber);
 }
