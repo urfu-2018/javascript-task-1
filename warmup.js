@@ -82,6 +82,8 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError('Argument must be a 2-dim array');
+    } else if (matrix[0].length === 0) {
+        return [[]];
     }
     let result = [];
     matrix.forEach((row, i) => {
