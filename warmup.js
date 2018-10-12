@@ -11,7 +11,7 @@ function abProblem(a, b) {
     const isNumber = typeof a === 'number' && typeof b === 'number';
     const isInteger = Math.trunc(a) === a && Math.trunc(b) === b;
     if (!(isNumber && isInteger)) {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return a + b;
@@ -26,10 +26,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!(typeof year === 'number' && Math.trunc(year) === year)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     const century = Math.trunc(year / 100);
@@ -50,14 +50,14 @@ function centuryByYearProblem(year) {
 
 function colorsProblem(hexColor) {
     if (!(typeof hexColor === 'string' && hexColor.length === 7)) {
-        throw TypeError;
+        throw new TypeError();
     }
     const red = parseInt(hexColor.slice(1, 3), 16);
     const green = parseInt(hexColor.slice(3, 5), 16);
     const blue = parseInt(hexColor.slice(5, 7), 16);
 
     if (red > 255 || green > 255 || blue > 255) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return '(' + red + ', ' + green + ', ' + blue + ')';
@@ -72,10 +72,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (!(typeof n === 'number')) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (!((n > 0) && (Math.trunc(n) === n))) {
-        throw RangeError;
+        throw new RangeError();
     }
     let fib1 = 1;
     let fib2 = 1;
@@ -98,11 +98,11 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        throw TypeError;
+        throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i])) {
-            throw TypeError;
+            throw new TypeError();
         }
     }
     const result = [];
@@ -127,10 +127,10 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     const isTargetNsSatisfy = typeof targetNs === 'number' && Math.trunc(targetNs) === targetNs;
     if (!(typeof n === 'number' && isTargetNsSatisfy)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (!(targetNs >= 2 <= 36)) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -153,7 +153,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (!(typeof text === 'string')) {
-        throw TypeError;
+        throw new TypeError();
     }
 
     let matchLeftSmile = text.match(/:-\)/g);
