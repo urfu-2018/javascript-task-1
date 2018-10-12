@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
-        throw new TypeError('Arguments must be numbers');
+    if (Number.isInteger(a) || Number.isInteger(b)) {
+        throw new TypeError('Аргументы должны быть целыми');
     }
 
     return parseInt(a) + parseInt(b);
