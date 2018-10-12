@@ -29,7 +29,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Argument must be non-negative');
     }
 
-    return Math.floor((year - 1) / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -45,13 +45,13 @@ function colorsProblem(hexColor) {
     } else if (! /^#([A-Fa-f0-9]){6}$/.test(hexColor)) {
         throw new RangeError('Color values out of range');
     }
-    let rgb = hexColor
-        .slice(1)
-        .match(/.{2}/g)
-        .map(str => parseInt(str, 16))
-        .join(', ');
 
-    return `(${rgb})`;
+    return ['(', ')'].join(
+        hexColor
+            .slice(1)
+            .match(/.{2}/g)
+            .map(str => parseInt(str, 16))
+            .join(', '));
 }
 
 /**
@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Argument must be a 2-dim array');
     }
     let result = [[]];
