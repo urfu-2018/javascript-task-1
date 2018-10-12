@@ -100,7 +100,7 @@ function matrixProblem(matrix) {
     }
     let transMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
-        transMatrix.push(new Array(matrix.length));
+        transMatrix[i] = new Array(matrix.length);
         for (let j = 0; j < matrix[i].length; j++) {
             transMatrix[i][j] = matrix[j][i];
         }
