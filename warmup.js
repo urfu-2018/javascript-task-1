@@ -98,17 +98,8 @@ function matrixProblem(matrix) {
             throw new TypeError();
         }
     }
-    const m = matrix.length;
-    const n = matrix[0].length;
-    const transposedMatrix = [];
-    for (let i = 0; i < n; i++) {
-        transposedMatrix[i] = [];
-        for (let j = 0; j < m; j++) {
-            transposedMatrix[i][j] = matrix[j][i];
-        }
-    }
 
-    return transposedMatrix;
+    return matrix[0].map((_, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -162,11 +153,10 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const height = field.length;
     let diagonal = '';
     let inverseDiagonal = '';
     const results = [];
-    for (let i = 0; i < height; i++) {
+    for (let i = 0; i < 3; i++) {
         results.push(field[i][0] + field[i][1] + field[i][2]);
         results.push(field[0][i] + field[1][i] + field[2][i]);
 
