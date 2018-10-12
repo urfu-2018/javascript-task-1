@@ -47,14 +47,14 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number' || !isFinite(year)) {
         throw new TypeError('year не является числом');
     }
-    if (year < 0) {
-        throw new RangeError('year отрицательное');
+    if (year <= 0) {
+        throw new RangeError('year неположительное');
     }
     if (year % 1 !== 0) {
         throw new RangeError('year не целое');
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.trunc((year - 1) / 100) + 1;
 }
 
 /**
@@ -68,10 +68,16 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor не является строкой');
     }
+    if (hexColor.length !== 7) {
+        throw new RangeError('hexColor неправильной длины');
+    }
+    if (hexColor[0] !== '#') {
+        throw new RangeError('hexColor не является кодом цвета');
+    }
     for (let i = 1; i < hexColor.length; i++) {
         const hex = hexColor[i];
-        if (isNaN(parseInt(hex)) && (hex < 'A' || hex > 'F')) {
-            throw new RangeError('values of hexColor are not in valid range');
+        if (isNaN(parseInt(hex)) && !(hex >= 'A' && hex <= 'F') && !(hex >= 'a' && hex <= 'f')) {
+            throw new RangeError('значения hexColor находятся вне валидного диапазона');
         }
     }
 
@@ -81,7 +87,7 @@ function colorsProblem(hexColor) {
 function hexToRgb(hexColor) {
     let rgbArr = [];
     for (let i = 1; i < hexColor.length; i += 2) {
-        rgbArr.push(parseInt(hexColor.substring(i, i + 2), 16));
+        rgbArr.push(parseInt(hexColor.substring(i, i + 2).toUpperCase(), 16));
     }
 
     return '(' + rgbArr.join(', ') + ')';
