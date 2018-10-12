@@ -36,7 +36,7 @@ function checkTypeUnsafe(arg, argName, expectedTypeName) {
  */
 function checkInteger(arg, argName) {
     checkFiniteNumber(arg, argName);
-    if (arg % 1 !== 0) {
+    if (!Number.isInteger(arg)) {
         throw new RangeError(argName + ' must be integer');
     }
 }
