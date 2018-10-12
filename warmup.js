@@ -65,8 +65,8 @@ function isValidRange(hexString) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (isNumeric(hexColor) || hexColor[0] !== '#' || hexColor.length !== 7) {
-        throw new TypeError('Переданная строка не в формате HEX');
+    if (typeof (hexColor) !== 'string' || hexColor[0] !== '#' || hexColor.length !== 7) {
+        throw new TypeError('Переданная строка не в формате "#HEX"');
     }
     if (!isValidRange(hexColor.slice(1))) {
         throw new RangeError('Значение цвета выходят за пределы допустимых');
@@ -79,7 +79,7 @@ function colorsProblem(hexColor) {
 }
 
 function confirmNumberType(n) {
-    if (typeof (n) !== 'number') {
+    if (!isNumeric(n)) {
         throw new TypeError(`Входной параметр n="${n}" не является числом`);
     }
 }
@@ -94,10 +94,10 @@ function confirmNumberType(n) {
 function fibonacciProblem(n) {
     confirmNumberType(n);
     if (!isInteger(n)) {
-        throw new TypeError('Переданный аргумент к функции не является числом');
+        throw new TypeError('Переданный к функции аргумент не является целым числом');
     }
-    if (Number(n) < 0) {
-        throw new RangeError('Выбранная позиция для подсчёта не является целым числом');
+    if (Number(n) <= 0) {
+        throw new RangeError('Таких чисел не существует');
     }
     if (n <= 2) {
         return 1;
@@ -126,6 +126,20 @@ function squareMatrixCase(matrix) {
     return matrix;
 }
 
+function randomMatrixCase(matrix, rowsSum, colsSum) {
+    const transposedMatrix = new Array(colsSum);
+    for (let i = 0; i < colsSum; i++) {
+        transposedMatrix[i] = new Array(rowsSum);
+    }
+    for (let i = 0; i < rowsSum; i++) {
+        for (let j = 0; j < colsSum; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
+}
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -133,25 +147,16 @@ function squareMatrixCase(matrix) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (typeof (matrix) !== 'object') {
-        throw new TypeError('Переданный параметр не является матрицей');
+    if (matrix.length === 0 || !Array.isArray(matrix)) {
+        throw new TypeError();
     }
-    const rows = matrix.length;
-    const columns = matrix[0].length;
+    var rows = matrix.length;
+    var columns = matrix[0].length;
     if (rows === columns) {
         return squareMatrixCase(matrix);
     }
-    const transposedMatrix = new Array(columns);
-    for (let i = 0; i < columns; i++) {
-        transposedMatrix[i] = new Array(rows);
-    }
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
-            transposedMatrix[j][i] = matrix[i][j];
-        }
-    }
 
-    return transposedMatrix;
+    return randomMatrixCase(matrix, rows, columns);
 }
 
 /**
@@ -165,6 +170,12 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     confirmNumberType(n);
     confirmNumberType(targetNs);
+    if (!isInteger(n)) {
+        throw new TypeError(`Параметр n="${n}" не является целым числом`);
+    }
+    if (!isInteger(targetNs)) {
+        throw new TypeError(`Параметр targetNs="${targetNs}" не является целым числом`);
+    }
     if (Number(targetNs) >= 2 || Number(targetNs) <= 36) {
         return n.toString(Number(targetNs));
     }
@@ -177,7 +188,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof (phoneNumber) === 'string' && phoneNumber.split('-').length === 5) {
+    if (typeof (phoneNumber) === 'string') {
         return phoneNumber.search(/8-800-\d{3}-\d{2}-\d{2}/) !== -1;
     }
 
@@ -246,4 +257,3 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
-
