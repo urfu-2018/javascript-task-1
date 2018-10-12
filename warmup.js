@@ -250,11 +250,8 @@ function isIntegerNumber(num) {
     if (typeof num !== 'number') {
         return false;
     }
-    if (!isFinite(num)) {
-        return false;
-    }
 
-    return Number.isInteger(num); // num === +num.toFixed(0);
+    return Number.isInteger(num);
 }
 
 module.exports = {
