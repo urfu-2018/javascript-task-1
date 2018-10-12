@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string' || hexColor[0] !== '#' || hexColor.length !== 7) {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
     if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 1) {
+    if (n < 1 || n % 1 !== 0) {
         throw new RangeError();
     }
 
@@ -106,7 +106,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
-    } else if (targetNs < 2 || targetNs > 36) {
+    } else if (targetNs < 2 || targetNs > 36 || targetNs % 1 !== 0) {
         throw new RangeError();
     }
 
