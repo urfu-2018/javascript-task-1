@@ -132,7 +132,8 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (typeDefinitionNumber(n) || !Number.isInteger(targetNs) || typeDefinitionNumber(targetNs)) {
+    if ([n, targetNs].some(a=>typeof(a) !== 'number') || !Number.isInteger(targetNs) ||
+        !Number.isInteger(n)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {

@@ -39,14 +39,14 @@ console.info(matrixProblem([
 console.info(numberSystemProblem(85, 2));
 
 // Выведет `true`
-console.info(phoneProblem('8-800-333-51-73'));
+console.info(phoneProblem('8-900-333-51-73'));
 
 // Выведет `2`
 console.info(smilesProblem(':-) (-:'));
 
 // Выведет "x"
 console.info(ticTacToeProblem([
-    ['x', 'o', 'x'],
+    ['x', 'o', 'o'],
     ['x', 'x', 'o'],
-    ['o', 'x', 'x']
+    ['o', 'x', 'o']
 ]));
