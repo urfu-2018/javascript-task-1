@@ -90,10 +90,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    var result = [];
-    if (matrix.length === 0) {
-        return [];
+    if (!(matrix instanceof Array) || matrix.length === 0) {
+        throw new TypeError();
     }
+    var result = [];
     for (var i = 0; i < matrix[0].length; ++i) {
         var currentLine = [];
         for (var j = 0; j < matrix.length; ++j) {
