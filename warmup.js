@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if ((typeof a !== 'number') || (typeof b !== 'number')) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
@@ -74,7 +74,7 @@ function fibonacciProblem(n) {
     }
     let a = 1;
     let b = 1;
-    for (let i = 3; i <= n; i++) {
+    for (let i = 2; i < n; i++) {
         const c = a + b;
         a = b;
         b = c;
@@ -94,7 +94,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!(Array.isArray(matrix[i]) && (matrix[i].length === matrix[0].length))) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
     }
@@ -153,22 +153,17 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let diagonal = '';
-    let inverseDiagonal = '';
-    const results = [];
     for (let i = 0; i < 3; i++) {
-        results.push(field[i][0] + field[i][1] + field[i][2]);
-        results.push(field[0][i] + field[1][i] + field[2][i]);
-
-        diagonal += field[i][i];
-        inverseDiagonal += field[i][field.length - (i + 1)];
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
-    results.push(diagonal);
-    results.push(inverseDiagonal);
-    if (results.indexOf('xxx') !== -1) {
-        return 'x';
-    } else if (results.indexOf('ooo') !== -1) {
-        return 'o';
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
+        field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[1][1];
     }
 
     return 'draw';
