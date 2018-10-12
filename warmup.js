@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError('Invalid arguments');
+        throw new TypeError('Args not numbers');
     } else {
         return a + b;
     }
@@ -23,19 +23,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
-        throw new TypeError('Invalid arguments');
+    if (!Number.isInteger(year)) {
+        throw new TypeError('Year is not integer');
     } else if (year < 0) {
         throw new RangeError('Negative year');
     } else {
-        const yearStr = `${year}`;
-        const decade = yearStr.slice(-2);
-        const hundredth = parseInt(yearStr.slice(0, -2));
-        if (parseInt(decade) === 0) {
-            return hundredth;
-        }
 
-        return hundredth + 1;
+        return Math.ceil(year / 100);
     }
 }
 
@@ -50,15 +44,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Invalid arguments');
     }
+    if (!/^#[0-9a-fA-F]{6}$/.test(hexColor)) {
+        throw new RangeError('Incorrect color range');
+    }
     const rgbColor = [];
-    rgbColor[0] = parseInt(hexColor.slice(1, 3).toUpperCase(), 16);
-    rgbColor[1] = parseInt(hexColor.slice(3, 5).toUpperCase(), 16);
-    rgbColor[2] = parseInt(hexColor.slice(5).toUpperCase(), 16);
-    rgbColor.forEach(element => {
-        if (element < 0 || element > 255) {
-            throw new RangeError('Incorrect color range');
-        }
-    });
+    rgbColor[0] = parseInt(hexColor.slice(1, 3), 16);
+    rgbColor[1] = parseInt(hexColor.slice(3, 5), 16);
+    rgbColor[2] = parseInt(hexColor.slice(5), 16);
 
     return `(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]})`;
 }
@@ -80,7 +72,7 @@ function fibonacciProblem(n) {
     }
 
     if (typeof n !== 'number') {
-        throw new TypeError('Not a number');
+        throw new TypeError('Arg is not a number');
     } else if (parseInt(n) !== n || n <= 0) {
         throw new RangeError('Number is not positive entire');
     } else {
@@ -124,7 +116,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
-        throw new TypeError('Arg is not a number');
+        throw new TypeError('Args are not numbers');
     } else if (targetNs > 36 || targetNs < 2) {
         throw new RangeError('Invalig range of argument');
     } else {
@@ -138,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^[0-9\-+]{9,15}$/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -149,7 +141,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError('Invalid arguments');
+        throw new TypeError('Text is not string');
     } else {
         let countSmiles = text.split(':-)').length + text.split('(-:').length - 2;
 
@@ -164,8 +156,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // let hasWin = false;
-    // let whoWon = '';
     const trasporentField = matrixProblem(field);
 
     for (let i = 0; i < field.length; i++) {
