@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return Number(a) + Number(b);
+    return a + b;
 }
 
 /**
@@ -25,6 +25,10 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
+    }
+
+    if (year < 0) {
+        throw new RangeError();
     }
 
     return Math.ceil(year / 100);
@@ -69,7 +73,20 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    return n <= 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    let previousNum = 0;
+    let currentNum = 1;
+    let fibNum = 0;
+
+    for (let i = 0; i < n; i++) {
+      if (i === 0) {
+        fibNum = 1;
+      } else {
+        fibNum = previousNum + currentNum;
+        previousNum = currentNum;
+        currentNum = fibNum;
+      }
+    }
+    return fibNum;
 }
 
 /**
