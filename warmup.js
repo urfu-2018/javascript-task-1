@@ -46,10 +46,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    // if (hexColor.length !== 7) {
-    //     throw new RangeError();
-    // }
-    if (hexColor.match(/^#[0-9a-f]{6}$/i) === null) {
+    if (hexColor.match(/^#[a-fA-F\d]{6}$/i) === null) {
         throw new RangeError();
     }
     const colors = splitColors(hexColor);
@@ -83,6 +80,7 @@ function fibonacciProblem(n) {
     if (n <= 0) {
         throw new RangeError();
     }
+
     function fib(d) {
         return (d === 1 || d === 2) ? 1 : fib(d - 1) + fib(d - 2);
     }
@@ -132,6 +130,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     return phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/) !== null;
 }
 
@@ -146,10 +148,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    const leftSmile = (text.match(/:-\)/g) || []).length;
-    const rightSmile = (text.match(/\(-:/g) || []).length;
-
-    return leftSmile + rightSmile;
+    return (text.match(/(:-\)|\(-:)/g) || []).length;
 }
 
 /**
@@ -178,6 +177,7 @@ function ticTacToeProblem(field) {
     return 'draw';
 
 }
+
 module.exports = {
     abProblem,
     centuryByYearProblem,
