@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[a-f0-9]{6}$/gi.test(hexColor)) {
+    if (!/^#[a-f0-9]{6}$/i.test(hexColor)) {
         throw new RangeError();
     }
     const slice = hexColor.slice(1).match(/.{2}/g);
@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0 || Math.floor(n) !== n) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let a = 1;
@@ -94,9 +94,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (Array.isArray(matrix[i]) && (matrix[i].length === matrix[0].length)) {
-            continue;
-        } else {
+        if (!(Array.isArray(matrix[i]) && (matrix[i].length === matrix[0].length))) {
             throw new TypeError();
         }
     }
