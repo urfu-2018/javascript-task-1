@@ -90,7 +90,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     const transparentMatrix = [];
 
-    if (matrix.length && checkMatrix(matrix)) {
+    if (Array.isArray(matrix) && matrix.length && checkMatrix(matrix)) {
         for (let i = 0; i < matrix[0].length; i++) {
             const newLine = [];
 
@@ -144,10 +144,14 @@ function numberSystemProblem(n, targetNs) {
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
+ * @throws {TypeError} Когда переданы аргументы некорректного типа
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /8-800-\d{3}-\d{2}-\d{2}$/gi.test(phoneNumber);
+    if (typeof phoneNumber === 'string') {
+        return /8-800-\d{3}-\d{2}-\d{2}$/gi.test(phoneNumber);
+    }
+    throw new TypeError('Передана не строка!');
 }
 
 /**
