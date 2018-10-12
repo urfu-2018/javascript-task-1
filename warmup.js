@@ -66,11 +66,18 @@ function fibonacciProblem(n) {
         throw new TypeError('Argument is NaN');
     } else if (n <= 0 || n % 1 !== 0) {
         throw new RangeError('Argument must be a positive integer');
-    } else if (n < 3) {
-        return 1;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    let first = 1;
+    let second = 1;
+    let index = 2;
+    while (index < n) {
+        index++;
+        second = first + second;
+        first = second - first;
+    }
+
+    return second;
 }
 
 /**
@@ -85,9 +92,9 @@ function matrixProblem(matrix) {
     }
     let result = [[]];
     matrix.forEach((row, i) => {
-        row.forEach((column, j) => {
+        row.forEach((_, j) => {
             result[j] = result[j] === undefined ? [] : result[j];
-            result[j][i] = row[j];
+            result[j][i] = matrix[i][j];
         });
     });
 
@@ -128,12 +135,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (text === undefined || typeof(text) !== 'string') {
+    if (typeof(text) !== 'string') {
         throw new TypeError('Argument must be a string');
     }
-    let match = text.match(/(:-\))|(\(-:)/g);
 
-    return match === null ? 0 : match.length;
+    return (text.match(/(:-\))|(\(-:)/g) || []).length;
 }
 
 /**
