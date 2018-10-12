@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
-    } else if (year <= 0) {
+    } else if (year < 0) {
         throw new RangeError();
     }
 
@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
-    } else if (!/^#(\d|[a-fA-F]){6}$/.test(hexColor)) {
+    } else if (/^#(\d|[a-fA-F]){6}$/.test(hexColor) === null) {
         throw new RangeError();
     }
 
@@ -92,9 +92,9 @@ function matrixProblem(matrix) {
     })) {
         throw new TypeError();
     }
-    const transposedMatrix = new Array(matrix[0].length);
+    const transposedMatrix = [];
     for (let i = 0; i < matrix[0].length; i++) {
-        transposedMatrix[i] = new Array(matrix.length);
+        transposedMatrix[i] = [];
         for (let j = 0; j < matrix.length; j++) {
             transposedMatrix[i][j] = matrix[j][i];
         }
@@ -144,11 +144,8 @@ function smilesProblem(text) {
     }
     const countLeftSmiles = text.match(/:-\)/g) || [];
     const countRightSmiles = text.match(/\(-:/g) || [];
-    const countStitchedSmiles = text.match(/\(-:-\)/g) || [];
 
-    return countLeftSmiles.length +
-        countRightSmiles.length -
-        countStitchedSmiles.length;
+    return countLeftSmiles.length + countRightSmiles.length;
 }
 
 /**
