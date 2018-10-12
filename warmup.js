@@ -1,6 +1,6 @@
 'use strict';
 
-/*
+/**
  * Складывает два целых числа
  * @param {Number} a Первое целое
  * @param {Number} b Второе целое
@@ -15,7 +15,7 @@ function abProblem(a, b) {
     return a + b;
 }
 
-/*
+/**
  * Определяет век по году
  * @param {Number} year Год, целое положительное число
  * @throws {TypeError} Когда в качестве года передано не число
@@ -38,7 +38,7 @@ function centuryByYearProblem(year) {
     return century + 1;
 }
 
-/*
+/**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
  * @throws {TypeError} Когда цвет передан не строкой
@@ -58,7 +58,7 @@ function colorsProblem(hexColor) {
     return '(' + result[0] + ', ' + result[1] + ', ' + result[2] + ')';
 }
 
-/*
+/**
  * Находит n-ое число Фибоначчи
  * @param {Number} n Положение числа в ряде Фибоначчи
  * @throws {TypeError} Когда в качестве положения в ряде передано не число
@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
 
 }
 
-/*
+/**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
     return result;
 }
 
-/*
+/**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
  * @param {Number} targetNs Система счисления, в которую нужно перевести (Число от 2 до 36)
@@ -138,7 +138,7 @@ function numberSystemProblem(n, targetNs) {
     return result.reverse().join('');
 }
 
-/*
+/**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
@@ -147,7 +147,7 @@ function phoneProblem(phoneNumber) {
     return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
 }
 
-/*
+/**
  * Определяет количество улыбающихся смайликов в строке
  * @param {String} text Строка в которой производится поиск
  * @throws {TypeError} Когда в качестве аргумента передаётся не строка
@@ -171,12 +171,29 @@ function smilesProblem(text) {
     return result;
 }
 
-/*
+/**
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+function ticTacToeProblem(field) {
+    let lines = [];
+    let columns = [];
+    getLinesAndColumns(field, lines, columns);
+    let diagonals = getDiagonals(field);
+    let result = checkForWinner(lines, columns, diagonals);
+    for (let element in result) {
+        if (element) {
+            return 'x';
+        }
+
+        return 'o';
+    }
+
+    return 'draw';
+}
+
 function getLinesAndColumns(field, lines, columns) {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
@@ -214,22 +231,6 @@ function checkForWinner(lines, columns, diagonals) {
     }
 
     return result;
-}
-function ticTacToeProblem(field) {
-    let lines = [];
-    let columns = [];
-    getLinesAndColumns(field, lines, columns);
-    let diagonals = getDiagonals(field);
-    let result = checkForWinner(lines, columns, diagonals);
-    for (let element in result) {
-        if (element) {
-            return 'x';
-        }
-
-        return 'o';
-    }
-
-    return 'draw';
 }
 
 module.exports = {
