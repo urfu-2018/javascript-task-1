@@ -187,7 +187,23 @@ function fibonacciProblem(n) {
     checkInteger(n, 'n');
     checkRange(1, n, Number.MAX_VALUE, 'n');
 
-    return n === 1 || n === 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return fibonacciUnsafe(n);
+}
+
+const fibonacciCache = [1, 1];
+
+/**
+ * Находит n-ое число Фибоначчи без проверки типа аргументов
+ * @param {Number} n Положение числа в ряде Фибоначчи
+ * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
+ */
+function fibonacciUnsafe(n) {
+    const cacheIndex = n - 1;
+    if (!fibonacciCache[cacheIndex]) {
+        fibonacciCache[cacheIndex] = fibonacciUnsafe(n - 1) + fibonacciUnsafe(n - 2);
+    }
+
+    return fibonacciCache[cacheIndex];
 }
 
 /**
