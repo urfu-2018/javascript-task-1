@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('Argument must be a string');
-    } else if (! /^#(\d|[A-F]|[a-f]){6}$/.test(hexColor)) {
+    } else if (! /^#([A-Fa-f0-9]){6}$/.test(hexColor)) {
         throw new RangeError('Color values out of range');
     }
     let rgb = hexColor
@@ -87,11 +87,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError('Argument must be a 2-dim array');
     }
     let result = [[]];
     matrix.forEach((row, i) => {
+        if (!Array.isArray(row)) {
+            throw new TypeError('Argument must be a 2-dim array');
+        }
         row.forEach((_, j) => {
             result[j] = result[j] === undefined ? [] : result[j];
             result[j][i] = matrix[i][j];
@@ -112,6 +115,8 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError('One or more arguments are NaN');
+    } else if (targetNs % 1 !== 0) {
+        throw new TypeError('Number system must be integer');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('TargetNs must be in [2, 36] range');
     }
@@ -139,7 +144,7 @@ function smilesProblem(text) {
         throw new TypeError('Argument must be a string');
     }
 
-    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
+    return (text.match(/(:-\))|(\(-:)/g) || []).length;
 }
 
 /**
