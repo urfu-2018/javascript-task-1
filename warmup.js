@@ -159,16 +159,19 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    const isIdentical = (a, b, c) => {
+        return (a === 'x' && b === 'x' && c === 'x') ||
+                (a === 'o' && b === 'o' && c === 'o');
+    };
     for (let i = 0; i < 3; i++) {
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i] ||
-            field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-
+        if (isIdentical(field[0][i], field[1][i], field[2][i]) ||
+            isIdentical(field[i][0], field[i][1], field[i][2])) {
             return field[i][i];
         }
     }
 
-    return field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
-        field[2][0] === field[1][1] && field[1][1] === field[0][2] ? field[1][1] : 'draw';
+    return isIdentical(field[0][0], field[1][1], field[2][2]) ||
+        isIdentical(field[2][0], field[1][1], field[0][2]) ? field[1][1] : 'draw';
 }
 
 module.exports = {
