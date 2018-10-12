@@ -1,3 +1,4 @@
+/*eslint-disable*/
 'use strict';
 
 /**
@@ -8,7 +9,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof(a) !== 'number'||typeof(b) !== 'number')
+        throw new TypeError;
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof(year) !== 'number')
+        throw new TypeError;
+    const century = 100;
+    const answer = Math.trunc(year / century);
+
+    return (year % 100 === 0) ? answer : answer + 1;
 }
 
 /**
@@ -30,7 +39,24 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    function isHex(number) {
+        if (!isNaN(number)){
+
+        }
+    }
+    if (typeof(hexColor)!=='string') throw new TypeError;
+    if (hexColor[0]!=='#') throw new RangeError;
+    let result = '(';
+    for (let i = 1; i < hexColor.length; i++){
+        const firstPart = hexColor[i];
+        const secondPart = hexColor[i+1];
+        if (typeof (firstPart) !== 0){
+        result += parseInt(hexColor[i] + hexColor[i+1], 16) + ',';
+        }
+    }
+    result = result.replace(result.lastIndexOf(','),'')
+
+    return result + ')';
 }
 
 /**
@@ -41,7 +67,17 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof(n) !== 'number') throw new TypeError;
+    if (n < 0 || n % 1 !== 0) throw new RangeError;
+    if (n === 1 || n === 2) return 1;
+    let a = b = 1;
+    for (let i = 0; i < n - 2; i++){
+        if (a >= b)
+            b += a;
+        else a += b;
+    }
+
+    return a > b ? a : b;
 }
 
 /**
@@ -51,7 +87,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) throw new TypeError;
+    let transposedMatrix = new Array(matrix.length);
+    for (let i = 0; i < transposedMatrix.length; i++){
+        transposedMatrix[i] = new Array(matrix[0].length);
+    }
+    for (let i = 0; i < matrix.length; i++){
+        for (let j = 0; j < matrix[0].length; j++){
+            transposedMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -63,7 +110,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+
 }
 
 /**
@@ -72,7 +119,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/.test(phoneNumber);
 }
 
 /**
