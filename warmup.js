@@ -26,10 +26,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isIntegerNumber(year)) {
-        throw new TypeError(year + ' is not an integer number');
+    if (typeof year !== 'number') {
+        throw new TypeError(year + ' is not a number');
     }
-    if (year < 0) {
+    if (!isIntegerNumber(year) || year < 0) {
         throw new RangeError(year + ' is not a positive integer number');
     }
     const YEARS_IN_CENTURY = 100;
@@ -58,8 +58,8 @@ function colorsProblem(hexColor) {
     }
     const RGB_PARTS = hexColor.match(HEX_COLOR_PATTERN).slice(1);
     const HEXADECIMAL_RADIX = 16;
-    RGB_PARTS.forEach(function (value, index) {
-        RGB_PARTS[index] = parseInt(value, HEXADECIMAL_RADIX);
+    RGB_PARTS.forEach(function (value, index, array) {
+        array[index] = parseInt(value, HEXADECIMAL_RADIX);
     });
 
     return '(' + RGB_PARTS.join(', ') + ')';
@@ -73,10 +73,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isIntegerNumber(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError(n + ' is not an integer number');
     }
-    if (n <= 0) {
+    if (!isIntegerNumber(n) || n <= 0) {
         throw new RangeError(n + ' is not a positive integer number');
     }
     let previous = 0;
@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
             throw new TypeError('specified matrix is not a two-dimensional array');
         }
         if (MATRIX_ROW_LENGTH !== row.length) {
-            throw new TypeError('specified matrix is not a two-dimensional array');
+            throw new TypeError('specified matrix is not valid two-dimensional array');
         }
         row.forEach(function (cellValue, cellIndex) {
             // по индексам столбцов матрицы создаём строки в транспонированном массиве
