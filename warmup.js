@@ -151,7 +151,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Text is not string');
     } else {
-        let countSmiles = text.split(':-)').length + text.split('(-:').length - 2;
+        let countSmiles = text.split(':-)').length +
+        text.split('(-:').length -
+        text.split('(-:-)').length - 1;
 
         return countSmiles;
     }
