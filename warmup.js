@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
 
     if (typeof n !== 'number') {
         throw new TypeError('Not a number');
-    } else if (parseInt(n) !== n || n < 0) {
+    } else if (parseInt(n) !== n || n <= 0) {
         throw new RangeError('Number is not positive entire');
     } else {
         return getFibonacciValue(n);
@@ -123,7 +123,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('Arg is not a number');
     } else if (targetNs > 36 || targetNs < 2) {
         throw new RangeError('Invalig range of argument');
@@ -138,7 +138,6 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // return phoneNumber.split(/8-800-\d\d\d-\d\d-\d\d/).length === 1;
     return /^[0-9\-+]{9,15}$/.test(phoneNumber);
 }
 
@@ -152,7 +151,6 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Invalid arguments');
     } else {
-        // const splittedText = text.split(':-)');
         let countSmiles = text.split(':-)').length + text.split('(-:').length - 2;
 
         return countSmiles;
