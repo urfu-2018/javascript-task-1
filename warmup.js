@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!(hexColor.match('#[0-9a-fA-F]{6}'))) {
+    if (!(/^#[0-9a-fA-F]{6}/.test(hexColor))){
         throw new RangeError();
     }
     const rgb = [];
@@ -92,7 +92,7 @@ function matrixProblem(matrix) {
     }
 
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i])) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
     }
@@ -125,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return Boolean(phoneNumber.match('8-800-\\d{3}-\\d{2}-\\d{2}'));
+    return /'8-800-\\d{3}-\\d{2}-\\d{2}/.test(phoneNumber);
 }
 
 /**
