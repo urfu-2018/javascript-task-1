@@ -1,4 +1,3 @@
-/*eslint-disable*/
 'use strict';
 
 /**
@@ -9,8 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number'||typeof(b) !== 'number')
-        throw new TypeError;
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+        throw new TypeError();
+    }
 
     return a + b;
 }
@@ -23,8 +23,9 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number')
-        throw new TypeError;
+    if (typeof(year) !== 'number') {
+        throw new TypeError();
+    }
     const century = 100;
     const answer = Math.trunc(year / century);
 
@@ -39,16 +40,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor)!=='string') throw new TypeError;
-    if (!hexColor.match(/#[0-9A-F]{6}/i)) throw new RangeError;
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError();
+    }
+    if (!hexColor.match(/#[0-9A-F]{6}/i)) {
+        throw new RangeError();
+    }
     let result = '(';
-    for (let i = 1; i < hexColor.length / 2; i++){
+    for (let i = 1; i < hexColor.length / 2; i++) {
         const firstPart = hexColor[i];
         const secondPart = hexColor[i + 1];
         result += parseInt(firstPart + secondPart, 16) + ', ';
     }
 
-    return result.substring(0, result.length-2) + ')';
+    return result.substring(0, result.length - 2) + ')';
 }
 
 /**
@@ -59,17 +64,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') throw new TypeError;
-    if (n < 0 || n % 1 !== 0) throw new RangeError;
-    if (n === 1 || n === 2) return 1;
-    let a = b = 1;
-    for (let i = 0; i < n - 2; i++){
-        if (a >= b)
-            b += a;
-        else a += b;
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    }
+    if (n < 0 || !Number.isInteger(n)) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 0; i < n - 2; i++) {
+        a += b;
+        b = a - b;
     }
 
-    return a > b ? a : b;
+    return a;
 }
 
 /**
@@ -79,13 +87,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) throw new TypeError;
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+        throw new TypeError();
+    }
     let transposedMatrix = new Array(matrix.length);
-    for (let i = 0; i < transposedMatrix.length; i++){
+    for (let i = 0; i < transposedMatrix.length; i++) {
         transposedMatrix[i] = new Array(matrix[0].length);
     }
-    for (let i = 0; i < matrix.length; i++){
-        for (let j = 0; j < matrix[0].length; j++){
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
             transposedMatrix[i][j] = matrix[j][i];
         }
     }
@@ -102,8 +112,12 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') throw new TypeError;
-    if (targetNs < 2 || targetNs > 36) throw new RangeError;
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
     const result = n.toString(targetNs);
 
     return result;
@@ -126,14 +140,15 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text)!=='string') throw new TypeError;
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
     const leftSideSmile = /:-\)/ig;
     const rightSideSmile = /\(-:/ig;
     function countOfSmiles(regExp) {
         const arrayOfMatchedSmiles = text.match(regExp);
-        const countOfSmiles =  (arrayOfMatchedSmiles !== null) ? arrayOfMatchedSmiles.length : 0;
 
-        return countOfSmiles;
+        return (arrayOfMatchedSmiles !== null) ? arrayOfMatchedSmiles.length : 0;
     }
 
     return countOfSmiles(leftSideSmile) + countOfSmiles(rightSideSmile);
@@ -146,14 +161,19 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    function isWinLine(coord1, coord2, coord3){
+    function isWinLine(coord1, coord2, coord3) {
         return (coord1 === coord2 && coord2 === coord3);
     }
-    if (isWinLine(field[0][0],field[1][1],field[2][2]) ||
-        isWinLine(field[2][0],field[1][1],field[0][2])) return field[1][1];
-    for (let i = 0; i < 2; i++){
-        if (isWinLine(field[0][i],field[1][i],field[2][i])) return field[0][1];
-        else if (isWinLine(field[i][0],field[i][1],field[i][2])) return field[0][1];
+    if (isWinLine(field[0][0], field[1][1], field[2][2]) ||
+        isWinLine(field[2][0], field[1][1], field[0][2])) {
+        return field[1][1];
+    }
+    for (let i = 0; i < 2; i++) {
+        if (isWinLine(field[0][i], field[1][i], field[2][i])) {
+            return field[0][1];
+        } else if (isWinLine(field[i][0], field[i][1], field[i][2])) {
+            return field[0][1];
+        }
     }
 
     return 'draw';
