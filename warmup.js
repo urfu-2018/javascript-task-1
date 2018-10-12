@@ -80,7 +80,7 @@ function fibonacciProblem(n) {
         b = a;
     }
 
-    return current;
+    return a;
 }
 
 /**
