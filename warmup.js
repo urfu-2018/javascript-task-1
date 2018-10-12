@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError('One or more arguments are NaN');
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError('Argument is NaN');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
@@ -40,7 +40,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError('Argument must be a string');
     } else if (! /^#(\d|[A-F]|[a-f]){6}$/.test(hexColor)) {
         throw new RangeError('Color values out of range');
@@ -62,7 +62,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(n)) {
+    if (typeof(n) !== 'number') {
         throw new TypeError('Argument is NaN');
     } else if (n <= 0 || n % 1 !== 0) {
         throw new RangeError('Argument must be a positive integer');
@@ -105,7 +105,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError('One or more arguments are NaN');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('TargetNs must be in [2, 36] range');
