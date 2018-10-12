@@ -10,11 +10,6 @@ function typeDefinitionString(q) {
     return typeof (q) !== 'string';
 }
 
-// Проверка на целое число
-function isIntegerNumber(numberFibonacci) {
-    return ((numberFibonacci % 1) === 0);
-}
-
 // Перевод в систему счисления
 function parseHex(st, co, pos) {
     return parseInt(st.slice(co, pos), 16);
@@ -89,7 +84,7 @@ function fibonacciProblem(n) {
     if (typeDefinitionNumber(n)) {
         throw new TypeError('Параметр должен быть числом');
     }
-    if ((n < 0) && isIntegerNumber(n)) {
+    if ((n < 0) || !Number.isInteger(n)) {
         throw new RangeError ('Параметр должен быть целым числом и больще 0');
     }
     let a = 1;
@@ -135,7 +130,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (typeDefinitionNumber(n) || !isIntegerNumber(targetNs) || typeDefinitionNumber(targetNs)) {
+    if (typeDefinitionNumber(n) || !Number.isInteger(targetNs) || typeDefinitionNumber(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {
