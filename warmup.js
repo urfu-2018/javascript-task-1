@@ -82,10 +82,9 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0 || matrix.some(matrixString => {
-        for (let i = 0; i < matrix.length; i++) {
-            if (!Array.isArray(matrixString) || matrixString.length !== matrix[0].length) {
-                return true;
-            }
+        if (!Array.isArray(matrixString) || matrixString.length !== matrix[0].length ||
+            matrix[0].length === 0) {
+            return true;
         }
 
         return false;
