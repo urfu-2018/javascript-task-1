@@ -23,8 +23,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
-        throw new TypeError('Argument must be non-negative positive number');
+    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+        throw new TypeError('Argument must be an integer number');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
     }
@@ -64,7 +64,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('Argument is NaN');
-    } else if (n <= 0 || n % 1 !== 0) {
+    } else if (n <= 0 || Number.isInteger(n)) {
         throw new RangeError('Argument must be a positive integer');
     }
     let first = 1;
@@ -112,7 +112,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError('One or more arguments are NaN');
-    } else if (targetNs % 1 !== 0) {
+    } else if (!Number.isInteger(targetNs)) {
         throw new TypeError('Number system must be integer');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('TargetNs must be in [2, 36] range');
