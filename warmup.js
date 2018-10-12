@@ -81,9 +81,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || matrix.some(matrixString => {
-        if (!Array.isArray(matrixString) || matrixString.length !== matrix[0].length ||
-            matrix[0].length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
+    }
+    if (matrix[0].length === 0 || matrix.some(matrixString => {
+        if (!Array.isArray(matrixString) || matrixString.length !== matrix[0].length) {
             return true;
         }
 
@@ -91,15 +93,8 @@ function matrixProblem(matrix) {
     })) {
         throw new TypeError();
     }
-    const transposedMatrix = new Array(matrix[0].length);
-    for (let i = 0; i < matrix[0].length; i++) {
-        transposedMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix.length; j++) {
-            transposedMatrix[i][j] = matrix[j][i];
-        }
-    }
 
-    return transposedMatrix;
+    return Object.keys(matrix[0]).map(matrixString => matrix.map(elem => elem[matrixString]));
 }
 
 /**
