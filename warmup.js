@@ -44,7 +44,8 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7) {
+    var re = /#[0-9a-fA-F]{6}/g;
+    if (!re.test(hexColor)) {
         throw new RangeError();
     }
     var first = parseInt(hexColor.slice(1, 3), 16);

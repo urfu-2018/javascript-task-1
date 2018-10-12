@@ -28,11 +28,14 @@ console.info(centuryByYearProblem(99));
 console.info('colorProblem');
 console.info(colorsProblem('#FFFFFF'));
 console.info(colorsProblem('#ffffff'));
-console.info(colorsProblem('#000000'));
+console.info(colorsProblem('#1479aF'));
+// console.info(colorsProblem('#fds'));
+// console.info(colorsProblem('#kkkkkk'));
+
 
 // Выведет `1`
 console.info('fibbonacciProblem');
-console.info(fibonacciProblem(100));
+console.info(fibonacciProblem(79));
 
 
 // Выведет `[
@@ -124,5 +127,10 @@ console.info(ticTacToeProblem([
     ['o', 'x', 'x'],
     ['o', 'x', 'o'],
     ['x', 'x', 'o']
+]));
+console.info(ticTacToeProblem([
+    ['x', 'o', 'x'],
+    ['x', 'x', 'o'],
+    ['o', 'x', 'o']
 ]));
 
