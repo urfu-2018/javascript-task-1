@@ -81,14 +81,18 @@ function fibonacciProblem(n) {
 }
 
 function fibonacciResolve(n) {
-    if (n === 0) {
-        return 0;
-    }
-    if (n === 1) {
-        return 1;
+    let i = 1;
+    let result = 1;
+    let firstElem = 1;
+    let secondElem = 1;
+
+    while (++i < n) {
+        result = firstElem + secondElem;
+        firstElem = secondElem;
+        secondElem = result;
     }
 
-    return fibonacciResolve(n - 1) + fibonacciResolve(n - 2);
+    return result;
 }
 
 /**
@@ -118,10 +122,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs) || Math.floor(targetNs) !== targetNs) {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
-    } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
     }
 
     return n.toString(targetNs);
