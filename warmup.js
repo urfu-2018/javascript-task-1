@@ -168,25 +168,42 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const sets = [[field[0][0], field[1][1], field[2][2]],
-        [field[2][0], field[1][1], field[0][2]],
-        [field[0][0], field[1][0], field[2][0]],
-        [field[0][1], field[1][1], field[2][1]],
-        [field[0][2], field[1][2], field[2][2]],
-        [field[0][0], field[0][1], field[0][2]],
-        [field[1][0], field[1][1], field[1][2]],
-        [field[2][0], field[2][1], field[2][2]]];
+    // const sets = [[field[0][0], field[1][1], field[2][2]],
+    //     [field[2][0], field[1][1], field[0][2]],
+    //     [field[0][0], field[1][0], field[2][0]],
+    //     [field[0][1], field[1][1], field[2][1]],
+    //     [field[0][2], field[1][2], field[2][2]],
+    //     [field[0][0], field[0][1], field[0][2]],
+    //     [field[1][0], field[1][1], field[1][2]],
+    //     [field[2][0], field[2][1], field[2][2]]];
 
-    for (var i = 0; i < 8; i++) {
-        const elem = sets[i][0];
-        if (elem === sets[i][1] && sets[i][1] === sets[i][2]) {
-            return elem;
+    // for (var i = 0; i < 8; i++) {
+    //     const elem = sets[i][0];
+    //     if (elem === sets[i][1] && sets[i][1] === sets[i][2]) {
+    //         return elem;
+    //     }
+    // }
+
+    // return 'draw';
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
         }
+
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
     }
 
     return 'draw';
 }
-
 module.exports = {
     abProblem,
     centuryByYearProblem,
