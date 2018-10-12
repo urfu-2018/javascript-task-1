@@ -84,17 +84,16 @@ function matrixProblem(matrix) {
     } else if (matrix[0].length === 0) {
 
         return [[]];
-    } else {
-        const newMatrix = Array(matrix[0].length);
-        for (let i = 0; i < matrix.length; i++) {
-            newMatrix[i] = new Array(matrix.length);
-            for (let j = 0; j < matrix.length; j++) {
-                newMatrix[i][j] = matrix[j][i];
-            }
-        }
-
-        return newMatrix;
     }
+    const newMatrix = Array(matrix[0].length);
+    for (let i = 0; i < matrix.length; i++) {
+        newMatrix[i] = new Array(matrix.length);
+        for (let j = 0; j < matrix.length; j++) {
+            newMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return newMatrix;
 }
 
 /**
@@ -164,10 +163,8 @@ function ticTacToeProblem(field) {
 
             return field[0][i];
         }
-        else {
 
-            return 'draw';
-        }
+        return 'draw';
     }
 }
 
