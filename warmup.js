@@ -130,7 +130,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text)!=="string") throw new TypeError;
+    if (typeof(text)!=='string') throw new TypeError;
     const leftSideSmile = /:-\)/ig;
     const rightSideSmile = /\(-:/ig;
     function countOfSmiles(regExp) {
@@ -150,7 +150,17 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    function isWinLine(coord1, coord2, coord3){
+        return (coord1 === coord2 && coord2 === coord3);
+    }
+    if (isWinLine(field[0][0],field[1][1],field[2][2]) ||
+        isWinLine(field[2][0],field[1][1],field[0][2])) return field[1][1];
+    for (let i = 0; i < 2; i++){
+        if (isWinLine(field[0][i],field[1][i],field[2][i])) return field[0][1];
+        else if (isWinLine(field[i][0],field[i][1],field[i][2])) return field[0][1];
+    }
+
+    return 'draw';
 }
 
 module.exports = {
