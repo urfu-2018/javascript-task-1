@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (isNaN(a) || isNaN(b)) {
+        throw new TypeError('One or more arguments are NaN');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (isNaN(year)) {
+        throw new TypeError('Argument is NaN');
+    }
+    if (year < 0) {
+        throw new RangeError('Argument must be non-negative');
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -30,7 +41,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (! /^#.{6}$/.test(hexColor)) {
+        throw new TypeError('Argument must be a "#RRGGBB"-like string');
+    }
+    if (! /^#(\d|[A-F]|[a-f]){6}$/.test(hexColor)) {
+        throw new RangeError('Color values out of range');
+    }
+    let color = hexColor
+        .slice(1)
+        .match(/.{2}/g)
+        .map(str => parseInt(str, 16))
+        .join(', ');
+
+    return '(' + color + ')';
 }
 
 /**
@@ -92,7 +115,16 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let wins = [[0, 4, 8], [2, 4, 6], [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8]];
+    let cells = [].concat(field[0], field[1], field[2]);
+    wins.forEach(win => {
+        if (cells[win[0]] === cells[win[1]] && cells[win[0]] === cells[win[2]]) {
+            return cells[win[0]];
+        }
+    });
+
+    return 'draw';
 }
 
 module.exports = {
