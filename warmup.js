@@ -133,7 +133,7 @@ function smilesProblem(text) {
     }
     let match = text.match(/(:-\))|(\(-:)/g);
 
-    return match === undefined ? 0 : match.length;
+    return match === null ? 0 : match.length;
 }
 
 /**
