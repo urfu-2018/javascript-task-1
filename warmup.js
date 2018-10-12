@@ -87,7 +87,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i])) {
+        if (matrix[i].length < 1) {
             throw new TypeError();
         }
     }
