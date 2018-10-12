@@ -73,7 +73,7 @@ function fibonacciProblem(n) {
     if (!isIntegerNumber(n)) {
         throw new TypeError(n + ' is not an integer number');
     }
-    if (n <= 0) {
+    if (n < 0) {
         throw new RangeError(n + ' is not a positive integer number');
     }
     let previous = 0;
@@ -99,14 +99,12 @@ function matrixProblem(matrix) {
         throw new TypeError('specified matrix is not a two-dimensional array');
     }
     const TRANSPOSED_MATRIX = [];
-    let matrixRowLength = 0;
+    const MATRIX_ROW_LENGTH = matrix[0].length;
     matrix.forEach(function (row) {
         if (!Array.isArray(row) || Array.isArray(row) && !row.length) {
             throw new TypeError('specified matrix is not a two-dimensional array');
         }
-        if (!matrixRowLength) {
-            matrixRowLength = row.length;
-        } else if (row.length !== matrixRowLength) {
+        if (MATRIX_ROW_LENGTH !== row.length) {
             throw new TypeError('specified matrix is not a two-dimensional array');
         }
         row.forEach(function (cellValue, cellIndex) {
