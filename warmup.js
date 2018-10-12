@@ -70,20 +70,14 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    let cur = 1;
-    let prev = 1;
-    let next = 2;
+    const part = ((1 + Math.sqrt(5)) / 2);
+    const sqrtOfFive = Math.sqrt(5);
     if (!isNaN(n)) {
         if (!Number.isInteger(n)) {
             throw RangeError;
         }
-        for (let i = 0; i < n - 1; i++) {
-            next = cur + prev;
-            prev = cur;
-            cur = next;
-        }
 
-        return prev;
+        return Math.round(Math.pow(part, n) / sqrtOfFive);
     }
     throw TypeError;
 }
