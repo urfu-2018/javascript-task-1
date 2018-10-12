@@ -101,7 +101,7 @@ function fibonacciResolve(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
 
@@ -121,7 +121,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (!Number.isInteger(targetNs)) {
         throw new TypeError();
     }
 
