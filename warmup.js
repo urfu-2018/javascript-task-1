@@ -78,14 +78,15 @@ function fibonacciProblem(n) {
     let fibNum = 0;
 
     for (let i = 0; i < n; i++) {
-      if (i === 0) {
-        fibNum = 1;
-      } else {
-        fibNum = previousNum + currentNum;
-        previousNum = currentNum;
-        currentNum = fibNum;
-      }
+        if (i === 0) {
+            fibNum = 1;
+        } else {
+            fibNum = previousNum + currentNum;
+            previousNum = currentNum;
+            currentNum = fibNum;
+        }
     }
+
     return fibNum;
 }
 
