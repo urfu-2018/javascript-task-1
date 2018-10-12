@@ -8,11 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isIntegerNumber(a)) {
-        throw new TypeError(a + ' is not an integer number');
+    if (typeof a !== 'number') {
+        throw new TypeError(a + ' is not a number');
     }
-    if (!isIntegerNumber(b)) {
-        throw new TypeError(b + ' is not an integer number');
+    if (typeof b !== 'number') {
+        throw new TypeError(b + ' is not a number');
     }
 
     return a + b;
