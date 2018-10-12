@@ -98,9 +98,9 @@ function matrixProblem(matrix) {
     if (!isEqualLength) {
         throw new TypeError('Arrays have different length');
     }
-    let transMatrix = [];
+    let transMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
-        transMatrix.push([]);
+        transMatrix.push(new Array(matrix.length));
         for (let j = 0; j < matrix[i].length; j++) {
             transMatrix[i][j] = matrix[j][i];
         }
