@@ -119,6 +119,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+
     return /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/.test(phoneNumber);
 }
 
@@ -129,7 +130,16 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    const leftSideSmile = /:-\)/ig;
+    const rightSideSmile = /\(-:/ig;
+    function countOfSmiles(regExp) {
+        const arrayOfMatchedSmiles = text.match(regExp);
+        const countOfSmiles =  (arrayOfMatchedSmiles !== null) ? arrayOfMatchedSmiles.length : 0;
+
+        return countOfSmiles;
+    }
+
+    return countOfSmiles(leftSideSmile) + countOfSmiles(rightSideSmile);
 }
 
 /**
