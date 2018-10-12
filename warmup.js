@@ -49,13 +49,13 @@ function colorsProblem(hexColor) {
     if (!parsed) {
         throw new RangeError();
     }
-    const result = [];
-    for (let i = 1; i < parsed.length; i++) {
-        const color = parseInt(parsed[i], 16);
-        result.push(color);
-    }
+    const rgbColors = [
+        parseInt(parsed[1], 16),
+        parseInt(parsed[2], 16),
+        parseInt(parsed[3], 16)
+    ];
 
-    return '(' + result.join(', ') + ')';
+    return '(' + rgbColors.join(', ') + ')';
 }
 
 /**
@@ -93,11 +93,11 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
-    for (let i = 0; i < matrix.length; i++) {
+    /* for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
-    }
+    } */
 
     return matrix[0].map((_, i) => matrix.map(row => row[i]));
 }
@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -127,6 +127,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+    
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
