@@ -168,7 +168,8 @@ function ticTacToeProblem(field) {
             return getWinner(current);
         }
     }
-    throw new Error('Меня жестоко обманули');
+
+    return 'draw';
 }
 
 function getWinner(list) {
