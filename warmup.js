@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
     if (typeDefinitionNumber(n)) {
         throw new TypeError('Параметр должен быть числом');
     }
-    if ((n < 0) || !Number.isInteger(n)) {
+    if ((n <= 0) || !Number.isInteger(n)) {
         throw new RangeError ('Параметр должен быть целым числом и больще 0');
     }
     let a = 1;
