@@ -30,9 +30,6 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    if (year === 0) {
-        return 1;
-    }
 
     return Math.ceil(year / 100);
 }
@@ -90,7 +87,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i])) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length <= 0) {
             throw new TypeError();
         }
     }
