@@ -45,13 +45,13 @@ function colorsProblem(hexColor) {
     } else if (! /^#(\d|[A-F]|[a-f]){6}$/.test(hexColor)) {
         throw new RangeError('Color values out of range');
     }
-
-    return hexColor
+    let rgb = hexColor
         .slice(1)
         .match(/.{2}/g)
         .map(str => parseInt(str, 16))
-        .join(', ')
-        .map(str => '(' + str + ')');
+        .join(', ');
+
+    return `(${rgb})`;
 }
 
 /**
