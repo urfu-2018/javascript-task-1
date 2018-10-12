@@ -25,8 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('Year is not a number');
-    }
-    if (!Number.isInteger(year)) {
+    } else if (!Number.isInteger(year)) {
         throw new RangeError('Year is not integer');
     } else if (year < 0) {
         throw new RangeError('Negative year');
@@ -94,7 +93,7 @@ function matrixProblem(matrix) {
     } else if (matrix.length === 0) {
         throw new TypeError('Array is empty');
     }
-    const isGoodMatrix = matrix.every(item => Array.isArray(item) && item.length !== 0 &&
+    const isGoodMatrix = matrix.every(item => Array.isArray(item) &&
     item.length === matrix[0].length);
     if (!isGoodMatrix) {
         throw new TypeError('Array is not a matrix to transparent');
