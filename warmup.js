@@ -39,24 +39,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    function isHex(number) {
-        if (!isNaN(number)){
-
-        }
-    }
     if (typeof(hexColor)!=='string') throw new TypeError;
-    if (hexColor[0]!=='#') throw new RangeError;
+    if (!hexColor.match(/#[0-9A-F]{6}/i)) throw new RangeError;
     let result = '(';
-    for (let i = 1; i < hexColor.length; i++){
+    for (let i = 1; i < hexColor.length / 2; i++){
         const firstPart = hexColor[i];
-        const secondPart = hexColor[i+1];
-        if (typeof (firstPart) !== 0){
-        result += parseInt(hexColor[i] + hexColor[i+1], 16) + ',';
-        }
+        const secondPart = hexColor[i + 1];
+        result += parseInt(firstPart + secondPart, 16) + ', ';
     }
-    result = result.replace(result.lastIndexOf(','),'')
 
-    return result + ')';
+    return result.substring(0, result.length-2) + ')';
 }
 
 /**
@@ -110,7 +102,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') throw new TypeError;
+    if (targetNs < 2 || targetNs > 36) throw new RangeError;
+    const result = n.toString(targetNs);
 
+    return result;
 }
 
 /**
