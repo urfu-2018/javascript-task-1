@@ -29,7 +29,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Argument must be non-negative');
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.floor((year - 1) / 100) + 1;
 }
 
 /**
