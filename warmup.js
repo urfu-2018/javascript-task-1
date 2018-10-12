@@ -23,12 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
-        throw new TypeError('Argument is NaN');
+    if (typeof(year) !== 'number' || year % 1 !== 0) {
+        throw new TypeError('Argument must be non-negative positive number');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
-    } else if (year === 0) {
-        return -1;
     }
 
     return Math.ceil(year / 100);
