@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
     if (year % 100 === 0) {
@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.match(/^#[a-fA-F\d]{6}$/i) === null) {
+    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
         throw new RangeError();
     }
     const colors = splitColors(hexColor);
@@ -98,8 +98,12 @@ function matrixProblem(matrix) {
     if (matrix.constructor !== Array || matrix[0].constructor !== Array) {
         throw new TypeError();
     }
-    if (matrix[0].length === 0) {
-        return [[]];
+    var m = matrix[0].length;
+    if (m === 0 || matrix.some(row => !(row instanceof Array) || row.length !== m)) {
+        throw new TypeError();
+    }
+    if (matrix.length === 0) {
+        throw new TypeError();
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
