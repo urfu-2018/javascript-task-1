@@ -54,7 +54,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('year не целое');
     }
 
-    return Math.trunc((year - 1) / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -220,59 +220,13 @@ function convertNumToTargetNs(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const hyphensIndices = [1, 5, 9, 12];
-    const immutableDigitsIndices = [0, 2, 3, 4];
-    const immutableDigits = ['8', '8', '0', '0'];
-    const mutableDigitsIndices = [6, 7, 8, 10, 11, 13, 14];
-    const isCorrectLength = phoneNumber.length === 15;
-    const hyphensInPlaces = areHyphensInPlaces(phoneNumber, hyphensIndices);
-    const correctImmutableDigits =
-        areCorrectImmutableDigits(phoneNumber, immutableDigitsIndices, immutableDigits);
-    const validMutableDigits = areValidNutableDigits(phoneNumber, mutableDigitsIndices);
-
-    return hyphensInPlaces && isCorrectLength &&
-           correctImmutableDigits && validMutableDigits;
-}
-
-function areHyphensInPlaces(phoneNumber, hyphensIndices) {
-    let result = true;
-    for (let i = 0; i < hyphensIndices.length; i++) {
-        const index = hyphensIndices[i];
-        if (phoneNumber[index] !== '-') {
-            result = false;
-            break;
-        }
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('phoneNumber не является строкой');
     }
 
-    return result;
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
-function areCorrectImmutableDigits(phoneNumber, immutableDigitsIndices,
-    immutableDigits) {
-    let result = true;
-    for (let i = 0; i < immutableDigitsIndices.length; i++) {
-        const index = immutableDigitsIndices[i];
-        if (phoneNumber[index] !== immutableDigits[i]) {
-            result = false;
-            break;
-        }
-    }
-
-    return result;
-}
-
-function areValidNutableDigits(phoneNumber, mutableDigitsIndices) {
-    let result = true;
-    for (let i = 0; i < mutableDigitsIndices.length; i++) {
-        const index = mutableDigitsIndices[i];
-        if (phoneNumber[index] < '0' || phoneNumber[index] > '9') {
-            result = false;
-            break;
-        }
-    }
-
-    return result;
-}
 
 /**
  * Определяет количество улыбающихся смайликов в строке
@@ -301,56 +255,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const horizontalWinner = getHorizontalWinner(field);
-    if (horizontalWinner !== undefined) {
-        return horizontalWinner;
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
-    const verticalWinner = getVerticalWinner(field);
-    if (verticalWinner !== undefined) {
-        return verticalWinner;
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
     }
-    const diagonalWinner = getDiagonalWinner(field);
-    if (diagonalWinner !== undefined) {
-        return diagonalWinner;
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
     }
 
     return 'draw';
-}
-
-function getHorizontalWinner(field) {
-    let winner;
-    for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            winner = field[i][0];
-            break;
-        }
-    }
-
-    return winner;
-}
-
-function getVerticalWinner(field) {
-    let winner;
-    for (let i = 0; i < 3; i++) {
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            winner = field[0][i];
-            break;
-        }
-    }
-
-    return winner;
-}
-
-function getDiagonalWinner(field) {
-    let winner;
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        winner = field[0][0];
-    }
-    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-        winner = field[0][2];
-    }
-
-    return winner;
 }
 
 module.exports = {
