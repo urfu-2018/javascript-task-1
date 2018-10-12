@@ -33,8 +33,11 @@ function centuryByYearProblem(year) {
         throw new RangeError(year + ' is not a positive integer number');
     }
     const YEARS_IN_CENTURY = 100;
+    if (year % YEARS_IN_CENTURY === 0) {
+        return year / YEARS_IN_CENTURY;
+    }
 
-    return Math.ceil(year / YEARS_IN_CENTURY);
+    return Math.floor(year / YEARS_IN_CENTURY) + 1;
 }
 
 /**
@@ -95,7 +98,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || Array.isArray(matrix) && !matrix.length) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('specified matrix is not an array');
+    }
+    if (!matrix.length) {
         throw new TypeError('specified matrix is not a two-dimensional array');
     }
     const TRANSPOSED_MATRIX = [];
