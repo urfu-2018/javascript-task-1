@@ -1,5 +1,20 @@
 'use strict';
 
+// Проверка на число
+function typeDefinitionNumber(x) {
+    return typeof (x) !== 'number';
+}
+
+// Проверка на строку
+function typeDefinitionString(q) {
+    return typeof (q) !== 'string';
+}
+
+// Перевод в систему счисления
+function parseHex(st, co, pos) {
+    return parseInt(st.slice(co, pos), 16);
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -9,6 +24,15 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    if (typeDefinitionNumber(a) || typeDefinitionNumber(b)) {
+        throw new TypeError('Введены неверные данные');
+    }
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Числа должны быть целыми');
+    }
+
+    return a + b;
+
 }
 
 /**
@@ -20,6 +44,15 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    if (typeDefinitionNumber(year) || !Number.isInteger(year)) {
+        throw new TypeError('Параметр должен быть целым числом ');
+    }
+    if (year < 0) {
+        throw new RangeError ('Параметр должен быть больше 0');
+    }
+
+    return Math.ceil(year / 100);
+
 }
 
 /**
@@ -31,6 +64,15 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    if (typeDefinitionString(hexColor)) {
+        throw new TypeError('Цвет передан не строкой');
+    }
+    if (!(/^#[a-fA-F0-9]{6}$/.test(hexColor))) {
+        throw new RangeError('Значения цвета выходят за пределы допустимых');
+    }
+
+    return '(' + [parseHex(hexColor, 1, 3),
+        parseHex(hexColor, 3, 5), parseHex(hexColor, 5, 7)].join(', ') + ')';
 }
 
 /**
@@ -42,6 +84,22 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    if (typeDefinitionNumber(n)) {
+        throw new TypeError('Параметр должен быть числом');
+    }
+    if ((n <= 0) || !Number.isInteger(n)) {
+        throw new RangeError ('Параметр должен быть целым числом и больще 0');
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
+
 }
 
 /**
@@ -52,6 +110,16 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    if (matrix.length === 0 || !Array.isArray(matrix) ||
+        !Array.isArray(matrix[0])) {
+        throw new TypeError ('Не двумерный массив');
+    }
+    let arr = matrix[0].length;
+    if (arr === 0 || matrix.some(row=>!(Array.isArray(row)) || row.length !== arr)) {
+        throw new TypeError('Ошибка');
+    }
+
+    return matrix[0].map((column, a) => matrix.map(row => row[a]));
 }
 
 /**
@@ -64,6 +132,15 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    if (typeDefinitionNumber(n) || typeDefinitionNumber(targetNs) || !Number.isInteger(targetNs)) {
+        throw new TypeError('Переданы аргументы некорректного типа');
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError ('Cистема счисления выходит за пределы значений [2, 36]');
+    }
+
+    return n.toString(targetNs);
+
 }
 
 /**
@@ -73,6 +150,11 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    if (typeDefinitionString(phoneNumber)) {
+        throw new TypeError('Параметр должен быть строкой');
+    }
+
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -83,6 +165,12 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
+    if (typeDefinitionString(text)) {
+        throw new TypeError ('В качестве аргумента передаётся не строка');
+    }
+
+    return (text.match(/(:-\)|\(-:)/g) || []).length;
+
 }
 
 /**
@@ -93,6 +181,23 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[0][2];
+    }
+
+    for (let i = 0; i < 3; ++i) {
+        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[0][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
