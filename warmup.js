@@ -1,5 +1,12 @@
 'use strict';
 
+function isNumeric(n) {
+    return !isNaN(parseInt(n)) && isFinite(n);
+}
+function isInteger(num) {
+    return num.toString().indexOf('.') < 0;
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -8,7 +15,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!isNumeric(a) && !isNumeric(b)) {
+        throw new TypeError('Переданные аргументы не являются числами');
+    }
+    if (!isInteger(a) && !isInteger(b)) {
+        throw new TypeError('Переданные параметры-числа не являются целыми');
+    }
+
+    return Number(a) + Number(b);
 }
 
 /**
@@ -19,7 +33,28 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!isNumeric(year)) {
+        throw new TypeError('Параметр "year" не является числом');
+    }
+    if (!isInteger(year)) {
+        throw new TypeError('Параметр "year" не является целым числом');
+    }
+    if (Number(year) <= 0) {
+        throw new RangeError('Параметр "year" отрицательный');
+    }
+    if (Number(year) % 100 !== 0) {
+        return Math.trunc(Number(year) / 100) + 1;
+    }
+
+    return Math.trunc(Number(year) / 100);
+}
+
+function isValidRange(hexString) {
+    const leftRange = parseInt('000000', 16);
+    const rightRange = parseInt('FFFFFF', 16);
+    const hexDecimal = parseInt(hexString, 16);
+
+    return leftRange <= hexDecimal && hexDecimal <= rightRange;
 }
 
 /**
@@ -30,7 +65,23 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (isNumeric(hexColor) || hexColor[0] !== '#' || hexColor.length !== 7) {
+        throw new TypeError('Переданная строка не в формате HEX');
+    }
+    if (!isValidRange(hexColor.slice(1))) {
+        throw new RangeError('Значение цвета выходят за пределы допустимых');
+    }
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${r}, ${g}, ${b})`;
+}
+
+function confirmNumberType(n) {
+    if (typeof (n) !== 'number') {
+        throw new TypeError(`Входной параметр n="${n}" не является числом`);
+    }
 }
 
 /**
@@ -41,7 +92,38 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    confirmNumberType(n);
+    if (!isInteger(n)) {
+        throw new TypeError('Переданный аргумент к функции не является числом');
+    }
+    if (Number(n) < 0) {
+        throw new RangeError('Выбранная позиция для подсчёта не является целым числом');
+    }
+    if (n <= 2) {
+        return 1;
+    }
+    var preprevious = 1;
+    var previous = 1;
+    var ans = 0;
+    for (var i = 2; i < n; i++) {
+        ans = preprevious + previous;
+        preprevious = previous;
+        previous = ans;
+    }
+
+    return ans;
+}
+
+function squareMatrixCase(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < i; j++) {
+            matrix[i][j] += matrix[j][i];
+            matrix[j][i] = matrix[i][j] - matrix[j][i];
+            matrix[i][j] -= matrix[j][i];
+        }
+    }
+
+    return matrix;
 }
 
 /**
@@ -51,7 +133,25 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (typeof (matrix) !== 'object') {
+        throw new TypeError('Переданный параметр не является матрицей');
+    }
+    const rows = matrix.length;
+    const columns = matrix[0].length;
+    if (rows === columns) {
+        return squareMatrixCase(matrix);
+    }
+    const transposedMatrix = new Array(columns);
+    for (let i = 0; i < columns; i++) {
+        transposedMatrix[i] = new Array(rows);
+    }
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -63,7 +163,12 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    confirmNumberType(n);
+    confirmNumberType(targetNs);
+    if (Number(targetNs) >= 2 || Number(targetNs) <= 36) {
+        return n.toString(Number(targetNs));
+    }
+    throw new RangeError('Выбранное число для системы счисления не лежит в отрезке [2,36]');
 }
 
 /**
@@ -72,7 +177,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof (phoneNumber) === 'string' && phoneNumber.split('-').length === 5) {
+        return phoneNumber.search(/8-800-\d{3}-\d{2}-\d{2}/) !== -1;
+    }
+
+    return false;
 }
 
 /**
@@ -82,7 +191,23 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof (text) !== 'string') {
+        throw new TypeError('Переданный параметр не является строкой');
+    }
+
+    return text.match(/(-:|:-)/g).length;
+}
+
+function checkHorizontally(field, i) {
+    if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+        return field[i][0];
+    }
+}
+
+function checkVertically(field, j) {
+    if (field[0][j] === field[1][j] && field[1][j] === field[2][j]) {
+        return field[0][j];
+    }
 }
 
 /**
@@ -92,7 +217,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
+    }
+    let winner;
+    for (let i = 0; i < 3; i++) {
+        winner = checkVertically(field, i);
+        winner = checkHorizontally(field, i);
+        if (typeof (winner) !== 'undefined') {
+            return winner;
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
@@ -106,3 +246,4 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
+
