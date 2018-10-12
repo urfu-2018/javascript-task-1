@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number' ||
-        Math.floor(a) !== a || Math.floor(b) !== b) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
 
@@ -62,7 +61,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
-    } else if (n <= 0 || Math.floor(n) !== n) {
+    } else if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let fibNumber = 1;
@@ -82,14 +81,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !(() => {
+    if (!Array.isArray(matrix) || matrix.length === 0 || matrix.some(matrixString => {
         for (let i = 0; i < matrix.length; i++) {
-            if (!(Array.isArray(matrix[i]) && matrix[i].length !== matrix[0].length)) {
-                return false;
+            if (!Array.isArray(matrixString) || matrixString.length !== matrix[0].length) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     })) {
         throw new TypeError();
     }
