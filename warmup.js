@@ -1,6 +1,6 @@
 'use strict';
 
-function isNotNumberNotFiniteNotInteger(elem) {
+function isNotNumberNotFinite(elem) {
     return (typeof elem !== 'number' || !isFinite(elem));
 }
 
@@ -13,10 +13,10 @@ function isNotNumberNotFiniteNotInteger(elem) {
  */
 
 function abProblem(a, b) {
-    if (isNotNumberNotFiniteNotInteger(a)) {
+    if (isNotNumberNotFinite(a)) {
         throw new TypeError('a не является числом');
     }
-    if (isNotNumberNotFiniteNotInteger(b)) {
+    if (isNotNumberNotFinite(b)) {
         throw new TypeError('b не является числом');
     }
 
@@ -50,9 +50,12 @@ function centuryByYearProblem(year) {
     if (year <= 0) {
         throw new RangeError('year неположительное');
     }
+
+    /*
     if (year % 1 !== 0) {
         throw new RangeError('year не целое');
     }
+    */
 
     return Math.ceil(year / 100);
 }
