@@ -11,7 +11,7 @@ function typeDefinitionString(q) {
 }
 
 // Проверка на целое число
-function isIntegerFibonacci(numberFibonacci) {
+function isIntegerNumber(numberFibonacci) {
     return ((numberFibonacci % 1) === 0);
 }
 
@@ -89,7 +89,7 @@ function fibonacciProblem(n) {
     if (typeDefinitionNumber(n)) {
         throw new TypeError('Параметр должен быть числом');
     }
-    if ((n < 0) && isIntegerFibonacci(n)) {
+    if ((n < 0) && isIntegerNumber(n)) {
         throw new RangeError ('Параметр должен быть целым числом и больще 0');
     }
     let a = 1;
@@ -134,7 +134,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (typeDefinitionNumber(n) || typeDefinitionNumber(targetNs)) {
+    if (typeDefinitionNumber(n) || !isIntegerNumber(targetNs) || typeDefinitionNumber(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {
