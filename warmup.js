@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.floor((year - 1) / 100) + 1;
 }
 
 /**
@@ -89,23 +89,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    var copy = getMatrixCopy(matrix);
-    for (var i = 0; i < matrix.length; ++i) {
-        for (var j = 0; j < matrix[i].length; ++j) {
-            copy[i][j] = matrix[j][i];
+    var result = [];
+    if (matrix.length === 0) {
+        return [];
+    }
+    for (var i = 0; i < matrix[0].length; ++i) {
+        var currentLine = [];
+        for (var j = 0; j < matrix.length; ++j) {
+            currentLine.push(matrix[j][i]);
         }
+        result.push(currentLine);
     }
 
-    return copy;
-}
-
-function getMatrixCopy(matrix) {
-    var copy = [];
-    for (var i = 0; i < matrix.length; ++i) {
-        copy[i] = matrix[i].slice();
-    }
-
-    return copy;
+    return result;
 }
 
 /**
