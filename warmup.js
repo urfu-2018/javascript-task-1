@@ -1,7 +1,7 @@
 'use strict';
 
 function isNotNumberNotFiniteNotInteger(elem) {
-    return (typeof elem !== 'number' || !isFinite(elem) || elem % 1 !== 0);
+    return (typeof elem !== 'number' || !isFinite(elem));
 }
 
 /**
@@ -169,7 +169,7 @@ function numberSystemProblem(n, targetNs) {
     if (isNInvalid(n)) {
         throw new TypeError('n не является числом');
     }
-    if (isTargetNsNotNumber(targetNs)) {
+    if (isNInvalid(targetNs)) {
         throw new TypeError('targetNs не является числом');
     }
     if (isTargetNsNotInRange(targetNs)) {
@@ -181,10 +181,6 @@ function numberSystemProblem(n, targetNs) {
 
 function isNInvalid(n) {
     return (typeof n !== 'number' || !isFinite(n));
-}
-
-function isTargetNsNotNumber(targetNs) {
-    return (typeof targetNs !== 'number' || !isFinite(targetNs));
 }
 
 function isTargetNsNotInRange(targetNs) {
