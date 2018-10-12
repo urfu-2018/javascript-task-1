@@ -46,14 +46,12 @@ function colorsProblem(hexColor) {
     if (!hexColor.match(/#[0-9A-F]{6}/i)) {
         throw new RangeError();
     }
-    let result = '(';
-    for (let i = 1; i < hexColor.length / 2; i++) {
-        const firstPart = hexColor[i];
-        const secondPart = hexColor[i + 1];
-        result += parseInt(firstPart + secondPart, 16) + ', ';
-    }
+    let arrayOfColors = new Array(3);
+    arrayOfColors[0] = parseInt(hexColor.substr(1, 2), 16);
+    arrayOfColors[1] = parseInt(hexColor.substr(3, 2), 16);
+    arrayOfColors[2] = parseInt(hexColor.substr(5, 2), 16);
 
-    return result.substring(0, result.length - 2) + ')';
+    return '(' + arrayOfColors[0] + ', ' + arrayOfColors[1] + ', ' + arrayOfColors[2] + ')';
 }
 
 /**
