@@ -73,21 +73,7 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    let previousNum = 0;
-    let currentNum = 1;
-    let fibNum = 0;
-
-    for (let i = 0; i < n; i++) {
-        if (i === 0) {
-            fibNum = 1;
-        } else {
-            fibNum = previousNum + currentNum;
-            previousNum = currentNum;
-            currentNum = fibNum;
-        }
-    }
-
-    return fibNum;
+    return n <= 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
