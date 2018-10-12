@@ -105,9 +105,11 @@ function matrixProblem(matrix) {
 }
 
 function checkMatrix(matrix) {
+    if (!matrix.length) {
+        return false;
+    }
     for (let i = 0; i < matrix.length - 1; i++) {
-        if (matrix.length === 0 ||
-            !Array.isArray(matrix[i]) ||
+        if (!Array.isArray(matrix[i]) ||
             !Array.isArray(matrix[i + 1]) ||
             matrix[i].length !== matrix[i + 1].length) {
 
