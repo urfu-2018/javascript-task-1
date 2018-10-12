@@ -104,13 +104,13 @@ function matrixProblem(matrix) {
         return [[]];
     }
     var newMatrix = [];
-    var a = 0;
+    // var a = 0;
     for (var i = 0; i < matrix.length; i++) { // m
         newMatrix.push([]);
         for (var j = 0; j < matrix[i].length; j++) { // n
-            newMatrix[a].push(matrix[j][i]);
+            newMatrix[i].push(matrix[j][i]);
         }
-        a += 1;
+        // a += 1;
     }
 
     return newMatrix;
@@ -132,7 +132,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return (n).toString(targetNs);
+    return n.toString(targetNs);
 }
 
 /**
@@ -141,7 +141,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.match(/8-800-\d{3}-\d{2}-\d{2}/) !== null;
+    return phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/) !== null;
 }
 
 /**
@@ -155,11 +155,10 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    const leftSmile = text.match(/:-\)/g);
-    const rightSmile = text.match(/\(-:/g);
+    const leftSmile = (text.match(/:-\)/g) || []).length;
+    const rightSmile = (text.match(/\(-:/g) || []).length;
 
-    return ((leftSmile === null) ? 0 : leftSmile.length) +
-        ((rightSmile === null) ? 0 : rightSmile.length);
+    return leftSmile + rightSmile;
 }
 
 /**
