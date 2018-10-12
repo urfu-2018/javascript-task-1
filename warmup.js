@@ -23,8 +23,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year) || year % 1 !== 0) {
-        throw new TypeError('Argument must be an integer number');
+    if (isNaN(year)) {
+        throw new TypeError('Argument is NaN');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
     }
@@ -40,8 +40,8 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (! /^#.{6}$/.test(hexColor)) {
-        throw new TypeError('Argument must be a "#RRGGBB"-like string');
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('Argument must be a string');
     } else if (! /^#(\d|[A-F]|[a-f]){6}$/.test(hexColor)) {
         throw new RangeError('Color values out of range');
     }
