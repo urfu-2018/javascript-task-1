@@ -8,7 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(typeof a === 'number') && !(typeof b === 'number')) {
+    const isNumber = typeof a === 'number' && typeof b === 'number';
+    const isInteger = Math.trunc(a) === a && Math.trunc(b) === b;
+    if (!(isNumber && isInteger)) {
         throw TypeError;
     }
 
@@ -23,7 +25,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!(typeof year === 'number')) {
+    if (!(typeof year === 'number' && Math.trunc(year) === year)) {
         throw TypeError;
     }
     if (year < 0) {
@@ -47,7 +49,7 @@ function centuryByYearProblem(year) {
  */
 
 function colorsProblem(hexColor) {
-    if (!(typeof hexColor === 'string')) {
+    if (!(typeof hexColor === 'string' && hexColor.length === 7)) {
         throw TypeError;
     }
     const red = parseInt(hexColor.slice(1, 3), 16);
@@ -95,8 +97,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))) {
+    if (!Array.isArray(matrix)) {
         throw TypeError;
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
+            throw TypeError;
+        }
     }
     const result = [];
     for (let i = 0; i < matrix.length; i++) {
@@ -118,7 +125,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!(typeof n === 'number') && !(typeof targetNs === 'number')) {
+    const isTargetNsSatisfy = typeof targetNs === 'number' && Math.trunc(targetNs) === targetNs;
+    if (!(typeof n === 'number' && isTargetNsSatisfy)) {
         throw TypeError;
     }
     if (!(targetNs >= 2 <= 36)) {
