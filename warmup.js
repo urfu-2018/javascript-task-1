@@ -22,9 +22,8 @@ function isNumber(argument) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumber(a) || !isNumber(b)) {
-        throw new TypeError('Argumnents should be a numbers');
-    }
+    throwErrorIfNotInteger(a);
+    throwErrorIfNotInteger(b);
 
     return a + b;
 }
