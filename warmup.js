@@ -62,7 +62,11 @@ function colorsProblem(hexColor) {
 
     // Изоляция HEX-компонент
     const COLOR_COMPONENTS_AMOUNT = 3;
-    const hexColorComponents = [hexColor.substring(1, 3), hexColor.substring(3, 5), hexColor.substring(5)];
+    const hexColorComponents = [
+        hexColor.substring(1, 3),
+        hexColor.substring(3, 5),
+        hexColor.substring(5)
+    ];
 
     // Конвертация в RGB
     const HEX_BASE = 16;
