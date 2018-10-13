@@ -49,16 +49,15 @@ function colorsProblem(hexColor) {
         throw new TypeError('expecting hexColor as String');
     }
 
-    const hexColorRegex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
-    const matchResult = hexColor.match(hexColorRegex);
+    const hexColorRegex = /^#[0-9a-f]{6}$/i;
 
-    if (matchResult === null || matchResult.length !== 4) {
+    if (!hexColorRegex.test(hexColor)) {
         throw new RangeError('invalid hexColor string format!');
     }
 
-    const red = parseInt(matchResult[1], 16);
-    const green = parseInt(matchResult[2], 16);
-    const blue = parseInt(matchResult[3], 16);
+    const red = parseInt(hexColor.substring(1, 3), 16);
+    const green = parseInt(hexColor.substring(3, 5), 16);
+    const blue = parseInt(hexColor.substring(5), 16);
 
     return `(${red}, ${green}, ${blue})`;
 }
@@ -71,11 +70,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number' || !Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('Invalid argument type');
     }
 
-    if (n <= 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('n must be positive');
     }
 
