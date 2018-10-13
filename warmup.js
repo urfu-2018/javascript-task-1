@@ -39,10 +39,8 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const rangeRegexp = /^#[A-F0-9]{6}$/i;
-
     if (typeof hexColor === 'string') {
-        if (rangeRegexp.test(hexColor)) {
+        if (/^#[A-F0-9]{6}$/i.test(hexColor)) {
             return (
                 `(${parseInt(hexColor.slice(1, 3), 16)}, ` +
                 `${parseInt(hexColor.slice(3, 5), 16)}, ` +
@@ -158,16 +156,8 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    let smilesCounter = 0;
-
     if (typeof text === 'string') {
-        [].forEach.call(text, (_, i) => {
-            if (text.slice(i, 3 + i) === ':-)' || text.slice(i, 3 + i) === '(-:') {
-                smilesCounter += 1;
-            }
-        });
-
-        return smilesCounter;
+        return text.match(/:-\)|\(-:/).length;
     }
     throw new TypeError('в качестве аргумента передаётся не строка');
 }
