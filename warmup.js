@@ -108,7 +108,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || isNaN(n)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
@@ -127,7 +127,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
