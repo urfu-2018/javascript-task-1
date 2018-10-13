@@ -93,7 +93,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (matrix.length === 0 || !Array.isArray(matrix) ||
-        !matrix.every(a => Array.isArray(a) && a.every(b => b[0] === undefined))) {
+        !Array.isArray(matrix[0])) {
         throw new TypeError('Ошбика типа!');
     }
     const matrixTrans = [];
