@@ -169,6 +169,11 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('text не является строкой');
     }
+
+    return text.match(/:-\)/) + text.match(/\(-:/) - text.match(/\(-:-\)/);
+
+    /*
+
     let smilesCount = 0;
     for (let i = 0; i < text.length - 2; i++) {
         if (text.substring(i, i + 3) === ':-)' || text.substring(i, i + 3) === '(-:') {
@@ -177,6 +182,8 @@ function smilesProblem(text) {
     }
 
     return smilesCount;
+
+    */
 }
 
 /**
