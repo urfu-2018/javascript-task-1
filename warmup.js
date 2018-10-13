@@ -1,9 +1,5 @@
 'use strict';
 
-function isNotNumberNotFinite(elem) {
-    return (typeof elem !== 'number' || !isFinite(elem));
-}
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -13,28 +9,15 @@ function isNotNumberNotFinite(elem) {
  */
 
 function abProblem(a, b) {
-    if (isNotNumberNotFinite(a)) {
+    if (typeof a !== 'number') {
         throw new TypeError('a не является числом');
     }
-    if (isNotNumberNotFinite(b)) {
+    if (typeof b !== 'number') {
         throw new TypeError('b не является числом');
     }
 
     return a + b;
 }
-
-/*
-
-function abProblem(a, b) {
-    if (typeof a !== 'number' || !isFinite(a) || a % 1 !== 0) {
-        throw new TypeError('a не является числом');
-    }
-    if (typeof b !== 'number' || !isFinite(b) || b % 1 !== 0) {
-        throw new TypeError('b не является числом');
-    }
-
-    return a + b;
-}*/
 
 /**
  * Определяет век по году
@@ -44,7 +27,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !isFinite(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('year не является числом');
     }
     if (year <= 0) {
@@ -69,21 +52,6 @@ function colorsProblem(hexColor) {
     if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
         throw new RangeError('hexColor представлен в неправильном диапазоне');
     }
-
-    /*
-    if (hexColor.length !== 7) {
-        throw new RangeError('hexColor неправильной длины');
-    }
-    if (hexColor[0] !== '#') {
-        throw new RangeError('hexColor не является кодом цвета');
-    }
-    for (let i = 1; i < hexColor.length; i++) {
-        const hex = hexColor[i];
-        if (isNaN(parseInt(hex)) && !(hex >= 'A' && hex <= 'F') && !(hex >= 'a' && hex <= 'f')) {
-            throw new RangeError('значения hexColor находятся вне валидного диапазона');
-        }
-    }
-    */
 
     return hexToRgb(hexColor);
 }
