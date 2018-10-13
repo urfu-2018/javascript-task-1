@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
 }
 
 function isMatrix(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         return false;
     }
     for (var i = 0; i < matrix.length; i++) {
@@ -121,7 +121,6 @@ function isMatrix(matrix) {
     }
 
     return true;
-
 }
 
 /**
