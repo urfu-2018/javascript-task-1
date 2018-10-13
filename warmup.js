@@ -107,10 +107,13 @@ function matrixProblem(matrix) {
         typeError();
     }
     let n = matrix[0].length;
+    let elementIndex = 0;
     matrix.forEach(element => {
+        matrixT[elementIndex] = [];
         if (element.length !== n) {
             typeError();
         }
+        elementIndex++;
     });
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
