@@ -46,7 +46,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string' || hexColor.length !== 7) {
+    if (!isString(hexColor) || hexColor.length !== 7) {
         throw new TypeError();
     } else if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
         throw new RangeError();
@@ -56,6 +56,10 @@ function colorsProblem(hexColor) {
         return '(' + parseInt(regex[1], 16) + ', ' + parseInt(regex[2], 16) + ', ' +
          parseInt(regex[3], 16) + ')';
     }
+}
+
+function isString(str) {
+    return typeof(str) === 'string';
 }
 
 /**
@@ -144,6 +148,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!isString(phoneNumber)) {
+        return new TypeError();
+    }
     var myreg = /8-800-\d{3}-\d{2}-\d{2}/;
     var regex = myreg.exec(phoneNumber);
 
@@ -157,7 +164,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string') {
+    if (!isString(text)) {
         throw new TypeError();
     }
     var smileReg = /(:-\)|\(-:)/g;
