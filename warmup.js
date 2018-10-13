@@ -23,11 +23,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('Invalid argument type');
     }
 
-    if (year < 0) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('Year must be positive');
     }
 
@@ -137,7 +137,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('invalid argument\'s type');
     }
 
-    if (n < 2 && n > 36) {
+    if (n < 2 || n > 36) {
         throw new RangeError('invalid targetNs range');
     }
 
