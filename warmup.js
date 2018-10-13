@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    throwsErrorIfNumbersAreNotInteger([a, b], 'Arguments are not numbers');
+    throwsErrorIfNumbersAreNotInteger(a, 'Arguments are not numbers');
+    throwsErrorIfNumbersAreNotInteger(b, 'Arguments are not numbers');
 
     return a + b;
 }
@@ -21,7 +22,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    throwsErrorIfNumbersAreNotInteger([year], 'Year is not a number');
+    throwsErrorIfNumbersAreNotInteger(year, 'Year is not a number');
     throwsErrorIfNumberNotInRange(year, 0, Number.POSITIVE_INFINITY, 'Year is negative');
 
     return Math.ceil(year / 100);
@@ -35,6 +36,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+    throwsErrorIfInputIsString(hexColor, 'hexColor is not string');
     let rgb = [];
     hexColor = hexColor.substring(1);
     for (let i = 0; i < 3; i ++) {
@@ -52,7 +54,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    throwsErrorIfNumbersAreNotInteger([n], 'n is not a number');
+    throwsErrorIfNumbersAreNotInteger(n, 'n is not a number');
     throwsErrorIfNumberNotInRange(n, 0, Number.POSITIVE_INFINITY, 'n is negative');
     let first = 1;
     let second = 1;
@@ -97,7 +99,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     throwsErrorIfInputIsNotNumber(n, 'n is not number');
-    throwsErrorIfNumbersAreNotInteger([targetNs]);
+    throwsErrorIfNumbersAreNotInteger(targetNs, 'targetNs is not integer');
     throwsErrorIfNumberNotInRange(targetNs, 2, 36, 'targetNS is not in range');
 
     return n.toString(targetNs);
@@ -121,9 +123,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !== 'string') {
-        throw new TypeError ('text is not string');
-    }
+    throwsErrorIfInputIsString(text, 'text is not string');
     let smilesCount = 0;
     for (let i = 0; i < text.length - 2; i++) {
         let substr = text.substring(i, i + 3);
@@ -216,11 +216,9 @@ function getDiagonalFromField(field, isMainDiagonal) {
     return diagonal;
 }
 
-function throwsErrorIfNumbersAreNotInteger(numbers, errorMessage) {
-    for (let i = 0; i < numbers.length; i++) {
-        if (!Number.isInteger(numbers[i])) {
-            throw new TypeError(errorMessage);
-        }
+function throwsErrorIfNumbersAreNotInteger(number, errorMessage) {
+    if (!Number.isInteger(number)) {
+        throw new TypeError(errorMessage);
     }
 }
 
@@ -252,6 +250,12 @@ function throwsErrorIfInputIsNotArray(input, errorMessage) {
 function throwsErrorIfInputIsNotNumber(input, errorMessage) {
     if (isNaN(parseFloat(input)) || !isFinite(input)) {
         throw new TypeError(errorMessage);
+    }
+}
+
+function throwsErrorIfInputIsString(input, errorMessage) {
+    if (typeof input !== 'string') {
+        throw new TypeError (errorMessage);
     }
 }
 
