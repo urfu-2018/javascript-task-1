@@ -1,7 +1,7 @@
 'use strict';
 
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -9,7 +9,7 @@ function abProblem(a, b) {
 }
 
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -32,7 +32,7 @@ function colorsProblem(hexColor) {
 }
 
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
     if (n <= 0) {
@@ -59,7 +59,7 @@ function matrixProblem(matrix) {
 }
 
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 32) {
