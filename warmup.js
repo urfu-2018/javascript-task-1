@@ -37,13 +37,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     throwsTypeErrorIfInputIsNotString(hexColor);
+    let correctHexColor = /^#[A-Fa-f0-9]{6}$/;
+    if (!correctHexColor.test(hexColor)) {
+        throw new RangeError('hexColor is not in range');
+    }
     let rgb = [];
     hexColor = hexColor.substring(1);
     for (let i = 0; i < 3; i ++) {
         rgb.push(parseInt(hexColor.substr(i * 2, 2), 16).toString());
-    }
-    for (let i = 0; i < rgb.length; i++) {
-        throwsRangeErrorIfNumberNotInRange(rgb[i], 0, 255);
     }
 
     return `(${rgb.join(', ')})`;
