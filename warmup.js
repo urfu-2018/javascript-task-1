@@ -67,17 +67,13 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (!Number.isInteger(n) || n < 0) {
         throw new RangeError();
     }
 
-    if (n === 1 || n === 2) {
-        return 1;
-    }
-
-    let previous = 1;
+    let previous = 0;
     let target = 1;
-    for (let i = 3; i <= n; i++) {
+    for (let i = 2; i <= n; i++) {
         let next = previous + target;
         previous = target;
         target = next;
