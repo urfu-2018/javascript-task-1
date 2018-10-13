@@ -136,8 +136,13 @@ function matrixProblem(matrix) {
         }
     });
 
-    // Транспонирование матрицы
+    // Создание основы для транспонированной матрицы
     let transposedMatrix = [];
+    for (let i = 0; i < N; i++) {
+        transposedMatrix.push([]);
+    }
+
+    // Транспонирование матрицы
     for (let i = 0; i < M; i++) {
         for (let j = 0; j < N; j++) {
             transposedMatrix[j][i] = matrix[i][j];
