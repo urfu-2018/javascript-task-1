@@ -93,16 +93,8 @@ function matrixProblem(matrix) {
     if (!isMatrixCorrect(matrix)) {
         throw new TypeError();
     }
-    var result = [];
-    for (var i = 0; i < matrix[0].length; i++) {
-        var currentLine = [];
-        for (var j = 0; j < matrix.length; j++) {
-            currentLine.push(matrix[j][i]);
-        }
-        result.push(currentLine);
-    }
 
-    return result;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 function isMatrixCorrect(matrix) {
@@ -148,9 +140,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    var re = /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g;
-
-    return re.test(phoneNumber);
+    return /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g.test(phoneNumber);
 }
 
 /**
