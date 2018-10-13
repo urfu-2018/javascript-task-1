@@ -73,7 +73,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 2 || n % 1 !== 0) {
+    if (n < 1 || n % 1 !== 0) {
         throw new RangeError();
     }
 
@@ -91,7 +91,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length <= 0) {
+        if (matrix[i].length <= 0) {
             throw new TypeError();
         }
     }
