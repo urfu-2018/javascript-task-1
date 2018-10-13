@@ -122,6 +122,9 @@ function matrixProblem(matrix, shouldValidate = true) {
     return matrix[0].map((x, i) => matrix.map(y => y[i]));
 }
 
+function isCorrectNSysetem(ns) {
+    return Number.isInteger(ns) && ns >= 2 || ns <= 36;
+}
 
 /**
  * Переводит число в другую систему счисления
@@ -132,12 +135,11 @@ function matrixProblem(matrix, shouldValidate = true) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        !Number.isInteger(targetNs) || !Number.isInteger(n)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('invalid argument\'s type');
     }
 
-    if (n < 2 || n > 36) {
+    if (!Number.isInteger(n) || ! isCorrectNSysetem(targetNs)) {
         throw new RangeError('invalid targetNs range');
     }
 
