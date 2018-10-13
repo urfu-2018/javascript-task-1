@@ -34,10 +34,10 @@ function centuryByYearProblem(year) {
         typeError();
     }
     if (Number.isInteger(year)) {
-        if (year < 0) {
-            rangeError();
+        if (year >= 0) {
+            return Math.ceil(year / 100);
         }
-        return Math.ceil(year / 100);
+        rangeError();
     }
     typeError();
 }
