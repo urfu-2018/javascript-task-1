@@ -44,20 +44,21 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    const hexRegexPattern = /^#[1234567890abcdefABCDEF]{6}$/;
+    const hexRegexPattern = /^#[1234567890abcdefABCDEF]+$/;
     if (!hexRegexPattern.test(hexColor)) {
+        throw new TypeError();
+    }
+    if (hexColor.length > 7) {
         throw new RangeError();
     }
 
-    if (hexColor.length === 7) {
-        let rComponent = hexColor.substr(1, 2);
-        let gComponent = hexColor.substr(3, 2);
-        let bComponent = hexColor.substr(5, 2);
+    let rComponent = hexColor.substr(1, 2);
+    let gComponent = hexColor.substr(3, 2);
+    let bComponent = hexColor.substr(5, 2);
 
-        return '(' + parseInt(rComponent, 16) + ', ' +
-            parseInt(gComponent, 16) + ', ' +
-            parseInt(bComponent, 16) + ')';
-    }
+    return '(' + parseInt(rComponent, 16) + ', ' +
+        parseInt(gComponent, 16) + ', ' +
+        parseInt(bComponent, 16) + ')';
 }
 
 /**
