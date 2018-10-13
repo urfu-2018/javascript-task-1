@@ -29,7 +29,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Ошибка размерности!');
     } else {
         if (year % 100 === 0) {
-            return year / 100
+            return year / 100;
         }
 
         return Math.floor(year / 100) + 1;
@@ -94,17 +94,17 @@ function matrixProblem(matrix) {
     if (matrix.length === 0 || !Array.isArray(matrix) ||
         !matrix.every(a => a.every(b => b[0] === undefined))) {
         throw new TypeError('Ошбика типа!');
-    } else {
-        const matrixTrans = [];
-        for (let i = 0; i < matrix[0].length; i++) {
-            matrixTrans[i] = [];
-            for (let j = 0; j < matrix.length; j++) {
-                matrixTrans[i][j] = matrix[j][i];
-            }
-        }
-
-        return matrixTrans;
     }
+    const matrixTrans = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        matrixTrans[i] = [];
+        for (let j = 0; j < matrix.length; j++) {
+            matrixTrans[i][j] = matrix[j][i];
+        }
+    }
+
+    return matrixTrans;
+
 }
 
 
@@ -117,7 +117,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof  targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Ошбика типа!');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('Ошибка размерности!');
@@ -135,7 +135,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
 
-    return /8-800-\d\d\d-\d\d-\d\d/.test(phoneNumber)
+    return /8-800-\d\d\d-\d\d-\d\d/.test(phoneNumber);
 }
 
 
@@ -168,16 +168,16 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][2] === field[i][1]) {
-            return field[i][0]
+            return field[i][0];
         } else if (field[0][i] === field[1][i] && field[2][i] === field[1][i]) {
-            return field[0][i]
+            return field[0][i];
         }
     }
 
     if (field[1][1] === field[0][0] && field[2][2] === field[1][1]) {
-        return field[0][0]
+        return field[0][0];
     } else if (field[1][1] === field[0][2] && field[2][0] === field[1][1]) {
-        return field[0][2]
+        return field[0][2];
     }
 
     return 'draw';
