@@ -54,7 +54,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    const hexColorRegex = /^#([\dA-F]{2})([\dA-F]{2})([\dA-F]{2})$/;
+    const hexColorRegex = /^#([\dA-Fa-f]{2})([\dA-Fa-f]{2})([\dA-Fa-f]{2})$/;
     const match = hexColor.match(hexColorRegex);
 
     if (match === null) {
