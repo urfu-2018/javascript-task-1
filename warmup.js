@@ -177,61 +177,33 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const lines = [];
-    const columns = [];
-    getLinesAndColumns(field, lines, columns);
-    const diagonals = getDiagonals(field);
-    const result = [];
-    checkLinesAndColumnsForWinner(lines, columns, result);
-    checkDiagonalsForWinner(diagonals, result);
-    if (!(result.length === 1)) {
-        return 'draw';
-    }
-
-    return result[0] ? 'x' : 'o';
-}
-
-function getLinesAndColumns(field, lines, columns) {
     for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            lines.push(field[i][j] === 'x');
-            columns.push(field[j][i] === 'x');
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
         }
     }
-}
 
-function getDiagonals(field) {
-    const diagonals = [];
+    return checkDiagonalsOrDraw(field);
+}
+function checkDiagonalsOrDraw(field) {
+    const diagonal = field[1][1];
     for (let i = 0; i < 3; i++) {
-        diagonals.push(field[i][i] === 'x');
+        if (diagonal === field[i][i]) {
+            return diagonal;
+        }
     }
     for (let i = 0, j = 2; i < 3 && j >= 0; i++, j--) {
-        diagonals.push(field[i][j] === 'x');
-    }
-
-    return diagonals;
-}
-
-function checkLinesAndColumnsForWinner(lines, columns, result) {
-    for (let i = 0; i < lines.length; i += 3) {
-        const lineSum = lines[i] + lines[i + 1] + lines[i + 2];
-        const columnSum = columns[i] + columns[i + 1] + columns[i + 2];
-        if (lineSum === 3 || lineSum === 0) {
-            result.push(lines[i]);
-        } else if (columnSum === 3 || columnSum === 0) {
-            result.push(columns[i]);
+        if (diagonal === field[i][j]) {
+            return diagonal;
         }
     }
-}
-function checkDiagonalsForWinner(diagonals, result) {
-    for (let i = 0; i < diagonals.length; i += 3) {
-        const diagonalSum = diagonals[i] + diagonals[i + 1] + diagonals[i + 2];
-        if (diagonalSum === 3 || diagonalSum === 0) {
-            result.push(diagonals[i]);
-        }
-    }
-}
 
+    return 'draw';
+}
 module.exports = {
     abProblem,
     centuryByYearProblem,
