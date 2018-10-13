@@ -54,7 +54,7 @@ function colorsProblem(hexColor) {
         const second = parseInt(hexColor.slice(3, 5), 16);
         const third = parseInt(hexColor.slice(5, 7), 16);
 
-        return `(${first},${second},${third})`;
+        return `(${first}, ${second}, ${third})`;
     }
 }
 
