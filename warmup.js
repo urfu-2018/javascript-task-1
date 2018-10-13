@@ -132,7 +132,8 @@ function numberSystemProblem(n, targetNs) {
     if (!(typeof n === 'number' && isTargetNsSatisfy)) {
         throw new TypeError();
     }
-    if (!(targetNs >= 2 <= 36)) {
+
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
@@ -145,7 +146,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -183,7 +184,9 @@ function ticTacToeProblem(field) {
     let columns = [];
     getLinesAndColumns(field, lines, columns);
     let diagonals = getDiagonals(field);
-    let result = checkForWinner(lines, columns, diagonals);
+    const result = [];
+    checkLinesAndColumnsForWinner(lines, columns, result);
+    checkDiagonalsForWinner(diagonals, result);
     for (let element in result) {
         if (element) {
             return 'x';
@@ -216,23 +219,26 @@ function getDiagonals(field) {
     return diagonals;
 }
 
-function checkForWinner(lines, columns, diagonals) {
-    let result = [];
+function checkLinesAndColumnsForWinner(lines, columns, result) {
     for (let i = 0; i < lines.length; i += 3) {
-        if (lines[i] + lines[i + 1] + lines[i + 2] === 3) {
+        const lineSum = lines[i] + lines[i + 1] + lines[i + 2];
+        const columnSum = columns[i] + columns[i + 1] + columns[i + 2];
+        if (lineSum === 3 || lineSum === 0) {
             result.push(lines[i]);
-        } else if (columns[i] + columns[i + 1] + columns[i + 2] === 3) {
+        } else if (columnSum === 3 || columnSum === 0) {
             result.push(columns[i]);
         }
     }
+}
+function checkDiagonalsForWinner(diagonals, result) {
     for (let i = 0; i < diagonals.length; i += 3) {
-        if (diagonals[i] + diagonals[i + 1] + diagonals[i + 2] === 3) {
+        const diagonalSum = diagonals[i] + diagonals[i + 1] + diagonals[i + 2];
+        if (diagonalSum === 3 || diagonalSum === 0) {
             result.push(diagonals[i]);
         }
     }
-
-    return result;
 }
+
 
 module.exports = {
     abProblem,
