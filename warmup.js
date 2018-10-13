@@ -8,11 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumber(a) || !isNumber(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
-    return Number(a) + Number(b);
+    return a + b;
 }
 
 /**
@@ -23,19 +23,17 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isNumber(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
-    year = Number(year);
     if (year < 0) {
         throw new RangeError();
     }
-    let century = Math.floor(year / 100);
     if (year % 100 === 0) {
-        return century;
+        return Math.floor(year / 100);
     }
 
-    return century + 1;
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -46,9 +44,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' ||
-        hexColor.length !== 7 ||
-        hexColor.indexOf('#') !== 0) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
     if (!/^#[\dA-Fa-f]{6}$/.test(hexColor)) {
@@ -68,10 +64,9 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isNumber(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-
     if (n <= 0) {
         throw new RangeError();
     }
@@ -122,7 +117,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !isNumber(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError();
     }
     n = Number(n);
@@ -148,11 +143,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (/^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber)) {
-        return true;
-    }
-
-    return false;
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -226,14 +217,6 @@ function isTwoDimensionalArray(array) {
         if (!Array.isArray(array[i])) {
             return false;
         }
-    }
-
-    return true;
-}
-
-function isNumber(number) {
-    if (isNaN(number) || number === null) {
-        return false;
     }
 
     return true;
