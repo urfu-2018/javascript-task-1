@@ -1,7 +1,7 @@
 'use strict';
 
 function throwErrorIfNotInteger(argument, name = 'Argument') {
-    if (!Number.isInteger(argument)) {
+    if (!isNumber(argument) || !Number.isInteger(argument)) {
         throw new TypeError(`${name} should be an integer`);
     }
 }
@@ -56,14 +56,14 @@ function colorsProblem(hexColor) {
         throw new TypeError('Argument must be a string');
     }
 
-    let hexColorRegex = /^#[0-9ABCDEF]{6}$/gi;
+    let hexColorRegex = /^#[0-9a-fA-F]{6}$/;
     if (!hexColorRegex.test(hexColor)) {
         throw new RangeError('Argument not in allowed values');
     }
 
     let colorValues = new Array(3);
-    for (var i = 0; i < 3; i++) {
-        colorValues[i] = getColor(hexColor.substring(1 + i * 2, 1 + (i + 1) * 2));
+    for (var i = 1; i < hexColor.length; i += 2) {
+        colorValues[i] = getColor(hexColor.substring(i, i + 2));
     }
 
     return `(${colorValues.join(', ')})`;
@@ -92,7 +92,7 @@ function fibonacciProblem(n) {
     let previous = 1;
 
     for (let numberNow = 3; numberNow < n; numberNow++) {
-        let tmp = current;
+        const tmp = current;
         current = current + previous;
         previous = tmp;
     }
@@ -145,7 +145,7 @@ function getTransposedMatrix(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!isNumber(n)) {
-        return new TypeError('Arguments should be a numbers');
+        return new TypeError('n should be a numbers');
     }
     throwErrorIfNotInteger(targetNs, 'targetNs');
     if (targetNs < 2 || targetNs > 36) {
@@ -181,9 +181,12 @@ function smilesProblem(text) {
         throw new TypeError('Text should be string');
     }
 
-    let smilesRegex = /(:-\)|\(:-)/g;
+    return getCountOfSubsrting(text, /:-\)/g) + getCountOfSubsrting(text, /\(-:/g) 
+        - getCountOfSubsrting(text, /\(-:-\)/g);
+}
 
-    return (text.match(smilesRegex) || []).length;
+function getCountOfSubsrting(text, substringRegex) {
+    return (text.match(substringRegex) || []).length;
 }
 
 /**
