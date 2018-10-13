@@ -91,7 +91,7 @@ function fibonacciProblem(n) {
     let current = 1;
     let previous = 1;
 
-    for (let numberNow = 3; numberNow < n; numberNow++) {
+    for (let numberNow = 2; numberNow < n; numberNow++) {
         const tmp = current;
         current = current + previous;
         previous = tmp;
