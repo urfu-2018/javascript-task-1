@@ -29,12 +29,8 @@ function centuryByYearProblem(year) {
     if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
-    let century = Math.floor(year / 100);
-    if (year % 100 !== 0) {
-        century += 1;
-    }
 
-    return century;
+    return Math.ceil(year / 100);
 
 }
 
