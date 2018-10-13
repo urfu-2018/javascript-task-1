@@ -101,32 +101,6 @@ function fibonacciProblem(n) {
     return ans;
 }
 
-function squareMatrixCase(matrix) {
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < i; j++) {
-            matrix[i][j] += matrix[j][i];
-            matrix[j][i] = matrix[i][j] - matrix[j][i];
-            matrix[i][j] -= matrix[j][i];
-        }
-    }
-
-    return matrix;
-}
-
-function randomMatrixCase(matrix, rowsSum, colsSum) {
-    const transposedMatrix = new Array(colsSum);
-    for (let i = 0; i < colsSum; i++) {
-        transposedMatrix[i] = new Array(rowsSum);
-    }
-    for (let i = 0; i < rowsSum; i++) {
-        for (let j = 0; j < colsSum; j++) {
-            transposedMatrix[j][i] = matrix[i][j];
-        }
-    }
-
-    return transposedMatrix;
-}
-
 function checkMatrix(matrix) {
     if (matrix.length === 0 || !Array.isArray(matrix)) {
         throw new TypeError();
@@ -146,13 +120,8 @@ function checkMatrix(matrix) {
  */
 function matrixProblem(matrix) {
     checkMatrix(matrix);
-    var rows = matrix.length;
-    var columns = matrix[0].length;
-    if (rows === columns) {
-        return squareMatrixCase(matrix);
-    }
 
-    return randomMatrixCase(matrix, rows, columns);
+    return Object.keys(matrix[0]).map(matrixString => matrix.map(elem => elem[matrixString]));
 }
 
 /**
