@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    throwsErrorIfNumbersAreNotInteger(a, 'Arguments are not numbers');
-    throwsErrorIfNumbersAreNotInteger(b, 'Arguments are not numbers');
+    throwsErrorIfNumberAreNotInteger(a);
+    throwsErrorIfNumberAreNotInteger(b);
 
     return a + b;
 }
@@ -22,8 +22,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    throwsErrorIfNumbersAreNotInteger(year, 'Year is not a number');
-    throwsErrorIfNumberNotInRange(year, 0, Number.POSITIVE_INFINITY, 'Year is negative');
+    throwsErrorIfNumberAreNotInteger(year);
+    throwsErrorIfNumberNotInRange(year, 0, Number.POSITIVE_INFINITY);
 
     return Math.ceil(year / 100);
 }
@@ -36,7 +36,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    throwsErrorIfInputIsString(hexColor, 'hexColor is not string');
+    throwsErrorIfInputIsString(hexColor);
     let rgb = [];
     hexColor = hexColor.substring(1);
     for (let i = 0; i < 3; i ++) {
@@ -54,8 +54,8 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    throwsErrorIfNumbersAreNotInteger(n, 'n is not a number');
-    throwsErrorIfNumberNotInRange(n, 0, Number.POSITIVE_INFINITY, 'n is negative');
+    throwsErrorIfNumberAreNotInteger(n);
+    throwsErrorIfNumberNotInRange(n, 0, Number.POSITIVE_INFINITY);
     let first = 1;
     let second = 1;
     if (n === 1 || n === 2) {
@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    throwsErrorIfArrayIsNotMatrix(matrix, 'matrix is not two decimal array');
+    throwsErrorIfArrayIsNotMatrix(matrix);
     let result = [];
     for (let i = 0; i < matrix[0].length; i++) {
         result.push([]);
@@ -98,9 +98,9 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    throwsErrorIfInputIsNotNumber(n, 'n is not number');
-    throwsErrorIfNumbersAreNotInteger(targetNs, 'targetNs is not integer');
-    throwsErrorIfNumberNotInRange(targetNs, 2, 36, 'targetNS is not in range');
+    throwsErrorIfInputIsNotNumber(n);
+    throwsErrorIfNumberAreNotInteger(targetNs);
+    throwsErrorIfNumberNotInRange(targetNs, 2, 36);
 
     return n.toString(targetNs);
 }
@@ -123,7 +123,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    throwsErrorIfInputIsString(text, 'text is not string');
+    throwsErrorIfInputIsString(text);
     let smilesCount = 0;
     for (let i = 0; i < text.length - 2; i++) {
         let substr = text.substring(i, i + 3);
@@ -216,46 +216,49 @@ function getDiagonalFromField(field, isMainDiagonal) {
     return diagonal;
 }
 
-function throwsErrorIfNumbersAreNotInteger(number, errorMessage) {
+function throwsErrorIfNumberAreNotInteger(number) {
     if (!Number.isInteger(number)) {
-        throw new TypeError(errorMessage);
+        throw new TypeError(number.toString() + ' is not a number');
     }
 }
 
-function throwsErrorIfNumberNotInRange(number, start, end, errorMessage) {
+function throwsErrorIfNumberNotInRange(number, start, end) {
     if (start > number || number > end) {
-        throw new RangeError(errorMessage);
+        throw new RangeError(number.toString() + ` is not in range ${start} - ${end}`);
     }
 }
 
-function throwsErrorIfArrayIsNotMatrix(array, errorMessage) {
-    throwsErrorIfInputIsNotArray(array, errorMessage);
+function throwsErrorIfArrayIsNotMatrix(array) {
+    if (array.length === 0) {
+        throw new TypeError(array.toString() + ' is not a matrix');
+    }
+    throwsErrorIfInputIsNotArray(array);
     let length = 0;
     for (let i = 0; i < array.length; i++) {
-        throwsErrorIfInputIsNotArray(array[i], errorMessage);
+        throwsErrorIfInputIsNotArray(array[i]);
         if (i === 0) {
             length = array[i].length;
         } else if (array[i].length !== length) {
-            throw new TypeError(errorMessage);
+            throw new TypeError(array.toString() + ' is not a matrix');
         }
     }
 }
 
-function throwsErrorIfInputIsNotArray(input, errorMessage) {
+function throwsErrorIfInputIsNotArray(input) {
     if (!Array.isArray(input)) {
-        throw new TypeError(errorMessage);
+        throw new TypeError(input.toString() + ' is not array');
     }
 }
 
-function throwsErrorIfInputIsNotNumber(input, errorMessage) {
+function throwsErrorIfInputIsNotNumber(input) {
     if (isNaN(parseFloat(input)) || !isFinite(input)) {
-        throw new TypeError(errorMessage);
+        throw new TypeError(input.toString() + ' is not a number');
     }
 }
 
-function throwsErrorIfInputIsString(input, errorMessage) {
+function throwsErrorIfInputIsString(input) {
     if (typeof input !== 'string') {
-        throw new TypeError (errorMessage);
+        throw new TypeError (input.toString() + ' is not a string');
     }
 }
 
