@@ -48,7 +48,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('ВВедите строку!');
-    } 
+    }
     var betterHexColor = hexColor.replace('#', '');
     var bigint = parseInt(betterHexColor, 16);
     var r = (bigint > 16) && 255;
@@ -58,7 +58,7 @@ function colorsProblem(hexColor) {
         throw new RangeError('Выход за пределы 255!');
     }
 
-    return '(' + r + ',' + g + ',' + b + ')';
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 /**
@@ -69,7 +69,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    var check = typeof(n);
+    if (check !== 'number') {
+        throw new TypeError('ВВедите цифры!');
+    } else if (n <= 0 || n % 1 !== 0) {
+        throw new RangeError('');
+    }
+    var f = [1, 1];
+    if (n >= 2) {
+        for (var i = 0; i < n - 2; i++) {
+            f.push(f[f.length - 1] + f[f.length - 2]);
+        }
+
+        return f[f.length - 1];
+    }
+
+    return 1;
 }
 
 /**
@@ -79,7 +94,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (typeof(matrix[0][0]) !== 'number') {
+        throw new TypeError('ВВедите цифры!');
+    }
+    var result = [];
+    for (var i = 0; i < matrix[0].length; i++) {
+        result[i] = [];
+        for (var j = 0; j < matrix.length; j++) {
+            result[i][j] = matrix[j][i];
+        }
+    }
+
+    return result;
 }
 
 /**
@@ -91,7 +117,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof(n) !== 'number') {
+        throw new TypeError('ВВедите цифры!');
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -100,7 +132,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return /8-800-\d{3}-\d{2}-\d{2}/i.test(phoneNumber);
 }
 
 /**
@@ -110,7 +142,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError('строка должна быть!');
+    }
+    var tmp = text.match(/\(-:/ig);
+    var tmp2 = text.match(/:-\)/ig);
+
+    return (tmp !== null ? tmp.length : 0) + (tmp2 !== null ? tmp2.length : 0);
 }
 
 /**
@@ -120,7 +158,24 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    var answer = [[0, 0, 0, 1, 0, 2],
+        [1, 0, 1, 1, 1, 2],
+        [2, 0, 2, 1, 2, 2],
+        [0, 0, 1, 0, 2, 0],
+        [0, 1, 1, 1, 2, 1],
+        [0, 2, 1, 2, 2, 2],
+        [0, 0, 1, 1, 2, 2],
+        [2, 0, 1, 1, 0, 2]
+    ];
+    for (var i = 0; i < answer.length; i++) {
+        var tmpIndex = answer[i];
+        if (field[tmpIndex[0]][tmpIndex[1]] === field[tmpIndex[2]][tmpIndex[3]] &&
+        field[tmpIndex[2]][tmpIndex[3]] === field[tmpIndex[4]][tmpIndex[5]]) {
+            return field[tmpIndex[0]][tmpIndex[1]];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
