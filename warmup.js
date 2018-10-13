@@ -26,7 +26,8 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     if (year <= 0)
         throw new RangeError();
-    return (year % 100);
+    const YEARS_IN_CENTURY = 100;
+    return Math.trunc(year / YEARS_IN_CENTURY);
 }
 
 /**
@@ -37,19 +38,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor != 'string')
+    if (typeof hexColor != 'string') {
         throw new TypeError();
+    }
 
     const hexColorRegex = /^#([\dA-F]{2})([\dA-F]{2})([\dA-F]{2})$/;
-    if (!hexColorRegex.test(hexColor)) {
+    const match = hexColor.match(hexColorRegex);
+    
+    if (match === null) {
         throw new RangeError();
     }
 
     const COLOR_COMPONENTS_AMOUNT = 3;
-
-    const match = hexColor.match(hexColorRegex);
-    var hexColorComponents = match.slice(1, COLOR_COMPONENTS_AMOUNT + 1);
-    var decimalColorComponents = [];
+    const hexColorComponents = match.slice(1, COLOR_COMPONENTS_AMOUNT + 1);
+    let decimalColorComponents = [];
     for (var i = 0; i < COLOR_COMPONENTS_AMOUNT; i++) {
         decimalColorComponents.push(parseInt(hexColorComponents[i], 16));
     }
