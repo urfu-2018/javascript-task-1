@@ -93,31 +93,32 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (Array.isArray(matrix) && matrix.forEach(element => {
+    matrix.forEach(element => {
         if (Array.isArray(element)) {
             typeError();
         }
-    })) {
-        let matrixT = [];
-        let m = matrix.length;
-        if (m === 0) {
+    });
+    if (!Array.isArray(matrix)) {
+        typeError();
+    }
+    let matrixT = [];
+    let m = matrix.length;
+    if (m === 0) {
+        typeError();
+    }
+    let n = matrix[0].length;
+    matrix.forEach(element => {
+        if (element.length !== n) {
             typeError();
         }
-        let n = matrix[0].length;
-        matrix.forEach(element => {
-            if (element.length !== n) {
-                typeError();
-            }
-        })
-        for (let i = 0; i < m; i++) {
-            for (let j = 0; j < n; j++) {
-                matrixT[j][i] = matrix[i][j];
-            }
+    });
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            matrixT[j][i] = matrix[i][j];
         }
-
-        return matrixT;
     }
-    typeError();
+
+    return matrixT;
 }
 
 /**
