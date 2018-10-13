@@ -39,6 +39,12 @@ describe('Fibonacci problem', () => {
     });
 });
 
+describe('Fibonacci problem', () => {
+    it('Для n=9 должна вернуть `34`', () => {
+        assert.strictEqual(fibonacciProblem(9), 34);
+    });
+});
+
 describe('Matrix problem', () => {
     it('Должна транспонировать квадратную матрицу 3x3', () => {
         assert.deepStrictEqual(

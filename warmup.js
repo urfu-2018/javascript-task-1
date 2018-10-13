@@ -79,11 +79,6 @@ function colorsProblem(hexColor) {
     return `(${rgbColor.R}, ${rgbColor.G}, ${rgbColor.B})`;
 }
 
-const fibCache = {
-    0: 0,
-    1: 1
-};
-
 /**
  * Находит n-ое число Фибоначчи
  * @param {Number} n Положение числа в ряде Фибоначчи
@@ -92,20 +87,22 @@ const fibCache = {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (!isNumber(n)) {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
 
-    if (n in fibCache) {
-        return fibCache[n];
+    let a = 0;
+    let b = 1;
+    for (let i = 0; i < n; i++) {
+        let temp = a + b;
+        a = b;
+        b = temp;
     }
-    fibCache[n] = fibCache[n - 1] + fibCache[n - 2];
 
-    return fibCache[n];
-
+    return a;
 }
 
 /**
