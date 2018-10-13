@@ -124,8 +124,7 @@ function matrixProblem(matrix) {
 }
 
 function isTwoDimensionalArray(matrix) {
-    return matrix.constructor === Array && matrix[0].constructor === Array &&
-        matrix[0][0].constructor !== Array;
+    return matrix.constructor === Array && matrix[0].constructor === Array;
 }
 
 function isUndefined(matrix) {
