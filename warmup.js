@@ -161,14 +161,14 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let rowCheck = existsRowWithSameSymbols(field);
+    const rowCheck = existsRowWithSameSymbols(field);
     if (rowCheck !== false) {
         return rowCheck;
     }
-    for (let i = 0; i < 3; i++) {
-        if (isEquals(field[0][i], field[1][i], field[2][i])) {
-            return field[0][i];
-        }
+
+    const columnCheck = existsColumnWithSameSymbols(field);
+    if (columnCheck !== false) {
+        return columnCheck;
     }
     if (isEquals(field[0][0], field[1][1], field[2][2]) ||
         isEquals(field[2][0], field[1][1], field[0][2])) {
@@ -186,6 +186,16 @@ function existsRowWithSameSymbols(field) {
     for (let i = 0; i < field.length; i++) {
         if (isEquals(field[i][0], field[i][1], field[i][2])) {
             return field[i][0];
+        }
+    }
+
+    return false;
+}
+
+function existsColumnWithSameSymbols(field) {
+    for (let i = 0; i < 3; i++) {
+        if (isEquals(field[0][i], field[1][i], field[2][i])) {
+            return field[0][i];
         }
     }
 
