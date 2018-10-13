@@ -111,9 +111,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    throwsErrorIfInputIsString(phoneNumber);
     let regex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
-    return phoneNumber.search(regex) !== -1;
+    return regex.test(phoneNumber);
 }
 
 /**
@@ -153,8 +154,9 @@ function isSmileInSubstr(substr) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let winLines = [].concat(field, getAllColumnFromField(field),
-        getDiagonalFromField(field, true), getDiagonalFromField(field, false));
+    let winLines = [].concat(field, getAllColumnsFromField(field));
+    winLines.push(getDiagonalFromField(field, true));
+    winLines.push(getDiagonalFromField(field, false));
     if (isOneOfTheLineContainsOnlySymbol('x', winLines)) {
         return 'x';
     }
@@ -185,10 +187,10 @@ function isLineContainsOnlySymbol(symbol, line) {
     return true;
 }
 
-function getAllColumnFromField(field) {
+function getAllColumnsFromField(field) {
     let result = [];
     for (let i = 0; i < field[0].length; i++) {
-        result.push(getColumnFromField(getColumnFromField(field, i)));
+        result.push(getColumnFromField(field, i));
     }
 
     return result;
@@ -209,7 +211,7 @@ function getDiagonalFromField(field, isMainDiagonal) {
         if (isMainDiagonal) {
             diagonal.push(field[i][i]);
         } else {
-            diagonal.push(field[i][field.length - i]);
+            diagonal.push(field[i][field.length - i - 1]);
         }
     }
 
@@ -218,19 +220,19 @@ function getDiagonalFromField(field, isMainDiagonal) {
 
 function throwsErrorIfNumberAreNotInteger(number) {
     if (!Number.isInteger(number)) {
-        throw new TypeError(number.toString() + ' is not a number');
+        throw new TypeError(`${number.toString()} is not a number`);
     }
 }
 
 function throwsErrorIfNumberNotInRange(number, start, end) {
     if (start > number || number > end) {
-        throw new RangeError(number.toString() + ` is not in range ${start} - ${end}`);
+        throw new RangeError(`${number.toString()} is not in range ${start} - ${end}`);
     }
 }
 
 function throwsErrorIfArrayIsNotMatrix(array) {
     if (array.length === 0) {
-        throw new TypeError(array.toString() + ' is not a matrix');
+        throw new TypeError(`${array.toString()} is not a matrix`);
     }
     throwsErrorIfInputIsNotArray(array);
     let length = 0;
@@ -239,26 +241,26 @@ function throwsErrorIfArrayIsNotMatrix(array) {
         if (i === 0) {
             length = array[i].length;
         } else if (array[i].length !== length) {
-            throw new TypeError(array.toString() + ' is not a matrix');
+            throw new TypeError(`${array.toString()} is not a matrix`);
         }
     }
 }
 
 function throwsErrorIfInputIsNotArray(input) {
     if (!Array.isArray(input)) {
-        throw new TypeError(input.toString() + ' is not array');
+        throw new TypeError(`${input.toString()} is not array`);
     }
 }
 
 function throwsErrorIfInputIsNotNumber(input) {
     if (isNaN(parseFloat(input)) || !isFinite(input)) {
-        throw new TypeError(input.toString() + ' is not a number');
+        throw new TypeError(`${input.toString()} is not a number`);
     }
 }
 
 function throwsErrorIfInputIsString(input) {
     if (typeof input !== 'string') {
-        throw new TypeError (input.toString() + ' is not a string');
+        throw new TypeError (`${input.toString()} is not a string`);
     }
 }
 
