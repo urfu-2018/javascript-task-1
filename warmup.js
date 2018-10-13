@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 1 || n % 1 !== 0) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
@@ -106,7 +106,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
-    } else if (targetNs < 2 || targetNs > 36 || targetNs % 1 !== 0) {
+    } else if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
         throw new RangeError();
     }
 
@@ -137,7 +137,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(/\(-:/g) || []).length + (text.match(/:-\)/g) || []).length;
+    return (text.match(/\(-:|:-\)/g) || []).length;
 }
 
 /**
