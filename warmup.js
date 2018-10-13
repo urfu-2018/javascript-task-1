@@ -99,12 +99,12 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     const innerArrayLength = matrix[0].length;
-    for (let i = 0; i < matrix.length; i++) {
-        if (!(Array.isArray(matrix[i]) && matrix[i].length > 0 &&
-            innerArrayLength === matrix[i].length)) {
-            throw new TypeError();
-        }
-    }
+    // for (let i = 0; i < matrix.length; i++) {
+    //     if (!(Array.isArray(matrix[i]) && matrix[i].length > 0 &&
+    //         matrix[i].length === innerArrayLength)) {
+    //         throw new TypeError();
+    //     }
+    // }
     const result = new Array(innerArrayLength);
     for (let i = 0; i < innerArrayLength; i++) {
         result[i] = new Array(matrix.length);
@@ -157,14 +157,10 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    let matchLeftSmile = text.match(/:-\)/g);
-    let matchRightSmile = text.match(/\(-:/g);
+    let matchSmile = text.match(/:-\)|\(-:/g);
     let result = 0;
-    if (!(matchRightSmile === null)) {
-        result += matchRightSmile.length;
-    }
-    if (!(matchLeftSmile === null)) {
-        result += matchLeftSmile.length;
+    if (!(matchSmile === null)) {
+        result += matchSmile.length;
     }
 
     return result;
