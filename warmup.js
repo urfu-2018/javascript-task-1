@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     const hexColorRegex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
     const matchResult = hexColor.match(hexColorRegex);
 
-    if (matchResult.length !== 4) {
+    if (matchResult === null || matchResult.length !== 4) {
         throw new RangeError('invalid hexColor string format!');
     }
 
@@ -193,15 +193,9 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    function distinctArray(array) {
-        return array.filter(function (elem, pos) {
-            return array.indexOf(elem) === pos;
-        });
-    }
-
     function checkRows(matrix) {
         for (let i = 0; i < 3; i++) {
-            if (distinctArray(matrix[i]).length === 1) {
+            if (matrix[i][0] === matrix[i][1] && matrix[i][1] === matrix[i][2]) {
                 return matrix[i][0];
             }
         }
