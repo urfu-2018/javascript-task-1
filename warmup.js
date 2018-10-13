@@ -94,7 +94,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (Array.isArray(matrix) && matrix.forEach(element => {
-        if(Array.isArray(element)) {
+        if (Array.isArray(element)) {
             typeError();
         }
     })) {
@@ -162,14 +162,15 @@ function ticTacToeProblem(field) {
     let array = [0, 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 1, 2, 2, 0, 2,
         1, 1, 2, 0, 0, 1, 1, 1, 2, 1, 0, 2, 1, 2, 2, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2];
     let index;
+    let draw = true;
     for (index = 0; index < array.length; index += 6) {
         if (field[array[index]][array[index + 1]] === field[array[index + 2]][array[index + 3]] ===
             field[array[index + 4]][array[index + 5]]) {
+            draw = false;
             return field[array[index]][array[index + 1]];
         }
     }
-    
-    return 'draw';
+    if (draw) return 'draw';
 }
 
 module.exports = {
