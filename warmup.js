@@ -160,7 +160,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    var smileReg = /:-\)/g;
+    var smileReg = /(:-\)|\(-:)/g;
     var regex = text.match(smileReg);
 
     return regex === null ? 0 : regex.length;
