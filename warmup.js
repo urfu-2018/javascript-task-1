@@ -55,6 +55,7 @@ function colorsProblem(hexColor) {
     const third = parseInt(hexColor.slice(5, 7), 16);
 
     return `(${first}, ${second}, ${third})`;
+
 }
 
 
@@ -72,9 +73,9 @@ function fibonacciProblem(n) {
     if (n <= 0) {
         throw new RangeError('Ошибка размерности!');
     }
-    let a = 0;
+    let a = 1;
     let b = 1;
-    for (let i = 0; i < n; i++) {
+    for (let i = 3; i <= n; i++) {
         let c = a + b;
         a = b;
         b = c;
@@ -104,6 +105,7 @@ function matrixProblem(matrix) {
     }
 
     return matrixTrans;
+
 }
 
 
@@ -157,6 +159,7 @@ function smilesProblem(text) {
     const rightL = right === null ? 0 : right.length;
 
     return rightL + leftL;
+
 }
 
 
