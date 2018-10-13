@@ -14,7 +14,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return (Math.trunc(a) + Math.trunc(b));
+    return a + b;
 }
 
 /**
@@ -182,6 +182,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+
+    // Проверка входных данных на валидность
+    if ((typeof phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
 
     const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
