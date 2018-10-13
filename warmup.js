@@ -48,10 +48,10 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string' || hexColor.length !== 7) {
         throw new TypeError();
-    } else if (!/#[0-9A-F]{6}/.test(hexColor)) {
+    } else if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
         throw new RangeError();
     } else {
-        let regex = /#([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})/.exec(hexColor);
+        let regex = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})/.exec(hexColor);
 
         return '(' + parseInt(regex[1], 16) + ', ' + parseInt(regex[2], 16) + ', ' +
          parseInt(regex[3], 16) + ')';
