@@ -8,13 +8,13 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    
-    if (Number.isInteger(a) && Number.isInteger(b)) {
-        return (a + b);
-    }
-    else {
+
+    // Проверка входных данных на валидность
+    if ( !( Number.isInteger(a) && Number.isInteger(b) ) ) {
         throw new TypeError();
     }
+
+    return (a + b);
 }
 
 /**
@@ -26,12 +26,15 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
 
+    // Проверка входных данных на валидность
     if (!Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year <= 0) {
         throw new RangeError();
     }
+
+    // Определение века
     const YEARS_IN_CENTURY = 100;
     return Math.trunc(year / YEARS_IN_CENTURY);
 }
@@ -45,22 +48,27 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
 
+    // Проверка входных данных на валидность
     if (typeof hexColor != 'string') {
         throw new TypeError();
     }
 
     const hexColorRegex = /^#([\dA-F]{2})([\dA-F]{2})([\dA-F]{2})$/;
     const match = hexColor.match(hexColorRegex);
-    
+
     if (match === null) {
         throw new RangeError();
     }
 
+    // Изоляция HEX-компонент
     const COLOR_COMPONENTS_AMOUNT = 3;
     const hexColorComponents = match.slice(1, COLOR_COMPONENTS_AMOUNT + 1);
+
+    // Конвертация в RGB
+    const HEX_BASE = 16;
     let decimalColorComponents = [];
-    for (var i = 0; i < COLOR_COMPONENTS_AMOUNT; i++) {
-        decimalColorComponents.push(parseInt(hexColorComponents[i], 16));
+    for (let i = 0; i < COLOR_COMPONENTS_AMOUNT; i++) {
+        decimalColorComponents.push(parseInt(hexColorComponents[i], HEX_BASE));
     }
 
     return '(' + decimalColorComponents.join(', ') + ')';
@@ -74,7 +82,27 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if (typeof n != 'number') {
+        throw new TypeError();
+    }
+    if ( !( Number.isInteger(n) && (n > 0) ) ) {
+        throw new RangeError();
+    }
+
+    let lastFibonacciNumbers = [ 1, 1 ]; // Последние вычисленные числа Фибоначчи
+
+    // Нахождение n-го числа Фибоначчи
+    for (let i = 3; i < n; i++) {
+        const nextFibonacciNumber = lastFibonacciNumbers[0] + lastFibonacciNumbers[1];
+
+        // Обновление массива последних чисел
+        lastFibonacciNumbers.push(nextFibonacciNumber);
+        lastFibonacciNumbers.shift();
+    }
+
+    return lastFibonacciNumbers[1];
 }
 
 /**
