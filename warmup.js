@@ -8,11 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof b !== 'number' || typeof a !== 'number')
-        throw TypeError();
+    if (typeof b !== 'number' || typeof a !== 'number') {
+        throw TypeError("Ошбика типа!");
+    }
+
     return a + b;
 }
-
 
 /**
  * Определяет век по году
@@ -23,13 +24,14 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw TypeError();
+        throw TypeError("Ошбика типа!");
     } else if (year < 0) {
-        throw RangeError();
+        throw RangeError("Ошибка размерности!");
     } else {
         if (year % 100 === 0) {
             return year / 100
         }
+
         return Math.floor(year / 100) + 1;
     }
 
@@ -44,13 +46,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw TypeError();
+        throw TypeError("Ошбика типа!");
     } else if (hexColor.length > 7 || hexColor.length < 6) {
-        throw TypeError();
+        throw RangeError("Ошибка размерности!");
     } else {
-        const first = parseInt(hexColor.slice(1, 3), 16)
-        const second = parseInt(hexColor.slice(3, 5), 16)
-        const third = parseInt(hexColor.slice(5, 7), 16)
+        const first = parseInt(hexColor.slice(1, 3), 16);
+        const second = parseInt(hexColor.slice(3, 5), 16);
+        const third = parseInt(hexColor.slice(5, 7), 16);
+
         return `(${first},${second},${third})`;
     }
 }
@@ -65,16 +68,18 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw TypeError();
+        throw TypeError("Ошбика типа!");
     } else if (n < 0) {
-        throw RangeError();
+        throw RangeError("Ошибка размерности!");
     } else {
-        let a = 1, b = 1;
+        let a = 1;
+        let b = 1;
         for (let i = 3; i <= n; i++) {
             let c = a + b;
             a = b;
             b = c;
         }
+
         return b;
     }
 }
@@ -86,8 +91,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length === 0 || !Array.isArray(matrix) || !matrix.every(a => a.every(b => b[0] === undefined))) {
-        throw TypeError();
+    if (matrix.length === 0 || !Array.isArray(matrix) ||
+        !matrix.every(a => a.every(b => b[0] === undefined))) {
+        throw TypeError("Ошбика типа!");
     } else {
         const matrixTrans = [];
         for (let i = 0; i < matrix[0].length; i++) {
@@ -96,6 +102,7 @@ function matrixProblem(matrix) {
                 matrixTrans[i][j] = matrix[j][i];
             }
         }
+
         return matrixTrans;
     }
 }
@@ -111,10 +118,11 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof  targetNs !== 'number') {
-        throw TypeError();
+        throw TypeError("Ошбика типа!");
     } else if (targetNs < 2 || targetNs > 36) {
-        throw RangeError();
+        throw RangeError("Ошибка размерности!");
     } else {
+
         return n.toString(targetNs);
     }
 }
@@ -126,6 +134,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+
     return /8-800-\d\d\d-\d\d-\d\d/.test(phoneNumber)
 }
 
@@ -138,12 +147,13 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw TypeError();
+        throw TypeError("Ошбика типа!");
     } else {
-        let right = text.match(/\(-:/g)
-        let left = text.match(/:-\)/g)
+        let right = text.match(/\(-:/g);
+        let left = text.match(/:-\)/g);
         const leftL = left === null ? 0 : left.length;
         const rightL = right === null ? 0 : right.length;
+
         return rightL + leftL;
     }
 }
@@ -168,8 +178,9 @@ function ticTacToeProblem(field) {
         return field[0][0]
     } else if (field[1][1] === field[0][2] && field[2][0] === field[1][1]) {
         return field[0][2]
-        return 'draw';
     }
+
+    return 'draw';
 }
 
 
