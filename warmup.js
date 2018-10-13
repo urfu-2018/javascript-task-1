@@ -23,9 +23,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     throwsTypeErrorIfNumberAreNotInteger(year);
-    if (year < 0) {
-        throw new RangeError('year is negative');
-    }
+    throwsRangeErrorIfNumberIsNegative(year);
 
     return Math.ceil(year / 100);
 }
@@ -61,7 +59,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     throwsTypeErrorIfNumberAreNotInteger(n);
-    throwsRangeErrorIfNumberNotInRange(n, 0, Number.POSITIVE_INFINITY);
+    throwsRangeErrorIfNumberIsNegative(n);
     let first = 1;
     let second = 1;
 
@@ -226,7 +224,7 @@ function getDiagonalFromField(field, isMainDiagonal) {
 function throwsTypeErrorIfNumberAreNotInteger(number) {
     throwsTypeErrorIfInputIsNotNumber(number);
     if (!Number.isInteger(number)) {
-        throw new TypeError(`${number.toString()} is not a integer`);
+        throw new TypeError(`${number.toString()} is not an integer`);
     }
 }
 
@@ -264,6 +262,13 @@ function throwsTypeErrorIfInputIsNotNumber(input) {
 function throwsTypeErrorIfInputIsNotString(input) {
     if (typeof input !== 'string') {
         throw new TypeError (`${input.toString()} is not a string`);
+    }
+}
+
+function throwsRangeErrorIfNumberIsNegative(number) {
+    throwsTypeErrorIfInputIsNotNumber(number);
+    if (number < 0) {
+        throw new RangeError(`${number} is negative`);
     }
 }
 
