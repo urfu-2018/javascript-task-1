@@ -22,8 +22,9 @@ function isNumber(argument) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    throwErrorIfNotInteger(a);
-    throwErrorIfNotInteger(b);
+    if (!isNumber(a) || !isNumber(b)) {
+        throw new TypeError('Argumnents should be a numbers');
+    }
 
     return a + b;
 }
@@ -56,17 +57,21 @@ function colorsProblem(hexColor) {
         throw new TypeError('Argument must be a string');
     }
 
-    let hexColorRegex = /^#[0-9ABCDEF]{6}$/ig;
+    let hexColorRegex = /^#[\dABCDEF]{6}$/gi;
     if (!hexColorRegex.test(hexColor)) {
         throw new RangeError('Argument not in allowed values');
     }
 
     let colorValues = new Array(3);
     for (var i = 0; i < 3; i++) {
-        colorValues[i] = parseInt(hexColor.substring(1 + i * 2, 1 + (i + 1) * 2), 16);
+        colorValues[i] = getColor(hexColor.substring(1 + i * 2, 1 + (i + 1) * 2));
     }
 
     return `(${colorValues.join(', ')})`;
+}
+
+function getColor(colorInHex) {
+    return parseInt(colorInHex, 16);
 }
 
 /**
@@ -177,11 +182,9 @@ function smilesProblem(text) {
         throw new TypeError('Text should be string');
     }
 
-    return getCountOfSubsrting(text, /:-\)/g) + getCountOfSubsrting(text, /\(-:/g);
-}
+    let smilesRegex = /(:-\)|\(:-))/g;
 
-function getCountOfSubsrting(text, substringRegex) {
-    return (text.match(substringRegex) || []).length;
+    return (text.match(smilesRegex) || []).length;
 }
 
 /**
@@ -191,8 +194,8 @@ function getCountOfSubsrting(text, substringRegex) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let NOUGHT_CHAR = 'o';
-    let CROSS_CHAR = 'x';
+    const NOUGHT_CHAR = 'o';
+    const CROSS_CHAR = 'x';
 
     let lines = getPossibleLines(field);
     if (isWinner(CROSS_CHAR, lines)) {
