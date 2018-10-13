@@ -169,8 +169,13 @@ function smilesProblem(text) {
     }
 
     const smileRegex = /:-\)|\(-:/g;
+    const matchResult = text.match(smileRegex);
 
-    return text.match(smileRegex).length;
+    if (matchResult === null) {
+        return 0;
+    }
+
+    return matchResult.length;
 }
 
 /**
