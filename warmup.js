@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError('Аргументы должен быть целым числом');
     }
     if (year <= 0) {
