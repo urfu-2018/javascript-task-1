@@ -76,9 +76,9 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n < 1) {
         throw new RangeError();
     }
-    let a = 0;
+    let a = 1;
     let b = 1;
-    for (var i = 0; i < n; i++) {
+    for (var i = 1; i < n; i++) {
         const temp = a + b;
         a = b;
         b = temp;
