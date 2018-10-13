@@ -171,7 +171,13 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError();
     }
-    const regexp = /(\(-:|:-\))/g;
+    const leftSmile = /\(-:/g;
+    const rightSmile = /:-\)/g;
+
+    return getOccurencesCount(text, leftSmile) + getOccurencesCount(text, rightSmile);
+}
+
+function getOccurencesCount(text, regexp) {
     const match = text.match(regexp);
 
     return match ? match.length : 0;
