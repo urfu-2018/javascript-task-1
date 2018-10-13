@@ -74,7 +74,7 @@ function fibonacciProblem(n) {
     if (!(typeof n === 'number')) {
         throw new TypeError();
     }
-    if (!((n > 0) && (Math.trunc(n) === n))) {
+    if (!(n > 0 && Math.trunc(n) === n)) {
         throw new RangeError();
     }
     let fib1 = 1;
@@ -97,14 +97,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) && matrix.length > 0) {
+    if (!(Array.isArray(matrix) && matrix.length > 0)) {
         throw new TypeError();
     }
     const innerArrayLength = matrix[0].length;
     for (let i = 0; i < matrix.length; i++) {
-        const isInnerArraysLengthCorrect =
-            matrix[i].length > 0 && innerArrayLength === matrix[i].length;
-        if (!Array.isArray(matrix[i]) && isInnerArraysLengthCorrect) {
+        if (!(Array.isArray(matrix[i]) && matrix[i].length > 0 &&
+            innerArrayLength === matrix[i].length)) {
             throw new TypeError();
         }
     }
@@ -128,8 +127,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    const isTargetNsSatisfy = typeof targetNs === 'number' && Math.trunc(targetNs) === targetNs;
-    if (!(typeof n === 'number' && isTargetNsSatisfy)) {
+    if (!(typeof n === 'number' && typeof targetNs === 'number' &&
+        Math.trunc(targetNs) === targetNs)) {
         throw new TypeError();
     }
 
@@ -180,22 +179,18 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let lines = [];
-    let columns = [];
+    const lines = [];
+    const columns = [];
     getLinesAndColumns(field, lines, columns);
-    let diagonals = getDiagonals(field);
+    const diagonals = getDiagonals(field);
     const result = [];
     checkLinesAndColumnsForWinner(lines, columns, result);
     checkDiagonalsForWinner(diagonals, result);
-    for (let element in result) {
-        if (element) {
-            return 'x';
-        }
-
-        return 'o';
+    if (!(result.length === 1)) {
+        return 'draw';
     }
 
-    return 'draw';
+    return result[0] ? 'x' : 'o';
 }
 
 function getLinesAndColumns(field, lines, columns) {
@@ -208,7 +203,7 @@ function getLinesAndColumns(field, lines, columns) {
 }
 
 function getDiagonals(field) {
-    let diagonals = [];
+    const diagonals = [];
     for (let i = 0; i < 3; i++) {
         diagonals.push(field[i][i] === 'x');
     }
@@ -238,7 +233,6 @@ function checkDiagonalsForWinner(diagonals, result) {
         }
     }
 }
-
 
 module.exports = {
     abProblem,
