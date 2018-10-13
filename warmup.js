@@ -10,7 +10,7 @@
 function abProblem(a, b) {
 
     // Проверка входных данных на валидность
-    if (!(Number.isInteger(a) && Number.isInteger(b))) {
+    if (((typeof a) !== 'number') || ((typeof b) !== 'number')) {
         throw new TypeError();
     }
 
