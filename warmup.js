@@ -36,8 +36,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    throwErrorIfNotInteger(year);
-    if (year < 0) {
+    if (!isNumber(year)) {
+        throw new TypeError('Year should be an integer');
+    }
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('Year should not be negative number');
     }
 
@@ -120,8 +122,8 @@ function matrixProblem(matrix) {
 }
 
 function getTransposedMatrix(matrix) {
-    let m = matrix.length;
-    let n = matrix[0].length;
+    const m = matrix.length;
+    const n = matrix[0].length;
 
     let result = new Array(n);
     for (let i = 0; i < n; i++) {
@@ -145,7 +147,7 @@ function getTransposedMatrix(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!isNumber(n)) {
-        return new TypeError('n should be a numbers');
+        throw new TypeError('n should be a numbers');
     }
     throwErrorIfNotInteger(targetNs, 'targetNs');
     if (targetNs < 2 || targetNs > 36) {
@@ -219,25 +221,11 @@ function isWinner(char, lines) {
 }
 
 function getPossibleLines(field) {
-    let result = field.concat(getAllColumns(field));
+    let result = field.concat(getTransposedMatrix(field));
     result.push(getDiagonal(true, field));
     result.push(getDiagonal(false, field));
 
     return result;
-}
-
-function getAllColumns(field) {
-    let res = [];
-
-    for (var x = 0; x < field[0].length; x++) {
-        let column = [];
-        for (var y = 0; y < field.length; y++) {
-            column.push(field[y][x]);
-        }
-        res.push(column);
-    }
-
-    return res;
 }
 
 function getDiagonal(isMain, field) {
