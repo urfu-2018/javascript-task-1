@@ -70,7 +70,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number' || isNaN(n)) {
+    if (typeof(n) !== 'number') {
         throw new TypeError();
     }
     if (n < 1 || n % 1 !== 0) {
@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
-    } else if (targetNs < 2 || targetNs > 36 || targetNs % 1 !== 0) {
+    } else if (targetNs < 2 || targetNs > 36 || isNaN(n)) {
         throw new RangeError();
     }
 
