@@ -8,11 +8,15 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (!isNumber(a) || !isNumber(b)) {
         throw new TypeError();
     }
 
     return Number(a) + Number(b);
+}
+
+function isNumber(n){
+    return typeof(n) === 'number';
 }
 
 /**
@@ -23,7 +27,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
+    if (!isNumber(year)) {
         throw new TypeError();
     } else if (Number(year) < 0) {
         throw new RangeError();
@@ -62,7 +66,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(n)) {
+    if (!isNumber(n)) {
         throw new TypeError();
     }
     if (!Number.isInteger(n) || n < 1) {
@@ -125,7 +129,7 @@ function isMatrix(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (!isNumber(n) || !isNumber(targetNs)) {
         throw new TypeError();
     } else if (Number(targetNs) < 2 || Number(targetNs) > 36) {
         throw new RangeError();
