@@ -49,7 +49,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
+    if (!/^#[0-9a-fA-F]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
     const result = hexColor
