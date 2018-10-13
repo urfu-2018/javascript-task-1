@@ -66,7 +66,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n < 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
     let current = 1;
@@ -175,7 +175,7 @@ function checkRows(field) {
 }
 
 function checkColumns(field) {
-    for (let j = 0; j < 2; j++) {
+    for (let j = 0; j <= 2; j++) {
         if (field.map(x => x[j]).every(x => x === field[0][j])) {
             return field[0][j];
         }
