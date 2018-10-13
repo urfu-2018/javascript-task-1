@@ -93,14 +93,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    matrix.forEach(element => {
-        if (Array.isArray(element)) {
-            typeError();
-        }
-    });
     if (!Array.isArray(matrix)) {
         typeError();
     }
+    matrix.forEach(element => {
+        if (!Array.isArray(element)) {
+            typeError();
+        }
+    });
     let matrixT = [];
     let m = matrix.length;
     if (m === 0) {
@@ -168,14 +168,14 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (field[0][0] === field[1][1] === field[2][2] || field[0][2] ===
-        field[1][1] === field[2][0]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] || field[0][2] ===
+        field[1][1] && field[1][1] === field[2][0]) {
         return field[1][1];
     }
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] === field[i][2]) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
-        } else if (field[0][i] === field[1][i] === field[2][i]) {
+        } else if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
             return field[0][i];
         }
     }
