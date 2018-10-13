@@ -148,9 +148,6 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (!isString(phoneNumber)) {
-        return new TypeError();
-    }
     var myreg = /8-800-\d{3}-\d{2}-\d{2}/;
     var regex = myreg.exec(phoneNumber);
 
