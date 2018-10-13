@@ -76,7 +76,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n не является числом');
     }
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('n не является целым положительным числом');
     }
     let first = 0;
@@ -143,33 +143,8 @@ function numberSystemProblem(n, targetNs) {
     }
 
     return n.toString(targetNs);
-
-    // return convertNumToTargetNs(n, targetNs);
 }
 
-/*
-
-function convertNumToTargetNs(n, targetNs) {
-    const unicodeOfA = 65;
-    const shift = 10;
-    let converted = '';
-    while (n >= targetNs) {
-        let remainder = n % targetNs;
-        if (remainder > 9) {
-            remainder = String.fromCharCode(unicodeOfA + remainder - shift);
-        }
-        converted = remainder + converted;
-        n = Math.trunc(n / targetNs);
-    }
-    if (n > 9) {
-        n = String.fromCharCode(unicodeOfA + n - shift);
-    }
-    converted = n + converted;
-
-    return converted;
-}
-
-*/
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
