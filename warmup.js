@@ -120,7 +120,7 @@ function matrixProblem(matrix) {
     }
     const M = matrix.length;
     if (M === 0) {
-        throw new TypeError();
+        return [];
     }
     matrix.forEach(element => {
         if (!Array.isArray(element)) {
