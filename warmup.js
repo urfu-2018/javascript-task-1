@@ -1,10 +1,7 @@
 'use strict';
 
-function isNumeric(n) {
-    return !isNaN(parseInt(n)) && isFinite(n);
-}
 function isInteger(num) {
-    return num.toString().indexOf('.') < 0;
+    return Number.isInteger(num) || !isNaN(parseInt(num)) && isFinite(num) && !(Number(num) % 1);
 }
 
 /**
@@ -15,11 +12,10 @@ function isInteger(num) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumeric(a) && !isNumeric(b)) {
-        throw new TypeError('Переданные аргументы не являются числами');
-    }
+    confirmNumberType(a);
+    confirmNumberType(b);
     if (!isInteger(a) && !isInteger(b)) {
-        throw new TypeError('Переданные параметры-числа не являются целыми');
+        throw new TypeError('Переданные параметры-числа не являются целыми числами');
     }
 
     return Number(a) + Number(b);
@@ -33,14 +29,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isNumeric(year)) {
-        throw new TypeError('Параметр "year" не является числом');
-    }
+    confirmNumberType(year);
     if (!isInteger(year)) {
         throw new TypeError('Параметр "year" не является целым числом');
     }
-    if (Number(year) <= 0) {
-        throw new RangeError('Параметр "year" отрицательный');
+    if (Number(year) < 0) {
+        throw new RangeError('Параметр "year" некорректен');
     }
     if (Number(year) % 100 !== 0) {
         return Math.trunc(Number(year) / 100) + 1;
@@ -79,8 +73,8 @@ function colorsProblem(hexColor) {
 }
 
 function confirmNumberType(n) {
-    if (!isNumeric(n)) {
-        throw new TypeError(`Входной параметр n="${n}" не является числом`);
+    if (typeof (n) !== 'number') {
+        throw new TypeError(`Входной параметр n="${n}" не является целым числом`);
     }
 }
 
@@ -97,15 +91,15 @@ function fibonacciProblem(n) {
         throw new TypeError('Переданный к функции аргумент не является целым числом');
     }
     if (Number(n) <= 0) {
-        throw new RangeError('Таких чисел не существует');
+        throw new RangeError('Таких чисел Фибоначчи не существует');
     }
-    if (n <= 2) {
+    if (Number(n) <= 2) {
         return 1;
     }
     var preprevious = 1;
     var previous = 1;
     var ans = 0;
-    for (var i = 2; i < n; i++) {
+    for (var i = 2; i < Number(n); i++) {
         ans = preprevious + previous;
         preprevious = previous;
         previous = ans;
@@ -140,6 +134,17 @@ function randomMatrixCase(matrix, rowsSum, colsSum) {
     return transposedMatrix;
 }
 
+function checkMatrix(matrix) {
+    if (matrix.length === 0 || !Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
+    }
+}
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -147,9 +152,7 @@ function randomMatrixCase(matrix, rowsSum, colsSum) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length === 0 || !Array.isArray(matrix)) {
-        throw new TypeError();
-    }
+    checkMatrix(matrix);
     var rows = matrix.length;
     var columns = matrix[0].length;
     if (rows === columns) {
@@ -170,13 +173,14 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     confirmNumberType(n);
     confirmNumberType(targetNs);
-    if (!isInteger(n)) {
+
+    /* if (!isInteger(n)) {
         throw new TypeError(`Параметр n="${n}" не является целым числом`);
     }
     if (!isInteger(targetNs)) {
         throw new TypeError(`Параметр targetNs="${targetNs}" не является целым числом`);
-    }
-    if (Number(targetNs) >= 2 || Number(targetNs) <= 36) {
+    }*/
+    if (Number(targetNs) >= 2 && Number(targetNs) <= 36) {
         return n.toString(Number(targetNs));
     }
     throw new RangeError('Выбранное число для системы счисления не лежит в отрезке [2,36]');
@@ -189,7 +193,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof (phoneNumber) === 'string') {
-        return phoneNumber.search(/8-800-\d{3}-\d{2}-\d{2}/) !== -1;
+        return phoneNumber.search(/^8-800-\d{3}-\d{2}-\d{2}$/) !== -1;
     }
 
     return false;
@@ -206,7 +210,7 @@ function smilesProblem(text) {
         throw new TypeError('Переданный параметр не является строкой');
     }
 
-    return text.match(/(-:|:-)/g).length;
+    return text.match(/\(-:|:-\)/g).length;
 }
 
 function checkHorizontally(field, i) {
