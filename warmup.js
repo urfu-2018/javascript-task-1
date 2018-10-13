@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (Number.isInteger(a) && Number.isInteger(b))
+        return (a + b);
+    else
+        throw new TypeError();
 }
 
 /**
