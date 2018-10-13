@@ -169,8 +169,11 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('text не является строкой');
     }
+    const rightSideSmiles = (text.match(/:-\)/) || []).length;
+    const leftSideSmiles = (text.match(/\(-:/) || []).length;
+    const bothSideSmiles = (text.match(/\(-:-\)/) || []).length;
 
-    return text.match(/:-\)/) + text.match(/\(-:/) - text.match(/\(-:-\)/);
+    return rightSideSmiles + leftSideSmiles - bothSideSmiles;
 
     /*
 
