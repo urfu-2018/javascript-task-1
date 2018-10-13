@@ -12,6 +12,10 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
+    if (a % 1 !== 0 || b % 1 !== 0) {
+        throw new RangeError();
+    }
+
     return a + b;
 }
 
@@ -69,7 +73,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 1 || !Number.isInteger(n)) {
+    if (n < 1 || n % 1 !== 0) {
         throw new RangeError();
     }
 
@@ -137,7 +141,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(/\(-:/g) || []).length + (text.match(/:-\)/g) || []).length;
+    return (text.match(/\(-:|:-\)/g) || []).length;
 }
 
 /**
