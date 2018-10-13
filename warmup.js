@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -63,10 +63,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (!Number.isInteger(n) || n < 0) {
         throw new RangeError();
     }
     let current = 1;
