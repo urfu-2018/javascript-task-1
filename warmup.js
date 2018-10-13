@@ -109,11 +109,11 @@ function matrixProblem(matrix) {
 }
 
 function transposeMatrix(matrix) {
-    const columnsCount = matrix.length;
-    const rowsCount = matrix[0].length;
-    let transposedMatrix = new Array(rowsCount);
-    for (let i = 0; i < matrix.length; i++) {
-        transposedMatrix[i] = new Array(columnsCount);
+    const rowsCount = matrix.length;
+    const columnsCount = matrix[0].length;
+    let transposedMatrix = new Array(columnsCount);
+    for (let i = 0; i < columnsCount; i++) {
+        transposedMatrix[i] = new Array(rowsCount);
         for (let j = 0; j < rowsCount; j++) {
             transposedMatrix[i][j] = matrix[j][i];
         }
