@@ -189,17 +189,21 @@ function ticTacToeProblem(field) {
 
     return checkDiagonalsOrDraw(field);
 }
+
 function checkDiagonalsOrDraw(field) {
+    let leftDiagonal = 0;
+    let rightDiagonal = 0;
     const diagonal = field[1][1];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0, j = 2; i < 3 && j >= 0; i++, j--) {
         if (diagonal === field[i][i]) {
-            return diagonal;
+            leftDiagonal += 1;
+        }
+        if (diagonal === field[i][j]) {
+            rightDiagonal += 1;
         }
     }
-    for (let i = 0, j = 2; i < 3 && j >= 0; i++, j--) {
-        if (diagonal === field[i][j]) {
-            return diagonal;
-        }
+    if (leftDiagonal === 3 || rightDiagonal === 3) {
+        return diagonal;
     }
 
     return 'draw';
