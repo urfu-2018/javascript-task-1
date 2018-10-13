@@ -212,7 +212,7 @@ function getDiagonals(field) {
     for (let i = 0; i < 3; i++) {
         diagonals.push(field[i][i] === 'x');
     }
-    for (let i = 0, j = 3; i < 3 && j > 0; i++, j--) {
+    for (let i = 0, j = 2; i < 3 && j >= 0; i++, j--) {
         diagonals.push(field[i][j] === 'x');
     }
 
