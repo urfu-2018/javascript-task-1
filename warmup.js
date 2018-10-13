@@ -133,7 +133,7 @@ function isMatrix(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !isNumber(targetNs)) {
+    if (!isNumber(n) || !isNumber(targetNs) || !Number.isInteger(targetNs)) {
         throw new TypeError();
     } else if (Number(targetNs) < 2 || Number(targetNs) > 36) {
         throw new RangeError();
