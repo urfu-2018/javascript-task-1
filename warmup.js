@@ -30,9 +30,8 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
     const century = 100;
-    const answer = Math.trunc(year / century);
 
-    return (year % 100 === 0) ? answer : answer + 1;
+    return Math.ceil(year / century);
 }
 
 /**
@@ -112,7 +111,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
