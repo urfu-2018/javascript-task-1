@@ -8,10 +8,6 @@ function rangeError() {
     throw new RangeError();
 }
 
-function isNumber(a) {
-    return typeof a === 'number';
-}
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -20,7 +16,7 @@ function isNumber(a) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNumber(a) && isNumber(b)) {
+    if (isInteger(a) && isInteger(b)) {
         return a + b;
     }
     typeError();
@@ -34,7 +30,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNumber(year)) {
+    if (isInteger(year)) {
         if (year >= 1) {
             return Math.ceil(year / 100);
         }
@@ -73,7 +69,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNumber(n)) {
+    if (typeof n === 'number') {
         if (n >= 1) {
             const root5 = Math.sqrt(5);
             let a = (1 + root5) / 2;
@@ -133,7 +129,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNumber(n) && isNumber(targetNs)) {
+    if (isInteger(n) && isInteger(targetNs)) {
         if (targetNs >= 2 && targetNs <= 36) {
             return n.toString(targetNs);
         }
@@ -148,7 +144,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    if (typeof phoneNumber === 'string') {
+        return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    }
+    return false;
 }
 
 /**
