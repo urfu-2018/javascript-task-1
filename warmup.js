@@ -49,7 +49,7 @@ function colorsProblem(hexColor) {
     }
     var re = new RegExp('#[A-Fa-f0-9]{6}');
     if (!re.test(hexColor) || hexColor.length !== 7) {
-        throw new TypeError('Ожидается строка');
+        throw new RangeError('Ожидается строка');
     }
 
     var first = parseInt(hexColor.slice(1, 3), 16);
