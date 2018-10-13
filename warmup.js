@@ -78,6 +78,10 @@ function fibonacciProblem(n) {
         throw new RangeError('n must be positive');
     }
 
+    if (n === 0) {
+        return 0;
+    }
+
     let count = 2;
     let first = 1;
     let second = 1;
