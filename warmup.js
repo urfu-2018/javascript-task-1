@@ -206,11 +206,11 @@ function checkDiagonals(field, marker) {
 }
 
 function isTwoDimensionalArray(array) {
-    if (!Array.isArray(array)) {
+    if (!Array.isArray(array) || array.length === 0) {
         return false;
     }
     for (let i = 0; i < array.length; i++) {
-        if (!Array.isArray(array[i])) {
+        if (!Array.isArray(array[i]) || array[i].length !== array[0].length) {
             return false;
         }
     }
