@@ -101,7 +101,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length == 0 || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError('Argument should be an array of arrays');
     }
 
@@ -130,7 +130,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!isNumber(n) || !isNumber(targetNs)) {
-        return TypeError('Arguments should be a numbers');
+        return new TypeError('Arguments should be a numbers');
     }
     throwErrorIfNotInteger(targetNs);
     if (targetNs < 2 || targetNs > 36) {
@@ -165,7 +165,7 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError('Text should be string');
     }
-    
+
     return getCountOfSubsrting(text, /:-\)/g) + getCountOfSubsrting(text, /\(-:/g);
 }
 
