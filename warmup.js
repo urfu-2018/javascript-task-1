@@ -30,11 +30,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if (typeof year !== 'number') {
+        typeError();
+    }
     if (Number.isInteger(year)) {
-        if (year >= 1) {
-            return Math.ceil(year / 100);
+        if (year < 0) {
+            rangeError();
         }
-        rangeError();
+        return Math.ceil(year / 100);
     }
     typeError();
 }
@@ -70,14 +73,14 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n === 'number') {
-        if (n >= 1 && Number.isInteger(n)) {
-            const root5 = Math.sqrt(5);
-            let a = (1 + root5) / 2;
-            let b = (1 - root5) / 2;
-
-            return (Math.pow(a, n) - Math.pow(b, n)) / root5;
+        if (n < 1 || !Number.isInteger(n)) {
+            rangeError();
         }
-        rangeError();
+        const root5 = Math.sqrt(5);
+        let a = (1 + root5) / 2;
+        let b = (1 - root5) / 2;
+
+        return (Math.pow(a, n) - Math.pow(b, n)) / root5;
     }
     typeError();
 }
@@ -129,13 +132,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (Number.isInteger(n) && Number.isInteger(targetNs)) {
-        if (targetNs >= 2 && targetNs <= 36) {
-            return n.toString(targetNs);
-        }
-        rangeError();
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        typeError();
     }
-    typeError();
+    if (targetNs >= 2 && targetNs <= 36) {
+        return n.toString(targetNs);
+    }
+    rangeError();
 }
 
 /**
