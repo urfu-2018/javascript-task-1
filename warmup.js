@@ -29,13 +29,13 @@ function isNumber(n) {
 function centuryByYearProblem(year) {
     if (!isNumber(year)) {
         throw new TypeError();
-    } else if (Number(year) < 0) {
+    } else if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
-    } else if (Number(year) / 100 === Math.floor(Number(year) / 100)) {
+    } else if (year / 100 === Math.floor(year / 100)) {
         return Math.floor(Number(year) / 100);
-    } else {
-        return Math.floor(Number(year) / 100) + 1;
     }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
 }
 
 function isMatrix(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix)) {
         return false;
     }
     for (var i = 0; i < matrix.length; i++) {
@@ -147,9 +147,6 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (!isString(phoneNumber)) {
-        throw new TypeError();
-    }
     var myreg = /8-800-\d{3}-\d{2}-\d{2}/;
     var regex = myreg.exec(phoneNumber);
 
