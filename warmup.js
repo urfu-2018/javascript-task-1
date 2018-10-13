@@ -92,7 +92,7 @@ function fibonacciProblem(n) {
     return first;
 }
 
-function matrixProblem(matrix, shouldValidate = true) {
+function matrixProblem(matrix) {
     function isCorrectMatrix(matrixArray) {
         if (!Array.isArray(matrixArray) || matrixArray.length === 0) {
             return false;
@@ -107,10 +107,8 @@ function matrixProblem(matrix, shouldValidate = true) {
         return true;
     }
 
-    if (shouldValidate) {
-        if (!isCorrectMatrix(matrix)) {
-            throw new TypeError('expecting matrix as 2D array');
-        }
+    if (!isCorrectMatrix(matrix)) {
+        throw new TypeError('expecting matrix as 2D array');
     }
 
     return matrix[0].map((x, i) => matrix.map(y => y[i]));
@@ -129,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
     function checkType(num, ns) {
         if (typeof num !== 'number' || typeof ns !== 'number' ||
             !Number.isInteger(num) || !Number.isInteger(ns)) {
-            throw new TypeError('invalid argument\'s type');
+                throw new TypeError('invalid argument\'s type');
         }
     }
 
@@ -148,10 +146,6 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber !== 'string') {
-        throw new TypeError('expecting \'phoneNumber\' as string');
-    }
-
     const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return phoneRegex.test(phoneNumber);
@@ -205,7 +199,7 @@ function ticTacToeProblem(field) {
         return rowWin;
     }
 
-    const columnWin = checkRows(matrixProblem(field, false));
+    const columnWin = checkRows(matrixProblem(field));
     if (columnWin) {
         return columnWin;
     }
