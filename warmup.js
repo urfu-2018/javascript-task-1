@@ -149,20 +149,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    return checkRows(field) || checkColumns(field) || checkDiagonals(field) || 'draw';
+    return checkRows(field) || checkColumns(field) || 'draw';
 }
 
-function checkDiagonals(field) {
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return field[0][0];
-    }
-
-    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-        return field[0][2];
-    }
-
-    return undefined;
-}
+// function checkDiagonals(field) {
+//     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+//         return field[0][0];
+//     }
+//
+//     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+//         return field[0][2];
+//     }
+//
+//     return undefined;
+// }
 
 function checkRows(field) {
     for (let i = 0; i < 2; i++) {
