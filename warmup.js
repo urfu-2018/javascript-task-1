@@ -143,7 +143,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    let phoneRegex = /8-800-\d{3}-\d{2}-\d{2}/;
+    let phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return phoneRegex.test(phoneNumber);
 }
