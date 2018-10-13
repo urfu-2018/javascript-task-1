@@ -9,7 +9,7 @@ function rangeError() {
 }
 
 function isNumber(a) {
-    return typeof a === "number";
+    return typeof a === 'number';
 }
 
 /**
@@ -20,7 +20,7 @@ function isNumber(a) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if(isNumber(a) && isNumber(b)) {
+    if (isNumber(a) && isNumber(b)) {
         return a + b;
     }
     typeError();
@@ -51,14 +51,13 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor === "string") {
+    if (typeof hexColor === 'string') {
         if ((/^#[0-9A-F]{6}$/i).test(hexColor)) {
             let rgbArray = new Array(3);
-            let k = 1;
-            for (i = 0; i < 3; i++) {
-                rgbArray[i] = parseInt(hexColor.substr(i + k, 2), 16);
-                k++;
-            }
+            rgbArray[0] = parseInt(hexColor.substr(1, 2), 16);
+            rgbArray[1] = parseInt(hexColor.substr(3, 2), 16);
+            rgbArray[2] = parseInt(hexColor.substr(5, 2), 16);
+
             return '(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
         }
         rangeError();
@@ -76,9 +75,10 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (isNumber(n)) {
         if (n >= 1) {
-            const root5=Math.sqrt(5);
+            const root5 = Math.sqrt(5);
             let a = (1 + root5) / 2;
             let b = (1 - root5) / 2;
+
             return (Math.pow(a, n) - Math.pow(b, n)) / root5;
         }
         rangeError();
@@ -95,11 +95,14 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (Array.isArray(matrix) && Array.isArray(matrix[0])) {
         let matrixT = matrix;
-        for (i = 0; i < matrix.length; i++) {
-            for (j = 0; j < matrix.length; j++){
-                matrixT[j][i] = matrix[i][j];
+        let index;
+        let index2;
+        for (index = 0; index < matrix.length; index++) {
+            for (index2 = 0; index2 < matrix[0].length; index2++){
+                matrixT[index2][index] = matrix[index][index2];
             }
         }
+
         return matrixT;
     }
     typeError();
@@ -115,7 +118,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (isNumber(n) && isNumber(targetNs)) {
-        if (targetNs >= 2 && targetNs <=36) {
+        if (targetNs >= 2 && targetNs <= 36) {
             return parseInt(n.toString, targetNs);
         }
         rangeError();
@@ -139,7 +142,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text === "string") {
+    if (typeof text === 'string') {
         return text.match(/\(-:|:-\)/g).length;
     }
     typeError();
@@ -152,12 +155,16 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let array = [0,0,0,1,0,2,0,0,1,0,2,0,0,0,1,1,2,2,0,2,1,1,2,0,0,1,1,1,2,1,0,2,1,2,2,2,1,0,1,1,1,2,2,0,2,1,2,2];
-    for (i = 0; i < array.length; i+=6) {
-        if (field[array[i]][array[i+1]] === field[array[i+2]][array[i+3]] === field[array[i+4]][array[i+5]]) {
-            return field[array[i]][array[i+1]];
+    let array = [0, 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 1, 2, 2, 0, 2, 
+    1, 1, 2, 0, 0, 1, 1, 1, 2, 1, 0, 2, 1, 2, 2, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2];
+    let index;
+    for (index = 0; index < array.length; index+=6) {
+        if (field[array[index]][array[index + 1]] === field[array[index + 2]][array[index + 3]]
+         === field[array[index + 4]][array[index + 5]]) {
+            return field[array[index]][array[index + 1]];
         }
     }
+    
     return 'draw';
 }
 
