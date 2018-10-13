@@ -27,7 +27,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || isNaN(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
 
@@ -70,7 +70,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (typeof(n) !== 'number' || isNaN(n)) {
         throw new TypeError();
     }
     if (n < 1 || n % 1 !== 0) {
