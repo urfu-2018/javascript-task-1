@@ -138,10 +138,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber !== 'string'){
+    if (typeof phoneNumber !== 'string') {
         throw new TypeError('Ошибка типа!');
     }
-    
+
     return /8-800-\d\d\d-\d\d-\d\d/.test(phoneNumber);
 }
 
