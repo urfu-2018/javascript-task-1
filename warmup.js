@@ -99,12 +99,12 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     const innerArrayLength = matrix[0].length;
-    // for (let i = 0; i < matrix.length; i++) {
-    //     if (!(Array.isArray(matrix[i]) && matrix[i].length > 0 &&
-    //         matrix[i].length === innerArrayLength)) {
-    //         throw new TypeError();
-    //     }
-    // }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!(Array.isArray(matrix[i]) && matrix[i].length > 0 &&
+            matrix[i].length === innerArrayLength)) {
+            throw new TypeError();
+        }
+    }
     const result = new Array(innerArrayLength);
     for (let i = 0; i < innerArrayLength; i++) {
         result[i] = new Array(matrix.length);
