@@ -96,7 +96,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (matrix.length === 0 || !Array.isArray(matrix) ||
-        !matrix.every(a => a.every(b => b[0] === undefined))) {
+        !matrix.every(a => Array.isArray(a) && a.every(b => b[0] === undefined))) {
         throw new TypeError('Ошбика типа!');
     }
     const matrixTrans = [];
@@ -121,7 +121,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
+        !Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Ошбика типа!');
     }
     if (targetNs < 2 || targetNs > 36) {
