@@ -44,17 +44,9 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length > 7) {
+    const hexRegexPattern = /^#[1234567890abcdefABCDEF]{6}$/;
+    if (!hexRegexPattern.test(hexColor)) {
         throw new RangeError();
-    }
-    if (hexColor.length === 4) {
-        let rComponent = hexColor.substr(1, 1);
-        let gComponent = hexColor.substr(2, 1);
-        let bComponent = hexColor.substr(3, 1);
-
-        return '(' + parseInt(rComponent + rComponent, 16) + ', ' +
-            parseInt(gComponent + gComponent, 16) + ', ' +
-            parseInt(bComponent + bComponent, 16) + ')';
     }
 
     if (hexColor.length === 7) {
@@ -107,7 +99,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     const lengthY = matrix.length;
     const lengthX = matrix[0].length;
-    if (lengthY === undefined || lengthX === undefined) {
+    if (lengthY === undefined || lengthX === undefined || lengthX[0] !== undefined) {
         throw new TypeError();
     }
 
