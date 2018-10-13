@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (isNaN(a) || isNaN(b)) {
+        throw new TypeError();
+    }
+
+    return Number(a) + Number(b);
 }
 
 /**
@@ -19,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (isNaN(year)) {
+        throw new TypeError();
+    } else if (Number(year) < 0) {
+        throw new RangeError();
+    } else if (Number(year) / 100 === Math.floor(Number(year) / 100)) {
+        return Math.floor(Number(year) / 100);
+    } else {
+        return Math.floor(Number(year) / 100) + 1;
+    }
 }
 
 /**
@@ -30,7 +42,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string' || hexColor.length !== 7) {
+        throw new TypeError('Argument should be string in hex format');
+    } else if (!/#[0-9A-F]{6}/.test(hexColor)) {
+        throw new RangeError();
+    } else {
+        let regex = /#([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})/.exec(hexColor);
+
+        return '(' + parseInt(regex[1], 16) + ', ' + parseInt(regex[2], 16) + ', ' +
+         parseInt(regex[3], 16) + ')';
+    }
 }
 
 /**
@@ -41,7 +62,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (isNaN(n)) {
+        throw new TypeError();
+    }
+    if (!Number.isInteger(n) || n < 1) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    for (var i = 0; i < n; i++) {
+        const temp = a + b;
+        a = b;
+        b = temp;
+    }
+
+    return a;
 }
 
 /**
@@ -51,7 +86,34 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!isMatrix(matrix)) {
+        throw new TypeError();
+    }
+    let matrixT = [];
+    const M = matrix.length;
+    const N = matrix[0].length;
+    for (var j = 0; j < N; j++) {
+        matrixT[j] = [];
+        for (var i = 0; i < M; i++) {
+            matrixT[j][i] = matrix[i][j];
+        }
+    }
+
+    return matrixT;
+}
+
+function isMatrix(matrix) {
+    if (!Array.isArray(matrix)) {
+        return false;
+    }
+    for (var i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
+            return false;
+        }
+    }
+
+    return true;
+
 }
 
 /**
@@ -63,7 +125,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (isNaN(n) || isNaN(targetNs)) {
+        throw new TypeError();
+    } else if (Number(targetNs) < 2 || Number(targetNs) > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(Number(targetNs));
 }
 
 /**
@@ -72,7 +140,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    var myreg = /8-800-\d{3}-\d{2}-\d{2}/;
+    var regex = myreg.exec(phoneNumber);
+
+    return !(regex.length === 0);
 }
 
 /**
@@ -82,7 +153,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
+    var smileReg = /:-\)/g;
+    var regex = text.match(smileReg);
+
+    return regex === null ? 0 : regex.length;
 }
 
 /**
@@ -92,7 +169,25 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const winCombos = [
+        field[0],
+        field[1],
+        field[2],
+        [field[0][0], field[1][0], field[2][0]],
+        [field[0][1], field[1][1], field[2][1]],
+        [field[0][2], field[1][2], field[2][2]],
+        [field[0][0], field[1][1], field[2][2]],
+        [field[2][0], field[1][1], field[0][2]]
+    ];
+
+    for (var i = 0; i < 3; i++) {
+        let hasWinner = winCombos[i][0] === winCombos[i][1] && winCombos[i][0] === winCombos[i][2];
+        if (hasWinner) {
+            return winCombos[i][0];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
