@@ -8,6 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    throwsErrorIfInputIsNotNumber(a);
+    throwsErrorIfInputIsNotNumber(b);
     throwsErrorIfNumberAreNotInteger(a);
     throwsErrorIfNumberAreNotInteger(b);
 
@@ -36,7 +38,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    throwsErrorIfInputIsString(hexColor);
+    throwsErrorIfInputIsNotString(hexColor);
     let rgb = [];
     hexColor = hexColor.substring(1);
     for (let i = 0; i < 3; i ++) {
@@ -58,9 +60,7 @@ function fibonacciProblem(n) {
     throwsErrorIfNumberNotInRange(n, 0, Number.POSITIVE_INFINITY);
     let first = 1;
     let second = 1;
-    if (n === 1 || n === 2) {
-        return 1;
-    }
+
     for (let i = 2; i < n; i++) {
         let tmp = first;
         first = second;
@@ -111,7 +111,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    throwsErrorIfInputIsString(phoneNumber);
+    throwsErrorIfInputIsNotString(phoneNumber);
     let regex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return regex.test(phoneNumber);
@@ -124,12 +124,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    throwsErrorIfInputIsString(text);
+    throwsErrorIfInputIsNotString(text);
     let smilesCount = 0;
     for (let i = 0; i < text.length - 2; i++) {
-        let substr = text.substring(i, i + 3);
+        let substr = text.substr(i, 3);
         if (isSmileInSubstr(substr)) {
             smilesCount++;
+            i+=2;
         }
     }
 
@@ -154,7 +155,7 @@ function isSmileInSubstr(substr) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let winLines = [].concat(field, getAllColumnsFromField(field));
+    let winLines = field.concat(getAllColumnsFromField(field));
     winLines.push(getDiagonalFromField(field, true));
     winLines.push(getDiagonalFromField(field, false));
     if (isOneOfTheLineContainsOnlySymbol('x', winLines)) {
@@ -219,8 +220,9 @@ function getDiagonalFromField(field, isMainDiagonal) {
 }
 
 function throwsErrorIfNumberAreNotInteger(number) {
+    throwsErrorIfInputIsNotNumber(number);
     if (!Number.isInteger(number)) {
-        throw new TypeError(`${number.toString()} is not a number`);
+        throw new TypeError(`${number.toString()} is not a integer`);
     }
 }
 
@@ -231,16 +233,13 @@ function throwsErrorIfNumberNotInRange(number, start, end) {
 }
 
 function throwsErrorIfArrayIsNotMatrix(array) {
+    throwsErrorIfInputIsNotArray(array);
     if (array.length === 0) {
         throw new TypeError(`${array.toString()} is not a matrix`);
     }
-    throwsErrorIfInputIsNotArray(array);
-    let length = 0;
     for (let i = 0; i < array.length; i++) {
         throwsErrorIfInputIsNotArray(array[i]);
-        if (i === 0) {
-            length = array[i].length;
-        } else if (array[i].length !== length) {
+        if (array[i].length !== array[0].length) {
             throw new TypeError(`${array.toString()} is not a matrix`);
         }
     }
@@ -253,12 +252,12 @@ function throwsErrorIfInputIsNotArray(input) {
 }
 
 function throwsErrorIfInputIsNotNumber(input) {
-    if (isNaN(parseFloat(input)) || !isFinite(input)) {
+    if (typeof input !== 'number') {
         throw new TypeError(`${input.toString()} is not a number`);
     }
 }
 
-function throwsErrorIfInputIsString(input) {
+function throwsErrorIfInputIsNotString(input) {
     if (typeof input !== 'string') {
         throw new TypeError (`${input.toString()} is not a string`);
     }
