@@ -166,7 +166,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
 
     // Проверка входных данных на валидность
-    if (((typeof n) !== 'number') || !Number.isInteger(targetNs)) {
+    if (((typeof n) !== 'number') || ((typeof targetNs) !== 'number')) {
         throw new TypeError();
     }
     if ((targetNs < 2) || (targetNs > 36)) {
