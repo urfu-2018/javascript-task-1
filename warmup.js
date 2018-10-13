@@ -107,8 +107,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (isUndefined(matrix) ||
-        matrix[0].constructor !== Array || matrix[0][0].constructor === Array) {
+    if (isUndefined(matrix) || !isTwoDimensionalArray(matrix)) {
         throw new TypeError();
     }
     const M = matrix.length;
@@ -122,6 +121,11 @@ function matrixProblem(matrix) {
     }
 
     return transported;
+}
+
+function isTwoDimensionalArray(matrix) {
+    return matrix.constructor === Array && matrix[0].constructor === Array &&
+        matrix[0][0].constructor !== Array;
 }
 
 function isUndefined(matrix) {
