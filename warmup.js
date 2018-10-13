@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year <= 0) {
         throw new RangeError();
     }
 
@@ -50,7 +50,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
 
     // Проверка входных данных на валидность
-    if (typeof hexColor !== 'string') {
+    if ((typeof hexColor) !== 'string') {
         throw new TypeError();
     }
 
@@ -85,7 +85,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
 
     // Проверка входных данных на валидность
-    if (typeof n !== 'number') {
+    if ((typeof n) !== 'number') {
         throw new TypeError();
     }
     if (!(Number.isInteger(n) && (n > 0))) {
@@ -194,7 +194,7 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
 
     // Проверка входных данных на валидность
-    if (typeof text !== 'string') {
+    if ((typeof text) !== 'string') {
         throw new TypeError();
     }
 
