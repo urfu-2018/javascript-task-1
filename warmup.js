@@ -47,7 +47,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string' || hexColor.length !== 7) {
-        throw new TypeError('Argument should be string in hex format');
+        throw new TypeError();
     } else if (!/#[0-9A-F]{6}/.test(hexColor)) {
         throw new RangeError();
     } else {
@@ -72,7 +72,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n < 1) {
         throw new RangeError();
     }
-    let a = 1;
+    let a = 0;
     let b = 1;
     for (var i = 0; i < n; i++) {
         const temp = a + b;
