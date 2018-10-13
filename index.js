@@ -49,7 +49,7 @@ console.info(matrixProblem([
     [4, 5, 6],
     [7, 8, 9]
 ]));
-console.info(matrixProblem([]));
+// console.info(matrixProblem([]));
 console.info(matrixProblem([[0]]));
 console.info(matrixProblem([
     [1, 2],

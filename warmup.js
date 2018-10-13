@@ -90,20 +90,20 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+        return new TypeError();
+    }
     if (!isMatrixCorrect(matrix)) {
         throw new TypeError();
     }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+    return matrix[0].map((column, a) => matrix.map(row => row[a]));
 }
 
 function isMatrixCorrect(matrix) {
-    if (!(matrix instanceof Array) || matrix.length === 0) {
-        return false;
-    }
     var dimension = matrix[0].length;
     for (var i = 0; i < matrix.length; i++) {
-        if (!(matrix[i] instanceof Array) || matrix[i].length !== dimension) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== dimension) {
             return false;
         }
     }
