@@ -146,9 +146,9 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber === 'string') {
         return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    } else {
+        return false;
     }
-    
-    return false;
 }
 
 /**
