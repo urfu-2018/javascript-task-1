@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number' ||
+        !Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('Invalid argument type');
     }
 
@@ -81,7 +82,6 @@ function fibonacciProblem(n) {
     if (n === 0) {
         return 0;
     }
-
     let count = 2;
     let first = 1;
     let second = 1;
@@ -100,7 +100,6 @@ function matrixProblem(matrix, shouldValidate = true) {
         if (!Array.isArray(matrixArray) || matrixArray.length === 0) {
             return false;
         }
-
 
         for (let i = 0; i < matrixArray.length; i++) {
             if (!Array.isArray(matrix[i]) || matrix[i].length !== matrixArray[0].length) {
