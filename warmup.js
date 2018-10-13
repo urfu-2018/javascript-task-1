@@ -62,7 +62,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    const correctHexColor = /#[A-Fa-f0-9]{6}/;
+    const correctHexColor = /^#[A-Fa-f0-9]{6}$/g;
     if (!correctHexColor.test(hexColor)) {
         throw new RangeError();
     }
