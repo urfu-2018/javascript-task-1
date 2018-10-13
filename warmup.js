@@ -31,11 +31,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError('Ошибка размерности!');
     }
-    if (year % 100 === 0) {
-        return year / 100;
-    }
 
-    return Math.floor(year / 100) + 1;
+    return Math.ceil(year / 100);
 
 }
 
@@ -58,7 +55,6 @@ function colorsProblem(hexColor) {
     const third = parseInt(hexColor.slice(5, 7), 16);
 
     return `(${first}, ${second}, ${third})`;
-
 }
 
 
@@ -73,12 +69,12 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number' || !Number.isInteger(n)) {
         throw new TypeError('Ошбика типа!');
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError('Ошибка размерности!');
     }
-    let a = 1;
+    let a = 0;
     let b = 1;
-    for (let i = 3; i <= n; i++) {
+    for (let i = 0; i < n; i++) {
         let c = a + b;
         a = b;
         b = c;
@@ -108,7 +104,6 @@ function matrixProblem(matrix) {
     }
 
     return matrixTrans;
-
 }
 
 
@@ -121,8 +116,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        !Number.isInteger(n)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Ошбика типа!');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -163,7 +157,6 @@ function smilesProblem(text) {
     const rightL = right === null ? 0 : right.length;
 
     return rightL + leftL;
-
 }
 
 
