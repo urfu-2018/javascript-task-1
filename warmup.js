@@ -13,7 +13,7 @@ function abProblem(a, b) {
     }
 
     if (a % 1 !== 0 || b % 1 !== 0) {
-        throw new TypeError();
+        throw new RangeError();
     }
 
     return a + b;
