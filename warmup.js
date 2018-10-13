@@ -22,7 +22,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year))
+        throw new TypeError();
+    if (year <= 0)
+        throw new RangeError();
+    return (year % 100);
 }
 
 /**
@@ -33,6 +37,12 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+    if (typeof hexColor != 'string')
+        throw new TypeError();
+    
+    const regex = /^#[\da-f]{6}/
+    if (regex.exec)
+
     // Ваше решение
 }
 
