@@ -24,11 +24,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError('Invalid argument type');
     }
 
-    if (!Number.isInteger(year) || year < 0) {
+    if (year < 0) {
         throw new RangeError('Year must be positive');
     }
 
@@ -75,13 +75,10 @@ function fibonacciProblem(n) {
         throw new TypeError('Invalid argument type');
     }
 
-    if (!Number.isInteger(n) || n < 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('n must be positive');
     }
 
-    if (n === 0) {
-        return 0;
-    }
     let count = 2;
     let first = 1;
     let second = 1;
