@@ -130,7 +130,7 @@ function smilesProblem(text) {
         let substr = text.substr(i, 3);
         if (isSmileInSubstr(substr)) {
             smilesCount++;
-            i+=2;
+            i += 2;
         }
     }
 
