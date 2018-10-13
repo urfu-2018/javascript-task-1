@@ -170,25 +170,6 @@ function numberSystemProblem(n, targetNs) {
     }
 
     return n.toString(targetNs);
-
-/*     let targetNsDigits = []; // Цифры в результирующей системе счисления
-
-    // Перевести число в целевую систему счисления
-    let quotient = Math.trunc(n / targetNs);
-    let remainder = n % targetNs;
-    targetNsDigits.splice(0, 0, remainder);
-
-    while (quotient >= targetNs) {
-        quotient = Math.trunc(quotient / targetNs);
-        remainder = quotient % targetNs;
-        targetNsDigits.splice(0, 0, remainder);
-    }
-
-    if (quotient != 0) {
-        targetNsDigits.splice(0, 0, quotient);
-    } */
-
-
 }
 
 /**
@@ -197,7 +178,8 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/
+    return phoneRegex.test(phoneNumber);
 }
 
 /**
@@ -207,7 +189,20 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if (typeof text != 'string') {
+        throw new TypeError();
+    }
+
+    // Определение количества смайликов
+    const smileyRegex = /(:-\))|(\(-:)/g;
+    const matchesArray = text.match(smileyRegex);
+
+    if (matchesArray === null) {
+        return 0;
+    }
+    return matches.length;
 }
 
 /**
