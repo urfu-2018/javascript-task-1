@@ -14,7 +14,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return (a + b);
+    return (Math.trunc(a) + Math.trunc(b));
 }
 
 /**
