@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof b !== 'number' || typeof a !== 'number' || a - Math.floor(a) !==0 || b - Math.floor(b) !==0 ) {
+    if (typeof b !== 'number' || typeof a !== 'number' ||
+        a - Math.floor(a) !== 0 || b - Math.floor(b) !== 0) {
         throw new TypeError('Ошбика типа!');
     }
 
@@ -24,7 +25,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || year - Math.floor(year) !==0) {
+    if (typeof year !== 'number' || year - Math.floor(year) !== 0) {
         throw new TypeError('Ошбика типа!');
     } else if (year < 0) {
         throw new RangeError('Ошибка размерности!');
@@ -37,6 +38,7 @@ function centuryByYearProblem(year) {
     }
 
 }
+
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
