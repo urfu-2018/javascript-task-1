@@ -97,7 +97,7 @@ function fibonacciProblem(n) {
 
 function matrixProblem(matrix, shouldValidate = true) {
     function isCorrectMatrix(matrixArray) {
-        if (!Array.isArray(matrixArray) || !Array.isArray(matrixArray[0])) {
+        if (!Array.isArray(matrixArray)) {
             return false;
         }
 
@@ -108,8 +108,7 @@ function matrixProblem(matrix, shouldValidate = true) {
         const m = matrixArray[0].length;
 
         for (let i = 1; i < n; i++) {
-            const currentRowLength = matrixArray[i].length;
-            if (currentRowLength !== m) {
+            if (!Array.isArray(matrix[i]) || matrix[i].length !== m) {
                 return false;
             }
         }
@@ -126,9 +125,6 @@ function matrixProblem(matrix, shouldValidate = true) {
     return matrix[0].map((x, i) => matrix.map(y => y[i]));
 }
 
-function isCorrectNS(ns) {
-    return Number.isInteger(ns) && ns >= 2 && ns <= 36;
-}
 
 /**
  * Переводит число в другую систему счисления
@@ -139,6 +135,10 @@ function isCorrectNS(ns) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    function isCorrectNS(ns) {
+        return Number.isInteger(ns) && ns >= 2 && ns <= 36;
+    }
+
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('invalid argument\'s type');
     }
@@ -156,6 +156,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('expecting \'phoneNumber\' as string');
+    }
+
     const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return phoneRegex.test(phoneNumber);
