@@ -157,10 +157,14 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    let matchSmile = text.match(/:-\)|\(-:/g);
+    let matchLeftSmile = text.match(/:-\)/g);
+    let matchRightSmile = text.match(/\(-:/g);
     let result = 0;
-    if (!(matchSmile === null)) {
-        result += matchSmile.length;
+    if (!(matchRightSmile === null)) {
+        result += matchRightSmile.length;
+    }
+    if (!(matchLeftSmile === null)) {
+        result += matchLeftSmile.length;
     }
 
     return result;
