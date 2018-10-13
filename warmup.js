@@ -39,11 +39,22 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor != 'string')
         throw new TypeError();
-    
-    const regex = /^#[\da-f]{6}/
-    if (regex.exec)
 
-    // Ваше решение
+    const hexColorRegex = /^#([\dA-F]{2})([\dA-F]{2})([\dA-F]{2})$/;
+    if (!hexColorRegex.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const COLOR_COMPONENTS_AMOUNT = 3;
+
+    const match = hexColor.match(hexColorRegex);
+    var hexColorComponents = match.slice(1, COLOR_COMPONENTS_AMOUNT + 1);
+    var decimalColorComponents = [];
+    for (var i = 0; i < COLOR_COMPONENTS_AMOUNT; i++) {
+        decimalColorComponents.push(parseInt(hexColorComponents[i], 16));
+    }
+
+    return '(' + decimalColorComponents.join(', ') + ')';
 }
 
 /**
