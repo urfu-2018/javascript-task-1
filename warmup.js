@@ -12,6 +12,10 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
+    if (a % 1 !== 0 || b % 1 !== 0) {
+        throw new TypeError();
+    }
+
     return a + b;
 }
 
