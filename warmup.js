@@ -122,8 +122,8 @@ function matrixProblem(matrix, shouldValidate = true) {
     return matrix[0].map((x, i) => matrix.map(y => y[i]));
 }
 
-function isCorrectNSysetem(ns) {
-    return Number.isInteger(ns) && ns >= 2 || ns <= 36;
+function isCorrectNS(ns) {
+    return Number.isInteger(ns) && ns >= 2 && ns <= 36;
 }
 
 /**
@@ -139,7 +139,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('invalid argument\'s type');
     }
 
-    if (!Number.isInteger(n) || ! isCorrectNSysetem(targetNs)) {
+    if (!Number.isInteger(n) || !isCorrectNS(targetNs)) {
         throw new RangeError('invalid targetNs range');
     }
 
