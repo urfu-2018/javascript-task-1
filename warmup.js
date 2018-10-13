@@ -103,7 +103,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !isCorrectInside(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !isCorrectInside(matrix)) {
         throw new TypeError();
     }
     const M = matrix.length;
