@@ -71,7 +71,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('Аргумент должен быть целым числом');
     }
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('n должно быть положительным значением');
     }
     var f = 1;
@@ -98,7 +98,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) && matrix.length > 0) {
+    if (!Array.isArray(matrix) || matrix.length > 0) {
         throw new TypeError('Передана не матрица');
     }
     var rowLen = matrix[0].length;
