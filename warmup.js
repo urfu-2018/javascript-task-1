@@ -98,7 +98,7 @@ function matrixProblem(matrix) {
         let index;
         let index2;
         for (index = 0; index < matrix.length; index++) {
-            for (index2 = 0; index2 < matrix[0].length; index2++){
+            for (index2 = 0; index2 < matrix[0].length; index2++) {
                 matrixT[index2][index] = matrix[index][index2];
             }
         }
@@ -155,12 +155,12 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let array = [0, 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 1, 2, 2, 0, 2, 
-    1, 1, 2, 0, 0, 1, 1, 1, 2, 1, 0, 2, 1, 2, 2, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2];
+    let array = [0, 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 1, 2, 2, 0, 2,
+        1, 1, 2, 0, 0, 1, 1, 1, 2, 1, 0, 2, 1, 2, 2, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2];
     let index;
-    for (index = 0; index < array.length; index+=6) {
-        if (field[array[index]][array[index + 1]] === field[array[index + 2]][array[index + 3]]
-         === field[array[index + 4]][array[index + 5]]) {
+    for (index = 0; index < array.length; index += 6) {
+        if (field[array[index]][array[index + 1]] ===
+            field[array[index + 2]][array[index + 3]] === field[array[index + 4]][array[index + 5]]) {
             return field[array[index]][array[index + 1]];
         }
     }
