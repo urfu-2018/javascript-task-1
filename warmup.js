@@ -137,7 +137,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Аргументом должна быть строка');
     }
 
     return /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g.test(phoneNumber);
