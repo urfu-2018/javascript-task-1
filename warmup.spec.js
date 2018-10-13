@@ -25,6 +25,9 @@ describe('Century by year problem', () => {
     it('Должна вернуть `21`', () => {
         assert.strictEqual(centuryByYearProblem(2018), 21);
     });
+    it('Должна вернуть `21`', () => {
+        assert.strictEqual(centuryByYearProblem(2000), 20);
+    });
 });
 
 describe('Colors problem', function () {
@@ -37,9 +40,6 @@ describe('Fibonacci problem', () => {
     it('Для n=1 должна вернуть `1`', () => {
         assert.strictEqual(fibonacciProblem(1), 1);
     });
-});
-
-describe('Fibonacci problem', () => {
     it('Для n=9 должна вернуть `34`', () => {
         assert.strictEqual(fibonacciProblem(9), 34);
     });
@@ -85,5 +85,33 @@ describe('Tic-tac-toe problem', () => {
             ['o', 'o', 'x'],
             ['o', 'x', 'o']
         ]), 'x');
+    });
+    it('Должна вернуть "o"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'x'],
+            ['o', 'o', 'x'],
+            ['o', 'x', 'o']
+        ]), 'o');
+    });
+    it('Должна вернуть "o"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'x'],
+            ['x', 'o', 'x'],
+            ['o', 'x', 'o']
+        ]), 'o');
+    });
+    it('Должна вернуть "o"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['x', 'x', 'o'],
+            ['x', 'o', 'x'],
+            ['o', 'x', 'x']
+        ]), 'o');
+    });
+    it('Должна вернуть "draw"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'o'],
+            ['o', 'x', 'x'],
+            ['x', 'o', 'x']
+        ]), 'draw');
     });
 });
