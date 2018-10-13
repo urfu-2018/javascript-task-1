@@ -81,7 +81,6 @@ function fibonacciProblem(n) {
     }
     let previous = 0;
     let current = 1;
-    let counter = 1;
     while (n > 0) {
         current += previous;
         previous = current - previous;
