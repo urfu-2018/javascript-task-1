@@ -98,15 +98,9 @@ function matrixProblem(matrix) {
     if (!isGoodMatrix) {
         throw new TypeError('Array is not a matrix to transparent');
     }
-    let transMatrix = new Array(matrix[0].length);
-    for (let i = 0; i < matrix.length; i++) {
-        transMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix[i].length; j++) {
-            transMatrix[i][j] = matrix[j][i];
-        }
-    }
 
-    return transMatrix;
+    return matrix.reduce((prev, next) => next.map((item, i) =>
+        (prev[i] || []).concat(next[i])), []);
 }
 
 /**
