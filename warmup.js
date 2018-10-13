@@ -126,15 +126,16 @@ function matrixProblem(matrix, shouldValidate = true) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    function isCorrectNS(ns) {
-        return Number.isInteger(ns) && ns >= 2 && ns <= 36;
+    function checkType(num, ns) {
+        if (typeof num !== 'number' || typeof ns !== 'number' ||
+            !Number.isInteger(num) || !Number.isInteger(ns)) {
+            throw new TypeError('invalid argument\'s type');
+        }
     }
 
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw new TypeError('invalid argument\'s type');
-    }
+    checkType(n, targetNs);
 
-    if (!Number.isInteger(n) || !isCorrectNS(targetNs)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('invalid targetNs range');
     }
 
