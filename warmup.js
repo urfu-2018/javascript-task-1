@@ -45,8 +45,8 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('Ожидается строка');
     }
-    const hecRegex = new RegExp('^#[A-Fa-f0-9]{6}$');
-    const matchRes = hexColor.match(hecRegex);
+    const hexRegex = new RegExp('^#[A-Fa-f0-9]{6}$');
+    const matchRes = hexColor.match(hexRegex);
     if (matchRes === null) {
         throw new RangeError('Ожидается строка');
     }
@@ -96,7 +96,7 @@ function matrixProblem(matrix) {
         throw new TypeError('Передана не матрица');
     }
     const rowLen = matrix[0].length;
-    for (let i = 0; i < rowLen; i++) {
+    for (let i = 0; i < matrix.length; i++) {
         if (matrix[i].length !== rowLen || !Array.isArray(matrix[i])) {
             throw new TypeError('Строки должны быть одинакового размера!');
         }
