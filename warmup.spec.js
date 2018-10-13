@@ -25,7 +25,7 @@ describe('Century by year problem', () => {
     it('Должна вернуть `21`', () => {
         assert.strictEqual(centuryByYearProblem(2018), 21);
     });
-    it('Должна вернуть `21`', () => {
+    it('Должна вернуть `20`', () => {
         assert.strictEqual(centuryByYearProblem(2000), 20);
     });
 });

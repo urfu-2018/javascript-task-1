@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isNumber(a) || !Number.isNumber(b)) {
+    if (!isNumber(a) || !isNumber(b)) {
         throw new TypeError();
     }
 
