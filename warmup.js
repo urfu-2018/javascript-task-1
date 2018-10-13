@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (typeof (a) !== 'number' || typeof (b) !== 'number') {
         throw new TypeError('Аргументы должны быть целыми числами');
     }
 
@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
         return year / 100;
     }
 
-    return (year - (year % 100)) / 100 + 1;
+    return Math.ceil(year) / 100;
 }
 
 /**
@@ -68,7 +68,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof(n) !== 'number') {
         throw new TypeError('Аргумент должен быть целым числом');
     }
     if (n <= 0) {
@@ -77,13 +77,10 @@ function fibonacciProblem(n) {
     var f = 1;
     var s = 1;
 
-    if (n === 1) {
+    if (n <= 2) {
         return f;
     }
 
-    if (n === 2) {
-        return s;
-    }
     for (var i = 0; i < n - 2; i++) {
         var curr = f + s;
         f = s;
@@ -101,8 +98,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
-        throw new TypeError('Передана не двумерная матрица');
+    if (!Array.isArray(matrix) && matrix.length > 0) {
+        throw new TypeError('Передана не матрица');
     }
     var rowLen = matrix[0].length;
     for (var i = 0; i < rowLen; i++) {
@@ -123,11 +120,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError('Аргументы должны быть целыми числами');
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('khgn');
+        throw new RangeError('Система счисления должна быть в промежутке [2, 36]');
     }
 
     return n.toString(targetNs);
@@ -151,7 +148,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof (text) !== 'string') {
+    if (typeof(text) !== 'string') {
         throw new TypeError('Ожидается строка');
     }
     var smile1 = new RegExp(':-\\)');
@@ -172,13 +169,13 @@ function ticTacToeProblem(field) {
     if (rowCheck !== null) {
         return rowCheck;
     }
-    for (let i = 0; i < field.length; i++) {
+    for (let i = 0; i < 3; i++) {
         if (isEquals(field[0][i], field[1][i], field[2][i])) {
             return field[0][i];
         }
     }
     if (isEquals(field[0][0], field[1][1], field[2][2]) ||
-     isEquals(field[2][0], field[1][1], field[0][2])) {
+        isEquals(field[2][0], field[1][1], field[0][2])) {
         return field[1][1];
     }
 
