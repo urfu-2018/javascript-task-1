@@ -31,8 +31,9 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError('Ошибка размерности!');
     }
-    if (year % 100 === 0)
+    if (year % 100 === 0) {
         return year / 100;
+    }
 
     return Math.floor(year / 100) + 1;
 
