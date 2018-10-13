@@ -182,7 +182,7 @@ function smilesProblem(text) {
         throw new TypeError('Text should be string');
     }
 
-    let smilesRegex = /(:-\)|\(:-))/g;
+    let smilesRegex = /(:-\)|\(:-)/g;
 
     return (text.match(smilesRegex) || []).length;
 }
