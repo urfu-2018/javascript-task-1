@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (!Number.isInteger(year) || year < 0) {
         throw new RangeError();
     }
     const century = 100;
@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (!(/#[0-9A-F]{6}/i).test(hexColor) || hexColor.length > 7) {
+    if (!(/^#[0-9A-F]{6}$/i).test(hexColor)) {
         throw new RangeError();
     }
     let arrayOfColors = new Array(3);
@@ -88,18 +88,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    function isMatrix(checkingMatrix) {
-        if (!Array.isArray(checkingMatrix) || checkingMatrix.length === 0 ||
-            !Array.isArray(checkingMatrix[0]) || checkingMatrix[0].length === 0) {
-            return false;
-        }
-
-        return true;
-    }
-    if (!isMatrix(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
-    for (let i = 1; i < matrix.length; i++) {
+    for (let i = 0; i < matrix.length; i++) {
         if (matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
