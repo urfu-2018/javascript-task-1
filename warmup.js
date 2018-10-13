@@ -36,7 +36,7 @@ function centuryByYearProblem(year) {
 
     // Определение века
     const YEARS_IN_CENTURY = 100;
-    return Math.trunc(year / YEARS_IN_CENTURY);
+    return Math.ceil(year / YEARS_IN_CENTURY);
 }
 
 /**
@@ -112,7 +112,43 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+
+    // Проверка того, что на входе двумерный массив
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    const M = matrix.length;
+    if (M === 0) {
+        throw new TypeError();
+    }
+    matrix.forEach(element => {
+        if (!Array.isArray(element)) {
+            throw new TypeError();
+        }
+    });
+
+    // Проверка того, что у всех элементов массива одинаковая размерность (одинаковая длина строк в матрице)
+    const N = matrix[0].length;
+    matrix.forEach(element => {
+        if (element.length != N) {
+            throw new TypeError();
+        }
+    });
+
+    // Создание основы для транспонированной матрицы
+    let transposedMatrix = [];
+    for (let i = 0; i < N; i++) {
+        transposedMatrix.push([]);
+    }
+
+    // Транспонирование матрицы
+    for (let i = 0; i < M; i++) {
+        for (let j = 0; j < N; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
