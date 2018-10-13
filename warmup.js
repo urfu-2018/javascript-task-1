@@ -166,7 +166,7 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError();
     }
-    const regexp = /(\(-:|:-\))+/g;
+    const regexp = /(\(-:|:-\))/g;
     const match = text.match(regexp);
 
     return match ? match.length : 0;
