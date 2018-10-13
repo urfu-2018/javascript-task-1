@@ -8,10 +8,13 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (Number.isInteger(a) && Number.isInteger(b))
+    
+    if (Number.isInteger(a) && Number.isInteger(b)) {
         return (a + b);
-    else
+    }
+    else {
         throw new TypeError();
+    }
 }
 
 /**
@@ -22,10 +25,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year))
+
+    if (!Number.isInteger(year)) {
         throw new TypeError();
-    if (year <= 0)
+    }
+    if (year <= 0) {
         throw new RangeError();
+    }
     const YEARS_IN_CENTURY = 100;
     return Math.trunc(year / YEARS_IN_CENTURY);
 }
@@ -38,6 +44,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+
     if (typeof hexColor != 'string') {
         throw new TypeError();
     }
