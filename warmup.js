@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (year < 0) {
+    if (year <= 0) {
         throw new RangeError();
     }
 
@@ -92,7 +92,7 @@ function matrixProblem(matrix) {
         }
     }
 
-    return matrix[0].map((column, i) => matrix.map(row => row[i]));
+    return matrix[0].map((cell, i) => matrix.map(column => column[i]));
 }
 
 /**
