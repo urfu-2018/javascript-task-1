@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError('Аргументы должен быть целым числом');
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError('Год должен быть положительным значением');
     }
     if (year % 100 === 0) {
@@ -121,7 +121,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
-        throw new TypeError('Аргументы должны быть целыми числами');
+        throw new TypeError('Аргументы должны быть числами');
     }
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('Система счисления должна быть в промежутке [2, 36]');
@@ -137,6 +137,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var phoneRegex = new RegExp('8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}');
+    if (typeof(phoneNumber) !== 'string') {
+        return false;
+    }
 
     return phoneNumber.length === 15 && phoneRegex.test(phoneNumber);
 }
