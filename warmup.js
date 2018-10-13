@@ -151,10 +151,10 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Аргументом должна быть строка');
     }
 
-    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
+    return (text.match(/(:-\)|\(-:)/g) || []).length;
 }
 
 /**
@@ -177,19 +177,12 @@ function ticTacToeProblem(field) {
 
     for (var i = 0; i < AllWinningLines.length; i++) {
         var current = AllWinningLines[i];
-        if (getWinner(current) !== undefined) {
-            return getWinner(current);
+        if (current[0] === current[1] && current[1] === current[2]) {
+            return current[0];
         }
     }
 
     return 'draw';
-}
-
-function getWinner(list) {
-    var set = new Set(list);
-    if (set.size === 1) {
-        return set.values().next().value;
-    }
 }
 
 module.exports = {
