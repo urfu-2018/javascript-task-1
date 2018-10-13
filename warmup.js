@@ -54,16 +54,15 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    const hexColorRegex = /^#([\dA-Fa-f]{2})([\dA-Fa-f]{2})([\dA-Fa-f]{2})$/;
-    const match = hexColor.match(hexColorRegex);
+    const hexColorRegex = /^#[\dA-F]{6}|[\da-f]{6}$/;
 
-    if (match === null) {
+    if (!hexColorRegex.test(hexColor)) {
         throw new RangeError();
     }
 
     // Изоляция HEX-компонент
     const COLOR_COMPONENTS_AMOUNT = 3;
-    const hexColorComponents = match.slice(1, COLOR_COMPONENTS_AMOUNT + 1);
+    const hexColorComponents = [hexColor.substring(1, 3), hexColor.substring(3, 5), hexColor.substring(5)];
 
     // Конвертация в RGB
     const HEX_BASE = 16;
