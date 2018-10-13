@@ -10,7 +10,7 @@
 function abProblem(a, b) {
 
     // Проверка входных данных на валидность
-    if ( !( Number.isInteger(a) && Number.isInteger(b) ) ) {
+    if (!(Number.isInteger(a) && Number.isInteger(b))) {
         throw new TypeError();
     }
 
@@ -36,6 +36,7 @@ function centuryByYearProblem(year) {
 
     // Определение века
     const YEARS_IN_CENTURY = 100;
+
     return Math.ceil(year / YEARS_IN_CENTURY);
 }
 
@@ -49,7 +50,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
 
     // Проверка входных данных на валидность
-    if (typeof hexColor != 'string') {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
 
@@ -84,14 +85,14 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
 
     // Проверка входных данных на валидность
-    if (typeof n != 'number') {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if ( !( Number.isInteger(n) && (n > 0) ) ) {
+    if (!(Number.isInteger(n) && (n > 0))) {
         throw new RangeError();
     }
 
-    let lastFibonacciNumbers = [ 1, 1 ]; // Последние вычисленные числа Фибоначчи
+    let lastFibonacciNumbers = [1, 1]; // Последние вычисленные числа Фибоначчи
 
     // Нахождение n-го числа Фибоначчи
     for (let i = 3; i < n; i++) {
@@ -127,10 +128,10 @@ function matrixProblem(matrix) {
         }
     });
 
-    // Проверка того, что у всех элементов массива одинаковая размерность (одинаковая длина строк в матрице)
+    // Проверка того, что у всех элементов массива одинаковая размерность
     const N = matrix[0].length;
     matrix.forEach(element => {
-        if (element.length != N) {
+        if (element.length !== N) {
             throw new TypeError();
         }
     });
@@ -162,7 +163,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
 
     // Проверка входных данных на валидность
-    if ( !( Number.isInteger(n) && Number.isInteger(targetNs) ) ) {
+    if (!(Number.isInteger(n) && Number.isInteger(targetNs))) {
         throw new TypeError();
     }
     if ((targetNs < 2) || (targetNs > 36)) {
@@ -178,7 +179,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/
+
+    const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
+
     return phoneRegex.test(phoneNumber);
 }
 
@@ -191,7 +194,7 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
 
     // Проверка входных данных на валидность
-    if (typeof text != 'string') {
+    if (typeof text !== 'string') {
         throw new TypeError();
     }
 
@@ -202,6 +205,7 @@ function smilesProblem(text) {
     if (matches === null) {
         return 0;
     }
+
     return matches.length;
 }
 
@@ -213,44 +217,91 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
 
-    const FIELD_SIZE = 3;
+    // Проверить строки на наличие победителя
+    let winner = checkRowsForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Проверить столбцы на наличие победителя
+    winner = checkColumnsForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Проверить главную диагональ на наличие победителя
+    winner = checkMainDiagonalForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Проверить побочную диагональ на наличие победителя
+    winner = checkAntidiagonalForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Иначе победила дружба
+    return 'draw';
+}
+
+function checkRowsForWinner(field) {
 
     // Проверить, состоит ли некоторая строка из элементов только одного типа
-    for (let rowIndex = 0; rowIndex < FIELD_SIZE; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < field.length; rowIndex++) {
         const currentRow = field[rowIndex];
-        if ( currentRow.every( element => { return (element === currentRow[0]); } ) ) {
+        if (currentRow.every(element => {
+            return (element === currentRow[0]);
+        })) {
             // Если да, то победитель определён
             return currentRow[0];
         }
     }
 
+    return null;
+}
+
+function checkColumnsForWinner(field) {
+
     // Проверить, состоит ли некоторый столбец из элементов только одного типа
-    for (let columnIndex = 0; columnIndex < FIELD_SIZE; columnIndex++) {
-        if ( field.every(element => {
+    for (let columnIndex = 0; columnIndex < field.length; columnIndex++) {
+        if (field.every(element => {
             return (element[columnIndex] === field[0][columnIndex]);
-        }) ) {
+        })) {
             // Если да, то победитель определён
             return field[0][columnIndex];
         }
     }
 
+    return null;
+}
+
+function checkMainDiagonalForWinner(field) {
+
     // Проверить, состоит ли главная диагональ из элементов только одного типа
     let winnerFound = true;
-    for (let i = 1; i < FIELD_SIZE; i++) {
-        if (field[i][i] != field[0][0]) {
+    for (let i = 1; i < field.length; i++) {
+        if (field[i][i] !== field[0][0]) {
             winnerFound = false;
             break;
         }
     }
     if (winnerFound) {
-        //Если да, то победитель определён
+        // Если да, то победитель определён
         return field[0][0];
     }
 
+    return null;
+}
+
+function checkAntidiagonalForWinner(field) {
+
+    const FIELD_SIZE = field.length;
+
     // Проверить, состоит ли побочная диагональ из элементов только одного типа
-    winnerFound = true;
+    let winnerFound = true;
     for (let i = 1; i < FIELD_SIZE; i++) {
-        if (field[FIELD_SIZE - i][i] != field[FIELD_SIZE][0]) {
+        if (field[FIELD_SIZE - i][i] !== field[FIELD_SIZE][0]) {
             winnerFound = false;
         }
     }
@@ -259,8 +310,7 @@ function ticTacToeProblem(field) {
         return field[FIELD_SIZE][0];
     }
 
-    // Иначе победила дружба
-    return 'draw';
+    return null;
 }
 
 module.exports = {
