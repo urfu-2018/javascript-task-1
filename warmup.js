@@ -106,7 +106,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
-    } else if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
+    } else if (targetNs < 2 || targetNs > 36 || targetNs % 1 !== 0) {
         throw new RangeError();
     }
 
