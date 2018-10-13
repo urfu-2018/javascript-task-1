@@ -44,12 +44,12 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!(/^#[0-9a-fA-F]{6}/.test(hexColor))) {
+    if (!(/^#[0-9a-fA-F]{6}/g.test(hexColor))) {
         throw new RangeError();
     }
     const rgb = [];
     for (let i = 0; i < 3; i++) {
-        rgb.push(parseInt(hexColor[i + 1] + hexColor[i + 2], 16));
+        rgb.push(parseInt(hexColor[2 * i + 1] + hexColor[2 * i + 2], 16));
     }
 
     return '(' + rgb.join(', ') + ')';
