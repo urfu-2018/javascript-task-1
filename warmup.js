@@ -1,8 +1,8 @@
 'use strict';
 
-function throwErrorIfNotInteger(argument) {
+function throwErrorIfNotInteger(argument, name = 'Argument') {
     if (!Number.isInteger(argument)) {
-        throw new TypeError('Argument should be an integer');
+        throw new TypeError(`${name} should be an integer`);
     }
 }
 
@@ -22,9 +22,8 @@ function isNumber(argument) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumber(a) || !isNumber(b)) {
-        throw new TypeError('Arguments should be numbers');
-    }
+    throwErrorIfNotInteger(a);
+    throwErrorIfNotInteger(b);
 
     return a + b;
 }
@@ -57,7 +56,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('Argument must be a string');
     }
 
-    let hexColorRegex = /^#[0-9ABCDEF]{6}$/i;
+    let hexColorRegex = /^#[0-9ABCDEF]{6}$/gi;
     if (!hexColorRegex.test(hexColor)) {
         throw new RangeError('Argument not in allowed values');
     }
@@ -82,8 +81,10 @@ function getColor(colorInHex) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    throwErrorIfNotInteger(n);
-    if (n <= 0) {
+    if (!isNumber(n)) {
+        throw new TypeError('Argument should be a number');
+    }
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('Argument should be a positive number');
     }
 
@@ -106,10 +107,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Argument should be an array of arrays');
     }
+    for (let y = 0; y < matrix.length; y++) {
+        if (!Array.isArray(matrix[y]) || matrix[y].length !== matrix[0].length) {
+            throw new TypeError('Argument should be an array of arrays with same lenth');
+        }
+    }
 
+    return getTransposedMatrix(matrix);
+}
+
+function getTransposedMatrix(matrix) {
     let m = matrix.length;
     let n = matrix[0].length;
 
@@ -134,10 +144,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !isNumber(targetNs)) {
+    if (!isNumber(n)) {
         return new TypeError('Arguments should be a numbers');
     }
-    throwErrorIfNotInteger(targetNs);
+    throwErrorIfNotInteger(targetNs, 'targetNs');
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('targetNs should be in [2, 36]');
     }
@@ -203,10 +213,9 @@ function isWinner(char, lines) {
 }
 
 function getPossibleLines(field) {
-    let result = field;
-    result.concat(getAllColumns(field));
-    result.concat(getDiagonal(true, field));
-    result.concat(getDiagonal(false, field));
+    let result = field.concat(getAllColumns(field));
+    result.push(getDiagonal(true, field));
+    result.push(getDiagonal(false, field));
 
     return result;
 }
@@ -215,7 +224,7 @@ function getAllColumns(field) {
     let res = [];
 
     for (var x = 0; x < field[0].length; x++) {
-        let column = new Array(field.length);
+        let column = [];
         for (var y = 0; y < field.length; y++) {
             column.push(field[y][x]);
         }
