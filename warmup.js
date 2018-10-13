@@ -36,7 +36,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (isNumber(year)) {
         if (year >= 1) {
-            return Math.cell(year / 100);
+            return Math.ceil(year / 100);
         }
         rangeError();
     }
@@ -132,7 +132,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (isNumber(n) && isNumber(targetNs)) {
         if (targetNs >= 2 && targetNs <= 36) {
-            return parseInt(n.toString, targetNs);
+            return n.toString(targetNs);
         }
         rangeError();
     }
@@ -168,16 +168,17 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let array = [0, 0, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 1, 2, 2, 0, 2,
-        1, 1, 2, 0, 0, 1, 1, 1, 2, 1, 0, 2, 1, 2, 2, 2, 1, 0, 1, 1, 1, 2, 2, 0, 2, 1, 2, 2];
-    let index;
     let draw = true;
-    for (index = 0; index < array.length; index += 6) {
-        if (field[array[index]][array[index + 1]] === field[array[index + 2]][array[index + 3]] ===
-            field[array[index + 4]][array[index + 5]]) {
-            draw = false;
-
-            return field[array[index]][array[index + 1]];
+    if (field[0][0] === field[1][1] === field[2][2] || field[0][2] ===
+        field[1][1] === field[2][0]) {
+        return field[1][1];
+    }
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] === field[2][i]) {
+            return field[0][i];
         }
     }
     if (draw) {
