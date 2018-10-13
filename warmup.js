@@ -8,7 +8,15 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+        throw new TypeError();
+    }
+
+    if (a % 1 !== 0 || b % 1 !== 0) {
+        throw new RangeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +27,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof(year) !== 'number') {
+        throw new TypeError();
+    }
+
+    if (year < 1) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +46,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError();
+    }
+    if (!/^#[0-9a-fA-F]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    }
+    const result = hexColor
+        .slice(1)
+        .split(/(..)/)
+        .filter(str => str.length > 0)
+        .map(num => parseInt(num, 16))
+        .join(', ');
+
+    return `(${result})`;
 }
 
 /**
@@ -41,7 +70,14 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    }
+    if (n < 1 || n % 1 !== 0) {
+        throw new RangeError();
+    }
+
+    return n <= 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
@@ -51,7 +87,16 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || matrix.length <= 0) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length <= 0) {
+            throw new TypeError();
+        }
+    }
+
+    return matrix[0].map((cell, i) => matrix.map(column => column[i]));
 }
 
 /**
@@ -63,7 +108,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+        throw new TypeError();
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +123,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +137,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
+
+    return (text.match(/\(-:|:-\)/g) || []).length;
 }
 
 /**
@@ -92,7 +151,35 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const transporatedField = field
+        .map((column, i) => column
+            .map((cell, j) => field[field.length - j - 1][i]));
+    function getMainDiagonal(matrix) {
+        return matrix
+            .map((column, i) => matrix[i][i]);
+    }
+    const diagonals = [getMainDiagonal(field), getMainDiagonal(transporatedField)];
+    function isWinLine(line, symbol) {
+        return line.every(mark => mark === symbol);
+    }
+    function isWin(symbol) {
+        for (let i = 0; i < field.length; i++) {
+            if (isWinLine(field[i], symbol) || isWinLine(transporatedField[i], symbol) ||
+                    isWinLine(diagonals[Math.min(i, diagonals.length - 1)], symbol)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    if (isWin('x')) {
+        return 'x';
+    }
+    if (isWin('o')) {
+        return 'o';
+    }
+
+    return 'draw';
 }
 
 module.exports = {
