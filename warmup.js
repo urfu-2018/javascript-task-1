@@ -190,10 +190,8 @@ function getOccurencesCount(text, regexp) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const transported = matrixProblem(field);
-    const allFields = [field, transported];
     for (let i = 0; i < 3; i++) {
-        const winner = checkRowAndColumn(allFields, i);
+        const winner = checkRowAndColumn(field, i);
         if (winner) {
             return winner;
         }
@@ -208,26 +206,17 @@ function ticTacToeProblem(field) {
     return 'draw';
 }
 
-function checkRowAndColumn(allFields, i) {
-    for (let j = 0; j < 2; j++) {
-        let field = allFields[j];
-        let winner = checkRow(field, i);
-        if (winner) {
-            return winner;
-        }
-    }
-
-    return undefined;
-}
-
-function checkRow(field, i) {
+function checkRowAndColumn(field, i) {
     if ((field[i][0] === field[i][1]) && (field[i][1] === field[i][2])) {
         return field[i][0];
     }
 
+    if ((field[0][i] === field[1][i]) && (field[1][i] === field[2][i])) {
+        return field[0][i];
+    }
+
     return undefined;
 }
-
 
 module.exports = {
     abProblem,
