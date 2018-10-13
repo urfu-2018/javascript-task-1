@@ -44,7 +44,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof (hexColor) !== 'string') {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError('Ожидается строка');
     }
     var re = new RegExp('#[A-Fa-f0-9]{6}');
