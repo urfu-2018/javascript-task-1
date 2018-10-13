@@ -99,11 +99,19 @@ function matrixProblem(matrix) {
         }
     })) {
         let matrixT = [];
-        let index;
-        let index2;
-        for (index = 0; index < matrix.length; index++) {
-            for (index2 = 0; index2 < matrix[0].length; index2++) {
-                matrixT[index2][index] = matrix[index][index2];
+        let m = matrix.length;
+        if (m === 0) {
+            typeError();
+        }
+        let n = matrix[0].length;
+        matrix.forEach(element => {
+            if (element.length !== n) {
+                typeError();
+            }
+        })
+        for (let i = 0; i < m; i++) {
+            for (let j = 0; j < n; j++) {
+                matrixT[j][i] = matrix[i][j];
             }
         }
 
@@ -167,10 +175,13 @@ function ticTacToeProblem(field) {
         if (field[array[index]][array[index + 1]] === field[array[index + 2]][array[index + 3]] ===
             field[array[index + 4]][array[index + 5]]) {
             draw = false;
+
             return field[array[index]][array[index + 1]];
         }
     }
-    if (draw) return 'draw';
+    if (draw) {
+        return 'draw';
+    }
 }
 
 module.exports = {
