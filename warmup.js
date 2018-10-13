@@ -1,7 +1,8 @@
 'use strict';
 
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b) || !Number.isFinite(a) || !Number.isFinite(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b) ||
+    !Number.isFinite(a) || !Number.isFinite(b)) {
         throw new TypeError('Numbers must be integer');
     }
 
@@ -55,7 +56,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr)) ||
      !((arr1, arr2) => arr1.length === arr2.length)) {
-        throw new TypeError('Argument must be array of arrays' + 
+        throw new TypeError('Argument must be array of arrays' +
         'where every element length is equal length of any other');
     }
 
@@ -64,7 +65,7 @@ function matrixProblem(matrix) {
 }
 
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs) || !Number.isFinite(n) || !Number.isFinite(targetNs)) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Number must be finite integer');
     }
     if (targetNs < 2 || targetNs > 32) {
