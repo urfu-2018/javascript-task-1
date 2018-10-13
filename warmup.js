@@ -38,7 +38,7 @@ function centuryByYearProblem(year) {
         if (year >= 1) {
             return Math.cell(year / 100);
         }
-        rangeError()
+        rangeError();
     }
     typeError();
 }
@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
             let b = (1 - root5) / 2;
             return (Math.pow(a, n) - Math.pow(b, n)) / root5;
         }
-        rangeError()
+        rangeError();
     }
     typeError();
 }
@@ -114,11 +114,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNumber(n) && isNumber(targetNs) {
+    if (isNumber(n) && isNumber(targetNs)) {
         if (targetNs >= 2 && targetNs <=36) {
             return parseInt(n.toString, targetNs);
         }
-        rangeError()
+        rangeError();
     }
     typeError();
 }
