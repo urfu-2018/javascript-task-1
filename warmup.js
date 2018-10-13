@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (year < 1 || year % 1 !== 0) {
+    if (year < 1 || isNaN(year)) {
         throw new RangeError();
     }
 
@@ -91,7 +91,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length <= 0) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length <= 0) {
             throw new TypeError();
         }
     }
