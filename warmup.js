@@ -44,11 +44,7 @@ function centuryByYearProblem(year) {
 }
 
 function isValidRange(hexString) {
-    const leftRange = parseInt('000000', 16);
-    const rightRange = parseInt('FFFFFF', 16);
-    const hexDecimal = parseInt(hexString, 16);
-
-    return leftRange <= hexDecimal && hexDecimal <= rightRange;
+    return hexString.search(/^[0-9a-f]{6}$/i) === 0;
 }
 
 /**
@@ -59,7 +55,7 @@ function isValidRange(hexString) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof (hexColor) !== 'string' || hexColor[0] !== '#' || hexColor.length !== 7) {
+    if (typeof (hexColor) !== 'string') {
         throw new TypeError('Переданная строка не в формате "#HEX"');
     }
     if (!isValidRange(hexColor.slice(1))) {
@@ -87,10 +83,7 @@ function confirmNumberType(n) {
  */
 function fibonacciProblem(n) {
     confirmNumberType(n);
-    if (!isInteger(n)) {
-        throw new TypeError('Переданный к функции аргумент не является целым числом');
-    }
-    if (Number(n) <= 0) {
+    if (Number(n) <= 0 || !isInteger(n)) {
         throw new RangeError('Таких чисел Фибоначчи не существует');
     }
     if (Number(n) <= 2) {
@@ -173,13 +166,6 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     confirmNumberType(n);
     confirmNumberType(targetNs);
-
-    /* if (!isInteger(n)) {
-        throw new TypeError(`Параметр n="${n}" не является целым числом`);
-    }
-    if (!isInteger(targetNs)) {
-        throw new TypeError(`Параметр targetNs="${targetNs}" не является целым числом`);
-    }*/
     if (Number(targetNs) >= 2 && Number(targetNs) <= 36) {
         return n.toString(Number(targetNs));
     }
