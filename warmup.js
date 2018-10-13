@@ -139,7 +139,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) === "string") {
+    if (typeof text === "string") {
         return text.match(/\(-:|:-\)/g).length;
     }
     typeError();
