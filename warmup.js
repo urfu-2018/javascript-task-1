@@ -13,7 +13,7 @@ function abProblem(a, b) {
     }
 
     if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new RangeError();
+        throw new TypeError();
     }
 
     return a + b;
