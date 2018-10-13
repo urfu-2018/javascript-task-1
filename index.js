@@ -22,7 +22,7 @@ console.info(centuryByYearProblem(2018));
 console.info(colorsProblem('#FFFFFF'));
 
 // Выведет `1`
-console.info(fibonacciProblem(1));
+console.info(fibonacciProblem(4));
 
 // Выведет `[
 //    [1, 4, 7],
@@ -44,9 +44,9 @@ console.info(phoneProblem('8-800-333-51-73'));
 // Выведет `2`
 console.info(smilesProblem(':-) (-:'));
 
-// Выведет "x"
+// Выведет "o"
 console.info(ticTacToeProblem([
-    ['x', 'x', 'x'],
-    ['o', 'o', 'x'],
-    ['o', 'x', 'o']
+    ['x', 'o', 'x'],
+    ['o', 'x', 'x'],
+    ['x', 'o', 'o']
 ]));
