@@ -170,7 +170,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return n.toString(targetNs);
+    return n.toString(targetNs).toUpperCase();
 }
 
 /**
