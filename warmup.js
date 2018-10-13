@@ -23,7 +23,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     throwsTypeErrorIfInputIsNotNumber(year);
-    throwsRangeErrorIfNumberIsNegative(year);
+    throwsRangeErrorIfNumberIsNotPositive(year);
     if (!Number.isInteger(year)) {
         throw new RangeError();
     }
@@ -62,7 +62,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     throwsTypeErrorIfInputIsNotNumber(n);
-    throwsRangeErrorIfNumberIsNegative(n);
+    throwsRangeErrorIfNumberIsNotPositive(n);
     if (!Number.isInteger(n)) {
         throw new RangeError();
     }
@@ -271,9 +271,9 @@ function throwsTypeErrorIfInputIsNotString(input) {
     }
 }
 
-function throwsRangeErrorIfNumberIsNegative(number) {
+function throwsRangeErrorIfNumberIsNotPositive(number) {
     throwsTypeErrorIfInputIsNotNumber(number);
-    if (number < 0) {
+    if (number <= 0) {
         throw new RangeError(`${number} is negative`);
     }
 }
