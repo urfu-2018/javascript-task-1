@@ -10,6 +10,10 @@ function isString(argument) {
     return typeof argument === 'string';
 }
 
+function isNumber(argument) {
+    return typeof argument === 'number';
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -52,7 +56,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('Argument must be a string');
     }
 
-    let hexColorRegex = /#[0-9ABCDEF]{6}/;
+    let hexColorRegex = /^#[0-9ABCDEF]{6}$/i;
     if (!hexColorRegex.test(hexColor)) {
         throw new RangeError('Argument not in allowed values');
     }
@@ -78,19 +82,16 @@ function fibonacciProblem(n) {
         throw new RangeError('Argument should be a positive number');
     }
 
-    if (n === 1 || n === 2) {
-        return 1;
+    let current = 1;
+    let previous = 1;
+
+    for (let numberNow = 3; numberNow < n; numberNow++) {
+        let tmp = current;
+        current = current + previous;
+        previous = tmp;
     }
 
-    let a = 1;
-    let b = 1;
-
-    for (let numberNow = 2; numberNow < n; numberNow++) {
-        a = a + b;
-        b = a - b;
-    }
-
-    return a + b;
+    return current;
 }
 
 /**
@@ -100,7 +101,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length == 0 || !Array.isArray(matrix[0])) {
         throw new TypeError('Argument should be an array of arrays');
     }
 
@@ -128,7 +129,9 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    throwErrorIfNotInteger(n);
+    if (!isNumber(n) || !isNumber(targetNs)) {
+        return TypeError('Arguments should be a numbers');
+    }
     throwErrorIfNotInteger(targetNs);
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('targetNs should be in [2, 36]');
@@ -143,6 +146,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!isString(phoneNumber)) {
+        throw new TypeError('Argument should be a string');
+    }
+
     let phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return phoneRegex.test(phoneNumber);
@@ -158,7 +165,7 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError('Text should be string');
     }
-
+    
     return getCountOfSubsrting(text, /:-\)/g) + getCountOfSubsrting(text, /\(-:/g);
 }
 
