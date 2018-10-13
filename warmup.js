@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('Invalid argument type');
     }
 
-    if (year < 0 || !Number.isInteger(year)) {
+    if (!Number.isInteger(year) || year < 0) {
         throw new RangeError('Year must be positive');
     }
 
@@ -97,18 +97,13 @@ function fibonacciProblem(n) {
 
 function matrixProblem(matrix, shouldValidate = true) {
     function isCorrectMatrix(matrixArray) {
-        if (!Array.isArray(matrixArray)) {
+        if (!Array.isArray(matrixArray) || matrixArray.length === 0) {
             return false;
         }
 
-        const n = matrixArray.length;
-        if (n === 0) {
-            return false;
-        }
-        const m = matrixArray[0].length;
 
-        for (let i = 1; i < n; i++) {
-            if (!Array.isArray(matrix[i]) || matrix[i].length !== m) {
+        for (let i = 0; i < matrixArray.length; i++) {
+            if (!Array.isArray(matrix[i]) || matrix[i].length !== matrixArray[0].length) {
                 return false;
             }
         }
@@ -204,7 +199,7 @@ function ticTacToeProblem(field) {
     }
 
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
-        field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         return field[1][1];
     }
 
