@@ -27,10 +27,10 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
 
     // Проверка входных данных на валидность
-    if (!Number.isInteger(year)) {
+    if ((typeof year) != 'number') {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
