@@ -122,7 +122,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        !Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        !Number.isInteger(n)) {
         throw new TypeError('Ошбика типа!');
     }
     if (targetNs < 2 || targetNs > 36) {
