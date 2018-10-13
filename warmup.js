@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    if (!Number.isInteger(a) || !Number.isInteger(b) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new RangeError();
     }
 
