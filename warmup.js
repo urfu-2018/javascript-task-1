@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof b !== 'number' || typeof a !== 'number' ||
-        Number.isInteger(a) || Number.isInteger(b)) {
+        !Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('Ошбика типа!');
     }
 
@@ -25,7 +25,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || Number.isInteger(year)) {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError('Ошбика типа!');
     }
     if (year < 0) {
@@ -70,7 +70,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number' || Number.isInteger(n)) {
+    if (typeof n !== 'number' || !Number.isInteger(n)) {
         throw new TypeError('Ошбика типа!');
     }
     if (n < 0) {
