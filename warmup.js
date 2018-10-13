@@ -30,9 +30,6 @@ function centuryByYearProblem(year) {
     if (year <= 0) {
         throw new RangeError('Год должен быть положительным значением');
     }
-    if (year % 100 === 0) {
-        return year / 100;
-    }
 
     return Math.ceil(year / 100);
 }
@@ -48,17 +45,17 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('Ожидается строка');
     }
-    var re = new RegExp('^#[A-Fa-f0-9]{6}$');
-    var matchRes = hexColor.match(re);
+    const hecRegex = new RegExp('^#[A-Fa-f0-9]{6}$');
+    const matchRes = hexColor.match(hecRegex);
     if (matchRes === null) {
         throw new RangeError('Ожидается строка');
     }
 
-    var first = parseInt(hexColor.slice(1, 3), 16);
-    var second = parseInt(hexColor.slice(3, 5), 16);
-    var third = parseInt(hexColor.slice(5), 16);
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5), 16);
 
-    return `(${first}, ${second}, ${third})`;
+    return `(${red}, ${green}, ${blue})`;
 
 }
 
@@ -76,12 +73,8 @@ function fibonacciProblem(n) {
     if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('n должно быть положительным значением');
     }
-    var f = 1;
-    var s = 1;
-
-    if (n <= 2) {
-        return f;
-    }
+    let f = 1;
+    let s = 1;
 
     for (var i = 0; i < n - 2; i++) {
         var curr = f + s;
@@ -90,7 +83,6 @@ function fibonacciProblem(n) {
     }
 
     return s;
-
 }
 
 /**
@@ -103,8 +95,8 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Передана не матрица');
     }
-    var rowLen = matrix[0].length;
-    for (var i = 0; i < rowLen; i++) {
+    const rowLen = matrix[0].length;
+    for (let i = 0; i < rowLen; i++) {
         if (matrix[i].length !== rowLen || !Array.isArray(matrix[i])) {
             throw new TypeError('Строки должны быть одинакового размера!');
         }
@@ -138,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    var phoneRegex = new RegExp('8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}');
+    const phoneRegex = new RegExp('8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}');
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError('Ожидается строка');
     }
@@ -156,10 +148,10 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError('Ожидается строка');
     }
-    var smile1 = new RegExp(':-\\)');
-    var smile2Regx = new RegExp('\\(-:');
+    const smile1Regex = new RegExp(':-\\)');
+    const smile2Regex = new RegExp('\\(-:');
 
-    return (text.match(smile1) || []).length + (text.match(smile2Regx) || []).length;
+    return (text.match(smile1Regex) || []).length + (text.match(smile2Regex) || []).length;
 }
 
 /**
@@ -169,7 +161,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-
     let rowCheck = existsRowWithSameSymbols(field);
     if (rowCheck !== false) {
         return rowCheck;
