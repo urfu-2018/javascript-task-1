@@ -27,7 +27,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
 
     // Проверка входных данных на валидность
-    if ((typeof year) != 'number') {
+    if ((typeof year) !== 'number') {
         throw new TypeError();
     }
     if (year < 0) {
