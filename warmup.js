@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!isNumber(a) || !isNumber(b)) {
+        throw new TypeError();
+    }
+
+    return Number(a) + Number(b);
 }
 
 /**
@@ -19,7 +23,19 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!isNumber(year)) {
+        throw new TypeError();
+    }
+    year = Number(year);
+    if (year < 0) {
+        throw new RangeError();
+    }
+    let century = Math.floor(year / 100);
+    if (year % 100 === 0) {
+        return century;
+    }
+
+    return century + 1;
 }
 
 /**
@@ -30,7 +46,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string' ||
+        hexColor.length !== 7 ||
+        hexColor.indexOf('#') !== 0) {
+        throw new TypeError();
+    }
+    if (!/^#[\dA-Fa-f]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    return '(' + parseInt(hexColor.slice(1, 3), 16) + ', ' +
+                parseInt(hexColor.slice(3, 5), 16) + ', ' +
+                parseInt(hexColor.slice(5), 16) + ')';
 }
 
 /**
@@ -41,7 +68,27 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!isNumber(n)) {
+        throw new TypeError();
+    }
+
+    if (n <= 0) {
+        throw new RangeError();
+    }
+
+    if (n === 1 || n === 2) {
+        return 1;
+    }
+
+    let previous = 1;
+    let target = 1;
+    for (let i = 3; i <= n; i++) {
+        let next = previous + target;
+        previous = target;
+        target = next;
+    }
+
+    return target;
 }
 
 /**
@@ -51,7 +98,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!isTwoDimensionalArray(matrix)) {
+        throw new TypeError();
+    }
+    let transposedMatrix = [];
+
+    for (let j = 0; j < matrix[0].length; j++) {
+        transposedMatrix[j] = [];
+        for (let i = 0; i < matrix.length; i++) {
+            transposedMatrix[j].push(matrix[i][j]);
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -63,7 +122,24 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!isNumber(n) || !isNumber(targetNs)) {
+        throw new TypeError();
+    }
+    n = Number(n);
+    targetNs = Number(targetNs);
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    const alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
+
+    let result = '';
+    while (n > 0) {
+        result = alphabet[n % targetNs] + result;
+        n = Math.floor(n / targetNs);
+    }
+
+    return result;
 }
 
 /**
@@ -72,17 +148,26 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (/^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber)) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
  * Определяет количество улыбающихся смайликов в строке
  * @param {String} text Строка в которой производится поиск
  * @throws {TypeError} Когда в качестве аргумента передаётся не строка
- * @returns {Number} Количество улыбающихся смайликов в строке
+ * @returns {Number} Количество улыбающихся смайликов в строке (-: :-)
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    return (text.match(/\(-:/g) || []).length +
+            (text.match(/:-\)/g) || []).length;
 }
 
 /**
@@ -92,7 +177,66 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let xs = checkDiagonals(field, 'x') || checkLines(field, 'x');
+    let os = checkDiagonals(field, 'o') || checkLines(field, 'o');
+    if (xs && os) {
+        return 'draw';
+    }
+    if (xs) {
+        return 'x';
+    }
+    if (os) {
+        return 'o';
+    }
+}
+
+function checkLines(field, marker) {
+    for (let i = 0; i < field.length; i++) {
+        let row = true;
+        let column = true;
+        for (let j = 0; j < field.length; j++) {
+            row = (field[i][j] === marker) && row;
+            column = (field[j][i] === marker) && column;
+        }
+        if (row || column) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function checkDiagonals(field, marker) {
+    let main = true;
+    let side = true;
+
+    for (let i = 0; i < field.length; i++) {
+        main = (field[i][i] === marker) && main;
+        side = (field[3 - i - 1][i] === marker) && side;
+    }
+
+    return main || side;
+}
+
+function isTwoDimensionalArray(array) {
+    if (!Array.isArray(array)) {
+        return false;
+    }
+    for (let i = 0; i < array.length; i++) {
+        if (!Array.isArray(array[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function isNumber(number) {
+    if (isNaN(number) || number === null) {
+        return false;
+    }
+
+    return true;
 }
 
 module.exports = {
