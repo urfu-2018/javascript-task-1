@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    throwsTypeErrorIfNumberAreNotInteger(a);
-    throwsTypeErrorIfNumberAreNotInteger(b);
+    throwsTypeErrorIfNumberIsNotInteger(a);
+    throwsTypeErrorIfNumberIsNotInteger(b);
 
     return a + b;
 }
@@ -61,8 +61,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    throwsTypeErrorIfNumberAreNotInteger(n);
+    throwsTypeErrorIfInputIsNotNumber(n);
     throwsRangeErrorIfNumberIsNegative(n);
+    if (!Number.isInteger(n)) {
+        throw new RangeError();
+    }
     let first = 1;
     let second = 1;
 
@@ -104,7 +107,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     throwsTypeErrorIfInputIsNotNumber(n);
-    throwsTypeErrorIfNumberAreNotInteger(targetNs);
+    throwsTypeErrorIfNumberIsNotInteger(targetNs);
     throwsRangeErrorIfNumberNotInRange(targetNs, 2, 36);
 
     return n.toString(targetNs);
@@ -224,7 +227,7 @@ function getDiagonalFromField(field, isMainDiagonal) {
     return diagonal;
 }
 
-function throwsTypeErrorIfNumberAreNotInteger(number) {
+function throwsTypeErrorIfNumberIsNotInteger(number) {
     throwsTypeErrorIfInputIsNotNumber(number);
     if (!Number.isInteger(number)) {
         throw new TypeError(`${number.toString()} is not an integer`);
