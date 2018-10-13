@@ -87,14 +87,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
 
-    for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
-            throw new TypeError();
-        }
+    const secondDimension = matrix[0].length;
+    if (secondDimension === 0 ||
+        matrix.some(row => !(Array.isArray(row)) || row.length !== secondDimension)) {
+        throw new TypeError();
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
