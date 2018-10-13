@@ -93,10 +93,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (Array.isArray(matrix) && Array.isArray(matrix[0])) {
-        let matrixT, index, index2;
+    if (Array.isArray(matrix) && matrix.forEach(element => {
+        if(Array.isArray(element)) {
+            typeError();
+        }
+    })) {
+        let matrixT = [];
+        let index;
+        let index2;
         for (index = 0; index < matrix.length; index++) {
-            matrixT[index] = [];
             for (index2 = 0; index2 < matrix[0].length; index2++) {
                 matrixT[index2][index] = matrix[index][index2];
             }
@@ -163,6 +168,7 @@ function ticTacToeProblem(field) {
             return field[array[index]][array[index + 1]];
         }
     }
+    
     return 'draw';
 }
 
