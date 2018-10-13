@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof b !== 'number' || typeof a !== 'number' ||
-        a - Math.floor(a) !== 0 || b - Math.floor(b) !== 0) {
+        Number.isInteger(a) || Number.isInteger(b)) {
         throw new TypeError('Ошбика типа!');
     }
 
@@ -25,17 +25,16 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || year - Math.floor(year) !== 0) {
+    if (typeof year !== 'number' || Number.isInteger(year)) {
         throw new TypeError('Ошбика типа!');
-    } else if (year < 0) {
-        throw new RangeError('Ошибка размерности!');
-    } else {
-        if (year % 100 === 0) {
-            return year / 100;
-        }
-
-        return Math.floor(year / 100) + 1;
     }
+    if (year < 0) {
+        throw new RangeError('Ошибка размерности!');
+    }
+    if (year % 100 === 0)
+        return year / 100;
+
+    return Math.floor(year / 100) + 1;
 
 }
 
@@ -49,15 +48,16 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Ошбика типа!');
-    } else if (hexColor.length > 7 || hexColor.length < 6) {
-        throw new RangeError('Ошибка размерности!');
-    } else {
-        const first = parseInt(hexColor.slice(1, 3), 16);
-        const second = parseInt(hexColor.slice(3, 5), 16);
-        const third = parseInt(hexColor.slice(5, 7), 16);
-
-        return `(${first}, ${second}, ${third})`;
     }
+    if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
+        throw new RangeError('Ошибка размерности!');
+    }
+    const first = parseInt(hexColor.slice(1, 3), 16);
+    const second = parseInt(hexColor.slice(3, 5), 16);
+    const third = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${first}, ${second}, ${third})`;
+
 }
 
 
@@ -69,22 +69,23 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || Number.isInteger(n)) {
         throw new TypeError('Ошбика типа!');
-    } else if (n < 0) {
-        throw new RangeError('Ошибка размерности!');
-    } else {
-        let a = 1;
-        let b = 1;
-        for (let i = 3; i <= n; i++) {
-            let c = a + b;
-            a = b;
-            b = c;
-        }
-
-        return b;
     }
+    if (n < 0) {
+        throw new RangeError('Ошибка размерности!');
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
+
 
 /**
  * Транспонирует матрицу
@@ -121,12 +122,12 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('Ошбика типа!');
-    } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('Ошибка размерности!');
-    } else {
-
-        return n.toString(targetNs);
     }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('Ошибка размерности!');
+    }
+
+    return n.toString(targetNs);
 }
 
 
@@ -150,14 +151,14 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Ошбика типа!');
-    } else {
-        let right = text.match(/\(-:/g);
-        let left = text.match(/:-\)/g);
-        const leftL = left === null ? 0 : left.length;
-        const rightL = right === null ? 0 : right.length;
-
-        return rightL + leftL;
     }
+    let right = text.match(/\(-:/g);
+    let left = text.match(/:-\)/g);
+    const leftL = left === null ? 0 : left.length;
+    const rightL = right === null ? 0 : right.length;
+
+    return rightL + leftL;
+
 }
 
 
@@ -171,14 +172,16 @@ function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][2] === field[i][1]) {
             return field[i][0];
-        } else if (field[0][i] === field[1][i] && field[2][i] === field[1][i]) {
+        }
+        if (field[0][i] === field[1][i] && field[2][i] === field[1][i]) {
             return field[0][i];
         }
     }
 
     if (field[1][1] === field[0][0] && field[2][2] === field[1][1]) {
         return field[0][0];
-    } else if (field[1][1] === field[0][2] && field[2][0] === field[1][1]) {
+    }
+    if (field[1][1] === field[0][2] && field[2][0] === field[1][1]) {
         return field[0][2];
     }
 
