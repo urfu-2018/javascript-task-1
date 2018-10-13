@@ -58,25 +58,20 @@ function isString(obj) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (!isString(hexColor) || hexColor.length !== 7 || !hexColor.startsWith('#')) {
+    if (!isString(hexColor)) {
         throw new TypeError();
     }
-    hexColor = hexColor.substring(1);
-    const correctHexColor = /[A-Fa-f\d]{6}/;
+
+    const correctHexColor = /#[A-Fa-f\d]{6}/;
     if (!correctHexColor.test(hexColor)) {
         throw new RangeError();
     }
+    hexColor = hexColor.substring(1);
+    let r = parseInt(hexColor[0] + hexColor[1], 16);
+    let g = parseInt(hexColor[1] + hexColor[2], 16);
+    let b = parseInt(hexColor[3] + hexColor[4], 16);
 
-    let rgbColor = {
-        R: 0,
-        G: 0,
-        B: 0
-    };
-    rgbColor.R = parseInt(hexColor[0] + hexColor[1], 16);
-    rgbColor.G = parseInt(hexColor[1] + hexColor[2], 16);
-    rgbColor.B = parseInt(hexColor[3] + hexColor[4], 16);
-
-    return `(${rgbColor.R}, ${rgbColor.G}, ${rgbColor.B})`;
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
