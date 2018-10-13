@@ -9,11 +9,11 @@
  */
 
 function abProblem(a, b) {
-    if (typeof a !== 'number') {
-        throw new TypeError('a не является числом');
+    if (typeof a !== 'number' || !Number.isInteger(a)) {
+        throw new TypeError('a не является целым числом');
     }
-    if (typeof b !== 'number') {
-        throw new TypeError('b не является числом');
+    if (typeof b !== 'number' || !Number.isInteger(b)) {
+        throw new TypeError('b не является целым числом');
     }
 
     return a + b;
@@ -27,8 +27,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
-        throw new TypeError('year не является числом');
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
+        throw new TypeError('year не является целым числом');
     }
     if (year <= 0) {
         throw new RangeError('year неположительное');
@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
         throw new TypeError('n не является числом');
     }
     if (n < 0 || !Number.isInteger(n)) {
-        throw new RangeError('n is not positive integer');
+        throw new RangeError('n не является целым положительным числом');
     }
     let first = 0;
     let second = 1;
@@ -97,20 +97,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError('matrix не является двумерным массивом');
     }
-    let matrixLen;
-    for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i])) {
-            throw new TypeError('matrix не является двумерным массивом');
-        }
-        if (i === 0) {
-            matrixLen = matrix[i].length;
-        }
-        if (matrix[i].length !== matrixLen) {
-            throw new TypeError('matrix не является двумерным массивом');
-        }
+    const matrixLen = matrix[0].length;
+    if (matrix.some(x => !Array.isArray(x) || x.length !== matrixLen)) {
+        throw new TypeError('matrix не является двумерным массивом');
     }
 
     return transposeMatrix(matrix);
@@ -143,15 +135,19 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number') {
         throw new TypeError('n не является числом');
     }
-    if (typeof targetNs !== 'number') {
-        throw new TypeError('targetNs не является числом');
+    if (typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError('targetNs не является целым числом');
     }
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('targetNs выходит за допустимые пределы значений');
     }
 
-    return convertNumToTargetNs(n, targetNs);
+    return n.toString(targetNs);
+
+    // return convertNumToTargetNs(n, targetNs);
 }
+
+/*
 
 function convertNumToTargetNs(n, targetNs) {
     const unicodeOfA = 65;
@@ -173,6 +169,7 @@ function convertNumToTargetNs(n, targetNs) {
     return converted;
 }
 
+*/
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
