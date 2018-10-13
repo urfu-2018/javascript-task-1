@@ -49,7 +49,7 @@ function centuryByYearProblem(year) {
  */
 
 function colorsProblem(hexColor) {
-    if (!(typeof hexColor === 'string' && hexColor.length === 7)) {
+    if (!(typeof hexColor === 'string' && /#[a-zA_Z0-9]{6}/.test(hexColor))) {
         throw new TypeError();
     }
     const red = parseInt(hexColor.slice(1, 3), 16);
@@ -97,11 +97,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) && matrix.length > 0) {
         throw new TypeError();
     }
+    const innerArrayLength = matrix[0].length;
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i])) {
+        const isInnerArraysLengthCorrect =
+            matrix[i].length > 0 && innerArrayLength === matrix[i].length;
+        if (!Array.isArray(matrix[i]) && isInnerArraysLengthCorrect) {
             throw new TypeError();
         }
     }
