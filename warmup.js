@@ -186,7 +186,7 @@ function ticTacToeProblem(field) {
 }
 
 function isEquals(a, b, c) {
-    return a === b === c;
+    return a === b && b === c;
 }
 
 function existsRowWithSameSymbols(field) {
