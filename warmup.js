@@ -179,29 +179,19 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    function checkRows(matrix) {
-        for (let i = 0; i < 3; i++) {
-            if (matrix[i][0] === matrix[i][1] && matrix[i][1] === matrix[i][2]) {
-                return matrix[i][0];
-            }
-        }
-
-        return false;
-    }
-
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         return field[1][1];
     }
 
-    const rowWin = checkRows(field);
-    if (rowWin) {
-        return rowWin;
-    }
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
 
-    const columnWin = checkRows(matrixProblem(field));
-    if (columnWin) {
-        return columnWin;
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
 
     return 'draw';
