@@ -160,7 +160,35 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if ( !( Number.isInteger(n) && Number.isInteger(targetNs) ) ) {
+        throw new TypeError();
+    }
+    if ((targetNs < 2) || (targetNs > 36)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
+
+/*     let targetNsDigits = []; // Цифры в результирующей системе счисления
+
+    // Перевести число в целевую систему счисления
+    let quotient = Math.trunc(n / targetNs);
+    let remainder = n % targetNs;
+    targetNsDigits.splice(0, 0, remainder);
+
+    while (quotient >= targetNs) {
+        quotient = Math.trunc(quotient / targetNs);
+        remainder = quotient % targetNs;
+        targetNsDigits.splice(0, 0, remainder);
+    }
+
+    if (quotient != 0) {
+        targetNsDigits.splice(0, 0, quotient);
+    } */
+
+
 }
 
 /**
