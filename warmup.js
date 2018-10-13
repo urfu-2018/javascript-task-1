@@ -8,9 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    const isNumber = typeof a === 'number' && typeof b === 'number';
-    const isInteger = Math.trunc(a) === a && Math.trunc(b) === b;
-    if (!(isNumber && isInteger)) {
+    if (!(typeof a === 'number' && typeof b === 'number')) {
         throw new TypeError();
     }
 
@@ -49,7 +47,7 @@ function centuryByYearProblem(year) {
  */
 
 function colorsProblem(hexColor) {
-    if (!(typeof hexColor === 'string' && /^#[a-z0-9]{6}$/i.test(hexColor))) {
+    if (!(typeof hexColor === 'string' && /^#[a-f0-9]{6}$/i.test(hexColor))) {
         throw new TypeError();
     }
     const red = parseInt(hexColor.slice(1, 3), 16);
@@ -60,7 +58,7 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
 
-    return '(' + red + ', ' + green + ', ' + blue + ')';
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -107,10 +105,10 @@ function matrixProblem(matrix) {
             throw new TypeError();
         }
     }
-    const result = [];
-    for (let i = 0; i < matrix.length; i++) {
-        result[i] = [];
-        for (let j = 0; j < matrix[i].length; j++) {
+    const result = new Array(innerArrayLength);
+    for (let i = 0; i < innerArrayLength; i++) {
+        result[i] = new Array(matrix.length);
+        for (let j = 0; j < matrix.length; j++) {
             result[i][j] = matrix[j][i];
         }
     }
