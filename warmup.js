@@ -169,7 +169,7 @@ function checkDiagonals(field) {
 }
 
 function checkRows(field) {
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i <= 2; i++) {
         if (field[i].every(x => x === field[i][0])) {
             return field[i][0];
         }
