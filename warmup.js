@@ -1,19 +1,19 @@
 'use strict';
 
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError();
+    if (!Number.isInteger(a) || !Number.isInteger(b) || !Number.isFinite(a) || !Number.isFinite(b)) {
+        throw new TypeError('Numbers must be integer');
     }
 
     return a + b;
 }
 
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
-        throw new TypeError();
+    if (!Number.isInteger(year) || !Number.isFinite(year)) {
+        throw new TypeError('Year must be finite number');
     }
     if (year < 0) {
-        throw new RangeError();
+        throw new RangeError('Year must be non-negative');
     }
     const century = Math.floor(year / 100);
 
@@ -22,21 +22,24 @@ function centuryByYearProblem(year) {
 
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Argument is not string');
     }
     const regex = /#([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})/;
     const hexRGB = regex.exec(hexColor);
+    if (hexRGB === null) {
+        throw new RangeError('Color values is in incorrect format');
+    }
     const rgb = [hexRGB[1], hexRGB[2], hexRGB[3]];
 
     return '(' + rgb.map((value) => parseInt(value, 16)).join(', ') + ')';
 }
 
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
-        throw new TypeError();
+    if (!Number.isInteger(n) || !Number.isFinite(n)) {
+        throw new TypeError('Number must be finite integer');
     }
     if (n <= 0) {
-        throw new RangeError();
+        throw new RangeError('Number must be positive');
     }
     let current = 1;
     let previous = 1;
@@ -50,8 +53,10 @@ function fibonacciProblem(n) {
 }
 
 function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))) {
-        throw new TypeError();
+    if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr)) ||
+     !((arr1, arr2) => arr1.length === arr2.length)) {
+        throw new TypeError('Argument must be array of arrays' + 
+        'where every element length is equal length of any other');
     }
 
     return Object.keys(matrix[0])
@@ -59,34 +64,33 @@ function matrixProblem(matrix) {
 }
 
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError();
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs) || !Number.isFinite(n) || !Number.isFinite(targetNs)) {
+        throw new TypeError('Number must be finite integer');
     }
     if (targetNs < 2 || targetNs > 32) {
-        throw new RangeError();
+        throw new RangeError('Number was out of range');
     }
-
     let result = '';
     while (n >= targetNs) {
         result = n % targetNs + result;
         n = Math.floor(n / targetNs);
     }
 
-    return n + result;
+    return (n + result).toString();
 }
 
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Argument is not string');
     }
-    const regex = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+    const regex = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
     return regex.test(phoneNumber);
 }
 
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Argument is not string');
     }
     const regex = /(:-\)|\(-:)/g;
     const result = text.match(regex);
