@@ -158,6 +158,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!isString(phoneNumber)) {
+        throw new TypeError();
+    }
+
     return /^\s*8-800-\d{3}-\d{2}-\d{2}\s*$/.test(phoneNumber);
 }
 
