@@ -144,11 +144,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    let flag = true;
     if (typeof phoneNumber !== 'string') {
         typeError();
     }
-    
-    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    if (flag) {
+        return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    }
 }
 
 /**
