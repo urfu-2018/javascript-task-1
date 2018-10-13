@@ -88,8 +88,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError();
+    }
+    if (matrix[0].length === 0) {
+        return [[]];
     }
     for (let i = 0; i < matrix.length; i++) {
         if (matrix[i].length !== matrix[0].length) {
@@ -127,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
 
-    return /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/.test(phoneNumber) && phoneNumber.length === 15;
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
