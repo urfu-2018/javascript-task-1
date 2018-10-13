@@ -8,7 +8,13 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if (((typeof a) !== 'number') || ((typeof b) !== 'number')) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +25,19 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if ((typeof year) !== 'number') {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    // Определение века
+    const YEARS_IN_CENTURY = 100;
+
+    return Math.ceil(year / YEARS_IN_CENTURY);
 }
 
 /**
@@ -30,7 +48,34 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if ((typeof hexColor) !== 'string') {
+        throw new TypeError();
+    }
+
+    const hexColorRegex = /^#[\dA-F]{6}|[\da-f]{6}$/;
+
+    if (!hexColorRegex.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    // Изоляция HEX-компонент
+    const COLOR_COMPONENTS_AMOUNT = 3;
+    const hexColorComponents = [
+        hexColor.substring(1, 3),
+        hexColor.substring(3, 5),
+        hexColor.substring(5)
+    ];
+
+    // Конвертация в RGB
+    const HEX_BASE = 16;
+    let decimalColorComponents = [];
+    for (let i = 0; i < COLOR_COMPONENTS_AMOUNT; i++) {
+        decimalColorComponents.push(parseInt(hexColorComponents[i], HEX_BASE));
+    }
+
+    return '(' + decimalColorComponents.join(', ') + ')';
 }
 
 /**
@@ -41,7 +86,27 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if ((typeof n) !== 'number') {
+        throw new TypeError();
+    }
+    if (!(Number.isInteger(n) && (n > 0))) {
+        throw new RangeError();
+    }
+
+    let lastFibonacciNumbers = [1, 1]; // Последние вычисленные числа Фибоначчи
+
+    // Нахождение n-го числа Фибоначчи
+    for (let i = 3; i <= n; i++) {
+        const nextFibonacciNumber = lastFibonacciNumbers[0] + lastFibonacciNumbers[1];
+
+        // Обновление массива последних чисел
+        lastFibonacciNumbers.push(nextFibonacciNumber);
+        lastFibonacciNumbers.shift();
+    }
+
+    return lastFibonacciNumbers[1];
 }
 
 /**
@@ -51,7 +116,43 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+
+    // Проверка того, что на входе двумерный массив
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    if (matrix.length === 0) {
+        throw new TypeError();
+    }
+    matrix.forEach(element => {
+        if (!Array.isArray(element)) {
+            throw new TypeError();
+        }
+    });
+
+    let columnAmount = 0;
+
+    // Определение числа столбцов
+    matrix.forEach(element => {
+        if (element.length > columnAmount) {
+            columnAmount = element.length;
+        }
+    });
+
+    // Создание основы для транспонированной матрицы
+    let transposedMatrix = [];
+    for (let i = 0; i < columnAmount; i++) {
+        transposedMatrix.push([]);
+    }
+
+    // Транспонирование матрицы
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -63,7 +164,16 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if (((typeof n) !== 'number') || ((typeof targetNs) !== 'number')) {
+        throw new TypeError();
+    }
+    if ((targetNs < 2) || (targetNs > 36)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +182,15 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if ((typeof phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
+
+    const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
+
+    return phoneRegex.test(phoneNumber);
 }
 
 /**
@@ -82,7 +200,21 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+
+    // Проверка входных данных на валидность
+    if ((typeof text) !== 'string') {
+        throw new TypeError();
+    }
+
+    // Определение количества смайликов
+    const smileyRegex = /(:-\))|(\(-:)/g;
+    const matches = text.match(smileyRegex);
+
+    if (matches === null) {
+        return 0;
+    }
+
+    return matches.length;
 }
 
 /**
@@ -92,7 +224,101 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+
+    // Проверить строки на наличие победителя
+    let winner = checkRowsForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Проверить столбцы на наличие победителя
+    winner = checkColumnsForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Проверить главную диагональ на наличие победителя
+    winner = checkMainDiagonalForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Проверить побочную диагональ на наличие победителя
+    winner = checkAntidiagonalForWinner(field);
+    if (winner !== null) {
+        return winner;
+    }
+
+    // Иначе победила дружба
+    return 'draw';
+}
+
+function checkRowsForWinner(field) {
+
+    // Проверить, состоит ли некоторая строка из элементов только одного типа
+    for (let rowIndex = 0; rowIndex < field.length; rowIndex++) {
+        const currentRow = field[rowIndex];
+        if (currentRow.every(element => {
+            return (element === currentRow[0]);
+        })) {
+            // Если да, то победитель определён
+            return currentRow[0];
+        }
+    }
+
+    return null;
+}
+
+function checkColumnsForWinner(field) {
+
+    // Проверить, состоит ли некоторый столбец из элементов только одного типа
+    for (let columnIndex = 0; columnIndex < field.length; columnIndex++) {
+        if (field.every(element => {
+            return (element[columnIndex] === field[0][columnIndex]);
+        })) {
+            // Если да, то победитель определён
+            return field[0][columnIndex];
+        }
+    }
+
+    return null;
+}
+
+function checkMainDiagonalForWinner(field) {
+
+    // Проверить, состоит ли главная диагональ из элементов только одного типа
+    let winnerFound = true;
+    for (let i = 1; i < field.length; i++) {
+        if (field[i][i] !== field[0][0]) {
+            winnerFound = false;
+            break;
+        }
+    }
+    if (winnerFound) {
+        // Если да, то победитель определён
+        return field[0][0];
+    }
+
+    return null;
+}
+
+function checkAntidiagonalForWinner(field) {
+
+    const FIELD_SIZE = field.length;
+
+    // Проверить, состоит ли побочная диагональ из элементов только одного типа
+    let winnerFound = true;
+    for (let i = 1; i < FIELD_SIZE; i++) {
+        if (field[FIELD_SIZE - 1 - i][i] !== field[FIELD_SIZE - 1][0]) {
+            winnerFound = false;
+        }
+    }
+    if (winnerFound) {
+        // Если да, то победитель определён
+        return field[FIELD_SIZE - 1][0];
+    }
+
+    return null;
 }
 
 module.exports = {
