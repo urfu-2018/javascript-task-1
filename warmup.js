@@ -197,9 +197,9 @@ function smilesProblem(text) {
 
     // Определение количества смайликов
     const smileyRegex = /(:-\))|(\(-:)/g;
-    const matchesArray = text.match(smileyRegex);
+    const matches = text.match(smileyRegex);
 
-    if (matchesArray === null) {
+    if (matches === null) {
         return 0;
     }
     return matches.length;
@@ -212,7 +212,55 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+
+    const FIELD_SIZE = 3;
+
+    // Проверить, состоит ли некоторая строка из элементов только одного типа
+    for (let rowIndex = 0; rowIndex < FIELD_SIZE; rowIndex++) {
+        const currentRow = field[rowIndex];
+        if ( currentRow.every( element => { return (element === currentRow[0]); } ) ) {
+            // Если да, то победитель определён
+            return currentRow[0];
+        }
+    }
+
+    // Проверить, состоит ли некоторый столбец из элементов только одного типа
+    for (let columnIndex = 0; columnIndex < FIELD_SIZE; columnIndex++) {
+        if ( field.every(element => {
+            return (element[columnIndex] === field[0][columnIndex]);
+        }) ) {
+            // Если да, то победитель определён
+            return field[0][columnIndex];
+        }
+    }
+
+    // Проверить, состоит ли главная диагональ из элементов только одного типа
+    let winnerFound = true;
+    for (let i = 1; i < FIELD_SIZE; i++) {
+        if (field[i][i] != field[0][0]) {
+            winnerFound = false;
+            break;
+        }
+    }
+    if (winnerFound) {
+        //Если да, то победитель определён
+        return field[0][0];
+    }
+
+    // Проверить, состоит ли побочная диагональ из элементов только одного типа
+    winnerFound = true;
+    for (let i = 1; i < FIELD_SIZE; i++) {
+        if (field[FIELD_SIZE - i][i] != field[FIELD_SIZE][0]) {
+            winnerFound = false;
+        }
+    }
+    if (winnerFound) {
+        // Если да, то победитель определён
+        return field[FIELD_SIZE][0];
+    }
+
+    // Иначе победила дружба
+    return 'draw';
 }
 
 module.exports = {
