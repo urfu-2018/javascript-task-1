@@ -68,7 +68,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let a = 1;
@@ -88,20 +88,16 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
-    let transposedMatrix = new Array(matrix.length);
-    for (let i = 0; i < transposedMatrix.length; i++) {
-        transposedMatrix[i] = new Array(matrix[0].length);
-    }
     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[0].length; j++) {
-            transposedMatrix[i][j] = matrix[j][i];
+        if (matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
         }
     }
 
-    return transposedMatrix;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -144,8 +140,8 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    const leftSideSmile = /:-\)/ig;
-    const rightSideSmile = /\(-:/ig;
+    const leftSideSmile = /:-\)/g;
+    const rightSideSmile = /\(-:/g;
     function countOfSmiles(regExp) {
         const arrayOfMatchedSmiles = text.match(regExp);
 
