@@ -127,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
     function checkType(num, ns) {
         if (typeof num !== 'number' || typeof ns !== 'number' ||
             !Number.isInteger(num) || !Number.isInteger(ns)) {
-                throw new TypeError('invalid argument\'s type');
+            throw new TypeError('invalid argument\'s type');
         }
     }
 
