@@ -28,7 +28,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('Invalid argument type');
     }
 
-    if (year < 0) {
+    if (year <= 0) {
         throw new RangeError('Year must be positive');
     }
 
