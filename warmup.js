@@ -23,7 +23,9 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     throwsTypeErrorIfNumberAreNotInteger(year);
-    throwsRangeErrorIfNumberNotInRange(year, 0, Number.POSITIVE_INFINITY);
+    if (year < 0) {
+        throw new RangeError('year is negative');
+    }
 
     return Math.ceil(year / 100);
 }
