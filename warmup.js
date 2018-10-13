@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (year < 0 || year % 1 !== 0) {
+    if (year <= 0 || year % 1 !== 0) {
         throw new RangeError();
     }
 
