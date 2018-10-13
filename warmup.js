@@ -67,7 +67,7 @@ function fibonacciProblem(n) {
         second += tmp;
     }
 
-    return second;
+    return first;
 }
 
 /**
