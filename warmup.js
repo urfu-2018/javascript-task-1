@@ -157,7 +157,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text === 'string') {
-        return text.match(/:-\)|\(-:/g).length;
+        return text.match(/:-\)/g).length + text.match(/\(-:/g).length;
     }
     throw new TypeError('в качестве аргумента передаётся не строка');
 }
