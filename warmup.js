@@ -82,10 +82,10 @@ function fibonacciProblem(n) {
     let previous = 0;
     let current = 1;
     let counter = 1;
-    while (counter <= n) {
+    while (n > 0) {
         current += previous;
-        previous = current;
-        counter++;
+        previous = current - previous;
+        n--;
     }
 
     return current;
