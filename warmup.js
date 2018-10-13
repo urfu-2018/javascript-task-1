@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof b !== 'number' || typeof a !== 'number') {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     }
 
     return a + b;
@@ -24,9 +24,9 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     } else if (year < 0) {
-        throw RangeError("Ошибка размерности!");
+        throw new RangeError('Ошибка размерности!');
     } else {
         if (year % 100 === 0) {
             return year / 100
@@ -46,9 +46,9 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     } else if (hexColor.length > 7 || hexColor.length < 6) {
-        throw RangeError("Ошибка размерности!");
+        throw new RangeError('Ошибка размерности!');
     } else {
         const first = parseInt(hexColor.slice(1, 3), 16);
         const second = parseInt(hexColor.slice(3, 5), 16);
@@ -68,9 +68,9 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     } else if (n < 0) {
-        throw RangeError("Ошибка размерности!");
+        throw new RangeError('Ошибка размерности!');
     } else {
         let a = 1;
         let b = 1;
@@ -93,7 +93,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (matrix.length === 0 || !Array.isArray(matrix) ||
         !matrix.every(a => a.every(b => b[0] === undefined))) {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     } else {
         const matrixTrans = [];
         for (let i = 0; i < matrix[0].length; i++) {
@@ -118,9 +118,9 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof  targetNs !== 'number') {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     } else if (targetNs < 2 || targetNs > 36) {
-        throw RangeError("Ошибка размерности!");
+        throw new RangeError('Ошибка размерности!');
     } else {
 
         return n.toString(targetNs);
@@ -147,7 +147,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw TypeError("Ошбика типа!");
+        throw new TypeError('Ошбика типа!');
     } else {
         let right = text.match(/\(-:/g);
         let left = text.match(/:-\)/g);
