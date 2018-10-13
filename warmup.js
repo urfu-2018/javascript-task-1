@@ -61,13 +61,13 @@ function fibonacciProblem(n) {
     if (n === 1 || n === 2) {
         return 1;
     }
-    for (let i = 3; i < n; i++) {
+    for (let i = 2; i < n; i++) {
         let tmp = first;
         first = second;
         second += tmp;
     }
 
-    return first;
+    return second;
 }
 
 /**
