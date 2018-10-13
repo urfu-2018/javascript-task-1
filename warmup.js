@@ -95,7 +95,7 @@ function fibonacciProblem(n) {
     let lastFibonacciNumbers = [1, 1]; // Последние вычисленные числа Фибоначчи
 
     // Нахождение n-го числа Фибоначчи
-    for (let i = 3; i < n; i++) {
+    for (let i = 3; i <= n; i++) {
         const nextFibonacciNumber = lastFibonacciNumbers[0] + lastFibonacciNumbers[1];
 
         // Обновление массива последних чисел
