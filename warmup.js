@@ -73,19 +73,21 @@ function hexToRgb(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number' || !isFinite(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('n не является числом');
     }
-    if (n < 0 || n % 1 !== 0) {
+    if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError('n is not positive integer');
     }
-    let fibTable = [0, 1];
+    let first = 0;
+    let second = 1;
     for (let i = 2; i <= n; i++) {
-        fibTable[i] = fibTable[i - 1] + fibTable[i - 2];
+        const temp = first + second;
+        first = second;
+        second = temp;
     }
 
-    return fibTable[n];
-    // Ваше решение
+    return second;
 }
 
 /**
@@ -138,28 +140,17 @@ function transposeMatrix(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (isNInvalid(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('n не является числом');
     }
-    if (isNInvalid(targetNs)) {
+    if (typeof targetNs !== 'number') {
         throw new TypeError('targetNs не является числом');
     }
-    if (isTargetNsNotInRange(targetNs)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('targetNs выходит за допустимые пределы значений');
     }
 
     return convertNumToTargetNs(n, targetNs);
-}
-
-function isNInvalid(n) {
-    return (typeof n !== 'number' || !isFinite(n));
-}
-
-function isTargetNsNotInRange(targetNs) {
-    const minValue = 2;
-    const maxValue = 36;
-
-    return (targetNs % 1 !== 0 || targetNs < minValue || targetNs > maxValue);
 }
 
 function convertNumToTargetNs(n, targetNs) {
@@ -188,10 +179,6 @@ function convertNumToTargetNs(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber !== 'string') {
-        throw new TypeError('phoneNumber не является строкой');
-    }
-
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
