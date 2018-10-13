@@ -16,7 +16,7 @@ function rangeError() {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isInteger(a) && isInteger(b)) {
+    if (Number.isInteger(a) && Number.isInteger(b)) {
         return a + b;
     }
     typeError();
@@ -30,7 +30,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isInteger(year)) {
+    if (Number.isInteger(year)) {
         if (year >= 1) {
             return Math.ceil(year / 100);
         }
@@ -70,7 +70,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n === 'number') {
-        if (n >= 1) {
+        if (n >= 1 && Number.isInteger(n)) {
             const root5 = Math.sqrt(5);
             let a = (1 + root5) / 2;
             let b = (1 - root5) / 2;
@@ -129,7 +129,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isInteger(n) && isInteger(targetNs)) {
+    if (Number.isInteger(n) && Number.isInteger(targetNs)) {
         if (targetNs >= 2 && targetNs <= 36) {
             return n.toString(targetNs);
         }
@@ -147,6 +147,7 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber === 'string') {
         return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
     }
+    
     return false;
 }
 
