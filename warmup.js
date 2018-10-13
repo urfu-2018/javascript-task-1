@@ -49,7 +49,7 @@ function centuryByYearProblem(year) {
  */
 
 function colorsProblem(hexColor) {
-    if (!(typeof hexColor === 'string' && /#[a-zA_Z0-9]{6}/.test(hexColor))) {
+    if (!(typeof hexColor === 'string' && /^#[a-z0-9]{6}$/i.test(hexColor))) {
         throw new TypeError();
     }
     const red = parseInt(hexColor.slice(1, 3), 16);
