@@ -90,26 +90,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
-        return new TypeError();
+    if (!Array.isArray(matrix) || matrix.length === 0 ||
+        !Array.isArray(matrix[0])) {
+        throw new TypeError('Матрица должна быть двумерным массивом');
     }
-    if (!isMatrixCorrect(matrix)) {
-        throw new TypeError();
+    let dimension = matrix[0].length;
+    if (dimension === 0 || matrix.some(row => !(Array.isArray(row)) || row.length !== dimension)) {
+        throw new TypeError('Матрица должна быть двумерным массивом');
     }
 
-    return matrix[0].map((column, a) => matrix.map(row => row[a]));
+    return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
 
-function isMatrixCorrect(matrix) {
-    var dimension = matrix[0].length;
-    for (var i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== dimension) {
-            return false;
-        }
-    }
-
-    return true;
-}
 
 /**
  * Переводит число в другую систему счисления
@@ -136,7 +128,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof(phoneNumber) !== 'string') {
+    if (typeof (phoneNumber) !== 'string') {
         throw new TypeError('Аргументом должна быть строка');
     }
 
@@ -150,7 +142,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string') {
+    if (typeof (text) !== 'string') {
         throw new TypeError('Аргументом должна быть строка');
     }
 
