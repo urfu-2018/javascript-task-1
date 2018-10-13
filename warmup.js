@@ -121,8 +121,7 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
-    const M = matrix.length;
-    if (M === 0) {
+    if (matrix.length === 0) {
         throw new TypeError();
     }
     matrix.forEach(element => {
@@ -131,23 +130,24 @@ function matrixProblem(matrix) {
         }
     });
 
-    // Проверка того, что у всех элементов массива одинаковая размерность
-    const N = matrix[0].length;
+    let columnAmount = 0;
+
+    // Определение числа столбцов
     matrix.forEach(element => {
-        if (element.length !== N) {
-            throw new TypeError();
+        if (element.length > columnAmount) {
+            columnAmount = element.length;
         }
     });
 
     // Создание основы для транспонированной матрицы
     let transposedMatrix = [];
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < columnAmount; i++) {
         transposedMatrix.push([]);
     }
 
     // Транспонирование матрицы
-    for (let i = 0; i < M; i++) {
-        for (let j = 0; j < N; j++) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
             transposedMatrix[j][i] = matrix[i][j];
         }
     }
