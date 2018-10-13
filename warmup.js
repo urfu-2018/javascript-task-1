@@ -15,7 +15,7 @@ function abProblem(a, b) {
     return Number(a) + Number(b);
 }
 
-function isNumber(n){
+function isNumber(n) {
     return typeof(n) === 'number';
 }
 
