@@ -170,7 +170,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return n.toString(targetNs).toUpperCase();
+    return n.toString(targetNs);
 }
 
 /**
@@ -301,13 +301,13 @@ function checkAntidiagonalForWinner(field) {
     // Проверить, состоит ли побочная диагональ из элементов только одного типа
     let winnerFound = true;
     for (let i = 1; i < FIELD_SIZE; i++) {
-        if (field[FIELD_SIZE - i][i] !== field[FIELD_SIZE][0]) {
+        if (field[FIELD_SIZE - 1 - i][i] !== field[FIELD_SIZE - 1][0]) {
             winnerFound = false;
         }
     }
     if (winnerFound) {
         // Если да, то победитель определён
-        return field[FIELD_SIZE][0];
+        return field[FIELD_SIZE - 1][0];
     }
 
     return null;
