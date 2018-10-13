@@ -61,9 +61,9 @@ function colorsProblem(hexColor) {
         throw new RangeError('Argument not in allowed values');
     }
 
-    let colorValues = new Array(3);
+    let colorValues = [];
     for (var i = 1; i < hexColor.length; i += 2) {
-        colorValues[i] = getColor(hexColor.substring(i, i + 2));
+        colorValues.push(getColor(hexColor.substring(i, i + 2)));
     }
 
     return `(${colorValues.join(', ')})`;
@@ -181,8 +181,11 @@ function smilesProblem(text) {
         throw new TypeError('Text should be string');
     }
 
-    return getCountOfSubsrting(text, /:-\)/g) + getCountOfSubsrting(text, /\(-:/g) 
-        - getCountOfSubsrting(text, /\(-:-\)/g);
+    let rightSmilesCount = getCountOfSubsrting(text, /:-\)/g);
+    let leftSmilesCount = getCountOfSubsrting(text, /\(-:/g);
+    let bothCount = getCountOfSubsrting(text, /\(-:-\)/g);
+
+    return rightSmilesCount + leftSmilesCount - bothCount;
 }
 
 function getCountOfSubsrting(text, substringRegex) {
