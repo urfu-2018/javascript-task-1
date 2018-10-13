@@ -49,15 +49,16 @@ function colorsProblem(hexColor) {
         throw new TypeError('expecting hexColor as String');
     }
 
-    const hexColorRegex = /^#[0-9a-f]{6}$/i;
+    const hexColorRegex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i;
+    const matchResult = hexColor.match(hexColorRegex);
 
-    if (!hexColorRegex.test(hexColor)) {
+    if (matchResult === null || matchResult.length !== 4) {
         throw new RangeError('invalid hexColor string format!');
     }
 
-    const red = parseInt(hexColor.substring(1, 3), 16);
-    const green = parseInt(hexColor.substring(3, 5), 16);
-    const blue = parseInt(hexColor.substring(5), 16);
+    const red = parseInt(matchResult[1], 16);
+    const green = parseInt(matchResult[2], 16);
+    const blue = parseInt(matchResult[3], 16);
 
     return `(${red}, ${green}, ${blue})`;
 }
@@ -70,11 +71,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(n)) {
         throw new TypeError('Invalid argument type');
     }
 
-    if (!Number.isInteger(n) || n <= 0) {
+    if (n <= 0) {
         throw new RangeError('n must be positive');
     }
 
@@ -91,7 +92,7 @@ function fibonacciProblem(n) {
     return first;
 }
 
-function matrixProblem(matrix) {
+function matrixProblem(matrix, shouldValidate = true) {
     function isCorrectMatrix(matrixArray) {
         if (!Array.isArray(matrixArray) || matrixArray.length === 0) {
             return false;
@@ -106,8 +107,10 @@ function matrixProblem(matrix) {
         return true;
     }
 
-    if (!isCorrectMatrix(matrix)) {
-        throw new TypeError('expecting matrix as 2D array');
+    if (shouldValidate) {
+        if (!isCorrectMatrix(matrix)) {
+            throw new TypeError('expecting matrix as 2D array');
+        }
     }
 
     return matrix[0].map((x, i) => matrix.map(y => y[i]));
@@ -145,6 +148,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('expecting \'phoneNumber\' as string');
+    }
+
     const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return phoneRegex.test(phoneNumber);
@@ -178,19 +185,29 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    function checkRows(matrix) {
+        for (let i = 0; i < 3; i++) {
+            if (matrix[i][0] === matrix[i][1] && matrix[i][1] === matrix[i][2]) {
+                return matrix[i][0];
+            }
+        }
+
+        return false;
+    }
+
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         return field[1][1];
     }
 
-    for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            return field[i][0];
-        }
+    const rowWin = checkRows(field);
+    if (rowWin) {
+        return rowWin;
+    }
 
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
-        }
+    const columnWin = checkRows(matrixProblem(field, false));
+    if (columnWin) {
+        return columnWin;
     }
 
     return 'draw';
