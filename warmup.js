@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
 
@@ -115,7 +115,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
 
