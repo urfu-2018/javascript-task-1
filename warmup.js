@@ -57,8 +57,7 @@ function colorsProblem(hexColor) {
 }
 
 function checkLenght(hexColor) {
-    if (!(/#[\dA-Fa-f]{6}/i).test(hexColor) && hexColor.length === 7 ||
-    !(/#[\dA-Fa-f]{3}/i).test(hexColor) && hexColor.length === 4) {
+    if (hexColor.match(/#[\dA-Fa-f]{6}$/i) === null) {
         throw new RangeError('Выход за пределы 255!');
     }
 }
