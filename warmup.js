@@ -19,10 +19,8 @@ function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
         typeError();
     }
-    if (Number.isInteger(a) && Number.isInteger(b)) {
-        return a + b;
-    }
-    typeError();
+    
+    return a + b;
 }
 
 /**
