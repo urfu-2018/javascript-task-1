@@ -98,14 +98,8 @@ function fibonacciProblem(n) {
 //  * @returns {(Any[])[]} Транспонированная матрица размера NxM
 //  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0]) || matrix.length === 0) {
         throw new TypeError();
-    }
-
-    for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
-            throw new TypeError();
-        }
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
@@ -120,15 +114,14 @@ function matrixProblem(matrix) {
 //  * @returns {String} Число n в системе счисления targetNs
 //  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
-    return parseInt(n)
-        .toString(targetNs);
+    return n.toString(targetNs);
 }
 
 // /**
