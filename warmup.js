@@ -30,8 +30,7 @@ function colorsProblem(hexColor) {
         throw new RangeError('Color values is in incorrect format');
     }
     const rgb = [hexRGB[1], hexRGB[2], hexRGB[3]];
-
-    return '(' + rgb.map((value) => parseInt(value, 16)).join(', ') + ')';
+    return `(${rgb.map((value) => parseInt(value, 16)).join(', ')})`;
 }
 
 function fibonacciProblem(n) {
@@ -54,10 +53,12 @@ function fibonacciProblem(n) {
 }
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr)) ||
-    !isEqualLengthsOfRows(matrix) || !matrix.every(arr => arr.length)) {
-        throw new TypeError('Argument must be array of arrays' +
-        'where every element length is equal length of any other');
+    if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr))) {
+        throw new TypeError(
+            'Argument must be a non-empty array of arrays where every element is array');
+    }
+    if (!isEqualLengthsOfRows(matrix) || !matrix.every(arr => arr.length)) {
+        throw new RangeError('All elements must be the same non-zero length');
     }
 
     return Object.keys(matrix[0])
