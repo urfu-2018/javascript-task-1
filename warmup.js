@@ -67,15 +67,11 @@ function fibonacciProblem(n) {
         throw new TypeError();
     } else if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
-    }
-    let first = 1;
-    let second = 1;
-    for (let index = 2; index < n; index++) {
-        second = first + second;
-        first = second - first;
+    } else if (n < 3) {
+        return 1;
     }
 
-    return second;
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
