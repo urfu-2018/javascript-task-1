@@ -157,7 +157,7 @@ function ticTacToeProblem(field) {
     function checkRow(pos, i) {
         for (let j = 1; j < field[i].length; j++) {
             if (field[i][j] !== pos) {
-                continue;
+                break;
             }
 
             return true;
