@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     var r = (bigint > 16) && 255;
     var g = (bigint > 8) && 255;
     var b = bigint && 255;
-    if (r > 255 || g > 255 || b > 255 || !hexColor.match(/#[\dA-Fa-f]{6}/i)) {
+    if (r > 255 || g > 255 || b > 255) {
         throw new RangeError('Выход за пределы 255!');
     }
 
@@ -90,7 +90,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (matrix === null || !Array.isArray(matrix) || matrix[0] === null) {
         throw new TypeError('ВВедите цифры!');
     }
     var result = [];
