@@ -119,3 +119,8 @@ console.info('x = ' + ticTacToeProblem([
     ['o', 'o', 'x'],
     ['o', 'x', 'x']
 ]));
+console.info('x = ' + ticTacToeProblem([
+    ['o', 'o', 'x'],
+    ['o', 'o', 'x'],
+    ['o', 'x', 'x']
+]));

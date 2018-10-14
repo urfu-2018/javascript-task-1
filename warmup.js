@@ -108,10 +108,15 @@ function smilesProblem(text) {
 }
 
 function ticTacToeProblem(field) {
-    if (checkLines(field, 'x') || checkDiagonals(field, 'x')) {
+    const crossWin = checkLines(field, 'x') || checkDiagonals(field, 'x');
+    const circleWin = checkLines(field, 'o') || checkDiagonals(field, 'o');
+    if (crossWin && circleWin) {
+        return 'draw';
+    }
+    if (crossWin) {
         return 'x';
     }
-    if (checkLines(field, 'o') || checkDiagonals(field, 'o')) {
+    if (circleWin) {
         return 'o';
     }
 
