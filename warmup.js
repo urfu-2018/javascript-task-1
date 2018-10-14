@@ -25,11 +25,8 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('ВВедите цифры!');
-    } else if (year < 0 || year % 1 !== 0) {
+    } else if (year <= 0 || year % 1 !== 0) {
         throw new RangeError('Год не может быть отрицательным');
-    }
-    if (year === 0) {
-        return 1;
     }
 
     return Math.ceil(year / 100);
