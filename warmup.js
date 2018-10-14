@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-        throw new TypeError();
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Arguments must be integer values.');
     }
 
     return a + b;
@@ -23,14 +23,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
-        throw new TypeError();
-    }
-    else if (year < 0) {
-        throw new RangeError();
+    if (!Number.isInteger(year)) {
+        throw new TypeError('The argument must be integer.');
+    } else if (year < 0) {
+        throw new RangeError('The argument must be greater than zero.');
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);// Сотый год - это последний год уходящего века.
 }
 
 /**
@@ -42,14 +41,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        throw new TypeError();
+        throw new TypeError('The argument must be string.');
     }
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
     var r = parseInt(result[1], 16);
     var g = parseInt(result[2], 16);
     var b = parseInt(result[3], 16);
-    if (r <= 0 && r > 255 || g <= 0 && g > 255 || b <= 0 && b > 255 ) {
-        throw new RangeError();
+    if (r <= 0 && r > 255 || g <= 0 && g > 255 || b <= 0 && b > 255) {
+        throw new RangeError('Color values are out of range.');
     }
 
     return '(' + r + ', ' + g + ', ' + b + ')';
@@ -65,11 +64,11 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
+    } else if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('The argument must be an integer value greate than zero.');
     }
-    else if (n <= 0 || n % 1 !== 0) {
-        throw new RangeError();
-    }
-    var a = 1, b = 1;
+    var a = 1;
+    var b = 1;
     for (var i = 3; i <= n; i++) {
         var c = a + b;
         a = b;
@@ -86,14 +85,29 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length !== 0 && typeof(matrix[0][0]) !== 'number') { throw new TypeError(); }
-    var m = matrix.length, n = matrix[0].length, matrixTransformed = [];
-    for (var i = 0; i < n; i++) { 
+    if (!Array.isArray(matrix) || matrix.length === 0 || typeof(matrix[0][0]) !== 'number') {
+
+        throw new TypeError('The argument must be a two-dimentional array.');
+    }
+
+    var m = matrix.length;
+    var n = matrix[0].length;
+    var matrixTransformed = [];
+    for (var i = 0; i < n; i++) {
+        checkArray(matrix, i);
         matrixTransformed[i] = [];
-        for (var j = 0; j < m; j++) matrixTransformed[i][j] = matrix[j][i];
+        for (var j = 0; j < m; j++) {
+            matrixTransformed[i][j] = matrix[j][i];
+        }
     }
 
     return matrixTransformed;
+}
+
+function checkArray(matrix, i) {
+    if (!Array.isArray(matrix[i])) {
+        throw new TypeError('The argument must be a two-dimentional array.');
+    }
 }
 
 /**
@@ -105,13 +119,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || n % 1 !== 0 || targetNs % 1 !== 0) {
-        throw new TypeError();
-    } else if (targetNs < 2 || targetNs >36) {
-        throw new RangeError();
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+        throw new TypeError('Arguments must have numeric values.');
+    } else if (!Number.isInteger(targetNs)) {
+        throw new TypeError('targetNs must have an integer value.');
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('targetNs must be between 2 and 36.');
     }
 
-    return parseInt(n, targetNs);
+    return n.toString(targetNs);
 }
 
 /**
@@ -120,7 +136,8 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+
+    return phoneNumber.length === 15 && /8-800-\d{3}-\d{2}-\d{2}/i.test(phoneNumber);
 }
 
 /**
@@ -130,7 +147,17 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError('The argument must be string.');
+    }
+    var result = 0;
+    var smiles = text.match(/(:-\))|(\(-:)/ig);
+    if (smiles !== null) {
+
+        result += smiles.length;
+    }
+
+    return result;
 }
 
 /**
@@ -140,7 +167,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    var fieldCells = [];
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            fieldCells.push(field[i][j]);
+        }
+    }
+    var winCombinations = ['012', '345', '678', '036', '147', '258', '048', '246'];
+    for (let i = 0; i < winCombinations.length; i++) {
+        var wc = winCombinations[i];
+        if (fieldCells[wc[0]] === fieldCells[wc[1]] && fieldCells[wc[1]] === fieldCells[wc[2]]) {
+
+            return fieldCells[wc[0]];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
