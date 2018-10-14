@@ -148,30 +148,25 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let win = checkRows(field);
-    if (win) {
-        return win;
-    }
+    var WinLines = [
+        field[0],
+        field[1],
+        field[2],
+        [field[0][0], field[1][0], field[2][0]],
+        [field[0][1], field[1][1], field[2][1]],
+        [field[0][2], field[1][2], field[2][2]],
+        [field[0][0], field[1][1], field[2][2]],
+        [field[0][2], field[1][1], field[2][0]]
+    ];
 
-    win = checkRows(matrixProblem(field));
-    if (win) {
-        return win;
-    }
-
-    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
-     (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
-        return field[1][1];
+    for (let i = 0; i < WinLines.length; i++) {
+        let current = WinLines[i];
+        if (current[0] === current[1] && current[1] === current[2]) {
+            return current[0];
+        }
     }
 
     return 'draw';
-}
-
-function checkRows(field) {
-    for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            return field[i][0];
-        }
-    }
 }
 
 module.exports = {
