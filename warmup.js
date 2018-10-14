@@ -98,8 +98,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix === null || !Array.isArray(matrix) || matrix[0] === null) {
-        throw new TypeError('ВВедите цифры!');
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError('Argument must be a 2-dim array');
     }
     var result = [];
     for (var i = 0; i < matrix[0].length; i++) {
