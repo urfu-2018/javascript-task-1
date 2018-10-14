@@ -157,7 +157,7 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     let xs = checkDiagonals(field, 'x') || checkLines(field, 'x');
     let os = checkDiagonals(field, 'o') || checkLines(field, 'o');
-    if (xs && os) {
+    if (xs === os) {
         return 'draw';
     }
     if (xs) {
