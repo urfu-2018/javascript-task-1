@@ -182,22 +182,31 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    let winner;
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2] || field[0][2] ===
         field[1][1] && field[1][1] === field[2][0]) {
-        if (typeof field[1][1] !== 'undefined') {
-            return field[1][1];
-        }
-        typeError();
+            return notUndefined(field[1][1])
     }
     for (let i = 0; i < 3; i++) {
         if (check(field[i][0], field[i][1], field[i][2])) {
-            return field[i][0];
-        } else if (check(field[0][i], field[1][i], field[2][i])) {
-            return field[0][i];
+            winner = field[i][0];
+        }
+        if (check(field[0][i], field[1][i], field[2][i])) {
+            winner = field[0][i];
         }
     }
+    if (typeof winner === 'undefined') {
+        return 'draw';
+    }
 
-    return 'draw';
+    return winner;
+}
+
+function notUndefined(field) {
+    if (typeof field !== 'undefined') {
+        return field;
+    }
+    typeError();
 }
 
 function check(first, second, third) {
