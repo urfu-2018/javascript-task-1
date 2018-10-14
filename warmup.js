@@ -173,56 +173,24 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    var res = checkRows(field);
-    if (res !== null) {
-        return res;
+    for (var i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
 
-    res = checkColumns(field);
-    if (res !== null) {
-        return res;
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
     }
 
-    res = checkDiag(field);
-    if (res !== null) {
-        return res;
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
     }
 
     return 'draw';
-}
-
-function checkRows(field) {
-    var firstSim = '';
-    for (var i = 0; i < 3; i++) {
-        firstSim = field[i][0];
-        if (firstSim === field[i][1] && firstSim === field[i][2]) {
-            return firstSim;
-        }
-    }
-
-    return null;
-}
-
-function checkColumns(field) {
-    var firstSim = '';
-    for (var i = 0; i < 3; i++) {
-        firstSim = field[0][i];
-        if (field[1][i] === field[2][i] === firstSim) {
-            return firstSim;
-        }
-    }
-
-    return null;
-}
-
-function checkDiag(field) {
-    var firstSim = field[1][1];
-    if (field[0][0] === firstSim && field[2][2] === firstSim ||
-        field[0][2] === firstSim && field[2][0] === firstSim) {
-        return firstSim;
-    }
-
-    return null;
 }
 
 module.exports = {
