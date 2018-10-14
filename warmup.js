@@ -93,17 +93,8 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix) && matrix.length > 0)) {
-        throw new TypeError();
-    }
+function transposition(matrix) {
     const innerArrayLength = matrix[0].length;
-    for (let i = 0; i < matrix.length; i++) {
-        if (!(Array.isArray(matrix[i]) && matrix[i].length > 0 &&
-            matrix[i].length === innerArrayLength)) {
-            throw new TypeError();
-        }
-    }
     const result = new Array(innerArrayLength);
     for (let i = 0; i < innerArrayLength; i++) {
         result[i] = new Array(matrix.length);
@@ -113,6 +104,24 @@ function matrixProblem(matrix) {
     }
 
     return result;
+}
+
+function matrixProblem(matrix) {
+    if (!(Array.isArray(matrix) && matrix.length >= 0)) {
+        throw new TypeError();
+    }
+    const innerArrayLength = matrix[0].length;
+    for (let i = 0; i < matrix.length; i++) {
+        if (!(Array.isArray(matrix[i]) && matrix[i].length >= 0 &&
+            matrix[i].length === innerArrayLength)) {
+            throw new TypeError();
+        }
+    }
+    if (matrix[0].length === 0) {
+        return [[]];
+    }
+
+    return transposition(matrix);
 }
 
 /**
