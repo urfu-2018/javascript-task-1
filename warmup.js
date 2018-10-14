@@ -103,6 +103,7 @@ function matrixProblem(matrix) {
     }
 
     var m = matrix.length;
+    checkArray(matrix, 0);
     var n = matrix[0].length;
     var matrixTransformed = [];
     for (var i = 0; i < n; i++) {
