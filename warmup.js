@@ -4,6 +4,10 @@ function isNAN(param) {
     return (Number(param) !== param);
 }
 
+function isNotString(param) {
+    return (String(param) !== param);
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -46,7 +50,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (String(hexColor) !== hexColor) {
+    if (isNotString(hexColor)) {
         throw new TypeError('Цвет передан не строкой');
     }
 
@@ -139,6 +143,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (isNotString(phoneNumber)) {
+        throw new TypeError('');
+    }
+
     return (/^8-800-\d{3}-\d{2}-\d{2}$/).test(phoneNumber);
     // Ваше решение
 }
@@ -150,7 +158,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (String(text) !== text) {
+    if (isNotString(text)) {
         throw new TypeError('Аргумент не строка');
     }
     let count = 0;
@@ -171,6 +179,7 @@ function checkStrOfField(field) {
             return field[i][0];
         }
     }
+    return -1;
 }
 
 /**
@@ -180,7 +189,7 @@ function checkStrOfField(field) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (checkStrOfField(field) !== null) {
+    if (checkStrOfField(field) !== -1) {
         return checkStrOfField(field);
     }
 
@@ -189,12 +198,12 @@ function ticTacToeProblem(field) {
     }
 
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-        return field[0][0];
+        return field[1][1];
     }
 
     field = matrixProblem(field);
 
-    if (checkStrOfField(field) !== null) {
+    if (checkStrOfField(field) !== -1) {
         return checkStrOfField(field);
     }
 
