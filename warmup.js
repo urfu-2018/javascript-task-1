@@ -96,7 +96,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
     if (matrix.length === 0) {
@@ -155,8 +155,8 @@ function smilesProblem(text) {
     }
     let count = 0;
     for (let i = 0; i < text.length; i++) {
-        const temp = text.substr(i, 1);
-        if (temp === '(' || temp === ')') {
+        const temp = text.substr(i, 3);
+        if (temp === '(-:' || temp === ':-)') {
             count++;
         }
     }
