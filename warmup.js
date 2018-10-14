@@ -60,8 +60,8 @@ function colorsProblem(hexColor) {
 }
 
 function checkLenght(hexColor) {
-    if (!hexColor.match(/#[\dA-Fa-f]{6}/i) && hexColor.length === 7 ||
-    !hexColor.match(/#[\dA-Fa-f]{3}/i) && hexColor.length === 4) {
+    if (!(/#[\dA-Fa-f]{6}/i).test(hexColor) && hexColor.length === 7 ||
+    !(/#[\dA-Fa-f]{3}/i).test(hexColor) && hexColor.length === 4) {
         throw new RangeError('Выход за пределы 255!');
     }
 }
