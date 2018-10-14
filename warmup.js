@@ -16,7 +16,7 @@ function abProblem(a, b) {
         throw new TypeError('Аргумент не является числом');
     }
 
-    return a + b;
+    return parseInt(a) + parseInt(b);
     // Ваше решение
 }
 
@@ -99,6 +99,9 @@ function matrixProblem(matrix) {
     if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
+    if (matrix.length === 0) {
+        return [[]];
+    }
     const transpMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
         transpMatrix[i] = new Array(matrix.length);
@@ -122,7 +125,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (isNAN(n) || isNAN(targetNs)) {
         throw new TypeError('Аргументы неверного типа');
-    } else if (targetNs > 2 || targetNs > 36) {
+    } else if (targetNs < 2 || targetNs > 36) {
         return new RangeError('Выходит за пределы от 2 до 36');
     }
 
@@ -181,11 +184,11 @@ function ticTacToeProblem(field) {
         return checkStrOfField(field);
     }
 
-    if (field[0][0] === field[1][1] === field[2][2]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
     }
 
-    if (field[0][2] === field[1][1] === field[2][0]) {
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[0][0];
     }
 
