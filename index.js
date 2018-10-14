@@ -75,6 +75,7 @@ console.info('NS: 1010101 = ' + numberSystemProblem(85, 2));
 console.info('NS: 50 = ' + numberSystemProblem(40, 8));
 console.info('NS: 45 = ' + numberSystemProblem(45, 10));
 console.info('NS: 21 = ' + numberSystemProblem(65, 32));
+console.info('NS: 10.1 = ' + numberSystemProblem(2.5, 2));
 // console.info(numberSystemProblem('65', 2));
 // console.info(numberSystemProblem(65, '1'));
 // console.info(numberSystemProblem(65, 1));
@@ -116,11 +117,6 @@ console.info('draw = ' + ticTacToeProblem([
 ]));
 console.info('x = ' + ticTacToeProblem([
     ['x', 'o', 'x'],
-    ['o', 'o', 'x'],
-    ['o', 'x', 'x']
-]));
-console.info('x = ' + ticTacToeProblem([
-    ['o', 'o', 'x'],
     ['o', 'o', 'x'],
     ['o', 'x', 'x']
 ]));

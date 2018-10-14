@@ -78,7 +78,7 @@ function isEqualLengthsOfRows(matrix) {
 }
 
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (!typeof n === 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Number must be finite integer');
     }
     if (targetNs < 2 || targetNs > 32) {
@@ -108,15 +108,10 @@ function smilesProblem(text) {
 }
 
 function ticTacToeProblem(field) {
-    const crossWin = checkLines(field, 'x') || checkDiagonals(field, 'x');
-    const circleWin = checkLines(field, 'o') || checkDiagonals(field, 'o');
-    if (crossWin && circleWin) {
-        return 'draw';
-    }
-    if (crossWin) {
+    if (checkLines(field, 'x') || checkDiagonals(field, 'x')) {
         return 'x';
     }
-    if (circleWin) {
+    if (checkLines(field, 'o') || checkDiagonals(field, 'o')) {
         return 'o';
     }
 
