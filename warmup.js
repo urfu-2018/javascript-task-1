@@ -49,17 +49,19 @@ function colorsProblem(hexColor) {
     const r = parseInt(result[1], 16);
     const g = parseInt(result[2], 16);
     let b = parseInt(result[3], 16);
-    if (r > 255 || g > 255 || b > 255 || f(r, g, b)) {
+    if (r > 255 || g > 255 || b > 255 || !isValid(r, g, b)) {
         throw new RangeError();
     }
 
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
-function f(r, g, b) {
+function isValid(r, g, b) {
     if (r < 0 || g < 0 || b < 0) {
         return false;
     }
+
+    return true;
 }
 
 // /**
