@@ -44,10 +44,13 @@ function colorsProblem(hexColor) {
         throw new TypeError('The argument must be string.');
     }
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+    if (result === null) {
+        throw new TypeError();
+    }
     var r = parseInt(result[1], 16);
     var g = parseInt(result[2], 16);
     var b = parseInt(result[3], 16);
-    // if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
+    // if (r < 0 || r > 255 ||   g < 0 || g > 255 || b < 0 || b > 255) {
     if (r > 255 || g > 255 || b > 255) {
         throw new RangeError('Color values are out of range.');
     }
