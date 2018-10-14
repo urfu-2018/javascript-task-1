@@ -87,7 +87,7 @@ function matrixProblem(matrix) {
     }
     let result = [[]];
     matrix.forEach((row, i) => {
-        if (!Array.isArray(row)) {
+        if (!Array.isArray(row) || row.length === 0) {
             throw new TypeError();
         }
         row.forEach((_, j) => {
