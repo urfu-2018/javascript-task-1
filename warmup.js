@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (Number.isInteger(a) && Number.isInteger(b)) {
+    if (typeof (a) !== 'number' || typeof (b) !== 'number' ||
+        Number.isInteger(a) && Number.isInteger(b)) {
         return a + b;
     }
     const argumentsError = new TypeError();
@@ -24,7 +25,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (Number.isInteger(year) && Math.floor(year) === year) {
+    if (typeof(year) !== 'number' && Number.isInteger(year) && Math.floor(year) === year) {
         if (year <= 0) {
             throw new RangeError('год – отрицательное значение');
         }
@@ -103,7 +104,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {
