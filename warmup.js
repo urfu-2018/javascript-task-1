@@ -143,7 +143,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return text.match(/((:-\))|(\(-:))*/).length - 1;
+    return text.match(/(:-\))|(\(-:)/g).length;
 }
 
 /**
