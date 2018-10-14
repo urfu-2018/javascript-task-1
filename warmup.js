@@ -18,7 +18,8 @@ function rangeError() {
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
         typeError();
-    } else {
+    }
+    else {
         return a + b;
     }
 }
@@ -34,7 +35,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         typeError();
     }
-    if (Number.isInteger(year)) {
+    if (year % 1 !== 0) {
         if (year >= 0) {
             return Math.ceil(year / 100);
         }
@@ -77,7 +78,7 @@ function fibonacciProblem(n) {
         rangeError();
     }
     if (typeof n === 'number') {
-        if (!Number.isInteger(n)) {
+        if (n % 1 !== 0) {
             rangeError();
         }
         const root5 = Math.sqrt(5);
@@ -135,6 +136,9 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     let flag = true;
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        typeError();
+    }
+    if (n % 1 !== 0 || targetNs % 1 !== 0) {
         typeError();
     }
     if (targetNs < 2 || targetNs > 36) {
