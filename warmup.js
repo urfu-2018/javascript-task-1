@@ -174,6 +174,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    checkTicTacToeProblem(field);
     var answer = [[0, 0, 0, 1, 0, 2],
         [1, 0, 1, 1, 1, 2],
         [2, 0, 2, 1, 2, 2],
@@ -192,6 +193,12 @@ function ticTacToeProblem(field) {
     }
 
     return 'draw';
+}
+
+function checkTicTacToeProblem(field) {
+    if (!Array.isArray(field) || field.length === 0) {
+        throw new TypeError('Argument must be a 2-dim array');
+    }
 }
 
 module.exports = {
