@@ -9,7 +9,8 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-    if (typeof a === 'number' && typeof b === 'number') {
+    if ((typeof a === 'number' || a instanceof Number) &&
+        (typeof b === 'number' || b instanceof Number)) {
 
         return a + b;
     }
