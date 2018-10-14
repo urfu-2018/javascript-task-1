@@ -197,13 +197,9 @@ function checkDiagonals(field, marker) {
 }
 
 function isTwoDimensionalArray(array) {
-    if (array.length === 0 || array[0].length === 0) {
+    if (array.length === 0 || array[0].length === 0 ||
+        array.some(row => !Array.isArray(row) || row.length !== array[0].length)) {
         return false;
-    }
-    for (let i = 0; i < array.length; i++) {
-        if (!Array.isArray(array[i]) || array[i].length !== array[0].length) {
-            return false;
-        }
     }
 
     return true;
