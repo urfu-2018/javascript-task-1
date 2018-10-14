@@ -8,8 +8,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof b !== 'number' || typeof a !== 'number' ||
+        !Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Ошбика типа!');
+    }
+
+    return a + b;
 }
+
 
 /**
  * Определяет век по году
@@ -19,7 +25,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError('Ошбика типа!');
+    }
+    if (year < 0 || !Number.isInteger(year)) {
+        throw new RangeError('Ошибка размерности!');
+    }
+
+    return Math.ceil(year / 100);
+
 }
 
 /**
@@ -30,8 +44,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('Ошбика типа!');
+    }
+    if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
+        throw new RangeError('Ошибка размерности!');
+    }
+    const first = parseInt(hexColor.slice(1, 3), 16);
+    const second = parseInt(hexColor.slice(3, 5), 16);
+    const third = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${first}, ${second}, ${third})`;
+
 }
+
 
 /**
  * Находит n-ое число Фибоначчи
@@ -41,8 +67,23 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('Ошбика типа!');
+    }
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('Ошибка размерности!');
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
+
 
 /**
  * Транспонирует матрицу
@@ -51,8 +92,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (matrix.length === 0 || !Array.isArray(matrix) ||
+        !Array.isArray(matrix[0])) {
+        throw new TypeError('Ошбика типа!');
+    }
+    const matrixTrans = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        matrixTrans[i] = [];
+        for (let j = 0; j < matrix.length; j++) {
+            matrixTrans[i][j] = matrix[j][i];
+        }
+    }
+
+    return matrixTrans;
+
 }
+
 
 /**
  * Переводит число в другую систему счисления
@@ -63,8 +118,17 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs)) {
+        throw new TypeError('Ошбика типа!');
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('Ошибка размерности!');
+    }
+
+    return n.toString(targetNs);
 }
+
 
 /**
  * Проверяет соответствие телефонного номера формату
@@ -72,8 +136,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('Ошибка типа!');
+    }
+
+    return /^8-800-[0-9]{3}(-[0-9]{2}){2}$/.test(phoneNumber);
 }
+
 
 /**
  * Определяет количество улыбающихся смайликов в строке
@@ -82,8 +151,18 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('Ошбика типа!');
+    }
+    let right = text.match(/\(-:/g);
+    let left = text.match(/:-\)/g);
+    const leftL = left === null ? 0 : left.length;
+    const rightL = right === null ? 0 : right.length;
+
+    return rightL + leftL;
+
 }
+
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -92,8 +171,25 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][2] === field[i][1]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[2][i] === field[1][i]) {
+            return field[0][i];
+        }
+    }
+
+    if (field[1][1] === field[0][0] && field[2][2] === field[1][1]) {
+        return field[0][0];
+    }
+    if (field[1][1] === field[0][2] && field[2][0] === field[1][1]) {
+        return field[0][2];
+    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
