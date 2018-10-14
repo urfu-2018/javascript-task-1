@@ -91,7 +91,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+
+    const resultMatrix = new Array(matrix[0].length);
+    for (let i = 0; i < matrix[0].length; i++) {
+        resultMatrix[i] = new Array(matrix.length);
+        for (let j = 0; j < matrix.length; j++) {
+            resultMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return resultMatrix;
 }
 
 /**
@@ -144,7 +156,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < field.length; i++) {
+    for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
         }
