@@ -28,12 +28,13 @@ function centuryByYearProblem(year) {
         if (year < 0) {
             throw new RangeError('год – отрицательное значение');
         }
-        if (year.toString().length < 3) {
-            return 1;
-        }
+        const remainderOfDivision = year % 100 === 0;
         const century = year.toString().slice(0, -2);
+        if (remainderOfDivision === 0) {
+            return parseInt(century, 10);
+        }
 
-        return parseInt(century, 10) + 1;
+        return parseInt(century) + 1;
     }
     throw new TypeError('в качестве года передано не число');
 }
@@ -46,7 +47,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const HEXRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+    const HEXRegex = /^#?([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/i;
     if (typeof hexColor !== 'string') {
         throw new TypeError('цвет передан не строкой');
     }
@@ -73,15 +74,16 @@ function fibonacciProblem(n) {
     if (n < 1 || Math.floor(n) !== n) {
         throw new RangeError('n-отрицательное число');
     }
-    let a = 1;
+    let a = 0;
     let b = 1;
-    for (let i = 3; i <= n; i++) {
-        let c = a + b;
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result = a + b;
         a = b;
-        b = c;
+        b = result;
     }
 
-    return b;
+    return result;
 }
 
 /**
