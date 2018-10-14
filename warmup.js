@@ -91,19 +91,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0]) || matrix[0].length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
 
-    const resultMatrix = new Array(matrix[0].length);
-    for (let i = 0; i < matrix[0].length; i++) {
-        resultMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix.length; j++) {
-            resultMatrix[i][j] = matrix[j][i];
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
         }
     }
 
-    return resultMatrix;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
