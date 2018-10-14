@@ -196,7 +196,7 @@ function ticTacToeProblem(field) {
 }
 
 function checkTicTacToeProblem(field) {
-    if (!Array.isArray(field) || field.length === 0) {
+    if (field[0].length !== 3 || field.length !== 3) {
         throw new TypeError('Argument must be a 2-dim array');
     }
 }
