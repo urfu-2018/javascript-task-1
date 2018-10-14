@@ -49,14 +49,6 @@ function colorsProblem(hexColor) {
     return `(${r}, ${g}, ${b})`;
 }
 
-function isValid(r, g, b) {
-    if (r > 255 || g > 255 || b > 255) {
-        return false;
-    }
-
-    return true;
-}
-
 // /**
 //  * Находит n-ое число Фибоначчи
 //  * @param {Number} n Положение числа в ряде Фибоначчи
@@ -65,10 +57,10 @@ function isValid(r, g, b) {
 //  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
 //  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
 
@@ -217,6 +209,5 @@ module.exports = {
     phoneProblem,
     smilesProblem,
     ticTacToeProblem,
-    checkDiag,
-    isValid
+    checkDiag
 };
