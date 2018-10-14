@@ -18,8 +18,7 @@ function rangeError() {
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
         typeError();
-    }
-    else {
+    } else {
         return a + b;
     }
 }
@@ -74,13 +73,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (n <= 0) {
+    if (n <= 0 || n % 1 !== 0) {
         rangeError();
     }
     if (typeof n === 'number') {
-        if (n % 1 !== 0) {
-            rangeError();
-        }
         const root5 = Math.sqrt(5);
         let a = (1 + root5) / 2;
         let b = (1 - root5) / 2;
