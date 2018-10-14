@@ -76,7 +76,7 @@ function checkLenght(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('ВВедите цифры!');
-    } else if (n <= 0 || n % 1 !== 0) {
+    } else if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('');
     }
     var f = [1, 1];
