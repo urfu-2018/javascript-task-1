@@ -110,24 +110,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw new TypeError();
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError('n and targetNs should be a integer');
     }
-    n = Number(n);
-    targetNs = Number(targetNs);
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
+        throw new RangeError('number system goes beyond the limits of [2, 36]');
     }
 
-    const alphabet = '0123456789abcdefghijklmnopqrstuvwxyz';
-
-    let result = '';
-    while (n > 0) {
-        result = alphabet[n % targetNs] + result;
-        n = Math.floor(n / targetNs);
-    }
-
-    return result;
+    return n.toString(targetNs);
 }
 
 /**
