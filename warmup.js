@@ -46,22 +46,24 @@ function colorsProblem(hexColor) {
     if (!/^#([A-Fa-f0-9]){6}$/.test(hexColor) && !/^#([A-Fa-f0-9]){3}$/.test(hexColor)) {
         throw new RangeError('Color values are out of range.');
     }
-    if (hexColor.length === 7) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-    var r = parseInt(result[1], 16);
-    var g = parseInt(result[2], 16);
-    var b = parseInt(result[3], 16);
+    if (hexColor.length === 7) { // #FFFFFF
+        let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+        result = result.slice(1);
 
-    return '(' + r + ', ' + g + ', ' + b + ')';
+        return '(' + result
+            .map(value => parseInt(value, 16))
+            .join(', ') + ')';
     }
-    if (hexColor.length === 4) {
-        var result = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hexColor);
-        var r = parseInt(result[1] + result[1], 16);
-        var g = parseInt(result[2] + result[2], 16);
-        var b = parseInt(result[3] + result[3], 16);
+    if (hexColor.length === 4) { // #FFF === #FFFFFF
+        let result = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hexColor);
+        result = result.slice(1);
 
-        return '(' + r + ', ' + g + ', ' + b + ')';
+        return '(' + result
+            .map(value => parseInt(value + value, 16))
+            .join(', ') + ')';
     }
+
+    return null;
 }
 
 /**
