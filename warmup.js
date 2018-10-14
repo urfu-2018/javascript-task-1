@@ -14,9 +14,6 @@ function isInteger(num) {
 function abProblem(a, b) {
     confirmNumberType(a);
     confirmNumberType(b);
-    if (!isInteger(a) && !isInteger(b)) {
-        throw new TypeError('Переданные параметры-числа не являются целыми числами');
-    }
 
     return Number(a) + Number(b);
 }
@@ -33,15 +30,13 @@ function centuryByYearProblem(year) {
     if (Number(year) < 0 || !isInteger(year)) {
         throw new RangeError('Параметр "year" некорректен');
     }
-    if (Number(year) % 100 !== 0) {
-        return Math.trunc(Number(year) / 100) + 1;
-    }
+    const expr = year / 100;
 
-    return Math.trunc(Number(year) / 100);
+    return Math.ceil(expr);
 }
 
 function isValidRange(hexString) {
-    return hexString.search(/^[0-9a-f]{6}$/i) === 0;
+    return hexString.search(/^#[0-9a-f]{6}$/i) === 0;
 }
 
 /**
@@ -55,7 +50,7 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
         throw new TypeError('Переданная строка не в формате "#HEX"');
     }
-    if (!isValidRange(hexColor.slice(1))) {
+    if (!isValidRange(hexColor)) {
         throw new RangeError('Значение цвета выходят за пределы допустимых');
     }
     const r = parseInt(hexColor.slice(1, 3), 16);
@@ -83,19 +78,14 @@ function fibonacciProblem(n) {
     if (Number(n) <= 0 || !isInteger(n)) {
         throw new RangeError('Таких чисел Фибоначчи не существует');
     }
-    if (Number(n) <= 2) {
-        return 1;
-    }
     var preprevious = 1;
     var previous = 1;
-    var ans = 0;
     for (var i = 2; i < Number(n); i++) {
-        ans = preprevious + previous;
-        preprevious = previous;
-        previous = ans;
+        previous += preprevious;
+        preprevious = previous - preprevious;
     }
 
-    return ans;
+    return previous;
 }
 
 function checkMatrix(matrix) {
@@ -164,21 +154,25 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError('Переданный параметр не является строкой');
     }
-    const res = text.match(/\(-:|:-\)/g).length;
+    const res = text.match(/\(-:|:-\)/g);
 
-    return res === null ? 0 : res;
+    return res === null ? 0 : res.length;
 }
 
 function checkHorizontally(field, i) {
     if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
         return field[i][0];
     }
+
+    return null;
 }
 
 function checkVertically(field, j) {
     if (field[0][j] === field[1][j] && field[1][j] === field[2][j]) {
         return field[0][j];
     }
+
+    return null;
 }
 
 /**
@@ -198,7 +192,7 @@ function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
         winner = checkVertically(field, i);
         winner = checkHorizontally(field, i);
-        if (typeof (winner) !== 'undefined') {
+        if (winner !== null) {
             return winner;
         }
     }
