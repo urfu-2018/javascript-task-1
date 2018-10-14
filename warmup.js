@@ -28,7 +28,7 @@ function centuryByYearProblem(year) {
             throw new RangeError('year must be positive');
         }
 
-        return Math.ceil(year / 100);
+        return Math.floor((year - 1) / 100) + 1;
     }
     throw new TypeError('year must be Number');
 }
