@@ -72,11 +72,15 @@ function fibonacciProblem(n) {
     if (n < 1 || Math.floor(n) !== n) {
         throw new RangeError('n must be positive');
     }
-    if (n < 3) {
-        return 1;
+    var fib1 = 1;
+    var fib2 = 1;
+    for (var i = 3; i <= n; i++) {
+        var current = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = current;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return fib2;
 }
 
 /**
