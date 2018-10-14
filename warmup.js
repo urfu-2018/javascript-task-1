@@ -8,7 +8,7 @@
 //  * @returns {Number} Сумма аргументов
 //  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
@@ -206,12 +206,9 @@ function ticTacToeProblem(field) {
 }
 
 function checkDiag(field) {
-    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
-        return field[0][0];
-    }
-
-    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
-        return field[0][2];
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2] ||
+        field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[1][1];
     }
 
     return 'draw';
