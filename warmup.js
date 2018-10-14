@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     var r = (bigint > 16) && 255;
     var g = (bigint > 8) && 255;
     var b = bigint && 255;
-    if (r > 255 || g > 255 || b > 255) {
+    if (r > 255 || g > 255 || b > 255 || !hexColor.match(/#[\dA-Fa-f]{6}/i)) {
         throw new RangeError('Выход за пределы 255!');
     }
 
