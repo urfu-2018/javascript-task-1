@@ -29,12 +29,13 @@ function centuryByYearProblem(year) {
             throw new RangeError('год – отрицательное значение');
         }
         const remainderOfDivision = year % 100 === 0;
-        const century = year.toString().slice(0, -2);
+        const century = Math.floor(year / 100);
         if (remainderOfDivision === 0) {
-            return parseInt(century, 10);
+            return century;
         }
 
-        return parseInt(century) + 1;
+        return century + 1;
+
     }
     throw new TypeError('в качестве года передано не число');
 }
@@ -124,7 +125,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.search('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$') !== -1;
+    const phoneReg = /8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}/;
+
+    return phoneNumber.length === 15 && phoneReg.test(phoneNumber);
 }
 
 /**
