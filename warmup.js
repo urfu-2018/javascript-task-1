@@ -1,8 +1,7 @@
 'use strict';
 
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b) ||
-    !Number.isFinite(a) || !Number.isFinite(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('Numbers must be integer');
     }
 
@@ -10,7 +9,7 @@ function abProblem(a, b) {
 }
 
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year) || !Number.isFinite(year)) {
+    if (!Number.isInteger(year)) {
         throw new TypeError('Year must be finite number');
     }
     if (year < 0) {
@@ -18,14 +17,14 @@ function centuryByYearProblem(year) {
     }
     const century = Math.floor(year / 100);
 
-    return year % 100 === 0 ? century : century + 1;
+    return year % 100 ? century + 1 : century;
 }
 
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Argument is not string');
     }
-    const regex = /#([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})/;
+    const regex = /^#([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})$/i;
     const hexRGB = regex.exec(hexColor);
     if (hexRGB === null) {
         throw new RangeError('Color values is in incorrect format');
@@ -36,7 +35,7 @@ function colorsProblem(hexColor) {
 }
 
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n) || !Number.isFinite(n)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError('Number must be finite integer');
     }
     if (n <= 0) {
@@ -44,8 +43,9 @@ function fibonacciProblem(n) {
     }
     let current = 1;
     let previous = 1;
+    let sum;
     for (let i = 3; i <= n; i++) {
-        let sum = current + previous;
+        sum = current + previous;
         previous = current;
         current = sum;
     }
@@ -55,13 +55,24 @@ function fibonacciProblem(n) {
 
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr)) ||
-     !((arr1, arr2) => arr1.length === arr2.length)) {
+    !isEqualLengthsOfRows(matrix)) {
         throw new TypeError('Argument must be array of arrays' +
         'where every element length is equal length of any other');
     }
 
     return Object.keys(matrix[0])
         .map(colNumber => matrix.map(rowNumber => rowNumber[colNumber]));
+}
+
+function isEqualLengthsOfRows(matrix) {
+    const currentLength = matrix[0].length;
+    for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i].length !== currentLength) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 function numberSystemProblem(n, targetNs) {
@@ -71,13 +82,8 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 32) {
         throw new RangeError('Number was out of range');
     }
-    let result = '';
-    while (n >= targetNs) {
-        result = n % targetNs + result;
-        n = Math.floor(n / targetNs);
-    }
 
-    return (n + result).toString();
+    return n.toString(targetNs);
 }
 
 function phoneProblem(phoneNumber) {
