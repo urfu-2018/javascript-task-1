@@ -55,7 +55,7 @@ function fibonacciProblem(n) {
 
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr)) ||
-    !isEqualLengthsOfRows(matrix)) {
+    !isEqualLengthsOfRows(matrix) || !matrix.every(arr => arr.length)) {
         throw new TypeError('Argument must be array of arrays' +
         'where every element length is equal length of any other');
     }

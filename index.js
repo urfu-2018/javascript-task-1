@@ -30,6 +30,7 @@ console.info('hex2rgb: (255, 255, 255) = ' + colorsProblem('#FFFFFF'));
 console.info('hex2rgb: (128, 0, 128) = ' + colorsProblem('#800080'));
 console.info('hex2rgb: (0, 0, 0) = ' + colorsProblem('#000000'));
 console.info('hex2rgb: (165, 42, 42) = ' + colorsProblem('#A52A2A'));
+// console.info(colorsProblem('#52A2A-'));
 
 // Выведет `1`
 console.info('fibonacci: 1st element is 1 = ' + fibonacciProblem(1));
@@ -59,6 +60,15 @@ console.info(matrixProblem([
 ]));
 // console.info(matrixProblem('a'));
 // console.info(matrixProblem(['a']));
+/*
+console.info(matrixProblem([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8]
+]));
+*/
+// console.info(matrixProblem([[2],[]]));
+// console.info(matrixProblem([]));
 
 // Выведет '1010101'
 console.info('NS: 1010101 = ' + numberSystemProblem(85, 2));
