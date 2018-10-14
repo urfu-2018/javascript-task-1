@@ -104,7 +104,7 @@ function matrixProblem(matrix) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
     if (matrix.length === 0) {
-        return [[]];
+        throw new TypeError('Аргумент  - не двумерный массив');
     }
     const transpMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
@@ -127,7 +127,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNAN(n) || isNAN(targetNs)) {
+    if (isNAN(n) || isNAN(targetNs) || !Number.isInteger(targetNs)) {
         throw new TypeError('Аргументы неверного типа');
     } else if (targetNs < 2 || targetNs > 36) {
         return new RangeError('Выходит за пределы от 2 до 36');
