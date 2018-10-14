@@ -95,6 +95,12 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
+    for (let k = 0; k < matrix.length; k++) {
+        if (!Array.isArray(matrix[k])) {
+            throw new TypeError();
+        }
+    }
+
     const resultMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix[0].length; i++) {
         resultMatrix[i] = new Array(matrix.length);
