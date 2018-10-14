@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+    if (!isInteger(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -68,7 +68,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (!isInteger(n)) {
         throw new TypeError();
     }
     if (n <= 0) {
@@ -128,7 +128,7 @@ function transposeMatrix(matrix, lengthX, lengthY) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (!isInteger(n) || !isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -136,6 +136,11 @@ function numberSystemProblem(n, targetNs) {
     }
 
     return n.toString(targetNs);
+}
+
+function isInteger(number) {
+    return typeof(number) === 'number' &&
+        Number.isInteger(number);
 }
 
 /**
