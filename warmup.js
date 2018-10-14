@@ -104,7 +104,7 @@ function matrixProblem(matrix) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
     if (matrix.length === 0) {
-        [[]];
+        return [[]];
     }
     const transpMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
