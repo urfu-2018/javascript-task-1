@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof (a) !== 'number' || typeof (b) !== 'number' ||
-     !Number.isInteger(a) || !Number.isInteger(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('ВВедите цифры!');
     }
 
@@ -143,6 +142,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError('Ожидается строка');
+    }
     if (phoneNumber.length === 15) {
         return /8-800-\d{3}-\d{2}-\d{2}/ig.test(phoneNumber);
     }
