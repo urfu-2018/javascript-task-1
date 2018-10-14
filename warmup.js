@@ -102,7 +102,7 @@ function matrixProblem(matrix) {
     for (var i = 0; i < matrix[0].length; i++) {
         result[i] = [];
         for (var j = 0; j < matrix.length; j++) {
-            checkArray(matrix[j]);
+            checkArray(matrix[j], matrix[0].length);
             result[i][j] = matrix[j][i];
         }
     }
@@ -110,8 +110,8 @@ function matrixProblem(matrix) {
     return result;
 }
 
-function checkArray(matrix) {
-    if (!Array.isArray(matrix)) {
+function checkArray(matrix, len) {
+    if (!Array.isArray(matrix) || matrix.length !== len ) {
         throw new TypeError('Argument must be a 2-dim array');
     }
 }
@@ -174,7 +174,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    checkTicTacToeProblem(field);
     var answer = [[0, 0, 0, 1, 0, 2],
         [1, 0, 1, 1, 1, 2],
         [2, 0, 2, 1, 2, 2],
@@ -193,12 +192,6 @@ function ticTacToeProblem(field) {
     }
 
     return 'draw';
-}
-
-function checkTicTacToeProblem(field) {
-    if (field[0].length !== 3 || field.length !== 3) {
-        throw new TypeError('Argument must be a 2-dim array');
-    }
 }
 
 module.exports = {
