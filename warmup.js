@@ -161,7 +161,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('The argument must be string.');
     }
 
-    return phoneNumber.length === 15 && /8-800-\d{3}-\d{2}-\d{2}/ig.test(phoneNumber);
+    return phoneNumber.length === 15 && /8-800-\d{3}-\d{2}-\d{2}/i.test(phoneNumber);
 }
 
 /**
@@ -191,18 +191,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    var fieldCells = [];
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            fieldCells.push(field[i][j]);
-        }
-    }
-    var winCombinations = ['012', '345', '678', '036', '147', '258', '048', '246'];
-    for (let i = 0; i < winCombinations.length; i++) {
-        var wc = winCombinations[i];
-        if (fieldCells[wc[0]] === fieldCells[wc[1]] && fieldCells[wc[1]] === fieldCells[wc[2]]) {
-
-            return fieldCells[wc[0]];
+    var winCombinations = [];
+    winCombinations.push([0, 0, 0, 1, 0, 2]);
+    winCombinations.push([1, 0, 1, 1, 1, 2]);
+    winCombinations.push([0, 0, 1, 0, 2, 0]);
+    winCombinations.push([0, 0, 1, 1, 2, 2]);
+    winCombinations.push([2, 0, 2, 1, 2, 2]);
+    winCombinations.push([0, 2, 1, 2, 2, 2]);
+    winCombinations.push([0, 1, 1, 1, 2, 1]);
+    winCombinations.push([2, 0, 1, 1, 0, 2]);
+    for (var i = 0; i < winCombinations.length; i++) {
+        var ind = winCombinations[i];
+        if (field[ind[0]][ind[1]] === field[ind[2]][ind[3]] &&
+            field[ind[0]][ind[1]] === field[ind[4]][ind[5]]) {
+            return field[ind[0]][ind[1]];
         }
     }
 
