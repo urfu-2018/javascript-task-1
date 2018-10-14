@@ -142,7 +142,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /8-800-\d{3}-\d{2}-\d{2}/i.test(phoneNumber);
+    if (phoneNumber.length === 15) {
+        return /8-800-\d{3}-\d{2}-\d{2}/ig.test(phoneNumber);
+    }
+
+    return false;
 }
 
 /**
