@@ -89,11 +89,11 @@ function fibonacciProblem(n) {
 }
 
 function checkMatrix(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+        if (matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
     }
@@ -107,7 +107,7 @@ function checkMatrix(matrix) {
  */
 function matrixProblem(matrix) {
     checkMatrix(matrix);
-    if (matrix.length === 0 || matrix[0].length === 0) {
+    if (matrix[0].length === 0) {
         return [[]];
     }
 
@@ -192,7 +192,7 @@ function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
         winner = checkVertically(field, i);
         winner = checkHorizontally(field, i);
-        if (typeof(winner) !== 'undefined') {
+        if (typeof (winner) !== 'undefined') {
             return winner;
         }
     }
@@ -211,3 +211,4 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
+
