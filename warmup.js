@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor must be string');
     }
-    if (hexColor.length !== 7 || !/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
+    if (hexColor.length !== 7 || !/#[0-9A-Fa-f]{6}/g.test(hexColor)) {
         throw new RangeError('Incorrect params');
     }
 
