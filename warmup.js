@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(typeof a === 'number' && typeof b === 'number')) {
+    if (!(typeof a === 'number' && typeof b === 'number' &&
+        Math.trunc(a) === a && Math.trunc(b) === b)) {
         throw new TypeError();
     }
 
@@ -23,10 +24,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!(typeof year === 'number' && Math.trunc(year) === year)) {
+    if (!(typeof year === 'number')) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 0 || !(Math.trunc(year) === year)) {
         throw new RangeError();
     }
 
@@ -77,12 +78,10 @@ function fibonacciProblem(n) {
     }
     let fib1 = 1;
     let fib2 = 1;
-    let i = 2;
-    while (i < n) {
+    for (let i = 2; i < n; i++) {
         const fibSum = fib2 + fib1;
         fib1 = fib2;
         fib2 = fibSum;
-        i += 1;
     }
 
     return (fib2);
@@ -208,6 +207,7 @@ function checkDiagonalsOrDraw(field) {
 
     return 'draw';
 }
+
 module.exports = {
     abProblem,
     centuryByYearProblem,
