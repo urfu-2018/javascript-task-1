@@ -128,7 +128,7 @@ function transposeMatrix(matrix, lengthX, lengthY) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isInteger(n) || !isInteger(targetNs)) {
+    if (!isNumber(n) || !isNumber(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -138,8 +138,12 @@ function numberSystemProblem(n, targetNs) {
     return n.toString(targetNs);
 }
 
+function isNumber(number) {
+    return typeof(number) === 'number';
+}
+
 function isInteger(number) {
-    return typeof(number) === 'number' &&
+    return isNumber(number) &&
         Number.isInteger(number);
 }
 
