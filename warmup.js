@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('Incorrect params');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -126,7 +126,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/g.test(phoneNumber);
+    return phoneNumber.length === 15 && /^8-800-\d{3}-\d{2}-\d{2}$/g.test(phoneNumber);
 }
 
 /**
