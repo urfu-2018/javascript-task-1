@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError('Argument must be an integer number');
     } else if (year < 0) {
         throw new RangeError('Argument must be non-negative');
@@ -64,7 +64,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('Argument is NaN');
-    } else if (n <= 0 || n % 1 !== 0) {
+    } else if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('Argument must be a positive integer');
     }
     let first = 1;
