@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError();
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('a and b should be integer');
     }
 
     return a + b;
