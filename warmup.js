@@ -157,7 +157,7 @@ function smilesProblem(text) {
         throw new TypeError('В качестве аргумента передаётся не строка');
     }
 
-    var resArr = text.match(/():-\))|(\(-:)/g);
+    var resArr = text.match(/(:-\))|(\(-:)/g);
     var res = 0;
     if (resArr !== null) {
         res = resArr.length;
