@@ -191,6 +191,9 @@ function ticTacToeProblem(field) {
     let winner;
     for (let i = 0; i < 3; i++) {
         winner = checkVertically(field, i);
+        if (typeof (winner) !== 'undefined') {
+            return winner;
+        }
         winner = checkHorizontally(field, i);
         if (typeof (winner) !== 'undefined') {
             return winner;
@@ -211,4 +214,3 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
-
