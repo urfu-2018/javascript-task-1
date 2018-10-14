@@ -46,16 +46,24 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('ВВедите строку!');
     }
+    checkLenght(hexColor);
     var betterHexColor = hexColor.replace('#', '');
     var bigint = parseInt(betterHexColor, 16);
     var r = (bigint > 16) && 255;
     var g = (bigint > 8) && 255;
     var b = bigint && 255;
-    if (r > 255 || g > 255 || b > 255 || !hexColor.match(/#[\dA-Fa-f]{6}/i)) {
+    if (r > 255 || g > 255 || b > 255) {
         throw new RangeError('Выход за пределы 255!');
     }
 
     return '(' + r + ', ' + g + ', ' + b + ')';
+}
+
+function checkLenght(hexColor) {
+    if (!hexColor.match(/#[\dA-Fa-f]{6}/i) && hexColor.length === 7 ||
+    !hexColor.match(/#[\dA-Fa-f]{3}/i) && hexColor.length === 4) {
+        throw new RangeError('Выход за пределы 255!');
+    }
 }
 
 /**
