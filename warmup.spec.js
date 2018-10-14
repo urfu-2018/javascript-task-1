@@ -29,13 +29,13 @@ describe('Century by year problem', () => {
 
 describe('Colors problem', function () {
     it('Должна вернуть (255, 255, 255)', function () {
-        assert.strictEqual(colorsProblem('#FFFFFF'), '(255, 255, 255)');
+        assert.strictEqual(colorsProblem('#ffd37d'), '(255, 211, 125)');
     });
 });
 
 describe('Fibonacci problem', () => {
     it('Для n=1 должна вернуть `1`', () => {
-        assert.strictEqual(fibonacciProblem(1), 1);
+        assert.strictEqual(fibonacciProblem(5), 3);
     });
 });
 
@@ -68,7 +68,7 @@ describe('Phone problem', () => {
 
 describe('Smiles problem', () => {
     it('Должна вернуть `1`', () => {
-        assert.strictEqual(smilesProblem(':-)'), 1);
+        assert.strictEqual(smilesProblem('(-:-)'), 1);
     });
 });
 
