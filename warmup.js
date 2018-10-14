@@ -33,6 +33,7 @@ function centuryByYearProblem(year) {
     } else if (year < 0) {
         throw new RangeError('Год отрицателен');
     }
+
     return Math.ceil(year / 100);
     // Ваше решение
 }
@@ -54,10 +55,11 @@ function colorsProblem(hexColor) {
     }
 
     var arr = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-    const red =  parseInt(arr[1], 16);
+    const red = parseInt(arr[1], 16);
     const green = parseInt(arr[2], 16);
     const blue = parseInt(arr[3], 16);
-    return ('(' + red + ', ' + green  + ', ' + blue + ')');
+
+    return ('(' + red + ', ' + green + ', ' + blue + ')');
     // Ваше решение
 }
 
@@ -77,7 +79,7 @@ function fibonacciProblem(n) {
     let previous = 1;
     let next = 1;
     let temp = 0;
-    for (let i=2; i<n; i++) {
+    for (let i = 2; i < n; i++) {
         temp = next;
         next = next + previous;
         previous = temp;
@@ -97,12 +99,13 @@ function matrixProblem(matrix) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
     const transpMatrix = new Array(matrix[0].length);
-    for (let i=0; i<matrix.length; i++) {
+    for (let i = 0; i < matrix.length; i++) {
         transpMatrix[i] = new Array(matrix.length);
-        for (let j=0; j<matrix[i].length; j++){
+        for (let j = 0; j < matrix[i].length; j++){
             transpMatrix[i][j] = matrix[j][i];
         }
     }
+    
     return transpMatrix;    
     // Ваше решение
 }
@@ -157,7 +160,7 @@ function smilesProblem(text) {
 
 function checkStrOfField(field){
     for (let i = 0; i<field.length; i++) {
-        if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
         }
     }
