@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year) || year - Math.floor(year) !== 0) {
+    if (!Number.isInteger(year) || year % 1 !== 0) {
         throw new TypeError('ВВедите цифры!');
     } else if (year < 0) {
         throw new RangeError('Год не может быть отрицательным');
@@ -138,7 +138,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string') {
+    if (typeof(text) !== 'string' || isNaN(text)) {
         throw new TypeError('строка должна быть!');
     }
     var tmp = text.match(/\(-:/ig);
