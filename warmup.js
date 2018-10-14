@@ -25,17 +25,11 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (Number.isInteger(year) && Math.floor(year) === year) {
-        if (year < 0) {
+        if (year <= 0) {
             throw new RangeError('год – отрицательное значение');
         }
-        const remainderOfDivision = year % 100 === 0;
-        const century = Math.floor(year / 100);
-        if (remainderOfDivision === 0) {
-            return century;
-        }
 
-        return century + 1;
-
+        return Math.ceil(year / 100);
     }
     throw new TypeError('в качестве года передано не число');
 }
