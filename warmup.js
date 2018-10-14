@@ -173,6 +173,9 @@ function isPositiveInteger(number) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
     let phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return phoneRegex.test(phoneNumber);
