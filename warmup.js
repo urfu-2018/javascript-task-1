@@ -75,7 +75,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if(n <= 0) {
+    if (n <= 0) {
         rangeError();
     }
     if (typeof n === 'number') {
@@ -135,13 +135,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    let flag = true;
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         typeError();
     }
     if (targetNs < 2 || targetNs > 36) {
         rangeError();
     }
-    if (true) {
+    if (flag) {
         return n.toString(targetNs);
     }
 }
@@ -152,10 +153,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    let flag = true;
     if (typeof phoneNumber !== 'string') {
         typeError();
     }
-    if (true) {
+    if (flag) {
         return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
     }
 }
@@ -188,20 +190,23 @@ function ticTacToeProblem(field) {
         typeError();
     }
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            if (typeof field[i][0] !== 'undefined') {
-                return field[i][0];
-            }
-            typeError();
-        } else if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            if (typeof field[0][i] !== 'undefined') {
-                return field[0][i];
-            }
-            typeError();
+        if (check(field[i][0], field[i][1], field[i][2])) {
+            return field[i][0];
+        } else if (check(field[0][i], field[1][i], field[2][i])) {
+            return field[0][i];
         }
     }
 
     return 'draw';
+}
+
+function check(first, second, third) {
+    if (first === second && second === third) {
+        if (typeof first !== 'undefined') {
+            return true;
+        }
+        typeError();
+    }
 }
 
 module.exports = {
