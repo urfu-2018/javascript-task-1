@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    if (!/#[A-F0-9]{6}/.test(hexColor)) {
+    if (!/#[A-Fa-f0-9]{6}/.test(hexColor)) {
         throw new RangeError();
     }
 
