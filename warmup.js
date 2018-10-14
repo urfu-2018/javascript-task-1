@@ -34,26 +34,19 @@ function centuryByYearProblem(year) {
     return Math.ceil(year / 100);// Ваше решение
 }
 
-/**
- * Переводит цвет из формата HEX в формат RGB
- * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
- * @throws {TypeError} Когда цвет передан не строкой
- * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
- * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
- */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || !(/#[0-9A-Fa-f]{6}/g.test(hexColor))) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
+    }
+    if (!(/#[0-9A-Fa-f]{6}/g.test(hexColor))) {
+        throw new RangeError();
     }
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
     const r = parseInt(result[1], 16);
     const g = parseInt(result[2], 16);
     let b = parseInt(result[3], 16);
-    if (!isValid(r, g, b)) {
-        throw new RangeError();
-    }
 
-    return '(' + r + ', ' + g + ', ' + b + ')';
+    return `(${r}, ${g}, ${b})`;
 }
 
 function isValid(r, g, b) {
