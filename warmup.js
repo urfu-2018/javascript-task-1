@@ -113,7 +113,7 @@ function matrixProblem(matrix) {
 }
 
 function checkMatrix(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) { // || typeof(matrix[0][0]) !== 'number') {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
 
         throw new TypeError('The argument must be a two-dimentional array.');
     }
@@ -174,14 +174,9 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError('The argument must be string.');
     }
-    var result = 0;
     var smiles = text.match(/(:-\))|(\(-:)/ig);
-    if (smiles !== null) {
 
-        result += smiles.length;
-    }
-
-    return result;
+    return smiles !== null ? smiles.length : 0;
 }
 
 /**
