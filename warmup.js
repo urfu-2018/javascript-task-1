@@ -66,11 +66,8 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('n is not Number');
     }
-    if (!Number.isInteger(n)) {
-        throw new RangeError('n is not Number');
-    }
-    if (n < 1 || Math.floor(n) !== n) {
-        throw new RangeError('n must be positive');
+    if (n < 1 || !Number.isInteger(n)) {
+        throw new RangeError('n is not positive Integer');
     }
     var fib1 = 1;
     var fib2 = 1;
@@ -90,13 +87,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0 ||
+    !Array.isArray(matrix[0])) {
         throw new TypeError('Incorrect params');
     }
-    for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
-            throw new TypeError('Incorrect params');
-        }
+    let dimension = matrix[0].length;
+    if (dimension === 0 || matrix.some(row => !(Array.isArray(row)) || row.length !== dimension)) {
+        throw new TypeError('Матрица должна быть двумерным массивом');
     }
 
     return matrix[0].map((column, index) => matrix.map(row => row[index]));
