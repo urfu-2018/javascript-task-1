@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
 }
 
 function checkArray(matrix, len) {
-    if (!Array.isArray(matrix) || matrix.length !== len) {
+    if (matrix.length !== len || !Array.isArray(matrix)) {
         throw new TypeError('Argument must be a 2-dim array');
     }
 }
