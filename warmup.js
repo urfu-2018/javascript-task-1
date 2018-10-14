@@ -138,7 +138,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string' || isNaN(text)) {
+    if (typeof(text) !== 'string' || !isNaN(text)) {
         throw new TypeError('строка должна быть!');
     }
     var tmp = text.match(/\(-:/ig);
