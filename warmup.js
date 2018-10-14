@@ -97,11 +97,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    const lengthY = matrix.length;
-    const lengthX = matrix[0].length;
-    if (lengthY === undefined || lengthX === undefined || lengthX[0] !== undefined) {
+    if (!(matrix instanceof Array) || !(matrix[0] instanceof Array)) {
         throw new TypeError();
     }
+
+    const lengthY = matrix.length;
+    const lengthX = matrix[0].length;
 
     return transposeMatrix(matrix, lengthX, lengthY);
 }
