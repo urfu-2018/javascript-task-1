@@ -161,7 +161,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('The argument must be string.');
     }
 
-    return phoneNumber.length === 15 && /8-800-\d{3}-\d{2}-\d{2}/i.test(phoneNumber);
+    return phoneNumber.length === 15 && /8-800-\d{3}-\d{2}-\d{2}/ig.test(phoneNumber);
 }
 
 /**
@@ -174,9 +174,14 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError('The argument must be string.');
     }
+    var result = 0;
     var smiles = text.match(/(:-\))|(\(-:)/ig);
+    if (smiles !== null) {
 
-    return smiles !== null ? smiles.length : 0;
+        result += smiles.length;
+    }
+
+    return result;
 }
 
 /**
