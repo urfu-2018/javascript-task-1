@@ -9,6 +9,10 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    throw new TypeError();
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -31,6 +42,19 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    hexColor = hexColor.substring(1);
+    const r = parseInt(hexColor.substring(0, 2), 16);
+    const g = parseInt(hexColor.substring(2, 4), 16);
+    const b = parseInt(hexColor.substring(4, 6), 16);
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -42,6 +66,21 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (n % 1 !== 0 || n <= 0) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        const currentNumber = a + b;
+        a = b;
+        b = currentNumber;
+    }
+
+    return b;
 }
 
 /**
@@ -52,6 +91,23 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+        throw new TypeError();
+    }
+
+    let matrixT = [];
+
+    for (let i = 0; i < matrix[0].length; i++) {
+        matrixT[i] = [];
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            matrixT[j][i] = matrix[i][j];
+        }
+    }
+
+    return matrixT;
 }
 
 /**
@@ -64,6 +120,14 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    if (typeof n === 'number' && typeof targetNs === 'number' && targetNs >= 2 && targetNs <= 36) {
+        return n.toString(targetNs);
+    } else if (typeof n === 'number' && typeof targetNs === 'number' &&
+        (targetNs < 2 || targetNs > 36)) {
+        throw new RangeError();
+    } else {
+        throw new TypeError();
+    }
 }
 
 /**
@@ -73,6 +137,11 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    if (typeof phoneNumber === 'string') {
+        return /^8-800-\d\d\d-\d\d-\d\d$/.test(phoneNumber);
+    }
+
+    throw new TypeError();
 }
 
 /**
@@ -83,6 +152,18 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    let count = 0;
+    for (let i = 0; i < text.length; i++) {
+        if (text.substr(i, 3) === ':-)' || text.substr(i, 3) === '(-:') {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 /**
@@ -93,6 +174,33 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    const row = [0, 1, 2].find(
+        (i) => field[0][i] === field[1][i] && field[1][i] === field[2][i]
+    );
+    if (row !== undefined) {
+
+        return field[0][row];
+    }
+
+    const column = [0, 1, 2].find(
+        (i) => field[i][0] === field[i][1] && field[i][1] === field[i][2]
+    );
+    if (column !== undefined) {
+
+        return field[column][0];
+    }
+
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+
+        return field[0][0];
+    }
+
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+
+        return field[0][2];
+    }
+
+    return 'draw';
 }
 
 module.exports = {
