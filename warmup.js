@@ -121,7 +121,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('ВВедите цифры!');
     } else if (targetNs < 2 || targetNs > 36 || targetNs % 1 !== 0) {
         throw new RangeError('');
