@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError('a and b should be integer');
+        throw new TypeError('a and b should be a integer');
     }
 
     return a + b;
@@ -62,10 +62,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw new TypeError();
+        throw new TypeError('n should be a number');
     }
     if (n <= 0 || !Number.isInteger(n)) {
-        throw new RangeError();
+        throw new RangeError('n should be a positive integer');
     }
 
     let previous = 0;
@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!isTwoDimensionalArray(matrix)) {
-        throw new TypeError();
+        throw new TypeError('matrix should be two-dimensional');
     }
     let transposedMatrix = [];
 
@@ -123,6 +123,7 @@ function numberSystemProblem(n, targetNs) {
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
+ * @throws {TypeError} Когда в качестве аргумента передаётся не строка
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
@@ -141,11 +142,10 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError();
+        throw new TypeError('text should be a string');
     }
 
-    return (text.match(/\(-:/g) || []).length +
-            (text.match(/:-\)/g) || []).length;
+    return (text.match(/\(-:|:-\)/g) || []).length;
 }
 
 /**
