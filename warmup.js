@@ -1,11 +1,11 @@
 'use strict';
 
 function isNAN(param) {
-    return (Number(param) !== param);
+    return (typeof(param) !== 'number');
 }
 
 function isNotString(param) {
-    return (String(param) !== param);
+    return (typeof(param) !== 'string');
 }
 
 /**
