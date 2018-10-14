@@ -8,6 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if ((Number(a) !== a)||(Number(b) !== b))
+        throw new TypeError('Аргумент не является числом'); 
+    return a + b;
     // Ваше решение
 }
 
@@ -19,6 +22,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if (Number(year) !== year){
+        throw new TypeError('Аргумент не является числом');
+    } else if(year < 0){
+        throw new RangeError('Год отрицателен');
+    }
+    return Math.ceil(year/100);
     // Ваше решение
 }
 
@@ -41,6 +50,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (Number(n) !== n){
+        throw new TypeError('Аргумент не является числом');
+    } else if (n <= 0 || !Number.isInteger(n)){
+        throw new RangeError('Не является целым положительным числом');
+    }
+    let previous = 1;
+    let next = 1;
+    let temp = 0;
+    for (let i=2; i<n; i++){
+        temp = next;
+        next = next + previous;
+        previous = temp;
+    }
+    return next;
     // Ваше решение
 }
 
