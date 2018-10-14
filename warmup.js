@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    if (!/^#[A-F0-9]{6}$/.test(hexColor)) {
+    if (!/#[A-F0-9]{6}/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
