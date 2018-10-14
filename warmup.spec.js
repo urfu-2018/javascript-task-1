@@ -26,6 +26,11 @@ describe('Century by year problem', () => {
         assert.strictEqual(centuryByYearProblem(2018), 21);
     });
 });
+describe('Century by year problem', () => {
+    it('Должна вернуть `20`', () => {
+        assert.strictEqual(centuryByYearProblem(2000), 20);
+    });
+});
 
 describe('Colors problem', function () {
     it('Должна вернуть (255, 255, 255)', function () {
@@ -72,6 +77,24 @@ describe('Smiles problem', () => {
     });
 });
 
+describe('Smiles problem', () => {
+    it('Должна вернуть `1`', () => {
+        assert.strictEqual(smilesProblem(':-))'), 1);
+    });
+});
+
+describe('Smiles problem', () => {
+    it('Должна вернуть `2`', () => {
+        assert.strictEqual(smilesProblem(':-)(-:'), 2);
+    });
+});
+
+describe('Smiles problem', () => {
+    it('Должна вернуть `1`', () => {
+        assert.strictEqual(smilesProblem('(:-)'), 1);
+    });
+});
+
 describe('Tic-tac-toe problem', () => {
     it('Должна вернуть "x"', () => {
         assert.strictEqual(ticTacToeProblem([
@@ -79,5 +102,45 @@ describe('Tic-tac-toe problem', () => {
             ['o', 'o', 'x'],
             ['o', 'x', 'o']
         ]), 'x');
+    });
+});
+
+describe('Tic-tac-toe problem', () => {
+    it('Должна вернуть "o"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'x'],
+            ['o', 'o', 'x'],
+            ['o', 'x', 'o']
+        ]), 'o');
+    });
+});
+
+describe('Tic-tac-toe problem', () => {
+    it('Должна вернуть "x"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['x', 'o', 'o'],
+            ['o', 'x', 'x'],
+            ['o', 'x', 'x']
+        ]), 'x');
+    });
+});
+
+describe('Tic-tac-toe problem', () => {
+    it('Должна вернуть "o"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'o'],
+            ['x', 'o', 'x'],
+            ['o', 'x', 'x']
+        ]), 'o');
+    });
+});
+
+describe('Tic-tac-toe problem', () => {
+    it('Должна вернуть "draw"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'o'],
+            ['x', 'o', 'x'],
+            ['x', 'o', 'x']
+        ]), 'draw');
     });
 });
