@@ -47,7 +47,8 @@ function colorsProblem(hexColor) {
     var r = parseInt(result[1], 16);
     var g = parseInt(result[2], 16);
     var b = parseInt(result[3], 16);
-    if (r <= 0 && r > 255 || g <= 0 && g > 255 || b <= 0 && b > 255) {
+    // if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
+    if (r > 255 || g > 255 || b > 255) {
         throw new RangeError('Color values are out of range.');
     }
 
@@ -85,7 +86,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || typeof(matrix[0][0]) !== 'number') {
+    if (!Array.isArray(matrix) || matrix.length === 0) { // || typeof(matrix[0][0]) !== 'number') {
 
         throw new TypeError('The argument must be a two-dimentional array.');
     }
