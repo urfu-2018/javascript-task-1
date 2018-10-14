@@ -34,7 +34,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         typeError();
     }
-    if (year % 1 !== 0) {
+    if (year % 1 === 0) {
         if (year >= 0) {
             return Math.ceil(year / 100);
         }
