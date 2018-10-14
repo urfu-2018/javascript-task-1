@@ -97,7 +97,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array) || !(matrix[0] instanceof Array)) {
+    if (!(matrix instanceof Array) ||
+        !matrix.length ||
+        !(matrix[0] instanceof Array) ||
+        !matrix[0].length) {
         throw new TypeError();
     }
 
@@ -211,7 +214,7 @@ function ticTacToeProblem(field) {
         for (let j = 0; j < allLines.length; j++) {
             sum = sum + (allLines[i][j] === 'x' ? 1 : 0);
         }
-        if (sum === 3) {
+        if (sum === SQUARE_LENGTH) {
             return 'x';
         } else if (sum === 0) {
             return 'o';
