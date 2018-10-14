@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Arguments must be integer values.');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError('The argument must be integer.');
+    } else if (year < 0) {
+        throw new RangeError('The argument must be greater than zero.');
+    }
+
+    return Math.ceil(year / 100);// Сотый год - это последний год уходящего века.
 }
 
 /**
@@ -30,7 +40,30 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError('The argument must be string.');
+    }
+    if (!/^#([A-Fa-f0-9]){6}$/.test(hexColor) && !/^#([A-Fa-f0-9]){3}$/.test(hexColor)) {
+        throw new RangeError('Color values are out of range.');
+    }
+    if (hexColor.length === 7) { // #FFFFFF
+        let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+        result = result.slice(1);
+
+        return '(' + result
+            .map(value => parseInt(value, 16))
+            .join(', ') + ')';
+    }
+    if (hexColor.length === 4) { // #FFF === #FFFFFF
+        let result = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hexColor);
+        result = result.slice(1);
+
+        return '(' + result
+            .map(value => parseInt(value + value, 16))
+            .join(', ') + ')';
+    }
+
+    return null;
 }
 
 /**
@@ -41,7 +74,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    } else if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('The argument must be an integer value greate than zero.');
+    }
+    var a = 1;
+    var b = 1;
+    for (var i = 3; i <= n; i++) {
+        var c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
 
 /**
@@ -51,7 +97,25 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
+    }
+    var result = [];
+    for (var i = 0; i < matrix[0].length; i++) {
+        result[i] = [];
+        for (var j = 0; j < matrix.length; j++) {
+            checkArray(matrix[j]);
+            result[i][j] = matrix[j][i];
+        }
+    }
+
+    return result;
+}
+
+function checkArray(matrix) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
 }
 
 /**
@@ -63,7 +127,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+        throw new TypeError('Arguments must have numeric values.');
+    } else if (!Number.isInteger(targetNs)) {
+        throw new TypeError('targetNs must have an integer value.');
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('targetNs must be between 2 and 36.');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +144,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError('The argument must be string.');
+    }
+
+    return phoneNumber.length === 15 && /8-800-\d{3}-\d{2}-\d{2}/i.test(phoneNumber);
 }
 
 /**
@@ -82,7 +158,17 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError('The argument must be string.');
+    }
+    var result = 0;
+    var smiles = text.match(/(:-\))|(\(-:)/ig);
+    if (smiles !== null) {
+
+        result += smiles.length;
+    }
+
+    return result;
 }
 
 /**
@@ -92,7 +178,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    var fieldCells = [];
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            fieldCells.push(field[i][j]);
+        }
+    }
+    var winCombinations = ['012', '345', '678', '036', '147', '258', '048', '246'];
+    for (let i = 0; i < winCombinations.length; i++) {
+        var wc = winCombinations[i];
+        if (fieldCells[wc[0]] === fieldCells[wc[1]] && fieldCells[wc[1]] === fieldCells[wc[2]]) {
+
+            return fieldCells[wc[0]];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
