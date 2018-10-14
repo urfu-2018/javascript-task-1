@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (!isPositiveInteger(year)) {
         throw new RangeError();
     }
 
@@ -71,7 +71,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (!isPositiveInteger(n)) {
         throw new RangeError();
     }
     const KNOWN_SEQUENCE_VALUES_COUNT = 2;
@@ -141,6 +141,11 @@ function numberSystemProblem(n, targetNs) {
 function isInteger(number) {
     return typeof(number) === 'number' &&
         Number.isInteger(number);
+}
+
+function isPositiveInteger(number) {
+    return isInteger(number) &&
+        number > 0;
 }
 
 /**
