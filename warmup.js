@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.ceil(year/100);
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const rgb = [];
-    for (let i = 1; i < hexColor.length; i+=2) {
+    for (let i = 1; i < hexColor.length; i += 2) {
         let color = parseInt(hexColor.slice(i, i + 2), 16);
         if (Number.isNaN(color)) {
             throw new RangeError();
@@ -94,13 +94,15 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
-    const transposedMatrix = []
+    const transposedMatrix = [];
     for (let i = 0; i < matrix[0].length; i++) {
         transposedMatrix.push([]);
     }
-    for (let y = 0; y < matrix.length; y++)
-        for (let x = 0; x < matrix[0].length; x++)
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix[0].length; x++) {
             transposedMatrix[x].push(matrix[y][x]);
+        }
+    }
 
     return transposedMatrix;
 }
@@ -155,15 +157,19 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2])
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i])
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
             return field[0][i];
+        }
     }
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2])
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
-    if (field[2][0] === field[1][1] && field[1][1] === field[0][2])
+    }
+    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
         return field[2][0];
+    }
 
     return 'draw';
 }
