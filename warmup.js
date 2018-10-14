@@ -39,6 +39,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+    if (String(hexColor) !== hexColor) {
+        throw new TypeError('Цвет передан не строкой');
+    }
+
+    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
+        throw new RangeError('Недопустимое значение цвета');
+    }
+
+    var arr = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+    const red =  parseInt(arr[1], 16);
+    const green = parseInt(arr[2], 16);
+    const blue = parseInt(arr[3], 16);
+    return ('(' + red + ', ' + green  + ', ' + blue + ')');
     // Ваше решение
 }
 
