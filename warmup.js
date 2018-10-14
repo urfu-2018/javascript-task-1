@@ -28,6 +28,9 @@ function centuryByYearProblem(year) {
     } else if (year < 0 || year % 1 !== 0) {
         throw new RangeError('Год не может быть отрицательным');
     }
+    if (year === 0) {
+        return 1;
+    }
 
     return Math.ceil(year / 100);
 }
