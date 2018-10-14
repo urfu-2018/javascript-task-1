@@ -149,12 +149,11 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw new TypeError('строка должна быть!');
+        throw new TypeError('Argument must be a string');
     }
-    var tmp = text.match(/\(-:/ig);
-    var tmp2 = text.match(/:-\)/ig);
+    var tmp = text.match(/(:-\))|(\(-:)/ig);
 
-    return (tmp !== null ? tmp.length : 0) + (tmp2 !== null ? tmp2.length : 0);
+    return (tmp !== null ? tmp.length : 0);
 }
 
 /**
