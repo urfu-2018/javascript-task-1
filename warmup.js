@@ -97,17 +97,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) { // || typeof(matrix[0][0]) !== 'number') {
-
-        throw new TypeError('The argument must be a two-dimentional array.');
-    }
-
+    checkMatrix(matrix);
     var m = matrix.length;
-    checkArray(matrix, 0);
     var n = matrix[0].length;
     var matrixTransformed = [];
     for (var i = 0; i < n; i++) {
-        checkArray(matrix, i);
+        checkArray(matrix, i, n);
         matrixTransformed[i] = [];
         for (var j = 0; j < m; j++) {
             matrixTransformed[i][j] = matrix[j][i];
@@ -117,8 +112,21 @@ function matrixProblem(matrix) {
     return matrixTransformed;
 }
 
-function checkArray(matrix, i) {
-    if (!Array.isArray(matrix[i])) {
+function checkMatrix(matrix) {
+    if (!Array.isArray(matrix) || matrix.length === 0) { // || typeof(matrix[0][0]) !== 'number') {
+
+        throw new TypeError('The argument must be a two-dimentional array.');
+    }
+    var colCount = matrix[0].length;
+    for (var i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== colCount) {
+            throw new TypeError('Incorrect matrix.');
+        }
+    }
+}
+
+function checkArray(matrix, i, n) {
+    if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
         throw new TypeError('The argument must be a two-dimentional array.');
     }
 }
