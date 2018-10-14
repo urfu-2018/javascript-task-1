@@ -71,7 +71,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
 
@@ -95,7 +95,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray || matrix.length === 0)) {
         throw new TypeError('В функцию передаётся не двумерный массив');
     }
 
@@ -157,7 +157,7 @@ function smilesProblem(text) {
         throw new TypeError('В качестве аргумента передаётся не строка');
     }
 
-    var resArr = text.match(/:-\)|\(-:/g);
+    var resArr = text.match(/():-\))|(\(-:)/g);
     var res = 0;
     if (resArr !== null) {
         res = resArr.length;
