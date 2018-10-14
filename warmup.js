@@ -70,18 +70,15 @@ function fibonacciProblem(n) {
     if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
-    let prev = 1;
-    let next = 1;
-    if (n === 1 || n === 2) {
-        return next;
-    }
-    for (let i = 0; i < n - 2; i++) {
-        let temp = next;
-        next += prev;
-        prev = temp;
+    let previous = 1;
+    let current = 1;
+    for (let i = 3; i <= n; i++) {
+        let temp = current;
+        current += previous;
+        previous = temp;
     }
 
-    return next;
+    return current;
 }
 
 /**
