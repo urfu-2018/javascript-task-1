@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc(year / 100) + 1;// Ваше решение
+    return Math.trunc((year - 1) / 100) + 1;// Ваше решение
 }
 
 /**
