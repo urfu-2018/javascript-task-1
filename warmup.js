@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
@@ -91,12 +91,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
 
     for (let k = 0; k < matrix.length; k++) {
-        if (!Array.isArray(matrix[k]) || matrix[k].length === 0) {
+        if (!Array.isArray(matrix[k])) {
             throw new TypeError();
         }
     }
@@ -125,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError();
     }
 
-    if (!(targetNs >= 2 && targetNs <= 36)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
