@@ -156,42 +156,16 @@ function smilesProblem(text) {
 //  * @returns {'x' | 'o' | 'draw'} Результат игры
 //  */
 function ticTacToeProblem(field) {
-    function checkRow(pos, i) {
-        for (let j = 1; j < field[i].length; j++) {
-            if (field[i][j] !== pos) {
-                break;
-            }
-
-            return true;
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
         }
-
-        return false;
-    }
-
-    let count = 0;
-    let pos = '';
-
-
-    for (let i = 0; i < field.length; i++) {
-        if (pos === field[i][0]) {
-            count++;
-        }
-        pos = field[i][0];
-
-        if (checkRow(pos, i)) {
-            return pos;
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
         }
     }
-    if (count === 3) {
-        return pos;
-    }
-
-    return checkDiag(field);
-}
-
-function checkDiag(field) {
-    if (field[0][0] === field[1][1] && field[0][0] === field[2][2] ||
-        field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
+        field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[1][1];
     }
 
@@ -208,6 +182,5 @@ module.exports = {
     numberSystemProblem,
     phoneProblem,
     smilesProblem,
-    ticTacToeProblem,
-    checkDiag
+    ticTacToeProblem
 };
