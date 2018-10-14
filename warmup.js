@@ -39,7 +39,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor != 'string')) {
+    if (typeof(hexColor) !=- 'string') {
         throw TypeError;
     }
     let redColor = parseInt(hexColor.substr(1, 2), 16);
@@ -59,7 +59,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (n % 1 != 0 && n < 0) {
+    if (n % 1 !== 0 && n < 0) {
         throw RangeError;
     }
     else if (isNaN(n)) {
@@ -69,13 +69,15 @@ function fibonacciProblem(n) {
     let secondAddend = 1;
     let auxiliaryNumber;
     if (n > 0) {
-        for (i = 1; i < n; i++) {
+        for (let i = 1; i < n; i++) {
             auxiliaryNumber = firstAddend + secondAddend;
             firstAddend = secondAddend;
             secondAddend = auxiliaryNumber;
         }
+
         return secondAddend;
     }
+
     return 0;
 }
 
@@ -87,13 +89,14 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let newMatrix = new Array();
-    for (i = 0; i < matrix[0].length; i++) {
+    for (let i = 0; i < matrix[0].length; i++) {
         let arr = new Array();
-        for (j = 0; j < matrix.length; j++) {
+        for (let j = 0; j < matrix.length; j++) {
             arr.push(matrix[j][i]);
         }
         newMatrix.push(arr);
     }
+
     return newMatrix;
 }
 
@@ -122,7 +125,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     phoneNumber = phoneNumber.replace(/-/g, '');
-    return phoneNumber.length == 11 && phoneNumber.substr(0, 4) == '8800' && !isNaN(phoneNumber.substr(4));
+
+    return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' 
+    && !isNaN(phoneNumber.substr(4));
 }
 
 /**
@@ -132,9 +137,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text != 'string')) {
+    if (typeof(text) !== 'string') {
         throw TypeError;
     }
+
     return text.split(/\(-:|:-\)/).length;
 }
 
@@ -145,16 +151,19 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if ((field[0][0] == field[1][1] && field[2][2] == field[1][1]) || (field[0][2] == field[1][1] && field[1][1] == field[2][0])) {
+    if ((field[0][0] === field[1][1] && field[2][2] === field[1][1]) || 
+    (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         return field[1][1];
     }
-    for (i = 0; i < field.length; i++) {
-        if ((field[i][0] == 'o' && field[i][1] == 'o' && field[i][2] == 'o') || (field[0][i] == 'o' && field[1][i] == 'o' && field[2][i] == 'o')) {
+    for (let i = 0; i < field.length; i++) {
+        if ((field[i][0] === 'o' && field[i][1] === 'o' && field[i][2] === 'o') || 
+        (field[0][i] === 'o' && field[1][i] === 'o' && field[2][i] === 'o')) {
             return 'draw';
         }
     }
     for (i = 0; i < field.length; i++) {
-        if ((field[i][0] == field[i][1] && field[i][0] == field[i][2]) || (field[0][i] == field[1][i] && field[1][i] == field[2][i])) {
+        if ((field[i][0] === field[i][1] && field[i][0] === field[i][2]) || (
+            field[0][i] === field[1][i] && field[1][i] === field[2][i])) {
             return 'x';
         }
         else {
