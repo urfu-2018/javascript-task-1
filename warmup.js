@@ -24,10 +24,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!(typeof year === 'number')) {
+    if (!(typeof year === 'number' && (Math.trunc(year) === year))) {
         throw new TypeError();
     }
-    if (year < 0 || !(Math.trunc(year) === year)) {
+    if (year <= 0) {
         throw new RangeError();
     }
 
@@ -48,16 +48,15 @@ function centuryByYearProblem(year) {
  */
 
 function colorsProblem(hexColor) {
-    if (!(typeof hexColor === 'string' && /^#[a-f0-9]{6}$/i.test(hexColor))) {
+    if (!(typeof hexColor === 'string')) {
         throw new TypeError();
+    }
+    if (!(/^#[a-f0-9]{6}$/i.test(hexColor))) {
+        throw new RangeError();
     }
     const red = parseInt(hexColor.slice(1, 3), 16);
     const green = parseInt(hexColor.slice(3, 5), 16);
     const blue = parseInt(hexColor.slice(5, 7), 16);
-
-    if (red > 255 || green > 255 || blue > 255) {
-        throw new RangeError();
-    }
 
     return `(${red}, ${green}, ${blue})`;
 }
@@ -76,15 +75,15 @@ function fibonacciProblem(n) {
     if (!(n > 0 && Math.trunc(n) === n)) {
         throw new RangeError();
     }
-    let fib1 = 1;
-    let fib2 = 1;
+    let current = 1;
+    let previous = 1;
     for (let i = 2; i < n; i++) {
-        const fibSum = fib2 + fib1;
-        fib1 = fib2;
-        fib2 = fibSum;
+        const storage = current;
+        current = previous + current;
+        previous = storage;
     }
 
-    return (fib2);
+    return (current);
 }
 
 /**
@@ -94,9 +93,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function transposition(matrix) {
-    const innerArrayLength = matrix[0].length;
-    const result = new Array(innerArrayLength);
-    for (let i = 0; i < innerArrayLength; i++) {
+    const result = new Array(matrix[0].length);
+    for (let i = 0; i < matrix[0].length; i++) {
         result[i] = new Array(matrix.length);
         for (let j = 0; j < matrix.length; j++) {
             result[i][j] = matrix[j][i];
@@ -107,18 +105,16 @@ function transposition(matrix) {
 }
 
 function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix) && matrix.length >= 0)) {
+    if (!Array.isArray(matrix) || !(matrix.length === 0)) {
         throw new TypeError();
-    }
-    const innerArrayLength = matrix[0].length;
-    for (let i = 0; i < matrix.length; i++) {
-        if (!(Array.isArray(matrix[i]) && matrix[i].length >= 0 &&
-            matrix[i].length === innerArrayLength)) {
-            throw new TypeError();
-        }
     }
     if (matrix[0].length === 0) {
         return [[]];
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!(Array.isArray(matrix[i]) && matrix[i].length === matrix[0].length)) {
+            throw new TypeError();
+        }
     }
 
     return transposition(matrix);
@@ -151,6 +147,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!(typeof phoneNumber === 'string')) {
+        throw new TypeError('Ожидается строка');
+    }
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
@@ -164,9 +164,8 @@ function smilesProblem(text) {
     if (!(typeof text === 'string')) {
         throw new TypeError();
     }
-
-    let matchLeftSmile = text.match(/:-\)/g);
-    let matchRightSmile = text.match(/\(-:/g);
+    const matchLeftSmile = text.match(/:-\)/g);
+    const matchRightSmile = text.match(/\(-:/g);
     let result = 0;
     if (!(matchRightSmile === null)) {
         result += matchRightSmile.length;
