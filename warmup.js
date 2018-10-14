@@ -123,7 +123,10 @@ function numberSystemProblem(n, targetNs) {
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
-function phoneProblem(phoneNumber) {
+function phoneProblem(phoneNumber) {    
+    if (typeof (phoneNumber) !== 'string') {
+        throw new TypeError('phoneNumber must be string');
+    }
     return phoneNumber.length === 15 && /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g.test(phoneNumber);
 }
 
@@ -148,25 +151,30 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    var WinLines = [
-        field[0],
-        field[1],
-        field[2],
-        [field[0][0], field[1][0], field[2][0]],
-        [field[0][1], field[1][1], field[2][1]],
-        [field[0][2], field[1][2], field[2][2]],
-        [field[0][0], field[1][1], field[2][2]],
-        [field[0][2], field[1][1], field[2][0]]
-    ];
+    let win = checkRows(field);
+    if (win) {
+        return win;
+    }
 
-    for (let i = 0; i < WinLines.length; i++) {
-        let current = WinLines[i];
-        if (current[0] === current[1] && current[1] === current[2]) {
-            return current[0];
-        }
+    win = checkRows(matrixProblem(field));
+    if (win) {
+        return win;
+    }
+
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+     (field[2][0] === field[1][1] && field[1][1] === field[0][2])) {
+        return field[1][1];
     }
 
     return 'draw';
+}
+
+function checkRows(field) {
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+    }
 }
 
 module.exports = {
