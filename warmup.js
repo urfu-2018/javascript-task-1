@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (!isNumber(a) || !isNumber(b)) {
         throw new TypeError();
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (!isNumber(year)) {
         throw new TypeError();
     }
     if (!isPositiveInteger(year)) {
@@ -68,7 +68,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (!isNumber(n)) {
         throw new TypeError();
     }
     if (!isPositiveInteger(n)) {
@@ -173,9 +173,13 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    let regex = /(:-\))|(\(-:)/g;
+    const SMILES_REGEX = /(:-\))|(\(-:)/g;
 
-    return text.match(regex).length;
+    let matches = text.match(SMILES_REGEX);
+
+    return matches === null
+        ? 0
+        : matches.length;
 }
 
 /**
