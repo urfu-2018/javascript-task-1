@@ -59,7 +59,7 @@ function matrixProblem(matrix) {
             'Argument must be a non-empty array of arrays where every element is array');
     }
     if (!isEqualLengthsOfRows(matrix) || !matrix.every(arr => arr.length)) {
-        throw new RangeError('All elements must be the same non-zero length');
+        throw new TypeError('All elements must be the same non-zero length');
     }
 
     return Object.keys(matrix[0])
@@ -133,9 +133,9 @@ function checkDiagonals(field, mark) {
 }
 
 function checkLines(field, mark) {
-    let onRow = true;
-    let onColumn = true;
     for (let y = 0; y < 3; y++) {
+        let onRow = true;
+        let onColumn = true;
         for (let x = 0; x < 3; x++) {
             onRow = onRow && field[y][x] === mark;
             onColumn = onColumn && field[x][y] === mark;
