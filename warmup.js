@@ -113,7 +113,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('ВВедите цифры!');
     } else if (targetNs < 2 || targetNs > 36 || targetNs % 1 !== 0) {
         throw new RangeError('');
@@ -138,7 +138,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string' || !isNaN(text)) {
+    if (typeof(text) !== 'string') {
         throw new TypeError('строка должна быть!');
     }
     var tmp = text.match(/\(-:/ig);
