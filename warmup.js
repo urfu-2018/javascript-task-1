@@ -152,7 +152,6 @@ function phoneProblem(phoneNumber) {
     }
 
     return phoneNumber.search(/^8-800-\d{3}-\d{2}-\d{2}$/) === 0;
-    ;
 }
 
 /**
