@@ -84,6 +84,7 @@ function fibonacciProblem(n) {
         next = next + previous;
         previous = temp;
     }
+
     return next;
     // Ваше решение
 }
@@ -101,12 +102,12 @@ function matrixProblem(matrix) {
     const transpMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
         transpMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix[i].length; j++){
+        for (let j = 0; j < matrix[i].length; j++) {
             transpMatrix[i][j] = matrix[j][i];
         }
     }
-    
-    return transpMatrix;    
+
+    return transpMatrix;
     // Ваше решение
 }
 
@@ -121,9 +122,10 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (isNAN(n) || isNAN(targetNs)) {
         throw new TypeError('Аргументы неверного типа');
-    } else if(targetNs > 2 || targetNs > 36) {
+    } else if (targetNs > 2 || targetNs > 36) {
         return new RangeError('Выходит за пределы от 2 до 36');
     }
+
     return n.toString(targetNs);
     // Ваше решение
 }
@@ -149,17 +151,19 @@ function smilesProblem(text) {
         throw new TypeError('Аргумент не строка');
     }
     let count = 0;
-    for (let i=0; i<text.length; i++) {
-        const temp = text.substr(i,1);
-        if (temp === '(' || temp === ')')
+    for (let i = 0; i < text.length; i++) {
+        const temp = text.substr(i , 1);
+        if (temp === '(' || temp === ')') {
             count++;
+        }
     }
+
     return count;
     // Ваше решение
 }
 
-function checkStrOfField(field){
-    for (let i = 0; i<field.length; i++) {
+function checkStrOfField(field) {
+    for (let i = 0; i < field.length; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
         }
@@ -174,13 +178,13 @@ function checkStrOfField(field){
  */
 function ticTacToeProblem(field) {
     if (checkStrOfField(field) !== null) {
-        return checkStrOfField(field)
+        return checkStrOfField(field);
     }
 
     if (field[0][0] === field[1][1] === field[2][2]) {
         return field[0][0];
     }
-
+    
     if (field[0][2] === field[1][1] === field[2][0]) {
         return field[0][0];
     }
@@ -188,7 +192,7 @@ function ticTacToeProblem(field) {
     field = matrixProblem(field);
 
     if (checkStrOfField(field) !== null) {
-        return checkStrOfField(field)
+        return checkStrOfField(field);
     }
 
     return 'draw';
