@@ -34,12 +34,6 @@ describe('Century by year problem', () => {
     it('Должна вернуть `4`', () => {
         assert.strictEqual(centuryByYearProblem(4), 1);
     });
-    it('Worn', () => {
-        assert.strictEqual(centuryByYearProblem(-100), RangeError);
-    });
-    it('Worn2`', () => {
-        assert.strictEqual(centuryByYearProblem('df'), TypeError);
-    });
     it('ok', () => {
         assert.strictEqual(centuryByYearProblem(100), 1);
     });
@@ -48,12 +42,6 @@ describe('Century by year problem', () => {
 describe('Colors problem', function () {
     it('Должна вернуть (255, 255, 255)', function () {
         assert.strictEqual(colorsProblem('#ffd37d'), '(255, 211, 125)');
-    });
-    it('Должна вернуть (255, 255, 255)', function () {
-        assert.strictEqual(colorsProblem('#sdfjls'), RangeError);
-    });
-    it('Должна вернуть (255, 255, 255)', function () {
-        assert.strictEqual(colorsProblem(12), TypeError);
     });
     it('Должна вернуть (255, 255, 255)', function () {
         assert.strictEqual(colorsProblem('#ff91c8'), '(255, 145, 200)');
@@ -66,12 +54,6 @@ describe('Colors problem', function () {
 describe('Fibonacci problem', () => {
     it('Для n=1 должна вернуть `1`', () => {
         assert.strictEqual(fibonacciProblem(5), 5);
-    });
-    it('Для n=1 должна вернуть `1`', () => {
-        assert.strictEqual(fibonacciProblem('abra'), TypeError);
-    });
-    it('Для n=1 должна вернуть `1`', () => {
-        assert.strictEqual(fibonacciProblem(-1), RangeError);
     });
     it('Для n=1 должна вернуть `1`', () => {
         assert.strictEqual(fibonacciProblem(7), 13);
@@ -107,10 +89,6 @@ describe('Matrix problem', () => {
                 [3, 6, 9, 8]
             ]);
     });
-    it('Должна транспонировать квадратную матрицу 3x3', () => {
-        assert.deepStrictEqual(
-            matrixProblem('crabs'), TypeError);
-    });
 });
 
 describe('Number System Problem', () => {
@@ -118,13 +96,7 @@ describe('Number System Problem', () => {
         assert.strictEqual(numberSystemProblem(5, 2), '101');
     });
     it('Должна вернуть "101"', () => {
-        assert.strictEqual(numberSystemProblem(5, 505), RangeError);
-    });
-    it('Должна вернуть "101"', () => {
         assert.strictEqual(numberSystemProblem(5, '2'), '101');
-    });
-    it('Должна вернуть "101"', () => {
-        assert.strictEqual(numberSystemProblem('abc', 2), TypeError);
     });
 });
 
@@ -149,9 +121,6 @@ describe('Phone problem', () => {
 describe('Smiles problem', () => {
     it('Должна вернуть `1`', () => {
         assert.strictEqual(smilesProblem('(-:-)'), 1);
-    });
-    it('Должна вернуть `1`', () => {
-        assert.strictEqual(smilesProblem(123), TypeError);
     });
     it('Должна вернуть `1`', () => {
         assert.strictEqual(smilesProblem('(-:-)^-):-)(-:'), 3);
