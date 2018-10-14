@@ -42,15 +42,15 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError();
+        throw new TypeError('color should be a string');
     }
     if (!/^#[\dA-Fa-f]{6}$/.test(hexColor)) {
-        throw new RangeError();
+        throw new RangeError('color values are out of range');
     }
+    const rgbColor = hexColor.slice(1).match(/.{2}/g)
+        .map(x => parseInt(x, 16));
 
-    return '(' + parseInt(hexColor.slice(1, 3), 16) + ', ' +
-                parseInt(hexColor.slice(3, 5), 16) + ', ' +
-                parseInt(hexColor.slice(5), 16) + ')';
+    return '(' + rgbColor.join(', ') + ')';
 }
 
 /**
