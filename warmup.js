@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number' ||
-            !Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number' || a % 1 !== 0 || b % 1 !== 0) {
         throw new TypeError();
     }
 
@@ -24,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+    if (typeof(year) !== 'number' || year % 1 !== 0) {
         throw new TypeError();
     } else if (year < 1) {
         throw new RangeError();
@@ -107,9 +106,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
-        throw new TypeError();
-    } else if (!Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || targetNs % 1 !== 0) {
         throw new TypeError();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
