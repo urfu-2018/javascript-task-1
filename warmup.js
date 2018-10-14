@@ -75,22 +75,17 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
 
-    if (n === 0) {
-        return 0;
-    }
     let a = 1;
-    let b = 0;
+    let b = 1;
     let temp;
-
-    while (n >= 0) {
+    for (let i = 2; i <= n; i++) {
         temp = a;
         a = a + b;
         b = temp;
-        n--;
     }
 
     return b;
