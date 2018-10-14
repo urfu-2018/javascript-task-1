@@ -23,9 +23,9 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
         throw new TypeError('ВВедите цифры!');
-    } else if (year <= 0 || year % 1 !== 0) {
+    } else if (year <= 0) {
         throw new RangeError('Год не может быть отрицательным');
     }
 
@@ -102,7 +102,7 @@ function matrixProblem(matrix) {
     for (var i = 0; i < matrix[0].length; i++) {
         result[i] = [];
         for (var j = 0; j < matrix.length; j++) {
-            checkArray(matrix[j], matrix[0].length);
+            checkArray(matrix[j]);
             result[i][j] = matrix[j][i];
         }
     }
@@ -110,8 +110,8 @@ function matrixProblem(matrix) {
     return result;
 }
 
-function checkArray(matrix, len) {
-    if (matrix.length !== len || !Array.isArray(matrix)) {
+function checkArray(matrix) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError('Argument must be a 2-dim array');
     }
 }
