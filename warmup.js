@@ -8,7 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (Number.isInteger(a) && Number.isInteger(b)) {
+        return a + b;
+    }
+    const argumentsError = new TypeError();
+    argumentsError.message = 'в аргументы переданы не числа';
+    throw argumentsError;
 }
 
 /**
@@ -19,6 +24,18 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if (Number.isInteger(year)) {
+        if (year < 0) {
+            throw new RangeError('год – отрицательное значение');
+        }
+        if (year.toString().length < 3) {
+            return 1;
+        }
+        const century = year.toString().slice(0, -2);
+
+        return parseInt(century, 10) + 1;
+    }
+    throw new TypeError('в качестве года передано не число');
     // Ваше решение
 }
 
@@ -30,7 +47,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    const HEXRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('цвет передан не строкой');
+    }
+    if (!HEXRegex.test(hexColor)) {
+        throw new RangeError('значения цвета выходят за пределы допустимых');
+    }
+
+    return hexColor.replace(HEXRegex, (m, r, g, b) => {
+        return '(' + parseInt(r, 16) + ', ' + parseInt(g, 16) + ', ' + parseInt(b, 16) + ')';
+    });
 }
 
 /**
@@ -41,7 +68,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError('передано не число');
+    }
+    if (n < 0) {
+        throw new RangeError('n-отрицательное число');
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
 
 /**
@@ -51,7 +92,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (Array.isArray(matrix) && Array.isArray(matrix[0])) {
+        return matrix[0].map((number, indexColumn) => matrix.map((line) => line[indexColumn]));
+    }
+    throw new TypeError('в функцию передаётся не двумерный массив');
 }
 
 /**
@@ -63,7 +107,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError('аргументы некорректного типа');
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('система счисления выходит за пределы значений [2, 36]');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +123,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return phoneNumber.search('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$') !== -1;
 }
 
 /**
@@ -82,7 +133,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('аргумент не строка');
+    }
+
+    return (text.match(/:-\)/g) || []).length;
 }
 
 /**
@@ -92,8 +147,27 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let diagonal = '';
+    let answer = '';
+    let invertedDiagonal = '';
+    for (let i = 0; i < field.length; i++) {
+        const row = field[i][0] + field[i][1] + field[i][2];
+        const col = field[0][i] + field[1][i] + field[2][i];
+        diagonal += field[i][i];
+        invertedDiagonal += field[i][field.length - (i + 1)];
+        answer += row + col;
+    }
+    answer += diagonal + invertedDiagonal;
+    if (answer.indexOf('xxx') !== -1) {
+        return 'x';
+    }
+    if (answer.indexOf('ooo') !== -1) {
+        return 'o';
+    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
