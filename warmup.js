@@ -138,9 +138,16 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     let count = 0;
-    for (let i = 0; i < text.length; i++) {
-        if (text[i] === ')' || text[i] === '(') {
+    for (let i = 0; i < text.length - 2; i++) {
+        if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
             count++;
+            i += 2;
+            continue;
+        }
+        if (text[i] === ':' && text[i + 1] === '-' && text[i + 2] === ')') {
+            count++;
+            i += 2;
+            continue;
         }
     }
 
