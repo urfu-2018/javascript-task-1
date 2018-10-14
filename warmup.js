@@ -1,7 +1,7 @@
 'use strict';
 
 function isInteger(num) {
-    return Number.isInteger(num) || !isNaN(parseInt(num)) && isFinite(num) && !(Number(num) % 1);
+    return Number.isInteger(num) || (!isNaN(parseInt(num)) && isFinite(num) && !(Number(num) % 1));
 }
 
 /**
@@ -30,10 +30,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     confirmNumberType(year);
-    if (!isInteger(year)) {
-        throw new TypeError('Параметр "year" не является целым числом');
-    }
-    if (Number(year) < 0) {
+    if (Number(year) < 0 || !isInteger(year)) {
         throw new RangeError('Параметр "year" некорректен');
     }
     if (Number(year) % 100 !== 0) {
@@ -102,7 +99,7 @@ function fibonacciProblem(n) {
 }
 
 function checkMatrix(matrix) {
-    if (matrix.length === 0 || !Array.isArray(matrix)) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
@@ -120,6 +117,9 @@ function checkMatrix(matrix) {
  */
 function matrixProblem(matrix) {
     checkMatrix(matrix);
+    if (matrix.length === 0 || matrix[0].length === 0) {
+        return [[]];
+    }
 
     return Object.keys(matrix[0]).map(matrixString => matrix.map(elem => elem[matrixString]));
 }
@@ -147,11 +147,12 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof (phoneNumber) === 'string') {
-        return phoneNumber.search(/^8-800-\d{3}-\d{2}-\d{2}$/) !== -1;
+    if (typeof (phoneNumber) !== 'string') {
+        throw new TypeError();
     }
 
-    return false;
+    return phoneNumber.search(/^8-800-\d{3}-\d{2}-\d{2}$/) === 0;
+    ;
 }
 
 /**
@@ -164,8 +165,9 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError('Переданный параметр не является строкой');
     }
+    const res = text.match(/\(-:|:-\)/g).length;
 
-    return text.match(/\(-:|:-\)/g).length;
+    return res === null ? 0 : res;
 }
 
 function checkHorizontally(field, i) {
