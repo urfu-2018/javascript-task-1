@@ -149,13 +149,13 @@ function ticTacToeProblem(field) {
     let answer = '';
     let invertedDiagonal = '';
     for (let i = 0; i < field.length; i++) {
-        const row = field[i][0] + field[i][1] + field[i][2];
-        const col = field[0][i] + field[1][i] + field[2][i];
+        const row = field[i][0] + field[i][1] + field[i][2] + ' ';
+        const col = field[0][i] + field[1][i] + field[2][i] + ' ';
         diagonal += field[i][i];
         invertedDiagonal += field[i][field.length - (i + 1)];
         answer += row + col;
     }
-    answer += diagonal + invertedDiagonal;
+    answer += ' ' + diagonal + ' ' + invertedDiagonal;
     if (answer.indexOf('xxx') !== -1) {
         return 'x';
     }
