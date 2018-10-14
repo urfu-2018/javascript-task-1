@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b) ||
-    isNaN(a) || isNaN(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('ВВедите цифры!');
     }
 
@@ -91,7 +90,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix === null || !Array.isArray(matrix) || !Number.isInteger(matrix[0][0])) {
+    if (matrix === null || !Array.isArray(matrix) || matrix[0].length === 0) {
         throw new TypeError('ВВедите цифры!');
     }
     var result = [];
