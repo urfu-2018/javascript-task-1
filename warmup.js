@@ -77,11 +77,9 @@ function fibonacciProblem(n) {
         rangeError();
     }
     if (typeof n === 'number') {
-        const root5 = Math.sqrt(5);
-        let a = (1 + root5) / 2;
-        let b = (1 - root5) / 2;
+        const a = 1.61803398875;
 
-        return (Math.pow(a, n) - Math.pow(b, n)) / root5;
+        return Math.round(Math.pow(a, n) / Math.sqrt(5));
     }
     typeError();
 }
