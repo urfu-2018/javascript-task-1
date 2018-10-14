@@ -124,10 +124,8 @@ function checkArray(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('ВВедите цифры!');
-    } else if (!Number.isInteger(targetNs)) {
-        throw new TypeError('Number system must be integer');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('');
     }
