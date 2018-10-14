@@ -199,8 +199,9 @@ function ticTacToeProblem(field) {
             return winner;
         }
     }
-    
-    return 'draw';
+    if (typeof winner === 'undefined') {
+        return 'draw';
+    }
 }
 
 function notUndefined(field) {
