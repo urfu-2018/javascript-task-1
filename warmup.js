@@ -105,11 +105,18 @@ function matrixProblem(matrix) {
     for (var i = 0; i < matrix[0].length; i++) {
         result[i] = [];
         for (var j = 0; j < matrix.length; j++) {
+            checkArray(matrix[j]);
             result[i][j] = matrix[j][i];
         }
     }
 
     return result;
+}
+
+function checkArray(matrix) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('Argument must be a 2-dim array');
+    }
 }
 
 /**
