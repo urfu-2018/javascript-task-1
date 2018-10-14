@@ -44,13 +44,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('hexColor must be string');
     }
-    if (hexColor.length !== 7) {
+    if (hexColor.length !== 7 || !/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
         throw new RangeError('Incorrect params');
     }
-    const hexChar = hexColor.substr(1).split('');
-    const r = parseInt(hexChar[0] + hexChar[1], 16);
-    const g = parseInt(hexChar[2] + hexChar[3], 16);
-    const b = parseInt(hexChar[4] + hexChar[5], 16);
+
+    const r = parseInt(hexColor.slice(1, 3), 16);
+    const g = parseInt(hexColor.slice(3, 5), 16);
+    const b = parseInt(hexColor.slice(5, 7), 16);
 
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
@@ -86,12 +86,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Incorrect params');
     }
-    if (matrix.length === 0) {
-        return [[]];
-    }
+    
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError('Incorrect params');
