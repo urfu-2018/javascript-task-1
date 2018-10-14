@@ -18,8 +18,7 @@ function rangeError() {
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
         typeError();
-    }
-    else {
+    } else {
         return a + b;
     }
 }
