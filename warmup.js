@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('year should be a integer');
     }
-    if (year <= 0) {
+    if (year <= 0 || !Number.isInteger(year)) {
         throw new RangeError('year should be a positive number');
     }
 
