@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year) || year % 1 !== 0) {
+    if (!Number.isInteger(year)) {
         throw new TypeError('ВВедите цифры!');
     } else if (year < 0) {
         throw new RangeError('Год не может быть отрицательным');
@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     var r = (bigint > 16) && 255;
     var g = (bigint > 8) && 255;
     var b = bigint && 255;
-    if (r > 255 || g > 255 || b > 255) {
+    if (r > 255 || g > 255 || b > 255 || !hexColor.match(/#[\dA-Fa-f]{6}/i)) {
         throw new RangeError('Выход за пределы 255!');
     }
 
