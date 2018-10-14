@@ -108,7 +108,7 @@ function matrixProblem(matrix) {
     }
 
     for (let i = 0; i < lengthY; i++) {
-        var matrixRow = matrix[i];
+        let matrixRow = matrix[i];
 
         if (isEmptyArray(matrixRow) || matrixRow.length !== lengthX) {
             throw new TypeError();
@@ -219,21 +219,31 @@ function ticTacToeProblem(field) {
     }
 
     let allLines = horizontalLines.concat(verticalLines, diagonalLines);
-    let totalResult = 'draw';
 
     for (let i = 0; i < allLines.length; i++) {
         let sum = 0;
         for (let j = 0; j < allLines.length; j++) {
-            sum = sum + (allLines[i][j] === 'x' ? 1 : 0);
+            sum = sum + getValueBySymbol(allLines[i][j]);
         }
         if (sum === SQUARE_LENGTH) {
             return 'x';
-        } else if (sum === 0) {
+        } else if (sum === -SQUARE_LENGTH) {
             return 'o';
         }
     }
 
-    return totalResult;
+    return 'draw';
+}
+
+function getValueBySymbol(symbol) {
+    if (symbol === 'x' || symbol === 'X') {
+        return 1;
+    }
+    if (symbol === 'o' || symbol === 'O') {
+        return -1;
+    }
+
+    return 0;
 }
 
 module.exports = {
