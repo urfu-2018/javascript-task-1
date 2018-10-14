@@ -43,15 +43,25 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('The argument must be string.');
     }
-    if (!/^#([A-Fa-f0-9]){6}$/.test(hexColor)) {
+    if (!/^#([A-Fa-f0-9]){6}$/.test(hexColor) && !/^#([A-Fa-f0-9]){3}$/.test(hexColor)) {
         throw new RangeError('Color values are out of range.');
     }
+    if (hexColor.length === 7) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
     var r = parseInt(result[1], 16);
     var g = parseInt(result[2], 16);
     var b = parseInt(result[3], 16);
 
     return '(' + r + ', ' + g + ', ' + b + ')';
+    }
+    if (hexColor.length === 4) {
+        var result = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(hexColor);
+        var r = parseInt(result[1] + result[1], 16);
+        var g = parseInt(result[2] + result[2], 16);
+        var b = parseInt(result[3] + result[3], 16);
+
+        return '(' + r + ', ' + g + ', ' + b + ')';
+    }
 }
 
 /**
