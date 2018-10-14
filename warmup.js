@@ -43,19 +43,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const hexRegex = new RegExp('^#[A-Fa-f0-9]{6}$');
+    const HEXRegex = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/i;
     if (typeof hexColor !== 'string') {
         throw new TypeError('цвет передан не строкой');
     }
-    if (!hexRegex.test(hexColor) || hexColor.length !== 7) {
+    if (!HEXRegex.test(hexColor) || hexColor.length !== 7) {
         throw new RangeError('значения цвета выходят за пределы допустимых');
     }
 
-    const red = parseInt(hexColor.slice(1, 3), 16);
-    const green = parseInt(hexColor.slice(3, 5), 16);
-    const blue = parseInt(hexColor.slice(5), 16);
-
-    return `(${red}, ${green}, ${blue})`;
+    return hexColor.replace(HEXRegex, (m, r, g, b) => {
+        return '(' + parseInt(r, 16) + ', ' + parseInt(g, 16) + ', ' + parseInt(b, 16) + ')';
+    });
 }
 
 /**
@@ -66,8 +64,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (typeof(n) !== 'number') {
+        throw new TypeError('не число');
+    }
     if (!Number.isInteger(n)) {
-        throw new TypeError('передано не число');
+        throw new RangeError('передано не число');
     }
     if (n < 1 || Math.floor(n) !== n) {
         throw new RangeError('n-отрицательное число');
@@ -122,6 +123,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError('аргумент не строка');
+    }
     const phoneReg = /8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}/;
 
     return phoneNumber.length === 15 && phoneReg.test(phoneNumber);
