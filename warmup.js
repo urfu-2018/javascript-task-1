@@ -8,6 +8,16 @@ function rangeError() {
     throw new RangeError();
 }
 
+function isNotNumber(field) {
+    if (typeof field !== 'number') {
+        typeError();
+    }
+}
+
+function printResult(result) {
+    return result;
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -130,19 +140,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    let flag = true;
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        typeError();
-    }
-    if (n % 1 !== 0 || targetNs % 1 !== 0) {
+    if (isNotNumber(n) || isNotNumber(targetNs) || n % 1 !== 0 || targetNs % 1 !== 0) {
         typeError();
     }
     if (targetNs < 2 || targetNs > 36) {
         rangeError();
     }
-    if (flag) {
-        return n.toString(targetNs);
-    }
+    printResult(n.toString(targetNs));
 }
 
 /**
