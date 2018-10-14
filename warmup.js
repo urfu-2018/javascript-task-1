@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw new TypeError('year should be a integer');
+        throw new TypeError('year should be a number');
     }
     if (year <= 0 || !Number.isInteger(year)) {
-        throw new RangeError('year should be a positive number');
+        throw new RangeError('year should be a positive integer');
     }
 
     return year % 100 === 0 ? Math.floor(year / 100) : Math.floor(year / 100) + 1;
@@ -110,8 +110,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError('n and targetNs should be a integer');
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError('n and targetNs should be a number');
     }
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('number system goes beyond the limits of [2, 36]');
