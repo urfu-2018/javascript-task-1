@@ -90,7 +90,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix === null || !Array.isArray(matrix) || matrix[0] === null) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('ВВедите цифры!');
     }
     var result = [];
