@@ -24,16 +24,13 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw new TypeError();
+        throw new TypeError('year should be a integer');
     }
-    if (year < 0) {
-        throw new RangeError();
-    }
-    if (year % 100 === 0) {
-        return Math.floor(year / 100);
+    if (year <= 0) {
+        throw new RangeError('year should be a positive number');
     }
 
-    return Math.floor(year / 100) + 1;
+    return year % 100 === 0 ? Math.floor(year / 100) : Math.floor(year / 100) + 1;
 }
 
 /**
