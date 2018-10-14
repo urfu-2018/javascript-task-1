@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a == "number" || typeof b == "number") {
+    if (typeof a == 'number' || typeof b == 'number') {
         throw new TypeError();
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year != "number") {
+    if (typeof year != 'number') {
         throw new TypeError();
     }
 
@@ -42,7 +42,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor != 'string') {
+        throw new TypeError();
+    }
+
+    if (!/#[A-F0-9]{6}/.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${red}, ${green}, ${blue})`
 }
 
 /**
@@ -53,7 +65,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n != "number") {
+    if (typeof n != 'number') {
         throw new TypeError();
     }
 
@@ -61,15 +73,15 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    let first = 1;
-    let second = 1;
+    let member1 = 1;
+    let memver2 = 1;
     for (let i = 2; i < n; i++) {
-        const sum = first + second;
-        first = second;
-        second = sum;
+        const sum = member1 + member2;
+        member1 = memver2;
+        memver2 = sum;
     }
 
-    return second
+    return memver2
 }
 
 /**
