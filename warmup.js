@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError('a and b should be a integer');
+        throw new TypeError('a and b should be a number');
     }
 
     return a + b;
@@ -197,7 +197,7 @@ function checkDiagonals(field, marker) {
 }
 
 function isTwoDimensionalArray(array) {
-    if (array.length === 0 || array[0].length === 0 ||
+    if (array.length === 0 ||
         array.some(row => !Array.isArray(row) || row.length !== array[0].length)) {
         return false;
     }
