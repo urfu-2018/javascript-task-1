@@ -10,10 +10,10 @@
 function abProblem(a, b) {
     let sum = parseInt(a) + parseInt(b);
     if (isNaN(sum)) {
-        throw new TypeError('ab');
-    } else {
-        return sum;
+        throw new TypeError();
     }
+
+    return sum;
 }
 
 /**
@@ -26,9 +26,9 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     let _year = parseInt(year);
     if (isNaN(_year)) {
-        throw new TypeError('century');
+        throw new TypeError();
     } else if (_year <= 0) {
-        throw new RangeError('century');
+        throw new RangeError();
     }
     let century = 0;
     if (_year % 100 > 0 && _year / 100 !== 0) {
@@ -51,7 +51,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError('hex');
+        throw new TypeError();
     }
     hexColor = hexColor.substr(1);
     let values = hexColor.split('');
@@ -62,7 +62,7 @@ function colorsProblem(hexColor) {
     g = parseInt(values[2].toString() + values[3].toString(), 16);
     b = parseInt(values[4].toString() + values[5].toString(), 16);
     if (!(r > -1 && r < 256 && g > -1 && g < 256 && b > -1 && b < 256)) {
-        throw new RangeError('hex');
+        throw new RangeError();
     }
 
     return '(' + r + ', ' + g + ', ' + b + ')';
@@ -78,14 +78,14 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     let _n = parseFloat(n);
     if (isNaN(_n)) {
-        throw new TypeError('fibonacci');
-    } else if (_n - parseInt(_n.toString()) !== 0) {
-        throw new RangeError('fibonacci');
+        throw new TypeError();
+    } else if (_n < 0) {
+        throw new RangeError();
     }
     _n = parseInt(_n);
     let prev = 0;
     let current = 1;
-    for (let i = 3; i <= _n; i++) {
+    for (let i = 2; i <= _n; i++) {
         let help = prev;
         prev = current;
         current += help;
@@ -101,16 +101,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (Array.isArray(matrix) && matrix.length !== 3 || !Array.isArray(matrix)) {
-        throw new TypeError('matrixProblem');
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
     }
     let result = [];
-    for (let i = 0; i < matrix.length; i++) {
-        result[i] = [];
-        for (let j = 0; j < matrix[i].length; j++) {
-            result[i][j] = matrix[j][i];
-        }
-    }
+    result = matrix[0].map((col, i) => matrix.map(row => row[i]));
 
     return result;
 }
@@ -127,9 +122,9 @@ function numberSystemProblem(n, targetNs) {
     let _n = parseFloat(n);
     let _targetNs = parseInt(targetNs);
     if (isNaN(_n) || isNaN(_targetNs)) {
-        throw new TypeError('numberSystemProblem');
+        throw new TypeError();
     } else if (_targetNs < 2 || _targetNs > 36) {
-        throw new RangeError('numberSystemProblem');
+        throw new RangeError();
     }
 
     return _n.toString(_targetNs);
@@ -143,7 +138,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     let result = phoneNumber.match(/8-800-\d{3}-\d{2}-\d{2}/gi);
 
-    return result.length === 1;
+    return result !== null && result.length === 1;
 }
 
 /**
@@ -154,11 +149,11 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw new TypeError('smiles');
+        throw new TypeError();
     }
     let result = text.match(/:-\)|\(-:/gi);
 
-    return result.length;
+    return result !== null ? result.length : 0;
 }
 
 /**
