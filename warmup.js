@@ -86,7 +86,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!isTwoDimensionalArray(matrix)) {
+    if (!Array.isArray(matrix) || !isTwoDimensionalArray(matrix)) {
         throw new TypeError('matrix should be two-dimensional');
     }
     let transposedMatrix = [];
@@ -197,7 +197,7 @@ function checkDiagonals(field, marker) {
 }
 
 function isTwoDimensionalArray(array) {
-    if (!Array.isArray(array) || array.length === 0) {
+    if (array.length === 0 || array[0].length === 0) {
         return false;
     }
     for (let i = 0; i < array.length; i++) {
