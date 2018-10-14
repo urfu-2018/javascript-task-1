@@ -161,7 +161,9 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text === 'string') {
-        return text.match(/\(-:|:-\)/g).length;
+        const result = text.match(/\(-:|:-\)/g);
+
+        return result === null ? 0 : result.length;
     }
     typeError();
 }
@@ -174,10 +176,10 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return notUndefined(field[1][1]);
+        return field[1][1];
     }
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-        return notUndefined(field[1][1]);
+        return field[1][1];
     }
     let winner;
     for (let i = 0; i < 3; i++) {
@@ -190,20 +192,8 @@ function ticTacToeProblem(field) {
             return winner;
         }
     }
-    isUndefined(winner);
-}
 
-function isUndefined(winner) {
-    if (typeof winner === 'undefined') {
-        return 'draw';
-    }
-}
-
-function notUndefined(field) {
-    if (typeof field !== 'undefined') {
-        return field;
-    }
-    typeError();
+    return 'draw';
 }
 
 function check(first, second, third) {
@@ -211,8 +201,9 @@ function check(first, second, third) {
         if (typeof first !== 'undefined') {
             return first;
         }
-        typeError();
     }
+
+    return null;
 }
 
 module.exports = {
