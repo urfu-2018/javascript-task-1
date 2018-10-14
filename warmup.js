@@ -179,7 +179,7 @@ function checkStrOfField(field) {
             return field[i][0];
         }
     }
-    
+
     return -1;
 }
 
