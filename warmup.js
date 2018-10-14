@@ -30,6 +30,7 @@ function colorsProblem(hexColor) {
         throw new RangeError('Color values is in incorrect format');
     }
     const rgb = [hexRGB[1], hexRGB[2], hexRGB[3]];
+
     return `(${rgb.map((value) => parseInt(value, 16)).join(', ')})`;
 }
 
