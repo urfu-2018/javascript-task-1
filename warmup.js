@@ -8,7 +8,7 @@
 //  * @returns {Number} Сумма аргументов
 //  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc((year - 1) / 100) + 1;// Ваше решение
+    return Math.ceil(year / 100);// Ваше решение
 }
 
 /**
