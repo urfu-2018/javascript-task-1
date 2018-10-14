@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!isNaN(a) && !isNaN(b)) {
+        return a + b;
+    }
+    throw TypeError;
 }
 
 /**
@@ -19,7 +22,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (year < 0) {
+        throw RangeError;
+    }
+    else if (!isNaN(year)) {
+        return Math.floor(year);
+    }
+    throw TypeError;
 }
 
 /**
@@ -30,7 +39,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor != 'string')) {
+        throw TypeError;
+    }
+    let redColor = parseInt(hexColor.substr(1, 2), 16);
+    let greeenColor = parseInt(hexColor.substr(3, 2), 16);
+    let blueColor = parseInt(hexColor.substr(5, 2), 16);
+    if (redColor < 256 && greeenColor < 256 && blueColor < 256) {
+        return '(' + redColor + ', ' + greeenColor + ', ' + blueColor + ')';
+    }
+    throw RangeError;
 }
 
 /**
@@ -41,7 +59,24 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (n % 1 != 0 && n < 0) {
+        throw RangeError;
+    }
+    else if (isNaN(n)) {
+        throw TypeError;
+    }
+    let firstAddend = 0;
+    let secondAddend = 1;
+    let auxiliaryNumber;
+    if (n > 0) {
+        for (i = 1; i < n; i++) {
+            auxiliaryNumber = firstAddend + secondAddend;
+            firstAddend = secondAddend;
+            secondAddend = auxiliaryNumber;
+        }
+        return secondAddend;
+    }
+    return 0;
 }
 
 /**
@@ -51,7 +86,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    let newMatrix = new Array();
+    for (i = 0; i < matrix[0].length; i++) {
+        let arr = new Array();
+        for (j = 0; j < matrix.length; j++) {
+            arr.push(matrix[j][i]);
+        }
+        newMatrix.push(arr);
+    }
+    return newMatrix;
 }
 
 /**
@@ -63,7 +106,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (isNaN(n) && isNaN(targetNs)) {
+        throw TypeError;
+    }
+    if (2 <= targetNs && targetNs <= 36) {
+        return n.toString(targetNs);
+    }
+    throw RangeError;
 }
 
 /**
@@ -72,7 +121,8 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    phoneNumber = phoneNumber.replace(/-/g, '');
+    return phoneNumber.length == 11 && phoneNumber.substr(0, 4) == '8800' && !isNaN(phoneNumber.substr(4));
 }
 
 /**
@@ -82,7 +132,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text != 'string')) {
+        throw TypeError;
+    }
+    return text.split(/\(-:|:-\)/).length;
 }
 
 /**
@@ -92,7 +145,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if ((field[0][0] == field[1][1] && field[2][2] == field[1][1]) || (field[0][2] == field[1][1] && field[1][1] == field[2][0])) {
+        return field[1][1];
+    }
+    for (i = 0; i < field.length; i++) {
+        if ((field[i][0] == 'o' && field[i][1] == 'o' && field[i][2] == 'o') || (field[0][i] == 'o' && field[1][i] == 'o' && field[2][i] == 'o')) {
+            return 'draw';
+        }
+    }
+    for (i = 0; i < field.length; i++) {
+        if ((field[i][0] == field[i][1] && field[i][0] == field[i][2]) || (field[0][i] == field[1][i] && field[1][i] == field[2][i])) {
+            return 'x';
+        }
+        else {
+            return 'draw';
+        }
+    }
 }
 
 module.exports = {
