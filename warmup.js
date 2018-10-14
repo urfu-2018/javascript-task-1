@@ -16,6 +16,9 @@ function rangeError() {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        typeError();
+    }
     if (Number.isInteger(a) && Number.isInteger(b)) {
         return a + b;
     }
@@ -72,8 +75,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if(n <= 0) {
+        rangeError();
+    }
     if (typeof n === 'number') {
-        if (n < 1 || !Number.isInteger(n)) {
+        if (!Number.isInteger(n)) {
             rangeError();
         }
         const root5 = Math.sqrt(5);
@@ -102,9 +108,6 @@ function matrixProblem(matrix) {
     });
     let matrixT = [];
     let m = matrix.length;
-    if (m === 0) {
-        typeError();
-    }
     let n = matrix[0].length;
     let elementIndex = 0;
     matrix.forEach(element => {
@@ -135,10 +138,12 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         typeError();
     }
-    if (targetNs >= 2 && targetNs <= 36) {
+    if (targetNs < 2 || targetNs > 36) {
+        rangeError();
+    }
+    if (true) {
         return n.toString(targetNs);
     }
-    rangeError();
 }
 
 /**
@@ -147,11 +152,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    let flag = true;
     if (typeof phoneNumber !== 'string') {
         typeError();
     }
-    if (flag) {
+    if (true) {
         return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
     }
 }
@@ -178,13 +182,22 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2] || field[0][2] ===
         field[1][1] && field[1][1] === field[2][0]) {
-        return field[1][1];
+        if (typeof field[1][1] !== 'undefined') {
+            return field[1][1];
+        }
+        typeError();
     }
     for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            return field[i][0];
+            if (typeof field[i][0] !== 'undefined') {
+                return field[i][0];
+            }
+            typeError();
         } else if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
+            if (typeof field[0][i] !== 'undefined') {
+                return field[0][i];
+            }
+            typeError();
         }
     }
 
