@@ -25,7 +25,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' && Number.isInteger(year) && Math.floor(year) === year) {
+    if (typeof(year) === 'number' && Number.isInteger(year) && Math.floor(year) === year) {
         if (year <= 0) {
             throw new RangeError('год – отрицательное значение');
         }
