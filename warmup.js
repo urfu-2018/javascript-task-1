@@ -78,6 +78,10 @@ function fibonacciProblem(n) {
     if (n < 0) {
         throw new RangeError();
     }
+
+    if (n === 0) {
+        return 0;
+    }
     let a = 1;
     let b = 0;
     let temp;
