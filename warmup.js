@@ -1,98 +1,152 @@
 'use strict';
 
-/**
- * Складывает два целых числа
- * @param {Number} a Первое целое
- * @param {Number} b Второе целое
- * @throws {TypeError} Когда в аргументы переданы не числа
- * @returns {Number} Сумма аргументов
- */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Numbers must be integer');
+    }
+
+    return a + b;
 }
 
-/**
- * Определяет век по году
- * @param {Number} year Год, целое положительное число
- * @throws {TypeError} Когда в качестве года передано не число
- * @throws {RangeError} Когда год – отрицательное значение
- * @returns {Number} Век, полученный из года
- */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError('Year must be finite number');
+    }
+    if (year < 0) {
+        throw new RangeError('Year must be non-negative');
+    }
+    const century = Math.floor(year / 100);
+
+    return year % 100 ? century + 1 : century;
 }
 
-/**
- * Переводит цвет из формата HEX в формат RGB
- * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
- * @throws {TypeError} Когда цвет передан не строкой
- * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
- * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
- */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('Argument is not string');
+    }
+    const regex = /^#([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})$/i;
+    const hexRGB = regex.exec(hexColor);
+    if (hexRGB === null) {
+        throw new RangeError('Color values is in incorrect format');
+    }
+    const rgb = [hexRGB[1], hexRGB[2], hexRGB[3]];
+
+    return `(${rgb.map((value) => parseInt(value, 16)).join(', ')})`;
 }
 
-/**
- * Находит n-ое число Фибоначчи
- * @param {Number} n Положение числа в ряде Фибоначчи
- * @throws {TypeError} Когда в качестве положения в ряде передано не число
- * @throws {RangeError} Когда положение в ряде не является целым положительным числом
- * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
- */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError('Number must be finite integer');
+    }
+    if (n <= 0) {
+        throw new RangeError('Number must be positive');
+    }
+    let current = 1;
+    let previous = 1;
+    let sum;
+    for (let i = 3; i <= n; i++) {
+        sum = current + previous;
+        previous = current;
+        current = sum;
+    }
+
+    return current;
 }
 
-/**
- * Транспонирует матрицу
- * @param {(Any[])[]} matrix Матрица размерности MxN
- * @throws {TypeError} Когда в функцию передаётся не двумерный массив
- * @returns {(Any[])[]} Транспонированная матрица размера NxM
- */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || !matrix.length || !matrix.every(arr => Array.isArray(arr))) {
+        throw new TypeError(
+            'Argument must be a non-empty array of arrays where every element is array');
+    }
+    if (!isEqualLengthsOfRows(matrix) || !matrix.every(arr => arr.length)) {
+        throw new TypeError('All elements must be the same non-zero length');
+    }
+
+    return Object.keys(matrix[0])
+        .map(colNumber => matrix.map(rowNumber => rowNumber[colNumber]));
 }
 
-/**
- * Переводит число в другую систему счисления
- * @param {Number} n Число для перевода в другую систему счисления
- * @param {Number} targetNs Система счисления, в которую нужно перевести (Число от 2 до 36)
- * @throws {TypeError} Когда переданы аргументы некорректного типа
- * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
- * @returns {String} Число n в системе счисления targetNs
- */
+function isEqualLengthsOfRows(matrix) {
+    const currentLength = matrix[0].length;
+    for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i].length !== currentLength) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!typeof n === 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError('Number must be finite integer');
+    }
+    if (targetNs < 2 || targetNs > 32) {
+        throw new RangeError('Number was out of range');
+    }
+
+    return n.toString(targetNs);
 }
 
-/**
- * Проверяет соответствие телефонного номера формату
- * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
- * @returns {Boolean} Если соответствует формату, то true, а иначе false
- */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('Argument is not string');
+    }
+    const regex = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+
+    return regex.test(phoneNumber);
 }
 
-/**
- * Определяет количество улыбающихся смайликов в строке
- * @param {String} text Строка в которой производится поиск
- * @throws {TypeError} Когда в качестве аргумента передаётся не строка
- * @returns {Number} Количество улыбающихся смайликов в строке
- */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('Argument is not string');
+    }
+    const regex = /(:-\)|\(-:)/g;
+    const result = text.match(regex);
+
+    return result !== null ? result.length : 0;
 }
 
-/**
- * Определяет победителя в игре "Крестики-нолики"
- * Тестами гарантируются корректные аргументы.
- * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
- * @returns {'x' | 'o' | 'draw'} Результат игры
- */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if (checkLines(field, 'x') || checkDiagonals(field, 'x')) {
+        return 'x';
+    }
+    if (checkLines(field, 'o') || checkDiagonals(field, 'o')) {
+        return 'o';
+    }
+
+    return 'draw';
+}
+
+function checkDiagonals(field, mark) {
+    let toRight = true;
+    let toLeft = true;
+    for (let i = 0; i < 3; i++) {
+        toRight = toRight && field[i][i] === mark;
+        toLeft = toLeft && field[3 - i - 1][i] === mark;
+    }
+    if (toLeft || toRight) {
+        return true;
+    }
+
+    return false;
+}
+
+function checkLines(field, mark) {
+    for (let y = 0; y < 3; y++) {
+        let onRow = true;
+        let onColumn = true;
+
+        for (let x = 0; x < 3; x++) {
+            onRow = onRow && field[y][x] === mark;
+            onColumn = onColumn && field[x][y] === mark;
+        }
+        if (onRow || onColumn) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 module.exports = {
