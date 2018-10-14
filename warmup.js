@@ -43,17 +43,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const HEXRegex = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/i;
+    const hexRegex = new RegExp('^#[A-Fa-f0-9]{6}$');
     if (typeof hexColor !== 'string') {
         throw new TypeError('цвет передан не строкой');
     }
-    if (!HEXRegex.test(hexColor) || hexColor.length !== 7) {
+    if (!hexRegex.test(hexColor) || hexColor.length !== 7) {
         throw new RangeError('значения цвета выходят за пределы допустимых');
     }
 
-    return hexColor.replace(HEXRegex, (m, r, g, b) => {
-        return '(' + parseInt(r, 16) + ', ' + parseInt(g, 16) + ', ' + parseInt(b, 16) + ')';
-    });
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5), 16);
+
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
