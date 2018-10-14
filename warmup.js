@@ -154,25 +154,25 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError('Переданный параметр не является строкой');
     }
-    const res = text.match(/\(-:|:-\)/g);
+    const leftRes = text.match(/\(-:/g);
+    const rightRes = text.match(/:-\)/g);
+    const leftResSize = leftRes === null ? 0 : leftRes.length;
+    const rightResSize = rightRes === null ? 0 : rightRes.length;
 
-    return res === null ? 0 : res.length;
+
+    return leftResSize + rightResSize;
 }
 
 function checkHorizontally(field, i) {
     if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
         return field[i][0];
     }
-
-    return null;
 }
 
 function checkVertically(field, j) {
     if (field[0][j] === field[1][j] && field[1][j] === field[2][j]) {
         return field[0][j];
     }
-
-    return null;
 }
 
 /**
@@ -192,7 +192,7 @@ function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
         winner = checkVertically(field, i);
         winner = checkHorizontally(field, i);
-        if (winner !== null) {
+        if (typeof(winner) !== 'undefined') {
             return winner;
         }
     }
