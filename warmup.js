@@ -24,7 +24,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (Number.isInteger(year) || Math.floor(year) !== year) {
+    if (Number.isInteger(year) && Math.floor(year) === year) {
         if (year < 0) {
             throw new RangeError('год – отрицательное значение');
         }
@@ -36,7 +36,6 @@ function centuryByYearProblem(year) {
         return parseInt(century, 10) + 1;
     }
     throw new TypeError('в качестве года передано не число');
-    // Ваше решение
 }
 
 /**
@@ -51,7 +50,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('цвет передан не строкой');
     }
-    if (!HEXRegex.test(hexColor)) {
+    if (!HEXRegex.test(hexColor) || hexColor.length !== 7) {
         throw new RangeError('значения цвета выходят за пределы допустимых');
     }
 
@@ -71,7 +70,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError('передано не число');
     }
-    if (n < 0 || Math.floor(n) !== n) {
+    if (n < 1 || Math.floor(n) !== n) {
         throw new RangeError('n-отрицательное число');
     }
     let a = 1;
@@ -137,7 +136,7 @@ function smilesProblem(text) {
         throw new TypeError('аргумент не строка');
     }
 
-    return (text.match(/:-\)/g) || []).length;
+    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
 }
 
 /**
