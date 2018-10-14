@@ -57,7 +57,7 @@ function colorsProblem(hexColor) {
 }
 
 function isValid(r, g, b) {
-    if (r > 255 || g > 255 || b > 255 ) {
+    if (r > 255 || g > 255 || b > 255) {
         return false;
     }
 
