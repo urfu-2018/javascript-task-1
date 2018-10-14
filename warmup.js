@@ -44,11 +44,9 @@ function colorsProblem(hexColor) {
         throw new TypeError('ВВедите строку!');
     }
     checkLenght(hexColor);
-    var betterHexColor = hexColor.replace('#', '');
-    var bigint = parseInt(betterHexColor, 16);
-    var r = (bigint > 16) && 255;
-    var g = (bigint > 8) && 255;
-    var b = bigint && 255;
+    var r = parseInt(hexColor.slice(1, 3), 16);
+    var g = parseInt(hexColor.slice(3, 5), 16);
+    var b = parseInt(hexColor.slice(5), 16);
     if (r > 255 || g > 255 || b > 255) {
         throw new RangeError('Выход за пределы 255!');
     }
