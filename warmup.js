@@ -24,8 +24,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (year < 0) {
         throw RangeError;
-    }
-    else if (!isNaN(year)) {
+    } else if (!isNaN(year)) {
         return Math.floor(year);
     }
     throw TypeError;
@@ -39,7 +38,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !=- 'string') {
+    if (typeof(hexColor) !== 'string') {
         throw TypeError;
     }
     let redColor = parseInt(hexColor.substr(1, 2), 16);
@@ -61,8 +60,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (n % 1 !== 0 && n < 0) {
         throw RangeError;
-    }
-    else if (isNaN(n)) {
+    } else if (isNaN(n)) {
         throw TypeError;
     }
     let firstAddend = 0;
@@ -88,9 +86,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    let newMatrix = new Array();
+    let newMatrix = [];
     for (let i = 0; i < matrix[0].length; i++) {
-        let arr = new Array();
+        let arr = [];
         for (let j = 0; j < matrix.length; j++) {
             arr.push(matrix[j][i]);
         }
@@ -126,8 +124,8 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     phoneNumber = phoneNumber.replace(/-/g, '');
 
-    return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' 
-    && !isNaN(phoneNumber.substr(4));
+    return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' &&
+    !isNaN(phoneNumber.substr(4));
 }
 
 /**
@@ -151,25 +149,24 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if ((field[0][0] === field[1][1] && field[2][2] === field[1][1]) || 
+    if ((field[0][0] === field[1][1] && field[2][2] === field[1][1]) ||
     (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         return field[1][1];
     }
     for (let i = 0; i < field.length; i++) {
-        if ((field[i][0] === 'o' && field[i][1] === 'o' && field[i][2] === 'o') || 
+        if ((field[i][0] === 'o' && field[i][1] === 'o' && field[i][2] === 'o') ||
         (field[0][i] === 'o' && field[1][i] === 'o' && field[2][i] === 'o')) {
             return 'draw';
         }
     }
-    for (i = 0; i < field.length; i++) {
-        if ((field[i][0] === field[i][1] && field[i][0] === field[i][2]) || (
-            field[0][i] === field[1][i] && field[1][i] === field[2][i])) {
+    for (let i = 0; i < field.length; i++) {
+        if ((field[i][0] === field[i][1] && field[i][0] === field[i][2]) ||
+        (field[0][i] === field[1][i] && field[1][i] === field[2][i])) {
             return 'x';
         }
-        else {
-            return 'draw';
-        }
     }
+
+    return 'draw';
 }
 
 module.exports = {
