@@ -25,10 +25,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('Ошбика типа!');
     }
-    if (year < 0) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('Ошибка размерности!');
     }
 
@@ -67,10 +67,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number' || !Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('Ошбика типа!');
     }
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('Ошибка размерности!');
     }
     let a = 1;
@@ -119,7 +119,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        !Number.isInteger(targetNs)) {
+        !Number.isInteger(n)) {
         throw new TypeError('Ошбика типа!');
     }
     if (targetNs < 2 || targetNs > 36) {
