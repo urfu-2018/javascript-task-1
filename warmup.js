@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    if (!/#[A-F0-9]{6}/.test(hexColor)) {
+    if (!/^#[A-F0-9]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -103,7 +103,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n != "number" || typeof targetNs != "number" || !Number.isInteger(targetNs)) {
+        throw new TypeError()
+    }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -112,7 +120,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
