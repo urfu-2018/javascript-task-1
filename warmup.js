@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -44,13 +44,15 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    const rgb = [];
-    for (let i = 1; i < hexColor.length; i += 2) {
-        let color = parseInt(hexColor.slice(i, i + 2), 16);
-        if (Number.isNaN(color)) {
+    const rgb = Array(3);
+    rgb[0] = hexColor.slice(1, 3);
+    rgb[1] = hexColor.slice(3, 5);
+    rgb[2] = hexColor.slice(5, 7);
+    for (let i = 0; i < rgb.length; i++) {
+        rgb[i] = parseInt(rgb[i], 16);
+        if (Number.isNaN(rgb[i])) {
             throw new RangeError();
         }
-        rgb.push(color);
     }
 
     return '(' + rgb.join(', ') + ')';
