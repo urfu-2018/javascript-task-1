@@ -130,8 +130,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        n % 1 !== 0 || targetNs % 1 !== 0) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         typeError();
     }
     if (targetNs < 2 || targetNs > 36) {
