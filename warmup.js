@@ -136,6 +136,7 @@ function checkLines(field, mark) {
     for (let y = 0; y < 3; y++) {
         let onRow = true;
         let onColumn = true;
+
         for (let x = 0; x < 3; x++) {
             onRow = onRow && field[y][x] === mark;
             onColumn = onColumn && field[x][y] === mark;
