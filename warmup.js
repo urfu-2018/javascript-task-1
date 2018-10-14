@@ -152,7 +152,7 @@ function smilesProblem(text) {
     }
     let count = 0;
     for (let i = 0; i < text.length; i++) {
-        const temp = text.substr(i , 1);
+        const temp = text.substr(i, 1);
         if (temp === '(' || temp === ')') {
             count++;
         }
@@ -184,11 +184,11 @@ function ticTacToeProblem(field) {
     if (field[0][0] === field[1][1] === field[2][2]) {
         return field[0][0];
     }
-    
+
     if (field[0][2] === field[1][1] === field[2][0]) {
         return field[0][0];
     }
-    
+
     field = matrixProblem(field);
 
     if (checkStrOfField(field) !== null) {
