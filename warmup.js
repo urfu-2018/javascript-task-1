@@ -72,10 +72,10 @@ function isValid(r, g, b) {
 //  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
 //  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
 
