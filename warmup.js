@@ -23,9 +23,9 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError('ВВедите цифры!');
-    } else if (year < 0 || !Number.isInteger(year)) {
+    } else if (year < 0 || year % 1 !== 0) {
         throw new RangeError('Год не может быть отрицательным');
     }
     if (year < 100 || year === 0) {
