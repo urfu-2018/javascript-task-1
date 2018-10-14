@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b) ||
+    isNaN(a) || isNaN(b)) {
         throw new TypeError('ВВедите цифры!');
     }
 
@@ -23,8 +24,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    var ye = typeof(year);
-    if (ye !== 'number' || year - Math.floor(year) !== 0) {
+    if (!Number.isInteger(year) || year - Math.floor(year) !== 0) {
         throw new TypeError('ВВедите цифры!');
     } else if (year < 0) {
         throw new RangeError('Год не может быть отрицательным');
@@ -44,7 +44,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string' || !hexColor.match(/#[\dA-Fa-f]{6}/)) {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError('ВВедите строку!');
     }
     var betterHexColor = hexColor.replace('#', '');
@@ -67,7 +67,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError('ВВедите цифры!');
     } else if (n <= 0 || n % 1 !== 0) {
         throw new RangeError('');
@@ -91,7 +91,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (typeof(matrix[0][0]) !== 'number' || !Array.isArray(matrix)) {
+    if (matrix === null || !Array.isArray(matrix) || !Number.isInteger(matrix[0][0])) {
         throw new TypeError('ВВедите цифры!');
     }
     var result = [];
