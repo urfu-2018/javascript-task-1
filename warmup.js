@@ -8,8 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-        throw new TypeError('One or more arguments are NaN');
+    if (typeof(a) !== 'number' || typeof(b) !== 'number' ||
+            !Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
     }
 
     return a + b;
@@ -23,10 +24,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
-        throw new TypeError('Argument must be an integer number');
-    } else if (year < 0) {
-        throw new RangeError('Argument must be non-negative');
+    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+        throw new TypeError();
+    } else if (year < 1) {
+        throw new RangeError();
     }
 
     return Math.ceil(year / 100);
@@ -41,9 +42,9 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        throw new TypeError('Argument must be a string');
-    } else if (! /^#([A-Fa-f0-9]){6}$/.test(hexColor)) {
-        throw new RangeError('Color values out of range');
+        throw new TypeError();
+    } else if (! /^#[A-Fa-f0-9]{6}$/.test(hexColor)) {
+        throw new RangeError();
     }
 
     return ['(', ')'].join(
@@ -63,9 +64,9 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw new TypeError('Argument is NaN');
-    } else if (n <= 0 || !Number.isInteger(n)) {
-        throw new RangeError('Argument must be a positive integer');
+        throw new TypeError();
+    } else if (n < 1 || !Number.isInteger(n)) {
+        throw new RangeError();
     }
     let first = 1;
     let second = 1;
@@ -85,12 +86,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError('Argument must be a 2-dim array');
+        throw new TypeError();
     }
     let result = [[]];
     matrix.forEach((row, i) => {
         if (!Array.isArray(row)) {
-            throw new TypeError('Argument must be a 2-dim array');
+            throw new TypeError();
         }
         row.forEach((_, j) => {
             result[j] = result[j] === undefined ? [] : result[j];
@@ -111,11 +112,11 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
-        throw new TypeError('One or more arguments are NaN');
+        throw new TypeError();
     } else if (!Number.isInteger(targetNs)) {
-        throw new TypeError('Number system must be integer');
+        throw new TypeError();
     } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('TargetNs must be in [2, 36] range');
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -138,7 +139,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw new TypeError('Argument must be a string');
+        throw new TypeError();
     }
 
     return (text.match(/(:-\))|(\(-:)/g) || []).length;
