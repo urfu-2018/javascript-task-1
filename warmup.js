@@ -9,9 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-    if ((typeof a === 'number' || a instanceof Number) &&
-        (typeof b === 'number' || b instanceof Number)) {
-
+    if (typeof a === 'number' && typeof b === 'number') {
         return a + b;
     }
     throw new TypeError();
@@ -25,15 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
-    if (typeof year === 'number' && year >= 0) {
-
-        return Math.ceil(year / 100);
-    } else if (typeof year === 'number' && year < 0) {
-        throw new RangeError();
-    } else {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -53,13 +50,11 @@ function colorsProblem(hexColor) {
     }
 
     hexColor = hexColor.substring(1);
-    const number = parseInt(hexColor, 16);
-    const b = number % 256;
-    const g = ((number - b) / 256) % 256;
-    const r = ((number - b - g * 256) / 256 / 256) % 256;
+    const r = parseInt(hexColor.substring(0, 2), 16);
+    const g = parseInt(hexColor.substring(2, 4), 16);
+    const b = parseInt(hexColor.substring(4, 6), 16);
 
     return `(${r}, ${g}, ${b})`;
-
 }
 
 /**
@@ -71,21 +66,21 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    if (typeof n === 'number' && n % 1 === 0 && n > 0) {
-        let a = 1;
-        let b = 1;
-        for (let i = 3; i <= n; i++) {
-            const currentNumber = a + b;
-            a = b;
-            b = currentNumber;
-        }
-
-        return b;
-    } else if (typeof n === 'number' && (n % 1 !== 0 && n <= 0)) {
-        throw new RangeError();
-    } else {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
+    if (n % 1 !== 0 || n <= 0) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        const currentNumber = a + b;
+        a = b;
+        b = currentNumber;
+    }
+
+    return b;
 }
 
 /**
@@ -96,24 +91,19 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    let isNotMatrix = false;
-
-    for (let j = 0; j < matrix.length; j++) {
-        if (!Array.isArray(matrix[j])) {
-            isNotMatrix = true;
-        }
-    }
-
-    if (isNotMatrix) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
         throw new TypeError();
     }
 
     let matrixT = [];
 
-    for (let i = 0; i < matrix.length; i++) {
+    for (let i = 0; i < matrix[0].length; i++) {
         matrixT[i] = [];
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
-            matrixT[i][j] = matrix[j][i];
+            matrixT[j][i] = matrix[i][j];
         }
     }
 
@@ -131,7 +121,6 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
     if (typeof n === 'number' && typeof targetNs === 'number' && targetNs >= 2 && targetNs <= 36) {
-
         return n.toString(targetNs);
     } else if (typeof n === 'number' && typeof targetNs === 'number' &&
         (targetNs < 2 || targetNs > 36)) {
@@ -148,7 +137,11 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
-    return /^8-800-\d\d\d-\d\d-\d\d$/.test(phoneNumber);
+    if (typeof phoneNumber === 'string') {
+        return /^8-800-\d\d\d-\d\d-\d\d$/.test(phoneNumber);
+    }
+
+    throw new TypeError();
 }
 
 /**
