@@ -10,7 +10,7 @@
 function abProblem(a, b) {
     if (typeof (a) === 'number' && typeof (b) === 'number' &&
     Number.isInteger(a) && Number.isInteger(b)) {
-        return a + b;
+        return parseInt(a) + parseInt(b);
     }
     throw new TypeError('a and b must be Number');
 }
