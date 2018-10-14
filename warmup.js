@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    if (!/#[A-F0-9]{6}/.test(hexColor)) {
+    if (!/^#[A-F0-9]{6}&/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n <= 0 || !Number.isInteger(n)) {
+    if (n <= 0) {
         throw new RangeError();
     }
 
@@ -142,7 +142,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
