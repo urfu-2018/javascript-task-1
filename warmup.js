@@ -1,11 +1,11 @@
 'use strict';
 
 function isNAN(param) {
-    return (typeof(param) !== 'number');
+    return (Number(param) !== param);
 }
 
 function isNotString(param) {
-    return (typeof(param) !== 'string');
+    return (String(param) !== param);
 }
 
 /**
@@ -104,7 +104,7 @@ function matrixProblem(matrix) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
     if (matrix.length === 0) {
-        throw new TypeError('Аргумент  - не двумерный массив');
+        [[]];
     }
     const transpMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
