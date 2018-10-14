@@ -119,7 +119,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' ||
-        !Number.isInteger(n)) {
+        !Number.isInteger(targetNs)) {
         throw new TypeError('Ошбика типа!');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -140,7 +140,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('Ошибка типа!');
     }
 
-    return /8-800-\d\d\d-\d\d-\d\d/.test(phoneNumber);
+    return /^8-800-[0-9]{3}(-[0-9]{2}){2}$/.test(phoneNumber);
 }
 
 
