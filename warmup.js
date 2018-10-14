@@ -127,7 +127,7 @@ function phoneProblem(phoneNumber) {
     if (typeof (phoneNumber) !== 'string') {
         throw new TypeError('phoneNumber must be string');
     }
-    
+
     return phoneNumber.length === 15 && /^8-800-(\d\d\d)-(\d\d)-(\d\d)$/g.test(phoneNumber);
 }
 
