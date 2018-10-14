@@ -228,5 +228,7 @@ module.exports = {
     numberSystemProblem,
     phoneProblem,
     smilesProblem,
-    ticTacToeProblem
+    ticTacToeProblem,
+    checkDiag,
+    isValid
 };
