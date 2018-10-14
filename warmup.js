@@ -1,6 +1,6 @@
 'use strict';
 
-function isNAN(param){
+function isNAN(param) {
     return (Number(param) !== param);
 }
 
@@ -12,8 +12,10 @@ function isNAN(param){
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNAN(a) || isNAN(b))
-        throw new TypeError('Аргумент не является числом'); 
+    if (isNAN(a) || isNAN(b)) {
+        throw new TypeError('Аргумент не является числом');
+    }
+
     return a + b;
     // Ваше решение
 }
@@ -26,12 +28,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNAN(year)){
+    if (isNAN(year)) {
         throw new TypeError('Аргумент не является числом');
-    } else if(year < 0){
+    } else if (year < 0) {
         throw new RangeError('Год отрицателен');
     }
-    return Math.ceil(year/100);
+    return Math.ceil(year / 100);
     // Ваше решение
 }
 
@@ -67,15 +69,15 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNAN(n)){
+    if (isNAN(n)) {
         throw new TypeError('Аргумент не является числом');
-    } else if (n <= 0 || !Number.isInteger(n)){
+    } else if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('Не является целым положительным числом');
     }
     let previous = 1;
     let next = 1;
     let temp = 0;
-    for (let i=2; i<n; i++){
+    for (let i=2; i<n; i++) {
         temp = next;
         next = next + previous;
         previous = temp;
@@ -91,11 +93,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))){
+    if (!(Array.isArray(matrix) && Array.isArray(matrix[0]))) {
         throw new TypeError('Аргумент  - не двумерный массив');
     }
     const transpMatrix = new Array(matrix[0].length);
-    for (let i=0; i<matrix.length; i++){
+    for (let i=0; i<matrix.length; i++) {
         transpMatrix[i] = new Array(matrix.length);
         for (let j=0; j<matrix[i].length; j++){
             transpMatrix[i][j] = matrix[j][i];
@@ -114,9 +116,9 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNAN(n) || isNAN(targetNs)){
+    if (isNAN(n) || isNAN(targetNs)) {
         throw new TypeError('Аргументы неверного типа');
-    }else if(targetNs > 2 || targetNs > 36){
+    } else if(targetNs > 2 || targetNs > 36) {
         return new RangeError('Выходит за пределы от 2 до 36');
     }
     return n.toString(targetNs);
@@ -140,11 +142,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (String(text) !== text){
+    if (String(text) !== text) {
         throw new TypeError('Аргумент не строка');
     }
     let count = 0;
-    for (let i=0; i<text.length; i++){
+    for (let i=0; i<text.length; i++) {
         const temp = text.substr(i,1);
         if (temp === '(' || temp === ')')
             count++;
@@ -154,9 +156,11 @@ function smilesProblem(text) {
 }
 
 function checkStrOfField(field){
-    for (let i = 0; i<field.length; i++)
-        if (field[i][0] == field[i][1] && field[i][1] == field[i][2])
+    for (let i = 0; i<field.length; i++) {
+        if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) {
             return field[i][0];
+        }
+    }
 }
 
 /**
@@ -166,19 +170,23 @@ function checkStrOfField(field){
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (checkStrOfField(field) !== null)
+    if (checkStrOfField(field) !== null) {
         return checkStrOfField(field)
+    }
 
-    if (field[0][0] == field[1][1] == field[2][2])
+    if (field[0][0] === field[1][1] === field[2][2]) {
         return field[0][0];
+    }
 
-    if (field[0][2] == field[1][1] == field[2][0])
+    if (field[0][2] === field[1][1] === field[2][0]) {
         return field[0][0];
+    }
     
     field = matrixProblem(field);
 
-    if (checkStrOfField(field) !== null)
+    if (checkStrOfField(field) !== null) {
         return checkStrOfField(field)
+    }
 
     return 'draw';
     // Ваше решение
