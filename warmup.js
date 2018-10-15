@@ -18,9 +18,9 @@ function rangeError() {
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
         typeError();
-    } else {
-        return a + b;
     }
+
+    return a + b;
 }
 
 /**
@@ -73,15 +73,15 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (typeof n !== 'number') {
+        typeError();
+    }
     if (n <= 0 || n % 1 !== 0) {
         rangeError();
     }
-    if (typeof n === 'number') {
-        const a = 1.61803398875;
+    const a = 1.61803398875;
 
-        return Math.round(Math.pow(a, n) / Math.sqrt(5));
-    }
-    typeError();
+    return Math.round(Math.pow(a, n) / Math.sqrt(5));
 }
 
 /**
@@ -144,13 +144,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    let flag = true;
     if (typeof phoneNumber !== 'string') {
         typeError();
     }
-    if (flag) {
-        return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
-    }
+
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -160,12 +158,12 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text === 'string') {
-        const result = text.match(/\(-:|:-\)/g);
-
-        return result === null ? 0 : result.length;
+    if (typeof text !== 'string') {
+        typeError();
     }
-    typeError();
+    const result = text.match(/\(-:|:-\)/g);
+
+    return result === null ? 0 : result.length;
 }
 
 /**
