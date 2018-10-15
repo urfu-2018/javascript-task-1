@@ -97,15 +97,21 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix instanceof Array) {
-        return matrix[0].map(function (column, n) {
-            return matrix.map(function (row, m) {
-                return matrix[m][n];
-            });
-        });
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
     }
 
-    throw new TypeError();
+    for (let i = 0; i < matrix.length; i++) {
+        if (Array.isArray(matrix[i])) {
+            throw new TypeError();
+        }
+    }
+
+    return matrix[0].map(function (column, n) {
+        return matrix.map(function (row, m) {
+            return matrix[m][n];
+        });
+    });
 }
 
 /**
@@ -178,8 +184,6 @@ function getWinner(field) {
         if (field[i].every(elem => elem === 'o')) {
             return 'o';
         }
-
-        return 'draw';
     }
 
     if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
