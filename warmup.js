@@ -88,7 +88,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
