@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return (year - (year % 100)) / 100 + 1;
@@ -42,14 +42,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     let red = parseInt(hexColor.slice(1, 3), 16);
     let green = parseInt(hexColor.slice(3, 5), 16);
     let blue = parseInt(hexColor.slice(5, 7), 16);
 
     if (isNaN(red) || isNaN(green) || isNaN(blue)) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return `(${red}, ${green}, ${blue})`;
@@ -64,11 +64,11 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     if (n < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
     if (n < 3) {
         return 1;
@@ -92,7 +92,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
-        throw TypeError;
+        throw new TypeError();
     }
 
     let res = [];
@@ -116,10 +116,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs < 1 || targetNs > 36) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -142,7 +142,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return text.match(/(?::-\)|\(-:)/).length;
