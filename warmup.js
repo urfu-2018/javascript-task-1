@@ -1,11 +1,11 @@
 'use strict';
 
 function typeError() {
-    throw new TypeError();
+    throw new TypeError('Error');
 }
 
 function rangeError() {
-    throw new RangeError();
+    throw new RangeError('Errorr');
 }
 
 /**
@@ -17,7 +17,7 @@ function rangeError() {
  */
 function abProblem(a, b) {
     if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        typeError();
+        typeError(); // ошибки
     }
 
     return a + b;
@@ -51,7 +51,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor === 'string') {
         if ((/^#[0-9A-F]{6}$/i).test(hexColor)) {
-            let rgbArray = new Array(3);
+            let rgbArray = [];
             rgbArray[0] = parseInt(hexColor.substr(1, 2), 16);
             rgbArray[1] = parseInt(hexColor.substr(3, 2), 16);
             rgbArray[2] = parseInt(hexColor.substr(5, 2), 16);
@@ -71,10 +71,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         typeError();
     }
-    if (n <= 0 || n % 1 !== 0) {
+    if (n <= 0) {
         rangeError();
     }
     const a = 1.61803398875;
@@ -89,32 +89,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0 ||
+        !matrix.every(element => Array.isArray(element))) {
         typeError();
     }
-    matrix.forEach(element => {
-        if (!Array.isArray(element)) {
+    let undLength = matrix[0].length;
+    for (let index = 0; index < matrix.length; index++) {
+        if (matrix[index].length !== undLength) {
             typeError();
-        }
-    });
-    let matrixT = [];
-    let m = matrix.length;
-    let n = matrix[0].length;
-    let elementIndex = 0;
-    matrix.forEach(element => {
-        matrixT[elementIndex] = [];
-        if (element.length !== n) {
-            typeError();
-        }
-        elementIndex++;
-    });
-    for (let i = 0; i < m; i++) {
-        for (let j = 0; j < n; j++) {
-            matrixT[j][i] = matrix[i][j];
         }
     }
 
-    return matrixT;
+    return Object.keys(matrix[0]).map(numCol => matrix.map(numRow => numRow[numCol]));
 }
 
 /**
