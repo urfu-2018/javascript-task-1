@@ -59,7 +59,7 @@ function colorsProblem(hexColor) {
         const hexNum = colorNotSharp.substr(0, 2);
         colorNotSharp = colorNotSharp.substring(2);
         const decNum = parseInt(hexNum, 16);
-        if (decNum > 255) {
+        if (decNum > 255 || isNaN(decNum)) {
             throw new RangeError('значения цвета выходят за пределы допустимых');
         } else {
             arrRGB.push(decNum);
