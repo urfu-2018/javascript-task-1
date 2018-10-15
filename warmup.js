@@ -11,7 +11,7 @@ function abProblem(a, b) {
     if (typeof(a) === 'number' && typeof(b) === 'number') {
         return a + b;
     }
-    throw TypeError;
+    throw new TypeError();
 }
 
 /**
@@ -23,10 +23,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year <= 0) {
-        throw RangeError;
+        throw new RangeError();
     }
     let numberOfCenturies = year / 100;
     if (year % 100 === 0) {
@@ -45,7 +45,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if ((typeof(hexColor) !== 'string' && hexColor.length !== 7) || hexColor[0] !== '#') {
-        throw TypeError;
+        throw new TypeError();
     }
     let redColor = parseInt(hexColor.substr(1, 2), 16);
     let greeenColor = parseInt(hexColor.substr(3, 2), 16);
@@ -53,7 +53,7 @@ function colorsProblem(hexColor) {
     if (redColor < 256 && greeenColor < 256 && blueColor < 256) {
         return '(' + redColor + ', ' + greeenColor + ', ' + blueColor + ')';
     }
-    throw RangeError;
+    throw new RangeError();
 }
 
 /**
@@ -65,9 +65,9 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (n % 1 !== 0 && n < 0) {
-        throw RangeError;
+        throw new RangeError();
     } else if (typeof(n) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     let goldenRatio = 1.618039988;
 
@@ -84,14 +84,14 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     let lengthMatrix = matrix.length;
     if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || lengthMatrix === 0) {
-        throw TypeError;
+        throw new TypeError();
     }
     let lengthArr = matrix[0].length;
     let newMatrix = [];
     let count = 0;
     matrix.forEach(i => {
         if (i.length !== lengthArr) {
-            throw TypeError;
+            throw new TypeError();
         }
         newMatrix[count] = [];
         count++;
@@ -115,12 +115,12 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || targetNs % 1 !== 0) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs >= 2 && targetNs <= 36) {
         return n.toString(targetNs);
     }
-    throw RangeError;
+    throw new RangeError();
 }
 
 /**
@@ -143,7 +143,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return text.split(/\(-:|:-\)/).length - 1;
