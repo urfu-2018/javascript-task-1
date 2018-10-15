@@ -8,10 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (Number.isInteger(a) && Number.isInteger(b)) {
-        return (a + b);
+    if (!(Number.isInteger(a) && Number.isInteger(b))) {
+        throw new TypeError();
     }
-    throw TypeError;
+
+    return (a + b);
 }
 
 /**
@@ -22,10 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (Number.isInteger(year) > 0) {
-        return (Math.trunc(year / 100) + 1);
+    if (year % 1000 === 0) {
+        return Math.trunc(year / 100);
     }
-    throw RangeError;
+    if (!(Number.isInteger(year) > 0)) {
+        throw new RangeError();
+    }
+
+    return (Math.trunc(year / 100) + 1);
 }
 
 /**
@@ -36,17 +41,24 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) === 'string') {
-        const clearHex = hexColor.substring(1, 7);
-        const r = parseInt(clearHex.substring(0, 2), 16);
-        const g = parseInt(clearHex.substring(2, 4), 16);
-        const b = parseInt(clearHex.substring(4, 6), 16);
-        if ((r, g, b) <= 255 && (r, g, b) >= 0) {
-            return ('(' + r + ', ' + g + ', ' + b + ')');
-        }
-        throw RangeError;
+    if (hexColor.length === 3) {
+        const sumbol1 = hexColor.substring(1, 2);
+        const sumbol2 = hexColor.substring(2, 3);
+        const sumbol3 = hexColor.substring(3, 4);
+        hexColor = '#' + sumbol1 + sumbol1 + sumbol2 + sumbol2 + sumbol3 + sumbol3;
     }
-    throw TypeError;
+    if (!(typeof(hexColor) === 'string')) {
+        throw new TypeError();
+    }
+    const clearHex = hexColor.substring(1, 7);
+    const r = parseInt(clearHex.substring(0, 2), 16);
+    const g = parseInt(clearHex.substring(2, 4), 16);
+    const b = parseInt(clearHex.substring(4, 6), 16);
+    if (!((r, g, b) <= 255 && (r, g, b) >= 0)) {
+        throw new RangeError();
+    }
+
+    return ('(' + r + ', ' + g + ', ' + b + ')');
 }
 
 /**
@@ -58,24 +70,25 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw RangeError;
+        throw new RangeError();
     }
-    if (Number.isInteger(n) > 0) {
-        if (n <= 2) {
-            return 1;
-        }
-        const fn = 1;
-        const fnmin1 = 0;
-        for (let i = 1; i < n; i++) {
-            fn += fnmin1;
-            fnmin1 = fn - fnmin1;
-        }
-
-        return fnmin1;
-
-        // return (fibonacciProblem(n-1)+fibonacciProblem(n-2));
+    if (Number.isInteger(n) === 0) {
+        return 0;
     }
-    throw RangeError;
+    if (!(Number.isInteger(n) > 0)) {
+        throw new RangeError();
+    }
+    if (n <= 2) {
+        return 1;
+    }
+    const fn = 1;
+    const fnmin1 = 0;
+    for (let i = 1; i < n; i++) {
+        fn += fnmin1;
+        fnmin1 = fn - fnmin1;
+    }
+
+    return fnmin1;
 }
 
 /**
@@ -84,10 +97,17 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function matrixProblem(matrix) {
-    if (!((Array.isArray(matrix) && Array.isArray(matrix[0])))) {
-        throw TypeError;
+function checkMatrix(matrix) {
+    const m = matrix.length;
+    const n = matrix[0].length;
+    for (let i = 0; i < m; i++) {
+        if (!(Array.isArray(matrix) || Array.isArray(matrix[i])) || matrix[i].length === n) {
+            return new TypeError();
+        }
     }
+}
+function matrixProblem(matrix) {
+    checkMatrix(matrix);
     const M = matrix.length;
     const N = matrix[0].length;
     const transpMatrix = [];
@@ -111,13 +131,14 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!(typeof(n) === 'number' && typeof(targetNs) === 'number')) {
-        throw TypeError;
+        throw new TypeError();
     }
-    if (targetNs <= 36 || targetNs >= 2) {
+    if (!(targetNs <= 36 || targetNs >= 2)) {
+        throw new RangeError();
 
-        return n.toString(targetNs);
     }
-    throw RangeError;
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -126,6 +147,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!(typeof(phoneNumber) === 'string')) {
+        throw new TypeError();
+    }
     const regExp = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
     return (regExp.test(phoneNumber));
@@ -139,7 +163,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (!(typeof(text) === 'string')) {
-        throw TypeError;
+        throw new TypeError();
     }
     let numofSmile = 0;
     let currentPos = 0;
@@ -161,6 +185,7 @@ function smilesProblem(text) {
  */
 function checkLineonField(str) {
     if (str[0] === str[1] && str[1] === str[2]) {
+
         return str[0];
     }
 }
@@ -168,6 +193,7 @@ function checkLineonField(str) {
 function checkFieldonHorizontal(field) {
     for (let i = 0; i <= 2; i++) {
         if (checkLineonField(field[i]) === 'x' || checkLineonField(field[i]) === 'o') {
+
             return checkLineonField(field[i]);
         }
     }
@@ -177,6 +203,7 @@ function checkFieldonVertical(field) {
     field = matrixProblem(field);
     for (let i = 0; i <= 2; i++) {
         if (checkLineonField(field[i]) === 'x' || checkLineonField(field[i]) === 'o') {
+
             return checkLineonField(field[i]);
         }
     }
@@ -184,15 +211,19 @@ function checkFieldonVertical(field) {
 
 function ticTacToeProblem(field) {
     if (checkFieldonHorizontal(field)) {
+
         return checkFieldonHorizontal(field);
     }
     if (checkFieldonVertical(field)) {
+
         return checkFieldonVertical(field);
     }
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+
         return field[1][1];
     }
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+
         return field[1][1];
     }
 
