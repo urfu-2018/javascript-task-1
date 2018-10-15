@@ -15,6 +15,7 @@ function abProblem(a, b) {
     if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('В аргументы переданы не числа');
     }
+
     return Number(a) + Number(b);
 }
 
