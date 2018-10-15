@@ -8,12 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if(!isNaN(a)&&!isNaN(b)){
-        return a+b;
+    if (!isNaN(a) && !isNaN(b)) {
+        const result = a+b;
+    } else {
+        throw new TypeError();
     }
-    else {
-        throw new TypeError;
-    }
+    return result;
     // Ваше решение
 }
 
@@ -27,10 +27,10 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     // Ваше решение
     if (isNaN(year)) {
-        throw new TypeError ("Переданный параметр не является числом");
+        throw new TypeError ('Переданный параметр не является числом');
     }
     else if (year < 0) {
-        throw new RangeError("Значение года не может быть отрицательным числом!")
+        throw new RangeError('Значение года не может быть отрицательным числом!')
     }
     else {
         const yearStr= year.toString();
@@ -75,10 +75,10 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     // Ваше решение
     if (isNaN(n)) {
-        throw new TypeError ("Переданный параметр не является числом");
+        throw new TypeError ('Переданный параметр не является числом');
     }
     else if (n%2 !== 0 || n <= 0) {
-        throw new RangeError("n не является целым положительным числом");
+        throw new RangeError('n не является целым положительным числом');
     }
     else {
         if (n === 1 || n === 2) {
@@ -112,7 +112,7 @@ function matrixProblem(matrix) {
     } catch (TypeError) {
 
     }
-    throw new TypeError("в функцию передан не двумерный массив");
+    throw new TypeError('в функцию передан не двумерный массив');
 }
 
 /**
@@ -126,10 +126,10 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
     if (isNaN(n) || isNaN(targetNs)) {
-        throw new TypeError ("Переданныe параметры не являются числом");
+        throw new TypeError ('Переданныe параметры не являются числом');
     }
     else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError("недопустимое значение системы счисления");
+        throw new RangeError('недопустимое значение системы счисления');
     }
     else {
         return n.toString(targetNs);
@@ -156,7 +156,7 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
     // Ваше решение
     if (typeof text !== String) {
-        throw new TypeError ("Переданный параметр не является строкой")
+        throw new TypeError ('Переданный параметр не является строкой')
     }
     else {
         let countOfSmiles = 0;
