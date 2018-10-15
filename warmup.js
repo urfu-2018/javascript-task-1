@@ -127,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError();
     }
 
-    if (targetNs < 2 && targetNs > 36) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
