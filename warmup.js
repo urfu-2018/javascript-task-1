@@ -48,12 +48,13 @@ function checkPositive(input) {
 function colorsProblem(hexColor) {
     checkString(hexColor);
     checkHex(hexColor);
-    if (hexColor.length == 4) {
-        return (parseInt(hexColor[1] + hexColor[1], 16) + ', ' + parseInt(hexColor[2] + hexColor[2], 16) + ', ' +
-            parseInt(hexColor[3] + hexColor[3], 16));
+    if (hexColor.length === 4) {
+        return (parseInt(hexColor[1] + hexColor[1], 16) + ', ' + parseInt(hexColor[2] + hexColor[2], 16)
+            + ', ' + parseInt(hexColor[3] + hexColor[3], 16));
     }
-    return (parseInt((hexColor[1] + hexColor[2]), 16) + ', ' + parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
-        parseInt((hexColor[5] + hexColor[6]), 16));
+
+    return (parseInt((hexColor[1] + hexColor[2]), 16) + ', ' + parseInt((hexColor[3] + hexColor[4]), 16)
+        + ', ' + parseInt((hexColor[5] + hexColor[6]), 16));
 }
 
 function checkString(input) {
@@ -78,13 +79,14 @@ function checkHex(input) {
 function fibonacciProblem(n) {
     checkNumber(n);
     checkPositiveInteger(n);
-    var a = 1,
-        b = 1;
-    for (var i = 3; i <= n; i++) {
-        var c = a + b;
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
         a = b;
         b = c;
     }
+
     return b;
 }
 
@@ -109,6 +111,7 @@ function matrixProblem(matrix) {
             result[i][j] = matrix[j][i];
         }
     }
+
     return result;
 }
 
@@ -135,6 +138,7 @@ function numberSystemProblem(n, targetNs) {
     checkNumber(n);
     checkNumber(targetNs);
     checkSystem(targetNs);
+
     return n.toString(targetNs);
 }
 
@@ -167,6 +171,7 @@ function smilesProblem(text) {
     for (let i = 0; i < b.length; i++)
         if (b[i] === '~')
             count++;
+
     return count;
 }
 
@@ -189,6 +194,7 @@ function ticTacToeProblem(field) {
         return field[0][0];
     if (field[2][0] === field[1][1] && field[2][0] === field[0][2])
         return field[2][0];
+
     return 'draw';
 }
 
