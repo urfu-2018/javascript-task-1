@@ -167,7 +167,37 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    const transposedMatrix = matrixProblem(field);
+    
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
+        return field[0][0];
+    } else if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[0][2];
+    }
 
+    let win = checkWinner(field);
+    if (win) {
+        return win;
+    }
+
+    win = checkWinner(transposedMatrix);
+    if (win) {
+        return win;
+    }
+
+    function checkWinner(fieldMatrix) {
+        for (let i = 0; i < fieldMatrix; i++) {
+            if (oneCharacterInRow[fieldMatrix[i]]) {
+                return fieldMatrix[i][0];
+            }
+        }
+    }
+
+    function oneCharacterInRow(row) {
+        return new Set(row).size === 1;
+    }
+
+    return 'draw';
 }
 
 module.exports = {
