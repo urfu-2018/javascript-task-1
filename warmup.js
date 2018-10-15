@@ -158,10 +158,16 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     let counter = 0;
-    for (let i = 0; i < text.length - 2; i++) {
-        if (text.substring(i, i + 3) === '(-:' || text.substring(i, i + 3) === ':-)') {
+    let i = 0;
+    while (i < text.length - 2) {
+        if (text.substring(i, i + 3) === '(-:') {
+            counter += 1;
+            i += 3;
+        }
+        if (text.substring(i, i + 3) === ':-)') {
             counter += 1;
         }
+        i++;
     }
 
     return counter;
