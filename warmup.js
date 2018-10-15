@@ -86,14 +86,14 @@ function matrixProblem(matrix) {
         throw TypeError;
     }
     let lengthMatrix = matrix.length;
+    let lengthMat = matrix[0].length;
     let newMatrix = [];
     for (let i = 0; i < lengthMatrix; i++) {
         let arr = [];
-        let lengthMat = matrix[0].length;
+        if (matrix[i].length !== lengthMat) {
+            throw TypeError;
+        }
         for (let j = 0; j < lengthMat; j++) {
-            if (matrix[i].length !== lengthMat) {
-                throw TypeError;
-            }
             arr.push(matrix[j][i]);
         }
         newMatrix.push(arr);
