@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(parseInt(a)) || isNaN(parseInt(b))) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('Arguments must be numbers');
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(parseInt(year))) {
+    if (!Number.isInteger(year)) {
         throw new TypeError('year must be a number');
     }
     if (year < 0) {
@@ -69,7 +69,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(parseInt(n))) {
+    if (!Number.isInteger(n)) {
         throw new TypeError('Argument must be a Number');
     }
 
@@ -119,7 +119,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(parseInt(n)) || isNaN(parseInt(targetNs))) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('Arguments have invalid type');
     }
 
