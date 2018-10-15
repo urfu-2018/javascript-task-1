@@ -93,8 +93,10 @@ function matrixProblem(matrix) {
             throw TypeError;
         }
     });
-    for (let i = 0; i < lengthMatrix; i++) {
+    matrix[0].forEach(i => {
         newMatrix[i] = [];
+    });
+    for (let i = 0; i < lengthMatrix; i++) {
         for (let j = 0; j < lengthArr; j++) {
             newMatrix[j][i] = matrix[i][j];
         }
