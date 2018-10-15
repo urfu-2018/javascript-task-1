@@ -24,7 +24,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (!Number.isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     } else if (year < 1) {
         throw new RangeError();
