@@ -31,7 +31,7 @@ function checkNumberInteger(input) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    checkNumber(year);
+    checkNumberInteger(year);
     checkPositive(year);
 
     return Math.ceil(Number(year) / 100);
@@ -71,7 +71,7 @@ function checkString(input) {
 }
 
 function checkHex(input) {
-    if (!/^#([0-9A-F]{3}|[0-9A-F]{6})$/i.test(input)) {
+    if (!/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/i.test(input)) {
         throw new RangeError(`${input.toString()} is not a validate HEX`);
     }
 }
@@ -84,7 +84,7 @@ function checkHex(input) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    checkNumber(n);
+    checkNumberInteger(n);
     checkPositiveInteger(n);
     let a = 1;
     let b = 1;
@@ -142,8 +142,8 @@ function checkMatrix(array) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    checkNumber(n);
-    checkNumber(targetNs);
+    checkNumberInteger(n);
+    checkNumberInteger(targetNs);
     checkSystem(targetNs);
 
     return n.toString(targetNs);
