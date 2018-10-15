@@ -104,8 +104,8 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix[0])) {
-        throw new TypeError('not this');
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
     }
     let m = matrix.length;
     let n = matrix[0].length;
@@ -147,11 +147,8 @@ function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
         throw new TypeError('');
     }
-    if (/8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber)) {
-        return true;
-    }
 
-    return false;
+    return Boolean(/8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber));
 }
 
 /**
