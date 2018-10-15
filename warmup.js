@@ -27,17 +27,12 @@ function centuryByYearProblem(year) {
         throw new TypeError('year must be a number');
     }
     if (year < 1) {
-        throw new RangeError('year must be > 1');
+        throw new RangeError('year must be > 0');
     }
 
     const yearsInCentury = 100;
-    const result = year / yearsInCentury;
 
-    if (Number.isInteger(result)) {
-        return result;
-    }
-
-    return Math.trunc(result) + 1;
+    return Math.ceil(year / yearsInCentury);
 }
 
 /**
