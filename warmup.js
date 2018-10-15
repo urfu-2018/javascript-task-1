@@ -171,7 +171,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const checkWinArr = [];
     for (let i = 0; i < field.length; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
@@ -180,10 +179,11 @@ function ticTacToeProblem(field) {
             return field[0][i];
         }
     }
-    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2])
-        || (field[0][2] === field [1][1] && field[1][1] === field[2][0])){
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         return field[0][0];
     }
+
     return 'draw';
 }
 
