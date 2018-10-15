@@ -11,6 +11,7 @@ function abProblem(a, b) {
     if (isNaN(a) || isNaN(b)) {
         throw new TypeError();
     }
+    
     return a + b;
     // Ваше решение
 }
@@ -36,9 +37,10 @@ function centuryByYearProblem(year) {
         let res;
         if (secondPart1 === 0 && secondPart2 === 0) {
             res = num;
-        } else { 
+        } else {
             res = num + 1;
         }
+        
         return res;
     }
 }
@@ -59,7 +61,8 @@ function colorsProblem(hexColor) {
         const r = parseInt(result[1], 16);
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
-        const answer = '(' + r + ',' + g +',' + b + ')';
+        const answer = '(' + r + ',' + g + ',' + b + ')';
+        
         return answer;
     }
 }
@@ -105,6 +108,7 @@ function matrixProblem(matrix) {
             matrixT[i][j] = matrix[j][i];
         }
     }
+    
     return matrixT;
 }
 
@@ -135,7 +139,8 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     // Ваше решение
     const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
-    return res === null;
+    
+    return res !== null;
 }
 
 /**
@@ -154,11 +159,12 @@ function smilesProblem(text) {
         if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
             countOfSmiles++;
         } else if (text[i] === ':' && text[i + 1] === '-' && text[i] === ')') {
-            countOfSmiles++; 
+            countOfSmiles++;
         } else {
             continue;
         }
     }
+    
     return countOfSmiles;
 }
 
@@ -170,6 +176,7 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    let result = 'draw';
     if (field[0][0] === 'o' && field[0][1] === 'o' && field[0][2] === 'o' ||
     field[1][0] === 'o' && field[1][1] === 'o' && field[1][2] === 'o' ||
     field[2][0] === 'o' && field[2][1] === 'o' && field[2][2] === 'o' ||
@@ -178,7 +185,7 @@ function ticTacToeProblem(field) {
     field[0][2] === 'o' && field[1][2] === 'o' && field[2][2] === 'o' ||
     field[0][0] === 'o' && field[1][1] === 'o' && field[2][2] === 'o' ||
     field[2][0] === 'o' && field[1][1] === 'o' && field[0][2] === 'o') {
-        return 'o';
+        result = 'o';
     } else if (field[0][0] === 'x' && field[0][1] === 'x' && field[0][2] === 'x' ||
     field[1][0] === 'x' && field[1][1] === 'x' && field[1][2] === 'x' ||
     field[2][0] === 'x' && field[2][1] === 'x' && field[2][2] === 'x' ||
@@ -187,10 +194,12 @@ function ticTacToeProblem(field) {
     field[0][2] === 'x' && field[1][2] === 'x' && field[2][2] === 'x' ||
     field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x' ||
     field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x') {
-        return 'x';
-    } else { 
-        return 'draw';
+        result = 'x';
+    } else {
+        result = 'draw';
     }
+
+    return result;
 }
 
 module.exports = {
