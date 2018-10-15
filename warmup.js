@@ -81,7 +81,14 @@ function fibonacciProblem(n) {
         return 1;
     }
 
-    return (n - 1) + (n - 2);
+    let current = 1;
+    let preCurrent = 0;
+    for (let i = 0; i < n; i++) {
+        current += preCurrent;
+        preCurrent = current - preCurrent;
+    }
+
+    return preCurrent;
 }
 
 /**
