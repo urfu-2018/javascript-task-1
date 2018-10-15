@@ -81,11 +81,14 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    function fib(d) {
-        return (d === 1 || d === 2) ? 1 : fib(d - 1) + fib(d - 2);
+    var a = 1;
+    var b = 1;
+    for (var i = 2; i < n; i++) {
+        b += a;
+        a = b - a;
     }
 
-    return fib(n);
+    return b;
 }
 
 /**
