@@ -27,9 +27,13 @@ function centuryByYearProblem(year) {
     }
     if (year < 0) {
         throw RangeError;
-    } else if (typeof(year) === 'number') {
-        return Math.floor(year / 100) + 1;
     }
+    let numberOfCenturies = year / 100;
+    if (year % 100 === 0) {
+        return numberOfCenturies;
+    }
+
+    return Math.floor(numberOfCenturies) + 1;
 }
 
 /**
@@ -65,20 +69,9 @@ function fibonacciProblem(n) {
     } else if (typeof(n) !== 'number') {
         throw TypeError;
     }
-    let firstAddend = 0;
-    let secondAddend = 1;
-    let auxiliaryNumber;
-    if (n > 0) {
-        for (let i = 1; i < n; i++) {
-            auxiliaryNumber = firstAddend + secondAddend;
-            firstAddend = secondAddend;
-            secondAddend = auxiliaryNumber;
-        }
+    let goldenRatio = 1.618039988;
 
-        return secondAddend;
-    }
-
-    return 0;
+    return ((Math.pow(goldenRatio, n) - Math.pow(1 - goldenRatio, n)) / Math.sqrt(5)).toFixed();
 }
 
 /**
