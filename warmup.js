@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number' ||
+        !Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('Один из переданных аргументов не является числом');
     }
 
@@ -25,7 +26,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
-    } else if (year < 0) {
+    } else if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('В качестве аргумента передано отрицательное число');
     } else {
 
@@ -87,16 +88,21 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
-    } else if (matrix.length === 1 && matrix[0].length === 0) {
-
-        return [[]];
     }
-    const newMatrix = Array(matrix[0].length);
-    for (let i = 0; i < matrix.length; i++) {
-        newMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix.length; j++) {
+
+    const m = matrix.length;
+    const n = matrix[0].length;
+
+    if (!matrix.every(array => array.length === n)) {
+        throw new TypeError('В качестве аргумента передан не двумерный массив');
+    }
+
+    const newMatrix = Array(n);
+    for (let i = 0; i < m; i++) {
+        newMatrix[i] = new Array(m);
+        for (let j = 0; j < m; j++) {
             newMatrix[i][j] = matrix[j][i];
         }
     }
