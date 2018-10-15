@@ -115,7 +115,7 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' ) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
