@@ -187,12 +187,11 @@ function findDiagonalWinner(field) {
 }
 
 function findLineWinner(field) {
+
     for (const line of field) {
         if (line[0] === line[1] && line[1] === line[2]) {
             return line[0];
         }
-
-        return false;
     }
 }
 
