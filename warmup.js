@@ -51,24 +51,23 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
-        throw new TypeError();
-    }
+    checkString(hexColor);
+    checkHex(hexColor);
 
-    if (!/#[A-Fa-f0-9]{6}/.test(hexColor)) {
-        throw new RangeError();
-    }
-
-    const red = parseInt(hexColor.slice(1, 3), 16);
-    const green = parseInt(hexColor.slice(3, 5), 16);
-    const blue = parseInt(hexColor.slice(5, 7), 16);
-
-    return `(${red}, ${green}, ${blue})`;
+    return ('(' + parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
+        parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
+        parseInt((hexColor[5] + hexColor[6]), 16) + ')');
 }
 
 function checkString(input) {
     if (typeof input !== 'string') {
         throw new TypeError(`${input.toString()} is not a string`);
+    }
+}
+
+function checkHex(input) {
+    if (!/^#([0-9a-fA-F]{6})$/.test(input)) {
+        throw new RangeError(`${input.toString()} is not in range`);
     }
 }
 
@@ -80,11 +79,17 @@ function checkString(input) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    checkNumber(n);
-    checkPositiveInteger(n);
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError();
+    }
+
     let a = 1;
     let b = 1;
-    for (let i = 3; i <= n; i++) {
+    for (let i = 2; i < n; i++) {
         let c = a + b;
         a = b;
         b = c;
