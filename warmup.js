@@ -43,12 +43,6 @@ function centuryByYearProblem(year) {
     return Math.ceil(Number(year) / 100);
 }
 
-function checkPositive(input) {
-    if (input <= 0) {
-        throw new RangeError(`${input.toString()} is not a positive`);
-    }
-}
-
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
