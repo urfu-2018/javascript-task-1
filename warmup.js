@@ -24,7 +24,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
     if (year < 1) {
@@ -129,6 +129,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
     const regexp = new RegExp(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g);
 
     return (regexp.test(phoneNumber));
