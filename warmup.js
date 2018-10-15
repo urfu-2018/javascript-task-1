@@ -53,7 +53,7 @@ function colorsProblem(hexColor) {
     rgb[2] = parseInt(rgb[2], 16);
     rgb[3] = parseInt(rgb[3], 16);
 
-    return `(${rgb[1], rgb[2], rgb[3]})`;
+    return `(${rgb[1]}, ${rgb[2]}, ${rgb[3]})`;
 }
 
 /**
@@ -167,7 +167,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    
+
 }
 
 module.exports = {
