@@ -72,8 +72,8 @@ function fibonacciProblem(n) {
     }
     let prevNum = 1;
     let currentNum = 1;
-    for (let i = 3; i < n; ++i) {
-        let buff = prevNum;
+    for (let i = 3; i < n; i++) {
+        let buff = currentNum;
         currentNum += prevNum;
         prevNum = buff;
     }
@@ -145,7 +145,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(/(?::-\)|\(-:)/) || []).length;
+    return (text.match(/(?::-\)|\(-:)/g) || []).length;
 }
 
 /**
