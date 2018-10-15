@@ -8,9 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError();
-    }
+    checkInteger(a);
+    checkInteger(b);
 
     return a + b;
 }
@@ -36,7 +35,10 @@ function checkNumber(input) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    checkNumber(year);
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+
     if (year < 0) {
         throw new RangeError();
     }
