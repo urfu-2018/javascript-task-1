@@ -1,7 +1,7 @@
 'use strict';
 
 function isNotNum(number) {
-    return isNaN(parseFloat(number));
+    return typeof number !== 'number';
 }
 
 /**
