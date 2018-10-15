@@ -174,16 +174,27 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     checkString(text);
-    var a = text.split(':-)').join('~');
-    var b = a.split('(-:').join('~');
-    let count = 0;
-    for (let i = 0; i < b.length; i++) {
-        if (b[i] === '~') {
-            count++;
+    let smilesCount = 0;
+    for (let i = 0; i < text.length - 2; i++) {
+        let substr = text.substr(i, 3);
+        if (isSmileInSubstr(substr)) {
+            smilesCount++;
+            i += 2;
         }
     }
 
-    return count;
+    return smilesCount;
+}
+
+function isSmileInSubstr(substr) {
+    let smiles = [':-)', '(-:'];
+    for (let j = 0; j < smiles.length; j++) {
+        if (substr === smiles[j]) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
