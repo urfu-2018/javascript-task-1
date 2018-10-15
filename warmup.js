@@ -127,7 +127,7 @@ function checkMatrix(array) {
         throw new TypeError(`${array.toString()} is not a matrix`);
     }
     for (let i = 0; i < array.length; i++) {
-        if (!Array.isArray(array) || array[i].length !== array[0].length) {
+        if (!Array.isArray(array[i]) || array[i].length !== array[0].length) {
             throw new TypeError(`${array.toString()} is not a matrix`);
         }
     }
@@ -161,6 +161,7 @@ function checkSystem(input) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    checkString(phoneNumber);
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
