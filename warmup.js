@@ -161,7 +161,7 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError('not a string');
     } else {
-        return text.match(/(:-\)|\(-:)/g).length;
+        return text.match(/^(:-\)|\(-:)/g).length;
     }
 }
 
