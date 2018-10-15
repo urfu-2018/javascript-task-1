@@ -162,6 +162,7 @@ function checkSystem(input) {
  */
 function phoneProblem(phoneNumber) {
     checkString(phoneNumber);
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
