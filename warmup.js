@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
     if (!isFinite(n)) {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
     const arrFib = [];
@@ -163,6 +163,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof text !== 'string') {
+        throw new TypeError('Not string');
+    }
     const reg = /(:-\))|(\(-:)/g;
 
     return text.match(reg).length;
