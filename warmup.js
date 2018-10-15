@@ -91,7 +91,6 @@ function matrixProblem(matrix) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
-    const m = matrix.length;
     const n = matrix[0].length;
 
     if (!matrix.every(array => array.length === n)) {
