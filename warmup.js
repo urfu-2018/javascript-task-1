@@ -140,7 +140,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    let req = /8-800-\d{3}-\d{2}-\d{2}/;
+    let req = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
     return req.test(phoneNumber);
 }
