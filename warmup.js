@@ -95,15 +95,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.constructor !== Array || matrix[0].constructor !== Array) {
+
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
-    var m = matrix[0].length;
-    if (m === 0 || matrix.some(row => !(row instanceof Array) || row.length !== m)) {
-        throw new TypeError();
-    }
-    if (matrix.length === 0) {
-        throw new TypeError();
+
+    for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
