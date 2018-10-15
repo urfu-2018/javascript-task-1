@@ -44,15 +44,12 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string' || hexColor.length !== 7 || hexColor[0] !== '#') {
         throw new TypeError();
     }
-    function rangeCorrect(c) {
-        return c >= 0 && c < 256;
+    if (!(/^#[0-9,a-fA-F]{6}$/.test(hexColor))) {
+        throw new RangeError();
     }
     const r = parseInt(hexColor.substr(1, 2), 16);
     const g = parseInt(hexColor.substr(3, 2), 16);
     const b = parseInt(hexColor.substr(5, 2), 16);
-    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b)) {
-        throw new RangeError();
-    }
 
     return `(${r}, ${g}, ${b})`;
 }
@@ -116,7 +113,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof (n) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
 
