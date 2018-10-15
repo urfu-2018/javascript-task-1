@@ -99,7 +99,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.constructor !== Array || matrix[0].constructor !== Array) {
+    if (!Array.isArray(matrix) ||
+        !Array.isArray(matrix[0])) {
         throw new TypeError('В функцию передаётся не двумерный массив');
     }
     const matrixTranspon = [];
@@ -197,7 +198,18 @@ function ticTacToeProblem(field) {
 }
 
 function checkWin(winners) {
-    return winners.length === 1 ? winners[0] : 'draw';
+    if (winners.indexOf('o') !== -1 && winners.indexOf('x') !== -1) {
+        return 'draw';
+    }
+    if (winners.indexOf('o') !== -1) {
+        return 'o';
+    }
+    if (winners.indexOf('x') !== -1) {
+        return 'x';
+    }
+    if (winners.indexOf('o') === -1 && winners.indexOf('x') === -1) {
+        return 'draw';
+    }
 }
 
 module.exports = {
