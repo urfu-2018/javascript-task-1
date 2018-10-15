@@ -58,9 +58,9 @@ function colorsProblem(hexColor) {
         throw new RangeError('Недопустимое значение цвета');
     }
 
-    const red = parseInt(hexColor.substr(1,2), 16);
-    const green = parseInt(hexColor.substr(3,2), 16);
-    const blue = parseInt(hexColor.substr(5,2), 16);
+    const red = parseInt(hexColor.substr(1, 2), 16);
+    const green = parseInt(hexColor.substr(3, 2), 16);
+    const blue = parseInt(hexColor.substr(5, 2), 16);
 
     return ('(' + red + ', ' + green + ', ' + blue + ')');
     // Ваше решение
