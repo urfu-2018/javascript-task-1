@@ -8,12 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
-    if (Number.isNaN(a) || Number.isNaN(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw TypeError;
-    } else {
-        return a + b;
     }
+
+    return a + b;
 }
 
 /**
@@ -29,9 +28,9 @@ function centuryByYearProblem(year) {
         throw TypeError;
     } else if (year < 1) {
         throw RangeError;
-    } else {
-        return Math.ceil(year / 100);
     }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -73,7 +72,7 @@ function fibonacciProblem(n) {
     const part = ((1 + Math.sqrt(5)) / 2);
     const sqrtOfFive = Math.sqrt(5);
     if (!isNaN(n)) {
-        if (!Number.isInteger(n)) {
+        if (!Number.isInteger(n) || n < 1) {
             throw RangeError;
         }
 
