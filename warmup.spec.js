@@ -92,9 +92,6 @@ describe('Number System Problem', () => {
     it('Должна вернуть "101"', () => {
         assert.strictEqual(numberSystemProblem(5, 2), '101');
     });
-    it('Должна вернуть "101"', () => {
-        assert.strictEqual(numberSystemProblem(5, '2'), '101');
-    });
 });
 
 describe('Phone problem', () => {
@@ -108,7 +105,7 @@ describe('Phone problem', () => {
         assert.strictEqual(phoneProblem('8-000-3-4-'), false);
     });
     it('Для "8-800-333-51-73" должна вернуть `true`', () => {
-        assert.strictEqual(phoneProblem('8-505-909-33-22'), false);
+        assert.strictEqual(phoneProblem('khfd8-505-909-33-22jdsghk'), false);
     });
     it('Для "8-800-333-51-73" должна вернуть `true`', () => {
         assert.strictEqual(phoneProblem('8-804-575-51-73'), false);

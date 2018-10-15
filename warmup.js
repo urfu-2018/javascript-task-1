@@ -97,8 +97,10 @@ function fibonacciProblem(n) {
 function isNotTwoDimensial(matrix) {
     let firstLength = matrix[0].length;
     for (let i = 0; i < matrix.length; i++) {
-        if (firstLength !== matrix[i].length || matrix[i].some(elem=> Array.isArray(elem)) ||
-            matrix[i].length === 0) {
+        if (!Array.isArray(matrix[i]) ||
+            firstLength !== matrix[i].length ||
+            matrix[i].length === 0 ||
+            matrix[i].some(elem=> Array.isArray(elem))) {
             return true;
         }
     }
@@ -129,15 +131,16 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    let _n = parseInt(n);
-    let _targetNs = parseInt(targetNs);
-    if (isNaN(_n) || isNaN(_targetNs)) {
+    if (typeof n !== 'number' ||
+        !Number.isInteger(n) ||
+        typeof targetNs !== 'number') {
         throw new TypeError();
-    } else if (_targetNs < 2 || _targetNs > 36) {
+    }
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
-    return _n.toString(_targetNs);
+    return n.toString(targetNs);
 }
 
 /**
