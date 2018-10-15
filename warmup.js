@@ -27,20 +27,18 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNotNum(year)) {
+    if (isNotNum(year) || !Number.isInteger(year)) {
         throw new TypeError('В качестве года передано не число');
     }
     if (year < 0) {
         throw new RangeError('Год – отрицательное значение');
     }
-    if (Number.isInteger(year)) {
-        const century = Math.floor(year / 100);
-        if (year % 100) {
-            return century + 1;
-        }
-
-        return century;
+    const century = Math.floor(year / 100);
+    if (year % 100) {
+        return century + 1;
     }
+
+    return century;
 }
 
 /**
