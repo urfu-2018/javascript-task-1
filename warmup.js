@@ -36,13 +36,13 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) === 'string' && ((hexColor.length) = 6)) {
+    if (typeof(hexColor) === 'string') {
         const clearHex = hexColor.substring(1, 7);
         const r = parseInt(clearHex.substring(0, 2), 16);
         const g = parseInt(clearHex.substring(2, 4), 16);
         const b = parseInt(clearHex.substring(4, 6), 16);
         if ((r, g, b) <= 255 && (r, g, b) >= 0) {
-            return (r + ',' + g + ',' + b);
+            return ('(' + r + ', ' + g + ', ' + b + ')');
         }
         throw RangeError;
     }
@@ -114,17 +114,8 @@ function numberSystemProblem(n, targetNs) {
         throw TypeError;
     }
     if (targetNs <= 36 || targetNs >= 2) {
-        const transfer = [];
-        const i = 1;
-        let rem = n / targetNs;
-        transfer[0] = n % targetNs;
-        while (rem !== 0) {
-            rem /= targetNs;
-            transfer[i] = rem % targetNs;
-            i++;
-        }
 
-        return (toString((transfer.reverse()).join()));
+        return n.toString(targetNs);
     }
     throw RangeError;
 }
@@ -135,23 +126,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (phoneNumber.substring(0, 1) === '8' &&
-    phoneNumber.substring(1, 2) === '–' &&
-    phoneNumber.substring(2, 5) === '800' &&
-    phoneNumber.substring(5, 6) === '–' &&
-    (phoneNumber.substring(6, 9)).length === 3 &&
-    typeof((phoneNumber.substring(6, 9))) === 'number' &&
-    phoneNumber.substring(9, 10) === '–' &&
-    typeof((phoneNumber.substring(10, 12))) === 'number' &&
-    (phoneNumber.substring(10, 12)).length === 2 &&
-    phoneNumber.substring(12, 13) === '–' &&
-    typeof((phoneNumber.substring(13, 15))) === 'number' &&
-    (phoneNumber.substring(13, 15)).length === 2) {
+    const regExp = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
-        return true;
-    }
-
-    return false;
+    return (regExp.test(phoneNumber));
 }
 
 /**
@@ -165,8 +142,8 @@ function smilesProblem(text) {
         throw TypeError;
     }
     let numofSmile = 0;
-    const currentPos = 0;
-    const allSmile = 0;
+    let currentPos = 0;
+    let allSmile = 0;
     while (numofSmile !== -1) {
         numofSmile = text.indexOf('(-:' || ':-)', currentPos);
         currentPos = numofSmile + 1;
@@ -183,7 +160,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function checkLineonField(str) {
-    if (str[0] === str[1] === str[2]) {
+    if (str[0] === str[1] && str[1] === str[2]) {
         return str[0];
     }
 }
@@ -212,10 +189,10 @@ function ticTacToeProblem(field) {
     if (checkFieldonVertical(field)) {
         return checkFieldonVertical(field);
     }
-    if (field[0][0] === field[1][1] === field[2][2]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[1][1];
     }
-    if (field[0][2] === field[1][1] === field[2][0]) {
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[1][1];
     }
 
