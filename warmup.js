@@ -43,15 +43,17 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('В качестве аргумента передана не строка');
-    } else if (! /^#[a-fA-F0-9]{6}$/.test(hexColor)) {
-        throw new RangeError('В качестве аргумента передано недопустимое значение');
-    } else {
-        const red = parseInt(hexColor.slice(1, 3), 16);
-        const green = parseInt(hexColor.slice(3, 5), 16);
-        const blue = parseInt(hexColor.slice(5, 7), 16);
-
-        return `(${red}, ${green}, ${blue})`;
     }
+
+    if (! /^#[a-fA-F0-9]{6}$/.test(hexColor)) {
+        throw new RangeError('В качестве аргумента передано недопустимое значение');
+    }
+
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -129,7 +131,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('В качестве аргумента передана не строка');
     }
 
-    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g.test(phoneNumber);
 }
 
 /**
@@ -155,8 +157,8 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
 
-    if (field[0][0] === field[1][1] && field[2][2] === field[1][1] ||
-         field[2][0] === field[1][1] && field[0][2] === field[1][1]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
+         field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
 
         return field[1][1];
     }
