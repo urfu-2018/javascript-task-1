@@ -93,9 +93,7 @@ function matrixProblem(matrix) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
-    const n = matrix[0].length;
-
-    if (!matrix.every(array => array.length === n)) {
+    if (matrix.length === 0 || !matrix.every(array => array.length === matrix[0].length)) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
@@ -111,7 +109,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('В качестве аргументов переданы не числа');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('В качестве аргумента передана неверная система счисления');
