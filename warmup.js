@@ -161,15 +161,12 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError('В  качестве аргумента передаётся не строка');
     }
-    let arr = text.split(' ');
-    let sum = 0;
-    arr.forEach(element => {
-        if (element === ':-)' || element === '(-:') {
-            sum++;
-        }
-    });
+    let regSmile = text.match(/(:-\)|\(-:)/g);
+    if (regSmile === null) {
+        return 0;
+    }
 
-    return sum;
+    return regSmile.length;
 }
 
 /**
