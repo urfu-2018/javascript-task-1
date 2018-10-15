@@ -83,7 +83,7 @@ function checkHex(input) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    checkInteger(n);
+    checkNumber(n);
     checkPositiveInteger(n);
     let a = 1;
     let b = 1;
@@ -112,9 +112,9 @@ function matrixProblem(matrix) {
     checkMatrix(matrix);
     var result = [];
     for (let i = 0; i < matrix[0].length; i++) {
-        result[i] = [];
+        result.push([]);
         for (let j = 0; j < matrix.length; j++) {
-            result[i][j] = matrix[j][i];
+            result[i].push(matrix[j][i]);
         }
     }
 
