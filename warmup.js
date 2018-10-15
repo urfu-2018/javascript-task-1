@@ -29,7 +29,7 @@ function centuryByYearProblem(year) {
     if (isNaN(numberYear)) {
         throw new TypeError();
     }
-    if (numberYear < 0) {
+    if (numberYear < 0 || year % 1 !== 0) {
         throw new RangeError();
     }
 
