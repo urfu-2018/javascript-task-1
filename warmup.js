@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof(b) !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
@@ -29,6 +29,10 @@ function centuryByYearProblem(year) {
     }
     if (year < 0) {
         throw new RangeError();
+    }
+    let startYear = year % 100;
+    if (startYear === 0) {
+        return Math.floor(year / 100);
     }
 
     return Math.floor(year / 100) + 1;
@@ -111,7 +115,7 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' ) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -141,7 +145,7 @@ function phoneProblem(phoneNumber) {
  */
 
 function smilesProblem(text) {
-    if (typeof(text) !== 'string') {
+    if (typeof text !== 'string') {
         throw new TypeError();
     }
     let smileMatch = text.match(/(:-\)|\(-:)/g);
