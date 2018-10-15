@@ -54,7 +54,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!validateStr(hexColor, /^#[0-9a-fA-F]{6}$/gi)) {
+    if (!validateStr(hexColor, /^#[0-9a-fA-F]{6}$/i)) {
         throw new RangeError();
     }
     hexColor = hexColor.substr(1);
@@ -95,12 +95,9 @@ function fibonacciProblem(n) {
 }
 
 function isNotTwoDimensial(matrix) {
-    let firstLength = matrix[0].length;
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i]) ||
-            firstLength !== matrix[i].length ||
-            matrix[i].length === 0 ||
-            matrix[i].some(elem=> Array.isArray(elem))) {
+            matrix[0].length !== matrix[i].length) {
             return true;
         }
     }
@@ -149,7 +146,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return validateStr(phoneNumber, /8-800-\d{3}-\d{2}-\d{2}/gi);
+    return validateStr(phoneNumber, /^8-800-\d{3}-\d{2}-\d{2}$/i);
 }
 
 /**
