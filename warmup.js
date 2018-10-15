@@ -89,7 +89,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0]) || !matrix.every(Array.isArray)) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
@@ -155,8 +155,12 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
 
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
-         field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+
+        return field[1][1];
+    }
+
+    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
 
         return field[1][1];
     }
