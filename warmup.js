@@ -8,11 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNaN(a) && !isNaN(b)) {
-        return a + b;
-
-    } else {
+    if (isNaN(a) || isNaN(b)) {
         return new TypeError();
+    } else {
+        return a + b;
     }
     // Ваше решение
 }
@@ -37,7 +36,9 @@ function centuryByYearProblem(year) {
         const secondPart2 = Number.parseInt(yearStr[yearStr.length - 2]);
         if (secondPart1 === 0 && secondPart2 === 0) {
             return num;
-        } else return num + 1;
+        } else { 
+            return num + 1;
+        }
     }
 }
 
@@ -51,13 +52,12 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     // Ваше решение
     if (typeof hexColor !== String) {
-        throw new TypeError ("Переданный параметр не является строкой");
+        throw new TypeError ('Переданный параметр не является строкой');
     } else {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
         const r = parseInt(result[1], 16);
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
-        
         return '(' + r + ',' + g +',' + b + ')';
     }
 }
@@ -75,13 +75,10 @@ function fibonacciProblem(n) {
         throw new TypeError ('Переданный параметр не является числом');
     } else if (n % 2 !== 0 || n <= 0) {
         throw new RangeError('n не является целым положительным числом');
+    } else if (n === 1 || n === 2) {
+        return 1;
     } else {
-        if (n === 1 || n === 2) {
-            
-            return 1;
-        } else {
-            return fibonacciProblem(n - 1) + fibonacciProblem(n - 2); 
-        }
+        return fibonacciProblem(n - 1) + fibonacciProblem(n - 2); 
     }
 }
 
@@ -93,19 +90,20 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    try {
-        const n = matrix.length;
-        const m = matrix[0].length;
-        let matrixT = [m][n];
-        for (let i = 0; i < m; i++) {
-            for (let j = 0; j < n; j++) {
-                matrixT[i][j] = matrix[j][i];
-            }
-        }       
-        return matrixT;
-    } catch (TypeError) {
-        throw new TypeError ('в функцию передан не двумерный массив');
+    const n = matrix.length;
+    const m = matrix[0].length;
+    for (let j = 0; j < n; j++) {
+        if (matrix[j].length !== m) {
+            throw new TypeError("на входе не двумерный массив!");
+        }
     }
+    let matrixT = [m][n];
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            matrixT[i][j] = matrix[j][i];
+        }
+    }       
+    return matrixT;
 }
 
 /**
@@ -135,7 +133,6 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     // Ваше решение
     const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
-    
     return res === null;
 }
 
@@ -149,17 +146,18 @@ function smilesProblem(text) {
     // Ваше решение
     if (typeof text !== String) {
         throw new TypeError ('Переданный параметр не является строкой');
-    } else {
-        let countOfSmiles = 0;
-        for (let i = 0; i < text.length - 3; i++) {
-            if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
-                countOfSmiles++;
-            } else if (text[i] === ':' && text[i + 1] === '-' && text[i] === ')') {
-                countOfSmiles++; 
-            } else continue;
-        }
-        return countOfSmiles;
     }
+    let countOfSmiles = 0;
+    for (let i = 0; i < text.length - 3; i++) {
+        if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
+            countOfSmiles++;
+        } else if (text[i] === ':' && text[i + 1] === '-' && text[i] === ')') {
+            countOfSmiles++; 
+        } else { 
+            continue;
+        }
+    }
+    return countOfSmiles;
 }
 
 /**
@@ -186,7 +184,7 @@ function ticTacToeProblem(field) {
     field[0][1] === 'x' && field[1][1] === 'x' && field[2][1] === 'x' ||
     field[0][2] === 'x' && field[1][2] === 'x' && field[2][2] === 'x' ||
     field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x' ||
-    field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x')  {
+    field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x') {
         return 'x';
     } else { 
         return 'draw'
