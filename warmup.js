@@ -139,7 +139,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        return new TypeError();
+        throw new TypeError();
     }
     let matchArray = text.match(/(:-\)|\(-:)/g);
     if (matchArray !== null) {
