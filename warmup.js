@@ -33,7 +33,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('type of year is incorrect');
-    } else if (year < 0) {
+    } else if (year < 1) {
         throw new RangeError('');
     } else {
         return parseInt(year / 100 + 1, 10);
@@ -104,8 +104,8 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError();
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+        throw new TypeError('nope');
     }
     let m = matrix.length;
     let n = matrix[0].length;
@@ -129,8 +129,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError('type is invalid');
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError('Arguments have invalid type');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
     } else {
