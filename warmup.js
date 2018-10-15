@@ -9,11 +9,11 @@
  */
 function abProblem(a, b) {
     if (!isNaN(a) && !isNaN(b)) {
-        const result = a+b;
+        return result = a+b;
+
     } else {
-        throw new TypeError();
+        return new TypeError(); 
     }
-    return result;
     // Ваше решение
 }
 
