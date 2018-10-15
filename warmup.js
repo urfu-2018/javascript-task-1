@@ -174,27 +174,16 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     checkString(text);
-    let smilesCount = 0;
-    for (let i = 0; i < text.length - 2; i++) {
-        let substr = text.substr(i, 3);
-        if (isSmileInSubstr(substr)) {
-            smilesCount++;
-            i += 2;
+    var a = text.split(':-)').join('~');
+    var b = a.split('(-:').join('~');
+    let count = 0;
+    for (let i = 0; i < b.length; i++) {
+        if (b[i] === '~') {
+            count++;
         }
     }
 
-    return smilesCount;
-}
-
-function isSmileInSubstr(substr) {
-    let smiles = [':-)', '(-:'];
-    for (let j = 0; j < smiles.length; j++) {
-        if (substr === smiles[j]) {
-            return true;
-        }
-    }
-
-    return false;
+    return count;
 }
 
 /**
@@ -204,22 +193,68 @@ function isSmileInSubstr(substr) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < field.length; i++) {
-        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
-            return field[i][0];
-        }
-        if (field[0][i] === field[1][i] && field[0][i] === field[2][i]) {
-            return field[0][i];
-        }
+    let winLines = field.concat(getAllColumnsFromField(field));
+    winLines.push(getDiagonalFromField(field, true));
+    winLines.push(getDiagonalFromField(field, false));
+    if (isOneOfTheLineContainsOnlySymbol('x', winLines)) {
+        return 'x';
     }
-    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
-        return field[0][0];
-    }
-    if (field[2][0] === field[1][1] && field[2][0] === field[0][2]) {
-        return field[2][0];
+    if (isOneOfTheLineContainsOnlySymbol('o', winLines)) {
+        return 'o';
     }
 
     return 'draw';
+}
+
+function isOneOfTheLineContainsOnlySymbol(symbol, winLines) {
+    for (let i = 0; i < winLines.length; i++) {
+        if (isLineContainsOnlySymbol(symbol, winLines[i])) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function isLineContainsOnlySymbol(symbol, line) {
+    for (let j = 0; j < line.length; j++) {
+        if (line[j] !== symbol) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function getAllColumnsFromField(field) {
+    let result = [];
+    for (let i = 0; i < field[0].length; i++) {
+        result.push(getColumnFromField(field, i));
+    }
+
+    return result;
+}
+
+function getColumnFromField(field, columnIndex) {
+    let column = [];
+    for (let i = 0; i < field.length; i++) {
+        column.push(field[i][columnIndex]);
+    }
+
+    return column;
+}
+
+function getDiagonalFromField(field, isMainDiagonal) {
+    let diagonal = [];
+    for (let i = 0; i < field.length; i++) {
+        if (isMainDiagonal) {
+            diagonal.push(field[i][i]);
+        } else {
+            diagonal.push(field[i][field.length - i - 1]);
+        }
+    }
+
+    return diagonal;
 }
 
 module.exports = {
