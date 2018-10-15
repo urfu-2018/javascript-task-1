@@ -79,23 +79,23 @@ function checkHex(input) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
-        throw new TypeError();
-    }
-
-    if (n <= 0 || !Number.isInteger(n)) {
-        throw new RangeError();
-    }
-
+    checkNumber(n);
+    checkPositiveInteger(n);
     let a = 1;
     let b = 1;
-    for (let i = 2; i < n; i++) {
+    for (let i = 3; i <= n; i++) {
         let c = a + b;
         a = b;
         b = c;
     }
 
     return b;
+}
+
+function checkPositiveInteger(input) {
+    if (input < 1 || !Number.isInteger(input)) {
+        throw new RangeError(`${input.toString()} is not a integer`);
+    }
 }
 
 /**
@@ -105,27 +105,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    checkMatrix(matrix);
-    var result = [];
-    for (let i = 0; i < matrix[0].length; i++) {
-        result.push([]);
-        for (let j = 0; j < matrix.length; j++) {
-            result[i].push(matrix[j][i]);
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+        throw new TypeError();
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
         }
     }
 
-    return result;
-}
-
-function checkMatrix(array) {
-    if (!Array.isArray(array) || array.length === 0) {
-        throw new TypeError(`${array.toString()} is not a matrix`);
-    }
-    for (let i = 0; i < array.length; i++) {
-        if (!Array.isArray(array[i]) || array[i].length !== array[0].length) {
-            throw new TypeError(`${array.toString()} is not a matrix`);
-        }
-    }
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
