@@ -163,29 +163,16 @@ function ticTacToeProblem(field) {
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[1][1];
     }
-    let winner;
-    for (let i = 0; i < 3; i++) {
-        winner = check(field[i][0], field[i][1], field[i][2]);
-        if (typeof winner !== 'undefined') {
-            return winner;
+    for (let index = 0; index < 3; index++) {
+        if (field[0][index] === field[1][index] && field[1][index] === field[2][index]) {
+            return field[1][index];
         }
-        winner = check(field[0][i], field[1][i], field[2][i]);
-        if (typeof winner !== 'undefined') {
-            return winner;
+        if (field[index][0] === field[index][1] && field[index][1] === field[index][2]) {
+            return field[index][1];
         }
     }
 
     return 'draw';
-}
-
-function check(first, second, third) {
-    if (first === second && second === third) {
-        if (typeof first !== 'undefined') {
-            return first;
-        }
-    }
-
-    return null;
 }
 
 module.exports = {
