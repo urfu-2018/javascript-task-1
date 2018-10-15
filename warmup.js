@@ -108,7 +108,7 @@ function checkPositiveInteger(input) {
  */
 function matrixProblem(matrix) {
     checkMatrix(matrix);
-    var result = []
+    var result = [];
     for (let i = 0; i < matrix[0].length; i++) {
         result[i] = [];
         for (let j = 0; j < matrix.length; j++) {
@@ -192,8 +192,6 @@ function ticTacToeProblem(field) {
         if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
             return field[i][0];
         }
-    }
-    for (let i = 0; i < field.length; i++) {
         if (field[0][i] === field[1][i] && field[0][i] === field[2][i]) {
             return field[0][i];
         }
