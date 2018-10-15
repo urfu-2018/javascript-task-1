@@ -35,10 +35,7 @@ function checkNumber(input) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
-        throw new TypeError();
-    }
-
+    checkNumber(year);
     if (year < 0) {
         throw new RangeError();
     }
@@ -54,23 +51,24 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    checkString(hexColor);
-    checkHex(hexColor);
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
 
-    return ('(' + parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
-        parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
-        parseInt((hexColor[5] + hexColor[6]), 16) + ')');
+    if (!/#[A-Fa-f0-9]{6}/.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${red}, ${green}, ${blue})`;
 }
 
 function checkString(input) {
     if (typeof input !== 'string') {
         throw new TypeError(`${input.toString()} is not a string`);
-    }
-}
-
-function checkHex(input) {
-    if (!/^#([0-9a-fA-F]{6})$/.test(input)) {
-        throw new RangeError(`${input.toString()} is not in range`);
     }
 }
 
