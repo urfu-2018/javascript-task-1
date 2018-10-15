@@ -16,7 +16,7 @@ function rangeError() {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         typeError();
     }
 
@@ -31,16 +31,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         typeError();
     }
-    if (year % 1 === 0) {
-        if (year >= 0) {
-            return Math.ceil(year / 100);
-        }
+    if (year < 0) {
         rangeError();
     }
-    typeError();
+
+    return Math.ceil(year / 100);
 }
 
 /**
