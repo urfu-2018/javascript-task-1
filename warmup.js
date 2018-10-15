@@ -122,6 +122,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     const regexpPhone = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
     return regexpPhone.test(phoneNumber);
@@ -170,35 +174,36 @@ function ticTacToeProblem(field) {
         return win;
     }
 
+
+    function checkWinnerDiagonal(fieldMatrix) {
+        if (fieldMatrix[0][0] === fieldMatrix[1][1] && fieldMatrix[0][0] === fieldMatrix[2][2]) {
+            return fieldMatrix[0][0];
+        }
+        if (fieldMatrix[0][2] === fieldMatrix[1][1] &&
+                fieldMatrix[0][2] === fieldMatrix[2][0]) {
+            return fieldMatrix[0][2];
+        }
+
+        return false;
+    }
+
+    function checkWinner(fieldMatrix) {
+        for (let i = 0; i < fieldMatrix.length; i++) {
+            if (oneCharacterInRow(fieldMatrix[i])) {
+                return fieldMatrix[i][0];
+            }
+        }
+
+        return false;
+    }
+
+    function oneCharacterInRow(row) {
+        return new Set(row).size === 1;
+    }
+
     return 'draw';
 }
 
-
-function checkWinnerDiagonal(fieldMatrix) {
-    if (fieldMatrix[0][0] === fieldMatrix[1][1] && fieldMatrix[0][0] === fieldMatrix[2][2]) {
-        return fieldMatrix[0][0];
-    }
-    if (fieldMatrix[0][2] === fieldMatrix[1][1] &&
-            fieldMatrix[0][2] === fieldMatrix[2][0]) {
-        return fieldMatrix[0][2];
-    }
-
-    return false;
-}
-
-function checkWinner(fieldMatrix) {
-    for (let i = 0; i < fieldMatrix.length; i++) {
-        if (oneCharacterInRow(fieldMatrix[i])) {
-            return fieldMatrix[i][0];
-        }
-    }
-
-    return false;
-}
-
-function oneCharacterInRow(row) {
-    return new Set(row).size === 1;
-}
 
 module.exports = {
     abProblem,
