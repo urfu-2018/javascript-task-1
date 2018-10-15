@@ -102,11 +102,7 @@ function matrixProblem(matrix) {
         }
     });
 
-    matrix.forEach(element => {
-        if (Array.isArray(element)) {
-            throw new TypeError('В функцию передаётся не двумерный массив');
-        }
-    });
+
     let tMatrix = [];
     for (let i = 0; i < columns; i++) {
         tMatrix.push([]);
