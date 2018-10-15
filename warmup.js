@@ -95,11 +95,14 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    let res = [];
+    let res = Array(matrix[0].length);
+
+    for (let i = 0; i < res.length; ++i) {
+        res[i] = new Array(matrix[0].length);
+    }
     for (let i = 0; i < matrix[0].length; ++i) {
-        res.push([]);
         for (let j = 0; j < matrix[0].length; ++j) {
-            res[i].push(matrix[j][i]);
+            res[i][j] = matrix[j][i];
         }
     }
 
