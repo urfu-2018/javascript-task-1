@@ -177,16 +177,19 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
-    let winner = 'o';
-    let fDiagonal = field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x';
-    let sDiagonal = field[0][2] === 'x' && field[1][1] === 'x' && field[2][0] === 'x';
+    let winner = 'draw';
+    let fDiagonal = field[0][0] === field[1][1] && field[1][1] === field[2][2];
+    let sDiagonal = field[0][2] === field[1][1] && field[1][1] === field[2][0];
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] === 'x' && field[i][1] === 'x' && field[i][2] === 'x') {
-            winner = 'x';
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            winner = field[i][0];
         }
-        if (fDiagonal || sDiagonal) {
-            winner = 'x';
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            winner = field[0][i];
         }
+    }
+    if (fDiagonal || sDiagonal) {
+        winner = field[1][1];
     }
 
     return winner;
