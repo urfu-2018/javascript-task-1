@@ -77,7 +77,7 @@ function transformHexToRGB(numb, a, b) {
 function fibonacciProblem(n) {
     if (!isNumber(n)) {
         throw new TypeError('not a number');
-    } else if (/^\d+$/.test(n) !== true) {
+    } else if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('incorrect');
     } else {
         return fibNumb(n);
