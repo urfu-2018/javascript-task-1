@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return (a + b);
+    return a + b;
 }
 
 /**
@@ -29,10 +29,6 @@ function centuryByYearProblem(year) {
     }
     if (year < 0) {
         throw new RangeError();
-    }
-    let startYear = year % 100;
-    if (startYear === 0) {
-        return Math.floor(year / 100);
     }
 
     return Math.floor(year / 100) + 1;
