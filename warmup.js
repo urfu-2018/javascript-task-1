@@ -50,8 +50,12 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     const matchHexFormat = (/^#[0-9a-f]{6}$/i).test(hexColor);
 
-    if (typeof hexColor !== 'string' || !matchHexFormat) {
-        throw new TypeError('hexColor must be a string in hex format');
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('hexColor must be a string');
+    }
+
+    if (!matchHexFormat) {
+        throw new RangeError('hexColor is out of range');
     }
 
     const r = parseInt(hexColor.substr(1, 2), 16);
