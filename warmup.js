@@ -110,7 +110,7 @@ function numberSystemProblem(n, targetNs) {
     if (isNaN(n) && isNaN(targetNs)) {
         throw TypeError;
     }
-    if (2 <= targetNs && targetNs <= 36) {
+    if (targetNs >= 2 && targetNs <= 36) {
         return n.toString(targetNs);
     }
     throw RangeError;
@@ -154,15 +154,9 @@ function ticTacToeProblem(field) {
         return field[1][1];
     }
     for (let i = 0; i < field.length; i++) {
-        if ((field[i][0] === 'o' && field[i][1] === 'o' && field[i][2] === 'o') ||
-        (field[0][i] === 'o' && field[1][i] === 'o' && field[2][i] === 'o')) {
+        if ((field[i][0] === field[i][1] && field[i][2] === field[i][1] && field[i][0] !== '') ||
+        (field[0][i] === field[1][i] && field[2][i] === field[0][i] && field[0][i] !== '')) {
             return 'draw';
-        }
-    }
-    for (let i = 0; i < field.length; i++) {
-        if ((field[i][0] === field[i][1] && field[i][0] === field[i][2]) ||
-        (field[0][i] === field[1][i] && field[1][i] === field[2][i])) {
-            return 'x';
         }
     }
 
