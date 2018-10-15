@@ -145,7 +145,8 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw TypeError;
     }
-    countSmiles = text.match(/(\(-:|:-\))/g).length;
+    const countSmiles = text.match(/(\(-:|:-\))/g).length;
+
     return countSmiles !== null ? countSmiles : 0;
 }
 
