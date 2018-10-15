@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (!isNaN(a) && !isNaN(b)) {
-        return result = a+b;
+        return a + b;
 
     } else {
         return new TypeError(); 
@@ -53,14 +53,15 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    if (typeof hexColor != String) {
-        throw new TypeError ("Переданный параметр не является строкой")
+    if (typeof hexColor !== String) {
+        throw new TypeError ("Переданный параметр не является строкой");
     }
     else {
-        const colorHex =  /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
         const r = parseInt(result[1], 16);
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
+        
         return '(' + r + ',' + g +',' + b + ')';
     }
 }
@@ -77,7 +78,7 @@ function fibonacciProblem(n) {
     if (isNaN(n)) {
         throw new TypeError ('Переданный параметр не является числом');
     }
-    else if (n%2 !== 0 || n <= 0) {
+    else if (n % 2 !== 0 || n <= 0) {
         throw new RangeError('n не является целым положительным числом');
     }
     else {
@@ -103,8 +104,8 @@ function matrixProblem(matrix) {
         const m = matrix[0].length;
         /*const matrixT = new Array(m,n);*/
         let matrixT = [m][n];
-        for (let i=0; i < m; i++){
-            for (let j=0; j < n; j++){ 
+        for (let i = 0; i < m; i++){
+            for (let j = 0; j < n; j++){ 
                 matrixT[i][j] = matrix[j][i];
             }
         }
@@ -160,11 +161,11 @@ function smilesProblem(text) {
     }
     else {
         let countOfSmiles = 0;
-        for (let i=0; i < text.length - 3; i++) {
-            if (text[i] === '(' && text[i+1] === '-' && text[i+2] === ':') {
+        for (let i = 0; i < text.length - 3; i++) {
+            if (text[i] === '(' && text[i + 1] === '-' && text[ i + 2] === ':') {
                 countOfSmiles++;
             }
-            else if (text[i] === ':' && text[i+1] === '-' && text[i] === ')') {
+            else if (text[i] === ':' && text[i + 1] === '-' && text[i] === ')') {
                 countOfSmiles++; 
             }
             else continue;
