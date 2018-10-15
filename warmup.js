@@ -93,8 +93,6 @@ function matrixProblem(matrix) {
         if (matrix[i].length !== lengthArr) {
             throw TypeError;
         }
-    }
-    for (let i = 0; i < lengthMatrix; i++) {
         for (let j = 0; j < lengthArr; j++) {
             newMatrix[i][j] = matrix[j][i]
         }
