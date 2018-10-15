@@ -8,12 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    CheckNumber(a);
-    CheckNumber(b);
+    checkNumber(a);
+    checkNumber(b);
     return a + b;
 }
 
-function CheckNumber(input) {
+function checkNumber(input) {
     if (typeof input !== 'number') {
         throw new TypeError(`${input.toString()} is not a number`);
     }
@@ -27,12 +27,12 @@ function CheckNumber(input) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    CheckNumber(year);
-    CheckPositive(year);
+    checkNumber(year);
+    checkPositive(year);
     return Math.floor(Number(year) / 100) + 1;
 }
 
-function CheckPositive(input) {
+function checkPositive(input) {
     if (input < 0) {
         throw new RangeError(`${input.toString()} is not a positive`);
     }
@@ -46,14 +46,8 @@ function CheckPositive(input) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-    // return result ? {
-    //     r: parseInt(result[1], 16),
-    //     g: parseInt(result[2], 16),
-    //     b: parseInt(result[3], 16)
-    // } : null;
-    CheckString(hexColor);
-    CheckHex(hexColor);
+    checkString(hexColor);
+    checkHex(hexColor);
     if (hexColor.length == 4) {
         return (parseInt(hexColor[1] + hexColor[1], 16) + ', ' + parseInt(hexColor[2] + hexColor[2], 16) + ', ' +
             parseInt(hexColor[3] + hexColor[3], 16));
@@ -62,13 +56,13 @@ function colorsProblem(hexColor) {
         parseInt((hexColor[5] + hexColor[6]), 16));
 }
 
-function CheckString(input) {
+function checkString(input) {
     if (typeof input !== 'string') {
         throw new RangeError(`${input.toString()} is not a string`);
     }
 }
 
-function CheckHex(input) {
+function checkHex(input) {
     if (!/^#([0-9A-F]{3}|[0-9A-F]{6})$/i.test(input)) {
         throw new TypeError(`${input.toString()} is not a validate HEX`);
     }
@@ -82,8 +76,8 @@ function CheckHex(input) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    CheckNumber(n);
-    CheckPositiveInteger(n);
+    checkNumber(n);
+    checkPositiveInteger(n);
     var a = 1,
         b = 1;
     for (var i = 3; i <= n; i++) {
@@ -94,7 +88,7 @@ function fibonacciProblem(n) {
     return b;
 }
 
-function CheckPositiveInteger(input) {
+function checkPositiveInteger(input) {
     if (input <= 0 || !Number.isInteger(input)) {
         throw new RangeError(`${input.toString()} is not a integer`);
     }
@@ -107,7 +101,7 @@ function CheckPositiveInteger(input) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    CheckMatrix(matrix);
+    checkMatrix(matrix);
     var result = []
     for (let i = 0; i < matrix[0].length; i++) {
         result[i] = [];
@@ -118,7 +112,7 @@ function matrixProblem(matrix) {
     return result;
 }
 
-function CheckMatrix(array) {
+function checkMatrix(array) {
     if (!Array.isArray(array) || array.length === 0) {
         throw new TypeError(`${array.toString()} is not a matrix`);
     }
@@ -138,13 +132,13 @@ function CheckMatrix(array) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    CheckNumber(n);
-    CheckNumber(targetNs);
-    CheckSystem(targetNs);
+    checkNumber(n);
+    checkNumber(targetNs);
+    checkSystem(targetNs);
     return n.toString(targetNs);
 }
 
-function CheckSystem(input) {
+function checkSystem(input) {
     if (input < 2 || input > 36) {
         throw new RangeError(`${input.toString()} is not a system number`);
     }
@@ -166,7 +160,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    CheckString(text);
+    checkString(text);
     var a = text.split(':-)').join('~');
     var b = a.split('(-:').join('~');
     let count = 0;
