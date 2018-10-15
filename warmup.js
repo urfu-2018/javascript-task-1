@@ -26,12 +26,14 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
-    } else if (year < 0 || !Number.isInteger(year)) {
-        throw new RangeError('В качестве аргумента передано отрицательное число');
-    } else {
-
-        return Math.ceil(year / 100);
     }
+
+    if (year < 0 || !Number.isInteger(year)) {
+        throw new RangeError('В качестве аргумента передано отрицательное число');
+
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -68,6 +70,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
     }
+
     if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('В качестве аргумента передано не целое положительное число');
     }
@@ -90,7 +93,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0]) || matrix.length === 0) {
+    if (matrix.length === 0 || !Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
@@ -99,7 +102,7 @@ function matrixProblem(matrix) {
 
     for (let i = 1; i < n; i++) {
         if (matrix[i].length !== m) {
-            throw new TypeError('В качестве аргумента передан не двумерный массив');
+            throw new TypeError('В качестве аргумента передан не верный массив');
         }
     }
 
@@ -117,12 +120,13 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('В качестве аргументов переданы не числа');
-    } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('В качестве аргумента передана неверная система счисления');
-    } else {
-
-        return n.toString(targetNs);
     }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('В качестве аргумента передана неверная система счисления');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -147,10 +151,9 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('В качестве аргумента передана не строка');
-    } else {
-
-        return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
     }
+
+    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
 }
 
 /**
