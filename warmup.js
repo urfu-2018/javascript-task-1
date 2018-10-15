@@ -64,12 +64,20 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
-    } else if (n < 0 || (Math.ceil(n) - n > 0)) {
-        throw new RangeError('В качестве аргумента передано не целое положительное число');
-    } else {
-
-        return n === 1 || n === 2 ? 1 : fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
     }
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('В качестве аргумента передано не целое положительное число');
+    }
+
+    let x = 1;
+    let y = 1;
+    for (let i = 3; i <= n; i++) {
+        let result = x + y;
+        x = y;
+        y = result;
+    }
+
+    return y;
 }
 
 /**
