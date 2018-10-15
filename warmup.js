@@ -31,10 +31,12 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год – отрицательное значение');
     }
     let century = 0;
-    if (!(year % 100)) {
-        century = year / 100;
-    } else {
-        century = Math.floor(year / 100) + 1;
+    if (Number.isInteger(year)) {
+        if (!(year % 100)) {
+            century = year / 100;
+        } else {
+            century = Math.floor(year / 100) + 1;
+        }
     }
 
     return century;
