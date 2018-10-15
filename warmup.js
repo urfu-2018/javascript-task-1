@@ -83,7 +83,7 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
 
