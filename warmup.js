@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -41,17 +41,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof (hexColor) !== 'string') {
+    if (typeof (hexColor) !== 'string' || hexColor.length !== 7) {
         throw new TypeError();
     }
     function rangeCorrect(c) {
-        return c > 0 && c < 256;
+        return c >= 0 && c < 256;
     }
     const r = parseInt(hexColor.substr(1, 2), 16);
     const g = parseInt(hexColor.substr(3, 2), 16);
     const b = parseInt(hexColor.substr(5, 2), 16);
-    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b) ||
-    hexColor.length !== 7) {
+    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b)) {
         throw new RangeError();
     }
 
@@ -148,9 +147,9 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError();
     }
-    const countSmiles = text.match(/(\(-:|:-\))/g).length;
+    const matches = text.match(/(\(-:|:-\))/g);
 
-    return countSmiles !== null ? countSmiles : 0;
+    return matches !== null ? matches.length : 0;
 }
 
 /**
