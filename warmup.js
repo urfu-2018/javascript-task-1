@@ -89,14 +89,15 @@ function matrixProblem(matrix) {
     let lengthArr = matrix[0].length;
     let newMatrix = [];
     for (let i = 0; i < lengthMatrix; i++) {
-        let arr = [];
+        newMatrix[i] = [];
         if (matrix[i].length !== lengthArr) {
             throw TypeError;
         }
+    }
+    for (let i = 0; i < lengthMatrix; i++) {
         for (let j = 0; j < lengthArr; j++) {
-            arr[j] = matrix[j][i];
+            newMatrix[i][j] = matrix[j][i]
         }
-        newMatrix[i] = arr;
     }
 
     return newMatrix;
