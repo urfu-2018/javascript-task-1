@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -44,12 +44,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!(/^#[A-F0-9]{6}$/.test(hexColor))) {
-        throw new RangeError();
-    }
     let red = parseInt(hexColor.slice(1, 3), 16);
     let green = parseInt(hexColor.slice(3, 5), 16);
     let blue = parseInt(hexColor.slice(5, 7), 16);
+
+    if (isNaN(red) || isNaN(green) || isNaN(blue)) {
+        throw new RangeError();
+    }
 
     return `(${red}, ${green}, ${blue})`;
 }
@@ -62,11 +63,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(n)) {
         throw new TypeError();
     }
 
-    if (n < 0) {
+    if (n < 1) {
         throw new RangeError();
     }
     if (n < 3) {
@@ -114,7 +115,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 1 || targetNs > 36) {
@@ -130,7 +131,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return phoneNumber.match(/8-800-\d{3}-\d{2}-\d{2}/) !== null;
+    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
 }
 
 /**
