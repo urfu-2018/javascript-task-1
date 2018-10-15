@@ -8,15 +8,18 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    checkNumber(a);
-    checkNumber(b);
+    checkNumberInteger(a);
+    checkNumberInteger(b);
 
     return a + b;
 }
 
-function checkNumber(input) {
+function checkNumberInteger(input) {
     if (typeof input !== 'number') {
         throw new TypeError(`${input.toString()} is not a number`);
+    }
+    if (!Number.isInteger(input)) {
+        throw new TypeError(`${number.toString()} is not an integer`);
     }
 }
 
