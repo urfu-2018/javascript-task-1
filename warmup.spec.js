@@ -19,12 +19,6 @@ describe('A+B problem', () => {
     it('Должна вернуть `2`', () => {
         assert.strictEqual(abProblem(1, 1), 2);
     });
-    it('right', () => {
-        assert.strictEqual(abProblem(1, '2'), 3);
-    });
-    it('right1', () => {
-        assert.strictEqual(abProblem('1', '2'), 3);
-    });
 });
 
 describe('Century by year problem', () => {

@@ -8,12 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    let sum = parseInt(a) + parseInt(b);
-    if (isNaN(sum)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
-    return sum;
+    return a + b;
 }
 
 /**
@@ -24,23 +23,18 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    let _year = parseInt(year);
-    if (isNaN(_year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (_year < 0) {
+    if (year < 0) {
         throw new RangeError();
     }
-    let century = 0;
-    if (_year % 100 > 0 && _year / 100 !== 0) {
-        century = Math.trunc(_year / 100) + 1;
-    } else if (_year / 100 === 0) {
-        century = 1;
-    } else {
-        century = _year / 100;
+    if (year % 100 > 0) {
+        return Math.trunc(year / 100) + 1;
     }
 
-    return century;
+    return year / 100;
+
 }
 
 function validateStr(str, regExp) {
@@ -57,8 +51,11 @@ function validateStr(str, regExp) {
  * @returns {number[]} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || !validateStr(hexColor, /#[0-9a-fA-F]{6}/gi)) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
+    }
+    if (!validateStr(hexColor, /^#[0-9a-fA-F]{6}$/gi)) {
+        throw new RangeError();
     }
     hexColor = hexColor.substr(1);
     let values = hexColor.split('');
@@ -68,9 +65,6 @@ function colorsProblem(hexColor) {
     r = parseInt(values[0].toString() + values[1].toString(), 16);
     g = parseInt(values[2].toString() + values[3].toString(), 16);
     b = parseInt(values[4].toString() + values[5].toString(), 16);
-    if (!(r > -1 && r < 256 && g > -1 && g < 256 && b > -1 && b < 256)) {
-        throw new RangeError();
-    }
 
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
@@ -83,15 +77,15 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    let _n = parseInt(n);
-    if (isNaN(_n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
-    } else if (_n <= 0) {
+    }
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let prev = 0;
     let current = 1;
-    for (let i = 2; i <= _n; i++) {
+    for (let i = 2; i <= n; i++) {
         let help = prev;
         prev = current;
         current += help;
