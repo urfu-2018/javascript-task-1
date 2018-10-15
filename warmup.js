@@ -9,6 +9,10 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    throw new TypeError();
 }
 
 /**
@@ -19,7 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year === 'number') {
+        return Math.ceil(year / 100);
+    }
+    throw new TypeError();
 }
 
 /**
@@ -30,8 +37,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+    var result = /^#([a-f\d]{6})$/i.test(hexColor);
+    if (typeof hexColor === 'string') {
+        if (result) {
+            return '(' + parseInt(hexColor.substr(1, 2), 16) +
+            ', ' + parseInt(hexColor.substr(3, 2), 16) +
+            ', ' + parseInt(hexColor.substr(5, 2), 16) + ')';
+        }
+        throw new RangeError();
+    }
+    throw new TypeError();
     // Ваше решение
 }
+
 
 /**
  * Находит n-ое число Фибоначчи
@@ -41,6 +59,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    const result = [0, 1];
+    let a = 0;
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (n > 0 && parseInt(n) === n) {
+        for (var i = 2; i <= n; i++) {
+            a = result[1] + result[0];
+            result[0] = result[1];
+            result[1] = a;
+        }
+
+        return result[1];
+    }
+    throw new RangeError();
+
     // Ваше решение
 }
 
@@ -51,7 +85,36 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    arrayCheck(matrix);
+    var result = [];
+    // for (var e = 0; e < matrix[0].length; e++) {
+    //     result[e] = [];
+    // }
+    for (var i = 0; i < matrix[0].length; i++) {
+        var line = [];
+        for (var j = 0; j < matrix.length; j++) {
+            // a = matrix[i[j]];
+            line.push(matrix[j][i]);
+            // result[j[i]] = a;
+        }
+        result.push(line);
+    }
+
+    return result;
     // Ваше решение
+}
+function arrayCheck(matrix) {
+    var len = matrix[0].length;
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    for (var i = 0; i < matrix.length;) {
+        if (Array.isArray(matrix[i]) && matrix[i].length === len) {
+            i++;
+        } else {
+            throw new TypeError();
+        }
+    }
 }
 
 /**
@@ -63,6 +126,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    if (typeof n === 'number' && typeof targetNs === 'number') {
+        if (targetNs >= 2 && targetNs <= 36) {
+            return n.toString(targetNs);
+        }
+        throw new RangeError();
+    }
+    throw new TypeError();
     // Ваше решение
 }
 
@@ -72,6 +142,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber === 'string' &&
+    /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber)) {
+        return true;
+    }
+    throw new TypeError();
     // Ваше решение
 }
 
@@ -82,6 +157,20 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    var smiles = 0;
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    for (var i = 0; i < text.length;) {
+        if (text.substr(i, 3) === ':-)' || text.substr(i, 3) === '(-:') {
+            smiles = smiles + 1;
+            i = i + 3;
+        } else {
+            i++;
+        }
+    }
+
+    return smiles;
     // Ваше решение
 }
 
@@ -92,6 +181,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    for (var i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[0][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[0][0] === field[2][0]) {
+        return field[0][2];
+    }
     // Ваше решение
 }
 
