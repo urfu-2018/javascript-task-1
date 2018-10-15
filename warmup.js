@@ -92,8 +92,6 @@ function matrixProblem(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
-        } else if (!Array.isArray(matrix)) {
-            throw new TypeError();
         }
     }
 
@@ -176,6 +174,7 @@ function ticTacToeProblem(field) {
         return win;
     }
 
+
     function checkWinnerDiagonal(fieldMatrix) {
         if (fieldMatrix[0][0] === fieldMatrix[1][1] && fieldMatrix[0][0] === fieldMatrix[2][2]) {
             return fieldMatrix[0][0];
@@ -184,8 +183,6 @@ function ticTacToeProblem(field) {
                 fieldMatrix[0][2] === fieldMatrix[2][0]) {
             return fieldMatrix[0][2];
         }
-
-        return false;
     }
 
     function checkWinner(fieldMatrix) {
@@ -194,8 +191,6 @@ function ticTacToeProblem(field) {
                 return fieldMatrix[i][0];
             }
         }
-
-        return false;
     }
 
     function oneCharacterInRow(row) {
