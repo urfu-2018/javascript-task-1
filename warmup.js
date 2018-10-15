@@ -78,7 +78,7 @@ function fibonacciProblem(n) {
     if (isNaN(n)) {
         throw new TypeError();
     }
-    if (number <= 0) {
+    if (number <= 0 || n % 1 !== 0) {
         throw new RangeError();
     }
     let prevPrevNumber = 1;
