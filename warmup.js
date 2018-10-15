@@ -8,11 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) === 'number' || typeof(b) === 'number') {
-        return a + b;
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+        throw new TypeError();
     }
 
-    throw new TypeError();
+    return a + b;
 }
 
 /**
@@ -23,17 +23,17 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) === 'number') {
-        if (year >= 0) {
-            const century = year / 100;
+    if (typeof(year) !== 'number') {
+        throw new TypeError();
+    }
 
-            return Math.ceil(century);
-        }
-
+    if (year < 0) {
         throw new RangeError();
     }
 
-    throw new TypeError();
+    const century = year / 100;
+
+    return Math.ceil(century);
 }
 
 /**
@@ -44,19 +44,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) === 'string') {
-        const red = parseInt(hexColor.substr(1, 2), 16);
-        const green = parseInt(hexColor.substr(3, 2), 16);
-        const blue = parseInt(hexColor.substr(5, 2), 16);
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError();
+    }
 
-        if (red < 256 && green < 256 && blue < 256) {
-            return `(${red}, ${green}, ${blue})`;
-        }
+    const red = parseInt(hexColor.substr(1, 2), 16);
+    const green = parseInt(hexColor.substr(3, 2), 16);
+    const blue = parseInt(hexColor.substr(5, 2), 16);
 
+    if (red > 255 && green > 255 && blue > 255) {
         throw new RangeError();
     }
 
-    throw new TypeError();
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -79,15 +79,15 @@ function fibonacci(n) {
 }
 
 function fibonacciProblem(n) {
-    if (typeof(n) === 'number') {
-        if (n >= 0) {
-            return fibonacci(n);
-        }
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    }
 
+    if (n < 0) {
         throw new RangeError();
     }
 
-    throw new TypeError();
+    return fibonacci(n);
 }
 
 /**
@@ -117,15 +117,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) === 'number' && typeof(targetNs) === 'number') {
-        if (targetNs >= 2 && targetNs <= 36) {
-            return n.toString(targetNs);
-        }
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+        throw new TypeError();
+    }
 
+    if (targetNs < 2 && targetNs > 36) {
         throw new RangeError();
     }
 
-    throw new TypeError();
+    return n.toString(targetNs);
 }
 
 /**
@@ -134,13 +134,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof(phoneNumber) === 'string') {
-        const reg = /^8-800-\d{3}-\d{2}-\d{2}$/;
-
-        return reg.test(phoneNumber);
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
     }
 
-    throw new TypeError();
+    const reg = /^8-800-\d{3}-\d{2}-\d{2}$/;
+
+    return reg.test(phoneNumber);
 }
 
 /**
@@ -150,18 +150,18 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) === 'string') {
-        const reg = /\(-:|:-\)/g;
-        const result = text.match(reg);
-
-        if (result === null) {
-            return 0;
-        }
-
-        return result.length;
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
     }
 
-    throw new TypeError();
+    const reg = /\(-:|:-\)/g;
+    const result = text.match(reg);
+
+    if (result === null) {
+        return 0;
+    }
+
+    return result.length;
 }
 
 /**
