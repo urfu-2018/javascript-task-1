@@ -109,9 +109,10 @@ function matrixProblem(matrix) {
             }
         }
         return matrixT;
-    } catch {
-        TypeError ("Входной параметр не является матрицей");
+    } catch (TypeError) {
+
     }
+    throw new TypeError("в функцию передан не двумерный массив");
 }
 
 /**
