@@ -195,6 +195,7 @@ function ticTacToeProblem(field) {
     }
 
     return result;
+}
 
 module.exports = {
     abProblem,
@@ -207,4 +208,3 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
-}
