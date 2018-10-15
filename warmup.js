@@ -71,7 +71,7 @@ function fibonacciProblem(n) {
     // Ваше решение
     const part = ((1 + Math.sqrt(5)) / 2);
     const sqrtOfFive = Math.sqrt(5);
-    if (!isNaN(n)) {
+    if (typeof(n) === 'number') {
         if (!Number.isInteger(n) || n < 1) {
             throw RangeError;
         }
