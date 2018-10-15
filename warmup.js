@@ -27,7 +27,8 @@ function centuryByYearProblem(year) {
     let _year = parseInt(year);
     if (isNaN(_year)) {
         throw new TypeError();
-    } else if (_year <= 0) {
+    }
+    if (_year < 0) {
         throw new RangeError();
     }
     let century = 0;
@@ -42,6 +43,12 @@ function centuryByYearProblem(year) {
     return century;
 }
 
+function validateStr(str, regExp) {
+    let result = str.match(regExp);
+
+    return result !== null && result.length === 1;
+}
+
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
@@ -50,7 +57,7 @@ function centuryByYearProblem(year) {
  * @returns {number[]} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
+    if (typeof hexColor !== 'string' || validateStr(hexColor, /#[0-9a-fA-F]{6}/gi)) {
         throw new TypeError();
     }
     hexColor = hexColor.substr(1);
@@ -76,13 +83,12 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    let _n = parseFloat(n);
+    let _n = parseInt(n);
     if (isNaN(_n)) {
         throw new TypeError();
-    } else if (_n < 0) {
+    } else if (_n <= 0) {
         throw new RangeError();
     }
-    _n = parseInt(_n);
     let prev = 0;
     let current = 1;
     for (let i = 2; i <= _n; i++) {
@@ -97,7 +103,8 @@ function fibonacciProblem(n) {
 function isNotTwoDimensial(matrix) {
     let firstLength = matrix[0].length;
     for (let i = 0; i < matrix.length; i++) {
-        if (firstLength !== matrix[i].length || matrix[i].some(elem=> Array.isArray(elem))) {
+        if (firstLength !== matrix[i].length || matrix[i].some(elem=> Array.isArray(elem)) ||
+            matrix[i].length === 0) {
             return true;
         }
     }
@@ -128,7 +135,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    let _n = parseFloat(n);
+    let _n = parseInt(n);
     let _targetNs = parseInt(targetNs);
     if (isNaN(_n) || isNaN(_targetNs)) {
         throw new TypeError();
@@ -145,9 +152,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    let result = phoneNumber.match(/8-800-\d{3}-\d{2}-\d{2}/gi);
-
-    return result !== null && result.length === 1;
+    return validateStr(phoneNumber, /8-800-\d{3}-\d{2}-\d{2}/gi);
 }
 
 /**
