@@ -53,8 +53,11 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     const regCheck = /^#[0-9a-fA-F]{6}$/;
-    if (typeof hexColor !== 'string' || !regCheck.test(hexColor)) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError('unsigned format color');
+    }
+    if (!regCheck.test(hexColor)) {
+        throw new RangeError('значения цвета выходят за пределы допустимых')
     }
     const arrRGB = [];
     let colorNotSharp = hexColor.substring(1);
@@ -62,11 +65,7 @@ function colorsProblem(hexColor) {
         const hexNum = colorNotSharp.substr(0, 2);
         colorNotSharp = colorNotSharp.substring(2);
         const decNum = parseInt(hexNum, 16);
-        if (decNum > 255 || isNaN(decNum)) {
-            throw new RangeError('значения цвета выходят за пределы допустимых');
-        } else {
-            arrRGB.push(decNum);
-        }
+        arrRGB.push(decNum);
     }
 
     return '(' + arrRGB[0] + ', ' + arrRGB[1] + ', ' + arrRGB[2] + ')';
