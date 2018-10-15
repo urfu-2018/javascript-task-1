@@ -109,7 +109,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('В качестве аргументов переданы не числа');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('В качестве аргумента передана неверная система счисления');
@@ -143,7 +143,7 @@ function smilesProblem(text) {
         throw new TypeError('В качестве аргумента передана не строка');
     } else {
 
-        return (text.match(/:[-~]?\)/g) || []).length + (text.match(/\([-~]?:/g) || []).length;
+        return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
     }
 }
 
