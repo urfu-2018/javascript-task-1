@@ -96,8 +96,8 @@ function fibonacciProblem(n) {
 
 function isNotTwoDimensial(matrix) {
     let firstLength = matrix[0].length;
-    for (let i = 1; i < matrix.length; i++) {
-        if (firstLength !== matrix[i].length) {
+    for (let i = 0; i < matrix.length; i++) {
+        if (firstLength !== matrix[i].length || matrix[i].some(elem=> isNaN(parseInt(elem)))) {
             return true;
         }
     }
@@ -112,7 +112,7 @@ function isNotTwoDimensial(matrix) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || isNotTwoDimensial(matrix)) {
+    if (!Array.isArray(matrix) || isNotTwoDimensial(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
 
