@@ -97,7 +97,7 @@ function fibonacciProblem(n) {
 function isNotTwoDimensial(matrix) {
     let firstLength = matrix[0].length;
     for (let i = 0; i < matrix.length; i++) {
-        if (firstLength !== matrix[i].length || matrix[i].some(elem=> isNaN(parseInt(elem)))) {
+        if (firstLength !== matrix[i].length || matrix[i].some(elem=> Array.isArray(elem))) {
             return true;
         }
     }
