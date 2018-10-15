@@ -115,7 +115,7 @@ function isNotTwoDimensial(matrix) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || isNotTwoDimensial(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || isNotTwoDimensial(matrix)) {
         throw new TypeError();
     }
 
@@ -132,8 +132,8 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' ||
-        !Number.isInteger(n) ||
-        typeof targetNs !== 'number') {
+        typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -162,7 +162,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    let result = text.match(/:-\)|\(-:/gi);
+    let result = text.match(/:-\)|\(-:/g);
 
     return result !== null ? result.length : 0;
 }
