@@ -33,7 +33,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('type of year is incorrect');
-    } else if (year < 1) {
+    } else if (year < 0) {
         throw new RangeError('');
     } else {
         return parseInt(year / 100 + 1, 10);
@@ -104,8 +104,8 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
-        throw new TypeError('nope');
+    if (!Array.isArray(matrix[0])) {
+        throw new TypeError('not this');
     }
     let m = matrix.length;
     let n = matrix[0].length;
@@ -129,8 +129,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError('Arguments have invalid type');
+    if (!isNumber(n) || !Number.isInteger(targetNs)) {
+        throw new TypeError('type is invalid');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
     } else {
@@ -147,11 +147,8 @@ function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
         throw new TypeError('');
     }
-    if (/8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber)) {
-        return true;
-    }
 
-    return false;
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g.test(phoneNumber);
 }
 
 /**
