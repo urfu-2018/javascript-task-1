@@ -57,7 +57,7 @@ function validateStr(str, regExp) {
  * @returns {number[]} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || validateStr(hexColor, /#[0-9a-fA-F]{6}/gi)) {
+    if (typeof hexColor !== 'string' || !validateStr(hexColor, /#[0-9a-fA-F]{6}/gi)) {
         throw new TypeError();
     }
     hexColor = hexColor.substr(1);
