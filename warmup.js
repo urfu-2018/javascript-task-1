@@ -83,7 +83,13 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let lengthMatrix = matrix.length;
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || lengthMatrix === 0) {
+    if (!Array.isArray(matrix)) {
+        throw TypeError;
+    }
+    if (!matrix.every(Array.isArray)) {
+        throw TypeError;
+    }
+    if (lengthMatrix === 0) {
         throw TypeError;
     }
     let lengthArr = matrix[0].length;
@@ -94,7 +100,7 @@ function matrixProblem(matrix) {
             throw TypeError;
         }
         for (let j = 0; j < lengthArr; j++) {
-            newMatrix[i][j] = matrix[j][i]
+            newMatrix[i][j] = matrix[j][i];
         }
     }
 
