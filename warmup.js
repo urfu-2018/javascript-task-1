@@ -9,10 +9,9 @@
  */
 function abProblem(a, b) {
     if (isNaN(a) || isNaN(b)) {
-        return new TypeError();
-    } else {
-        return a + b;
+        throw new TypeError();
     }
+    return a + b;
     // Ваше решение
 }
 
@@ -28,17 +27,19 @@ function centuryByYearProblem(year) {
     if (isNaN(year)) {
         throw new TypeError ('Переданный параметр не является числом');
     } else if (year < 0) {
-        throw new RangeError ('Значение года не может быть отрицательным числом!')
+        throw new RangeError ('Значение года не может быть отрицательным числом!');
     } else {
         const yearStr = year.toString();
         const num = Number.parseInt(yearStr[0]) + Number.parseInt(yearStr[1]);
         const secondPart1 = Number.parseInt(yearStr[yearStr.length - 1]);
         const secondPart2 = Number.parseInt(yearStr[yearStr.length - 2]);
+        let res;
         if (secondPart1 === 0 && secondPart2 === 0) {
-            return num;
+            res = num;
         } else { 
-            return num + 1;
+            res = num + 1;
         }
+        return res;
     }
 }
 
@@ -58,7 +59,8 @@ function colorsProblem(hexColor) {
         const r = parseInt(result[1], 16);
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
-        return '(' + r + ',' + g +',' + b + ')';
+        const answer = '(' + r + ',' + g +',' + b + ')';
+        return answer;
     }
 }
 
@@ -78,7 +80,7 @@ function fibonacciProblem(n) {
     } else if (n === 1 || n === 2) {
         return 1;
     } else {
-        return fibonacciProblem(n - 1) + fibonacciProblem(n - 2); 
+        return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
     }
 }
 
@@ -94,7 +96,7 @@ function matrixProblem(matrix) {
     const m = matrix[0].length;
     for (let j = 0; j < n; j++) {
         if (matrix[j].length !== m) {
-            throw new TypeError("на входе не двумерный массив!");
+            throw new TypeError('на входе не двумерный массив!');
         }
     }
     let matrixT = [m][n];
@@ -102,7 +104,7 @@ function matrixProblem(matrix) {
         for (let j = 0; j < n; j++) {
             matrixT[i][j] = matrix[j][i];
         }
-    }       
+    }
     return matrixT;
 }
 
@@ -153,7 +155,7 @@ function smilesProblem(text) {
             countOfSmiles++;
         } else if (text[i] === ':' && text[i + 1] === '-' && text[i] === ')') {
             countOfSmiles++; 
-        } else { 
+        } else {
             continue;
         }
     }
@@ -187,8 +189,8 @@ function ticTacToeProblem(field) {
     field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x') {
         return 'x';
     } else { 
-        return 'draw'
-    };
+        return 'draw';
+    }
 }
 
 module.exports = {
