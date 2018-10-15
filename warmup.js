@@ -104,9 +104,9 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
-        throw new TypeError('not array');
-    }
+    if (!Array.isArray(matrix[0])) {
+        throw new TypeError('not this');
+}
     let m = matrix.length;
     let n = matrix[0].length;
     let newArray = [];
