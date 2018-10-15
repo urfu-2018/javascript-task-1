@@ -83,24 +83,20 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let lengthMatrix = matrix.length;
-    if (!Array.isArray(matrix)) {
-        throw TypeError;
-    }
-    if (!matrix.every(Array.isArray)) {
-        throw TypeError;
-    }
-    if (lengthMatrix === 0) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || lengthMatrix === 0) {
         throw TypeError;
     }
     let lengthArr = matrix[0].length;
     let newMatrix = [];
-    for (let i = 0; i < lengthMatrix; i++) {
-        newMatrix[i] = [];
+    matrix.forEach(i => {
         if (matrix[i].length !== lengthArr) {
             throw TypeError;
         }
+    });
+    for (let i = 0; i < lengthMatrix; i++) {
+        newMatrix[i] = [];
         for (let j = 0; j < lengthArr; j++) {
-            newMatrix[i][j] = matrix[j][i];
+            newMatrix[j][i] = matrix[i][j];
         }
     }
 
