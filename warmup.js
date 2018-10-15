@@ -88,11 +88,12 @@ function matrixProblem(matrix) {
     }
     let lengthArr = matrix[0].length;
     let newMatrix = [];
+    let count = 0;
     matrix.forEach(i => {
-        if (matrix[i].length !== lengthArr) {
+        if (i.length !== lengthArr) {
             throw TypeError;
         }
-        newMatrix[i] = [];
+        newMatrix[count] = [];
     });
     for (let i = 0; i < lengthMatrix; i++) {
         for (let j = 0; j < lengthArr; j++) {
