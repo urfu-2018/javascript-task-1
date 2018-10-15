@@ -46,7 +46,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     const checkFormatString = hexColor.match(/^#[0-9a-f]{6}$/i);
     if (checkFormatString === null) {
@@ -69,10 +69,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (n <= 0) {
-        throw RangeError;
+        throw new RangeError();
     }
     if (n <= 2) {
         return 1;
@@ -89,7 +89,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (matrix[0].length === 0) {
         return [[]];
@@ -115,10 +115,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -131,10 +131,10 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
 
-    return Boolean(phoneNumber.match(/^8-800-\d\d\d-\d\d-\d\d$/));
+    return Boolean(phoneNumber.match(/^8-800-\d\d\d-\d\d-\d\d$/g));
 }
 
 /**
@@ -145,7 +145,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        return TypeError;
+        return new TypeError();
     }
     let matchArray = text.match(/(:-\)|\(-:)/g);
     if (matchArray !== null) {
