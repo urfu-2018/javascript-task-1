@@ -81,15 +81,15 @@ function fibonacciProblem(n) {
     if (number <= 0 || n % 1 !== 0) {
         throw new RangeError();
     }
-    let prevPrevNumber = 0;
+    let prevPrevNumber = 1;
     let prevNumber = 1;
-    for (let i = 1; i < number; i++) {
+    for (let i = 2; i < number; i++) {
         let newNumber = prevPrevNumber + prevNumber;
         prevPrevNumber = prevNumber;
         prevNumber = newNumber;
     }
 
-    return prevPrevNumber;
+    return prevNumber;
 }
 
 /**
