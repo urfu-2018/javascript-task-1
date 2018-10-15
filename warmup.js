@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof (year) !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year % 1 !== 0 || year < 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -66,10 +66,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof (n) !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n % 1 !== 0 || n < 0) {
+    if (n < 1) {
         throw new RangeError();
     }
     var first = 0;
@@ -117,7 +117,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
 
