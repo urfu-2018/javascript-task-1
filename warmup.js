@@ -93,6 +93,9 @@ function matrixProblem(matrix) {
     // Ваше решение
 
     let columns = matrix[0].length;
+    if (matrix.length === 0 || !Array.isArray(matrix)) {
+        throw new TypeError();
+    }
     matrix.forEach(element => {
         if (columns !== element.length || columns === 0) {
             throw new TypeError('Матрица должна быть размера NxM');
@@ -100,7 +103,7 @@ function matrixProblem(matrix) {
     });
 
     matrix.forEach(element => {
-        if (!Array.isArray(element)) {
+        if (Array.isArray(element)) {
             throw new TypeError('В функцию передаётся не двумерный массив');
         }
     });
