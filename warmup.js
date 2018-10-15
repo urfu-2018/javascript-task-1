@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     const regexpHex = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
 
-    if (typeof hexColor !== 'string' || hexColor.length !== 7) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
     } else if (!regexpHex.test(hexColor)) {
         throw new RangeError();
@@ -144,8 +144,10 @@ function smilesProblem(text) {
 
     const left = /:-\)/g;
     const right = /\(-:/g;
+    const smile = /\(-:-\)/g;
 
-    let count = (text.match(left) || []).length + (text.match(right) || []).length;
+    let count = (text.match(left) || []).length + (text.match(right) || []).length +
+                (text.match(smile) || []).length;
 
     return count;
 }
