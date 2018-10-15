@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw RangeError;
     } else if (!isNaN(year)) {
-        return Math.floor(year);
+        return Math.floor(year / 100);
     }
     throw TypeError;
 }
@@ -139,7 +139,7 @@ function smilesProblem(text) {
         throw TypeError;
     }
 
-    return text.split(/\(-:|:-\)/).length;
+    return text.split(/\(-:|:-\)/).length - 1;
 }
 
 /**
@@ -156,7 +156,7 @@ function ticTacToeProblem(field) {
     for (let i = 0; i < field.length; i++) {
         if ((field[i][0] === field[i][1] && field[i][2] === field[i][1] && field[i][0] !== '') ||
         (field[0][i] === field[1][i] && field[2][i] === field[0][i] && field[0][i] !== '')) {
-            return 'draw';
+            return field[i][i];
         }
     }
 
