@@ -9,6 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    return a+b;
 }
 
 /**
@@ -20,6 +21,11 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    const yearStr = year.toString;
+    if (yearStr.length == 4){
+        return parseInt(yearStr.substring(0,1), 10)+1;
+    }
+    else return 1;
 }
 
 /**
@@ -30,7 +36,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    // Ваше решение   
 }
 
 /**
