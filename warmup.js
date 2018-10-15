@@ -19,7 +19,7 @@ function checkNumberInteger(input) {
         throw new TypeError(`${input.toString()} is not a number`);
     }
     if (!Number.isInteger(input)) {
-        throw new TypeError(`${number.toString()} is not an integer`);
+        throw new TypeError(`${input.toString()} is not an integer`);
     }
 }
 
@@ -34,11 +34,11 @@ function centuryByYearProblem(year) {
     checkNumber(year);
     checkPositive(year);
 
-    return Math.floor(Number(year) / 100) + 1;
+    return Math.ceil(Number(year) / 100);
 }
 
 function checkPositive(input) {
-    if (input < 0) {
+    if (input <= 0) {
         throw new RangeError(`${input.toString()} is not a positive`);
     }
 }
@@ -66,13 +66,13 @@ function colorsProblem(hexColor) {
 
 function checkString(input) {
     if (typeof input !== 'string') {
-        throw new RangeError(`${input.toString()} is not a string`);
+        throw new TypeError(`${input.toString()} is not a string`);
     }
 }
 
 function checkHex(input) {
     if (!/^#([0-9A-F]{3}|[0-9A-F]{6})$/i.test(input)) {
-        throw new TypeError(`${input.toString()} is not a validate HEX`);
+        throw new RangeError(`${input.toString()} is not a validate HEX`);
     }
 }
 
