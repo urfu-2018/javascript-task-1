@@ -50,8 +50,9 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || hexColor.length !== 7) {
-        throw new TypeError('Цвет передан не строкой');
+    const regCheck = /#(\d || [g-z]){6}/i;
+    if (typeof hexColor !== 'string' || !regCheck.test(hexColor)) {
+        throw new TypeError('unsigned format color');
     }
     const arrRGB = [];
     let colorNotSharp = hexColor.substring(1);
