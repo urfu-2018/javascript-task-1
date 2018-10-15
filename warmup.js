@@ -44,7 +44,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if ((typeof(hexColor) !== 'string' && hexColor.length === 7) || hexColor[0] !== '#') {
+    if ((typeof(hexColor) !== 'string' && hexColor.length !== 7) || hexColor[0] !== '#') {
         throw TypeError;
     }
     let redColor = parseInt(hexColor.substr(1, 2), 16);
@@ -82,15 +82,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    let lengthMatrix = matrix.length;
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || lengthMatrix === 0) {
         throw TypeError;
     }
-    let lengthMatrix = matrix.length;
     let lengthArr = matrix[0].length;
     let newMatrix = [];
-    if (lengthMatrix === 0) {
-        throw TypeError;
-    }
     for (let i = 0; i < lengthMatrix; i++) {
         let arr = [];
         if (matrix[i].length !== lengthArr) {
