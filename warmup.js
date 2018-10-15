@@ -187,8 +187,12 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     let reg = /(\(-:|:-\))/g;
+    let result = text.match(reg);
+    if (result === null) {
+        return 0;
+    }
 
-    return text.match(reg).length;
+    return result.length;
 }
 
 /**
