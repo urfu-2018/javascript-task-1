@@ -36,7 +36,9 @@ function checkNumber(input) {
  */
 function centuryByYearProblem(year) {
     checkNumber(year);
-    checkPositive(year);
+    if (year < 0) {
+        throw new RangeError();
+    }
 
     return Math.ceil(Number(year) / 100);
 }
@@ -70,7 +72,7 @@ function checkString(input) {
 }
 
 function checkHex(input) {
-    if (!/^#([0-9A-Fa-f]{6})$/.test(input)) {
+    if (!/^#([0-9a-fA-F]{6})$/.test(input)) {
         throw new RangeError(`${input.toString()} is not in range`);
     }
 }
@@ -97,7 +99,7 @@ function fibonacciProblem(n) {
 }
 
 function checkPositiveInteger(input) {
-    if (input <= 0 || !Number.isInteger(input)) {
+    if (input < 1 || !Number.isInteger(input)) {
         throw new RangeError(`${input.toString()} is not a integer`);
     }
 }
@@ -161,8 +163,9 @@ function checkSystem(input) {
  */
 function phoneProblem(phoneNumber) {
     checkString(phoneNumber);
+    let regex = /^8-800-\d{3}-\d{2}-\d{2}$/;
 
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return regex.test(phoneNumber);
 }
 
 /**
@@ -200,11 +203,9 @@ function ticTacToeProblem(field) {
             return field[0][i];
         }
     }
-    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
-        return field[0][0];
-    }
-    if (field[2][0] === field[1][1] && field[2][0] === field[0][2]) {
-        return field[2][0];
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2] ||
+        field[2][0] === field[1][1] && field[2][0] === field[0][2]) {
+        return field[1][1];
     }
 
     return 'draw';
