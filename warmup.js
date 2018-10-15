@@ -56,6 +56,12 @@ function colorsProblem(hexColor) {
     let red = parseInt(redHEX, 16);
     let green = parseInt(greenHEX, 16);
     let blue = parseInt(blueHEX, 16);
+    let checkColor = (c) => {
+        return c >= 0 && c <= 255;
+    };
+    if (!checkColor(red) || !checkColor(green) || !checkColor(blue)) {
+        throw new RangeError();
+    }
 
     return '(' + red + ', ' + green + ', ' + blue + ')';
 }
@@ -146,6 +152,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
     let reg = /(\(-:|:-\))/g;
 
     return text.match(reg).length;
