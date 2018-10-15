@@ -48,7 +48,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const regcolorExp = new RegExp ('/^#[0-9A-F]{6}$/i');
-    if (!(regcolorExp.test(hexColor))) {
+    if ((regcolorExp.test(hexColor))) {
         throw new RangeError();
     }
     const clearHex = hexColor.substring(1, 7);
