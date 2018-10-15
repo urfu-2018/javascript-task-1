@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return (year - (year % 100)) / 100 + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
