@@ -9,10 +9,10 @@
  */
 function abProblem(a, b) {
     if (typeof (a) !== 'number' || typeof (b) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
 
-    return a + b;
+    return parseInt(a) + parseInt(b);
 }
 
 /**
