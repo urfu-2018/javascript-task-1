@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof (a + b) !== 'number') {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw TypeError;
     }
 
@@ -88,7 +88,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!matrix.length && !matrix[0].length) {
+    if (!matrix.length || !matrix[0].length) {
         throw TypeError;
     }
     const transMatrix = [];
@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof (n + targetNs) !== 'number') {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw TypeError;
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -132,7 +132,7 @@ function phoneProblem(phoneNumber) {
         throw TypeError;
     }
 
-    return /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2})/.test(phoneNumber);
+    return /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/.test(phoneNumber);
 }
 
 /**
