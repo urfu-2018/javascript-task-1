@@ -107,7 +107,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('В качестве аргументов переданы не числа');
-    } else if (targetNs < 2 || targetNs > 36) {
+    } else if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
         throw new RangeError('В качестве аргумента передана неверная система счисления');
     } else {
 
@@ -121,6 +121,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('В качестве аргумента передана не строка');
+    }
 
     return /8-800-[\d]{3}-[\d]{2}-[\d]{2}/.test(phoneNumber);
 }
