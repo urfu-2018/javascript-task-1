@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -18,8 +22,20 @@ function abProblem(a, b) {
  * @throws {RangeError} Когда год – отрицательное значение
  * @returns {Number} Век, полученный из года
  */
+
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+    let startYear = year % 100;
+    if (startYear === 0) {
+        return Math.floor(year / 100);
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -29,8 +45,20 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
+
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    const regexpHex = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
+    if (!regexpHex.test(hexColor)) {
+        throw new RangeError();
+    }
+    let rColor = parseInt(hexColor.substring(1, 3), 16);
+    let gColor = parseInt(hexColor.substring(3, 5), 16);
+    let bColor = parseInt(hexColor.substring(5, 7), 16);
+
+    return '(' + rColor + ', ' + gColor + ', ' + bColor + ')';
 }
 
 /**
@@ -41,7 +69,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError();
+    }
+    if (n <= 0) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    for (let i = 3; i <= n; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
 
 /**
@@ -50,8 +92,18 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
+
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (matrix.length === 0) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
+    }
+
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -62,8 +114,16 @@ function matrixProblem(matrix) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
+
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -71,8 +131,14 @@ function numberSystemProblem(n, targetNs) {
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
+
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+    let phoneTest = /^8-800-\d\d\d-\d\d-\d\d$/g;
+
+    return phoneTest.test(phoneNumber);
 }
 
 /**
@@ -81,8 +147,17 @@ function phoneProblem(phoneNumber) {
  * @throws {TypeError} Когда в качестве аргумента передаётся не строка
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
+
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    let smileMatch = text.match(/(:-\)|\(-:)/g);
+    if (smileMatch === null) {
+        return 0;
+    }
+
+    return smileMatch.length;
 }
 
 /**
@@ -91,8 +166,24 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let i = 0; i < 3; i++) {
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+    }
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+        return field[2][0];
+    }
+
+    return 'draw';
 }
 
 module.exports = {
