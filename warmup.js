@@ -105,17 +105,27 @@ function checkPositiveInteger(input) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
-        throw new TypeError();
-    }
-
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length !== matrix[0].length) {
-            throw new TypeError();
+    checkMatrix(matrix);
+    var result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        result.push([]);
+        for (let j = 0; j < matrix.length; j++) {
+            result[i].push(matrix[j][i]);
         }
     }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+    return result;
+}
+
+function checkMatrix(array) {
+    if (!Array.isArray(array) || array.length === 0) {
+        throw new TypeError(`${array.toString()} is not a matrix`);
+    }
+    for (let i = 0; i < array.length; i++) {
+        if (!Array.isArray(array[i]) || array[i].length !== array[0].length) {
+            throw new TypeError(`${array.toString()} is not a matrix`);
+        }
+    }
 }
 
 /**
@@ -127,17 +137,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    checkInteger(n);
-    checkInteger(targetNs);
-    checkSystem(targetNs);
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
 
     return n.toString(targetNs);
-}
-
-function checkSystem(input) {
-    if (input < 2 || input > 36) {
-        throw new RangeError(`${input.toString()} is not a system number`);
-    }
 }
 
 /**
