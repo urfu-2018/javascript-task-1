@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     const g = parseInt(hexColor.substr(3, 2), 16);
     const b = parseInt(hexColor.substr(5, 2), 16);
     if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b) ||
-    hexColor.length === 7) {
+    hexColor.length !== 7) {
         throw new RangeError();
     }
 
