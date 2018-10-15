@@ -22,12 +22,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if (typeof(year) !== 'number') {
+        throw TypeError;
+    }
     if (year < 0) {
         throw RangeError;
     } else if (typeof(year) === 'number') {
         return Math.floor(year / 100) + 1;
     }
-    throw TypeError;
 }
 
 /**
@@ -38,7 +40,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string' && hexColor[0] === '#') {
+    if (typeof(hexColor) !== 'string' || hexColor[0] !== '#') {
         throw TypeError;
     }
     let redColor = parseInt(hexColor.substr(1, 2), 16);
