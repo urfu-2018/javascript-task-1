@@ -44,13 +44,12 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
+    if (!(/^#[A-F0-9]{6}$/.test(hexColor))) {
+        throw new RangeError();
+    }
     let red = parseInt(hexColor.slice(1, 3), 16);
     let green = parseInt(hexColor.slice(3, 5), 16);
     let blue = parseInt(hexColor.slice(5, 7), 16);
-
-    if (isNaN(red) || isNaN(green) || isNaN(blue)) {
-        throw new RangeError();
-    }
 
     return `(${red}, ${green}, ${blue})`;
 }
