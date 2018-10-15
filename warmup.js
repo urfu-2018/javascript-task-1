@@ -98,12 +98,6 @@ function fibonacciProblem(n) {
     return b;
 }
 
-function checkPositiveInteger(input) {
-    if (input < 1 || !Number.isInteger(input)) {
-        throw new RangeError(`${input.toString()} is not a integer`);
-    }
-}
-
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
