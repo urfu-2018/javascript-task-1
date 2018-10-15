@@ -118,7 +118,7 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
-    if (targetNs < 1 || targetNs > 36) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
@@ -145,7 +145,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return text.match(/(?::-\)|\(-:)/).length;
+    return (text.match(/(?::-\)|\(-:)/) || []).length;
 }
 
 /**
