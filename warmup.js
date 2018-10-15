@@ -10,6 +10,7 @@
 function abProblem(a, b) {
     checkNumber(a);
     checkNumber(b);
+
     return a + b;
 }
 
@@ -29,6 +30,7 @@ function checkNumber(input) {
 function centuryByYearProblem(year) {
     checkNumber(year);
     checkPositive(year);
+
     return Math.floor(Number(year) / 100) + 1;
 }
 
@@ -49,12 +51,14 @@ function colorsProblem(hexColor) {
     checkString(hexColor);
     checkHex(hexColor);
     if (hexColor.length === 4) {
-        return (parseInt(hexColor[1] + hexColor[1], 16) + ', ' + parseInt(hexColor[2] + hexColor[2], 16)
-            + ', ' + parseInt(hexColor[3] + hexColor[3], 16));
+        return (parseInt(hexColor[1] + hexColor[1], 16) + ', ' +
+            parseInt(hexColor[2] + hexColor[2], 16) + ', ' +
+            parseInt(hexColor[3] + hexColor[3], 16));
     }
 
-    return (parseInt((hexColor[1] + hexColor[2]), 16) + ', ' + parseInt((hexColor[3] + hexColor[4]), 16)
-        + ', ' + parseInt((hexColor[5] + hexColor[6]), 16));
+    return (parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
+        parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
+        parseInt((hexColor[5] + hexColor[6]), 16));
 }
 
 function checkString(input) {
@@ -168,9 +172,11 @@ function smilesProblem(text) {
     var a = text.split(':-)').join('~');
     var b = a.split('(-:').join('~');
     let count = 0;
-    for (let i = 0; i < b.length; i++)
-        if (b[i] === '~')
+    for (let i = 0; i < b.length; i++) {
+        if (b[i] === '~') {
             count++;
+        }
+    }
 
     return count;
 }
