@@ -97,15 +97,6 @@ function matrixProblem(matrix) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
-    const n = matrix.length;
-    const m = matrix[0].length;
-
-    for (let i = 1; i < n; i++) {
-        if (matrix[i].length !== m) {
-            throw new TypeError('В качестве аргумента передан не верный массив');
-        }
-    }
-
     return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
 
