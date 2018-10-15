@@ -70,8 +70,8 @@ function checkString(input) {
 }
 
 function checkHex(input) {
-    if (!/^#([0-9A-Fa-f]{6})$/i.test(input)) {
-        throw new RangeError(`${input.toString()} is not a validate HEX`);
+    if (!/^#([0-9A-Fa-f]{6})$/.test(input)) {
+        throw new RangeError(`${input.toString()} is not in range`);
     }
 }
 
