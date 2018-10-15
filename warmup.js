@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw RangeError;
     } else if (!isNaN(year)) {
-        return Math.floor(year / 100);
+        return Math.floor(year / 100) + 1;
     }
     throw TypeError;
 }
