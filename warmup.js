@@ -26,7 +26,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if(isNaN(year)) {
+    if (isNaN(year)) {
         throw new TypeError ("Переданный параметр не является числом");
     }
     else if (year < 0) {
@@ -74,10 +74,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    if(isNaN(n)) {
+    if (isNaN(n)) {
         throw new TypeError ("Переданный параметр не является числом");
     }
-    else if (n%2 != 0 || n <= 0) {
+    else if (n%2 !== 0 || n <= 0) {
         throw new RangeError("n не является целым положительным числом");
     }
     else {
@@ -125,7 +125,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if(isNaN(n) || isNaN(targetNs)) {
+    if (isNaN(n) || isNaN(targetNs)) {
         throw new TypeError ("Переданныe параметры не являются числом");
     }
     else if (targetNs < 2 || targetNs > 36) {
@@ -144,7 +144,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     // Ваше решение
     const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
-    return res==null;
+    return res === null;
 }
 
 /**
@@ -155,16 +155,16 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
-    if (typeof text != String) {
+    if (typeof text !== String) {
         throw new TypeError ("Переданный параметр не является строкой")
     }
     else {
         let countOfSmiles = 0;
         for (let i=0; i < text.length - 3; i++) {
-            if (text[i]==='(' && text[i+1]==='-' && text[i+2]===':') {
+            if (text[i] === '(' && text[i+1] === '-' && text[i+2] === ':') {
                 countOfSmiles++;
             }
-            else if (text[i]===':' && text[i+1]==='-' && text[i]===')') {
+            else if (text[i] === ':' && text[i+1] === '-' && text[i] === ')') {
                 countOfSmiles++; 
             }
             else continue;
@@ -181,24 +181,24 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
-    if (field[0][0] =='o' && field[0][1] =='o' && field[0][2] =='o' ||
-    field[1][0] =='o' && field[1][1] =='o' && field[1][2] =='o' ||
-    field[2][0] =='o' && field[2][1] =='o' && field[2][2] =='o' ||
-    field[0][0] =='o' && field[1][0] =='o' && field[2][0] =='o' ||
-    field[0][1] =='o' && field[1][1] =='o' && field[2][1] =='o' ||
-    field[0][2] =='o' && field[1][2] =='o' && field[2][2] =='o' ||
-    field[0][0] =='o' && field[1][1] =='o' && field[2][2] =='o' ||
-    field[2][0] =='o' && field[1][1] =='o' && field[0][2] =='o') {
+    if (field[0][0] === 'o' && field[0][1] === 'o' && field[0][2] === 'o' ||
+    field[1][0] === 'o' && field[1][1] === 'o' && field[1][2] === 'o' ||
+    field[2][0] === 'o' && field[2][1] === 'o' && field[2][2] === 'o' ||
+    field[0][0] === 'o' && field[1][0] === 'o' && field[2][0] === 'o' ||
+    field[0][1] === 'o' && field[1][1] === 'o' && field[2][1] === 'o' ||
+    field[0][2] === 'o' && field[1][2] === 'o' && field[2][2] === 'o' ||
+    field[0][0] === 'o' && field[1][1] === 'o' && field[2][2] === 'o' ||
+    field[2][0] === 'o' && field[1][1] === 'o' && field[0][2] === 'o') {
         return 'o';
     }
     else if (field[0][0] =='x' && field[0][1] =='x' && field[0][2] =='x' ||
-    field[1][0] =='x' && field[1][1] =='x' && field[1][2] =='x' ||
-    field[2][0] =='x' && field[2][1] =='x' && field[2][2] =='x' ||
-    field[0][0] =='x' && field[1][0] =='x' && field[2][0] =='x' ||
-    field[0][1] =='x' && field[1][1] =='x' && field[2][1] =='x' ||
-    field[0][2] =='x' && field[1][2] =='x' && field[2][2] =='x' ||
-    field[0][0] =='x' && field[1][1] =='x' && field[2][2] =='x' ||
-    field[2][0] =='x' && field[1][1] =='x' && field[0][2] =='x')  {
+    field[1][0] === 'x' && field[1][1] === 'x' && field[1][2] === 'x' ||
+    field[2][0] === 'x' && field[2][1] === 'x' && field[2][2] === 'x' ||
+    field[0][0] === 'x' && field[1][0] === 'x' && field[2][0] === 'x' ||
+    field[0][1] === 'x' && field[1][1] === 'x' && field[2][1] === 'x' ||
+    field[0][2] === 'x' && field[1][2] === 'x' && field[2][2] === 'x' ||
+    field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x' ||
+    field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x')  {
         return 'x';
     }
     else return 'draw';
