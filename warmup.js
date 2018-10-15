@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+    if (!(/^#[0-9A-Fa-f]{6}$/).test(hexColor)) {
         throw new RangeError();
     }
     const rgb = Array(3);
