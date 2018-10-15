@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
 
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (typeof(year) !== 'number') {
+    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 1 || !Number.isInteger(year)) {
+    if (year < 1) {
         throw new RangeError();
     }
 
@@ -43,7 +43,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    const regex = new RegExp('^#[0-9A-Fa-f]{6}$');
+    const regex = new RegExp(/^#[0-9A-Fa-f]{6}$/g);
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
