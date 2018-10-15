@@ -170,9 +170,19 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Not string');
     }
-    const reg = /(:-\))|(\(-:)/g;
+    const regSmile = /:-\)/g;
+    const regSmileRvs = /\(-:/g;
+    let countSmiles = 0;
+    const smiles = text.match(regSmile);
+    const smilesRevers = text.match(regSmileRvs);
+    if (smiles !== null) {
+        countSmiles += smiles.length;
+    }
+    if (smilesRevers !== null) {
+        countSmiles += smilesRevers.length;
+    }
 
-    return text.match(reg).length;
+    return countSmiles;
 }
 
 /**
