@@ -98,9 +98,6 @@ function matrixProblem(matrix) {
         }
         newMatrix.push(arr);
     }
-    if (lengthMatrix === 0) {
-        return [[]];
-    }
 
     return newMatrix;
 }
