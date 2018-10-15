@@ -1,5 +1,9 @@
 'use strict';
 
+function isNotNum(number) {
+    return isNaN(parseFloat(number));
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -8,7 +12,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isFinite(a) && !isFinite(b)) {
+    if (isNotNum(a) && isNotNum(b)) {
         throw new TypeError('В аргументы переданы не числа');
     }
     if (Number.isInteger(a) && Number.isInteger(b)) {
@@ -24,7 +28,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isFinite(year)) {
+    if (isNotNum(year)) {
         throw new TypeError('В качестве года передано не число');
     }
     if (year < 0) {
@@ -78,7 +82,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isFinite(n)) {
+    if (isNotNum(n)) {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
     if (n <= 0 || !Number.isInteger(n)) {
@@ -135,7 +139,7 @@ function isQuadratic(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isFinite(n) || !isFinite(targetNs)) {
+    if (isNotNum(n) || isNotNum(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {
