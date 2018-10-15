@@ -26,8 +26,8 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('year must be a number');
     }
-    if (year < 0) {
-        throw new RangeError('year must be > 0');
+    if (year < 1) {
+        throw new RangeError('year must be > 1');
     }
 
     const yearsInCentury = 100;
