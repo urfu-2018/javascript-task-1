@@ -89,7 +89,11 @@ function matrixProblem(matrix) {
     let newMatrix = [];
     for (let i = 0; i < lengthMatrix; i++) {
         let arr = [];
-        for (let j = 0; j < matrix[0].length; j++) {
+        let lengthMat = matrix[0].length;
+        for (let j = 0; j < lengthMat; j++) {
+            if (matrix[i].length !== lengthMat) {
+                throw TypeError;
+            }
             arr.push(matrix[j][i]);
         }
         newMatrix.push(arr);
