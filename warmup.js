@@ -52,7 +52,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const regCheck = /#([\da-f]){6}/i;
+    const regCheck = /^#([0-9a-f]){6}$/i;
     if (typeof hexColor !== 'string' || !regCheck.test(hexColor)) {
         throw new TypeError('unsigned format color');
     }
