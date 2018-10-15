@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number' ||
-        !Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('Один из переданных аргументов не является числом');
     }
 
@@ -88,7 +87,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
