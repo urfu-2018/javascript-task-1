@@ -13,7 +13,7 @@ function abProblem(a, b) {
         return a + b;
     }
 
-    return TypeError;// Succses
+    throw TypeError;// Succses
 }
 
 /**
@@ -26,7 +26,7 @@ function abProblem(a, b) {
 
 function centuryByYearProblem(year) {
     if (isNaN(year)) {
-        return TypeError;
+        throw TypeError;
     }
     if (year > 0) {
         if (year % 1000 === 0) {
@@ -39,7 +39,7 @@ function centuryByYearProblem(year) {
         return res;
     }
 
-    return RangeError;
+    throw RangeError;
 }
 
 /**
@@ -52,7 +52,7 @@ function centuryByYearProblem(year) {
 
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        return TypeError;
+        throw TypeError;
     }
     let result = '(';
     let j = 1;
@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
     let array = [0, 1];
     if (isNaN(n)) {
 
-        return TypeError;
+        throw TypeError;
     }
     if (Number.isInteger(n) && n > 0) {
         for (let i = 2; i <= n; i++) {
@@ -91,7 +91,7 @@ function fibonacciProblem(n) {
         return array[array.length - 1];
     }
 
-    return RangeError;
+    throw RangeError;
 }
 
 /**
@@ -103,13 +103,13 @@ function fibonacciProblem(n) {
 
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        return TypeError;
+        throw TypeError;
     }
     let val = 0;
     for (let i = 0; i < matrix.length; i++) {
         const arAr = matrix[i];
         if (!Array.isArray(arAr)) {
-            return TypeError;
+            throw TypeError;
         }
         for (let j = 0 + val; j < matrix[i].length; j++) {
             const x = matrix[i][j];
@@ -134,7 +134,7 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) { //  ПОЛНОСТЬЮ ПЕРЕДЕЛАТЬ
     if (isNaN(n) && isNaN(targetNs)) {
 
-        return TypeError;
+        throw TypeError;
     }
     if (targetNs >= 2 && targetNs <= 36) {
         const result = n.toString(targetNs);
@@ -142,7 +142,7 @@ function numberSystemProblem(n, targetNs) { //  ПОЛНОСТЬЮ ПЕРЕДЕ�
         return result;
     }
 
-    return RangeError;
+    throw RangeError;
 }
 
 /**
@@ -189,7 +189,7 @@ function smilesProblem(text) {
     let num = 0;
     if (typeof(text) !== 'string') {
 
-        return TypeError;
+        throw TypeError;
     }
     let skip = 0;
     let find = '(-:';
