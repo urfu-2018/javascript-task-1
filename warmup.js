@@ -35,11 +35,9 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год – отрицательное значение');
     }
     if (Number.isInteger(year)) {
-        let century = 0;
-        if (!(year % 100)) {
-            century = year / 100;
-        } else {
-            century = Math.floor(year / 100) + 1;
+        const century = Math.floor(year / 100);
+        if (year % 100) {
+            return century + 1;
         }
 
         return century;
