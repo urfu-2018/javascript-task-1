@@ -116,18 +116,34 @@ function matrixProblem(matrix) {
 }
 
 function checkMatrix(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!checkIsArray(matrix)) {
         return false;
     }
     let prevSize = matrix[0].length;
     for (let i = 1; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== prevSize) {
+        if (!Array.isArray(matrix[i]) ||
+         matrix[i].length !== prevSize ||
+         containsArray(matrix[i])) {
             return false;
         }
         prevSize = matrix[i].length;
     }
 
     return true;
+}
+
+function checkIsArray(m) {
+    return Array.isArray(m) && Array.isArray(m[0]);
+}
+
+function containsArray(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        if (Array.isArray(matrix[i])) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
