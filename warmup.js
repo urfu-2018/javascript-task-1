@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor[0] !== '#') {
+    if (/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
     const rgb = Array(3);
@@ -54,9 +54,6 @@ function colorsProblem(hexColor) {
     rgb[2] = hexColor.slice(5, 7);
     for (let i = 0; i < rgb.length; i++) {
         rgb[i] = parseInt(rgb[i], 16);
-        if (Number.isNaN(rgb[i])) {
-            throw new RangeError();
-        }
     }
 
     return '(' + rgb.join(', ') + ')';
