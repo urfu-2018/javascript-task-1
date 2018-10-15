@@ -40,15 +40,15 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    const regexp = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
+    const regexpHex = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
 
     if (typeof hexColor !== 'string') {
         throw new TypeError();
-    } else if (!regexp.test(hexColor)) {
+    } else if (!regexpHex.test(hexColor)) {
         throw new RangeError();
     }
 
-    let rgb = regexp.exec(hexColor);
+    let rgb = regexpHex.exec(hexColor);
     rgb[1] = parseInt(rgb[1], 16);
     rgb[2] = parseInt(rgb[2], 16);
     rgb[3] = parseInt(rgb[3], 16);
@@ -136,9 +136,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const regexp = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+    const regexpPhone = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
-    return regexp.test(phoneNumber);
+    return regexpPhone.test(phoneNumber);
 }
 
 /**
