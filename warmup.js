@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     const regexpHex = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
 
-    if (typeof hexColor !== 'string') {
+    if (typeof hexColor !== 'string' || hexColor.length !== 7) {
         throw new TypeError();
     } else if (!regexpHex.test(hexColor)) {
         throw new RangeError();
