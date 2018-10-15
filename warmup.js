@@ -107,7 +107,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (Number.isInteger(n) === false || Number.isInteger(targetNs) === false) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
@@ -144,10 +144,8 @@ function smilesProblem(text) {
 
     const left = /:-\)/g;
     const right = /\(-:/g;
-    const smile = /\(-:-\)/g;
 
-    let count = (text.match(left) || []).length + (text.match(right) || []).length +
-                (text.match(smile) || []).length;
+    let count = (text.match(left) || []).length + (text.match(right) || []).length;
 
     return count;
 }
