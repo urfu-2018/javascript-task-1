@@ -26,6 +26,9 @@ function centuryByYearProblem(year) {
     if (year % 1000 === 0) {
         return Math.trunc(year / 100);
     }
+    if (!(typeof(year) === 'number')) {
+        return new TypeError();
+    }
     if (!(Number.isInteger(year) > 0)) {
         throw new RangeError();
     }
@@ -41,20 +44,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (hexColor.length === 3) {
-        const sumbol1 = hexColor.substring(1, 2);
-        const sumbol2 = hexColor.substring(2, 3);
-        const sumbol3 = hexColor.substring(3, 4);
-        hexColor = '#' + sumbol1 + sumbol1 + sumbol2 + sumbol2 + sumbol3 + sumbol3;
-    }
     if (!(typeof(hexColor) === 'string')) {
         throw new TypeError();
+    }
+    const regcolorExp = new RegExp ('/^#[0-9A-F]{6}$/i');
+    if (!(regcolorExp.test(hexColor))) {
+        throw new RangeError();
     }
     const clearHex = hexColor.substring(1, 7);
     const r = parseInt(clearHex.substring(0, 2), 16);
     const g = parseInt(clearHex.substring(2, 4), 16);
     const b = parseInt(clearHex.substring(4, 6), 16);
-    if (!((r, g, b) <= 255 && (r, g, b) >= 0)) {
+    if (!((r, g, b) <= 255 || (r, g, b) >= 0)) {
         throw new RangeError();
     }
 
@@ -72,10 +73,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new RangeError();
     }
-    if (Number.isInteger(n) === 0) {
-        return 0;
-    }
-    if (!(Number.isInteger(n) > 0)) {
+    if (!(Number.isInteger(n) >= 0)) {
         throw new RangeError();
     }
     if (n <= 2) {
