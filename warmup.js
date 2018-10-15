@@ -16,7 +16,7 @@ function isString(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNumber(a) || !isNumber(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('not a number');
     }
 
@@ -31,7 +31,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isNumber(year)) {
+    if (!Number.isInteger(year)) {
         throw new TypeError('type of year is incorrect');
     } else if (year < 0) {
         throw new RangeError('');
@@ -129,7 +129,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !isNumber(targetNs) || !Number.isInteger(targetNs)) {
+    if (!isNumber(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('type is invalid');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
