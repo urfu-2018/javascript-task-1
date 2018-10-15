@@ -100,11 +100,11 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i].length !== matrix[0].length) {
-            throw new TypeError();
-        }
-    }
+    // for (let i = 0; i < matrix.length; i++) {
+    //     if (matrix[i].length !== matrix[0].length) {
+    //         throw new TypeError();
+    //     }
+    // }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
