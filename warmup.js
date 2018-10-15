@@ -11,8 +11,9 @@ function abProblem(a, b) {
     if (!isFinite(a) && !isFinite(b)) {
         throw new TypeError('В аргументы переданы не числа');
     }
-
-    return Number(a) + Number(b);
+    if (Number.isInteger(a) && Number.isInteger(b)) {
+        return Number(a) + Number(b);
+    }
 }
 
 /**
