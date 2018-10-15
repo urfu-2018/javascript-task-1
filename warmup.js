@@ -12,7 +12,7 @@ function isNotNum(number) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNotNum(a) && isNotNum(b)) {
+    if (isNotNum(a) || isNotNum(b)) {
         throw new TypeError('В аргументы переданы не числа');
     }
     if (Number.isInteger(a) && Number.isInteger(b)) {
