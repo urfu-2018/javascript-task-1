@@ -50,7 +50,7 @@ function colorsProblem(hexColor) {
     const r = parseInt(hexColor.substr(1, 2), 16);
     const g = parseInt(hexColor.substr(3, 2), 16);
     const b = parseInt(hexColor.substr(5, 2), 16);
-    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b)) {
+    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b) || hexColor.length > 7) {
         throw RangeError;
     }
 
@@ -91,6 +91,11 @@ function matrixProblem(matrix) {
     if (!matrix.length || !matrix[0].length) {
         throw TypeError;
     }
+    matrix.forEach(c => {
+        if (matrix[0].length !== c.length || !c || !c.length || c.length === 0) {
+            throw new TypeError();
+        }
+    });
     const transMatrix = [];
     matrix[0].forEach(() => transMatrix.push([]));
     for (var i = 0; i < matrix[0].length; i++) {
@@ -111,7 +116,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw TypeError;
     }
     if (targetNs < 2 || targetNs > 36) {
