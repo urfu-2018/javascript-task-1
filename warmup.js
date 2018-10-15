@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw TypeError;
     }
-    if (year < 0) {
+    if (year <= 0) {
         throw RangeError;
     }
     let numberOfCenturies = year / 100;
@@ -44,7 +44,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string' || hexColor[0] !== '#') {
+    if ((typeof(hexColor) !== 'string' && hexColor.length === 7) || hexColor[0] !== '#') {
         throw TypeError;
     }
     let redColor = parseInt(hexColor.substr(1, 2), 16);
@@ -86,17 +86,20 @@ function matrixProblem(matrix) {
         throw TypeError;
     }
     let lengthMatrix = matrix.length;
-    let lengthMat = matrix[0].length;
+    let lengthArr = matrix[0].length;
     let newMatrix = [];
+    if (lengthMatrix === 0) {
+        throw TypeError;
+    }
     for (let i = 0; i < lengthMatrix; i++) {
         let arr = [];
-        if (matrix[i].length !== lengthMat) {
+        if (matrix[i].length !== lengthArr) {
             throw TypeError;
         }
-        for (let j = 0; j < lengthMat; j++) {
-            arr.push(matrix[j][i]);
+        for (let j = 0; j < lengthArr; j++) {
+            arr[j] = matrix[j][i];
         }
-        newMatrix.push(arr);
+        newMatrix[i] = arr;
     }
 
     return newMatrix;
