@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
     }
     const redNumber = parseInt(hexColor.slice(1, 3), 16);
     const greenNumber = parseInt(hexColor.slice(3, 5), 16);
-    const blueNumber = parseInt(hexColor.slice(5), 16);
+    const blueNumber = parseInt(hexColor.slice(4, 6), 16);
     const result = '(' + redNumber + ', ' + greenNumber + ', ' + blueNumber + ')';
 
     return result;
