@@ -51,14 +51,14 @@ function colorsProblem(hexColor) {
     checkString(hexColor);
     checkHex(hexColor);
     if (hexColor.length === 4) {
-        return (parseInt(hexColor[1] + hexColor[1], 16) + ', ' +
+        return ('(' + parseInt(hexColor[1] + hexColor[1], 16) + ', ' +
             parseInt(hexColor[2] + hexColor[2], 16) + ', ' +
-            parseInt(hexColor[3] + hexColor[3], 16));
+            parseInt(hexColor[3] + hexColor[3], 16) + ')');
     }
 
-    return (parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
+    return ('(' + parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
         parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
-        parseInt((hexColor[5] + hexColor[6]), 16));
+        parseInt((hexColor[5] + hexColor[6]), 16) + ')');
 }
 
 function checkString(input) {
