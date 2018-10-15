@@ -97,7 +97,7 @@ function matrixProblem(matrix) {
         }
     }
 
-    return matrix[0].map((column, index) => matrix.map(row => row[index]));;
+    return matrix[0].map((column, index) => matrix.map(row => row[index]));
 }
 
 /**
