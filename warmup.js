@@ -71,7 +71,7 @@ function fibonacciProblem(n) {
     }
     let goldenRatio = 1.618039988;
 
-    return ((Math.pow(goldenRatio, n) - Math.pow(1 - goldenRatio, n)) / Math.sqrt(5)).toFixed();
+    return Number(((Math.pow(goldenRatio, n) - Math.pow(1 - goldenRatio, n)) / Math.sqrt(5)).toFixed());
 }
 
 /**
