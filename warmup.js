@@ -180,20 +180,25 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    const winners = [];
     for (let i = 0; i < field.length; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            return field[i][0];
+            winners.push(field[i][0]);
         }
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
+            winners.push(field[0][i]);
         }
     }
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
-        return field[0][0];
+        winners.push(field[1][1]);
     }
 
-    return 'draw';
+    return checkWin(winners);
+}
+
+function checkWin(winners) {
+    return winners.length === 1 ? winners[0] : 'draw';
 }
 
 module.exports = {
