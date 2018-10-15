@@ -11,7 +11,7 @@ function abProblem(a, b) {
     if (isNaN(a) || isNaN(b)) {
         throw new TypeError();
     }
-    
+
     return a + b;
     // Ваше решение
 }
@@ -40,7 +40,7 @@ function centuryByYearProblem(year) {
         } else {
             res = num + 1;
         }
-        
+  
         return res;
     }
 }
@@ -62,7 +62,7 @@ function colorsProblem(hexColor) {
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
         const answer = '(' + r + ',' + g + ',' + b + ')';
-        
+
         return answer;
     }
 }
@@ -108,7 +108,7 @@ function matrixProblem(matrix) {
             matrixT[i][j] = matrix[j][i];
         }
     }
-    
+
     return matrixT;
 }
 
@@ -139,7 +139,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     // Ваше решение
     const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
-    
+
     return res !== null;
 }
 
@@ -164,7 +164,7 @@ function smilesProblem(text) {
             continue;
         }
     }
-    
+
     return countOfSmiles;
 }
 
