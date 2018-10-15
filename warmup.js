@@ -89,9 +89,27 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
-        throw new TypeError();
+    const m = matrix.length;
+    const n = matrix[0].length;
+    const transposedMatrix = [];
+
+    let i = 0;
+    let j = 0;
+
+    for (i = 0; i < m; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+            throw new TypeError();
+        }
     }
+
+    for (i = 0; i < n; i++) {
+        transposedMatrix[i] = [];
+        for (j = 0; j < m; j++) {
+            transposedMatrix[i][j] = transposedMatrix[j][i];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -149,7 +167,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    
 }
 
 module.exports = {
