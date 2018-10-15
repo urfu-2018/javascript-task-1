@@ -61,6 +61,9 @@ describe('Fibonacci problem', () => {
     it('Для n=1 должна вернуть `1`', () => {
         assert.strictEqual(fibonacciProblem(22), 17711);
     });
+    it('Для n=1 должна вернуть `1`', () => {
+        assert.strictEqual(fibonacciProblem(4), 3);
+    });
 });
 
 describe('Matrix problem', () => {

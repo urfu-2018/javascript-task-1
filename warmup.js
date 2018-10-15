@@ -94,6 +94,17 @@ function fibonacciProblem(n) {
     return current;
 }
 
+function isNotTwoDimensial(matrix) {
+    let firstLength = matrix[0].length;
+    for (let i = 1; i < matrix.length; i++) {
+        if (firstLength !== matrix[i].length) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -101,13 +112,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || isNotTwoDimensial(matrix)) {
         throw new TypeError();
     }
-    let result = [];
-    result = matrix[0].map((col, i) => matrix.map(row => row[i]));
 
-    return result;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
