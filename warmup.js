@@ -10,6 +10,7 @@
 function abProblem(a, b) {
     let intA = tryParseInt(a);
     let intB = tryParseInt(b);
+
     return intA + intB;
 }
 
@@ -22,9 +23,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     let intYear = tryParseInt(year);
-    if (intYear < 0){
-        throw new RangeError("в качестве года передано отрицательное значение");
+    if (intYear < 0) {
+        throw new RangeError();
     }
+
     return Math.ceil(intYear / 100);
 }
 
@@ -36,15 +38,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string'){
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7 || !(/#[0-9A-F]{6}/.test(hexColor))){
+    if (hexColor.length !== 7 || !(/#[0-9A-F]{6}/.test(hexColor))) {
         throw new RangeError();
     }
     let r = parseInt(hexColor[1] + hexColor[2], 16);
     let g = parseInt(hexColor[3] + hexColor[4], 16);
     let b = parseInt(hexColor[5] + hexColor[6], 16);
+
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
@@ -57,15 +60,16 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     let intN = tryParseInt(n);
-    if (intN < 0 || intN % 1 != 0){
+    if (intN < 0 || intN % 1 !== 0) {
         throw new RangeError();
     }
-    if (intN === 0){
+    if (intN === 0) {
         return 0;
     }
-    if (intN === 1 || intN === 2){
+    if (intN === 1 || intN === 2) {
         return 1;
     }
+
     return fibonacciProblem(intN - 1) + fibonacciProblem(intN - 2);
 }
 
@@ -76,32 +80,40 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    let m = 0;
-    if (!Array.isArray(matrix) || matrix.length == 0){
-        throw new TypeError();
-    }
-    m = matrix.length;
+    checkMatrix(matrix);
+    let m = matrix.length;
+    let n = matrix[0].length;
 
-    let n = 0;
-    if (!Array.isArray(matrix[0]) || matrix[0].length == 0){
-        throw new TypeError();
-    }
-    n = matrix[0].length;
-
-    for (let i = 0; i < matrix.length; i++){
-        if (!Array.isArray(matrix[i]) || matrix[i].length != n){
-            throw new TypeError();
-        }
-    }
     let newMatrix = [];
-    for (var i = 0; i < n; i++){
+    for (var i = 0; i < n; i++) {
         newMatrix.push([]);
-        for (var j = 0; j < m; j++){
+        for (var j = 0; j < m; j++) {
             newMatrix[i].push(matrix[j][i]);
         }
     }
-    console.log(m + "    " + n);
+
     return newMatrix;
+}
+
+function checkMatrix(matrix) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
+    }
+
+    let n = 0;
+    if (!Array.isArray(matrix[0]) || matrix[0].length === 0) {
+        throw new TypeError();
+    }
+    n = matrix[0].length;
+    checkRows(matrix, n);
+}
+
+function checkRows(matrix, n) {
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+            throw new TypeError();
+        }
+    }
 }
 
 /**
@@ -113,11 +125,12 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    let floatN = tryParseFloat(n);
+    tryParseFloat(n);
     let floatTargetNs = tryParseFloat(targetNs);
-    if (floatTargetNs < 2 || floatTargetNs > 36){
+    if (floatTargetNs < 2 || floatTargetNs > 36) {
         throw new RangeError();
     }
+
     return n.toString(targetNs);
 }
 
@@ -127,6 +140,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+
     return /8-800-\d\d\d-\d\d-\d\d/.test(phoneNumber);
 }
 
@@ -137,15 +151,16 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !== 'string'){
+    if (typeof text !== 'string') {
         throw new TypeError();
     }
     let counter = 0;
-    for (let i = 0; i < text.length - 2; i++){
-        if (text.substring(i, i + 3) === "(-:" || text.substring(i, i + 3) === ":-)"){
+    for (let i = 0; i < text.length - 2; i++) {
+        if (text.substring(i, i + 3) === '(-:' || text.substring(i, i + 3) === ':-)') {
             counter += 1;
         }
     }
+
     return counter;
 }
 
@@ -158,38 +173,43 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     let xLine = checkFieldFor(field, 'x');
     let oLine = checkFieldFor(field, 'o');
-    return (xLine && oLine || !(xLine || oLine)) ? 'draw' :
-            xLine ? 'x' :
-            'o';
+    if (xLine && oLine || !(xLine || oLine)) {
+        return 'draw';
+    }
+
+    return xLine ? 'x' : 'o';
 }
 
-function tryParseInt(n){
+function tryParseInt(n) {
     let intN = parseInt(n);
-    if (isNaN(intN)){
+    if (isNaN(intN)) {
         throw new TypeError();
     }
+
     return intN;
 }
 
-function tryParseFloat(n){
+function tryParseFloat(n) {
     let floatN = parseFloat(n);
-    if (isNaN(floatN)){
+    if (isNaN(floatN)) {
         throw new TypeError();
     }
+
     return floatN;
 }
 
-function checkFieldFor(field, n){
-    for (let i = 0; i < 3; i++){
-        if ((field[i][0] === field[i][1] && field[i][1] === field[i][2] && field[i][2] === n) 
-            || (field[0][i] === field[1][i] && field[1][i] === field[2][i] && field[2][i] === n)){
+function checkFieldFor(field, n) {
+    for (let i = 0; i < 3; i++) {
+        if ((field[i][0] === field[i][1] && field[i][1] === field[i][2] && field[i][2] === n) ||
+        (field[0][i] === field[1][i] && field[1][i] === field[2][i] && field[2][i] === n)) {
             return true;
         }
     }
-    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2] && field[2][2] === n)
-        || (field[2][0] === field[1][1] && field[1][1] === field[0][2] && field[0][2] === n)){
-            return true;
-        }
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2] && field[2][2] === n) ||
+    (field[2][0] === field[1][1] && field[1][1] === field[0][2] && field[0][2] === n)) {
+        return true;
+    }
+
     return false;
 }
 
