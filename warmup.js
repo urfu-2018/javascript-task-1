@@ -48,16 +48,15 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
-    const checkFormatString = hexColor.match(/^#[0-9a-f]{6}$/i);
+    let checkFormatString = hexColor.match(/^#[0-9a-f]{6}$/ig);
     if (checkFormatString === null) {
         throw new RangeError();
     }
-    const rgbArray = [hexColor.slice(1, 3), hexColor.slice(3, 5), hexColor.slice(5)];
-    rgbArray.forEach(function (part, index, theArray) {
-        theArray[index] = parseInt(theArray[index], 16);
-    });
+    let red = parseInt(hexColor.slice(1, 3), 16);
+    let green = parseInt(hexColor.slice(3, 5), 16);
+    let blue = parseInt(hexColor.slice(5), 16);
 
-    return '(' + rgbArray[0] + ', ' + rgbArray[1] + ', ' + rgbArray[2] + ')';
+    return '(' + red + ', ' + green + ', ' + blue + ')';
 }
 
 /**
@@ -71,7 +70,7 @@ function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     if (n <= 2) {
