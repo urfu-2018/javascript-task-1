@@ -57,6 +57,7 @@ function checkPositive(input) {
 function colorsProblem(hexColor) {
     checkString(hexColor);
     checkHex(hexColor);
+
     return ('(' + parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
         parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
         parseInt((hexColor[5] + hexColor[6]), 16) + ')');
