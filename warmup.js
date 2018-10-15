@@ -51,7 +51,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     const regCheck = /^#[0-9a-fA-F]{6}$/;
     if (typeof hexColor !== 'string') {
-        throw new TypeError('unsigned format color');
+        throw new TypeError('Не строка');
     }
     if (!regCheck.test(hexColor)) {
         throw new RangeError('значения цвета выходят за пределы допустимых');
@@ -84,7 +84,7 @@ function fibonacciProblem(n) {
     }
     const arrFib = [];
     arrFib[0] = 1;
-    arrFib[1] = 2;
+    arrFib[1] = 1;
     for (let i = 2; i < n; i++) {
         arrFib[i] = arrFib[i - 1] + arrFib[i - 2];
     }
