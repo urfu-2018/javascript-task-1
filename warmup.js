@@ -101,7 +101,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!matrix[0][0] || matrix[0][0].isArray) {
+    if (!matrix[0][0] || matrix[0][0].isArray || isQuadratic(matrix)) {
         throw new TypeError('В функцию передаётся не двумерный массив');
     }
     const matrixTranspon = [];
@@ -114,6 +114,16 @@ function matrixProblem(matrix) {
     }
 
     return matrixTranspon;
+}
+
+function isQuadratic(matrix) {
+    for (let i = 1; i < matrix.length; i++) {
+        if (matrix[i - 1].length !== matrix[i].length) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**
