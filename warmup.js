@@ -70,12 +70,9 @@ function fibonacciProblem(n) {
     if (n < 1) {
         throw new RangeError();
     }
-    if (n < 3) {
-        return 1;
-    }
     let prevNum = 1;
     let currentNum = 1;
-    for (let i = 2; i < n; ++i) {
+    for (let i = 3; i < n; ++i) {
         let buff = prevNum;
         currentNum += prevNum;
         prevNum = buff;
@@ -134,7 +131,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
