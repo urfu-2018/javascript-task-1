@@ -94,6 +94,7 @@ function matrixProblem(matrix) {
             throw TypeError;
         }
         newMatrix[count] = [];
+        count++;
     });
     for (let i = 0; i < lengthMatrix; i++) {
         for (let j = 0; j < lengthArr; j++) {
