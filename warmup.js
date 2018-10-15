@@ -40,7 +40,7 @@ function centuryByYearProblem(year) {
         } else {
             res = num + 1;
         }
-  
+
         return res;
     }
 }
@@ -176,31 +176,25 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
-    let result = 'draw';
-    if (field[0][0] === 'o' && field[0][1] === 'o' && field[0][2] === 'o' ||
-    field[1][0] === 'o' && field[1][1] === 'o' && field[1][2] === 'o' ||
-    field[2][0] === 'o' && field[2][1] === 'o' && field[2][2] === 'o' ||
-    field[0][0] === 'o' && field[1][0] === 'o' && field[2][0] === 'o' ||
-    field[0][1] === 'o' && field[1][1] === 'o' && field[2][1] === 'o' ||
-    field[0][2] === 'o' && field[1][2] === 'o' && field[2][2] === 'o' ||
-    field[0][0] === 'o' && field[1][1] === 'o' && field[2][2] === 'o' ||
-    field[2][0] === 'o' && field[1][1] === 'o' && field[0][2] === 'o') {
-        result = 'o';
-    } else if (field[0][0] === 'x' && field[0][1] === 'x' && field[0][2] === 'x' ||
-    field[1][0] === 'x' && field[1][1] === 'x' && field[1][2] === 'x' ||
-    field[2][0] === 'x' && field[2][1] === 'x' && field[2][2] === 'x' ||
-    field[0][0] === 'x' && field[1][0] === 'x' && field[2][0] === 'x' ||
-    field[0][1] === 'x' && field[1][1] === 'x' && field[2][1] === 'x' ||
-    field[0][2] === 'x' && field[1][2] === 'x' && field[2][2] === 'x' ||
-    field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x' ||
-    field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x') {
-        result = 'x';
+    let result = '';
+    if (field[0,0] === field[0,1] === field[0,2] || 
+        field[0,0] === field[1,1] === field[2,2] ||
+        field[0,0] === field[2,0] === field[2,2]) {
+        result = field[0,0];
+    }
+    else if (field[1,0] === field[1,1] === field[1,2]) {
+        result = field[1,0];
+    }
+    else if (field[2,0] === field[2,1] === field[2,2]) {
+        result = field[2,0];
+    }
+    else if (field[0,2] === field[1,2] === field[2,2]) {
+        result = field[0,2];
     } else {
         result = 'draw';
     }
 
     return result;
-}
 
 module.exports = {
     abProblem,
