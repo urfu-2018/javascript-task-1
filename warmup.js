@@ -8,18 +8,22 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    checkNumberInteger(a);
-    checkNumberInteger(b);
+    checkInteger(a);
+    checkInteger(b);
 
     return a + b;
 }
 
-function checkNumberInteger(input) {
-    if (typeof input !== 'number') {
-        throw new TypeError(`${input.toString()} is not a number`);
-    }
+function checkInteger(input) {
+    checkNumber(input);
     if (!Number.isInteger(input)) {
         throw new TypeError(`${input.toString()} is not an integer`);
+    }
+}
+
+function checkNumber(input) {
+    if (typeof input !== 'number') {
+        throw new TypeError(`${input.toString()} is not a number`);
     }
 }
 
@@ -31,7 +35,7 @@ function checkNumberInteger(input) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    checkNumberInteger(year);
+    checkNumber(year);
     checkPositive(year);
 
     return Math.ceil(Number(year) / 100);
@@ -53,12 +57,6 @@ function checkPositive(input) {
 function colorsProblem(hexColor) {
     checkString(hexColor);
     checkHex(hexColor);
-    if (hexColor.length === 4) {
-        return ('(' + parseInt(hexColor[1] + hexColor[1], 16) + ', ' +
-            parseInt(hexColor[2] + hexColor[2], 16) + ', ' +
-            parseInt(hexColor[3] + hexColor[3], 16) + ')');
-    }
-
     return ('(' + parseInt((hexColor[1] + hexColor[2]), 16) + ', ' +
         parseInt((hexColor[3] + hexColor[4]), 16) + ', ' +
         parseInt((hexColor[5] + hexColor[6]), 16) + ')');
@@ -71,7 +69,7 @@ function checkString(input) {
 }
 
 function checkHex(input) {
-    if (!/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/i.test(input)) {
+    if (!/^#([0-9A-Fa-f]{6})$/i.test(input)) {
         throw new RangeError(`${input.toString()} is not a validate HEX`);
     }
 }
@@ -84,7 +82,7 @@ function checkHex(input) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    checkNumberInteger(n);
+    checkInteger(n);
     checkPositiveInteger(n);
     let a = 1;
     let b = 1;
@@ -142,8 +140,8 @@ function checkMatrix(array) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    checkNumberInteger(n);
-    checkNumberInteger(targetNs);
+    checkInteger(n);
+    checkInteger(targetNs);
     checkSystem(targetNs);
 
     return n.toString(targetNs);
@@ -193,68 +191,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let winLines = field.concat(getAllColumnsFromField(field));
-    winLines.push(getDiagonalFromField(field, true));
-    winLines.push(getDiagonalFromField(field, false));
-    if (isOneOfTheLineContainsOnlySymbol('x', winLines)) {
-        return 'x';
+    for (let i = 0; i < field.length; i++) {
+        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[0][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
-    if (isOneOfTheLineContainsOnlySymbol('o', winLines)) {
-        return 'o';
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[2][0] === field[1][1] && field[2][0] === field[0][2]) {
+        return field[2][0];
     }
 
     return 'draw';
-}
-
-function isOneOfTheLineContainsOnlySymbol(symbol, winLines) {
-    for (let i = 0; i < winLines.length; i++) {
-        if (isLineContainsOnlySymbol(symbol, winLines[i])) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function isLineContainsOnlySymbol(symbol, line) {
-    for (let j = 0; j < line.length; j++) {
-        if (line[j] !== symbol) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function getAllColumnsFromField(field) {
-    let result = [];
-    for (let i = 0; i < field[0].length; i++) {
-        result.push(getColumnFromField(field, i));
-    }
-
-    return result;
-}
-
-function getColumnFromField(field, columnIndex) {
-    let column = [];
-    for (let i = 0; i < field.length; i++) {
-        column.push(field[i][columnIndex]);
-    }
-
-    return column;
-}
-
-function getDiagonalFromField(field, isMainDiagonal) {
-    let diagonal = [];
-    for (let i = 0; i < field.length; i++) {
-        if (isMainDiagonal) {
-            diagonal.push(field[i][i]);
-        } else {
-            diagonal.push(field[i][field.length - i - 1]);
-        }
-    }
-
-    return diagonal;
 }
 
 module.exports = {
