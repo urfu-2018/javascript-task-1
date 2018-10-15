@@ -94,21 +94,16 @@ function matrixProblem(matrix) {
 
     let columns = matrix[0].length;
     matrix.forEach(element => {
-        if (columns !== element.length) {
+        if (columns !== element.length || columns === 0) {
             throw new TypeError('Матрица должна быть размера NxM');
         }
     });
 
     matrix.forEach(element => {
-        if (!Array.isArray(element) || element.length === 0) {
+        if (!Array.isArray(element)) {
             throw new TypeError('В функцию передаётся не двумерный массив');
         }
     });
-
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError('В функцию передаётся не двумерный массив');
-    }
-
     let tMatrix = [];
     for (let i = 0; i < columns; i++) {
         tMatrix.push([]);
