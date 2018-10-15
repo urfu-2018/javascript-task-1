@@ -129,7 +129,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !isNumber(targetNs)) {
+    if (!isNumber(n) || !isNumber(targetNs) || !Number.isInteger(targetNs)) {
         throw new TypeError('type is invalid');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
@@ -144,6 +144,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!isString(phoneNumber)) {
+        throw new TypeError('');
+    }
     if (/8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber)) {
         return true;
     }
