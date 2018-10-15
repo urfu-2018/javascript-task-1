@@ -89,27 +89,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    const m = matrix.length;
-    const n = matrix[0].length;
-    const transposedMatrix = [];
-
-    let i = 0;
-    let j = 0;
-
-    for (i = 0; i < m; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
     }
 
-    for (i = 0; i < n; i++) {
-        transposedMatrix[i] = [];
-        for (j = 0; j < m; j++) {
-            transposedMatrix[i][j] = transposedMatrix[j][i];
-        }
-    }
-
-    return transposedMatrix;
+    return matrix[0].map((_col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -168,14 +154,13 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     const transposedMatrix = matrixProblem(field);
-    
-    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
-        return field[0][0];
-    } else if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
-        return field[0][2];
-    }
 
     let win = checkWinner(field);
+    if (win) {
+        return win;
+    }
+
+    win = checkWinnerDiagonal(field);
     if (win) {
         return win;
     }
@@ -185,19 +170,34 @@ function ticTacToeProblem(field) {
         return win;
     }
 
-    function checkWinner(fieldMatrix) {
-        for (let i = 0; i < fieldMatrix; i++) {
-            if (oneCharacterInRow[fieldMatrix[i]]) {
-                return fieldMatrix[i][0];
-            }
+    return 'draw';
+}
+
+
+function checkWinnerDiagonal(fieldMatrix) {
+    if (fieldMatrix[0][0] === fieldMatrix[1][1] && fieldMatrix[0][0] === fieldMatrix[2][2]) {
+        return fieldMatrix[0][0];
+    }
+    if (fieldMatrix[0][2] === fieldMatrix[1][1] &&
+            fieldMatrix[0][2] === fieldMatrix[2][0]) {
+        return fieldMatrix[0][2];
+    }
+
+    return false;
+}
+
+function checkWinner(fieldMatrix) {
+    for (let i = 0; i < fieldMatrix.length; i++) {
+        if (oneCharacterInRow(fieldMatrix[i])) {
+            return fieldMatrix[i][0];
         }
     }
 
-    function oneCharacterInRow(row) {
-        return new Set(row).size === 1;
-    }
+    return false;
+}
 
-    return 'draw';
+function oneCharacterInRow(row) {
+    return new Set(row).size === 1;
 }
 
 module.exports = {
