@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError('В аргументы переданы не числа');
     }
 
-    return a + b;
+    return Number(a) + Number(b);
 }
 
 /**
