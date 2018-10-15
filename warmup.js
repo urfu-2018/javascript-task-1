@@ -57,7 +57,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('unsigned format color');
     }
     if (!regCheck.test(hexColor)) {
-        throw new RangeError('значения цвета выходят за пределы допустимых')
+        throw new RangeError('значения цвета выходят за пределы допустимых');
     }
     const arrRGB = [];
     let colorNotSharp = hexColor.substring(1);
