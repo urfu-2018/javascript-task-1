@@ -141,18 +141,8 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('система счисления выходит за пределы значений [2, 36]');
     }
-    const arrNumTarget = [];
-    let remainder = n % targetNs;
-    let quotient = (n - remainder) / targetNs;
-    arrNumTarget.push(remainder);
-    while (quotient >= targetNs) {
-        remainder = quotient % targetNs;
-        quotient = (quotient - remainder) / targetNs;
-        arrNumTarget.push(remainder);
-    }
-    arrNumTarget.push(quotient);
 
-    return arrNumTarget.reverse().join('');
+    return n.toString(targetNs);
 }
 
 /**
