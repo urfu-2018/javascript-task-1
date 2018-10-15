@@ -184,8 +184,8 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     for (let i = 0; i < field.length; i++) {
-            if (field[i][0] === field[i][1] && field[i][0] === field[i][2])
-                return field[i][0];
+        if (field[i][0] === field[i][1] && field[i][0] === field[i][2])
+            return field[i][0];
     }
     for (let i = 0; i < field.length; i++) {
         if (field[0][i] === field[1][i] && field[0][i] === field[2][i])
