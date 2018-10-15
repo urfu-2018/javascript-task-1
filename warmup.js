@@ -8,6 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if(!isNaN(a)&&!isNaN(b)){
+        return a+b;
+    }
+    else {
+        throw new TypeError;
+    }
     // Ваше решение
 }
 
@@ -20,6 +26,22 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    if (isNaN(year)) {
+        throw new TypeError ("Переданный параметр не является числом");
+    }
+    else if (year < 0) {
+        throw new RangeError("Значение года не может быть отрицательным числом!")
+    }
+    else {
+        const yearStr= year.toString();
+        const num = Number.parseInt(yearStr[0]) + Number.parseInt(yearStr[1]);
+        const secondPart1 = Number.parseInt(yearStr[yearStr.length - 1]);
+        const secondPart2 = Number.parseInt(yearStr[yearStr.length - 2]);
+        if (secondPart1 === 0 && secondPart2 === 0) {
+            return num;
+        }
+        else return num + 1;
+    }
 }
 
 /**
@@ -31,6 +53,16 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    if (typeof hexColor != String) {
+        throw new TypeError ("Переданный параметр не является строкой")
+    }
+    else {
+        const colorHex =  /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+        const r = parseInt(result[1], 16);
+        const g = parseInt(result[2], 16);
+        const b = parseInt(result[3], 16);
+        return '(' + r + ',' + g +',' + b + ')';
+    }
 }
 
 /**
@@ -42,6 +74,20 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    if (isNaN(n)) {
+        throw new TypeError ("Переданный параметр не является числом");
+    }
+    else if (n%2 !== 0 || n <= 0) {
+        throw new RangeError("n не является целым положительным числом");
+    }
+    else {
+        if (n === 1 || n === 2) {
+            return 1;
+        }
+        else {
+            return fibonacciProblem(n-1) + fibonacciProblem(n-2); 
+        }
+    }
 }
 
 /**
@@ -52,6 +98,21 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    try {
+        const n = matrix.length;
+        const m = matrix[0].length;
+        /*const matrixT = new Array(m,n);*/
+        let matrixT = [m][n];
+        for (let i=0; i < m; i++){
+            for (let j=0; j < n; j++){ 
+                matrixT[i][j] = matrix[j][i];
+            }
+        }
+        return matrixT;
+    } catch (TypeError) {
+
+    }
+    throw new TypeError("в функцию передан не двумерный массив");
 }
 
 /**
@@ -64,6 +125,15 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    if (isNaN(n) || isNaN(targetNs)) {
+        throw new TypeError ("Переданныe параметры не являются числом");
+    }
+    else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError("недопустимое значение системы счисления");
+    }
+    else {
+        return n.toString(targetNs);
+    }
 }
 
 /**
@@ -73,6 +143,8 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
+    return res === null;
 }
 
 /**
@@ -83,6 +155,22 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
+    if (typeof text !== String) {
+        throw new TypeError ("Переданный параметр не является строкой")
+    }
+    else {
+        let countOfSmiles = 0;
+        for (let i=0; i < text.length - 3; i++) {
+            if (text[i] === '(' && text[i+1] === '-' && text[i+2] === ':') {
+                countOfSmiles++;
+            }
+            else if (text[i] === ':' && text[i+1] === '-' && text[i] === ')') {
+                countOfSmiles++; 
+            }
+            else continue;
+        }
+        return countOfSmiles;
+    }
 }
 
 /**
@@ -93,6 +181,27 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    if (field[0][0] === 'o' && field[0][1] === 'o' && field[0][2] === 'o' ||
+    field[1][0] === 'o' && field[1][1] === 'o' && field[1][2] === 'o' ||
+    field[2][0] === 'o' && field[2][1] === 'o' && field[2][2] === 'o' ||
+    field[0][0] === 'o' && field[1][0] === 'o' && field[2][0] === 'o' ||
+    field[0][1] === 'o' && field[1][1] === 'o' && field[2][1] === 'o' ||
+    field[0][2] === 'o' && field[1][2] === 'o' && field[2][2] === 'o' ||
+    field[0][0] === 'o' && field[1][1] === 'o' && field[2][2] === 'o' ||
+    field[2][0] === 'o' && field[1][1] === 'o' && field[0][2] === 'o') {
+        return 'o';
+    }
+    else if (field[0][0] =='x' && field[0][1] =='x' && field[0][2] =='x' ||
+    field[1][0] === 'x' && field[1][1] === 'x' && field[1][2] === 'x' ||
+    field[2][0] === 'x' && field[2][1] === 'x' && field[2][2] === 'x' ||
+    field[0][0] === 'x' && field[1][0] === 'x' && field[2][0] === 'x' ||
+    field[0][1] === 'x' && field[1][1] === 'x' && field[2][1] === 'x' ||
+    field[0][2] === 'x' && field[1][2] === 'x' && field[2][2] === 'x' ||
+    field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x' ||
+    field[2][0] === 'x' && field[1][1] === 'x' && field[0][2] === 'x')  {
+        return 'x';
+    }
+    else return 'draw';
 }
 
 module.exports = {
