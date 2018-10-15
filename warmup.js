@@ -103,8 +103,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) ||
-        !Array.isArray(matrix[0]) ||
-        Array.isArray(matrix[0][0])) {
+        !Array.isArray(matrix[0])) {
         throw new TypeError('В функцию передаётся не двумерный массив');
     }
     const matrixTranspon = [];
@@ -115,19 +114,12 @@ function matrixProblem(matrix) {
         }
         matrixTranspon.push(matrixTranLine);
     }
+    if (!matrix[0].length) {
+        matrixTranspon[0] = [];
+    }
 
     return matrixTranspon;
 }
-
-/* function isQuadratic(matrix) {
-    for (let i = 1; i < matrix.length; i++) {
-        if (matrix[i - 1].length !== matrix[i].length) {
-            return true;
-        }
-    }
-
-    return false;
-} */
 
 /**
  * Переводит число в другую систему счисления
