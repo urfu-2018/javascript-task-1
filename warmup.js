@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof (year) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year % 1 !== 0 || year < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return Math.ceil(year / 100);
@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     function rangeCorrect(c) {
         return c > 0 && c < 256;
@@ -50,8 +50,9 @@ function colorsProblem(hexColor) {
     const r = parseInt(hexColor.substr(1, 2), 16);
     const g = parseInt(hexColor.substr(3, 2), 16);
     const b = parseInt(hexColor.substr(5, 2), 16);
-    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b) || hexColor.length > 7) {
-        throw RangeError;
+    if (!rangeCorrect(r) || !rangeCorrect(g) || !rangeCorrect(b) ||
+    hexColor.length === 7) {
+        throw new RangeError();
     }
 
     return `(${r}, ${g}, ${b})`;
@@ -66,10 +67,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (n % 1 !== 0 || n < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
     var first = 0;
     var second = 1;
@@ -89,7 +90,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!matrix.length || !matrix[0].length) {
-        throw TypeError;
+        throw new TypeError();
     }
     matrix.forEach(c => {
         if (matrix[0].length !== c.length || !c || !c.length || c.length === 0) {
@@ -117,10 +118,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
-        throw TypeError;
-    }
-    if (targetNs < 2 || targetNs > 36) {
-        throw RangeError;
+        throw new TypeError();
     }
 
     return n.toString(targetNs);
@@ -134,7 +132,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof (phoneNumber) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/.test(phoneNumber);
@@ -148,7 +146,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof (text) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     const countSmiles = text.match(/(\(-:|:-\))/g).length;
 
