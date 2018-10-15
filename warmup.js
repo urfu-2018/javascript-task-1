@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
     const green = parseInt(hexColor.substr(3, 2), 16);
     const blue = parseInt(hexColor.substr(5, 2), 16);
 
-    if (red > 255 && green > 255 && blue > 255) {
+    if (red > 255 || green > 255 || blue > 255) {
         throw new RangeError();
     }
 
