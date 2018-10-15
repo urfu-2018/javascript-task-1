@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
     if (!isFinite(n)) {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
-    if (n < 0) {
+    if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
     const arrFib = [];
