@@ -55,7 +55,7 @@ function colorsProblem(hexColor) {
     var b = parseInt(hexColor[3] + hexColor[4], 16);
     var c = parseInt(hexColor[5] + hexColor[6], 16);
 
-    return '(' + a + ', ' + b + ', ' + c + ')';
+    return `(${a}, ${b}, ${c})`;
 }
 
 /**
@@ -73,13 +73,9 @@ function fibonacciProblem(n) {
         throw new RangeError('incorrect');
     }
 
-    return fibNumb(n);
-}
-
-function fibNumb(t) {
     var a = 1;
     var b = 1;
-    for (var i = 3; i <= t; i++) {
+    for (var i = 3; i <= n; i++) {
         let res = a + b;
         a = b;
         b = res;
