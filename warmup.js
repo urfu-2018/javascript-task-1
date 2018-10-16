@@ -130,9 +130,9 @@ function phoneProblem(phoneNumber) {
     const splitedNumber = phoneNumber.split('-');
 
     return splitedNumber.length === 5 && splitedNumber[0] === '8' && splitedNumber[1] === '800' &&
-            !isNaN(parseInt(splitedNumber[2])) && splitedNumber[2].length === 3 &&
-            !isNaN(parseInt(splitedNumber[3])) && splitedNumber[3].length === 2 &&
-            !isNaN(parseInt(splitedNumber[4])) && splitedNumber[4].length === 2;
+            Number.isInteger(parseInt(splitedNumber[2])) && splitedNumber[2].length === 3 &&
+            Number.isInteger(parseInt(splitedNumber[3])) && splitedNumber[3].length === 2 &&
+            Number.isInteger(parseInt(splitedNumber[4])) && splitedNumber[4].length === 2;
 }
 
 /**
