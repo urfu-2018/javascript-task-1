@@ -127,12 +127,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const splitedNumber = phoneNumber.split('-');
+    const phoneFormat = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
-    return splitedNumber.length === 5 && splitedNumber[0] === '8' && splitedNumber[1] === '800' &&
-            Number.isInteger(parseInt(splitedNumber[2])) && splitedNumber[2].length === 3 &&
-            Number.isInteger(parseInt(splitedNumber[3])) && splitedNumber[3].length === 2 &&
-            Number.isInteger(parseInt(splitedNumber[4])) && splitedNumber[4].length === 2;
+    return phoneFormat.test(phoneNumber);
 }
 
 /**
@@ -181,6 +178,8 @@ function checkLines(field) {
             return field[0][i];
         }
     }
+
+    return 'draw';
 }
 
 function checkDiagonals(field) {
@@ -188,6 +187,8 @@ function checkDiagonals(field) {
         field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[1][1];
     }
+
+    return 'draw';
 }
 
 module.exports = {

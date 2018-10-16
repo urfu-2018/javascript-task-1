@@ -36,6 +36,7 @@ console.info(matrixProblem([
     [7, 8, 9]
 ]));
 
+
 // Выведет "1010101"
 console.info(numberSystemProblem(85, 2));
 
