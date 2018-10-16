@@ -91,11 +91,10 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-
-    let columns = matrix[0].length;
     if (matrix.length === 0 || !Array.isArray(matrix)) {
         throw new TypeError();
     }
+    let columns = matrix[0].length;
     matrix.forEach(element => {
         if (columns !== element.length || columns === 0) {
             throw new TypeError('Матрица должна быть размера NxM');
