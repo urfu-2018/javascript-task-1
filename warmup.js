@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
     let firstNumber = 1;
