@@ -177,9 +177,9 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     // Ваше решение
     let result = '';
-    const diagCheck = DiagonalCheck(field);
-    const lineCheck = LineCheck(field);
-    const colCheck = ColumnCheck(field);
+    const diagCheck = diagonalCheck(field);
+    const lineCheck = lineCheck(field);
+    const colCheck = columnCheck(field);
     if (diagCheck !== '') {
         result = diagCheck;
     }
@@ -193,7 +193,7 @@ function ticTacToeProblem(field) {
     return result;
 }
 
-function DiagonalCheck(field) {
+function diagonalCheck(field) {
     let dCh = '';
     if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
         dCh = field[0][0];
@@ -208,7 +208,7 @@ function DiagonalCheck(field) {
     return dCh;
 }
 
-function LineCheck(field) {
+function lineCheck(field) {
     let lCh = '';
     if (field[0][0] === field[0][1] && field[0][0] === field[0][2]) {
         lCh = field[0][0];
@@ -218,14 +218,15 @@ function LineCheck(field) {
     }
     else if (field[2][0] === field[2][1] && field[2][0] == field[2][2]) {
         lCh = field[2][0];
-    } else {
+    } 
+    else {
         lCh = '';
     }
 
     return lCh;
 }
 
-function ColumnCheck(field) {
+function columnCheck(field) {
     let cCh = '';
     if (field[0][0] === field[1][0] && field[0][0] === field[2][0]) {
         cCh = field[0][0];
@@ -235,7 +236,8 @@ function ColumnCheck(field) {
     }
     else if (field[0][2] === field[1][2] && field[0][2] === field[2][2]) {
         cCh = field[0][2];
-    } else {
+    } 
+    else {
         cCh = '';
     }
 
