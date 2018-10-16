@@ -155,7 +155,7 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
     assertIfTypesDoNotMatch([text], [isString]);
 
-    return (text.match((/:-\)|\(-:/g) || []).length;
+    return (text.match(/:-\)|\(-:/g) || []).length;
 }
 
 /**
