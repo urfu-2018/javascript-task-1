@@ -48,10 +48,10 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (!isString(hexColor)) {
         throw new TypeError();
-    } else if (!/#[0-9a-fA-F]{6}/.test(hexColor) || hexColor.length !== 7) {
+    } else if (!/^#[0-9a-fA-F]{6}$/.test(hexColor) || hexColor.length !== 7) {
         throw new RangeError();
     } else {
-        let regex = /#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})/.exec(hexColor);
+        let regex = /^#([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/.exec(hexColor);
 
         return '(' + parseInt(regex[1], 16) + ', ' + parseInt(regex[2], 16) + ', ' +
          parseInt(regex[3], 16) + ')';
@@ -148,7 +148,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var myreg = /^8-800-\d{3}-\d{2}-\d{2}$/;
-    var result = myreg.test(phoneNumber);
+    var result = myreg.exec(phoneNumber) !== null;
 
     return result;
 }
