@@ -155,11 +155,13 @@ function smilesProblem(text) {
         throw new TypeError('not a string');
     }
 
-    if (!text.match(/(:-\)|\(-:)/gi)) {
+    var regExp = text.match(/(:-\)|\(-:)/gi);
+
+    if (!regExp) {
         return 0;
     }
 
-    return text.match(/(:-\)|\(-:)/gi).length;
+    return regExp.length;
 }
 
 /**
