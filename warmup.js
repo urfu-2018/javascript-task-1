@@ -99,19 +99,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
-        throw new TypeError('Аргумент - не двумерный массив');
+    if (!matrix.every(Array.isArray) || !Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError('');
     }
 
-    const transpMatrix = new Array(matrix[0].length);
-    for (let i = 0; i < matrix.length; i++) {
-        transpMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix[i].length; j++) {
-            transpMatrix[i][j] = matrix[j][i];
+    let transMatrix = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        transMatrix[i] = [];
+        for (let j = 0; j < matrix.length; j++) {
+            transMatrix[i][j] = matrix[j][i];
         }
     }
 
-    return transpMatrix;
+    return transMatrix;
     // Ваше решение
 }
 
