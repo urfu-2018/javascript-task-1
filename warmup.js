@@ -127,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
-        return false;
+        throw new TypeError('Номер телефона - строка');
     }
 
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
