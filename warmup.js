@@ -9,8 +9,8 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number' ||
-     !Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError('Один из переданных аргументов не является числом');
+        !Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('Один из переданных аргументов не является целым числом');
     }
 
     return a + b;
@@ -30,7 +30,6 @@ function centuryByYearProblem(year) {
 
     if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('В качестве аргумента передано отрицательное число');
-
     }
 
     return Math.ceil(year / 100);
@@ -70,7 +69,6 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
     }
-
     if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('В качестве аргумента передано не целое положительное число');
     }
@@ -93,7 +91,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length === 0 || !Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+        throw new TypeError('В качестве аргумента передан не двумерный массив');
+    }
+
+    if (matrix[0].length === 0 || !matrix.every(array => array.length === matrix[0].length)) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
@@ -109,7 +111,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('В качестве аргументов переданы не числа');
     }
 
@@ -130,7 +132,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('В качестве аргумента передана не строка');
     }
 
-    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g.test(phoneNumber);
+    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -144,7 +146,10 @@ function smilesProblem(text) {
         throw new TypeError('В качестве аргумента передана не строка');
     }
 
-    return (text.match(/:-\)/g) || []).length + (text.match(/\(-:/g) || []).length;
+    const leftOrientedSmiles = text.match(/\(-:/g) || [];
+    const rightOrientedSmiles = text.match(/:-\)/g) || [];
+
+    return leftOrientedSmiles.length + rightOrientedSmiles.length;
 }
 
 /**
@@ -155,12 +160,15 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
 
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+    const diagonalRLT = field[2][0] === field[1][1] && field[0][2] === field[1][1];
+    const diagonalRLB = field[0][0] === field[1][1] && field[2][2] === field[1][1];
+
+    if (diagonalRLB) {
 
         return field[1][1];
     }
 
-    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+    if (diagonalRLT) {
 
         return field[1][1];
     }
