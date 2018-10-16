@@ -2,11 +2,13 @@
 
 /**
  * Проверяет является ли аргумент числом
- * @returns {Boolean} 
+ * @param Нет требований к аргументу
+ * @returns {Boolean} Если является числом, то true, а иначе false
  */
-function isNumber(a) {
-    return typeof a === 'number';
+function isNumber(something) {
+    return typeof something === 'number';
 }
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -38,6 +40,19 @@ function centuryByYearProblem(year) {
     if(year < 0) {
         throw new RangeError('Argument is negative')
     }
+    const YEARS_IN_CENTURY = 100;
+    return Math
+        .floor(year / YEARS_IN_CENTURY) //GetindexCenturyByYear
+        + 1; //GetnumberCenturyByYear
+}
+
+/**
+  * определяет является ли аргумент строкой
+  * @param Нет требований к аргументу
+  * @returns {Boolean} Если является строкой, то true, а иначе false
+  */
+ function isString(something) {
+    return typeof something === 'string';
 }
 
 /**
@@ -47,8 +62,42 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
-function colorsProblem(hexColor) {
-    // Ваше решение
+ function colorsProblem(hexColor) {
+    if(!isString(hexColor)) {
+        throw new TypeError('Color in Format HEX don\'t gives as a string');
+    }
+    const COLOR_RANGE_ERROR = new RangeError('Value of color is incorrect');
+    if(hexColor.length !== 7 || hexColor[0] !== '#') {
+        throw COLOR_RANGE_ERROR;
+    }
+    const HEX = (function (){
+        const symbols = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+        return {
+            Base: 16,
+            includes: function (symbol) { return symbols.includes(symbol)},
+
+        }
+        
+    })();
+        
+    for(let i = 1; i < hexColor.length; i++) {
+        if(!hexSymbols.includes(hexColor[i])) {
+            throw COLOR_RANGE_ERROR;
+        }
+    }
+    let RGBColorString = '(';
+    const BASE_HEX = 16;
+    let i = 1
+    while(true) {
+        RGBColorString += (hexSymbols.indexOf(hexColor[i]) * BASE_HEX 
+            + hexSymbols.indexOf(hexColor[i+1])).toString(); 
+
+        if(i >= hexColor.length) {
+            break;
+        }
+        RGBColorString += ', ';
+    }
+    return '(' + hexSymbols.indexOf(hexColor[])
 }
 
 /**
