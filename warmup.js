@@ -23,7 +23,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     checkInt(year);
-    if (year < 0) {
+    if (year < 1) {
         throw new RangeError();
     }
 
@@ -196,8 +196,7 @@ function checkInt(n) {
 }
 
 function tryParseFloat(n) {
-    let floatN = parseFloat(n);
-    if (isNaN(floatN)) {
+    if (typeof(n) !== 'number') {
         throw new TypeError();
     }
 }
