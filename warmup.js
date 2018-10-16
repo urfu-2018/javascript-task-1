@@ -48,7 +48,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 
-function colorsProblem(hexColor) { // Z буква
+function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
@@ -224,9 +224,11 @@ function ticTacToeProblem(field) {
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
     }
-    if (field[2][2] === field[1][1] && field[1][1] === field[0][2]) {
+    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
         return field[1][0];
     }
+
+    return 'draw';
 }
 
 function horizontal(field) {
