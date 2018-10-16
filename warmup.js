@@ -177,28 +177,69 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     // Ваше решение
     let result = '';
-    if (field[0, 0] === field[0, 1] === field[0, 2]) {
-        result = field[0, 0];
+    const diagCheck = DiagonalCheck(field);
+    const lineCheck = LineCheck(field);
+    const colCheck = ColumnCheck(field);
+    if (diagCheck != '') {
+        result = diagCheck;
     }
-    if (field[0, 0] === field[1, 1] === field[2, 2]) {
-        result = field[0, 0];
+    if (lineCheck != '') {
+        result = lineCheck;
     }
-    if (field[0, 0] === field[2, 0] === field[2, 2]) {
-        result = field[0,0];
-    }
-    else if (field[1, 0] === field[1, 1] === field[1, 2]) {
-        result = field[1,0];
-    }
-    else if (field[2, 0] === field[2, 1] === field[2, 2]) {
-        result = field[2,0];
-    }
-    else if (field[0, 2] === field[1, 2] === field[2, 2]) {
-        result = field[0, 2];
-    } else {
-        result = 'draw';
+    if (colCheck != '') {
+        result = colCheck;
     }
 
     return result;
+}
+
+function DiagonalCheck(field) {
+    let dCh = '';
+    if (field[0, 0] === field[1, 1] && field[0, 0] === field[2, 2]) {
+        dCh = field[0, 0];
+    } 
+    else if (field[0, 2] === field[1, 1] && field[0, 2] === field[2, 0]) {
+        dCh = field[0, 2];
+    }
+    else {
+        dCh = '';
+    }
+
+    return dCh;
+}
+
+function LineCheck(field) {
+    let lCh = '';
+    if (field[0, 0] === field[0, 1] && field[0, 0] === field[0, 2]) {
+        lCh = field[0, 0];
+    }
+    else if (field[1, 0] === field[1, 1] && field[1, 0] == field[1, 2]) {
+        lCh = field[1, 0];
+    }
+    else if (field[2, 0] === field[2, 1] && field[2, 0] == field[2, 2]) {
+        lCh = field[2, 0];
+    } else {
+        lCh = '';
+    }
+
+    return lCh;
+}
+
+function ColumnCheck(field) {
+    let cCh = '';
+    if (field[0, 0] === field[1, 0] && field[0, 0] === field[2, 0]) {
+        cCh = field[0, 0];
+    }
+    else if (field[0, 1] === field[1, 1] && field[0, 1] == field[2, 1]) {
+        cCh = field[0, 1];
+    }
+    else if (field[0, 2] === field[1, 2] && field[0, 2] == field[2, 2]) {
+        cCh = field[0, 2];
+    } else {
+        cCh = '';
+    }
+
+    return cCh;
 }
 
 module.exports = {
