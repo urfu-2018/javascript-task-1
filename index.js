@@ -29,11 +29,7 @@ console.info(fibonacciProblem(1));
 //    [2, 5, 8],
 //    [3, 6, 9]
 // ]`
-console.info(matrixProblem([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]));
+console.info(matrixProblem([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
 
 // Выведет "1010101"
 console.info(numberSystemProblem(85, 2));
@@ -45,8 +41,6 @@ console.info(phoneProblem('8-800-333-51-73'));
 console.info(smilesProblem(':-) (-:'));
 
 // Выведет "x"
-console.info(ticTacToeProblem([
-    ['x', 'x', 'x'],
-    ['o', 'o', 'x'],
-    ['o', 'x', 'o']
-]));
+console.info(
+    ticTacToeProblem([['x', 'x', 'x'], ['o', 'o', 'x'], ['o', 'x', 'o']])
+);

@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError('в аргументы переданы не числа');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError('в качестве года передано не число');
+    }
+    if (year <= 0) {
+        throw new RangeError('год – не отрицательное значение');
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +41,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('цвет должен быть строкой');
+    }
+    if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
+        throw new RangeError('значения цвета выходят за пределы допустимых');
+    }
+
+    const r = parseInt(hexColor.substring(1, 3), 16);
+    const g = parseInt(hexColor.substring(3, 5), 16);
+    const b = parseInt(hexColor.substring(5, 7), 16);
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -41,7 +63,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('в качестве положения в ряде должо быть передано число');
+    }
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('положение в ряде должо быть целым положительным числом');
+    }
+    let a = 0;
+    let b = 1;
+    let t = 1;
+    for (let i = 0; i < n; i++) {
+        t = a + b;
+        a = b;
+        b = t;
+    }
+
+    return a;
 }
 
 /**
@@ -51,7 +88,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    const width = matrix[0].length;
+    if (
+        !Array.isArray(matrix) ||
+        !matrix.length ||
+        matrix.some(element => !Array.isArray(element)) ||
+        matrix.some(element => element.length !== width)
+    ) {
+        throw new TypeError('в функцию должен передаваться двумерный массив');
+    }
+
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -63,7 +110,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError('были переданы аргументы некорректного типа');
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('система счисления не может выходить за пределы значений [2, 36]');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +126,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('Номер телефона - строка');
+    }
+
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +140,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('в качестве аргумента должна передаваться строка');
+    }
+
+    return text.split(/:-\)|\(-:/).length - 1;
 }
 
 /**
@@ -92,7 +154,33 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (const line of field) {
+        if (new Set(line).size === 1) {
+            return line[0];
+        }
+    }
+    for (let j = 0; j < field[0].length; j++) {
+        if (new Set(field.map(row => row[j])).size === 1) {
+            return field[0][j];
+        }
+    }
+    const ans = checkDiagonals(field);
+    if (ans !== null) {
+        return ans;
+    }
+
+    return 'draw';
+}
+
+function checkDiagonals(field) {
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[0][2];
+    }
+
+    return null;
 }
 
 module.exports = {
