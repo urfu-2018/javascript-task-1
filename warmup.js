@@ -1,5 +1,4 @@
 'use strict';
-console.info(colorsProblem('#FFFFFFF'));
 
 /**
  * Складывает два целых числа
@@ -27,7 +26,7 @@ function centuryByYearProblem(year) {
     if (!(typeof(year) === 'number')) {
         return new TypeError();
     }
-    if (Number.isInteger(year)) {
+    if (!(Number.isInteger(year))) {
         return new TypeError();
     }
     if (!(year > 0)) {
@@ -49,7 +48,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const regcolorExp = new RegExp ('/^#[0-9A-Fa-f]{6}$/i');
-    if (!(regcolorExp.test(hexColor))) {
+    if ((regcolorExp.test(hexColor))) {
         throw new RangeError();
     }
     const clearHex = hexColor.substring(1, 7);
