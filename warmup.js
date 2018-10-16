@@ -25,7 +25,8 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('type of year is incorrect');
-    } else if (year < 0) {
+    }
+    if (year < 0) {
         throw new RangeError('ALYARMA');
     }
 
@@ -67,7 +68,8 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('not a number');
-    } else if (n <= 0 || !Number.isInteger(n)) {
+    }
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('incorrect');
     }
 
@@ -121,7 +123,8 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('type is invalid');
-    } else if (targetNs < 2 || targetNs > 36) {
+    }
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
     }
 
