@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    const result = /^#?([a-fA-F\d]{2})([a-fA-F\d]{2})([a-fA-F\d]{2})$/i.exec(hexColor);
+    const result = /^#?([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})$/i.exec(hexColor);
     if (!result) {
         throw new RangeError();
     }
@@ -85,7 +85,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(e => Array.isArray(e))) {
+    if (!Array.isArray(matrix) || !matrix.every(e => Array.isArray(e)) ||
+        matrix.Any(e => e.Any(m => Array.isArray(m)))) {
         throw new TypeError();
     }
 
