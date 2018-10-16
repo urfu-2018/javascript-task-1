@@ -55,7 +55,7 @@ function colorsProblem(hexColor) {
     var b = parseInt(hexColor[3] + hexColor[4], 16);
     var c = parseInt(hexColor[5] + hexColor[6], 16);
 
-    return `(${a}, ${b}, ${c})`;
+    return '(' + a + ', ' + b + ', ' + c + ')';
 }
 
 /**
