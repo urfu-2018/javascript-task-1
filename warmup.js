@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw TypeError('"a" or "b" is not a number');
+        throw new TypeError('"a" or "b" is not a number');
     }
 
     return a + b;
@@ -23,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError ('year should be an integer number');
+    }
+
+    if (year < 0) {
+        throw new RangeError ('year should be a positive number');
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
