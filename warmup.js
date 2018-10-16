@@ -94,7 +94,7 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('not this');
     }
     let m = matrix.length;
@@ -152,7 +152,11 @@ function smilesProblem(text) {
         throw new TypeError('not a string');
     }
 
-    return text.match(/(:-\)|\(-:)/g).length;
+    if (!text.match(/(:-\)|\(-:)/gi)) {
+        return 0;
+    }
+
+    return text.match(/(:-\)|\(-:)/gi).length;
 }
 
 /**
