@@ -1,13 +1,5 @@
 'use strict';
 
-function isNumber(n) {
-    return typeof n === 'number';
-}
-
-function isString(n) {
-    return typeof n === 'string';
-}
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -16,7 +8,7 @@ function isString(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('not a number');
     }
 
@@ -31,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('type of year is incorrect');
     } else if (year < 0) {
-        throw new RangeError('');
+        throw new RangeError('not');
     } else {
         return parseInt(year / 100 + 1, 10);
     }
@@ -48,7 +40,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (!isString(hexColor)) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError(' not a string');
     } else if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hexColor) === false) {
         throw new RangeError('incorrect data');
@@ -75,9 +67,9 @@ function transformHexToRGB(numb, a, b) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isNumber(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('not a number');
-    } else if (n <= 0 || !Number.isInteger(n)) {
+    } else if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError('incorrect');
     } else {
         return fibNumb(n);
@@ -104,7 +96,7 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('not this');
     }
     let m = matrix.length;
@@ -129,7 +121,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('type is invalid');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
@@ -144,8 +136,8 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (!isString(phoneNumber)) {
-        throw new TypeError('OOOOOOOPS');
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('alyarma');
     }
 
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
@@ -158,7 +150,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (!isString(text)) {
+    if (typeof text !== 'string') {
         throw new TypeError('not a string');
     } else {
         return text.match(/(:-\)|\(-:)/g).length;
@@ -188,6 +180,8 @@ function ticTacToeProblem(field) {
 
     return 'draw';
 }
+
+console.info(centuryByYearProblem(400));
 
 module.exports = {
     abProblem,
