@@ -126,7 +126,7 @@ function checkRows(matrix, n) {
  */
 function numberSystemProblem(n, targetNs) {
     tryParseFloat(n);
-    let floatTargetNs = tryParseFloat(targetNs);
+    let floatTargetNs = tryParseInt(targetNs);
     if (floatTargetNs < 2 || floatTargetNs > 36) {
         throw new RangeError();
     }
@@ -191,7 +191,11 @@ function ticTacToeProblem(field) {
 
 function tryParseInt(n) {
     let intN = parseInt(n);
+    let floatN = parseFloat(n);
     if (isNaN(intN)) {
+        throw new TypeError();
+    }
+    if (floatN % 1 != 0) {
         throw new TypeError();
     }
 
