@@ -175,7 +175,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match('(?::-[)]|[(]-:)') || []).length;
+    return (text.match(':-[)]') || []).length + (text.match('[(]-:') || []).length;
 }
 
 /**
