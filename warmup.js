@@ -27,12 +27,12 @@ function centuryByYearProblem(year) {
     // Ваше решение
     if (Number.isInteger(year) === false) {
         throw new TypeError();
-    } 
+    }
     else if (year < 0) {
         throw new RangeError();
     }
 
-    return Math.ceil(year/100);
+    return Math.ceil(year / 100);
 }
 
 /**
