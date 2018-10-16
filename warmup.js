@@ -9,7 +9,7 @@ function range(size, startAt = 0) {
 }
 
 function isNumber(num) {
-    return Number(num) === num;
+    return Number.isFinite(num);
 }
 
 function isString(str) {
@@ -17,7 +17,7 @@ function isString(str) {
 }
 
 function isArray(arr) {
-    return arr instanceof Array;
+    return Array.isArray(arr);
 }
 
 function assertIfTypesDoNotMatch(args, types) {
