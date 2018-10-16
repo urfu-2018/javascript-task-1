@@ -132,7 +132,7 @@ function phoneProblem(phoneNumber) {
     phoneNumber = phoneNumber.replace(/-/g, '');
 
     return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' &&
-    !isNaN(phoneNumber.substr(4));
+    typeof(phoneNumber.substr(4) === 'number');
 }
 
 /**
