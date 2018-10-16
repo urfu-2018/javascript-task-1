@@ -92,9 +92,26 @@ function fibonacciProblem(n) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError('not this');
-    }
+    // if (!Array.isArray(matrix) || matrix.length === 0) {
+    //     throw new TypeError('not this');
+    // }
+
+    var lineLength = matrix[0].length;
+
+    matrix.forEach(function (elem, i) {
+        var elemLength;
+
+        if (i === 0) {
+            elemLength = lineLength;
+        } else {
+            elemLength = elem.length;
+        }
+
+        if (elemLength !== lineLength || !Array.isArray(elem)) {
+            throw new TypeError('not this');
+        }
+    });
+
     let m = matrix.length;
     let n = matrix[0].length;
     let newArray = [];
