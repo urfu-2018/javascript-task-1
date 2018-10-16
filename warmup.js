@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number' ||
-    !Number.isInteger(a) || !Number.isInteger(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -24,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
+    if (!Number.isInteger(year)) {
         return new TypeError();
     }
     if (year < 0) {
@@ -45,8 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    const regcolorExp = new RegExp ('/^#[0-9A-Fa-f]{6}$/i');
-    if ((regcolorExp.test(hexColor))) {
+    if (!((/^#[0-9A-F]{6}$/i).test(hexColor))) {
         throw new RangeError();
     }
     const clearHex = hexColor.substring(1, 7);
@@ -104,7 +102,7 @@ function matrixProblem(matrix) {
 
 function checkMatrix(matrix, M, N) {
     for (let i = 0; i < M; i++) {
-        if (!(Array.isArray(matrix) || !Array.isArray(matrix[i])) || !matrix[i].length === N) {
+        if (!Array.isArray(matrix) || !Array.isArray(matrix[i]) || !matrix[i].length === N) {
             throw new TypeError();
         }
     }
@@ -140,9 +138,8 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    const regExp = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
-    return (regExp.test(phoneNumber));
+    return ((/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/).test(phoneNumber));
 }
 
 /**
