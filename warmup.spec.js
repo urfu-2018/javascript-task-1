@@ -46,6 +46,15 @@ describe('Fibonacci problem', () => {
     it('Для n=1 должна вернуть `1`', () => {
         assert.strictEqual(fibonacciProblem(1), 1);
     });
+    it('Для n=1 должна вернуть', () => {
+        assert.strictEqual(fibonacciProblem(2), 1);
+    });
+    it('Для n=1 должна вернуть', () => {
+        assert.strictEqual(fibonacciProblem(3), 2);
+    });
+    it('Для n=1 должна вернуть', () => {
+        assert.strictEqual(fibonacciProblem(4), 3);
+    });
 });
 
 describe('Matrix problem', () => {
@@ -55,6 +64,9 @@ describe('Matrix problem', () => {
             [2, 5, 8],
             [3, 6, 9]
         ]);
+    });
+    it('Должна транспонировать квадратную матрицу 3x1', () => {
+        assert.deepStrictEqual(matrixProblem([[1, 2, 3]]), [[1], [2], [3]]);
     });
     it('Должна TypeError 1', () => {
         assert.throws(() => matrixProblem([]), TypeError);

@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[a-f0-9]{6}$/i.test(hexColor)) {
+    if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
     const g = parseInt(hexColor.substring(3, 5), 16);
     const b = parseInt(hexColor.substring(5, 7), 16);
 
-    return '(' + [r, g, b].join(', ') + ')';
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -126,7 +126,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
