@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw TypeError('"a" or "b" is not a number');
+    }
+
+    return a + b;
 }
 
 /**
