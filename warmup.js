@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +41,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    const re = /^#[0-9A-Fa-f]{6}$/;
+    if (!re.test(hexColor)) {
+        throw new RangeError();
+    }
+    const r = parseInt(hexColor[1] + hexColor[2], 16);
+    const g = parseInt(hexColor[3] + hexColor[4], 16);
+    const b = parseInt(hexColor[5] + hexColor[6], 16);
+
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 /**
@@ -41,7 +63,41 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError();
+    }
+    if (n <= 0) {
+        throw new RangeError();
+    }
+    let fi1 = 1;
+    let fi2 = 1;
+    let temp;
+    for (let i = 2; i < n; i++) {
+        temp = fi2;
+        fi2 = fi1 + temp;
+        fi1 = temp;
+    }
+
+    return fi2;
+}
+
+function isEmptyArray(array) {
+    if (!Array.isArray(array) || array.length === 0) {
+        return true;
+    }
+}
+
+function is2DArray(array) {
+    if (isEmptyArray(array)) {
+        return false;
+    }
+    for (let i = 0; i < array.length; i++) {
+        if (isEmptyArray(array[i]) || array[i].length !== array[0].length) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /**
@@ -51,7 +107,23 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!is2DArray(matrix)) {
+        throw new TypeError();
+    }
+    const rows = matrix.length;
+    const columns = matrix[0].length;
+    let transposedMatrix = new Array(columns).fill(0)
+        .map(() => new Array(rows).fill(0));
+    for (let i = 0; i < rows; i++) {
+        if (matrix[i].length === 0) {
+            throw new TypeError();
+        }
+        for (let j = 0; j < columns; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -63,7 +135,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
+        return new TypeError();
+    }
+    if (!(targetNs >= 2 && targetNs <= 36)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +151,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,18 +165,45 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        return new TypeError();
+    }
+    const rightSmile = text.split(':-)').length - 1;
+    const leftSmile = text.split('(-:').length - 1;
+
+    return rightSmile + leftSmile;
 }
 
-/**
+/*
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const victory = [
+        [[0, 0], [1, 1], [2, 2]],
+        [[0, 2], [1, 1], [2, 0]],
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[0, 2], [1, 2], [2, 2]]
+    ];
+    for (let i = 0; i < victory.length; i++) {
+        const [[x1, y1], [x2, y2], [x3, y3]] = victory[i];
+        const count = field[x1][y1] + field[x2][y2] + field[x3][y3];
+        if (count === 'xxx') {
+            return 'x';
+        } else if (count === 'ooo') {
+            return 'o';
+        }
+    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
