@@ -86,7 +86,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.every(e => Array.isArray(e)) ||
-        matrix.Any(e => e.Any(m => Array.isArray(m)))) {
+        matrix.any(e => e.any(m => Array.isArray(m)))) {
         throw new TypeError();
     }
 
