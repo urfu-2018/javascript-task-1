@@ -28,6 +28,7 @@ function centuryByYearProblem(year) {
     if (Number.isInteger(year) === false) {
         throw new TypeError();
     }
+    
     else if (year < 0) {
         throw new RangeError();
     }
@@ -49,6 +50,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
+
     else if (!HexToRgb.test(hexColor)) {
         throw new RangeError();
     }
