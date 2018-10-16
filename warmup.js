@@ -13,7 +13,7 @@ function abProblem(a, b) {
         return a + b;
     }
 
-    throw TypeError;
+    throw new TypeError();
 }
 
 /**
@@ -26,7 +26,7 @@ function abProblem(a, b) {
 
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year > 0) {
         let result = Math.floor(year / 100);
@@ -37,7 +37,7 @@ function centuryByYearProblem(year) {
         return result + 1;
     }
 
-    throw RangeError;
+    throw new RangeError();
 }
 
 /**
@@ -50,15 +50,15 @@ function centuryByYearProblem(year) {
 
 function colorsProblem(hexColor) { // Z буква
     if (typeof(hexColor) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
+    }
+    if (!(/^#[0-9A-Fa-f]{6}$/).test(hexColor)) {
+        throw new RangeError();
     }
     let result = '(';
-    let j = 1;
+    let j = 0;
     for (let i = 0; i < 3; i++) {
-        const x = parseInt(hexColor.substring(1, 3), 16) + ', ';
-        if (x < 0 || x > 255) {
-            return RangeError;
-        }
+        const x = parseInt(hexColor.substring(1 + j, 3 + j), 16) + ', ';
         result = result + x;
         j = j + 2;
     }
@@ -75,11 +75,11 @@ function colorsProblem(hexColor) { // Z буква
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 
-function fibonacciProblem(n) { // 0
+function fibonacciProblem(n) {
     let array = [0, 1];
     if (!Number.isInteger(n)) {
 
-        throw TypeError;
+        throw new TypeError();
     }
     if (Number.isInteger(n) && n > 0) {
         for (let i = 2; i <= n; i++) {
@@ -89,7 +89,7 @@ function fibonacciProblem(n) { // 0
         return array[array.length - 1];
     }
 
-    throw RangeError;
+    throw new RangeError();
 }
 
 /**
@@ -99,15 +99,15 @@ function fibonacciProblem(n) { // 0
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 
-function matrixProblem(matrix) { // нулевая матрица
+function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        throw TypeError;
+        throw new TypeError();
     }
     let val = 0;
     for (let i = 0; i < matrix.length; i++) {
         const arAr = matrix[i];
         if (!Array.isArray(arAr)) {
-            throw TypeError;
+            throw new TypeError();
         }
         for (let j = 0 + val; j < matrix[i].length; j++) {
             const x = matrix[i][j];
@@ -130,9 +130,9 @@ function matrixProblem(matrix) { // нулевая матрица
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) && !Number.isInteger(targetNs)) {
+    if (!(typeof(n) === 'number') && !(typeof(targetNs) === 'number')) {
 
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs >= 2 && targetNs <= 36) {
         const result = n.toString(targetNs);
@@ -140,7 +140,7 @@ function numberSystemProblem(n, targetNs) {
         return result;
     }
 
-    throw RangeError;
+    throw new RangeError();
 }
 
 /**
@@ -149,7 +149,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 
-function phoneProblem(phoneNumber) {
+function phoneProblem(phoneNumber) { // плохое решение
     const array = phoneNumber.split('-');
     console.info(array);
     if (array[0] !== '8') {
@@ -187,7 +187,7 @@ function smilesProblem(text) {
     let num = 0;
     if (typeof(text) !== 'string') {
 
-        throw TypeError;
+        throw new TypeError();
     }
     let skip = 0;
     let find = '(-:';
