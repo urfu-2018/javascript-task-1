@@ -65,10 +65,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 1) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let x = 1;
@@ -109,7 +109,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(targetNs) || typeof(n) !== 'number') {
+    if (!Number.isInteger(targetNs) || typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
