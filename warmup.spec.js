@@ -23,10 +23,10 @@ describe('A+B problem', () => {
         assert.throws(() => abProblem('1', 1));
     });
     it('Должна вернуть ошибку', () => {
-        assert.strictEqual(abProblem(21.1, 1));
+        assert.throws(() => abProblem(21.1, 1));
     });
     it('Должна вернуть ошибку', () => {
-        assert.strictEqual(abProblem(21.1, [1]));
+        assert.throws(() => abProblem(21.1, [1]));
     });
 });
 
