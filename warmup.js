@@ -196,7 +196,7 @@ function ticTacToeProblem(field) {
     if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
         return field[0][0];
     }
-    if (field[0][2] === field[1][1] && field[0][0] === field[2][0]) {
+    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
         return field[0][2];
     }
     // Ваше решение
