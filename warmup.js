@@ -150,30 +150,12 @@ function numberSystemProblem(n, targetNs) {
  */
 
 function phoneProblem(phoneNumber) { // плохое решение
-    const array = phoneNumber.split('-');
-    console.info(array);
-    if (array[0] !== '8') {
+    if ((/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/).test(phoneNumber)) {
 
-        return false;
-    }
-    if (array[1] !== '800') {
-
-        return false;
-    }
-    if (array[2].length !== 3) {
-
-        return false;
-    }
-    if (array[3].length !== 2) {
-
-        return false;
-    }
-    if (array[4].length !== 2) {
-
-        return false;
+        return true;
     }
 
-    return true;
+    return false;
 }
 
 /**
