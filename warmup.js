@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(Number.isInteger(a) || Number.isInteger(b))) {
+    if (!(typeof(a) === 'number' && typeof(b) === 'number')) {
         throw new TypeError();
     }
 
@@ -23,13 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!(typeof(year) === 'number')) {
+    if (!(typeof(year) === 'number' || Number.isInteger(year))) {
         return new TypeError();
     }
-    if (!(Number.isInteger(year))) {
-        return new TypeError();
-    }
-    if (!(year >= 0)) {
+    if (!(year > 0)) {
         throw new RangeError();
     }
 
@@ -71,7 +68,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw new TypeError();
+        throw new RangeError();
     }
     if (!(Number.isInteger(n) || n > 0)) {
         throw new RangeError();
@@ -97,13 +94,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     const M = matrix.length;
-    if (!((matrix[0].length))) {
-        throw new TypeError();
-    }
     const N = matrix[0].length;
-    if (N === undefined) {
-        throw new TypeError();
-    }
     checkMatrix(matrix, M, N);
     const transpMatrix = [];
     for (let i = 0; i < N; i++) {
@@ -133,13 +124,10 @@ function checkMatrix(matrix, M, N) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!(typeof(n) === 'number' || typeof(targetNs) === 'number')) {
+    if (!(typeof(n) === 'number' && typeof(targetNs) === 'number')) {
         throw new TypeError();
     }
-    if (!(Number.isInteger(targetNs))) {
-        return new TypeError();
-    }
-    if (!(targetNs < 36 || targetNs > 2)) {
+    if (!(targetNs <= 36 || targetNs >= 2)) {
         throw new RangeError();
 
     }
