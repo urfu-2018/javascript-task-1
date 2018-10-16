@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
+
+    return (a + b);
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +41,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError();
+    }
+    if (!((/^#[0-9A-F]{6}$/i).test(hexColor))) {
+        throw new RangeError();
+    }
+    const clearHex = hexColor.substring(1, 7);
+    const r = parseInt(clearHex.substring(0, 2), 16);
+    const g = parseInt(clearHex.substring(2, 4), 16);
+    const b = parseInt(clearHex.substring(4, 6), 16);
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -41,7 +63,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    }
+    if (!Number.isInteger(n) || n <= 0) {
+        throw new RangeError();
+    }
+    let fn = 1;
+    let fnmin1 = 0;
+    for (let i = 1; i <= n; i++) {
+        fn += fnmin1;
+        fnmin1 = fn - fnmin1;
+    }
+
+    return fnmin1;
 }
 
 /**
@@ -51,7 +86,25 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    if (matrix[0].length === 0) {
+        return [[]];
+    }
+    const M = matrix.length;
+    const N = matrix[0].length;
+    checkMatrix(matrix, M, N);
+
+    return matrix[0].map((matrixColmn, element) => matrix.map(matrixStr => matrixStr[element]));
+}
+
+function checkMatrix(matrix, M, N) {
+    for (let i = 0; i < M; i++) {
+        if (!Array.isArray(matrix[i]) || !matrix[i].length === N) {
+            throw new TypeError();
+        }
+    }
 }
 
 /**
@@ -63,7 +116,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    }
+    if (targetNs > 36 || targetNs < 2) {
+        throw new RangeError();
+
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +133,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
+
+    return ((/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/).test(phoneNumber));
 }
 
 /**
@@ -82,17 +147,69 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
+    const regsmileExp = new RegExp(/(:-\))|(\(-:)/g);
+    const count = text.match(regsmileExp);
+    if (count === null) {
+        return 0;
+    }
+
+    return (text.match(regsmileExp)).length;
 }
 
-/**
+/*
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+function checkLineonField(str) {
+    if (str[0] === str[1] && str[1] === str[2]) {
+
+        return str[0];
+    }
+}
+
+function checkFieldonHorizontal(field) {
+    for (let i = 0; i <= 2; i++) {
+        if (checkLineonField(field[i]) === 'x' || checkLineonField(field[i]) === 'o') {
+
+            return checkLineonField(field[i]);
+        }
+    }
+}
+
+function checkFieldonVertical(field) {
+    field = matrixProblem(field);
+    for (let i = 0; i <= 2; i++) {
+        if (checkLineonField(field[i]) === 'x' || checkLineonField(field[i]) === 'o') {
+
+            return checkLineonField(field[i]);
+        }
+    }
+}
+
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if (checkFieldonHorizontal(field)) {
+
+        return checkFieldonHorizontal(field);
+    }
+    if (checkFieldonVertical(field)) {
+
+        return checkFieldonVertical(field);
+    }
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+
+        return field[1][1];
+    }
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+
+        return field[1][1];
+    }
+
+    return 'draw';
 }
 
 module.exports = {
