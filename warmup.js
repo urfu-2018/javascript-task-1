@@ -113,19 +113,8 @@ function matrixProblem(matrix) {
     if (!matrix.every(arr => arr instanceof Array && arr.length === matrix[0].length)) {
         throw new TypeError('Matrix elements are not arrays of same lengths.');
     }
-    let m = matrix.length;
-    let n = matrix[0].length;
-    let transposed = Array(n)
-        .fill(0)
-        // eslint-disable-next-line no-unused-vars
-        .map(_ => Array(m).fill(0));
-    for (let i = 0; i < m; ++i) {
-        for (let j = 0; j < n; ++j) {
-            transposed[j][i] = matrix[i][j];
-        }
-    }
 
-    return transposed;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
