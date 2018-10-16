@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
     const denom = 100;
@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (!((/^#[0-9A-F]{6}$/).test(hexColor))) {
+    if (!((/^#[0-9A-F]{6}$/i).test(hexColor))) {
         throw new RangeError();
     }
     let rgbColor = '(';
@@ -129,7 +129,6 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    // return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 
 }
@@ -144,8 +143,9 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
+    const Arr = text.match(/\(-:|:-\)/g);
 
-    return text.match(/\(-:|:-\)/g).length;
+    return Arr === null ? 0 : Array.length;
 }
 
 /**
