@@ -73,7 +73,7 @@ function fibonacciProblem(n) {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
 
-    if (!Number.isInteger(n) || n < 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
 
