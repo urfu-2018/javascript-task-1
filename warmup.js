@@ -127,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const phoneFormat = new RegExp('^8-800-\d{3}-\d{2}-\d{2}$');
+    const phoneFormat = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
     return phoneFormat.test(phoneNumber);
 }
