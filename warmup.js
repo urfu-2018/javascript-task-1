@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
     const green = parseInt(hexColor.substr(3, 2), 16);
     const blue = parseInt(hexColor.substr(5, 2), 16);
 
-    if (typeof(red) !== 'number' || typeof(green) !== 'number' || typeof(blue) !== 'number') {
+    if (isNaN(red) || isNaN(green) || isNaN(blue)) {
         throw new RangeError();
     }
 
@@ -71,8 +71,9 @@ function fibonacci(n) {
     let b = 1;
 
     for (let i = 2; i <= n; i++) {
+        let c = a + b;
         a = b;
-        b = a + b;
+        b = c;
     }
 
     return a;
