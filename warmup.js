@@ -39,7 +39,6 @@ function centuryByYearProblem(year) {
     }
 
     return yearFirstNumber + 1;
-
 }
 
 /**
@@ -56,7 +55,8 @@ function colorsProblem(hexColor) {
     if (hexColor[0] === '#') {
         hexColor = hexColor.slice(1);
     }
-    if (hexColor.length > 6) {
+    const checkHexFormat = /^([A-Fa-f\d]{6})$/;
+    if (!checkHexFormat.test(hexColor)) {
         throw new RangeError();
     }
     const red = parseInt(hexColor.substr(0, 2), 16);
@@ -99,7 +99,7 @@ function fibonacciProblem(n) {
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
- * @returns {(Any[])[]} Транспонированная матрица размера NxM
+ * @returns {(Any[])[]} Тра)нспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
