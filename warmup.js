@@ -8,13 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    let numberA = parseFloat(a);
-    let numberB = parseFloat(b);
-    if (isNaN(numberA) || isNaN(numberB)) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
 
-    return numberA + numberB;
+    return a + b;
 }
 
 /**
