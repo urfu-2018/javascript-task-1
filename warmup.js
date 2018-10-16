@@ -148,9 +148,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var myreg = /^8-800-\d{3}-\d{2}-\d{2}$/;
-    var regex = myreg.exec(phoneNumber);
+    var result = myreg.exec(phoneNumber).length !== 0;
 
-    return !(regex.length === 0);
+    return result;
 }
 
 /**
@@ -187,7 +187,7 @@ function ticTacToeProblem(field) {
         [field[2][0], field[1][1], field[0][2]]
     ];
 
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 8; i++) {
         let hasWinner = winCombos[i][0] === winCombos[i][1] && winCombos[i][0] === winCombos[i][2];
         if (hasWinner) {
             return winCombos[i][0];
