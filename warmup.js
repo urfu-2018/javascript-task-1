@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    const hexColorFormat = RegExp('^#([0-9A-F]{3}|[0-9A-F]{6})$');
+    const hexColorFormat = RegExp('^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$');
     if (!hexColorFormat.test(hexColor)) {
         throw new RangeError();
     }
