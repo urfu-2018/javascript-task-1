@@ -16,6 +16,7 @@ if (Number.isInteger(a) === false || Number.isInteger(b) === false) {
 return a + b;
 }
 
+
 /**
  * Определяет век по году
  * @param {Number} year Год, целое положительное число
@@ -31,7 +32,8 @@ function centuryByYearProblem(year) {
     else if (year < 0) {
         throw new RangeError();
     }
-    return Math.ceil(year/100);    
+    return Math.ceil(year/100);
+    
     }
    
 
@@ -44,20 +46,22 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
+
 function colorsProblem(hexColor) {
     // Ваше решение
-    const HexToRgb = /^#( [ A-Fa-f\d ] { 2 })( [ A-Fa-f\d ] {2})( [ A-Fa-f\d ] {2})$/;
-  if (typeof hexColor !== 'string') {
-      throw new TypeError();
-  } else if (!HexToRgb.test(hexColor)) {
-      throw new RangeError();
-  }
-  let rgb = HexToRgb.exec(hexColor);
-  rgb[1] = parseInt(rgb[1], 16);
-  rgb[2] = parseInt(rgb[2], 16);
-  rgb[3] = parseInt(rgb[3], 16);
-  return `(${rgb[1]}, ${rgb[2]}, ${rgb[3]})`;
+    const HexToRgb = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    } else if (!HexToRgb.test(hexColor)) {
+        throw new RangeError();
+    }
+    let rgb = HexToRgb.exec(hexColor);
+    rgb[1] = parseInt(rgb[1], 16);
+    rgb[2] = parseInt(rgb[2], 16);
+    rgb[3] = parseInt(rgb[3], 16);
+    return `(${rgb[1]}, ${rgb[2]}, ${rgb[3]})`;
 }
+
 
 /**
  * Находит n-ое число Фибоначчи
@@ -85,6 +89,7 @@ function fibonacciProblem(n) {
 }
 
 
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -108,6 +113,7 @@ function matrixProblem(matrix) {
     return transposeMatrix;
 }
 
+
 /**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
@@ -127,6 +133,7 @@ function numberSystemProblem(n, targetNs) {
     return n.toString(targetNs);
 }
 
+
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
@@ -139,6 +146,7 @@ function phoneProblem(phoneNumber) {
     }
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
+
 
 /**
  * Определяет количество улыбающихся смайликов в строке
@@ -158,6 +166,7 @@ function smilesProblem(text) {
     return Smile.length;
 }
 
+
 /**
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
@@ -166,22 +175,24 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
-    for (var i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-            return field[i][0];
-        }
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
-        }
-    }
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return field[0][0];
-    }
-    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-        return field[0][2];
-    }
-    return 'draw';
+    for (let i = 0; i < 3; i++) {
+      if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+          return field[i][0];
+      }
+      if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+          return field[0][i];
+      }
+  }
+  if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+      return field[0][0];
+  }
+  if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+      return field[0][2];
+  }
+  return 'draw';
 }
+
+
 
 module.exports = {
     abProblem,
