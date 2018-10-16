@@ -8,10 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    let intA = tryParseInt(a);
-    let intB = tryParseInt(b);
+    tryParseInt(a);
+    tryParseInt(b);
 
-    return intA + intB;
+    return a + b;
 }
 
 /**
@@ -22,13 +22,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    let intYear = tryParseInt(year);
-    let floatYear = tryParseFloat(year);
-    if (intYear < 0 || floatYear !== intYear) {
+    tryParseInt(year);
+    if (year < 0) {
         throw new RangeError();
     }
 
-    return Math.ceil(intYear / 100);
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -42,7 +41,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7 || !(/#[0-9A-F]{6}/.test(hexColor))) {
+    if (hexColor.length !== 7 || !(/#[0-9A-Fa-f]{6}/.test(hexColor))) {
         throw new RangeError();
     }
     let r = parseInt(hexColor[1] + hexColor[2], 16);
@@ -194,6 +193,9 @@ function tryParseInt(n) {
     let intN = parseInt(n);
     if (isNaN(intN)) {
         throw new TypeError();
+    }
+    if (n % 1 !== 0){
+        throw new RangeError();
     }
 
     return intN;
