@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+    throw new TypeError();
 }
 
 /**
@@ -19,7 +22,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year === 'number') {
+        if (year >= 0 && year === parseInt(year)) {
+            return year % 100 ? Math.floor(year / 100) + 1 : Math.floor(year / 100);
+        }
+        throw new RangeError();
+    }
+    throw new TypeError();
 }
 
 /**
@@ -30,6 +39,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    if (!/#[A-F0-9a-f]{6}/.test(hexColor)) {
+        throw new RangeError();
+    }
+    var result = '(' + parseInt(hexColor.slice(1, 3), 16) + ', ' +
+    parseInt(hexColor.slice(3, 5), 16) + ', ' +
+    parseInt(hexColor.slice(5, 7), 16) + ')';
+
+    return result;
     // Ваше решение
 }
 
@@ -41,8 +61,32 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (Number.isInteger(n)) {
+        if (n === 1 || n === 2) {
+            return 1;
+        }
+    } else {
+        throw new RangeError();
+    }
+    let firstValue = 1;
+    let secondValue = 1;
+    let timeValue;
+    for (var i = 2; i < n; i++) {
+        timeValue = secondValue;
+        secondValue = firstValue + secondValue;
+        firstValue = timeValue;
+    }
+    return secondValue;
 }
+
+
+function fibonacci(n) {
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
 
 /**
  * Транспонирует матрицу
@@ -51,8 +95,30 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    var newMatrix = [];
+    if (!Array.isArray(matrix) || checked(matrix)) {
+        throw new TypeError();
+    }
+    for (var i = 0; i < matrix[0].length; i++) {
+        newMatrix[i] = [];
+        for (var j = 0; j < matrix.length; j++) {
+            newMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return newMatrix;
 }
+
+function checked(matrix) {
+    for (var i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 
 /**
  * Переводит число в другую систему счисления
@@ -63,7 +129,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n === 'number' && typeof targetNs === 'number') {
+        if (targetNs > 1 && targetNs < 37 && Number.isInteger(targetNs)) {
+            return n.toString(targetNs);
+        }
+        throw new RangeError();
+    }
+    throw new TypeError();
 }
 
 /**
@@ -72,7 +144,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +158,12 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    const results = text.match(/\(-:|:-\)/);
+
+    return results === null ? 0 : results.length;
 }
 
 /**
@@ -92,7 +173,35 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    if (goToMatrixDiagonal(field) === 'draw') {
+        return (goToMatrix(field) === 'draw')
+            ? goToMatrix(matrixProblem(field)) : goToMatrix(field);
+    }
+
+    return goToMatrixDiagonal(field);
+
     // Ваше решение
+}
+
+function goToMatrixDiagonal(matrix) {
+    if (matrix[0][0] === matrix[1][1] && matrix[2][2] === matrix[0][0]) {
+        return matrix[0][0];
+    }
+    if (matrix[0][2] === matrix[1][1] && matrix[2][0] === matrix[0][2]) {
+        return matrix[0][2];
+    }
+
+    return 'draw';
+}
+
+function goToMatrix(matrix) {
+    for (var i = 0; i < matrix.length; i++) {
+        if (matrix[i][0] === matrix[i][1] && matrix[i][0] === matrix[i][2]) {
+            return matrix[i][0];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
