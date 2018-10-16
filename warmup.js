@@ -23,7 +23,8 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     let intYear = tryParseInt(year);
-    if (intYear < 0) {
+    let floatYear = tryParseFloat(year);
+    if (intYear < 0 || floatYear !== intYear) {
         throw new RangeError();
     }
 
@@ -191,11 +192,7 @@ function ticTacToeProblem(field) {
 
 function tryParseInt(n) {
     let intN = parseInt(n);
-    let floatN = parseFloat(n);
     if (isNaN(intN)) {
-        throw new TypeError();
-    }
-    if (floatN % 1 !== 0) {
         throw new TypeError();
     }
 
