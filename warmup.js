@@ -91,7 +91,10 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray || matrix.length === 0)) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+    if (!matrix.every(Array.isArray || matrix.length === 0)) {
         throw new TypeError();
     }
     let columns = matrix[0].length;
