@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number' ||
-        !Number.isInteger(a) || !Number.isInteger(b)) {
+    !Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('Один из переданных аргументов не является целым числом');
     }
 
@@ -24,11 +24,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError('В качестве аргумента передано не число');
     }
 
-    if (year < 0 || !Number.isInteger(year)) {
+    if (year < 0) {
         throw new RangeError('В качестве аргумента передано отрицательное число');
     }
 
@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
     }
-    if (n <= 0 || !Number.isInteger(n)) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError('В качестве аргумента передано не целое положительное число');
     }
 
@@ -95,11 +95,18 @@ function matrixProblem(matrix) {
         throw new TypeError('В качестве аргумента передан не двумерный массив');
     }
 
-    if (matrix[0].length === 0 || !matrix.every(array => array.length === matrix[0].length)) {
-        throw new TypeError('В качестве аргумента передан не двумерный массив');
+    const result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        result.push([]);
     }
 
-    return matrix[0].map((column, index) => matrix.map(row => row[index]));
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+
+    return result;
 }
 
 /**
@@ -132,7 +139,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('В качестве аргумента передана не строка');
     }
 
-    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -160,8 +167,8 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
 
-    const diagonalRLT = field[2][0] === field[1][1] && field[0][2] === field[1][1];
-    const diagonalRLB = field[0][0] === field[1][1] && field[2][2] === field[1][1];
+    const diagonalRLT = field[2][0] === field[1][1] && field[1][1] === field[0][2];
+    const diagonalRLB = field[0][0] === field[1][1] && field[1][1] === field[2][2];
 
     if (diagonalRLB) {
 
