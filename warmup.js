@@ -29,7 +29,7 @@ function centuryByYearProblem(year) {
     if (!(Number.isInteger(year))) {
         return new TypeError();
     }
-    if (!(year > 0)) {
+    if (!(year >= 0)) {
         throw new RangeError();
     }
 
@@ -80,8 +80,8 @@ function fibonacciProblem(n) {
         return 1;
     }
     let fn = 1;
-    let fnmin1 = 1;
-    for (let i = 0; i < n - 2; i++) {
+    let fnmin1 = 0;
+    for (let i = 1; i <= n; i++) {
         fn += fnmin1;
         fnmin1 = fn - fnmin1;
     }
@@ -97,9 +97,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     const M = matrix.length;
+    if (!((matrix[0].length))) {
+        throw new TypeError();
+    }
     const N = matrix[0].length;
-    if (N === null) {
-        return new TypeError();
+    if (N === undefined) {
+        throw new TypeError();
     }
     checkMatrix(matrix, M, N);
     const transpMatrix = [];
