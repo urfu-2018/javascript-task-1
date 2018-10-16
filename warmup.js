@@ -116,21 +116,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError();
-    }
-
-    if (!matrix.every(e => Array.isArray(e) && e.length === matrix[0].length)) {
+    if (!Array.isArray(matrix) ||
+        !matrix.every(e => Array.isArray(e) && e.length === matrix[0].length)) {
         throw new TypeError();
     }
 
     const result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        result.push([]);
+    }
 
     for (let i = 0; i < matrix.length; i++) {
-        result.push([]);
-
         for (let j = 0; j < matrix[i].length; j++) {
-            result[i].push(matrix[j][i]);
+            result[j][i] = matrix[i][j];
         }
     }
 
