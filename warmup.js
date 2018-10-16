@@ -143,10 +143,8 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('в качестве аргумента должна передаваться строка');
     }
-    const result = text.match(/:-\)|\(-:/g);
 
-    return result === null ? 0 : result.length;
-    // return text.split(/:-\)|\(-:/).length - 1;
+    return text.split(/:-\)|\(-:/).length - 1;
 }
 
 /**
@@ -175,9 +173,10 @@ function ticTacToeProblem(field) {
 }
 
 function checkDiagonals(field) {
-    if (field[0][0] === field[1][1] && field[0][0] === field[3][3]) {
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
         return field[0][0];
-    } else if (field[0][2] === field[1][1] && field[0][2] === field[3][0]) {
+    }
+    if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
         return field[0][2];
     }
 
