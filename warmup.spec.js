@@ -47,6 +47,18 @@ describe('Matrix problem', () => {
             [3, 6, 9]
         ]);
     });
+    it('Должна TypeError 1', () => {
+        assert.throws(() => matrixProblem([]), TypeError);
+    });
+    it('Должна TypeError 1', () => {
+        assert.throws(() => matrixProblem([1]), TypeError);
+    });
+    it('Должна TypeError 2', () => {
+        assert.throws(() => matrixProblem([[1, 2], [4, 5, 6], [7, 8]]), TypeError);
+    });
+    it('Должна TypeError 3', () => {
+        assert.throws(() => matrixProblem([[1, 2], [4, 5, 6], [7, 8], 'test']), TypeError);
+    });
 });
 
 describe('Number System Problem', () => {
