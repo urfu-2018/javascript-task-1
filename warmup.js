@@ -12,6 +12,7 @@ function abProblem(a, b) {
     if (Number.isInteger(a) === false || Number.isInteger(b) === false) {
         throw new TypeError();
 }
+
     return a + b;
 }
 
@@ -30,6 +31,7 @@ function centuryByYearProblem(year) {
     else if (year < 0) {
         throw new RangeError();
     }
+
     return Math.ceil(year/100);    
     }
 
@@ -53,9 +55,9 @@ function colorsProblem(hexColor) {
     rgb[1] = parseInt(rgb[1], 16);
     rgb[2] = parseInt(rgb[2], 16);
     rgb[3] = parseInt(rgb[3], 16);
+
     return `(${rgb[1]}, ${rgb[2]}, ${rgb[3]})`;
 }
-
 
 /**
  * Находит n-ое число Фибоначчи
@@ -79,10 +81,9 @@ function fibonacciProblem(n) {
         current += previous;
         previous = temp;
     }
+
     return current;
 }
-
-
 
 /**
  * Транспонирует матрицу
@@ -104,9 +105,9 @@ function matrixProblem(matrix) {
             transposeMatrix[i][j] = matrix[j][i];
         }
     }
+
     return transposeMatrix;
 }
-
 
 /**
  * Переводит число в другую систему счисления
@@ -124,9 +125,9 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
+
     return n.toString(targetNs);
 }
-
 
 /**
  * Проверяет соответствие телефонного номера формату
@@ -138,9 +139,9 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('Не строка');
     }
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
-
 
 /**
  * Определяет количество улыбающихся смайликов в строке
@@ -157,9 +158,9 @@ function smilesProblem(text) {
     if (!Smile) {
         return 0;
     }
+
     return Smile.length;
 }
-
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -183,10 +184,9 @@ function ticTacToeProblem(field) {
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[0][2];
     }
+    
     return 'draw';
 }
-
-
 
 module.exports = {
     abProblem,
@@ -198,4 +198,4 @@ module.exports = {
     phoneProblem,
     smilesProblem,
     ticTacToeProblem
-}
+};
