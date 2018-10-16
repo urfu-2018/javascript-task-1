@@ -139,9 +139,9 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     // Ваше решение
     if (typeof phoneNumber !== 'string') {
-        throw new TypeError('Не строка');
+        throw new TypeError();
     }
-    
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
