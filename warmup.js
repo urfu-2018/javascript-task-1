@@ -24,6 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year === 'number') {
+        if (year < 0) {
+            throw new RangeError();
+        }
+
         return Math.ceil(year / 100);
     }
     throw new TypeError();
@@ -87,15 +91,10 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     arrayCheck(matrix);
     var result = [];
-    // for (var e = 0; e < matrix[0].length; e++) {
-    //     result[e] = [];
-    // }
     for (var i = 0; i < matrix[0].length; i++) {
         var line = [];
         for (var j = 0; j < matrix.length; j++) {
-            // a = matrix[i[j]];
             line.push(matrix[j][i]);
-            // result[j[i]] = a;
         }
         result.push(line);
     }
@@ -104,10 +103,10 @@ function matrixProblem(matrix) {
     // Ваше решение
 }
 function arrayCheck(matrix) {
-    var len = matrix[0].length;
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
+    var len = matrix[0].length;
     for (var i = 0; i < matrix.length;) {
         if (Array.isArray(matrix[i]) && matrix[i].length === len) {
             i++;
@@ -142,11 +141,14 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber === 'string' &&
-    /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber)) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+    if (/8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber)) {
         return true;
     }
-    throw new TypeError();
+
+    return false;
     // Ваше решение
 }
 
