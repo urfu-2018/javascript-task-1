@@ -92,7 +92,6 @@ function matrixProblem(matrix) {
     if (
         !Array.isArray(matrix) ||
         !matrix.length ||
-        width === 0 ||
         matrix.some(element => !Array.isArray(element)) ||
         matrix.some(element => element.length !== width)
     ) {
@@ -131,7 +130,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('Номер телефона - строка');
     }
 
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**

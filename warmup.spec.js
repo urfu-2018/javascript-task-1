@@ -77,12 +77,15 @@ describe('Matrix problem', () => {
     it('Должна транспонировать квадратную матрицу 3x1', () => {
         assert.deepStrictEqual(matrixProblem([[1, 2, 3]]), [[1], [2], [3]]);
     });
+    it('Должна транспонировать ', () => {
+        assert.deepStrictEqual(matrixProblem([[]]), []);
+    });
     it('Должна TypeError 1', () => {
         assert.throws(() => matrixProblem([1]), TypeError);
     });
-    it('Должна TypeError', () => {
-        assert.throws(() => matrixProblem([[]]), TypeError);
-    });
+    // it('Должна TypeError', () => {
+    //     assert.throws(() => matrixProblem([[]]));
+    // });
     it('Должна TypeError 2', () => {
         assert.throws(() => matrixProblem([[1, 2], [4, 5, 6], [7, 8]]), TypeError);
     });
