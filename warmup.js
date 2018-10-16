@@ -26,10 +26,10 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('type of year is incorrect');
     } else if (year < 0) {
-        throw new RangeError('not');
-    } else {
-        return parseInt(year / 100 + 1, 10);
+        throw new RangeError('');
     }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -69,11 +69,11 @@ function transformHexToRGB(numb, a, b) {
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('not a number');
-    } else if (n < 0 || !Number.isInteger(n)) {
+    } else if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('incorrect');
-    } else {
-        return fibNumb(n);
     }
+
+    return fibNumb(n);
 }
 
 function fibNumb(t) {
@@ -96,7 +96,7 @@ function fibNumb(t) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
+    if (!Array.isArray(matrix[0])) {
         throw new TypeError('not this');
     }
     let m = matrix.length;
@@ -125,9 +125,9 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('type is invalid');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
-    } else {
-        return n.toString(targetNs);
     }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -137,7 +137,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
-        throw new TypeError('alyarma');
+        throw new TypeError('OOOOOOOPS');
     }
 
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
@@ -152,9 +152,9 @@ function phoneProblem(phoneNumber) {
 function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('not a string');
-    } else {
-        return text.match(/(:-\)|\(-:)/g).length;
     }
+
+    return text.match(/(:-\)|\(-:)/g).length;
 }
 
 /**
@@ -180,8 +180,6 @@ function ticTacToeProblem(field) {
 
     return 'draw';
 }
-
-console.info(centuryByYearProblem(400));
 
 module.exports = {
     abProblem,
