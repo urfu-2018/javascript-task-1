@@ -91,21 +91,10 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    if (matrix.length === 0 || !Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray || matrix.length === 0)) {
         throw new TypeError();
     }
     let columns = matrix[0].length;
-    matrix.forEach(element => {
-        if (columns !== element.length || columns === 0) {
-            throw new TypeError('Матрица должна быть размера NxM');
-        }
-    });
-
-    matrix.forEach(element => {
-        if (!Array.isArray(element)) {
-            throw new TypeError('В функцию передаётся не двумерный массив');
-        }
-    });
     let tMatrix = [];
     for (let i = 0; i < columns; i++) {
         tMatrix.push([]);
