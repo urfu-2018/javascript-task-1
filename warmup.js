@@ -53,9 +53,6 @@ function colorsProblem(hexColor) {
     const r = parseInt(clearHex.substring(0, 2), 16);
     const g = parseInt(clearHex.substring(2, 4), 16);
     const b = parseInt(clearHex.substring(4, 6), 16);
-    if ((r, g, b) > 255 || (r, g, b) < 0) {
-        throw new RangeError();
-    }
 
     return ('(' + r + ', ' + g + ', ' + b + ')');
 }
@@ -71,7 +68,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new RangeError();
     }
-    if (!Number.isInteger(n) || n < 1) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
     let fn = 1;
