@@ -48,19 +48,15 @@ function colorsProblem(hexColor) {
         throw new TypeError('Цвет передан не строкой');
     }
 
-    var redChl;
-    var greenChl;
-    var blueChl;
+    var range = /^#[A-Fa-f0-9]{6}$/;
 
-    if (hexColor.length === 7) {
-        redChl = parseInt(hexColor[1] + hexColor[2], 16);
-        greenChl = parseInt(hexColor[3] + hexColor[4], 16);
-        blueChl = parseInt(hexColor[5] + hexColor[6], 16);
-    }
-
-    if (isNaN(redChl) || isNaN(greenChl) || isNaN(blueChl)) {
+    if (!range.test(hexColor) || hexColor.length !== 7) {
         throw new RangeError('Значения цвета выходят за пределы допустимых');
     }
+
+    var redChl = parseInt(hexColor[1] + hexColor[2], 16);
+    var greenChl = parseInt(hexColor[3] + hexColor[4], 16);
+    var blueChl = parseInt(hexColor[5] + hexColor[6], 16);
 
     return '(' + redChl + ', ' + greenChl + ', ' + blueChl + ')';
 }
