@@ -26,7 +26,10 @@ function centuryByYearProblem(year) {
     if (!(typeof(year) === 'number')) {
         return new TypeError();
     }
-    if (!(Number.isInteger(year) > 0)) {
+    if (!((Number.isInteger(year)))) {
+        throw new TypeError();
+    }
+    if (!(year > 0)) {
         throw new RangeError();
     }
 
@@ -44,7 +47,7 @@ function colorsProblem(hexColor) {
     if (!(typeof(hexColor) === 'string')) {
         throw new TypeError();
     }
-    const regcolorExp = new RegExp ('/^#[0-9A-F]{6}$/i');
+    const regcolorExp = new RegExp ('/^#[0-9A-Fa-f]{6}$/i');
     if ((regcolorExp.test(hexColor))) {
         throw new RangeError();
     }
@@ -76,9 +79,9 @@ function fibonacciProblem(n) {
     if (n <= 2) {
         return 1;
     }
-    const fn = 1;
-    const fnmin1 = 0;
-    for (let i = 1; i < n; i++) {
+    let fn = 1;
+    let fnmin1 = 0;
+    for (let i = 1; i <= n; i++) {
         fn += fnmin1;
         fnmin1 = fn - fnmin1;
     }
@@ -160,16 +163,13 @@ function smilesProblem(text) {
     if (!(typeof(text) === 'string')) {
         throw new TypeError();
     }
-    let numofSmile = 0;
-    let currentPos = 0;
-    let allSmile = 0;
-    while (numofSmile !== -1) {
-        numofSmile = text.indexOf('(-:' || ':-)', currentPos);
-        currentPos = numofSmile + 1;
-        allSmile += 1;
+    const regsmileExp = new RegExp(/(:-\))|(\(-:)/g);
+    const count = (text.match(regsmileExp));
+    if (count === null) {
+        return 0;
     }
 
-    return allSmile;
+    return (text.match(regsmileExp)).length;
 }
 
 /*
