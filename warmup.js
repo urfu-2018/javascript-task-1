@@ -155,8 +155,10 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if ((field[0][0] === field[1][1] && field[2][2] === field[1][1]) ||
-        (field[2][0] === field[1][1] && field[0][2]) === field[1][1]) {
+    if (field[2][0] === field[1][1] && field[0][2] === field[1][1]) {
+        return field[1][1];
+    }
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[1][1];
     }
 
