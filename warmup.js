@@ -42,21 +42,19 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError(' not a string');
-    } else if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hexColor) === false) {
-        throw new RangeError('incorrect data');
-    } else {
-        var hex = hexColor.replace('#', '');
-
-        var a = transformHexToRGB(hex, 0, 2);
-        var b = transformHexToRGB(hex, 2, 4);
-        var c = transformHexToRGB(hex, 4, 6);
-
-        return `(${a}, ${b}, ${c})`;
     }
-}
 
-function transformHexToRGB(numb, a, b) {
-    return parseInt(numb.substring(a, b), 16);
+    var regExp = /^#[A-Fa-f0-9]{6}$/;
+
+    if (!regExp.test(hexColor) || hexColor.length !== 7) {
+        throw new RangeError('incorrect data');
+    }
+
+    var a = parseInt(hexColor[1] + hexColor[2], 16);
+    var b = parseInt(hexColor[3] + hexColor[4], 16);
+    var c = parseInt(hexColor[5] + hexColor[6], 16);
+
+    return `(${a}, ${b}, ${c})`;
 }
 
 /**
