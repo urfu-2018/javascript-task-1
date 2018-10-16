@@ -108,11 +108,7 @@ function matrixProblem(matrix) {
         }
     }
 
-    return matrix[0].map(function (column, n) {
-        return matrix.map(function (row, m) {
-            return matrix[m][n];
-        });
-    });
+    return matrix[0].map((_col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -124,7 +120,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (typeof(n) !== 'number' || Number.isInteger(targetNs) === false) {
         throw new TypeError();
     }
 
