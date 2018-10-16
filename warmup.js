@@ -143,8 +143,10 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('в качестве аргумента должна передаваться строка');
     }
+    const result = text.match(/:-\)|\(-:/g);
 
-    return text.split(/:-\)|\(-:/).length - 1;
+    return result === null ? 0 : result.length;
+    // return text.split(/:-\)|\(-:/).length - 1;
 }
 
 /**
