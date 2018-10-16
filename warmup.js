@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError();
+        throw new TypeError('в аргументы переданы не числа');
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw new TypeError();
+        throw new TypeError('в качестве года передано не число');
     }
     if (year < 0) {
-        throw new RangeError();
+        throw new RangeError('год – не отрицательное значение');
     }
 
     return Math.ceil(year / 100);
@@ -42,10 +42,10 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError();
+        throw new TypeError('цвет должен быть строкой');
     }
     if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
-        throw new RangeError();
+        throw new RangeError('значения цвета выходят за пределы допустимых');
     }
 
     const r = parseInt(hexColor.substring(1, 3), 16);
@@ -63,11 +63,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
-        throw new TypeError();
+    if (typeof n === 'number') {
+        throw new TypeError('в качестве положения в ряде должо быть передано число');
     }
-    if (n <= 0) {
-        throw new RangeError();
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError('положение в ряде должо быть целым положительным числом');
     }
     let a = 0;
     let b = 1;
@@ -88,14 +88,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (matrix.length === 0) {
+        return matrix;
+    }
     const width = matrix[0].length;
     if (
         !Array.isArray(matrix) ||
-        matrix.some(element => !Array.isArray(element)) ||
         !matrix.length ||
+        matrix.some(element => !Array.isArray(element)) ||
         matrix.some(element => element.length !== width)
     ) {
-        throw new TypeError();
+        throw new TypeError('в функцию должен передаваться двумерный массив');
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
@@ -111,10 +114,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
-        throw new TypeError();
+        throw new TypeError('были переданы аргументы некорректного типа');
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
+        throw new RangeError('система счисления не может выходить за пределы значений [2, 36]');
     }
 
     return n.toString(targetNs);
@@ -127,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
-        throw new TypeError();
+        return false;
     }
 
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
@@ -141,7 +144,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError();
+        throw new TypeError('в качестве аргумента должна передаваться строка');
     }
 
     return text.split(/:-\)|\(-:/).length - 1;
