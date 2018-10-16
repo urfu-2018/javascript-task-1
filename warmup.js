@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+    if (typeof year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,8 +41,22 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === 0) {
+        throw new RangeError();
+    }
+
+    let str = hexColor.substring(1);
+    let newstr = str.match(/.{2}/g);
+    const r = parseInt(newstr[0], 16);
+    const g = parseInt(newstr[1], 16);
+    const b = parseInt(newstr[2], 16);
+
+    return ('(' + r + ', ' + g + ', ' + b + ')');
 }
+
 
 /**
  * Находит n-ое число Фибоначчи
@@ -41,7 +66,23 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (n < 0) {
+        throw new RangeError();
+    }
+    let firstnum = 1;
+    let secnum = 1;
+    for (let i = 2; i < n; i++) {
+        let currentnum = firstnum + secnum;
+        firstnum = secnum;
+        secnum = currentnum;
+    }
+
+    return secnum;
+
 }
 
 /**
@@ -50,9 +91,36 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function matrixProblem(matrix) {
-    // Ваше решение
+
+// Ваше решение
+function matrixProblem(a) {
+
+    let w = a.length || 0;
+    let h = a[0] instanceof Array ? a[0].length : 0;
+    for (let c = 1; i < w; c++) {
+        if (a[c].length !== h) {
+            throw new TypeError();
+        }
+    }
+
+
+    if (h === 0 || w === 0) {
+        return [];
+    }
+
+    let i;
+    let j;
+    let t = [];
+    for (i = 0; i < h; i++) {
+        t[i] = [];
+        for (j = 0; j < w; j++) {
+            t[i][j] = a[j][i];
+        }
+    }
+
+    return t;
 }
+
 
 /**
  * Переводит число в другую систему счисления
@@ -64,6 +132,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    
 }
 
 /**
@@ -106,3 +175,5 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
+
+console.log(matrixProblem([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
