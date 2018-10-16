@@ -70,18 +70,13 @@ function centuryByYearProblem(year) {
     if(hexColor.length !== 7 || hexColor[0] !== '#') {
         throw COLOR_RANGE_ERROR;
     }
-    const HEX = (function (){
-        const symbols = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
-        return {
-            Base: 16,
-            includes: function (symbol) { return symbols.includes(symbol)},
-
-        }
-        
-    })();
-        
+    const {
+        BASE_HEX,
+        IsHexadimal,
+        GetNUmberBySymbal
+    } = require('./Hex');
     for(let i = 1; i < hexColor.length; i++) {
-        if(!hexSymbols.includes(hexColor[i])) {
+        if(!IsHexadimal(hexColor[i])) {
             throw COLOR_RANGE_ERROR;
         }
     }
@@ -89,15 +84,15 @@ function centuryByYearProblem(year) {
     const BASE_HEX = 16;
     let i = 1
     while(true) {
-        RGBColorString += (hexSymbols.indexOf(hexColor[i]) * BASE_HEX 
-            + hexSymbols.indexOf(hexColor[i+1])).toString(); 
+        RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX 
+            + GetNUmberBySymbal(hexColor[i+1])).toString(); 
 
         if(i >= hexColor.length) {
             break;
         }
         RGBColorString += ', ';
     }
-    return '(' + hexSymbols.indexOf(hexColor[])
+    return RGBColorString;
 }
 
 /**
