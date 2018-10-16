@@ -50,7 +50,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    assertIfTypesDoNotMatch([year], [isNumber]);
+    assertIfTypesDoNotMatch([year], [Number.isInteger]);
     if (year >= 0) {
         return Math.floor((year - 1) / 100) + 1;
     }
