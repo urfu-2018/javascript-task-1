@@ -1,5 +1,46 @@
 'use strict';
 
+function checkInt(obj) {
+    return [
+        typeof obj === 'number' && Number.isInteger(obj),
+        new TypeError(`${obj} should be int`)
+    ];
+}
+
+function checkUint(obj) {
+    const [isInt, err] = checkInt(obj);
+
+    return isInt ? [obj >= 0, new RangeError(`${obj} should be > 0`)] : [isInt, err];
+}
+
+const TYPE_CHECKERS = {
+    int: checkInt,
+    uint: checkUint
+};
+
+function checkArgsTypes(signature, args) {
+    if (signature.length !== args.length) {
+        throw new RangeError('signature and args should be equal length');
+    }
+
+    for (let i = 0; i < signature.length; i++) {
+        const typeIsCorrect = signature[i] in TYPE_CHECKERS
+            ? TYPE_CHECKERS[signature[i]]
+            : e => [typeof e === signature[i],
+                new TypeError(`${args[i]} should be ${signature[i]}`)];
+
+        const [isCorrect, err] = typeIsCorrect(args[i]);
+        if (!isCorrect) {
+            throw err;
+        }
+    }
+}
+
+
+const HEX_COLOR_RE = /^#[\da-fA-F]{6}$/;
+const SMILES_RE = /(:-\))|(\(-:)/g;
+const PHONE_RE = /^8-800-\d{3}(-\d{2}){2}$/;
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -8,7 +49,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    checkArgsTypes(['int', 'int'], [a, b]);
+
+    return a + b;
 }
 
 /**
@@ -19,7 +62,9 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    checkArgsTypes(['uint'], [year]);
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +75,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    checkArgsTypes(['string'], [hexColor]);
+
+    if (!HEX_COLOR_RE.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const [r, g, b] = hexColor.slice(1)
+        .match(/.{1,2}/g)
+        .map(e => parseInt(e, 16));
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -41,7 +96,17 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    checkArgsTypes(['uint'], [n]);
+    if (n === 0) {
+        throw new RangeError();
+    }
+
+    let [u, v] = [1, 1];
+    for (let i = 0; i < n - 2; i++) {
+        [u, v] = [v, u + v];
+    }
+
+    return v;
 }
 
 /**
@@ -51,7 +116,23 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) ||
+        !matrix.every(e => Array.isArray(e) && e.length === matrix[0].length)) {
+        throw new TypeError();
+    }
+
+    const result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        result.push([]);
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+
+    return result;
 }
 
 /**
@@ -63,7 +144,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    checkArgsTypes(['number', 'uint'], [n, targetNs]);
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +159,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    checkArgsTypes(['string'], [phoneNumber]);
+
+    return PHONE_RE.test(phoneNumber);
 }
 
 /**
@@ -82,7 +171,27 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    checkArgsTypes(['string'], [text]);
+    const smiles = text.match(SMILES_RE);
+
+    return smiles === null ? 0 : smiles.length;
+}
+
+
+function isLineWithOneSymbol(a, b, c) {
+    return a === b && b === c;
+}
+
+function getDiagonalWinner(field) {
+    if (isLineWithOneSymbol(field[0][0], field[1][1], field[2][2])) {
+        return field[0][0];
+    }
+
+    if (isLineWithOneSymbol(field[0][2], field[1][1], field[2][0])) {
+        return field[0][2];
+    }
+
+    return 'draw';
 }
 
 /**
@@ -92,7 +201,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let i = 0; i < 3; i++) {
+        if (isLineWithOneSymbol(field[i][0], field[i][1], field[i][2])) {
+            return field[i][0];
+        }
+    }
+
+    for (let j = 0; j < 3; j++) {
+        if (isLineWithOneSymbol(field[0][j], field[1][j], field[2][j])) {
+            return field[0][j];
+        }
+    }
+
+
+    return getDiagonalWinner(field);
 }
 
 module.exports = {
