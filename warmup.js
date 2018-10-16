@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year <= 0 || year % 1 !== 0) {
         throw new RangeError();
     }
     if (year <= 100) {
@@ -104,7 +104,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!(matrix instanceof Array) ||
     matrix.some(sm => !Array.isArray(sm) || sm.length !== matrix[0].length)) {
-        throw new TypeError('r');
+        throw new TypeError();
     }
     const columns = matrix.length;
     const rows = matrix[0].length;
@@ -131,7 +131,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number') {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
