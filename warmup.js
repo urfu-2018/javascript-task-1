@@ -145,7 +145,7 @@ function smilesProblem(text) {
     }
     const Arr = text.match(/\(-:|:-\)/g);
 
-    return Arr === null ? 0 : Array.length;
+    return Arr === null ? 0 : Arr.length;
 }
 
 /**
