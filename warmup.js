@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('type of year is incorrect');
     } else if (year < 0) {
-        throw new RangeError('');
+        throw new RangeError('ALYARMA');
     }
 
     return Math.ceil(year / 100);
