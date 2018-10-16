@@ -9,8 +9,11 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+var sum= a+b;
+var newnum= Number(sum);
+document.write(newnum);
 }
-
+abProblem(400, 200);
 /**
  * Определяет век по году
  * @param {Number} year Год, целое положительное число
@@ -20,7 +23,12 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    if (year>=0){
+    var centuary= Math.ceil(year/100);
+    document.write(centuary);
+    };
 }
+centuryByYearProblem();
 
 /**
  * Переводит цвет из формата HEX в формат RGB
