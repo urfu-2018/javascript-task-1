@@ -34,11 +34,20 @@ describe('Century by year problem', () => {
     it('Должна вернуть `21`', () => {
         assert.strictEqual(centuryByYearProblem(2018), 21);
     });
+    it('Должна вернуть ошибку', () => {
+        assert.throws(() => centuryByYearProblem(-1));
+    });
 });
 
 describe('Colors problem', function () {
     it('Должна вернуть (255, 255, 255)', function () {
         assert.strictEqual(colorsProblem('#FFFFFF'), '(255, 255, 255)');
+    });
+    it('Должна вернуть (255, 255, 255)', function () {
+        assert.strictEqual(colorsProblem('#ffffff'), '(255, 255, 255)');
+    });
+    it('Должна вернуть (0, 0, 0)', function () {
+        assert.strictEqual(colorsProblem('#000000'), '(0, 0, 0)');
     });
 });
 
@@ -105,6 +114,30 @@ describe('Tic-tac-toe problem', () => {
         assert.strictEqual(
             ticTacToeProblem([['x', 'x', 'x'], ['o', 'o', 'x'], ['o', 'x', 'o']]),
             'x'
+        );
+    });
+    it('Должна вернуть "draw"', () => {
+        assert.strictEqual(
+            ticTacToeProblem([['x', 'o', 'x'], ['o', 'o', 'x'], ['o', 'x', 'o']]),
+            'draw'
+        );
+    });
+    it('Должна вернуть ', () => {
+        assert.strictEqual(
+            ticTacToeProblem([['o', 'o', 'o'], ['o', 'o', 'o'], ['o', 'o', 'o']]),
+            'o'
+        );
+    });
+    it('Должна вернуть o', () => {
+        assert.strictEqual(
+            ticTacToeProblem([['o', 'x', 'x'], ['x', 'o', 'x'], ['o', 'o', 'o']]),
+            'o'
+        );
+    });
+    it('Должна вернуть o', () => {
+        assert.strictEqual(
+            ticTacToeProblem([['o', 'x', 'x'], ['o', 'o', 'x'], ['o', 'x', 'o']]),
+            'o'
         );
     });
 });

@@ -66,7 +66,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(n)) {
+    if (!Number.isInteger(n) || n < 0) {
         throw new RangeError();
     }
     let a = 0;
