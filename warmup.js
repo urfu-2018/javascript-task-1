@@ -8,9 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-        throw new TypeError();
-    }
+    checkNumbers(a, b);
 
     return a + b;
 }
@@ -23,9 +21,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
-        throw new TypeError();
-    }
+    checkNumbers(year);
     if (year < 0) {
         throw new RangeError();
     }
@@ -71,9 +67,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
-        throw new TypeError();
-    }
+    checkNumbers(n);
     if (n <= 0) {
         throw new RangeError();
     }
@@ -151,9 +145,7 @@ function containsArray(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || targetNs % 1 !== 0) {
-        throw new TypeError();
-    }
+    checkNumbers(n, targetNs);
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
@@ -214,6 +206,14 @@ function ticTacToeProblem(field) {
     }
 
     return 'draw';
+}
+
+function checkNumbers() {
+    for (let i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] !== 'number') {
+            throw new TypeError();
+        }
+    }
 }
 
 module.exports = {
