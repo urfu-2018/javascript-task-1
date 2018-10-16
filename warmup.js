@@ -103,12 +103,16 @@ function matrixProblem(matrix) {
     }
 
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+        if (!Array.isArray(matrix[i])) {
             throw new TypeError();
         }
     }
 
-    return matrix[0].map((_col, i) => matrix.map(row => row[i]));
+    return matrix[0].map(function (column, n) {
+        return matrix.map(function (row, m) {
+            return matrix[m][n];
+        });
+    });
 }
 
 /**
