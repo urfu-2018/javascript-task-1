@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -30,7 +42,31 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+
+    const hexColorFormat = RegExp('^#([0-9A-F]{3}|[0-9A-F]{6})$');
+    if (!hexColorFormat.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const zipedColorLength = 4;
+    if (hexColor.length === zipedColorLength) {
+        let unzipedColor = '';
+        for (let i = 1; i < hexColor.length; i++) {
+            unzipedColor += hexColor[i] + hexColor[i];
+        }
+
+        hexColor = unzipedColor;
+    }
+
+    const values = [];
+    for (let j = 1; j < hexColor.length; j += 2) {
+        values.push(parseInt(hexColor.substring(j, j + 2), 16));
+    }
+
+    return `(${values[0]}, ${values[1]}, ${values[2]})`;
 }
 
 /**
@@ -41,7 +77,27 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+
+    if (n < 0 || !Number.isInteger(n)) {
+        throw new RangeError();
+    }
+
+    let previousValue = 0;
+    let currentValue = 1;
+    let nextValue;
+    let count = 0;
+
+    while (count !== n) {
+        nextValue = currentValue + previousValue;
+        previousValue = currentValue;
+        currentValue = nextValue;
+        count++;
+    }
+
+    return previousValue;
 }
 
 /**
@@ -51,7 +107,28 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    function checkAttribute(attributeKey, expected) {
+        if (typeof matrix[attributeKey] !== expected ||
+             typeof matrix[0][attributeKey] !== expected) {
+            throw new TypeError();
+        }
+    }
+
+    checkAttribute(Symbol.iterator, 'function');
+    checkAttribute('length', 'number');
+
+    const transpMatrix = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        transpMatrix.push(new Array(matrix.length));
+    }
+
+    for (let x = 0; x < matrix.length; x++) {
+        for (let y = 0; y < matrix[0].length; y++) {
+            transpMatrix[y][x] = matrix[x][y];
+        }
+    }
+
+    return transpMatrix;
 }
 
 /**
@@ -63,7 +140,17 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError();
+    }
+
+    const minTargetNs = 2;
+    const maxTargetNs = 36;
+    if (!(minTargetNs <= targetNs <= maxTargetNs)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +159,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    const phoneFormat = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+
+    return phoneFormat.test(phoneNumber);
 }
 
 /**
@@ -82,17 +171,45 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    return (text.match('(?::-[)]|[(]-:)') || []).length;
 }
 
 /**
- * Определяет победителя в игре "Крестики-нолики"
+ * Определяет победителя в игре 'Крестики-нолики'
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let result = null;
+
+    ['o', 'x'].forEach(
+        function (symb) {
+            const winLine = `${symb}${symb}${symb}`;
+
+            function registerWin(_field) {
+                _field.forEach(
+                    function (line) {
+                        if (line.join('') === winLine) {
+                            result = symb;
+                        }
+                    }
+                );
+            }
+
+            registerWin(field);
+            registerWin(matrixProblem(field));
+
+            const mainDiagonal = `${field[0][0]}${field[1][1]}${field[2][2]}`;
+            const appendDiagonal = `${field[0][2]}${field[1][1]}${field[2][0]}`;
+
+            if (mainDiagonal === winLine || appendDiagonal === winLine) {
+                result = symb;
+            }
+        }
+    );
+
+    return result === null ? 'draw' : result;
 }
 
 module.exports = {
