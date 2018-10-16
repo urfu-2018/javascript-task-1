@@ -50,6 +50,7 @@ describe('Colors problem', function () {
     it('should calculate correct values', () => {
         assert.strictEqual(colorsProblem('#000000'), '(0, 0, 0)');
         assert.strictEqual(colorsProblem('#010101'), '(1, 1, 1)');
+        assert.strictEqual(colorsProblem('#101010'), '(16, 16, 16)');
     });
     it('should throw on invalid', () => {
         assert.throws(() => colorsProblem('#'), RangeError);
@@ -89,6 +90,17 @@ describe('Matrix problem', () => {
                 [3, 6, 9]
             ]);
     });
+    it('should handle 3x2 matrix', () => {
+        assert.deepStrictEqual(
+            matrixProblem([
+                [1, 2, 3],
+                [4, 5, 6]
+            ]), [
+                [1, 4],
+                [2, 5],
+                [3, 6]
+            ]);
+    });
     it('should handle 2x1', () => {
         assert.deepStrictEqual(
             matrixProblem([
@@ -97,6 +109,20 @@ describe('Matrix problem', () => {
                 [0], [1]
             ]
         );
+    });
+    it('should handle 1x2', () => {
+        assert.deepStrictEqual(
+            matrixProblem([
+                [0], [1]
+            ]), [
+                [0, 1]
+            ]
+        );
+    });
+    it('should throw on invalid', () => {
+        assert.throws(() => matrixProblem('sdfsd'), TypeError);
+        assert.throws(() => matrixProblem(['sd', 'sdf']), TypeError);
+        assert.throws(() => matrixProblem([234, 1, 2, 3, 4]));
     });
 });
 
@@ -108,7 +134,12 @@ describe('Number System Problem', () => {
         assert.strictEqual(numberSystemProblem(4, 2), '100');
         assert.strictEqual(numberSystemProblem(9, 8), '11');
         assert.strictEqual(numberSystemProblem(-1, 5), '-1');
+        assert.strictEqual(numberSystemProblem(17, 18), 'h');
+    });
+    it('should throw on invalid', () => {
         assert.throws(() => numberSystemProblem(100, 100), RangeError);
+        assert.throws(() => numberSystemProblem('sdf', 234), TypeError);
+        assert.throws(() => numberSystemProblem(34, []), TypeError);
     });
 });
 
@@ -171,6 +202,11 @@ describe('Tic-tac-toe problem', () => {
             ['o', 'x', 'o'],
             ['o', 'x', 'x'],
             ['x', 'o', 'o']
+        ]), 'draw');
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'o'],
+            ['x', 'o', 'x'],
+            ['x', 'o', 'x']
         ]), 'draw');
     });
 });

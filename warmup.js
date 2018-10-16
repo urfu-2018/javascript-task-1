@@ -131,7 +131,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
-        throw new Error('phone is not a string');
+        throw new TypeError('phone is not a string');
     }
 
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
