@@ -24,7 +24,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        return new TypeError();
+        throw new TypeError();
     }
     if (year < 0) {
         throw new RangeError();
@@ -64,7 +64,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw new RangeError();
+        throw new TypeError();
     }
     if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
