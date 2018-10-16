@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!(typeof(year) === 'number' || Number.isInteger(year))) {
+    if (typeof(year) !== 'number') {
         return new TypeError();
     }
-    if (!(year > 0)) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (!(typeof(hexColor) === 'string')) {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
     const regcolorExp = new RegExp ('/^#[0-9A-Fa-f]{6}$/i');
@@ -70,7 +70,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new RangeError();
     }
-    if (!(Number.isInteger(n) || n > 0)) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
     if (n <= 2) {
@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
 function checkMatrix(matrix, M, N) {
     for (let i = 0; i < M; i++) {
         if (!(Array.isArray(matrix) || Array.isArray(matrix[i])) || matrix[i].length === N) {
-            return new TypeError();
+            throw new TypeError();
         }
     }
 }
@@ -127,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
     if (!(typeof(n) === 'number' && typeof(targetNs) === 'number')) {
         throw new TypeError();
     }
-    if (!(targetNs < 36 || targetNs > 2)) {
+    if (targetNs > 36 || targetNs < 2) {
         throw new RangeError();
 
     }
@@ -141,7 +141,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (!(typeof(phoneNumber) === 'string')) {
+    if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
     const regExp = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
