@@ -11,7 +11,7 @@ function abProblem(a, b) {
     // Ваше решение
     if (Number.isInteger(a) === false || Number.isInteger(b) === false) {
         throw new TypeError();
-}
+    }
 
     return a + b;
 }
@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
     }
 
     return Math.ceil(year/100);    
-    }
+}
 
 /**
  * Переводит цвет из формата HEX в формат RGB
@@ -184,7 +184,7 @@ function ticTacToeProblem(field) {
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[0][2];
     }
-    
+
     return 'draw';
 }
 
