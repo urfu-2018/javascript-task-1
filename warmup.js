@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         return new TypeError();
     }
     if (!(year > 0)) {
-        throw new RangeError();
+        throw new TypeError();
     }
 
     return Math.ceil(year / 100);
@@ -94,7 +94,13 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     const M = matrix.length;
+    if (!((matrix[0].length))) {
+        throw new TypeError();
+    }
     const N = matrix[0].length;
+    if (N === undefined) {
+        throw new TypeError();
+    }
     checkMatrix(matrix, M, N);
     const transpMatrix = [];
     for (let i = 0; i < N; i++) {
@@ -127,7 +133,7 @@ function numberSystemProblem(n, targetNs) {
     if (!(typeof(n) === 'number' && typeof(targetNs) === 'number')) {
         throw new TypeError();
     }
-    if (!(targetNs <= 36 || targetNs >= 2)) {
+    if (!(targetNs < 36 || targetNs > 2)) {
         throw new RangeError();
 
     }
