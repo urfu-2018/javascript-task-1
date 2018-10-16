@@ -71,16 +71,15 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    let number = parseInt(n);
-    if (isNaN(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (number <= 0 || n % 1 !== 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
     let prevPrevNumber = 1;
     let prevNumber = 1;
-    for (let i = 2; i < number; i++) {
+    for (let i = 2; i < n; i++) {
         let newNumber = prevPrevNumber + prevNumber;
         prevPrevNumber = prevNumber;
         prevNumber = newNumber;
