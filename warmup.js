@@ -53,9 +53,9 @@ function colorsProblem(hexColor) {
     var blueChl;
 
     if (hexColor.length === 7) {
-        redChl = parseInt(hexColor[1].toString() + hexColor[2].toString(), 16);
-        greenChl = parseInt(hexColor[3].toString() + hexColor[4].toString(), 16);
-        blueChl = parseInt(hexColor[5].toString() + hexColor[6].toString(), 16);
+        redChl = parseInt(hexColor[1] + hexColor[2], 16);
+        greenChl = parseInt(hexColor[3] + hexColor[4], 16);
+        blueChl = parseInt(hexColor[5] + hexColor[6], 16);
     }
 
     if (isNaN(redChl) || isNaN(greenChl) || isNaN(blueChl)) {
