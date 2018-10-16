@@ -9,7 +9,8 @@
  */
 
 function abProblem(a, b) {
-    if (Number.isInteger(a) && Number.isInteger(b)) {
+    if ((Number.isInteger(a) && Number.isInteger(b)) &&
+    ((typeof(a) === 'number') && (typeof(b) === 'number'))) {
         return a + b;
     }
 
@@ -25,7 +26,7 @@ function abProblem(a, b) {
  */
 
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof(year) !== 'number' && !Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year > 0) {
@@ -77,7 +78,7 @@ function colorsProblem(hexColor) {
 
 function fibonacciProblem(n) {
     let array = [0, 1];
-    if (!Number.isInteger(n)) {
+    if (typeof(n) !== 'number') {
 
         throw new TypeError();
     }
@@ -134,7 +135,7 @@ function numberSystemProblem(n, targetNs) {
 
         throw new TypeError();
     }
-    if (targetNs >= 2 && targetNs <= 36) {
+    if (targetNs >= 2 && targetNs <= 36 && Number.isInteger(targetNs)) {
         const result = n.toString(targetNs);
 
         return result;
@@ -150,6 +151,10 @@ function numberSystemProblem(n, targetNs) {
  */
 
 function phoneProblem(phoneNumber) { // плохое решение
+    if (typeof(phoneNumber) !== 'string') {
+
+        throw new TypeError();
+    }
     if ((/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/).test(phoneNumber)) {
 
         return true;
