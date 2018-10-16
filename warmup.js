@@ -9,11 +9,10 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-
-if (Number.isInteger(a) === false || Number.isInteger(b) === false) {
-    throw new TypeError();
+    if (Number.isInteger(a) === false || Number.isInteger(b) === false) {
+        throw new TypeError();
 }
-return a + b;
+    return a + b;
 }
 
 
@@ -32,12 +31,8 @@ function centuryByYearProblem(year) {
     else if (year < 0) {
         throw new RangeError();
     }
-    return Math.ceil(year/100);
-    
+    return Math.ceil(year/100);    
     }
-   
-
-
 
 /**
  * Переводит цвет из формата HEX в формат RGB
@@ -204,4 +199,4 @@ module.exports = {
     phoneProblem,
     smilesProblem,
     ticTacToeProblem
-};
+}
