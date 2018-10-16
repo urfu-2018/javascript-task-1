@@ -148,6 +148,9 @@ function numberSystemProblem(n, targetNs) {
  */
 
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
     if (phoneNumber.length !== 15) {
         return false;
     }
