@@ -195,7 +195,7 @@ function tryParseInt(n) {
     if (isNaN(intN)) {
         throw new TypeError();
     }
-    if (floatN % 1 != 0) {
+    if (floatN % 1 !== 0) {
         throw new TypeError();
     }
 
