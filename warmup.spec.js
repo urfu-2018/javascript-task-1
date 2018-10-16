@@ -42,15 +42,9 @@ describe('Fibonacci problem', () => {
 describe('Matrix problem', () => {
     it('Должна транспонировать квадратную матрицу 3x3', () => {
         assert.deepStrictEqual(
-            matrixProblem([
-                [1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 9]
-            ]), [
-                [1, 4, 7],
-                [2, 5, 8],
-                [3, 6, 9]
-            ]);
+            matrixProblem([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
+            [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+        );
     });
 });
 
@@ -74,10 +68,13 @@ describe('Smiles problem', () => {
 
 describe('Tic-tac-toe problem', () => {
     it('Должна вернуть "x"', () => {
-        assert.strictEqual(ticTacToeProblem([
-            ['x', 'x', 'x'],
-            ['o', 'o', 'x'],
-            ['o', 'x', 'o']
-        ]), 'x');
+        assert.strictEqual(
+            ticTacToeProblem([
+                ['x', 'x', 'x'],
+                ['o', 'o', 'x'],
+                ['o', 'x', 'o']
+            ]),
+            'x'
+        );
     });
 });
