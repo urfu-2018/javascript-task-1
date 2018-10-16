@@ -197,11 +197,9 @@ function diagonalCheck(field) {
     let dCh = '';
     if (field[0][0] === field[1][1] && field[0][0] === field[2][2]) {
         dCh = field[0][0];
-    } 
-    else if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+    } else if (field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
         dCh = field[0][2];
-    }
-    else {
+    } else {
         dCh = '';
     }
 
@@ -212,14 +210,11 @@ function linesCheck(field) {
     let lCh = '';
     if (field[0][0] === field[0][1] && field[0][0] === field[0][2]) {
         lCh = field[0][0];
-    }
-    else if (field[1][0] === field[1][1] && field[1][0] === field[1][2]) {
+    } else if (field[1][0] === field[1][1] && field[1][0] === field[1][2]) {
         lCh = field[1][0];
-    }
-    else if (field[2][0] === field[2][1] && field[2][0] === field[2][2]) {
+    } else if (field[2][0] === field[2][1] && field[2][0] === field[2][2]) {
         lCh = field[2][0];
-    }
-    else {
+    } else {
         lCh = '';
     }
 
@@ -230,14 +225,11 @@ function columnCheck(field) {
     let cCh = '';
     if (field[0][0] === field[1][0] && field[0][0] === field[2][0]) {
         cCh = field[0][0];
-    }
-    else if (field[0][1] === field[1][1] && field[0][1] === field[2][1]) {
+    } else if (field[0][1] === field[1][1] && field[0][1] === field[2][1]) {
         cCh = field[0][1];
-    }
-    else if (field[0][2] === field[1][2] && field[0][2] === field[2][2]) {
+    } else if (field[0][2] === field[1][2] && field[0][2] === field[2][2]) {
         cCh = field[0][2];
-    }
-    else {
+    } else {
         cCh = '';
     }
 
