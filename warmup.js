@@ -83,7 +83,6 @@ function fibonacciProblem(n) {
     return secondValue;
 }
 
-
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
