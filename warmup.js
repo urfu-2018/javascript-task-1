@@ -32,7 +32,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.ceil(year/100);    
+    return Math.ceil(year/100);
 }
 
 /**
@@ -48,7 +48,7 @@ function colorsProblem(hexColor) {
     const HexToRgb = /^#([A - Fa - f\d]{2})([A - Fa - f\d]{2})([A - Fa - f\d]{2})$/;
     if (typeof hexColor !== 'string') {
         throw new TypeError();
-    } 
+    }
     else if (!HexToRgb.test(hexColor)) {
         throw new RangeError();
     }
@@ -67,6 +67,7 @@ function colorsProblem(hexColor) {
  * @throws {RangeError} Когда положение в ряде не является целым положительным числом
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
+
 function fibonacciProblem(n) {
     // Ваше решение
     if (typeof(n) !== 'number') {
@@ -92,6 +93,7 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
+
 function matrixProblem(matrix) {
     // Ваше решение
     if (!Array.isArray(matrix) || !matrix.every(Array.isArray || matrix.length === 0)) {
@@ -118,6 +120,7 @@ function matrixProblem(matrix) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
+
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
     if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
@@ -141,7 +144,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('Не строка');
     }
 
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return /^8 - 800 - \d{3} - \d{2} - \d{2}$/.test(phoneNumber);
 }
 
 /**
