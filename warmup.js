@@ -178,7 +178,7 @@ function ticTacToeProblem(field) {
     // Ваше решение
     let result = '';
     const diagCheck = diagonalCheck(field);
-    const lineCheck = lineCheck(field);
+    const lineCheck = linesCheck(field);
     const colCheck = columnCheck(field);
     if (diagCheck !== '') {
         result = diagCheck;
@@ -208,17 +208,17 @@ function diagonalCheck(field) {
     return dCh;
 }
 
-function lineCheck(field) {
+function linesCheck(field) {
     let lCh = '';
     if (field[0][0] === field[0][1] && field[0][0] === field[0][2]) {
         lCh = field[0][0];
     }
-    else if (field[1][0] === field[1][1] && field[1][0] == field[1][2]) {
+    else if (field[1][0] === field[1][1] && field[1][0] === field[1][2]) {
         lCh = field[1][0];
     }
-    else if (field[2][0] === field[2][1] && field[2][0] == field[2][2]) {
+    else if (field[2][0] === field[2][1] && field[2][0] === field[2][2]) {
         lCh = field[2][0];
-    } 
+    }
     else {
         lCh = '';
     }
@@ -236,7 +236,7 @@ function columnCheck(field) {
     }
     else if (field[0][2] === field[1][2] && field[0][2] === field[2][2]) {
         cCh = field[0][2];
-    } 
+    }
     else {
         cCh = '';
     }
