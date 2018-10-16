@@ -86,7 +86,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     const tMatrix = matrix[0].map((col, i) => matrix.map(row => row[i]));
-    matrix.forEach(line => {
+    tMatrix.forEach(line => {
         for (const item of line) {
             if (typeof item !== 'number') {
                 throw TypeError;
