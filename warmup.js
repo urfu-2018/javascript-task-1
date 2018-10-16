@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    tryParseInt(a);
-    tryParseInt(b);
+    checkInt(a);
+    checkInt(b);
 
     return a + b;
 }
@@ -22,7 +22,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    tryParseInt(year);
+    checkInt(year);
     if (year < 0) {
         throw new RangeError();
     }
@@ -59,15 +59,8 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    tryParseInt(n);
-    if (n <= 0 || n % 1 !== 0) {
-        throw new RangeError();
-    }
-    if (n === 1 || n === 2) {
-        return 1;
-    }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return n === 1 ? 1 : -2;
 }
 
 /**
@@ -123,8 +116,8 @@ function checkRows(matrix, n) {
  */
 function numberSystemProblem(n, targetNs) {
     tryParseFloat(n);
-    let floatTargetNs = tryParseInt(targetNs);
-    if (floatTargetNs < 2 || floatTargetNs > 36) {
+    checkInt(targetNs);
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
@@ -186,12 +179,11 @@ function ticTacToeProblem(field) {
     return xLine ? 'x' : 'o';
 }
 
-function tryParseInt(n) {
-    let intN = parseInt(n);
-    if (isNaN(intN)) {
+function checkInt(n) {
+    if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n % 1 !== 0) {
+    if (parseInt(n) % 1 !== 0) {
         throw new RangeError();
     }
 }
