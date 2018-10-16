@@ -151,17 +151,9 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    if (phoneNumber.length !== 15) {
-        return false;
-    }
-    if (phoneNumber[9] !== '-' || phoneNumber[12] !== '-') {
-        return false;
-    }
-    if (phoneNumber.substr(0, 6) !== '8-800-') {
-        return false;
-    }
+    const numberCheck = (/^8-800-\d{3}-\d{2}-\d{2}$/);
 
-    return true;
+    return numberCheck.test(phoneNumber);
 }
 
 /**
