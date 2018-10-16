@@ -54,7 +54,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('Цвет передан не строкой');
     }
 
-    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
+    if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
         throw new RangeError('Недопустимое значение цвета');
     }
 
@@ -160,7 +160,7 @@ function smilesProblem(text) {
     }
     let count = 0;
     for (let i = 0; i < text.length; i++) {
-        const temp = text.substr(i, 3);
+        let temp = text.substr(i, 3);
         if (temp === '(-:' || temp === ':-)') {
             count++;
         }
@@ -191,11 +191,8 @@ function ticTacToeProblem(field) {
         return checkStrOfField(field);
     }
 
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return field[0][0];
-    }
-
-    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+    (field[0][2] === field[1][1] && field[1][1] === field[2][0])){
         return field[1][1];
     }
 
