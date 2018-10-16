@@ -45,7 +45,11 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const result = /^#?([a-fA-F\d]{2})([a-fA-F\d]{2})([a-fA-F\d]{2})$/i.exec(hexColor);
+<<<<<<< HEAD
     if (!result) {
+=======
+    if (!result || hexColor.length !== 7) {
+>>>>>>> 514105fee2d2b98126e4448a76b72e296af36242
         throw new RangeError();
     }
 
