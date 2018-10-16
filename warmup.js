@@ -64,12 +64,12 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
     let previous = 1;
     let current = 1;
-    for (let i = 3; i < n; i++) {
+    for (let i = 2; i < n; i++) {
         const temp = current;
         current += previous;
         previous = temp;
@@ -85,7 +85,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[1])) {
+    if (!Array.isArray(matrix) || !matrix.every(e => Array.isArray(e))) {
         throw new TypeError();
     }
 
