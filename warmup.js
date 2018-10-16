@@ -66,7 +66,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
     let a = 0;
@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs) || !Number.isFinite(n)) {
+    if (typeof n === 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -158,12 +158,12 @@ function ticTacToeProblem(field) {
         if (new Set(line).size === 1) {
             return line[0];
         }
-    } // проверяем горизонтальные линии
+    }
     for (let j = 0; j < field[0].length; j++) {
         if (new Set(field.map(row => row[j])).size === 1) {
             return field[0][j];
         }
-    } // проверяем вертикальные линии
+    }
     const ans = checkDiagonals(field);
     if (ans !== null) {
         return ans;

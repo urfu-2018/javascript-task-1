@@ -107,6 +107,12 @@ describe('Smiles problem', () => {
     it('Должна вернуть `1`', () => {
         assert.strictEqual(smilesProblem(':-)'), 1);
     });
+    it('Должна вернуть `0`', () => {
+        assert.strictEqual(smilesProblem('-)'), 0);
+    });
+    it('Должна вернуть `3`', () => {
+        assert.strictEqual(smilesProblem('(-::-):-)'), 3);
+    });
 });
 
 describe('Tic-tac-toe problem', () => {
