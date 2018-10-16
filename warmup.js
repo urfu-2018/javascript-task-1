@@ -9,11 +9,11 @@
  */
 
 function abProblem(a, b) {
-    if (!isNaN(a) && !isNaN(b)) {
+    if (Number.isInteger(a) && Number.isInteger(b)) {
         return a + b;
     }
 
-    throw TypeError;// Succses
+    throw TypeError;
 }
 
 /**
@@ -25,18 +25,16 @@ function abProblem(a, b) {
  */
 
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
+    if (!Number.isInteger(year)) {
         throw TypeError;
     }
     if (year > 0) {
-        if (year % 1000 === 0) {
-            const res = Math.floor(year / 100);
-
-            return res;
+        let result = Math.floor(year / 100);
+        if (year % 100 === 0) {
+            return result;
         }
-        const res = Math.floor(year / 100) + 1;
 
-        return res;
+        return result + 1;
     }
 
     throw RangeError;
@@ -50,7 +48,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 
-function colorsProblem(hexColor) {
+function colorsProblem(hexColor) { // Z буква
     if (typeof(hexColor) !== 'string') {
         throw TypeError;
     }
@@ -77,9 +75,9 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 
-function fibonacciProblem(n) {
+function fibonacciProblem(n) { // 0
     let array = [0, 1];
-    if (isNaN(n)) {
+    if (!Number.isInteger(n)) {
 
         throw TypeError;
     }
@@ -101,7 +99,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 
-function matrixProblem(matrix) {
+function matrixProblem(matrix) { // нулевая матрица
     if (!Array.isArray(matrix)) {
         throw TypeError;
     }
@@ -131,8 +129,8 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 
-function numberSystemProblem(n, targetNs) { //  ПОЛНОСТЬЮ ПЕРЕДЕЛАТЬ
-    if (isNaN(n) && isNaN(targetNs)) {
+function numberSystemProblem(n, targetNs) {
+    if (!Number.isInteger(n) && !Number.isInteger(targetNs)) {
 
         throw TypeError;
     }
