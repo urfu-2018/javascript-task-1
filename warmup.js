@@ -145,13 +145,10 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
-        throw new TypeError('');
-    }
-    if (/^8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber)) {
-        return true;
+        throw new TypeError('OOOOOOOPS');
     }
 
-    return false;
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
