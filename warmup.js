@@ -20,7 +20,7 @@ function abProblem(a, b) {
         throw new TypeError('Аргумент не является числом');
     }
 
-    return parseInt(a) + parseInt(b);
+    return a + b;
     // Ваше решение
 }
 
@@ -99,12 +99,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
-        throw new TypeError('Аргумент  - не двумерный массив');
+    if (!Array.isArray(matrix) || matrix.length === 0 || !Array.isArray(matrix[0])) {
+        throw new TypeError('Аргумент - не двумерный массив');
     }
-    if (matrix.length === 0) {
-        return [[]];
-    }
+
     const transpMatrix = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
         transpMatrix[i] = new Array(matrix.length);
