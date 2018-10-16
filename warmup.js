@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year) || typeof year !== 'number') {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +41,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    if (!/^#[\da-fA-F]{6}/.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const color = [...(/^#(.{2})(.{2})(.{2})$/.exec(hexColor))].splice(1);
+    const [r, g, b] = color.map((val) => parseInt(val, 16));
+
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -41,7 +63,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (!Number.isInteger(n) || n < 1) {
+        throw new RangeError();
+    }
+
+    let a = 1;
+    let b = 1;
+
+    for (let i = 3; i <= n; i++) {
+        [a, b] = [b, a + b];
+    }
+
+    return b;
 }
 
 /**
@@ -51,7 +87,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || !matrix.every((arr) => Array.isArray(arr))) {
+        throw new TypeError();
+    }
+
+    const xLen = matrix.length;
+    const yLen = matrix[0].length;
+    const resultMatrix = [];
+
+    for (let y = 0; y < yLen; y++) {
+        resultMatrix[y] = [];
+        for (let x = 0; x < xLen; x++) {
+            resultMatrix[y][x] = matrix[x][y];
+        }
+    }
+
+    return resultMatrix;
 }
 
 /**
@@ -63,7 +114,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return (n).toString(targetNs);
 }
 
 /**
@@ -72,7 +130,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('phone is not a string');
+    }
+
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +144,20 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    let res = 0;
+
+    for (let i = 0; i < text.length; i++) {
+        const currentThree = text.substr(i, 3);
+        if (currentThree === ':-)' || currentThree === '(-:') {
+            res ++;
+        }
+    }
+
+    return res;
 }
 
 /**
@@ -92,7 +167,21 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const hasWinner = ([one, two, three]) => {
+        return one === two && two === three;
+    };
+
+    const rowWinner = field.find(hasWinner);
+
+    const colWinner = [0, 1, 2].find((col) =>
+        hasWinner([field[0][col], field[1][col], field[2][col]]));
+
+    const diagWinner = hasWinner([field[0][0], field[1][1], field[2][2]]) ||
+        hasWinner([field[2][0], field[1][1], field[0], 2]);
+
+    return (rowWinner && rowWinner[0]) ||
+        (colWinner !== undefined && field[0][colWinner]) ||
+        (diagWinner && field[1][1]) || 'draw';
 }
 
 module.exports = {
