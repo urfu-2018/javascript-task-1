@@ -23,9 +23,6 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (year % 1000 === 0) {
-        return Math.trunc(year / 100);
-    }
     if (!(typeof(year) === 'number')) {
         return new TypeError();
     }
@@ -33,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return (Math.trunc(year / 100) + 1);
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -55,7 +52,7 @@ function colorsProblem(hexColor) {
     const r = parseInt(clearHex.substring(0, 2), 16);
     const g = parseInt(clearHex.substring(2, 4), 16);
     const b = parseInt(clearHex.substring(4, 6), 16);
-    if (!((r, g, b) <= 255 || (r, g, b) >= 0)) {
+    if (!((r, g, b) < 255 || (r, g, b) > 0)) {
         throw new RangeError();
     }
 
@@ -73,7 +70,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new RangeError();
     }
-    if (!(Number.isInteger(n) >= 0)) {
+    if (!(Number.isInteger(n) > 0)) {
         throw new RangeError();
     }
     if (n <= 2) {
