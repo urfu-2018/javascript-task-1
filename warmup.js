@@ -134,7 +134,7 @@ function numberSystemProblem(n, targetNs) {
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('incorrect data');
     } else {
-        return n.toString(Number(targetNs));
+        return n.toString(targetNs);
     }
 }
 
