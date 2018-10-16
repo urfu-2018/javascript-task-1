@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     }
     let previous = 1;
     let current = 1;
-    for (let i = 3; i < n; i++) {
+    for (let i = 2; i < n; i++) {
         const temp = current;
         current += previous;
         previous = temp;
