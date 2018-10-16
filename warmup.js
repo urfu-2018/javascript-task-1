@@ -170,12 +170,7 @@ function ticTacToeProblem(field) {
     const diagonalRLT = field[2][0] === field[1][1] && field[1][1] === field[0][2];
     const diagonalRLB = field[0][0] === field[1][1] && field[1][1] === field[2][2];
 
-    if (diagonalRLB) {
-
-        return field[1][1];
-    }
-
-    if (diagonalRLT) {
+    if (diagonalRLB || diagonalRLT) {
 
         return field[1][1];
     }
