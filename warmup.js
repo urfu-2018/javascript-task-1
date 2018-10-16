@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const result = /^#?([a-fA-F\d]{2})([a-fA-F\d]{2})([a-fA-F\d]{2})$/i.exec(hexColor);
-    if (!result || hexColor.le !== 7) {
+    if (!result || hexColor.length !== 7) {
         throw new RangeError();
     }
 
