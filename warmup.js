@@ -147,7 +147,7 @@ function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
         throw new TypeError('');
     }
-    if (/8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber)) {
+    if (/^8-800-\d{3}-\d{2}-\d{2}$/.exec(phoneNumber)) {
         return true;
     }
 
