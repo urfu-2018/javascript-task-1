@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError('Один из переданных аргументов не является целым числом');
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError('В качестве аргумента передано не число');
+    }
+
+    if (year < 0) {
+        throw new RangeError('В качестве аргумента передано отрицательное число');
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +42,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('В качестве аргумента передана не строка');
+    }
+
+    if (! /^#[a-fA-F0-9]{6}$/.test(hexColor)) {
+        throw new RangeError('В качестве аргумента передано недопустимое значение');
+    }
+
+    const red = parseInt(hexColor.slice(1, 3), 16);
+    const green = parseInt(hexColor.slice(3, 5), 16);
+    const blue = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -41,7 +65,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError('В качестве аргумента передано не число');
+    }
+    if (n < 1 || !Number.isInteger(n)) {
+        throw new RangeError('В качестве аргумента передано не целое положительное число');
+    }
+
+    let x = 1;
+    let y = 1;
+    for (let i = 3; i <= n; i++) {
+        let result = x + y;
+        x = y;
+        y = result;
+    }
+
+    return y;
 }
 
 /**
@@ -51,7 +90,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+        throw new TypeError('В качестве аргумента передан не двумерный массив');
+    }
+
+    const result = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        result.push([]);
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+
+    return result;
 }
 
 /**
@@ -63,7 +117,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError('В качестве аргументов переданы не числа');
+    }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('В качестве аргумента передана неверная система счисления');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +134,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('В качестве аргумента передана не строка');
+    }
+
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +148,14 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError('В качестве аргумента передана не строка');
+    }
+
+    const leftOrientedSmiles = text.match(/\(-:/g) || [];
+    const rightOrientedSmiles = text.match(/:-\)/g) || [];
+
+    return leftOrientedSmiles.length + rightOrientedSmiles.length;
 }
 
 /**
@@ -92,7 +165,27 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+
+    const diagonalRLT = field[2][0] === field[1][1] && field[1][1] === field[0][2];
+    const diagonalRLB = field[0][0] === field[1][1] && field[1][1] === field[2][2];
+
+    if (diagonalRLB || diagonalRLT) {
+
+        return field[1][1];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+
+            return field[0][i];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
