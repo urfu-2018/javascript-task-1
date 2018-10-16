@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
     const g = parseInt(clearHex.substring(2, 4), 16);
     const b = parseInt(clearHex.substring(4, 6), 16);
 
-    return ('(' + r + ', ' + g + ', ' + b + ')');
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -116,8 +116,7 @@ function checkMatrix(matrix, M, N) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' ||
-    !Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
@@ -152,7 +151,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     const regsmileExp = new RegExp(/(:-\))|(\(-:)/g);
-    const count = (text.match(regsmileExp));
+    const count = text.match(regsmileExp);
     if (count === null) {
         return 0;
     }
