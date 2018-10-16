@@ -109,7 +109,7 @@ function matrixProblem(matrix) {
 
 function checkMatrix(matrix, M, N) {
     for (let i = 0; i < M; i++) {
-        if (!(Array.isArray(matrix) || Array.isArray(matrix[i])) || matrix[i].length === N) {
+        if (!(Array.isArray(matrix) || !Array.isArray(matrix[i])) || !matrix[i].length === N) {
             throw new TypeError();
         }
     }
