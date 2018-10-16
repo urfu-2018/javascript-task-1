@@ -59,18 +59,15 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    let intN = tryParseInt(n);
-    if (intN < 0 || intN % 1 !== 0) {
+    tryParseInt(n);
+    if (n <= 0 || n % 1 !== 0) {
         throw new RangeError();
     }
-    if (intN === 0) {
-        return 0;
-    }
-    if (intN === 1 || intN === 2) {
+    if (n === 1 || n === 2) {
         return 1;
     }
 
-    return fibonacciProblem(intN - 1) + fibonacciProblem(intN - 2);
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
@@ -197,8 +194,6 @@ function tryParseInt(n) {
     if (n % 1 !== 0) {
         throw new RangeError();
     }
-
-    return intN;
 }
 
 function tryParseFloat(n) {
@@ -206,8 +201,6 @@ function tryParseFloat(n) {
     if (isNaN(floatN)) {
         throw new TypeError();
     }
-
-    return floatN;
 }
 
 function checkFieldFor(field, n) {
