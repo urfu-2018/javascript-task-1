@@ -1,14 +1,27 @@
 'use strict';
 
 /**
+ * Проверяет является ли аргумент числом
+ * @returns {Boolean} 
+ */
+function isNumber(a) {
+    return typeof a === 'number';
+}
+/**
  * Складывает два целых числа
  * @param {Number} a Первое целое
  * @param {Number} b Второе целое
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
-function abProblem(a, b) {
-    // Ваше решение
+ function abProblem(a, b) {
+    if(!isNumber(a)){
+        throw new TypeError('First argument is not a number');
+    }
+    if(!isNumber(b)) {
+        throw new TypeError('Second argument is not a number');
+    }
+    return a + b;
 }
 
 /**
@@ -19,7 +32,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if(!isNumber(year)) {
+        throw new TypeError('Argument is not a number');
+    }
+    if(year < 0) {
+        throw new RangeError('Argument is negative')
+    }
 }
 
 /**
