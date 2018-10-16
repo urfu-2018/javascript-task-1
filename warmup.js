@@ -1,4 +1,5 @@
 'use strict';
+console.info(colorsProblem('#FFFFFFF'));
 
 /**
  * Складывает два целых числа
@@ -8,7 +9,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(Number.isInteger(a) && Number.isInteger(b))) {
+    if (!(Number.isInteger(a) || Number.isInteger(b))) {
         throw new TypeError();
     }
 
@@ -26,8 +27,8 @@ function centuryByYearProblem(year) {
     if (!(typeof(year) === 'number')) {
         return new TypeError();
     }
-    if (!((Number.isInteger(year)))) {
-        throw new TypeError();
+    if (Number.isInteger(year)) {
+        return new TypeError();
     }
     if (!(year > 0)) {
         throw new RangeError();
@@ -48,7 +49,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const regcolorExp = new RegExp ('/^#[0-9A-Fa-f]{6}$/i');
-    if ((regcolorExp.test(hexColor))) {
+    if (!(regcolorExp.test(hexColor))) {
         throw new RangeError();
     }
     const clearHex = hexColor.substring(1, 7);
@@ -71,17 +72,17 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw new RangeError();
+        throw new TypeError();
     }
-    if (!(Number.isInteger(n) > 0)) {
+    if (!(Number.isInteger(n) || n > 0)) {
         throw new RangeError();
     }
     if (n <= 2) {
         return 1;
     }
     let fn = 1;
-    let fnmin1 = 0;
-    for (let i = 1; i <= n; i++) {
+    let fnmin1 = 1;
+    for (let i = 0; i < n - 2; i++) {
         fn += fnmin1;
         fnmin1 = fn - fnmin1;
     }
@@ -95,19 +96,13 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function checkMatrix(matrix) {
-    const m = matrix.length;
-    const n = matrix[0].length;
-    for (let i = 0; i < m; i++) {
-        if (!(Array.isArray(matrix) || Array.isArray(matrix[i])) || matrix[i].length === n) {
-            return new TypeError();
-        }
-    }
-}
 function matrixProblem(matrix) {
-    checkMatrix(matrix);
     const M = matrix.length;
     const N = matrix[0].length;
+    if (N === null) {
+        return new TypeError();
+    }
+    checkMatrix(matrix, M, N);
     const transpMatrix = [];
     for (let i = 0; i < N; i++) {
         transpMatrix[i] = [];
@@ -119,6 +114,14 @@ function matrixProblem(matrix) {
     return transpMatrix;
 }
 
+function checkMatrix(matrix, M, N) {
+    for (let i = 0; i < M; i++) {
+        if (!(Array.isArray(matrix) || Array.isArray(matrix[i])) || matrix[i].length === N) {
+            return new TypeError();
+        }
+    }
+}
+
 /**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
@@ -128,10 +131,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!(typeof(n) === 'number' && typeof(targetNs) === 'number')) {
+    if (!(typeof(n) === 'number' || typeof(targetNs) === 'number')) {
         throw new TypeError();
     }
-    if (!(targetNs <= 36 || targetNs >= 2)) {
+    if (!(Number.isInteger(targetNs))) {
+        return new TypeError();
+    }
+    if (!(targetNs < 36 || targetNs > 2)) {
         throw new RangeError();
 
     }
