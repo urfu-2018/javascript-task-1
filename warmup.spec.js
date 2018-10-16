@@ -78,9 +78,6 @@ describe('Matrix problem', () => {
         assert.deepStrictEqual(matrixProblem([[1, 2, 3]]), [[1], [2], [3]]);
     });
     it('Должна TypeError 1', () => {
-        assert.throws(() => matrixProblem([]), TypeError);
-    });
-    it('Должна TypeError 1', () => {
         assert.throws(() => matrixProblem([1]), TypeError);
     });
     it('Должна TypeError 2', () => {

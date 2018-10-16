@@ -63,7 +63,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n === 'number') {
+    if (typeof n !== 'number') {
         throw new TypeError('в качестве положения в ряде должо быть передано число');
     }
     if (n <= 0 || !Number.isInteger(n)) {
