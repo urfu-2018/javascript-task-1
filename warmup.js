@@ -46,7 +46,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    const HexToRgb = /^#([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/;
+    const HexToRgb = /^#( [ A-Fa-f\d ] { 2 })( [ A-Fa-f\d ] {2})( [ A-Fa-f\d ] {2})$/;
   if (typeof hexColor !== 'string') {
       throw new TypeError();
   } else if (!HexToRgb.test(hexColor)) {
