@@ -31,9 +31,9 @@ function centuryByYearProblem(year) {
     else if (year < 0) {
         throw new RangeError();
     }
-    var centuary= Math.ceil(year/100);
-    document.write(centuary);
-    };
+    return Math.ceil(year/100);    
+    }
+   
 
 
 
