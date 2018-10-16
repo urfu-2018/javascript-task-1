@@ -15,7 +15,6 @@ function abProblem(a, b) {
     return a + b;
 }
 
-
 /**
  * Определяет век по году
  * @param {Number} year Год, целое положительное число
@@ -171,20 +170,20 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     // Ваше решение
     for (let i = 0; i < 3; i++) {
-      if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
-          return field[i][0];
-      }
-      if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-          return field[0][i];
-      }
-  }
-  if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-      return field[0][0];
-  }
-  if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-      return field[0][2];
-  }
-  return 'draw';
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
+    }
+    return 'draw';
 }
 
 
