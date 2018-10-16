@@ -89,18 +89,14 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
+    if (matrix[0].length === 0) {
+        return [[]];
+    }
     const M = matrix.length;
     const N = matrix[0].length;
     checkMatrix(matrix, M, N);
-    const transpMatrix = [];
-    for (let i = 0; i < N; i++) {
-        transpMatrix[i] = [];
-        for (let j = 0; j < M; j++) {
-            transpMatrix[i][j] = matrix[j][i];
-        }
-    }
 
-    return transpMatrix;
+    return matrix[0].map((matrixColmn, element) => matrix.map(matrixStr => matrixStr[element]));
 }
 
 function checkMatrix(matrix, M, N) {
