@@ -26,8 +26,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     // Ваше решение
     if (Number.isInteger(year) === false) {
-        throw new TypeError();
-    }
+        throw new TypeError();}
     else if (year < 0) {
         throw new RangeError();
     }
@@ -47,8 +46,7 @@ function colorsProblem(hexColor) {
     // Ваше решение
     const HexToRgb = /^#([A - Fa - f\d]{2})([A - Fa - f\d]{2})([A - Fa - f\d]{2})$/;
     if (typeof hexColor !== 'string') {
-        throw new TypeError();
-    }
+        throw new TypeError();}
     else if (!HexToRgb.test(hexColor)) {
         throw new RangeError();
     }
