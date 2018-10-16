@@ -48,13 +48,14 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
+    const reg = /^#[A-Fa-f\d]{6}$/;
+    if (!reg.test(hexColor)) {
+        throw new RangeError();
+    }
+
     const red = parseInt(hexColor.substr(1, 2), 16);
     const green = parseInt(hexColor.substr(3, 2), 16);
     const blue = parseInt(hexColor.substr(5, 2), 16);
-
-    if (isNaN(red) || isNaN(green) || isNaN(blue)) {
-        throw new RangeError();
-    }
 
     return `(${red}, ${green}, ${blue})`;
 }
