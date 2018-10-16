@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(typeof(a) === 'number' && typeof(b) === 'number')) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number' ||
+    !Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -23,10 +24,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (typeof(year) !== 'number' || !Number.isInteger(year)) {
         return new TypeError();
     }
-    if (year < 0 || !Number.isInteger(year)) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -52,7 +53,7 @@ function colorsProblem(hexColor) {
     const r = parseInt(clearHex.substring(0, 2), 16);
     const g = parseInt(clearHex.substring(2, 4), 16);
     const b = parseInt(clearHex.substring(4, 6), 16);
-    if (!((r, g, b) < 255 || (r, g, b) > 0)) {
+    if ((r, g, b) > 255 || (r, g, b) < 0) {
         throw new RangeError();
     }
 
@@ -70,11 +71,8 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new RangeError();
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (!Number.isInteger(n) || n < 1) {
         throw new RangeError();
-    }
-    if (n <= 2) {
-        return 1;
     }
     let fn = 1;
     let fnmin1 = 0;
@@ -124,7 +122,8 @@ function checkMatrix(matrix, M, N) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!(typeof(n) === 'number' && typeof(targetNs) === 'number')) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' ||
+    !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
@@ -156,7 +155,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (!(typeof(text) === 'string')) {
+    if (typeof(text) !== 'string') {
         throw new TypeError();
     }
     const regsmileExp = new RegExp(/(:-\))|(\(-:)/g);
