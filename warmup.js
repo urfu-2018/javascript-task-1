@@ -148,7 +148,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var myreg = /^8-800-\d{3}-\d{2}-\d{2}$/;
-    var result = myreg.exec(phoneNumber) !== null;
+    var result = myreg.test(phoneNumber);
 
     return result;
 }
