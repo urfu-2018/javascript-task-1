@@ -8,10 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    a = Number(a);
-    b = Number(b);
-
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError('В аргументы переданы не числа');
     }
 
@@ -26,9 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    year = Number(year);
-
-    if (!Number.isInteger(year)) {
+    if (typeof(year) !== 'number') {
         throw new TypeError('В качестве года передано не число');
     }
 
@@ -36,17 +31,9 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год не может быть отрицательным числом');
     }
 
-    if (year <= 100) {
-        return 1;
-    }
+    var century = year / 100;
 
-    var remainderDivision = year % 100;
-
-    if (remainderDivision === 0) {
-        return year / 100;
-    }
-
-    return Math.floor(year / 100 + 1);
+    return Math.ceil(century);
 }
 
 /**
@@ -86,13 +73,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    n = Number(n);
-
-    if (!Number.isInteger(n)) {
+    if (typeof(n) !== 'number') {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
 
-    if (n < 0) {
+    if (!Number.isInteger(n) || n < 0) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
 
@@ -160,10 +145,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    n = Number(n);
-    targetNs = Number(targetNs);
-
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('Переданы аргументы некорректного типа');
     }
 
