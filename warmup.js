@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     const result = /^#?([a-fA-F\d]{2})([a-fA-F\d]{2})([a-fA-F\d]{2})$/i.exec(hexColor);
-    if (!result || hexColor.le !== 7) {
+    if (!result) {
         throw new RangeError();
     }
 
@@ -140,6 +140,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     const phoneFormat = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
     return phoneFormat.test(phoneNumber);
