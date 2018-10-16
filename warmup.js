@@ -49,7 +49,7 @@ const PHONE_RE = /^8-800-\d{3}(-\d{2}){2}$/;
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    checkArgsTypes(['number', 'number'], [a, b]);
+    checkArgsTypes(['int', 'int'], [a, b]);
 
     return a + b;
 }
