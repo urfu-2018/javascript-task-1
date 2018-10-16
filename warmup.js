@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof a !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -44,8 +44,8 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    const result = /^#?([A-F\d]{2})([A-F\d]{2})([A-F\d]{2})$/i.exec(hexColor);
-    if (!result) {
+    const result = /^#?([a-fA-F\d]{2})([a-fA-F\d]{2})([a-fA-F\d]{2})$/i.exec(hexColor);
+    if (!result || hexColor.le !== 7) {
         throw new RangeError();
     }
 
@@ -61,10 +61,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
     let previous = 1;
@@ -124,7 +124,7 @@ function isMatrix(array) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
