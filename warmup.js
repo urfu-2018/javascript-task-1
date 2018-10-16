@@ -8,11 +8,14 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    a = Number(a);
+    b = Number(b);
+
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('В аргументы переданы не числа');
     }
 
-    return Number(a) + Number(b);
+    return a + b;
 }
 
 /**
@@ -23,11 +26,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
+    year = Number(year);
+
+    if (!Number.isInteger(year)) {
         throw new TypeError('В качестве года передано не число');
     }
-
-    year = Number(year);
 
     if (year < 0) {
         throw new RangeError('Год не может быть отрицательным числом');
@@ -83,13 +86,13 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(n)) {
+    n = Number(n);
+
+    if (!Number.isInteger(n)) {
         throw new TypeError('В качестве положения в ряде передано не число');
     }
 
-    n = Number(n);
-
-    if (!Number.isInteger(n) || n < 0) {
+    if (n < 0) {
         throw new RangeError('Положение в ряде не является целым положительным числом');
     }
 
