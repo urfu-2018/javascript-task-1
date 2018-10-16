@@ -59,8 +59,17 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    }
+    if (n < 1 || n % 1 !== 0) {
+        throw new RangeError();
+    }
+    if (n === 1 || n === 2) {
+        return 1;
+    }
 
-    return n === 1 ? 1 : -2;
+    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
 }
 
 /**
