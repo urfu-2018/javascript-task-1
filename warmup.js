@@ -177,20 +177,20 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     // Ваше решение
     let result = '';
-    if (field[0, 1] === field[0, 2] || 
-        field[1, 1] === field[2, 2] ||
-        field[2, 0] === field[2, 2]) {
-        if (field [2, 0 ] === field[0, 0] ||
-            field[1, 0] === field[0, 0] ||
-            field[0, 1] === field[0, 0]) {
-            result = field[0, 0];
-        }
+    if (field[0, 0] === field[0, 1] === field[0, 2]) {
+        result = field[0, 0];
+    }
+    if (field[0, 0] === field[1, 1] === field[2, 2]) {
+        result = field[0, 0];
+    }
+    if (field[0, 0] === field[2, 0] === field[2, 2]) {
+        result = field[0,0];
     }
     else if (field[1, 0] === field[1, 1] === field[1, 2]) {
-        result = field[1, 0];
+        result = field[1,0];
     }
     else if (field[2, 0] === field[2, 1] === field[2, 2]) {
-        result = field[2, 0];
+        result = field[2,0];
     }
     else if (field[0, 2] === field[1, 2] === field[2, 2]) {
         result = field[0, 2];
