@@ -103,7 +103,8 @@ function matrixProblem(matrix) {
 }
 
 function isMatrix(array) {
-    if (!Array.isArray(array) || !array.every(e => Array.isArray(e))) {
+    if (!Array.isArray(array) || !array.every(e => Array.isArray(e)) || !array.length ||
+        !array[0].length) {
         return false;
     }
 
@@ -124,7 +125,7 @@ function isMatrix(array) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs) || !Number.isFinite(n)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
