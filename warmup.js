@@ -41,14 +41,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw TypeError;
     }
-    var bigint = parseInt(hexColor.substring(1), 16);
-    if (isNaN(bigint)) {
+    if (!/^#[a-f0-9]{6}$/i.test(hexColor)) {
         throw RangeError;
     }
-
-    var r = (bigint >> 16) & 255; // eslint-disable-line no-bitwise
-    var g = (bigint >> 8) & 255; // eslint-disable-line no-bitwise
-    var b = bigint & 255; // eslint-disable-line no-bitwise
+    hexColor = hexColor.slice(1);
+    const r = parseInt(hexColor.substring(0, 2), 16);
+    const g = parseInt(hexColor.substring(2, 4), 16);
+    const b = parseInt(hexColor.substring(4, 8), 16);
 
     return '(' + [r, g, b].join(', ') + ')';
 }
@@ -86,7 +85,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    let tMatrix = matrix[0].map((col, i) => matrix.map(row => row[i]));
+    const tMatrix = matrix[0].map((col, i) => matrix.map(row => row[i]));
     matrix.forEach(line => {
         for (const item of line) {
             if (typeof item !== 'number') {
@@ -157,7 +156,7 @@ function ticTacToeProblem(field) {
             return field[0][j];
         }
     } // проверяем вертикальные линии
-    let ans = checkDiagonals(field);
+    const ans = checkDiagonals(field);
     if (ans !== null) {
         return ans;
     }
