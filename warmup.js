@@ -88,9 +88,6 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length === 0) {
-        return matrix;
-    }
     const width = matrix[0].length;
     if (
         !Array.isArray(matrix) ||
