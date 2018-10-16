@@ -23,11 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    let numberYear = parseInt(year);
-    if (isNaN(numberYear)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
-    if (numberYear < 0 || year % 1 !== 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
