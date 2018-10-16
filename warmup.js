@@ -102,8 +102,6 @@ function matrixProblem(a) {
             throw new TypeError();
         }
     }
-
-
     if (h === 0 || w === 0) {
         return [];
     }
@@ -132,7 +130,14 @@ function matrixProblem(a) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError ();
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    } else {
+        return n.toString(targetNs);
+    }
+
 }
 
 /**
@@ -141,7 +146,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/.test(phoneNumber);
 }
 
 /**
@@ -151,7 +160,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    const happysmileis = text.match(/\(-:/g) || [];
+    const sadsmileis = text.match(/:-\)/g) || [];
+
+    return happysmileis.length + sadsmileis.length;
 }
 
 /**
@@ -161,7 +176,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[1][1];
+    }
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
@@ -176,4 +204,3 @@ module.exports = {
     ticTacToeProblem
 };
 
-console.log(matrixProblem([[1, 2, 3], [4, 5, 6], [7, 8, 9]]));
