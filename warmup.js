@@ -92,6 +92,7 @@ function matrixProblem(matrix) {
     if (
         !Array.isArray(matrix) ||
         !matrix.length ||
+        width === 0 ||
         matrix.some(element => !Array.isArray(element)) ||
         matrix.some(element => element.length !== width)
     ) {

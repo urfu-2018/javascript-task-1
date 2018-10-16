@@ -80,6 +80,9 @@ describe('Matrix problem', () => {
     it('Должна TypeError 1', () => {
         assert.throws(() => matrixProblem([1]), TypeError);
     });
+    it('Должна TypeError', () => {
+        assert.throws(() => matrixProblem([[]]), TypeError);
+    });
     it('Должна TypeError 2', () => {
         assert.throws(() => matrixProblem([[1, 2], [4, 5, 6], [7, 8]]), TypeError);
     });
