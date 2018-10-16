@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number' ||
-    !Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('Один из переданных аргументов не является целым числом');
     }
 
@@ -24,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError('В качестве аргумента передано не число');
     }
 
@@ -184,9 +183,9 @@ function ticTacToeProblem(field) {
 
             return field[0][i];
         }
-
-        return 'draw';
     }
+
+    return 'draw';
 }
 
 module.exports = {
