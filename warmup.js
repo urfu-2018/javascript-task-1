@@ -70,24 +70,19 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
-    let previousValue = 0;
-    let currentValue = 1;
-    let nextValue;
-    let count = 0;
-
-    while (count !== n) {
-        nextValue = currentValue + previousValue;
-        previousValue = currentValue;
-        currentValue = nextValue;
-        count++;
+    let current = 1;
+    let previous = 1;
+    for (let i = 0; i < n - 2; i++) {
+        const sum = current + previous;
+        previous = current;
+        current = sum;
     }
 
-    return previousValue;
+    return current;
 }
 
 /**
@@ -124,7 +119,7 @@ function isMatrix(obj) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError();
     }
 
