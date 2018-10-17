@@ -47,9 +47,6 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length > 7) {
-        throw new RangeError();
-    }
     if (hexColor.length === 4) {
         let res = '#';
         for (let i = 1; i < 4; i++) {
