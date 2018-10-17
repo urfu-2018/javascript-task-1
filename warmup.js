@@ -64,21 +64,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError('Type Error');
     }
-    if ((parseInt(n) !== n) || (n < 0)) {
+    if (n < 1) {
         throw new RangeError('Range Error');
     }
-    function rec(n1, n2, s) {
-        if (s === 1) {
-            return n2;
-        }
-
-        return rec(n2, n1 + n2, n - 1);
+    let f1 = 0;
+    let f2 = 1;
+    for (let i; i < n; i++) {
+        f2 += f1;
+        f1 = f2 - f1;
     }
 
-    return rec(0, 1, n);
+    return f1;
 }
 
 /**
