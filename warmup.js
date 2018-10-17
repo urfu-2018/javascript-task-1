@@ -130,7 +130,7 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if ((!Number.isInteger(n)) || !(Number.isInteger(targetNs))) {
+    if ((typeof(n) !== 'number' || typeof(n) !== 'number')) {
 
         throw new TypeError();
     }
@@ -149,7 +149,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 
-function phoneProblem(phoneNumber) { // плохое решение
+function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
 
         throw new TypeError();
