@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(a) !== 'number') {
+    if (typeof(year) !== 'number') {
         throw TypeError;
     }
     if (year < 0) {
@@ -106,7 +106,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs !== 'number')) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw TypeError;
     }
     if (targetNs > 36 || targetNs < 2) {
@@ -122,9 +122,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    let re = /8–800–[0-9]{3}–[0-9]{2}–[0-9]{2}/;
+    let re = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
 
-    return phoneNumber.search(re) === 0 && phoneNumber.length === 15;
+    return (phoneNumber.search(re) === 0 && phoneNumber.length === 15);
 }
 
 /**
