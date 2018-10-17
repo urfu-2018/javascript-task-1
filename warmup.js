@@ -1,5 +1,7 @@
 'use strict';
 
+console.info(phoneProblem(232))
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -153,7 +155,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-   if (typeof text !== 'string') {
+    if (typeof text !== 'string') {
         throw new TypeError();
     }
 
