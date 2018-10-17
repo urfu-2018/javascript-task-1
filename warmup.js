@@ -1,7 +1,7 @@
 'use strict';
 function abProblem(a, b) {
     if (Number.isInteger(a) === false) {
-        throw new TypeError('Integer error a');
+        throw new TypeError('Integer errorr a');
     }
 
     if (Number.isInteger(b) === false) {
