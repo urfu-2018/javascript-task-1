@@ -8,8 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== "number")
-        throw TypeError("Arguments are not numbers");
+    if (typeof(a) !== 'number') {
+        throw TypeError;
+    }
     return a+b;
 }
 
@@ -21,10 +22,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(a) !== "number")
-        throw TypeError("Argument are not number");
-    if (year < 0)
-        throw RangeError("Argument 'year' should not be negative");
+    if (typeof(a) !== 'number') {
+        throw TypeError;
+    }
+    if (year < 0) {
+        throw RangeError;
+    }
     return Math.floor(year/100) + 1;
 }
 
@@ -36,15 +39,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== "string")
-        throw TypeError("Argument of function must be a string");
+    if (typeof(hexColor) !== "string") {
+        throw TypeError;
+    }
     let rgb = new Array(3);
     for (let i = 0; i <3 ; i++) {
         rgb[i] = parseInt(hexColor.charAt(i*2+1)+hexColor.charAt(i*2+2), 16);
-        if (rgb[i] > 255)
-            throw RangeError("Color values are out of range");
+        if (rgb[i] > 255) {
+            throw RangeError;
+        }
     }
-    return `(${rgb.join(", ")})`;
+    return `(${rgb.join(', ')})`;
 }
 
 /**
@@ -55,10 +60,12 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== "number")
-        throw TypeError("Argument is not a number");
-    if (n <= 0)
-        throw RangeError("Argument is not positive");
+    if (typeof(n) !== 'number') {
+        throw TypeError;
+    }
+    if (n <= 0) {
+        throw RangeError('Argument is not positive');
+    }
     const d = Math.sqrt(5);
     return Math.round((Math.pow((1+d)*0.5, n)-Math.pow((1-d)*0.5, n))/d)
 }
@@ -70,14 +77,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (typeof(matrix[0]) !== 'object')
+    if (typeof(matrix[0]) !== 'object') {
         throw TypeError;
+    }
     let res = new Array(matrix[0].length);
-    for (let i=0;i<matrix.length;i++)
+    for (let i=0;i<matrix.length;i++) {
         res[i] = new Array(matrix.length)
-    for (let i=0;i<matrix.length;i++)
-        for (let j = 0; j < matrix[i].length; j++)
+    }
+    for (let i=0;i<matrix.length;i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
             res[j][i] = matrix[i][j];
+        }
+    }
     return res;
 }
 
@@ -90,10 +101,12 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs !== 'number'))
+    if (typeof(n) !== 'number' || typeof(targetNs !== 'number')) {
         throw TypeError;
-    if (targetNs > 36 || targetNs < 2)
+    }
+    if (targetNs > 36 || targetNs < 2) {
         throw RangeError;
+    }
     return n.toString(targetNs);
 }
 
@@ -114,12 +127,15 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string')
+    if (typeof(text) !== 'string') {
         throw TypeError;
-    if (text.match(/:.+\)/) !== null)
+    }
+    if (text.match(/:.+\)/) !== null) {
         return text.match(/:.?\)|\(.?:/).length;
-    else
+    }
+    else {
         return 0;
+    }
 }
 
 /**
@@ -129,15 +145,18 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i=0;i<3;i++){
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2])
+    for (let i=0;i<3;i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i])
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
             return field[0][i];
+        }
     }
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
-        field[2][0] === field[1][1] && field[1][1] === field[0][2])
+        field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
         return field[1][1];
+    }
     return 'draw'
 }
 
