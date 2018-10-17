@@ -27,7 +27,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет только строкой');
     }
-    if ((/^#?[0-9A-F]{6}$/i).test(hexColor) === false) {
+    if ((/^#[0-9A-F]{6}$/i).test(hexColor) === false) {
         throw new RangeError('Число выходит за допустимые пределы');
     }
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
@@ -42,7 +42,7 @@ function fibonacciProblem(n) {
     if (Number.isInteger(n) === false) {
         throw new TypeError('n-это целое число');
     }
-    if (n < 0) {
+    if (n < 1) {
         throw new RangeError('n-положительное число');
     }
     let sums;
@@ -62,7 +62,6 @@ function matrixProblem(matrix) {
     if (matrix.every(Array.isArray) === false) {
         throw new TypeError('Должен быть двумерный массив');
     }
-
     {
         let m = matrix.length;
         let n = matrix[0].length;
@@ -84,7 +83,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('Должно быть число');
     }
     if (!Number.isInteger(targetNs)) {
-        throw new TypeError('Система счисления должна быть числом');
+        throw new TypeError('Система счисления должна быть целым числом');
     }
     if ((targetNs >= 2) && (targetNs <= 36) === false) {
         throw new RangeError('Систему счисления от 2 до 36');
