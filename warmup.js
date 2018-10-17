@@ -131,17 +131,20 @@ function numberSystemProblem(n, targetNs) {
     }
     let result = [];
     while (n > 0) {
-        let digit = n % targetNs;
-        if (digit > 10) {
-            result.push(String.fromCharCode(65 + digit - 10));
-        } else {
-            result.push(digit);
-        }
+        result.push(takeDigit(n % targetNs));
         n = Math.floor(n / targetNs);
     }
     result.reverse();
 
     return result.join('');
+}
+
+function takeDigit(digit) {
+    if (digit > 10) {
+        return String.fromCharCode(65 + digit - 10);
+    }
+
+    return digit;
 }
 
 /**
