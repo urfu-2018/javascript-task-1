@@ -8,14 +8,14 @@ function abProblem(a, b) {
         throw new TypeError('Integer error b');
     }
 
-    return a + b
+    return a + b;
 }
 
 function centuryByYearProblem(year) {
     if (Number.isInteger(year) === false) {
         throw new TypeError('Integer error');
     }
-    if (year <=0 ) {
+    if (year <= 0 ) {
         throw new RangeError('Only positive numbers');
     }
     let roundedCentury = (year / 100);
@@ -50,12 +50,12 @@ function fibonacciProblem(n) {
     }
     let sums;
     if (n >= 2) {
-        sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)
-    }
-    else {
+        sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    } else {
         sums = n
     }
-return sums
+
+return sums;
 }
 
 function matrixProblem(matrix) {
@@ -67,11 +67,16 @@ function matrixProblem(matrix) {
     }
 
     {
-        let m = matrix.length, n = matrix[0].length, cell = [];
+        let m = matrix.length;
+        let    n = matrix[0].length;
+        let cell = [];
         for (let i = 0; i < n; i++) {
             cell[i] = [];
-            for (let j = 0; j < m; j++) cell[i][j] = matrix[j][i];
         }
+        for (let j = 0; j < m; j++) {
+            cell[i][j] = matrix[j][i];
+        }
+
         return cell;
     }
 }
@@ -86,7 +91,7 @@ function numberSystemProblem(n, targetNs) {
     if ((2 <= targetNs <= 36) === false) {
         throw new RangeError('Система счисления от 2 до 36');
     }
-    return n.toString(targetNs)
+    return n.toString(targetNs);
 }
 
 function phoneProblem(phoneNumber) {
