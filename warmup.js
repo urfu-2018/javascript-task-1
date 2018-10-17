@@ -27,11 +27,8 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет только строкой');
     }
-    if (hexColor.length !== 7) {
+    if ((/^#[0-9A-F]{6}$/i).test(hexColor) === false) {
         throw new RangeError('Число выходит за допустимые пределы');
-    }
-    if (hexColor[0] !== '#') {
-        throw new RangeError('# обязателен');
     }
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
     let r = parseInt(rgb[1], 16);
