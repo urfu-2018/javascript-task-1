@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
         result.push(chanelRGB);
     }
 
-    return '(' + result.join(',') + ')';
+    return '(' + result.join(', ') + ')';
 }
 
 /**
