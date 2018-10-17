@@ -123,12 +123,14 @@ function isMatrix(obj) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
-
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError();
     }
-    if (targetNs < 2 || targetNs > 36) {
+
+    const minTargetNs = 2;
+    const maxTargetNs = 36;
+    if (!(minTargetNs <= targetNs <= maxTargetNs)) {
         throw new RangeError();
     }
 
@@ -141,9 +143,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    const phoneFormat = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
 
-    return phoneFormat.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
