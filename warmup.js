@@ -11,6 +11,7 @@ function abProblem(a, b) {
     if (typeof(a) !== 'number') {
         throw TypeError;
     }
+
     return a+b;
 }
 
@@ -28,7 +29,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw RangeError;
     }
-    return Math.floor(year/100) + 1;
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -43,12 +45,13 @@ function colorsProblem(hexColor) {
         throw TypeError;
     }
     let rgb = new Array(3);
-    for (let i = 0; i <3 ; i++) {
-        rgb[i] = parseInt(hexColor.charAt(i*2+1)+hexColor.charAt(i*2+2), 16);
+    for (let i = 0; i < 3 ; i++) {
+        rgb[i] = parseInt(hexColor.charAt(i * 2 + 1)+hexColor.charAt(i * 2 + 2), 16);
         if (rgb[i] > 255) {
             throw RangeError;
         }
     }
+
     return `(${rgb.join(', ')})`;
 }
 
@@ -67,7 +70,8 @@ function fibonacciProblem(n) {
         throw RangeError('Argument is not positive');
     }
     const d = Math.sqrt(5);
-    return Math.round((Math.pow((1+d)*0.5, n)-Math.pow((1-d)*0.5, n))/d)
+
+    return Math.round((Math.pow((1 + d) * 0.5, n) - Math.pow((1 - d) * 0.5, n)) / d)
 }
 
 /**
@@ -81,14 +85,15 @@ function matrixProblem(matrix) {
         throw TypeError;
     }
     let res = new Array(matrix[0].length);
-    for (let i=0;i<matrix.length;i++) {
+    for (let i = 0; i < matrix.length; i++) {
         res[i] = new Array(matrix.length)
     }
-    for (let i=0;i<matrix.length;i++) {
+    for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             res[j][i] = matrix[i][j];
         }
     }
+
     return res;
 }
 
@@ -107,6 +112,7 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs > 36 || targetNs < 2) {
         throw RangeError;
     }
+
     return n.toString(targetNs);
 }
 
@@ -117,6 +123,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     let re = /8–800–[0-9]{3}–[0-9]{2}–[0-9]{2}/;
+
     return phoneNumber.search(re) === 0 && phoneNumber.length === 15;
 }
 
@@ -133,9 +140,8 @@ function smilesProblem(text) {
     if (text.match(/:.+\)/) !== null) {
         return text.match(/:.?\)|\(.?:/).length;
     }
-    else {
-        return 0;
-    }
+
+    return 0;
 }
 
 /**
@@ -145,7 +151,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i=0;i<3;i++) {
+    for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
         }
@@ -157,6 +163,7 @@ function ticTacToeProblem(field) {
         field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
         return field[1][1];
     }
+
     return 'draw'
 }
 
