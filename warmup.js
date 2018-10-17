@@ -97,7 +97,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(matrix instanceof Array) || matrix.length === 0) {
+    if (!isMatrix) {
         throw new TypeError();
     }
 
@@ -113,6 +113,21 @@ function matrixProblem(matrix) {
     }
 
     return transpMatrix;
+}
+
+function isMatrix(obj) {
+    if (!(obj instanceof Array) || obj.length === 0) {
+        return false;
+    }
+
+    const firstRowLength = obj[0].length;
+    for (let i = 0; i < obj.length; i++) {
+        if (!(obj[i] instanceof Array) || obj[i].length !== firstRowLength) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /**
