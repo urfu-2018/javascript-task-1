@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if ((n < 0) || (n % 1 !== 0)) {
+    if ((n < 1) || (n % 1 !== 0)) {
         throw new RangeError();
     }
     if (n <= 2) {
