@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
         count++;
     }
 
-    return currentValue;
+    return previousValue;
 }
 
 /**
