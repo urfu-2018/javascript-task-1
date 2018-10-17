@@ -97,21 +97,14 @@ function matrixProblem(a) {
 
     let w = a.length || 0;
     let h = a[0] instanceof Array ? a[0].length : 0;
-    for (let c = 1; i < w; c++) {
-        if (a[c].length !== h) {
-            throw new TypeError();
-        }
-    }
-    if (h === 0 || w === 0) {
-        return [];
-    }
-
-    let i;
-    let j;
     let t = [];
-    for (i = 0; i < h; i++) {
+
+    if (!Array.isArray(a)) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < h; i++) {
         t[i] = [];
-        for (j = 0; j < w; j++) {
+        for (let j = 0; j < w; j++) {
             t[i][j] = a[j][i];
         }
     }
