@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +42,21 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+
+    const hexColorFormat = RegExp('^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$');
+    if (!hexColorFormat.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const color = [];
+    for (let j = 1; j < hexColor.length; j += 2) {
+        color.push(parseInt(hexColor.substring(j, j + 2), 16));
+    }
+
+    return `(${color[0]}, ${color[1]}, ${color[2]})`;
 }
 
 /**
@@ -41,7 +67,27 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+
+    if (n < 1 || !Number.isInteger(n)) {
+        throw new RangeError();
+    }
+
+    let previousValue = 1;
+    let currentValue = 1;
+    let nextValue;
+    let count = 1;
+
+    while (count !== n) {
+        nextValue = currentValue + previousValue;
+        previousValue = currentValue;
+        currentValue = nextValue;
+        count++;
+    }
+
+    return previousValue;
 }
 
 /**
@@ -51,7 +97,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!isMatrix) {
+        throw new TypeError();
+    }
+
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+}
+
+function isMatrix(obj) {
+    function haveAttribute(attributeKey, expected) {
+        if (typeof obj[attributeKey] !== expected ||
+             typeof obj[0][attributeKey] !== expected) {
+            return false;
+        }
+    }
+
+    return haveAttribute(Symbol.iterator, 'function') && haveAttribute('length', 'number');
 }
 
 /**
@@ -63,7 +124,17 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError();
+    }
+
+    const minTargetNs = 2;
+    const maxTargetNs = 36;
+    if (!(minTargetNs <= targetNs <= maxTargetNs)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +143,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,17 +157,49 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    return (text.match(':-[)]') || []).length + (text.match('[(]-:') || []).length;
 }
 
 /**
- * Определяет победителя в игре "Крестики-нолики"
+ * Определяет победителя в игре 'Крестики-нолики'
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let result = null;
+
+    ['o', 'x'].forEach(
+        function (symb) {
+            const winLine = `${symb}${symb}${symb}`;
+
+            function registerWin(_field) {
+                _field.forEach(
+                    function (line) {
+                        if (line.join('') === winLine) {
+                            result = symb;
+                        }
+                    }
+                );
+            }
+
+            registerWin(field);
+            registerWin(matrixProblem(field));
+
+            const mainDiagonal = `${field[0][0]}${field[1][1]}${field[2][2]}`;
+            const appendDiagonal = `${field[0][2]}${field[1][1]}${field[2][0]}`;
+
+            if (mainDiagonal === winLine || appendDiagonal === winLine) {
+                result = symb;
+            }
+        }
+    );
+
+    return result === null ? 'draw' : result;
 }
 
 module.exports = {
