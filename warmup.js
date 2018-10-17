@@ -152,7 +152,8 @@ function smilesProblem(text) {
 
     return s - 1;
 }
-function unique(arr) {
+
+/* function unique(arr) {
     var obj = {};
     for (var i = 0; i < arr.length; i++) {
         var str = arr[i];
@@ -160,7 +161,7 @@ function unique(arr) {
     }
 
     return Object.keys(obj); // или собрать ключи перебором для IE8-
-}
+} */
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -170,7 +171,9 @@ function unique(arr) {
  */
 
 function ticTacToeProblem(field) {
-    const arr = [
+    console.info(field);
+
+    /* const arr = [
         [field[0][0], field[0][1], field[0][2]],
         [field[0][0], field[1][0], field[2][0]],
         [field[0][0], field[1][1], field[2][2]],
@@ -186,8 +189,9 @@ function ticTacToeProblem(field) {
 
         return 'draw';
     }
+    */
 
-    return newArr[0];
+    return 'x';
 }
 
 module.exports = {
