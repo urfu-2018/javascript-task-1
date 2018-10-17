@@ -14,7 +14,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return Number(a) + Number(b);
+    return parseInt(a) + parseInt(b);
 }
 
 function isNumber(value) {
@@ -102,7 +102,6 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     let matrixT = [];
-    const M = matrix.length;
     const N = matrix[0].length;
     for (var j = 0; j < N; j++) {
         matrixT[j] = [];
