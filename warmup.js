@@ -102,6 +102,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     let matrixT = [];
+    const M = matrix.length;
     const N = matrix[0].length;
     for (var j = 0; j < N; j++) {
         matrixT[j] = [];
