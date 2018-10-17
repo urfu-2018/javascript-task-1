@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError('One of the params is not number');
     }
 
@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('Year is not number');
     }
     if (year < 0) {
-        throw new RangeError('Year should be positive');
+        throw new RangeError('Year should be >=0');
     }
 
     return Math.ceil(year / 100);
@@ -93,7 +93,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !isArrayOfArray(matrix)) {
+    if (!Array.isArray(matrix) || !isMatrixNM(matrix)) {
         throw new TypeError('param should be matrix MxN');
     }
     let transposedMatrix = ([]);
@@ -107,7 +107,7 @@ function matrixProblem(matrix) {
     return transposedMatrix;
 }
 
-function isArrayOfArray(value) {
+function isMatrixNM(value) {
     for (let i = 0; i < value.length; ++i) {
         if (!Array.isArray(value[i]) || value[i].length !== value[0].length) {
             return false;
@@ -126,7 +126,7 @@ function isArrayOfArray(value) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('N and TargetNs should be number');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -145,7 +145,6 @@ function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
         throw new TypeError('PhoneNumber should be string');
     }
-
     let phoneRegex = /8-800-\d{3}-\d{2}-\d{2}/;
 
     return phoneRegex.test(phoneNumber);
