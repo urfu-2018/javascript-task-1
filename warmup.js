@@ -80,13 +80,13 @@ function fibonacciProblem(n) {
     }
     let a = 1;
     let b = 1;
-    for (let i = 1; i < n; i++) {
+    for (let i = 3; i <= n; i++) {
         const temp = a + b;
         a = b;
         b = temp;
     }
 
-    return a;
+    return b;
 }
 
 /**
