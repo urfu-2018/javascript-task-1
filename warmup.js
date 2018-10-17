@@ -150,7 +150,7 @@ function smilesProblem(text) {
 }
 
 function checkWin(first, second, third) {
-    return first === second && second === third;
+    return first === second && second === third && (first === 'x' || first === 'o');
 }
 
 /**
