@@ -14,7 +14,7 @@ function abProblem(a, b) {
         throw new TypeError();
     }
 
-    return Number(a) + Number(b);
+    return parseInt(a) + parseInt(b);
 }
 
 function isNumber(value) {
@@ -96,14 +96,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    let m = matrix[0].length;
+    let M = matrix[0].length;
     let reducer = (acc, value) => acc && Array.isArray(value) && value.length === m;
     const isMatrix = matrix.reduce(reducer, true);
     if (!isMatrix) {
         throw new TypeError();
     }
     let matrixT = [];
-    const M = matrix.length;
     const N = matrix[0].length;
     for (var j = 0; j < N; j++) {
         matrixT[j] = [];
