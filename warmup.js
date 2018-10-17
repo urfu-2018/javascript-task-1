@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
     const R = parseInt(hexColor.substr(1, 2), 16);
@@ -139,7 +139,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /8[-–]800[-–]\d{3}[-–]\d{2}[-–]\d{2}/.test(phoneNumber);
+    return /^8[-–]800[-–]\d{3}[-–]\d{2}[-–]\d{2}$/.test(phoneNumber);
 }
 
 /**
