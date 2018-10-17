@@ -1,5 +1,7 @@
 'use strict';
 
+console.info(smilesProblem('(-:   (-:-) :-)'));
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -159,9 +161,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Text should be string');
     }
-    let smileMatch = text.match(/:-\)/);
-    let reverseSmileMatch = text.match(/\(-:/);
-    let intersectionSmileMatch = text.match(/\(-:-\)/);
+    let smileMatch = text.match(/:-\)/g);
+    let reverseSmileMatch = text.match(/\(-:/g);
+    let intersectionSmileMatch = text.match(/\(-:-\)/g);
     let result = 0;
     if (smileMatch !== null) {
         result += smileMatch.length;
