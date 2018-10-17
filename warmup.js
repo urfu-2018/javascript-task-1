@@ -27,7 +27,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет только строкой');
     }
-    if ((/^#[0-9A-F]{6}$/i).test(hexColor) === false) {
+    if ((/^#?[0-9A-F]{6}$/i).test(hexColor) === false) {
         throw new RangeError('Число выходит за допустимые пределы');
     }
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
