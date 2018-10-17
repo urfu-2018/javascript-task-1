@@ -22,7 +22,7 @@ function centuryByYearProblem(year) {
     if (year<=0) {
         throw new RangeError('only positive numbers')
     }
-    let roundedCentury=(year/100);
+    let roundedCentury = (year / 100);
     return Math.ceil(roundedCentury)
 }
 /**
@@ -35,10 +35,12 @@ function colorsProblem(hexColor) {
     if (hexColor.length !== 7) {
         throw new RangeError('число выходит за допустимые пределы')
     }
-    if (hexColor[0]!=='#')
+    if (hexColor[0] !== '#')
         throw new RangeError('# обязателен');
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-        let r = parseInt(rgb[1], 16),  g = parseInt(rgb[2], 16),  b= parseInt(rgb[3], 16);
+        let r = parseInt(rgb[1], 16);
+        let g = parseInt(rgb[2], 16);
+        let b = parseInt(rgb[3], 16);
     return '(' + r + ', ' + g + ', ' + b + ')'
 }
 /**
@@ -55,7 +57,7 @@ function fibonacciProblem(n) {
     if (n >= 2) {
         sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)}
         else {
-            sums=n
+            sums = n
         }
 return sums
 }
@@ -108,12 +110,12 @@ function phoneProblem(phoneNumber) {
  * Определяет количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !=='string') {
+    if (typeof text !== 'string') {
         throw new TypeError('string only')
     }
 
     let result = text.match(/\(-:|:-\)/ig);
-    if (result===null){
+    if (result === null){
         throw new TypeError('Смайликов не найдено')
     }
     return result.length
