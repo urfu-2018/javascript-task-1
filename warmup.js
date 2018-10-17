@@ -12,13 +12,14 @@ function abProblem(a, b) {
 }
 
 function centuryByYearProblem(year) {
-    if (Number.isInteger(year)===false) {
+    if (Number.isInteger(year) === false) {
         throw new TypeError('Integer error');
     }
-    if (year<=0) {
+    if (year <=0 ) {
         throw new RangeError('Only positive numbers');
     }
     let roundedCentury = (year / 100);
+
     return Math.ceil(roundedCentury);
 }
 
@@ -36,6 +37,7 @@ function colorsProblem(hexColor) {
     let r = parseInt(rgb[1], 16);
     let g = parseInt(rgb[2], 16);
     let b = parseInt(rgb[3], 16);
+
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
@@ -48,10 +50,11 @@ function fibonacciProblem(n) {
     }
     let sums;
     if (n >= 2) {
-        sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)}
-        else {
-            sums = n
-        }
+        sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)
+    }
+    else {
+        sums = n
+    }
 return sums
 }
 
