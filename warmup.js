@@ -70,17 +70,15 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let firstnum = 1;
     let secnum = 1;
-    if (Number.isInteger(n)) {
-        for (let i = 2; i < n; i++) {
-            let currentnum = firstnum + secnum;
-            firstnum = secnum;
-            secnum = currentnum;
-        }
+    for (let i = 2; i < n; i++) {
+        let currentnum = firstnum + secnum;
+        firstnum = secnum;
+        secnum = currentnum;
     }
 
     return secnum;
