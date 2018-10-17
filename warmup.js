@@ -132,16 +132,21 @@ function ticTacToeProblem(field) {
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         win.push(field[1][1]);
     }
-    if (win.includes('o') !== false) {
-        return 'o';
-    }
-    if (win.includes('x') !== false) {
-        return 'x';
-    }
-    if (win.includes('o') === false && win.includes('x') === false) {
-        return 'draw';
-    }
+    return whoWon(win)
 }
+    function whoWon(win) {
+
+        if (win.includes('o') !== false) {
+            return 'o';
+        }
+        if (win.includes('x') !== false) {
+            return 'x';
+        }
+        if (win.includes('o') === false && win.includes('x') === false) {
+            return 'draw';
+        }
+}
+
 module.exports = {
     abProblem,
     centuryByYearProblem,
