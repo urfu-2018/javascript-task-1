@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if ( !Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError;
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw new TypeError;
+        throw new TypeError();
     }
     if (year < 0) {
-        throw new RangeError;
+        throw new RangeError();
     }
 
     return Math.round((year - 1) / 100) + 1;
@@ -42,10 +42,10 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        throw new TypeError;
+        throw new TypeError();
     }
     if (hexColor.length !== 7) {
-        throw new RangeError;
+        throw new RangeError();
     }
     const R = parseInt(hexColor.substr(1, 2), 16);
     const G = parseInt(hexColor.substr(3, 2), 16);
@@ -63,10 +63,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
-        throw new TypeError;
+        throw new TypeError();
     }
     if (n <= 0) {
-        throw new RangeError;
+        throw new RangeError();
     }
     let a = 1;
     let b = 1;
@@ -87,11 +87,11 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        throw new TypeError;
+        throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i])) {
-            throw new TypeError;
+            throw new TypeError();
         }
     }
     const transposedMatrix = [];
@@ -117,10 +117,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
-        throw new TypeError;
+        throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError;
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -143,7 +143,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw new TypeError;
+        throw new TypeError();
     }
 
     return (text.match(/:-\)/) || []).length + (text.match(/\(-:/) || []).length;
