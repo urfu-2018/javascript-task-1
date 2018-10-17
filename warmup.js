@@ -1,5 +1,13 @@
 'use strict';
 
+console.info(phoneProblem('8-800-333-11-73'));
+
+function isInt(value) {
+    return !isNaN(value) &&
+        parseInt(Number(value)) === value &&
+        !isNaN(parseInt(value, 10));
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -8,7 +16,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (isInt(a) || isInt(b)) {
         throw new TypeError('One of the params is not number');
     }
 
@@ -23,7 +31,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(year)) {
+    if (isInt(year)) {
         throw new TypeError('Year is not number');
     }
     if (year < 0) {
@@ -46,7 +54,7 @@ function colorsProblem(hexColor) {
     }
     let rgb = parseInt(hexColor.slice(1), 16);
     let answer = [];
-    while (rgb > 0) {
+    for (let i = 0; i < 3; ++i) {
         answer.push(rgb % 256);
         rgb = Math.floor(rgb / 256);
     }
@@ -62,11 +70,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(n)) {
+    if (isInt(n)) {
         throw new TypeError('N is not number');
     }
-    if (n < 0) {
-        throw new RangeError('N should be positive');
+    if (n < 1) {
+        throw new RangeError('N should be gte then 1');
     }
     let previous = 1;
     let actual = 1;
@@ -86,7 +94,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix[0][0] === null) {
+    if (matrix instanceof Array && isArrayOfArray(matrix)) {
         throw new TypeError('param should be (Any[])[]');
     }
     let transposedMatrix = ([]);
@@ -100,6 +108,16 @@ function matrixProblem(matrix) {
     return transposedMatrix;
 }
 
+function isArrayOfArray(value) {
+    for (let i = 1; i < value.length; ++i) {
+        if (value[i].length() !== value[0].length()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 /**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
@@ -109,7 +127,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) && isNaN(targetNs)) {
+    if (isInt(n) && isInt(targetNs)) {
         throw new TypeError('N and TargetNs should be number');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -235,7 +253,6 @@ function checkAllRows(field) {
 
     return null;
 }
-
 
 module.exports = {
     abProblem,
