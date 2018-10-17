@@ -96,22 +96,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    let reducer = (acc, value) => acc && Array.isArray(value);
-    const isMatrix = matrix.reduce(reducer, true);
-    if (!isMatrix) {
+    const width = matrix[0].length;
+    if (
+        !Array.isArray(matrix) ||
+        !matrix.length ||
+        matrix.some(row => !Array.isArray(row)) ||
+        matrix.some(row => row.length !== width)
+    ) {
         throw new TypeError();
     }
-    let matrixT = [];
-    const M = matrix.length;
-    const N = matrix[0].length;
-    for (var j = 0; j < N; j++) {
-        matrixT[j] = [];
-        for (var i = 0; i < M; i++) {
-            matrixT[j][i] = matrix[i][j];
-        }
-    }
 
-    return matrixT;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
