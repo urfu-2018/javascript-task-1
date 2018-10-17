@@ -27,7 +27,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет только строкой');
     }
-    if ((/^#?[0-9A-F]{6}$/i).test(hexColor) === false) {
+    if ((/^#[0-9A-F]{6}$/i).test(hexColor) === false) {
         throw new RangeError('Число выходит за допустимые пределы');
     }
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
@@ -97,9 +97,6 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('');
     }
-    if (isNaN(phoneNumber)) {
-        throw new TypeError('Телефон-числами');
-    }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
     return pattern.test(phoneNumber);
@@ -109,6 +106,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('string only');
     }
+
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
         throw new TypeError('Смайликов не найдено');
@@ -116,7 +114,6 @@ function smilesProblem(text) {
 
     return result.length;
 }
-
 
 function ticTacToeProblem(field) {
     const win = [];
