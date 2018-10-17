@@ -141,8 +141,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('передан неверный тип данных');
     }
+    let matches = text.match(/:-\)|\(-:/g);
 
-    return text.match(/:-\)|\(-:/g).length;
+    return matches ? matches.length : 0;
 }
 
 function checkHorizontal(field) {
@@ -169,7 +170,7 @@ function ticTacToeProblem(field) {
     let transposedField = matrixProblem(field);
 
     return checkHorizontal(field) || checkHorizontal(transposedField) || checkDiagonal(field) ||
-     'draw';
+        'draw';
 }
 
 module.exports = {
