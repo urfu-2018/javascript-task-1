@@ -10,9 +10,9 @@
 function abProblem(a, b) {
     if (!(typeof (a) === 'number') && !(typeof (b) === 'number')) {
         throw new TypeError();
-    } else {
-        return a + b;
     }
+
+    return a + b;
 }
 
 /**
@@ -25,7 +25,8 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof (year) !== 'number') {
         throw new TypeError();
-    } else if (year < 0) {
+    }
+    if ((year < 0) || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
@@ -88,6 +89,9 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
         throw new TypeError();
     }
+    if (matrix[0].length === 0) {
+        return [[]];
+    }
     const newMatrix = new Array(matrix[0].length);
     for (let y = 0; y < matrix.length; y++) {
         newMatrix[y] = new Array(matrix.length);
@@ -141,8 +145,9 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError();
     }
+    let countSmiles = (text.match(/(:-\))|(\(-:)/g) || []).length;
 
-    return (text.match(/(:-\))|(\(-:)/g) || []).length;
+    return countSmiles;
 }
 
 /**
