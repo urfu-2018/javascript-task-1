@@ -1,6 +1,7 @@
 'use strict';
 
-
+/**
+ */
 function abProblem(a, b) {
     if (Number.isInteger(a) === false) {
         throw new TypeError("Integer error a")
@@ -12,10 +13,10 @@ function abProblem(a, b) {
 
     return a + b
 }
-console.log(abProblem(4, 7))
 
 
-
+ /**
+  * */
 
 
 function centuryByYearProblem(year) {
@@ -26,16 +27,14 @@ function centuryByYearProblem(year) {
     if(year<=0) {
         throw new RangeError('only positive numbers')
     }
-    let roundedCentury=(year/100)
+    let roundedCentury;
+     roundedCentury=(year/100);
     return Math.ceil(roundedCentury)
 }
-console.log(centuryByYearProblem(2018));
+
+
 /**
  * Переводит цвет из формата HEX в формат RGB
- * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
- * @throws {TypeError} Когда цвет передан не строкой
- * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
- * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== "string") {
@@ -45,20 +44,16 @@ function colorsProblem(hexColor) {
         throw new RangeError('число выходит за допустимые пределы')
     }
     if (hexColor[0]!=='#')
-        throw new RangeError('# обязателен')
-    let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor)
+        throw new RangeError('# обязателен');
+    let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
 
-        let r = parseInt(rgb[1], 16),  g = parseInt(rgb[2], 16),  b= parseInt(rgb[3], 16)
+        let r = parseInt(rgb[1], 16),  g = parseInt(rgb[2], 16),  b= parseInt(rgb[3], 16);
     return '(' + r + ', ' + g + ', ' + b + ')'
 }
-console.log(colorsProblem('#fff32f'))
+
 
 /**
  * Находит n-ое число Фибоначчи
- * @param {Number} n Положение числа в ряде Фибоначчи
- * @throws {TypeError} Когда в качестве положения в ряде передано не число
- * @throws {RangeError} Когда положение в ряде не является целым положительным числом
- * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
     if (Number.isInteger(n) === false) {
@@ -67,45 +62,38 @@ function fibonacciProblem(n) {
     if (n < 0) {
         throw new RangeError('n-положительное число')
     }
-    let sums
+    let sums;
     if (n >= 2) {
         sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)}
         else {
         sums=n
         }
 return sums
-
 }
-console.log(fibonacciProblem(4))
+
 
 /**
  * Транспонирует матрицу
- * @param {(Any[])[]} matrix Матрица размерности MxN
- * @throws {TypeError} Когда в функцию передаётся не двумерный массив
- * @returns {(Any[])[]} Транспонированная матрица размера NxM
+
  */
 function matrixProblem(matrix) {
-    if(Array.isArray(matrix)===false){
-    throw new TypeError('должен быть массив')
+    if (Array.isArray(matrix) === false) {
+        throw new TypeError('должен быть массив')
     }
-    if (matrix.every(Array.isArray)===false){
+    if (matrix.every(Array.isArray) === false) {
         throw new TypeError('должен быть двумерный массив')
     }
 
     {
-        let m = matrix.length, n = matrix[0].length, cell= [];
-        for (let i = 0; i < n; i++)
-        { cell[i] = [];
+        let m = matrix.length, n = matrix[0].length, cell = [];
+        for (let i = 0; i < n; i++) {
+            cell[i] = [];
             for (let j = 0; j < m; j++) cell[i][j] = matrix[j][i];
         }
         return cell;
     }
-}console.log(matrixProblem
-([
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9]
-]))
+}
+
 
 
 
@@ -121,7 +109,7 @@ function numberSystemProblem(n, targetNs) {
     }
     return n.toString(targetNs)
 }
-console.log(numberSystemProblem(3000, 36));
+
 
 /**
  * Проверяет соответствие телефонного номера формату
@@ -132,10 +120,10 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== "string"){
         throw new TypeError('')
     }
-    let pattern = /8-800-\d{3}-\d{2}-\d{2}/
+    let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
     return pattern.test(phoneNumber)
 }
-console.log(phoneProblem('8-800-333-51-73'))
+
 
 
 /**
@@ -149,13 +137,13 @@ function smilesProblem(text) {
         throw new TypeError("string only")
     }
 
-    let result = text.match(/\(-:|:-\)/ig)
+    let result = text.match(/\(-:|:-\)/ig);
     if (result===null){
         throw new TypeError("Смайликов не найдено")
     }
     return result.length
 }
-console.log(smilesProblem('(-:'))
+
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -188,9 +176,7 @@ function ticTacToeProblem(field) {
         return 'draw';
     }
 }
-console.log(ticTacToeProblem(['x', 'x', 'x'],
-    ['o', 'o', 'x'],
-    ['o', 'x', 'o']))
+
 
 module.exports = {
     abProblem,
