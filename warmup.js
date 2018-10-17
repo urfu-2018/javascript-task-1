@@ -75,10 +75,12 @@ function fibonacciProblem(n) {
     }
     let firstnum = 1;
     let secnum = 1;
-    for (let i = 2; i < n; i++) {
-        let currentnum = firstnum + secnum;
-        firstnum = secnum;
-        secnum = currentnum;
+    if (Number.isInteger(n)) {
+        for (let i = 2; i < n; i++) {
+            let currentnum = firstnum + secnum;
+            firstnum = secnum;
+            secnum = currentnum;
+        }
     }
 
     return secnum;
