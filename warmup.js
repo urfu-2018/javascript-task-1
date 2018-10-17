@@ -115,7 +115,7 @@ function matrixProblem(matrix) {
 
     let matrixResult = [];
 
-    for (let x = 0; x < matrix[x].length; x++) {
+    for (let x = 0; x < matrix[0].length; x++) {
         if (!Array.isArray(matrix[x])) {
             throw new TypeError();
         }
