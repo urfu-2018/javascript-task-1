@@ -75,7 +75,7 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    let previousValue = 0;
+    let previousValue = 1;
     let currentValue = 1;
     let nextValue;
     let count = 1;
@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
         count++;
     }
 
-    return previousValue;
+    return currentValue;
 }
 
 /**
