@@ -43,6 +43,14 @@ describe('Colors problem', function () {
     it('Должна вернуть (255, 255, 255)', function () {
         assert.strictEqual(colorsProblem('#FFFFFF'), '(255, 255, 255)');
     });
+
+    it('Ошибка', function () {
+        try {
+            colorsProblem('#ABCDEZ');
+        } catch (e) {
+            assert.ok();
+        }
+    });
 });
 
 describe('Fibonacci problem', () => {

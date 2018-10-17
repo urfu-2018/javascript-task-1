@@ -109,15 +109,19 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
+    if (matrix.length === 0) {
+        return [];
+    }
+
     let matrixResult = [];
 
-    for (let x = 0; x < matrix.length; x++) {
+    for (let x = 0; x < matrix[x].length; x++) {
         if (!Array.isArray(matrix[x])) {
             throw new TypeError();
         }
 
         let row = [];
-        for (let y = 0; y < matrix[x].length; y++) {
+        for (let y = 0; y < matrix.length; y++) {
             row.push(matrix[y][x]);
         }
 
