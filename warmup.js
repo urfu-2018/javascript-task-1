@@ -10,7 +10,7 @@
 function abProblem(a, b) {
     let aIsNumber = isNumber(a);
     let bIsNumber = isNumber(b);
-    if (!aIsNumber || !bIsNumber) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -96,17 +96,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    const width = matrix[0].length;
-    if (
-        !Array.isArray(matrix) ||
-        !matrix.length ||
-        matrix.some(row => !Array.isArray(row)) ||
-        matrix.some(row => row.length !== width)
-    ) {
+    let reducer = (acc, value) => acc && Array.isArray(value);
+    const isMatrix = matrix.reduce(reducer, true);
+    if (!isMatrix) {
         throw new TypeError();
     }
+    let matrixT = [];
+    const M = matrix.length;
+    const N = matrix[0].length;
+    for (var j = 0; j < N; j++) {
+        matrixT[j] = [];
+        for (var i = 0; i < M; i++) {
+            matrixT[j][i] = matrix[i][j];
+        }
+    }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+    return matrixT;
 }
 
 /**
