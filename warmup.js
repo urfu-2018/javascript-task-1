@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
+    if (!isString(hexColor)) {
         throw new TypeError('hexColor should be string');
     }
     let rgb = parseInt(hexColor.slice(1), 16);
@@ -52,6 +52,10 @@ function colorsProblem(hexColor) {
     }
 
     return '(' + answer.reverse().join(', ') + ')';
+}
+
+function isString(x) {
+    return Object.prototype.toString.call(x) === '[object String]';
 }
 
 /**
@@ -127,7 +131,12 @@ function numberSystemProblem(n, targetNs) {
     }
     let result = [];
     while (n > 0) {
-        result.push(n % targetNs);
+        let digit = n % targetNs;
+        if (digit > 10) {
+            result.push(String.fromCharCode(65 + digit - 10));
+        } else {
+            result.push(digit);
+        }
         n = Math.floor(n / targetNs);
     }
     result.reverse();
@@ -156,7 +165,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !== 'string') {
+    if (!isString(text)) {
         throw new TypeError('Text should be string');
     }
     let smileMatch = text.match(/:-\)/g);
