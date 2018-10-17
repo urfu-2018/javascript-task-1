@@ -105,18 +105,14 @@ function matrixProblem(matrix) {
 }
 
 function isMatrix(obj) {
-    if (!(obj instanceof Array) || obj.length === 0) {
-        return false;
-    }
-
-    const firstRowLength = obj[0].length;
-    for (let i = 0; i < obj.length; i++) {
-        if (!(obj[i] instanceof Array) || obj[i].length !== firstRowLength) {
+    function haveAttribute(attributeKey, expected) {
+        if (typeof obj[attributeKey] !== expected ||
+             typeof obj[0][attributeKey] !== expected) {
             return false;
         }
     }
 
-    return true;
+    return haveAttribute(Symbol.iterator, 'function') && haveAttribute('length', 'number');
 }
 
 /**
