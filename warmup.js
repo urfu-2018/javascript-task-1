@@ -15,7 +15,7 @@ function centuryByYearProblem(year) {
     if (Number.isInteger(year) === false) {
         throw new TypeError('Integer error');
     }
-    if (year <= 0 ) {
+    if (year <= 0) {
         throw new RangeError('Only positive numbers');
     }
     let roundedCentury = (year / 100);
@@ -52,10 +52,10 @@ function fibonacciProblem(n) {
     if (n >= 2) {
         sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
     } else {
-        sums = n
+        sums = n;
     }
 
-return sums;
+    return sums;
 }
 
 function matrixProblem(matrix) {
@@ -68,13 +68,14 @@ function matrixProblem(matrix) {
 
     {
         let m = matrix.length;
-        let    n = matrix[0].length;
+        let n = matrix[0].length;
         let cell = [];
         for (let i = 0; i < n; i++) {
             cell[i] = [];
-        }
+
         for (let j = 0; j < m; j++) {
             cell[i][j] = matrix[j][i];
+        }
         }
 
         return cell;
@@ -88,9 +89,10 @@ function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(targetNs)) {
         throw new TypeError('Система счисления должна быть числом');
     }
-    if ((2 <= targetNs <= 36) === false) {
+    if (!(2 <= targetNs <= 36)) {
         throw new RangeError('Система счисления от 2 до 36');
     }
+
     return n.toString(targetNs);
 }
 
@@ -99,6 +101,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('')
     }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
+
     return pattern.test(phoneNumber)
 }
 
@@ -111,6 +114,7 @@ function smilesProblem(text) {
     if (result === null){
         throw new TypeError('Смайликов не найдено');
     }
+
     return result.length;
 }
 
