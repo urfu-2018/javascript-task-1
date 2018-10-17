@@ -79,6 +79,18 @@ function fibonacciProblem(n) {
     return b;
 }
 
+function transpose(matrix) {
+    const transposedMatrix = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        transposedMatrix[i] = [];
+        for (let j = 0; j < matrix.length; j++) {
+            transposedMatrix[i].push(matrix[j][i]);
+        }
+    }
+
+    return transposedMatrix;
+}
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -90,21 +102,12 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i])) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
     }
-    const transposedMatrix = [];
-    let m = matrix.length;
-    let n = matrix[0].length;
-    for (let i = 0; i < n; i++) {
-        transposedMatrix[i] = [];
-        for (let j = 0; j < m; j++) {
-            transposedMatrix[i].push(matrix[j][i]);
-        }
-    }
 
-    return transposedMatrix;
+    return transpose(matrix);
 }
 
 /**
