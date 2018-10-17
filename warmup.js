@@ -106,7 +106,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || (targetNs !== 'number' && targetNs ^ 0 !== targetNs)) {
+    if (typeof(n) !== 'number' || (targetNs !== 'number' && targetNs^0 !== targetNs)) {
         throw TypeError;
     }
     if (targetNs > 36 || targetNs < 2) {
