@@ -1,13 +1,5 @@
 'use strict';
 
-console.info(phoneProblem('8-800-333-11-73'));
-
-function isInt(value) {
-    return !isNaN(value) &&
-        parseInt(Number(value)) === value &&
-        !isNaN(parseInt(value, 10));
-}
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -16,7 +8,7 @@ function isInt(value) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isInt(a) || isInt(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('One of the params is not number');
     }
 
@@ -31,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isInt(year)) {
+    if (!Number.isInteger(year)) {
         throw new TypeError('Year is not number');
     }
     if (year < 0) {
@@ -70,7 +62,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isInt(n)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError('N is not number');
     }
     if (n < 1) {
@@ -127,7 +119,7 @@ function isArrayOfArray(value) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isInt(n) && isInt(targetNs)) {
+    if (!Number.isInteger(n) && !Number.isInteger(targetNs)) {
         throw new TypeError('N and TargetNs should be number');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -169,12 +161,16 @@ function smilesProblem(text) {
     }
     let smileMatch = text.match(/:-\)/);
     let reverseSmileMatch = text.match(/\(-:/);
+    let intersectionSmileMatch = text.match(/\(-:-\)/);
     let result = 0;
     if (smileMatch !== null) {
         result += smileMatch.length;
     }
     if (reverseSmileMatch !== null) {
         result += reverseSmileMatch.length;
+    }
+    if (intersectionSmileMatch !== null) {
+        result -= intersectionSmileMatch.length;
     }
 
     return result;
