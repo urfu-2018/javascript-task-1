@@ -72,7 +72,7 @@ function fibonacciProblem(n) {
     }
     let f1 = 0;
     let f2 = 1;
-    for (let i; i < n; i++) {
+    for (let i = 0; i < n; i++) {
         f2 += f1;
         f1 = f2 - f1;
     }
