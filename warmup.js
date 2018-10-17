@@ -151,7 +151,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return phoneNumber.match('^8-800-[\\d]{3}-[\\d]{2}-[\\d]{2}$') !== undefined;
+    return phoneNumber.match('^8-800-[\\d]{3}-[\\d]{2}-[\\d]{2}$') !== null;
 }
 
 /**
@@ -181,6 +181,7 @@ function ticTacToeProblem(field) {
     if (typeof byRows !== 'undefined' || typeof byCols !== 'undefined') {
         return byRows;
     }
+
     for (let i = 0; i < 3; ++i) {
         if (inv[i].every(x => x === 'o') || inv[i].every(x => x === 'x')) {
             return inv[i][0];
