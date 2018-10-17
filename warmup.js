@@ -116,14 +116,8 @@ function smilesProblem(text) {
 
 
 function ticTacToeProblem(field) {
-    if (Array.isArray(field) === false) {
-        throw new TypeError('Должен быть массив');
-    }
-    if (field.every(Array.isArray) === false) {
+    if (Array.isArray(field) === false && (field.every(Array.isArray) === false) ) {
         throw new TypeError('Должен быть двумерный массив');
-    }
-    if (isNaN(field) === false) {
-        throw new TypeError ('только крестики и нолики')
     }
     const win = [];
     for (let i = 0; i < field.length; i++) {
