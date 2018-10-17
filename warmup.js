@@ -45,18 +45,19 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-
-    const hexColorFormat = RegExp('^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$');
-    if (!hexColorFormat.test(hexColor)) {
+    if (!/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
         throw new RangeError();
     }
 
-    const color = [];
-    for (let j = 1; j < hexColor.length; j += 2) {
-        color.push(parseInt(hexColor.substring(j, j + 2), 16));
-    }
+    const getColor = colorString => {
+        return parseInt(colorString, 16);
+    };
 
-    return `(${color[0]}, ${color[1]}, ${color[2]})`;
+    const r = getColor(hexColor.slice(1, 3));
+    const g = getColor(hexColor.slice(3, 5));
+    const b = getColor(hexColor.slice(5, 7));
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -159,12 +160,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    const smiles = text.match(/(\(-:|:-\))/g);
-    if (smiles !== null) {
-        return smiles.length;
-    }
-
-    return 0;
+    return (text.match(':-[)]') || []).length + (text.match('[(]-:') || []).length;
 }
 
 /**
