@@ -1,7 +1,5 @@
 'use strict';
 
-console.info(phoneProblem(232))
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
