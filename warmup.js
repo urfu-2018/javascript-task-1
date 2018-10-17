@@ -141,7 +141,7 @@ function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
         throw new TypeError('PhoneNumber should be string');
     }
-    let phoneRegex = /8-800-\d{3}-\d{2}-\d{2}/;
+    let phoneRegex = /^8-800-\d{3}(-\d{2}){2}$/;
 
     return phoneRegex.test(phoneNumber);
 }
@@ -171,18 +171,71 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const fieldInline = field[0].concat(field[1], field[2]); // btw, this is only due to max-depth
-    const winStates = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7],
-        [3, 4, 5], [2, 5, 8], [2, 4, 6], [6, 7, 8]]; // all 3-in-a-rows in the game
+    let rowResult = checkAllRows(field);
+    let columnResult = checkAllRows(matrixProblem(field));
+    let firstDiagonalResult = checkDiagonals(field);
 
-    for (let i in winStates) {
-        if (fieldInline[winStates[i][0]] === fieldInline[winStates[i][1]] &&
-            fieldInline[winStates[i][1]] === fieldInline[winStates[i][2]]) {
-            return fieldInline[winStates[i][0]];
-        }
+    if (rowResult !== null) {
+        return rowResult;
+    }
+    if (columnResult !== null) {
+        return columnResult;
+    }
+    if (firstDiagonalResult !== null) {
+        return firstDiagonalResult;
     }
 
     return 'draw';
+}
+
+function checkDiagonals(field) {
+    if (checkSideDiagonal(field) === true || checkMainDiagonal(field) === true) {
+        return field[1][1];
+    }
+
+    return null;
+}
+
+function checkMainDiagonal(field) {
+    let diagonalResult = true;
+    for (let i = 0; i < field.length; ++i) {
+        if (field[i][i] !== field[0][0]) {
+            diagonalResult = false;
+        }
+    }
+
+    return diagonalResult;
+}
+
+function checkSideDiagonal(field) {
+    let diagonalResult = true;
+    for (let i = 0; i < field.length; ++i) {
+        if (field[field.length - 1 - i][i] !== field[field.length - 1][0]) {
+            diagonalResult = false;
+        }
+    }
+
+    return diagonalResult;
+}
+function checkRow(line) {
+    let allEqual = true;
+    for (let i = 1; i < line.length; ++i) {
+        if (line[i] !== line[0]) {
+            allEqual = false;
+        }
+    }
+
+    return allEqual;
+}
+
+function checkAllRows(field) {
+    for (let i = 0; i < field.length; ++i) {
+        if (checkRow(field[i]) === true) {
+            return field[i][0];
+        }
+    }
+
+    return null;
 }
 
 module.exports = {
