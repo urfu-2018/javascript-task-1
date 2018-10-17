@@ -110,6 +110,9 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || targetNs < 2 || targetNs > 36) {
+        throw new TypeError('Type Error');
+    }
     if (targetNs < 2 && targetNs > 36) {
         throw new RangeError('Range Error');
     }
