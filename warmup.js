@@ -4,41 +4,33 @@
  */
 function abProblem(a, b) {
     if (Number.isInteger(a) === false) {
-        throw new TypeError("Integer error a")
+        throw new TypeError('Integer error a')
     }
 
     if (Number.isInteger(b) === false) {
-        throw new TypeError("integer error b")
+        throw new TypeError('integer error b')
     }
 
     return a + b
 }
-
-
  /**
   * */
-
-
 function centuryByYearProblem(year) {
-
-    if(Number.isInteger(year)===false) {
-        throw new TypeError("Integer error")
+    if (Number.isInteger(year)===false) {
+        throw new TypeError('Integer error')
     }
-    if(year<=0) {
+    if (year<=0) {
         throw new RangeError('only positive numbers')
     }
-    let roundedCentury;
-     roundedCentury=(year/100);
+    let roundedCentury=(year/100);
     return Math.ceil(roundedCentury)
 }
-
-
 /**
  * Переводит цвет из формата HEX в формат RGB
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== "string") {
-        throw new TypeError("цвет только строкой")
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('цвет только строкой')
     }
     if (hexColor.length !== 7) {
         throw new RangeError('число выходит за допустимые пределы')
@@ -46,12 +38,9 @@ function colorsProblem(hexColor) {
     if (hexColor[0]!=='#')
         throw new RangeError('# обязателен');
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-
         let r = parseInt(rgb[1], 16),  g = parseInt(rgb[2], 16),  b= parseInt(rgb[3], 16);
     return '(' + r + ', ' + g + ', ' + b + ')'
 }
-
-
 /**
  * Находит n-ое число Фибоначчи
  */
@@ -66,12 +55,10 @@ function fibonacciProblem(n) {
     if (n >= 2) {
         sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)}
         else {
-        sums=n
+            sums=n
         }
 return sums
 }
-
-
 /**
  * Транспонирует матрицу
 
@@ -93,10 +80,8 @@ function matrixProblem(matrix) {
         return cell;
     }
 }
-
-
-
-
+/**
+ * */
 function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(n)) {
         throw new TypeError('должно быть число')
@@ -109,47 +94,32 @@ function numberSystemProblem(n, targetNs) {
     }
     return n.toString(targetNs)
 }
-
-
 /**
  * Проверяет соответствие телефонного номера формату
- * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
- * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber !== "string"){
+    if (typeof phoneNumber !== 'string'){
         throw new TypeError('')
     }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
     return pattern.test(phoneNumber)
 }
-
-
-
 /**
  * Определяет количество улыбающихся смайликов в строке
- * @param {String} text Строка в которой производится поиск
- * @throws {TypeError} Когда в качестве аргумента передаётся не строка
- * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !=="string") {
-        throw new TypeError("string only")
+    if (typeof text !=='string') {
+        throw new TypeError('string only')
     }
 
     let result = text.match(/\(-:|:-\)/ig);
     if (result===null){
-        throw new TypeError("Смайликов не найдено")
+        throw new TypeError('Смайликов не найдено')
     }
     return result.length
 }
-
-
 /**
- * Определяет победителя в игре "Крестики-нолики"
- * Тестами гарантируются корректные аргументы.
- * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
- * @returns {'x' | 'o' | 'draw'} Результат игры
+ * Определяет победителя в игре Крестики-нолики
  */
 function ticTacToeProblem(field) {
     const win = [];
@@ -165,7 +135,6 @@ function ticTacToeProblem(field) {
         (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
         win.push(field[1][1]);
     }
-
     if (win.includes('o') !== false) {
         return 'o';
     }
@@ -176,8 +145,6 @@ function ticTacToeProblem(field) {
         return 'draw';
     }
 }
-
-
 module.exports = {
     abProblem,
     centuryByYearProblem,
