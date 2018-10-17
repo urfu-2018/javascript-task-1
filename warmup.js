@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return Math.floor(year / 100) + 1;
@@ -42,10 +42,10 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (hexColor.length > 7) {
-        throw RangeError;
+        throw new RangeError();
     }
     let rgb = new Array(3);
     for (let i = 0; i < 3; i++) {
