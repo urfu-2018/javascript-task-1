@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (typeof(a) !== 'number') {
         throw new TypeError();
     }
 
@@ -109,7 +109,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || targetNs !== 'number') {
+    if (typeof(n) !== 'number' || (targetNs !== 'number' && Math.ceil(targetNs) !== targetNs)) {
         throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
@@ -126,6 +126,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     let re = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+    if (phoneNumber === 'undefined') {
+        return false;
+    }
 
     return (phoneNumber.search(re) === 0 && phoneNumber.length === 15);
 }
