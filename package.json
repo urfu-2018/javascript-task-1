@@ -5,6 +5,7 @@
     "test": "eslint . && mocha *.spec.js --exit"
   },
   "dependencies": {
+    "ajv": "6.5.4",
     "eslint": "4.8.0",
     "eslint-config-hrundel": "1.3.0",
     "mocha": "5.2.0"
