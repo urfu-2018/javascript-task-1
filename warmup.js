@@ -73,9 +73,9 @@ function matrixProblem(matrix) {
         for (let i = 0; i < n; i++) {
             cell[i] = [];
 
-        for (let j = 0; j < m; j++) {
-            cell[i][j] = matrix[j][i];
-        }
+            for (let j = 0; j < m; j++) {
+                cell[i][j] = matrix[j][i];
+            }
         }
 
         return cell;
@@ -89,7 +89,7 @@ function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(targetNs)) {
         throw new TypeError('Система счисления должна быть числом');
     }
-    if (!(2 <= targetNs <= 36)) {
+    if ((2 <= targetNs) || (36 >= targetNs) === false) {
         throw new RangeError('Система счисления от 2 до 36');
     }
 
@@ -98,11 +98,11 @@ function numberSystemProblem(n, targetNs) {
 
 function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
-        throw new TypeError('')
+        throw new TypeError('');
     }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
-    return pattern.test(phoneNumber)
+    return pattern.test(phoneNumber);
 }
 
 function smilesProblem(text) {
@@ -111,7 +111,7 @@ function smilesProblem(text) {
     }
 
     let result = text.match(/\(-:|:-\)/ig);
-    if (result === null){
+    if (result === null) {
         throw new TypeError('Смайликов не найдено');
     }
 
