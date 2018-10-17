@@ -80,7 +80,7 @@ function matrixProblem(matrix) {
 }
 
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n)) {
+    if (isNaN(n)){
         throw new TypeError('Должно быть число');
     }
     if (!Number.isInteger(targetNs)) {
