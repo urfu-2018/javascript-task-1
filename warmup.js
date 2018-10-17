@@ -101,16 +101,19 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    const firstRowLength = matrix[0].length;
-    for (let i = 0; i < matrix.length; i++) {
-        if (!(matrix[i] instanceof Array) || matrix[i].length !== firstRowLength) {
-            throw new TypeError();
+    const transpMatrix = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        transpMatrix.push(new Array(matrix.length));
+    }
+
+    for (let x = 0; x < matrix.length; x++) {
+        for (let y = 0; y < matrix[0].length; y++) {
+            transpMatrix[y][x] = matrix[x][y];
         }
     }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+    return transpMatrix;
 }
-
 
 /**
  * Переводит число в другую систему счисления
