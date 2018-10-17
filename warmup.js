@@ -153,24 +153,16 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (!isString(text)) {
-        throw new TypeError('Text should be string');
-    }
-    let smileMatch = text.match(/:-\)/g);
-    let reverseSmileMatch = text.match(/\(-:/g);
-    let intersectionSmileMatch = text.match(/\(-:-\)/g);
-    let result = 0;
-    if (smileMatch !== null) {
-        result += smileMatch.length;
-    }
-    if (reverseSmileMatch !== null) {
-        result += reverseSmileMatch.length;
-    }
-    if (intersectionSmileMatch !== null) {
-        result -= intersectionSmileMatch.length;
+   if (typeof text !== 'string') {
+        throw new TypeError();
     }
 
-    return result;
+    const smiles = text.match(/(\(-:|:-\))/g);
+    if (smiles !== null) {
+        return smiles.length;
+    }
+
+    return 0;
 }
 
 /**
