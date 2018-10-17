@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
     hexColor.toUpperCase();
     let hexChars = '0123456789ABCDEF';
     let result = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 1; i < 4; i++) {
         let chanelHex = hexColor.substr(i, i + 2);
         let chanelRGB = hexChars.indexOf(chanelHex[0]) * 16 + hexChars.indexOf(chanelHex[1]);
         result.push(chanelRGB);
@@ -159,7 +159,7 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     let checkWin = function (first, second, third) {
-        return first === second === third;
+        return first === second && second === third;
     };
     for (let i = 0; i < 3; i++) {
         if (checkWin(field[i][0], field[i][1], field[i][2])) {
