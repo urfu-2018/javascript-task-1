@@ -97,16 +97,25 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('');
     }
+    if (isNaN(phoneNumber)) {
+        throw new TypeError('Телефон-числами')
+    }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
     return pattern.test(phoneNumber);
 }
 
+
 function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('string only');
     }
-
+    if (Number.isInteger(text)) {
+        throw new TypeError('only special symbols')
+    }
+    if (isNaN(text)){
+        throw new TypeError('no letters allowd')
+    }
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
         throw new TypeError('Смайликов не найдено');
