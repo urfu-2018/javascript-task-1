@@ -88,7 +88,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     let res = new Array(matrix[0].length);
-    for (let i = 0; i < matrix.length; i++) {
+    for (let i = 0; i < matrix[0].length; i++) {
         res[i] = new Array(matrix.length);
     }
     for (let i = 0; i < matrix.length; i++) {
