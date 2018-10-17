@@ -29,6 +29,14 @@ describe('Century by year problem', () => {
     it('Должен вернуть 1', () => {
         assert.strictEqual(centuryByYearProblem(1), 1);
     });
+
+    it('Должен вернуть 1', () => {
+        assert.strictEqual(centuryByYearProblem(0), 1);
+    });
+
+    it('Должен вернуть 2', () => {
+        assert.strictEqual(centuryByYearProblem(100), 2);
+    });
 });
 
 describe('Colors problem', function () {

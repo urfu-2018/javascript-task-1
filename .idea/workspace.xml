@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab47fef9-334b-4a88-851e-de54424814ec" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/warmup.js" beforeDir="false" afterPath="$PROJECT_DIR$/warmup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/warmup.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/warmup.spec.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,12 +47,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="14" />
-          <entry key="js" value="3478" />
+          <entry key="js" value="3544" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="3478" />
+          <entry key="JavaScript" value="3544" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -71,8 +72,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+            <state relative-caret-position="384">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -94,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="94" column="70" selection-start-line="94" selection-start-column="70" selection-end-line="94" selection-end-column="70" />
+            <state relative-caret-position="371">
+              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -206,7 +207,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.Smiles problem">
+  <component name="RunManager" selected="Mocha.Century by year problem">
+    <configuration name="Century by year problem" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/warmup.spec.js</test-file>
+      <test-names>
+        <name value="Century by year problem" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Century by year problem.Должен вернуть 1" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -269,9 +284,11 @@
       <item itemvalue="Mocha.Fibonacci problem" />
       <item itemvalue="Mocha.Number System Problem" />
       <item itemvalue="Mocha.Smiles problem" />
+      <item itemvalue="Mocha.Century by year problem" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.Century by year problem" />
         <item itemvalue="Mocha.Smiles problem" />
         <item itemvalue="Mocha.Number System Problem" />
         <item itemvalue="Mocha.Fibonacci problem" />
@@ -291,7 +308,7 @@
       <updated>1539191367618</updated>
       <workItem from="1539191370124" duration="6863000" />
       <workItem from="1539616808358" duration="5603000" />
-      <workItem from="1539702429626" duration="1981000" />
+      <workItem from="1539702429626" duration="2334000" />
     </task>
     <servers />
   </component>
@@ -317,9 +334,15 @@
     <history-entry file="Smiles_problem - 2018.10.17 at 20h 15m 27s.xml">
       <configuration name="Smiles problem" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="Century_by_year_problem - 2018.10.17 at 20h 33m 57s.xml">
+      <configuration name="Century by year problem" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Century_by_year_problem - 2018.10.17 at 20h 34m 33s.xml">
+      <configuration name="Century by year problem" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14447000" />
+    <option name="totallyTimeSpent" value="14800000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -340,7 +363,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -348,7 +371,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -381,8 +404,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="94" column="70" selection-start-line="94" selection-start-column="70" selection-end-line="94" selection-end-column="70" />
+        <state relative-caret-position="371">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -391,8 +414,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        <state relative-caret-position="384">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>
