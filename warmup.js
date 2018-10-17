@@ -169,35 +169,44 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let result = null;
+    const columnsAndRowsCheckResult = checkRowsAndColumns(field);
+    if (columnsAndRowsCheckResult.gameIsFinished) {
+        return columnsAndRowsCheckResult.winner;
+    }
 
-    ['o', 'x'].forEach(
-        function (symb) {
-            const winLine = `${symb}${symb}${symb}`;
+    const diagonalCheckResult = checkDiagonals(field);
+    if (diagonalCheckResult.gameIsFinished) {
+        return diagonalCheckResult.winner;
+    }
 
-            function registerWin(_field) {
-                _field.forEach(
-                    function (line) {
-                        if (line.join('') === winLine) {
-                            result = symb;
-                        }
-                    }
-                );
-            }
+    return 'draw';
+}
 
-            registerWin(field);
-            registerWin(matrixProblem(field));
+function checkDiagonals(field) {
+    const diagonalOneIsStrike = field[0][0] === field[1][1] && field[1][1] === field[2][2];
+    const diagonalTwoIsStrike = field[0][2] === field[1][1] && field[1][1] === field[2][0];
+    if (diagonalOneIsStrike || diagonalTwoIsStrike) {
+        return { gameIsFinished: true, winner: field[1][1] };
+    }
 
-            const mainDiagonal = `${field[0][0]}${field[1][1]}${field[2][2]}`;
-            const appendDiagonal = `${field[0][2]}${field[1][1]}${field[2][0]}`;
+    return { gameIsFinished: false, winner: undefined };
+}
 
-            if (mainDiagonal === winLine || appendDiagonal === winLine) {
-                result = symb;
-            }
+function checkRowsAndColumns(field) {
+    for (let i = 0; i < field.length; i++) {
+        const rowStart = field[i][0];
+        const rowIsStrike = rowStart === field[i][1] && field[i][1] === field[i][2];
+        const columnStart = field[0][i];
+        const columnIsStrike = columnStart === field[1][i] && field[1][i] === field[2][i];
+        if (rowIsStrike) {
+            return { gameIsFinished: true, winner: rowStart };
         }
-    );
+        if (columnIsStrike) {
+            return { gameIsFinished: true, winner: columnStart };
+        }
+    }
 
-    return result === null ? 'draw' : result;
+    return { gameIsFinished: false, winner: undefined };
 }
 
 module.exports = {
