@@ -98,7 +98,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('');
     }
     if (isNaN(phoneNumber)) {
-        throw new TypeError('Телефон-числами')
+        throw new TypeError('Телефон-числами');
     }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
@@ -111,10 +111,10 @@ function smilesProblem(text) {
         throw new TypeError('string only');
     }
     if (Number.isInteger(text)) {
-        throw new TypeError('only special symbols')
+        throw new TypeError('only special symbols');
     }
-    if (isNaN(text)){
-        throw new TypeError('no letters allowd')
+    if (isNaN(text)) {
+        throw new TypeError('no letters allowed');
     }
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
