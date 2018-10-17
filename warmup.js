@@ -8,7 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(a)) {
+    let aIsNumber = isNumber(a);
+    let bIsNumber = isNumber(b);
+    if (!aIsNumber || !bIsNumber) {
         throw new TypeError();
     }
 
