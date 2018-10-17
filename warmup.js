@@ -98,7 +98,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('');
     }
     if (isNaN(phoneNumber)) {
-        throw new TypeError('Телефон-числами')
+        throw new TypeError('Телефон-числами');
     }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
