@@ -86,8 +86,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix instanceof Array && isArrayOfArray(matrix)) {
-        throw new TypeError('param should be (Any[])[]');
+    if (!Array.isArray(matrix) || !isArrayOfArray(matrix)) {
+        throw new TypeError('param should be matrix MxN');
     }
     let transposedMatrix = ([]);
     for (let i = 0; i < matrix.length; ++i) {
@@ -101,8 +101,8 @@ function matrixProblem(matrix) {
 }
 
 function isArrayOfArray(value) {
-    for (let i = 1; i < value.length; ++i) {
-        if (value[i].length() !== value[0].length()) {
+    for (let i = 0; i < value.length; ++i) {
+        if (!Array.isArray(value[i]) || value[i].length !== value[0].length) {
             return false;
         }
     }
@@ -119,7 +119,7 @@ function isArrayOfArray(value) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) && !Number.isInteger(targetNs)) {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw new TypeError('N and TargetNs should be number');
     }
     if (targetNs < 2 || targetNs > 36) {
