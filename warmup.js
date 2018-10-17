@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
 
@@ -51,22 +51,12 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
 
-    const zipedColorLength = 4;
-    if (hexColor.length === zipedColorLength) {
-        let unzipedColor = '';
-        for (let i = 1; i < hexColor.length; i++) {
-            unzipedColor += hexColor[i] + hexColor[i];
-        }
-
-        hexColor = unzipedColor;
-    }
-
-    const values = [];
+    const color = [];
     for (let j = 1; j < hexColor.length; j += 2) {
-        values.push(parseInt(hexColor.substring(j, j + 2), 16));
+        color.push(parseInt(hexColor.substring(j, j + 2), 16));
     }
 
-    return `(${values[0]}, ${values[1]}, ${values[2]})`;
+    return `(${color[0]}, ${color[1]}, ${color[2]})`;
 }
 
 /**
@@ -107,29 +97,20 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    function checkAttribute(attributeKey, expected) {
-        if (typeof matrix[attributeKey] !== expected ||
-             typeof matrix[0][attributeKey] !== expected) {
+    if (!(matrix instanceof Array) || matrix.length === 0) {
+        throw new TypeError();
+    }
+
+    const firstRowLength = matrix[0].length;
+    for (let i = 0; i < matrix.length; i++) {
+        if (!(matrix[i] instanceof Array) || matrix[i].length !== firstRowLength) {
             throw new TypeError();
         }
     }
 
-    checkAttribute(Symbol.iterator, 'function');
-    checkAttribute('length', 'number');
-
-    const transpMatrix = [];
-    for (let i = 0; i < matrix[0].length; i++) {
-        transpMatrix.push(new Array(matrix.length));
-    }
-
-    for (let x = 0; x < matrix.length; x++) {
-        for (let y = 0; y < matrix[0].length; y++) {
-            transpMatrix[y][x] = matrix[x][y];
-        }
-    }
-
-    return transpMatrix;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
+
 
 /**
  * Переводит число в другую систему счисления
