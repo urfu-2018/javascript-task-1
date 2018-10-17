@@ -116,9 +116,6 @@ function smilesProblem(text) {
 
 
 function ticTacToeProblem(field) {
-    if (Array.isArray(field) === false && (field.every(Array.isArray) === false) ) {
-        throw new TypeError('Должен быть двумерный массив');
-    }
     const win = [];
     for (let i = 0; i < field.length; i++) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
