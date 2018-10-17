@@ -168,7 +168,8 @@ function checkDiagonal(field) {
 function ticTacToeProblem(field) {
     let transposedField = matrixProblem(field);
 
-    return checkHorizontal(field) || checkHorizontal(transposedField) || checkDiagonal(field);
+    return checkHorizontal(field) || checkHorizontal(transposedField) || checkDiagonal(field) ||
+     'draw';
 }
 
 module.exports = {
