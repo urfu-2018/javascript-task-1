@@ -179,7 +179,7 @@ function ticTacToeProblem(field) {
         return field[0][0];
     }
     if (checkWin(field[0][2], field[1][1], field[2][0])) {
-        return field[0][0];
+        return field[0][2];
     }
 
     return 'draw';
