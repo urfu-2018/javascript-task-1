@@ -70,19 +70,24 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
+
     if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
-    let current = 1;
-    let previous = 1;
-    for (let i = 0; i < n - 2; i++) {
-        const sum = current + previous;
-        previous = current;
-        current = sum;
+    let previousValue = 0;
+    let currentValue = 1;
+    let nextValue;
+    let count = 1;
+
+    while (count !== n) {
+        nextValue = currentValue + previousValue;
+        previousValue = currentValue;
+        currentValue = nextValue;
+        count++;
     }
 
-    return current;
+    return previousValue;
 }
 
 /**
