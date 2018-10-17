@@ -25,6 +25,9 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+    if(typeof(year) !== 'number') {
+        throw new TypeError('Type Error');
+    }
     if (year < 0) {
         throw new RangeError('Range Error');
     }
