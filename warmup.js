@@ -8,6 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if (Math.trunc(a) !== a || Math.trunc(b) !== b) {
+        throw new TypeError();
+    }
+
     if (typeof a === 'number' && typeof b === 'number') {
         return a + b;
     }
@@ -23,6 +27,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
+
     if (typeof year !== 'number') {
         throw new TypeError();
     }
