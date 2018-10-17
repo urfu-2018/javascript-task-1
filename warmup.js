@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (Number.isInteger(a) || Number.isInteger(b)) {
         throw TypeError;
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (!Number.isInteger(year)) {
         throw TypeError;
     }
     if (year < 0) {
@@ -62,10 +62,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (!Number.isInteger(n)) {
         throw TypeError;
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (n <= 0) {
         throw RangeError;
     }
     let a = 1;
@@ -116,7 +116,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
         throw TypeError;
     }
     if (targetNs < 2 || targetNs > 36) {
