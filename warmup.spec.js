@@ -90,6 +90,10 @@ describe('Number System Problem', () => {
     it('Должна вернуть "0"', () => {
         assert.strictEqual(numberSystemProblem(0, 2), '0');
     });
+
+    it('Должна вернуть "5"', () => {
+        assert.strictEqual(numberSystemProblem(5, 16), '5');
+    });
 });
 
 describe('Phone problem', () => {
@@ -119,5 +123,21 @@ describe('Tic-tac-toe problem', () => {
             ['o', 'o', 'x'],
             ['o', 'x', 'o']
         ]), 'x');
+    });
+
+    it('Должна вернуть "o"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'x', 'x'],
+            ['o', 'o', 'x'],
+            ['o', 'x', 'o']
+        ]), 'o');
+    });
+
+    it('Должна вернуть "draw"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['x', 'o', 'x'],
+            ['o', 'o', 'x'],
+            ['o', 'x', 'o']
+        ]), 'draw');
     });
 });

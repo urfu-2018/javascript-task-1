@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab47fef9-334b-4a88-851e-de54424814ec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warmup.js" beforeDir="false" afterPath="$PROJECT_DIR$/warmup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/warmup.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/warmup.spec.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,12 +48,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="14" />
-          <entry key="js" value="3779" />
+          <entry key="js" value="3817" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="3779" />
+          <entry key="JavaScript" value="3817" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -71,8 +73,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="117" column="32" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+            <state relative-caret-position="438">
+              <caret line="175" column="38" lean-forward="true" selection-start-line="175" selection-start-column="38" selection-end-line="175" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -94,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/warmup.spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+            <state relative-caret-position="410">
+              <caret line="140" column="17" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -206,7 +208,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.Colors problem">
+  <component name="RunManager" selected="Mocha.Tic-tac-toe problem">
     <configuration name="Century by year problem" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -232,20 +234,6 @@
       <test-file>$PROJECT_DIR$/warmup.spec.js</test-file>
       <test-names>
         <name value="Colors problem" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Fibonacci problem" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/warmup.spec.js</test-file>
-      <test-names>
-        <name value="Fibonacci problem" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -277,20 +265,34 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="Tic-tac-toe problem" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/warmup.spec.js</test-file>
+      <test-names>
+        <name value="Tic-tac-toe problem" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Mocha.Fibonacci problem" />
       <item itemvalue="Mocha.Number System Problem" />
       <item itemvalue="Mocha.Smiles problem" />
       <item itemvalue="Mocha.Century by year problem" />
       <item itemvalue="Mocha.Colors problem" />
+      <item itemvalue="Mocha.Tic-tac-toe problem" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Mocha.Tic-tac-toe problem" />
+        <item itemvalue="Mocha.Number System Problem" />
         <item itemvalue="Mocha.Colors problem" />
         <item itemvalue="Mocha.Century by year problem" />
         <item itemvalue="Mocha.Smiles problem" />
-        <item itemvalue="Mocha.Number System Problem" />
-        <item itemvalue="Mocha.Fibonacci problem" />
       </list>
     </recent_temporary>
   </component>
@@ -306,20 +308,11 @@
       <updated>1539191367618</updated>
       <workItem from="1539191370124" duration="6863000" />
       <workItem from="1539616808358" duration="5603000" />
-      <workItem from="1539702429626" duration="3470000" />
+      <workItem from="1539702429626" duration="4710000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Fibonacci_problem - 2018.10.17 at 20h 07m 42s.xml">
-      <configuration name="Fibonacci problem" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Fibonacci_problem - 2018.10.17 at 20h 08m 11s.xml">
-      <configuration name="Fibonacci problem" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Number_System_Problem - 2018.10.17 at 20h 13m 08s.xml">
-      <configuration name="Number System Problem" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="Number_System_Problem - 2018.10.17 at 20h 14m 13s.xml">
       <configuration name="Number System Problem" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -341,9 +334,18 @@
     <history-entry file="Colors_problem - 2018.10.17 at 20h 45m 23s.xml">
       <configuration name="Colors problem" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="Number_System_Problem - 2018.10.17 at 20h 58m 24s.xml">
+      <configuration name="Number System Problem" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Tic-tac-toe_problem - 2018.10.17 at 21h 01m 23s.xml">
+      <configuration name="Tic-tac-toe problem" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Tic-tac-toe_problem - 2018.10.17 at 21h 01m 39s.xml">
+      <configuration name="Tic-tac-toe problem" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15936000" />
+    <option name="totallyTimeSpent" value="17176000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,8 +407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+        <state relative-caret-position="410">
+          <caret line="140" column="17" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -415,8 +417,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="117" column="32" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+        <state relative-caret-position="438">
+          <caret line="175" column="38" lean-forward="true" selection-start-line="175" selection-start-column="38" selection-end-line="175" selection-end-column="38" />
         </state>
       </provider>
     </entry>

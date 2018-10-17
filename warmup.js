@@ -173,7 +173,7 @@ function numberSystemProblem(n, targetNs) {
         .reverse()
         .join('');
 
-    return result;
+    return result.toLocaleLowerCase();
 }
 
 /**
@@ -240,7 +240,7 @@ function ticTacToeProblem(field) {
         let result = '';
 
         for (let j = 0; j <= 2; j++) {
-            result = result + field[j][j];
+            result += field[j][j];
         }
 
         if (result === 'xxx') {
