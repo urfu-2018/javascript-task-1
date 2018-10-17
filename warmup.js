@@ -9,8 +9,9 @@
  */
 function abProblem(a, b) {
     if (isNaN(a) || isNaN(b)) {
-        throw new TypeError("One of the params is not number");
+        throw new TypeError('One of the params is not number');
     }
+
     return a + b;
 }
 
@@ -23,11 +24,12 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (isNaN(year)) {
-        throw new TypeError("Year is not number");
+        throw new TypeError('Year is not number');
     }
     if (year < 0) {
-        throw new RangeError("Year should be positive");
+        throw new RangeError('Year should be positive');
     }
+
     return Math.ceil(year / 100);
 }
 
@@ -40,13 +42,16 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError("hexColor should be string");
+        throw new TypeError('hexColor should be string');
     }
     let rgb = parseInt(hexColor.slice(1), 16);
-    let blue = rgb % 256;
-    let green = (rgb >> 8) % 256;
-    let red = rgb >> 16;
-    return "(" + [red, green, blue].join(", ") + ")";
+    let answer = [];
+    while (rgb > 0){
+        answer.push(rgb % 256);
+        rgb = Math.floor(rgb / 256);
+    }
+
+    return '(' + answer.reverse().join(', ') + ')';
 }
 
 /**
@@ -58,10 +63,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (isNaN(n)) {
-        throw new TypeError("N is not number");
+        throw new TypeError('N is not number');
     }
     if (n < 0) {
-        throw new RangeError("N should be positive");
+        throw new RangeError('N should be positive');
     }
     let previous = 1;
     let actual = 1;
@@ -70,6 +75,7 @@ function fibonacciProblem(n) {
         previous = actual;
         actual = next;
     }
+
     return actual;
 }
 
@@ -80,16 +86,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix[0][0] == null) {
-        throw new TypeError("param should be (Any[])[]");
+    if (matrix[0][0] === null) {
+        throw new TypeError('param should be (Any[])[]');
     }
     let transposedMatrix = ([]);
-    for (let i = 0; i < matrix.length; ++i){
+    for (let i = 0; i < matrix.length; ++i) {
         transposedMatrix.push([]);
-        for (let j = 0; j < matrix[0].length; ++j){
+        for (let j = 0; j < matrix[0].length; ++j) {
             transposedMatrix[i].push(matrix[j][i]);
         }
     }
+
     return transposedMatrix;
 }
 
@@ -103,18 +110,19 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (isNaN(n) && isNaN(targetNs)) {
-        throw new TypeError("N and TargetNs should be number");
+        throw new TypeError('N and TargetNs should be number');
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError("targetNs should be in range 2 - 36");
+        throw new RangeError('targetNs should be in range 2 - 36');
     }
     let result = [];
-    while (n > 0){
+    while (n > 0) {
         result.push(n % targetNs);
         n = Math.floor(n / targetNs);
     }
     result.reverse();
-    return result.join("");
+
+    return result.join('');
 }
 
 /**
@@ -124,8 +132,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     let phoneRegex = /8-800-\d{3}-\d{2}-\d{2}/;
-    if (phoneNumber.length == 15  && phoneNumber.match(phoneRegex) != null)
+    if (phoneNumber.length === 15 && phoneNumber.match(phoneRegex) !== null) {
         return true;
+    }
     return false;
 }
 
@@ -137,22 +146,23 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError("Text should be string");
+        throw new TypeError('Text should be string');
     }
     let smileMatch = text.match(/:-\)/);
     let reverseSmileMatch = text.match(/\(-:/);
     let result = 0;
-    if (smileMatch != null){
+    if (smileMatch !== null) {
         result += smileMatch.length
     }
-    if (reverseSmileMatch != null){
+    if (reverseSmileMatch !== null) {
         result += reverseSmileMatch.length
     }
+
     return result;
 }
 
 /**
- * Определяет победителя в игре "Крестики-нолики"
+ * Определяет победителя в игре 'Крестики-нолики'
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
@@ -162,33 +172,34 @@ function ticTacToeProblem(field) {
     let columnResult = checkAllRowInTicTacToe(matrixProblem(field));
     let firstDiagonalResult = checkDiagonalsInTicTacToe(field);
 
-    if (rowResult != null){
+    if (rowResult !== null) {
         return rowResult;
     }
-    if (columnResult != null){
+    if (columnResult !== null) {
         return columnResult;
     }
-    if (firstDiagonalResult != null){
+    if (firstDiagonalResult !== null) {
         return firstDiagonalResult;
     }
-    if (secondDiagonalResult != null){
+    if (secondDiagonalResult !== null) {
         return secondDiagonalResult;
     }
-    return "draw";
+
+    return 'draw';
 }
 
 function checkDiagonalsInTicTacToe(field) {
     let firstDiagonalResult = true;
-    for (let i = 0; i < field.length; ++i){
-        if (field[i][i] != field[0][0])
+    for (let i = 0; i < field.length; ++i) {
+        if (field[i][i] !== field[0][0])
             firstDiagonalResult = false;
     }
     let secondDiagonalResult = true;
-    for (let i = 0; i < field.length; ++i){
-        if (field[field.length-1-i][i] != field[field.length-1][0])
+    for (let i = 0; i < field.length; ++i) {
+        if (field[field.length-1-i][i] !== field[field.length-1][0])
             secondDiagonalResult = false;
     }
-    if (secondDiagonalResult == true || firstDiagonalResult == true){
+    if (secondDiagonalResult === true || firstDiagonalResult === true){
         return field[1][1];
     }
     return null;
@@ -197,15 +208,15 @@ function checkDiagonalsInTicTacToe(field) {
 function checkRowInTicTacToe(line) {
     let allEqual = true;
     for (let i = 1; i < line.length; ++i){
-        if (line[i] != line[0])
+        if (line[i] !== line[0])
             allEqual = false;
     }
     return allEqual;
 }
 
 function checkAllRowInTicTacToe(field) {
-    for (let i = 0; i < field.length; ++i){
-        if (checkRowInTicTacToe(field[i]) == true) {
+    for (let i = 0; i < field.length; ++i) {
+        if (checkRowInTicTacToe(field[i]) === true) {
             return field[i][0];
         }
     }
