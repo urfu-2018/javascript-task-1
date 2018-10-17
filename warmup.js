@@ -41,20 +41,22 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (!isString(hexColor)) {
-        throw new TypeError('hexColor should be string');
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
     }
-    if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
-        throw new RangeError('hexColor should have format #FFFFFF');
-    }
-    let rgb = parseInt(hexColor.slice(1), 16);
-    let answer = [];
-    for (let i = 0; i < 3; ++i) {
-        answer.push(rgb % 256);
-        rgb = Math.floor(rgb / 256);
+    if (!/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
+        throw new RangeError();
     }
 
-    return '(' + answer.reverse().join(', ') + ')';
+    const getColor = colorString => {
+        return parseInt(colorString, 16);
+    };
+
+    const r = getColor(hexColor.slice(1, 3));
+    const g = getColor(hexColor.slice(3, 5));
+    const b = getColor(hexColor.slice(5, 7));
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 function isString(x) {
@@ -93,19 +95,24 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError('Wrong argument type, expected 2D array.');
-    }
-
-    const M = matrix.length;
-    const N = matrix[0].length;
-    for (let i = 0; i < M; i++) { // i = 0 because I still need to check it for being an array.
-        if (matrix[i].length !== N || !Array.isArray(matrix[i])) {
-            throw new TypeError('Wrong argument type, expected 2D array.');
-        }
+    if (!Array.isArray(matrix) || !isMatrixNM(matrix)) {
+        throw new TypeError('param should be matrix MxN');
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
+}
+
+function isMatrixNM(value) {
+    if (value.length === 0) {
+        return false;
+    }
+    for (let i = 0; i < value.length; ++i) {
+        if (!Array.isArray(value[i]) || value[i].length !== value[0].length) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /**
