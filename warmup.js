@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError('передан неверный тип данных');
     }
 
@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError('передан неверный тип данных');
     }
-    if (n < 0) {
+    if (n < 1) {
         throw new RangeError('порядковый номер не может быть отрицательным');
     }
 
