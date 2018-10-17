@@ -89,7 +89,7 @@ function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(targetNs)) {
         throw new TypeError('Система счисления должна быть числом');
     }
-    if ((2 <= targetNs) || (36 >= targetNs) === false) {
+    if ((targetNs >= 2) || (targetNs <=36 ) === false) {
         throw new RangeError('Система счисления от 2 до 36');
     }
 
