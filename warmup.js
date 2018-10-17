@@ -121,7 +121,17 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    return matrix.map((col, i) => matrix.map(row => row[i]));
+    const transMatrix = [];
+
+    for (let i = 0; i < matrix[0].length; i++) {
+        transMatrix[i] = [];
+
+        for (let j = 0; j < matrix.length; j++) {
+            transMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return transMatrix;
 }
 
 /**
@@ -154,7 +164,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /8-800-[1-9]{3}-[1-9]{2}-[1-9]{2}/i.test(phoneNumber);
+    return /^(8-800-)\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
