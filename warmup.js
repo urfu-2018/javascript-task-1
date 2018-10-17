@@ -108,6 +108,9 @@ function matrixProblem(matrix) {
 }
 
 function isMatrixNM(value) {
+    if (value.length === 0) {
+        return false;
+    }
     for (let i = 0; i < value.length; ++i) {
         if (!Array.isArray(value[i]) || value[i].length !== value[0].length) {
             return false;
