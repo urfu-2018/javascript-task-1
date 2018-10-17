@@ -175,10 +175,8 @@ function ticTacToeProblem(field) {
         [field[0][1], field[1][1], field[2][1]],
         [field[0][2], field[1][2], field[2][2]],
         [field[0][0], field[1][1], field[2][2]],
-        [field[2][0], field[1][1], field[0][2]]
-    ];
-
-    for (let i = 0; i < 3; i++) {
+        [field[2][0], field[1][1], field[0][2]]];
+    for (let i = 0; i < 8; i++) {
         let hasWinner = winCombos[i][0] === winCombos[i][1] && winCombos[i][1] === winCombos[i][2];
         if (hasWinner) {
             return winCombos[i][0];

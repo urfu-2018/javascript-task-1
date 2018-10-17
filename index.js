@@ -24,8 +24,8 @@ console.info(centuryByYearProblem(2000));
 // Выведет "(255, 255, 255)"
 console.info(colorsProblem('#FFFFFF'));
 
-// Выведет `1`
-console.info(fibonacciProblem(1));
+// Выведет `11`
+console.info(fibonacciProblem(3));
 
 // Выведет `[
 //    [1, 4, 7],
@@ -52,4 +52,11 @@ console.info(ticTacToeProblem([
     ['x', 'x', 'x'],
     ['o', 'o', 'x'],
     ['o', 'x', 'o']
+]));
+
+// 'x'
+console.info(ticTacToeProblem([
+    ['x', 'x', 'o'],
+    ['x', 'o', 'o'],
+    ['x', 'o', 'x']
 ]));
