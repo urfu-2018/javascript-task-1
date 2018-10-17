@@ -27,7 +27,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет только строкой');
     }
-    if ((/^#[0-9A-F]{6}$/i).test(hexColor) === false) {
+    if ((/^#?[0-9A-F]{6}$/i).test(hexColor) === false) {
         throw new RangeError('Число выходит за допустимые пределы');
     }
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
@@ -97,24 +97,14 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('');
     }
-    if (isNaN(phoneNumber)) {
-        throw new TypeError('Телефон-числами');
-    }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
     return pattern.test(phoneNumber);
 }
 
-
 function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('string only');
-    }
-    if (Number.isInteger(text)) {
-        throw new TypeError('only special symbols');
-    }
-    if (isNaN(text)) {
-        throw new TypeError('no letters allowed');
     }
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
@@ -124,7 +114,17 @@ function smilesProblem(text) {
     return result.length;
 }
 
+
 function ticTacToeProblem(field) {
+    if (Array.isArray(field) === false) {
+        throw new TypeError('Должен быть массив');
+    }
+    if (field.every(Array.isArray) === false) {
+        throw new TypeError('Должен быть двумерный массив');
+    }
+    if (isNaN(field) === false) {
+        throw new TypeError ('только крестики и нолики')
+    }
     const win = [];
     for (let i = 0; i < field.length; i++) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
