@@ -187,25 +187,34 @@ function ticTacToeProblem(field) {
 }
 
 function checkDiagonals(field) {
-    let firstDiagonalResult = true;
-    for (let i = 0; i < field.length; ++i) {
-        if (field[i][i] !== field[0][0]) {
-            firstDiagonalResult = false;
-        }
-    }
-    let secondDiagonalResult = true;
-    for (let i = 0; i < field.length; ++i) {
-        if (field[field.length - 1 - i][i] !== field[field.length - 1][0]) {
-            secondDiagonalResult = false;
-        }
-    }
-    if (secondDiagonalResult === true || firstDiagonalResult === true) {
+    if (checkSideDiagonal(field) === true || checkMainDiagonal(field) === true) {
         return field[1][1];
     }
 
     return null;
 }
 
+function checkMainDiagonal(field) {
+    let diagonalResult = true;
+    for (let i = 0; i < field.length; ++i) {
+        if (field[i][i] !== field[0][0]) {
+            diagonalResult = false;
+        }
+    }
+
+    return diagonalResult;
+}
+
+function checkSideDiagonal(field) {
+    let diagonalResult = true;
+    for (let i = 0; i < field.length; ++i) {
+        if (field[field.length - 1 - i][i] !== field[field.length - 1][0]) {
+            diagonalResult = false;
+        }
+    }
+
+    return diagonalResult;
+}
 function checkRow(line) {
     let allEqual = true;
     for (let i = 1; i < line.length; ++i) {
@@ -226,6 +235,7 @@ function checkAllRows(field) {
 
     return null;
 }
+
 
 module.exports = {
     abProblem,
