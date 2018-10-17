@@ -1,5 +1,7 @@
 'use strict';
 
+console.info(numberSystemProblem(85, 32));
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -129,22 +131,8 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('targetNs should be in range 2 - 36');
     }
-    let result = [];
-    while (n > 0) {
-        result.push(takeDigit(n % targetNs));
-        n = Math.floor(n / targetNs);
-    }
-    result.reverse();
 
-    return result.join('');
-}
-
-function takeDigit(digit) {
-    if (digit > 10) {
-        return String.fromCharCode(65 + digit - 10);
-    }
-
-    return digit;
+    return n.toString(targetNs);
 }
 
 /**
