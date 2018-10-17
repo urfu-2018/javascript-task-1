@@ -146,7 +146,7 @@ function smilesProblem(text) {
         throw TypeError;
     }
 
-    return text.match(/:-\)/).length + text.match(/\(-:/).length;
+    return (text.match(/:-\)/) || []).length + (text.match(/\(-:/) || []).length;
 }
 
 function checkWin(first, second, third) {
