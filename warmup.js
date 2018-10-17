@@ -69,11 +69,7 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n < 0) {
-        throw new RangeError();
-    }
-
-    if (n - Math.trunc(n) !== 0) {
+    if (n < 1 || Math.trunc(n) !== n) {
         throw new RangeError();
     }
 
@@ -97,17 +93,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix.length === 0) {
-        return [];
-    }
-
-    if (!Array.isArray(matrix[0])) {
+    if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
 
     let matrixResult = [];
 
     for (let x = 0; x < matrix.length; x++) {
+        if (!Array.isArray(matrix[x])) {
+            throw new TypeError();
+        }
+
         let row = [];
         for (let y = 0; y < matrix[x].length; y++) {
             row.push(matrix[y][x]);
@@ -153,7 +149,7 @@ function numberSystemProblem(n, targetNs) {
         n = (n - ost) / targetNs;
     }
 
-    if (n !== 0) {
+    if (n !== 0 || result.length === 0) {
         result += abc[n];
     }
 

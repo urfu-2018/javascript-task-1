@@ -25,6 +25,10 @@ describe('Century by year problem', () => {
     it('Должна вернуть `21`', () => {
         assert.strictEqual(centuryByYearProblem(2018), 21);
     });
+
+    it('Должен вернуть 1', () => {
+        assert.strictEqual(centuryByYearProblem(1), 1);
+    });
 });
 
 describe('Colors problem', function () {
@@ -36,6 +40,14 @@ describe('Colors problem', function () {
 describe('Fibonacci problem', () => {
     it('Для n=1 должна вернуть `1`', () => {
         assert.strictEqual(fibonacciProblem(1), 1);
+    });
+
+    it('Для n=2 должна вернуть `1`', () => {
+        assert.strictEqual(fibonacciProblem(2), 1);
+    });
+
+    it('Для n=3 должна вернуть `2`', () => {
+        assert.strictEqual(fibonacciProblem(3), 2);
     });
 });
 
@@ -58,6 +70,10 @@ describe('Number System Problem', () => {
     it('Должна вернуть "101"', () => {
         assert.strictEqual(numberSystemProblem(5, 2), '101');
     });
+
+    it('Должна вернуть "0"', () => {
+        assert.strictEqual(numberSystemProblem(0, 2), '0');
+    });
 });
 
 describe('Phone problem', () => {
@@ -69,6 +85,14 @@ describe('Phone problem', () => {
 describe('Smiles problem', () => {
     it('Должна вернуть `1`', () => {
         assert.strictEqual(smilesProblem(':-)'), 1);
+    });
+
+    it('Должна вернуть `3`', () => {
+        assert.strictEqual(smilesProblem(':-))) lskdjflskdfj :-)fsldkjflsd :-)'), 3);
+    });
+
+    it('Должна вернуть `0`', () => {
+        assert.strictEqual(smilesProblem('ljdslkfjsdlf sdfj lsdfj'), 0);
     });
 });
 
