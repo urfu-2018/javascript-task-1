@@ -29,8 +29,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    if (year === 0) {
-        return 0;
+    if (year % 100 === 0) {
+        return year / 100;
     }
 
     return Math.floor(year / 100) + 1;
