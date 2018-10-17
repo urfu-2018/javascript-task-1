@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof(a) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return a + b;
