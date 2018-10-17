@@ -18,6 +18,9 @@ console.info(abProblem(1, 1));
 // Выведет `21`
 console.info(centuryByYearProblem(2018));
 
+// Выведет `20`
+console.info(centuryByYearProblem(2000))
+
 // Выведет "(255, 255, 255)"
 console.info(colorsProblem('#FFFFFF'));
 
