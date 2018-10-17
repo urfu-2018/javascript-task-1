@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
     }
     let a = 1;
     let b = 1;
-    for (var i = 1; i < n; i++) {
+    for (let i = 1; i < n; i++) {
         const temp = a + b;
         a = b;
         b = temp;
@@ -175,7 +175,7 @@ function ticTacToeProblem(field) {
         [field[2][0], field[1][1], field[0][2]]
     ];
 
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
         let hasWinner = winCombos[i][0] === winCombos[i][1] && winCombos[i][1] === winCombos[i][2];
         if (hasWinner) {
             return winCombos[i][0];
