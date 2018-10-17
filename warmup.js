@@ -97,7 +97,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let M = matrix[0].length;
-    let reducer = (acc, value) => acc && Array.isArray(value) && value.length === m;
+    let reducer = (acc, value) => acc && Array.isArray(value) && value.length === M;
     const isMatrix = matrix.reduce(reducer, true);
     if (!isMatrix) {
         throw new TypeError();
