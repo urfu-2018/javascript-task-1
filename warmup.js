@@ -159,7 +159,12 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(':-[)]') || []).length + (text.match('[(]-:') || []).length;
+    const smiles = text.match(/(\(-:|:-\))/g);
+    if (smiles !== null) {
+        return smiles.length;
+    }
+
+    return 0;
 }
 
 /**
