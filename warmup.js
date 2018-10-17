@@ -75,7 +75,7 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    let previousValue = 0;
+    let previousValue = 1;
     let currentValue = 1;
     let nextValue;
     let count = 0;
@@ -169,44 +169,35 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const columnsAndRowsCheckResult = checkRowsAndColumns(field);
-    if (columnsAndRowsCheckResult.gameIsFinished) {
-        return columnsAndRowsCheckResult.winner;
-    }
+    let result = null;
 
-    const diagonalCheckResult = checkDiagonals(field);
-    if (diagonalCheckResult.gameIsFinished) {
-        return diagonalCheckResult.winner;
-    }
+    ['o', 'x'].forEach(
+        function (symb) {
+            const winLine = `${symb}${symb}${symb}`;
 
-    return 'draw';
-}
+            function registerWin(_field) {
+                _field.forEach(
+                    function (line) {
+                        if (line.join('') === winLine) {
+                            result = symb;
+                        }
+                    }
+                );
+            }
 
-function checkDiagonals(field) {
-    const diagonalOneIsStrike = field[0][0] === field[1][1] && field[1][1] === field[2][2];
-    const diagonalTwoIsStrike = field[0][2] === field[1][1] && field[1][1] === field[2][0];
-    if (diagonalOneIsStrike || diagonalTwoIsStrike) {
-        return { gameIsFinished: true, winner: field[1][1] };
-    }
+            registerWin(field);
+            registerWin(matrixProblem(field));
 
-    return { gameIsFinished: false, winner: undefined };
-}
+            const mainDiagonal = `${field[0][0]}${field[1][1]}${field[2][2]}`;
+            const appendDiagonal = `${field[0][2]}${field[1][1]}${field[2][0]}`;
 
-function checkRowsAndColumns(field) {
-    for (let i = 0; i < field.length; i++) {
-        const rowStart = field[i][0];
-        const rowIsStrike = rowStart === field[i][1] && field[i][1] === field[i][2];
-        const columnStart = field[0][i];
-        const columnIsStrike = columnStart === field[1][i] && field[1][i] === field[2][i];
-        if (rowIsStrike) {
-            return { gameIsFinished: true, winner: rowStart };
+            if (mainDiagonal === winLine || appendDiagonal === winLine) {
+                result = symb;
+            }
         }
-        if (columnIsStrike) {
-            return { gameIsFinished: true, winner: columnStart };
-        }
-    }
+    );
 
-    return { gameIsFinished: false, winner: undefined };
+    return result === null ? 'draw' : result;
 }
 
 module.exports = {
