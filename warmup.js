@@ -1,7 +1,5 @@
 'use strict';
 
-console.info(smilesProblem('(-:   (-:-) :-)'));
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -92,9 +90,9 @@ function matrixProblem(matrix) {
         throw new TypeError('param should be matrix MxN');
     }
     let transposedMatrix = ([]);
-    for (let i = 0; i < matrix.length; ++i) {
+    for (let i = 0; i < matrix[0].length; ++i) {
         transposedMatrix.push([]);
-        for (let j = 0; j < matrix[0].length; ++j) {
+        for (let j = 0; j < matrix.length; ++j) {
             transposedMatrix[i].push(matrix[j][i]);
         }
     }
