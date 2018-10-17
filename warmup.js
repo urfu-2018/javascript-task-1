@@ -50,7 +50,7 @@ function colorsProblem(hexColor) {
     }
 
     return '(' + parseInt(result[1], 16) + ', ' + parseInt(result[2], 16) +
-            ', ' + parseInt(result[3], 16) + ')';
+        ', ' + parseInt(result[3], 16) + ')';
 }
 
 /**
@@ -161,7 +161,7 @@ function smilesProblem(text) {
     }
     const smilescount = text.match(/\(-:|:-\)/g);
 
-    return smilescount === null ? 0 : smilescount.length:
+    return smilescount === null ? 0 : smilescount.length;
 }
 
 /**
