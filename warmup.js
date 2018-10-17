@@ -1,3 +1,4 @@
+/* eslint-disable complexity*/
 'use strict';
 
 /**
@@ -8,7 +9,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (isNaN(a) || isNaN(b)) {
+        throw new TypeError('Not a number');
+    }
+
+    return a + b;
+
 }
 
 /**
@@ -19,7 +25,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (year < 0) {
+        throw new RangeError('Range Error');
+    }
+    if (year === 0) {
+
+        return 1;
+    }
+
+    return Math.ceil((year - 1) / 100);
 }
 
 /**
@@ -30,7 +44,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError('Type Error');
+    }
+    let r = parseInt(hexColor.slice(1, 3), 16);
+    let g = parseInt(hexColor.slice(3, 5), 16);
+    let b = parseInt(hexColor.slice(5), 16);
+    if (((r < 0) || (r > 255)) || ((g < 0) || (g > 255)) || (b < 0) || (b > 255)) {
+        throw new RangeError('Range Error');
+    }
+
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 /**
@@ -41,7 +65,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof(n) !== 'number') {
+        throw new TypeError('Type Error');
+    }
+    if ((parseInt(n) !== n) || (n < 0)) {
+        throw new RangeError('Range Error');
+    }
+    function rec(n1, n2, s) {
+        if (s === 1) {
+            return n2;
+        }
+
+        return rec(n2, n1 + n2, n - 1);
+    }
+
+    return rec(0, 1, n);
 }
 
 /**
@@ -51,7 +89,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError('Type Error');
+        }
+    }
+
+    return matrix[0].map((_col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -63,6 +107,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
+    if (targetNs < 2 && targetNs > 36) {
+        throw new RangeError('Range Error');
+    }
+
+    return n.toString(targetNs);
     // Ваше решение
 }
 
@@ -72,6 +121,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
     // Ваше решение
 }
 
@@ -82,7 +136,24 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof(text) !== 'string') {
+        throw new TypeError('Type Error');
+    }
+    const s = text.split(':-)' || '(-:').length;
+    if (!s) {
+        return 0;
+    }
+
+    return s - 1;
+}
+function unique(arr) {
+    var obj = {};
+    for (var i = 0; i < arr.length; i++) {
+        var str = arr[i];
+        obj[str] = true; // запомнить строку в виде свойства объекта
+    }
+
+    return Object.keys(obj); // или собрать ключи перебором для IE8-
 }
 
 /**
@@ -91,8 +162,26 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const arr = [
+        [field[0][0], field[0][1], field[0][2]],
+        [field[0][0], field[1][0], field[2][0]],
+        [field[0][0], field[1][1], field[2][2]],
+        [field[1][2], field[0][2], field[2][2]],
+        [field[2][0], field[2][1], field[2][2]],
+        [field[1][1], field[0][1], field[2][1]],
+        [field[1][1], field[1][0], field[2][1]],
+        [field[1][1], field[0][2], field[2][0]]
+    ];
+    // let win = '';
+    let newArr = unique(arr.map(x => unique(x)).filter(x => x.length === 1));
+    if ((newArr.length === 0) || (newArr.length === 2)) {
+
+        return 'draw';
+    }
+
+    return newArr[0];
 }
 
 module.exports = {
