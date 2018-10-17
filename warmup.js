@@ -25,7 +25,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (typeof(year) !== 'number' && parseInt(year) === year) {
         throw new TypeError('Type Error');
     }
     if (year < 0) {
