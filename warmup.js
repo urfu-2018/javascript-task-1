@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -30,7 +41,22 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    if (hexColor.length !== 7 || hexColor[0] !== '#') {
+        throw new RangeError();
+    }
+    try {
+        let fromHex = (x) => Number.parseInt(x, 16);
+        let r = fromHex(hexColor.slice(1, 3));
+        let g = fromHex(hexColor.slice(3, 5));
+        let b = fromHex(hexColor.slice(5, 7));
+
+        return `(${r}, ${g}, ${b})`;
+    } catch (e) {
+        throw new RangeError();
+    }
 }
 
 /**
@@ -41,7 +67,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (n < 1) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    while (n > 2) {
+        let t = b;
+        b = a + b;
+        a = t;
+        --n;
+    }
+
+    return b;
 }
 
 /**
@@ -51,7 +92,27 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    try {
+        return logic(matrix);
+    } catch (e) {
+        throw new TypeError();
+    }
+    function logic() {
+        let m = matrix.length;
+        let n = matrix[0].length;
+        let arr = new Array(n);
+
+        for (let i = 0; i < m; ++i) {
+            arr[i] = new Array(m);
+        }
+        for (let i = 0; i < m; ++i) {
+            for (let j = 0; j < n; ++j) {
+                arr[j][i] = matrix[i][j];
+            }
+        }
+
+        return arr;
+    }
 }
 
 /**
@@ -63,7 +124,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +140,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return phoneNumber.match('^8-800-[\\d]{3}-[\\d]{2}-[\\d]{2}$').length > 0;
 }
 
 /**
@@ -82,7 +150,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError ();
+    }
+
+    return text.split(':-)').length - 1;
 }
 
 /**
@@ -92,7 +164,38 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let inv = matrixProblem(field);
+    let byRows = checkRows(field);
+    let byCols = checkRows(matrixProblem(field));
+    if (typeof byRows !== 'undefined' || typeof byCols !== 'undefined') {
+        return byRows;
+    }
+    for (let i = 0; i < 3; ++i) {
+        if (inv[i].every(x => x === 'o') || inv[i].every(x => x === 'x')) {
+            return inv[i][0];
+        }
+    }
+
+    return checkDiagonals(field);
+
+    function checkRows(f) {
+        for (let i = 0; i < 3; ++i) {
+            if (f[i].every(x => x === 'o') || f[i].every(x => x === 'x')) {
+                return f[i][0];
+            }
+        }
+
+        return undefined;
+    }
+
+    function checkDiagonals(x) {
+        if ((x[0][0] === x[1][1] && x[1][1] === x[2][2]) ||
+            (x[2][0] === x[1][1] && x[1][1] === x[0][2])) {
+            return x[1][1];
+        }
+
+        return 'draw';
+    }
 }
 
 module.exports = {
