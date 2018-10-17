@@ -40,7 +40,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Argument must be string');
     }
-    if (!'/^#[0-9A-Fa-f]{6}$/'.test(hexColor)) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError('Invalid color range');
     }
     hexColor.toUpperCase();
@@ -66,7 +66,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('Argument must be number');
     }
-    if (parseInt(n) !== n || n > 0) {
+    if (parseInt(n) !== n || n < 0) {
         throw new RangeError('Argument must be non-negative integer');
     }
     let previous = 1;
@@ -133,7 +133,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return '/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/'.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -146,7 +146,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Argument must be string');
     }
-    let result = text.match('/(-:|:-)/').length;
+    let result = text.match(/\(-:|:-\)/).length;
 
     return result;
 }
