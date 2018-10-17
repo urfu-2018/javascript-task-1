@@ -1,7 +1,5 @@
 'use strict';
 
-console.info(numberSystemProblem(85, 32));
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -45,6 +43,9 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (!isString(hexColor)) {
         throw new TypeError('hexColor should be string');
+    }
+    if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
+        throw new RangeError('hexColor should have format #FFFFFF');
     }
     let rgb = parseInt(hexColor.slice(1), 16);
     let answer = [];
@@ -142,11 +143,8 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     let phoneRegex = /8-800-\d{3}-\d{2}-\d{2}/;
-    if (phoneNumber.length === 15 && phoneNumber.match(phoneRegex) !== null) {
-        return true;
-    }
 
-    return false;
+    return phoneRegex.test(phoneNumber);
 }
 
 /**
