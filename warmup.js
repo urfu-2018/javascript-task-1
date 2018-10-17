@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
-        throw new TypeError;
+        throw TypeError;
     }
     if (year < 0) {
-        throw new RangeError;
+        throw RangeError;
     }
 
     return Math.floor(year / 100) + 1;
@@ -42,13 +42,13 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        throw new TypeError;
+        throw TypeError;
     }
     let rgb = new Array(3);
     for (let i = 0; i < 3; i++) {
         rgb[i] = parseInt(hexColor.charAt(i * 2 + 1) + hexColor.charAt(i * 2 + 2), 16);
         if (rgb[i] > 255) {
-            throw new RangeError;
+            throw RangeError;
         }
     }
 
@@ -64,10 +64,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw new TypeError;
+        throw TypeError;
     }
     if (n <= 0) {
-        throw new RangeError;
+        throw RangeError;
     }
     const d = Math.sqrt(5);
 
@@ -82,7 +82,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (typeof(matrix[0]) !== 'object') {
-        throw new TypeError;
+        throw TypeError;
     }
     let res = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
@@ -107,10 +107,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || (targetNs !== 'number' && Math.ceil(targetNs) !== targetNs)) {
-        throw new TypeError;
+        throw TypeError;
     }
     if (targetNs > 36 || targetNs < 2) {
-        throw new RangeError;
+        throw RangeError;
     }
 
     return n.toString(targetNs);
@@ -135,7 +135,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw new TypeError;
+        throw TypeError;
     }
     if (text.match(/:.+\)/) !== null) {
         return text.match(/:.?\)|\(.?:/).length;
