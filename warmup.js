@@ -50,6 +50,14 @@ function colorsProblem(hexColor) {
     if (hexColor.length > 7) {
         throw new RangeError();
     }
+    if (hexColor.length === 4) {
+        let res = '#';
+        for (let i = 1; i < 4; i++) {
+            res += hexColor[i];
+            res += hexColor[i];
+        }
+        hexColor = res;
+    }
     let rgb = new Array(3);
     for (let i = 0; i < 3; i++) {
         rgb[i] = parseInt(hexColor.charAt(i * 2 + 1) + hexColor.charAt(i * 2 + 2), 16);
