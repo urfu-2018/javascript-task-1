@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number') {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
 
@@ -126,9 +126,6 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     let re = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
-    if (phoneNumber === 'undefined') {
-        return false;
-    }
 
     return (phoneNumber.search(re) === 0 && phoneNumber.length === 15);
 }
