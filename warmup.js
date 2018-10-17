@@ -45,19 +45,18 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (!/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
+
+    const hexColorFormat = RegExp('^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$');
+    if (!hexColorFormat.test(hexColor)) {
         throw new RangeError();
     }
 
-    const getColor = colorString => {
-        return parseInt(colorString, 16);
-    };
+    const color = [];
+    for (let j = 1; j < hexColor.length; j += 2) {
+        color.push(parseInt(hexColor.substring(j, j + 2), 16));
+    }
 
-    const r = getColor(hexColor.slice(1, 3));
-    const g = getColor(hexColor.slice(3, 5));
-    const b = getColor(hexColor.slice(5, 7));
-
-    return `(${r}, ${g}, ${b})`;
+    return `(${color[0]}, ${color[1]}, ${color[2]})`;
 }
 
 /**
@@ -124,14 +123,12 @@ function isMatrix(obj) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
+
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
-
-    const minTargetNs = 2;
-    const maxTargetNs = 36;
-    if (!(minTargetNs <= targetNs <= maxTargetNs)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
