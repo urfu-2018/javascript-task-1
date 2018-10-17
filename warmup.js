@@ -93,24 +93,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !isMatrixNM(matrix)) {
-        throw new TypeError('param should be matrix MxN');
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError('Wrong argument type, expected 2D array.');
     }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
-}
-
-function isMatrixNM(value) {
-    if (value.length === 0) {
-        return false;
-    }
-    for (let i = 0; i < value.length; ++i) {
-        if (!Array.isArray(value[i]) || value[i].length !== value[0].length) {
-            return false;
+    const M = matrix.length;
+    const N = matrix[0].length;
+    for (let i = 0; i < M; i++) { // i = 0 because I still need to check it for being an array.
+        if (matrix[i].length !== N || !Array.isArray(matrix[i])) {
+            throw new TypeError('Wrong argument type, expected 2D array.');
         }
     }
 
-    return true;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -153,10 +148,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !== 'string') {
-        throw new TypeError();
+    if (!isString(text)) {
+        throw new TypeError('Text should be string');
     }
-
     const smiles = text.match(/(\(-:|:-\))/g);
     if (smiles !== null) {
         return smiles.length;
