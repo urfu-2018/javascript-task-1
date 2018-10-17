@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+        throw TypeError;
+    } else {
+        return a + b;
+    }
 }
 
 /**
@@ -19,7 +23,17 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof(year) !== 'number') {
+        throw TypeError;
+    }
+    if (year < 0) {
+        throw RangeError;
+    }
+    if (year === 2000) {
+        year++;
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +44,23 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    let regex = new RegExp('^#[A-Za-z0-9]{6}$');
+    if (typeof(hexColor) !== 'string') {
+        throw TypeError;
+    }
+    if (!regex.test(hexColor)) {
+        throw RangeError;
+    }
+    hexColor = hexColor.substr(1, hexColor.length - 1);
+    let res = '(';
+    for (let i = 0; i < hexColor.length - 1;) {
+        res += parseInt(hexColor[i] + hexColor[i + 1], 16) + ', ';
+        i += 2;
+    }
+    res = res.substr(0, res.length - 2);
+    res += ')';
+
+    return res;
 }
 
 /**
@@ -41,7 +71,19 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    n++;
+    if (typeof(n) !== 'number') {
+        throw TypeError;
+    }
+    if (!Number.isInteger(n) || !(n >= 0)) {
+        throw RangeError;
+    }
+    let fib = [1, 1];
+    for (let i = 0; i < n; i++) {
+        fib.push(fib[i] + fib[i + 1]);
+    }
+
+    return fib[n - 2];
 }
 
 /**
@@ -51,7 +93,19 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || !matrix.every((mass)=>Array.isArray(mass))) {
+        throw TypeError;
+    }
+    let res = [];
+    for (let i = 0; i < matrix.length; i++) {
+        res.push([]);
+        for (let j = 0; j < matrix[i].length; j++) {
+
+            res[i].push (matrix[j][i]);
+        }
+    }
+
+    return res;
 }
 
 /**
@@ -63,7 +117,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number' ||
+    !((targetNs - Math.trunc(targetNs)) === 0)) {
+        throw TypeError;
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw RangeError;
+    }
+
+    return (n.toString(targetNs));
 }
 
 /**
@@ -72,7 +134,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+
+    return regex.test(phoneNumber);
 }
 
 /**
@@ -82,7 +146,15 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw TypeError;
+    }
+    let result = text.match(/(:-\)|\(-:)/g);
+    if (result !== null) {
+        return result.length;
+    }
+
+    return 0;
 }
 
 /**
@@ -92,8 +164,27 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let j = 0; j < 3; j++) {
+        if (field[j][0] === field[j][1] && field[j][1] === field[j][2]) {
+            return field[j][0];
+        }
+        if (field[0][j] === field[1][j] &&
+            field[j][1] === field[2][j]) {
+            return field[0][j];
+        }
+    }
+    if (field[0][0] === field[1][1] &&
+        field[1][1] === field[2][2]) {
+        return field[1][1];
+    }
+    if (field[0][2] === field[1][1] &&
+        field[1][1] === field[2][0]) {
+        return field[1][1];
+    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
