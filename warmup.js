@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    return Number(a) + Number(b1);
+    return Number(a) + Number(b);
 }
 
 /**
@@ -19,14 +19,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if(typeof year !== 'number') {
-        throw TypeError('Argument must be number');
+    if (typeof year !== 'number') {
+        throw new TypeError('Argument must be number');
     }
-    if(year < 0) {
-        throw RangeError('Argument must be non-negative');
+    if (year < 0) {
+        throw new RangeError('Argument must be non-negative');
     }
-    return (year - year % 100) / 100 + 1;
 
+    return (year - year % 100) / 100 + 1;
 }
 
 /**
@@ -37,20 +37,21 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if(typeof hexColor !== 'string') {
-        throw TypeError('Argument must be string');
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('Argument must be string');
     }
-    if(!'/^#[0-9A-Fa-f]{6}$/'.test(hexColor)) {
-        throw RangeError('Invalid color range');
+    if (!'/^#[0-9A-Fa-f]{6}$/'.test(hexColor)) {
+        throw new RangeError('Invalid color range');
     }
     hexColor.toUpperCase();
     let hexChars = '0123456789ABCDEF';
     let result = [];
     for (let i = 0; i < 3; i++) {
         let chanelHex = hexColor.substr(i, i + 2);
-        let chanelRGB = hexChars.indexOf(chanelHex[0]) * 16 + hexChars.indexOf(chanelHex[1])
+        let chanelRGB = hexChars.indexOf(chanelHex[0]) * 16 + hexChars.indexOf(chanelHex[1]);
         result.push(chanelRGB);
     }
+
     return '(' + result.join(',') + ')';
 }
 
@@ -62,11 +63,11 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if(typeof n !== 'number') {
-        throw TypeError('Argument must be number');
+    if (typeof n !== 'number') {
+        throw new TypeError('Argument must be number');
     }
-    if(parseInt(n) !== n || n > 0) {
-        throw RangeError('Argument must be non-negative integer');
+    if (parseInt(n) !== n || n > 0) {
+        throw new RangeError('Argument must be non-negative integer');
     }
     let previous = 1;
     let current = 1;
@@ -75,6 +76,7 @@ function fibonacciProblem(n) {
         previous = current;
         current = next;
     }
+
     return current;
 }
 
@@ -85,33 +87,24 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if(Array.isArray(matrix)) {
-        let len = -1;
-        for(let i = 0; i < matrix.length; i++){
-            if(!Array.isArray(matrix[i])){
-                throw TypeError('Argument must be two-dimensional array');
-            }
-            if(len === -1){
-                len = matrix[i].length;
-            }
-            if(matrix[i].length !== len){
-                throw TypeError('Different length of lines');
-            }
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('Argument must be two-dimensional array');
+    }
+    let m = matrix.length;
+    for (let i = 0; i < m; i++) {
+        if (!Array.isArray(matrix[i])) {
+            throw new TypeError('Argument must be two-dimensional array');
         }
     }
-    else {
-        throw TypeError('Argument must be two-dimensional array');
-    }
-
-    let m = matrix.length;
     let n = matrix[0].length;
     let transponseMatrix = [];
-    for(let i = 0; i < m; i++){
-        transponseMatrix.push([])
-        for(let j = 0; j < n; j++){
-            transponseMatrix[i].push(matrix[j][i])
+    for (let i = 0; i < m; i++) {
+        transponseMatrix.push([]);
+        for (let j = 0; j < n; j++) {
+            transponseMatrix[i].push(matrix[j][i]);
         }
     }
+
     return transponseMatrix;
 }
 
@@ -124,12 +117,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if(typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw TypeError('Invalid arguments type');
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError('Invalid arguments type');
     }
-    if(2 <= targetNs <= 36){
-        throw RangeError('targetNs must be from 2 to 36');
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('targetNs must be from 2 to 36');
     }
+
     return n.toString(targetNs);
 }
 
@@ -149,10 +143,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if(typeof text !== string){
-        throw TypeError('Argument must be string');
+    if (typeof text !== 'string') {
+        throw new TypeError('Argument must be string');
     }
-    let result = text.match('/\(-:|:-\)/').length;
+    let result = text.match('/(-:|:-)/').length;
+
     return result;
 }
 
@@ -163,24 +158,25 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let checkWin = function(first, second, third){
+    let checkWin = function (first, second, third) {
         return first === second === third;
-    }
-    for(let i = 0; i < 3; i++){
-        if(checkWin(field[i][0], field[i][1], field[i][2])) {
+    };
+    for (let i = 0; i < 3; i++) {
+        if (checkWin(field[i][0], field[i][1], field[i][2])) {
             return field[i][0];
         }
 
-        if(checkWin(field[0][i],field[1][i], field[2][i])){
+        if (checkWin(field[0][i], field[1][i], field[2][i])) {
             return field[0][i];
         }
     }
-    if(checkWin(field[0][0], field[1][1], field[2][2])) {
+    if (checkWin(field[0][0], field[1][1], field[2][2])) {
         return field[0][0];
     }
-    if(checkWin(field[0][2], field[1][1], field[2][0])) {
+    if (checkWin(field[0][2], field[1][1], field[2][0])) {
         return field[0][2];
     }
+
     return 'draw';
 }
 
