@@ -117,7 +117,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string')
         throw TypeError;
     if (text.match(/:.+\)/) !== null)
-        return text.match(/:.+\)/).length;
+        return text.match(/:.?\)|\(.?:/).length;
     else
         return 0;
 }
