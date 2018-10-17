@@ -9,7 +9,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError('Not a number');
     }
 
@@ -153,7 +153,7 @@ function smilesProblem(text) {
     return s - 1;
 }
 
-/* function unique(arr) {
+function unique(arr) {
     var obj = {};
     for (var i = 0; i < arr.length; i++) {
         var str = arr[i];
@@ -161,7 +161,7 @@ function smilesProblem(text) {
     }
 
     return Object.keys(obj); // или собрать ключи перебором для IE8-
-} */
+}
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -173,7 +173,7 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     console.info(field);
 
-    /* const arr = [
+    const arr = [
         [field[0][0], field[0][1], field[0][2]],
         [field[0][0], field[1][0], field[2][0]],
         [field[0][0], field[1][1], field[2][2]],
@@ -189,7 +189,6 @@ function ticTacToeProblem(field) {
 
         return 'draw';
     }
-    */
 
     return 'x';
 }
