@@ -54,7 +54,11 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    if (hexColor.length > 7) {
+    if (hexColor.length !== 7) {
+        throw new RangeError();
+    }
+
+    if (!/#[a-f|A-F|0-9]+/.test(hexColor)) {
         throw new RangeError();
     }
 
