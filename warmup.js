@@ -119,7 +119,7 @@ function smilesProblem(text) {
     return result.length
 }
 /**
- * Определяет победителя в игре Крестики-нолики
+  Определяет победителя в игре Крестики-нолики
  */
 function ticTacToeProblem(field) {
     const win = [];
