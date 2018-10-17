@@ -72,7 +72,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('N is not number');
     }
-    if (n < 1) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError('N should be gte then 1');
     }
     let previous = 1;
