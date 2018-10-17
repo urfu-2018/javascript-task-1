@@ -41,22 +41,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
-        throw new TypeError();
+    if (!isString(hexColor)) {
+        throw new TypeError('hexColor should be string');
     }
-    if (!/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
-        throw new RangeError();
+    if (!/^#[a-f\d]{6}$/i.test(hexColor)) {
+        throw new RangeError('hexColor should have format #FFFFFF');
+    }
+    let rgb = parseInt(hexColor.slice(1), 16);
+    let answer = [];
+    for (let i = 0; i < 3; ++i) {
+        answer.push(rgb % 256);
+        rgb = Math.floor(rgb / 256);
     }
 
-    const getColor = colorString => {
-        return parseInt(colorString, 16);
-    };
-
-    const r = getColor(hexColor.slice(1, 3));
-    const g = getColor(hexColor.slice(3, 5));
-    const b = getColor(hexColor.slice(5, 7));
-
-    return `(${r}, ${g}, ${b})`;
+    return '(' + answer.reverse().join(', ') + ')';
 }
 
 function isString(x) {
@@ -71,7 +69,7 @@ function isString(x) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('N is not number');
     }
     if (n < 1) {
