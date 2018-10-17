@@ -159,10 +159,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    const leftSmilescount = text.split('(-:').length - 1;
-    const rightSmilesCount = text.split(':-)').length - 1;
+    const smilescount = text.match(/\(-:|:-\)/g);
 
-    return leftSmilescount + rightSmilesCount;
+    return smilescount === null ? 0 : smilescount.length:
 }
 
 /**
