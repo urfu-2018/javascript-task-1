@@ -8,9 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof (a) != "number" || typeof (b) != "number")
+        throw new TypeError();
+    return a + b;
 }
-
 /**
  * Определяет век по году
  * @param {Number} year Год, целое положительное число
@@ -19,7 +20,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof (year) != "number")
+        throw new TypeError();
+    if (year < 0)
+        throw new TypeError();
+    let century = year / 100;
+    if (century % 100 != 0)
+        century++;
+    return century;
 }
 
 /**
@@ -30,7 +38,15 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof (hexColor) != "string")
+        throw new TypeError();
+    let r = hexColor.slice(0, 1);
+    let g = hexColor.slice(2, 3);
+    let b = hexColor.slice(4, 5);
+    if (parseInt(r, 10) > 255 || parseInt(g, 10) > 255 || parseInt(b, 10) < 255)
+        throw new RangeError();
+    return ("(" + parseInt(r, 10).toString() + ", " +
+        parseInt(g, 10).toString() + ", " + parseInt(g, 10).toString() + ")");
 }
 
 /**
@@ -41,7 +57,14 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof (n) != "number")
+        throw new TypeError();
+    if (n <= 0)
+        throw new RangeError();
+    if (n == 1 || n == 2)
+        return (1);
+    else
+        return (fibonacciProblem(n - 2) + fibonacciProblem(n - 1));
 }
 
 /**
