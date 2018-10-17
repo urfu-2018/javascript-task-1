@@ -9,8 +9,7 @@
  */
 
 function abProblem(a, b) {
-    if ((Number.isInteger(a) && Number.isInteger(b)) &&
-    ((typeof(a) === 'number') && (typeof(b) === 'number'))) {
+    if (Number.isInteger(a) && Number.isInteger(b)) {
         return a + b;
     }
 
@@ -26,7 +25,7 @@ function abProblem(a, b) {
  */
 
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' && !Number.isInteger(year)) {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year > 0) {
@@ -131,11 +130,11 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (!(typeof(n) === 'number') && !(typeof(targetNs) === 'number')) {
+    if ((!Number.isInteger(n)) || !(Number.isInteger(targetNs))) {
 
         throw new TypeError();
     }
-    if (targetNs >= 2 && targetNs <= 36 && Number.isInteger(targetNs)) {
+    if (targetNs >= 2 && targetNs <= 36) {
         const result = n.toString(targetNs);
 
         return result;
