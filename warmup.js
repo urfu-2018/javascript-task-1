@@ -172,7 +172,9 @@ function smilesProblem(text) {
         throw new TypeError ();
     }
 
-    return text.split(':-)').length - 1;
+    let m = text.match(/(\(-:|:-\))/g);
+
+    return m === null ? 0 : m.length;
 }
 
 /**
