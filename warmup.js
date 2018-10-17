@@ -5,7 +5,7 @@ function abProblem(a, b) {
     }
 
     if (Number.isInteger(b) === false) {
-        throw new TypeError('integer error b')
+        throw new TypeError('Integer error b')
     }
 
     return a + b
@@ -16,7 +16,7 @@ function centuryByYearProblem(year) {
         throw new TypeError('Integer error')
     }
     if (year<=0) {
-        throw new RangeError('only positive numbers')
+        throw new RangeError('Only positive numbers')
     }
     let roundedCentury = (year / 100);
     return Math.ceil(roundedCentury)
@@ -24,10 +24,10 @@ function centuryByYearProblem(year) {
 
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError('цвет только строкой')
+        throw new TypeError('Цвет только строкой')
     }
     if (hexColor.length !== 7) {
-        throw new RangeError('число выходит за допустимые пределы')
+        throw new RangeError('Число выходит за допустимые пределы')
     }
     if (hexColor[0] !== '#')
         throw new RangeError('# обязателен');
@@ -56,10 +56,10 @@ return sums
 
 function matrixProblem(matrix) {
     if (Array.isArray(matrix) === false) {
-        throw new TypeError('должен быть массив')
+        throw new TypeError('Должен быть массив')
     }
     if (matrix.every(Array.isArray) === false) {
-        throw new TypeError('должен быть двумерный массив')
+        throw new TypeError('Должен быть двумерный массив')
     }
 
     {
@@ -74,10 +74,10 @@ function matrixProblem(matrix) {
 
 function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(n)) {
-        throw new TypeError('должно быть число')
+        throw new TypeError('Должно быть число')
     }
     if (!Number.isInteger(targetNs)) {
-        throw new TypeError('Систеа счисления должна быть числом')
+        throw new TypeError('Система счисления должна быть числом')
     }
     if ((2 <= targetNs <= 36) === false) {
         throw new RangeError('Система счисления от 2 до 36')
