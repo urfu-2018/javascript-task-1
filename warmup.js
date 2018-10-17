@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     for (let i = 0; i < 3; i++) {
         rgb[i] = parseInt(hexColor.charAt(i * 2 + 1) + hexColor.charAt(i * 2 + 2), 16);
         if (rgb[i] > 255) {
-            throw RangeError;
+            throw new RangeError();
         }
     }
 
@@ -67,10 +67,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (n <= 0) {
-        throw RangeError;
+        throw new RangeError();
     }
     const d = Math.sqrt(5);
 
@@ -85,7 +85,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (typeof(matrix[0]) !== 'object') {
-        throw TypeError;
+        throw new TypeError();
     }
     let res = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
@@ -110,10 +110,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || (targetNs !== 'number' && Math.ceil(targetNs) !== targetNs)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -138,7 +138,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (text.match(/:.+\)/) !== null) {
         return text.match(/:.?\)|\(.?:/).length;
