@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -52,7 +53,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (!(/^#[0-9A-Fa-f]{6}$/).test(hexColor)) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
     let result = '(';
@@ -130,7 +131,7 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if ((typeof(n) !== 'number' || typeof(n) !== 'number')) {
+    if ((typeof(n) !== 'number' || !Number.isInteger(targetNs))) {
 
         throw new TypeError();
     }
@@ -175,15 +176,14 @@ function smilesProblem(text) {
 
         throw new TypeError();
     }
-    let skip = 0;
     let find = '(-:';
     for (let i = 0; i < 2; i++) {
         let sign = text.indexOf(find);
-        skip = sign;
+        console.info(text);
         while (sign !== -1) {
             num = num + 1;
-            sign = text.indexOf(find, skip + 1);
-            skip = sign;
+            text = text.substring(sign + 3);
+            sign = text.indexOf(find);
         }
         find = ':-)';
     }
