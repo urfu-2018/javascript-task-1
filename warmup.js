@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
     }
     let rgb = parseInt(hexColor.slice(1), 16);
     let answer = [];
-    while (rgb > 0){
+    while (rgb > 0) {
         answer.push(rgb % 256);
         rgb = Math.floor(rgb / 256);
     }
@@ -135,6 +135,7 @@ function phoneProblem(phoneNumber) {
     if (phoneNumber.length === 15 && phoneNumber.match(phoneRegex) !== null) {
         return true;
     }
+
     return false;
 }
 
@@ -152,10 +153,10 @@ function smilesProblem(text) {
     let reverseSmileMatch = text.match(/\(-:/);
     let result = 0;
     if (smileMatch !== null) {
-        result += smileMatch.length
+        result += smileMatch.length;
     }
     if (reverseSmileMatch !== null) {
-        result += reverseSmileMatch.length
+        result += reverseSmileMatch.length;
     }
 
     return result;
@@ -168,9 +169,9 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let rowResult = checkAllRowInTicTacToe(field);
-    let columnResult = checkAllRowInTicTacToe(matrixProblem(field));
-    let firstDiagonalResult = checkDiagonalsInTicTacToe(field);
+    let rowResult = checkAllRows(field);
+    let columnResult = checkAllRows(matrixProblem(field));
+    let firstDiagonalResult = checkDiagonals(field);
 
     if (rowResult !== null) {
         return rowResult;
@@ -181,45 +182,48 @@ function ticTacToeProblem(field) {
     if (firstDiagonalResult !== null) {
         return firstDiagonalResult;
     }
-    if (secondDiagonalResult !== null) {
-        return secondDiagonalResult;
-    }
 
     return 'draw';
 }
 
-function checkDiagonalsInTicTacToe(field) {
+function checkDiagonals(field) {
     let firstDiagonalResult = true;
     for (let i = 0; i < field.length; ++i) {
-        if (field[i][i] !== field[0][0])
+        if (field[i][i] !== field[0][0]) {
             firstDiagonalResult = false;
+        }
     }
     let secondDiagonalResult = true;
     for (let i = 0; i < field.length; ++i) {
-        if (field[field.length-1-i][i] !== field[field.length-1][0])
+        if (field[field.length - 1 - i][i] !== field[field.length - 1][0]) {
             secondDiagonalResult = false;
+        }
     }
-    if (secondDiagonalResult === true || firstDiagonalResult === true){
+    if (secondDiagonalResult === true || firstDiagonalResult === true) {
         return field[1][1];
     }
+
     return null;
 }
 
-function checkRowInTicTacToe(line) {
+function checkRow(line) {
     let allEqual = true;
-    for (let i = 1; i < line.length; ++i){
-        if (line[i] !== line[0])
+    for (let i = 1; i < line.length; ++i) {
+        if (line[i] !== line[0]) {
             allEqual = false;
+        }
     }
+
     return allEqual;
 }
 
-function checkAllRowInTicTacToe(field) {
+function checkAllRows(field) {
     for (let i = 0; i < field.length; ++i) {
-        if (checkRowInTicTacToe(field[i]) === true) {
+        if (checkRow(field[i]) === true) {
             return field[i][0];
         }
     }
+
     return null;
 }
 
