@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!(typeof (a) === 'number') && !(typeof (b) === 'number')) {
+        throw new TypeError();
+    } else {
+        return a + b;
+    }
 }
 
 /**
@@ -19,7 +23,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof (year) !== 'number') {
+        throw new TypeError();
+    } else if (year < 0) {
+        throw new RangeError();
+    }
+
+    return (Math.floor(year / 100) + 1);
 }
 
 /**
@@ -30,7 +40,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError();
+    }
+    if (!(/^#[0-9A-F]{6}$/i).test(hexColor)) {
+        throw new RangeError();
+    }
+    const r = parseInt(hexColor.substr(1, 2), 16);
+    const g = parseInt(hexColor.substr(3, 2), 16);
+    const b = parseInt(hexColor.substr(5, 2), 16);
+
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 /**
@@ -41,7 +61,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof (n) !== 'number') {
+        throw new TypeError();
+    }
+    if ((n < 1) || (!Number.isInteger(n))) {
+        throw new RangeError();
+    }
+    let previous = 1;
+    let current = 1;
+    for (let i = 3; i <= n; i++) {
+        let next = current + previous;
+        previous = current;
+        current = next;
+    }
+
+    return current;
 }
 
 /**
@@ -51,7 +85,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+        throw new TypeError();
+    }
+    const newMatrix = new Array(matrix[0].length);
+    for (let y = 0; y < matrix.length; y++) {
+        newMatrix[y] = new Array(matrix.length);
+        for (let x = 0; x < matrix[0].length; x++) {
+            newMatrix[y][x] = matrix[x][y];
+        }
+    }
+
+    return newMatrix;
 }
 
 /**
@@ -63,7 +108,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof (n) !== 'number' || typeof (targetNs) !== 'number') {
+        throw new TypeError();
+    }
+    if ((targetNs < 2) || (targetNs > 36)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +124,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof (phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-\d{3}(-\d{2}){2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +138,12 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof (text) !== 'string') {
+        throw new TypeError();
+    }
+    let countSmiles = (text.match(/(:-\))|(\(-:)/g) || []).length;
+
+    return countSmiles;
 }
 
 /**
@@ -92,7 +153,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
+        return field[1][1];
+    }
+
+    return 'draw';
 }
 
 module.exports = {
