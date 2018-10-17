@@ -1,27 +1,35 @@
 'use strict';
 
-/**
- * Складывает два целых числа
- * @param {Number} a Первое целое
- * @param {Number} b Второе целое
- * @throws {TypeError} Когда в аргументы переданы не числа
- * @returns {Number} Сумма аргументов
- */
+
 function abProblem(a, b) {
-    // Ваше решение
-}
+    if (Number.isInteger(a) === false) {
+        throw new TypeError("Integer error a")
+    }
 
-/**
- * Определяет век по году
- * @param {Number} year Год, целое положительное число
- * @throws {TypeError} Когда в качестве года передано не число
- * @throws {RangeError} Когда год – отрицательное значение
- * @returns {Number} Век, полученный из года
- */
+    if (Number.isInteger(b) === false) {
+        throw new TypeError("integer error b")
+    }
+
+    return a + b
+}
+console.log(abProblem(4, 7))
+
+
+
+
+
 function centuryByYearProblem(year) {
-    // Ваше решение
-}
 
+    if(Number.isInteger(year)===false) {
+        throw new TypeError("Integer error")
+    }
+    if(year<=0) {
+        throw new RangeError('only positive numbers')
+    }
+    let roundedCentury=(year/100)
+    return Math.ceil(roundedCentury)
+}
+console.log(centuryByYearProblem(2018));
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
@@ -30,8 +38,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== "string") {
+        throw new TypeError("цвет только строкой")
+    }
+    if (hexColor.length !== 7) {
+        throw new RangeError('число выходит за допустимые пределы')
+    }
+    if (hexColor[0]!=='#')
+        throw new RangeError('# обязателен')
+    let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor)
+
+        let r = parseInt(rgb[1], 16),  g = parseInt(rgb[2], 16),  b= parseInt(rgb[3], 16)
+    return '(' + r + ', ' + g + ', ' + b + ')'
 }
+console.log(colorsProblem('#fff32f'))
 
 /**
  * Находит n-ое число Фибоначчи
@@ -41,8 +61,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (Number.isInteger(n) === false) {
+        throw new TypeError('n-это целое число')
+    }
+    if (n < 0) {
+        throw new RangeError('n-положительное число')
+    }
+    let sums
+    if (n >= 2) {
+        sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2)}
+        else {
+        sums=n
+        }
+return sums
+
 }
+console.log(fibonacciProblem(4))
 
 /**
  * Транспонирует матрицу
@@ -51,20 +85,43 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
-}
+    if(Array.isArray(matrix)===false){
+    throw new TypeError('должен быть массив')
+    }
+    if (matrix.every(Array.isArray)===false){
+        throw new TypeError('должен быть двумерный массив')
+    }
 
-/**
- * Переводит число в другую систему счисления
- * @param {Number} n Число для перевода в другую систему счисления
- * @param {Number} targetNs Система счисления, в которую нужно перевести (Число от 2 до 36)
- * @throws {TypeError} Когда переданы аргументы некорректного типа
- * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
- * @returns {String} Число n в системе счисления targetNs
- */
+    {
+        let m = matrix.length, n = matrix[0].length, cell= [];
+        for (let i = 0; i < n; i++)
+        { cell[i] = [];
+            for (let j = 0; j < m; j++) cell[i][j] = matrix[j][i];
+        }
+        return cell;
+    }
+}console.log(matrixProblem
+([
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+]))
+
+
+
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError('должно быть число')
+    }
+    if (!Number.isInteger(targetNs)) {
+        throw new TypeError('Систеа счисления должна быть числом')
+    }
+    if ((2 <= targetNs <= 36) === false) {
+        throw new RangeError('Система счисления от 2 до 36')
+    }
+    return n.toString(targetNs)
 }
+console.log(numberSystemProblem(3000, 36));
 
 /**
  * Проверяет соответствие телефонного номера формату
@@ -72,8 +129,14 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== "string"){
+        throw new TypeError('')
+    }
+    let pattern = /8-800-\d{3}-\d{2}-\d{2}/
+    return pattern.test(phoneNumber)
 }
+console.log(phoneProblem('8-800-333-51-73'))
+
 
 /**
  * Определяет количество улыбающихся смайликов в строке
@@ -82,8 +145,17 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !=="string") {
+        throw new TypeError("string only")
+    }
+
+    let result = text.match(/\(-:|:-\)/ig)
+    if (result===null){
+        throw new TypeError("Смайликов не найдено")
+    }
+    return result.length
 }
+console.log(smilesProblem('(-:'))
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -92,8 +164,33 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const win = [];
+    for (let i = 0; i < field.length; i++) {
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            win.push(field[0][i]);
+        }
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            win.push(field[i][0]);
+        }
+    }
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
+        win.push(field[1][1]);
+    }
+
+    if (win.includes('o') !== false) {
+        return 'o';
+    }
+    if (win.includes('x') !== false) {
+        return 'x';
+    }
+    if (win.includes('o') === false && win.includes('x') === false) {
+        return 'draw';
+    }
 }
+console.log(ticTacToeProblem(['x', 'x', 'x'],
+    ['o', 'o', 'x'],
+    ['o', 'x', 'o']))
 
 module.exports = {
     abProblem,
