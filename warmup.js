@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw TypeError;
     }
 
-    return a+b;
+    return a + b;
 }
 
 /**
@@ -41,12 +41,12 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== "string") {
+    if (typeof(hexColor) !== 'string') {
         throw TypeError;
     }
     let rgb = new Array(3);
-    for (let i = 0; i < 3 ; i++) {
-        rgb[i] = parseInt(hexColor.charAt(i * 2 + 1)+hexColor.charAt(i * 2 + 2), 16);
+    for (let i = 0; i < 3; i++) {
+        rgb[i] = parseInt(hexColor.charAt(i * 2 + 1) + hexColor.charAt(i * 2 + 2), 16);
         if (rgb[i] > 255) {
             throw RangeError;
         }
@@ -67,11 +67,11 @@ function fibonacciProblem(n) {
         throw TypeError;
     }
     if (n <= 0) {
-        throw RangeError('Argument is not positive');
+        throw RangeError;
     }
     const d = Math.sqrt(5);
 
-    return Math.round((Math.pow((1 + d) * 0.5, n) - Math.pow((1 - d) * 0.5, n)) / d)
+    return Math.round((Math.pow((1 + d) * 0.5, n) - Math.pow((1 - d) * 0.5, n)) / d);
 }
 
 /**
@@ -86,7 +86,7 @@ function matrixProblem(matrix) {
     }
     let res = new Array(matrix[0].length);
     for (let i = 0; i < matrix.length; i++) {
-        res[i] = new Array(matrix.length)
+        res[i] = new Array(matrix.length);
     }
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
@@ -164,7 +164,7 @@ function ticTacToeProblem(field) {
         return field[1][1];
     }
 
-    return 'draw'
+    return 'draw';
 }
 
 
