@@ -26,8 +26,8 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError('Year is not number');
     }
-    if (year < 0) {
-        throw new RangeError('Year should be >=0');
+    if (year <= 0) {
+        throw new RangeError('Year should be >0');
     }
 
     return Math.ceil(year / 100);
@@ -96,8 +96,15 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !isMatrixNM(matrix)) {
         throw new TypeError('param should be matrix MxN');
     }
+    let transposedMatrix = ([]);
+    for (let i = 0; i < matrix[0].length; ++i) {
+        transposedMatrix.push([]);
+        for (let j = 0; j < matrix.length; ++j) {
+            transposedMatrix[i].push(matrix[j][i]);
+        }
+    }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+    return transposedMatrix;
 }
 
 function isMatrixNM(value) {
