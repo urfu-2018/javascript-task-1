@@ -5,7 +5,7 @@ function abProblem(a, b) {
     }
 
     if (Number.isInteger(b) === false) {
-        throw new TypeError('Integer error b');
+        throw new TypeError('Integer eror b');
     }
 
     return a + b;
