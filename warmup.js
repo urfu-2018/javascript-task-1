@@ -1,11 +1,11 @@
 'use strict';
 function abProblem(a, b) {
     if (Number.isInteger(a) === false) {
-        throw new TypeError('Integer error a')
+        throw new TypeError('Integer error a');
     }
 
     if (Number.isInteger(b) === false) {
-        throw new TypeError('Integer error b')
+        throw new TypeError('Integer error b');
     }
 
     return a + b
@@ -13,37 +13,38 @@ function abProblem(a, b) {
 
 function centuryByYearProblem(year) {
     if (Number.isInteger(year)===false) {
-        throw new TypeError('Integer error')
+        throw new TypeError('Integer error');
     }
     if (year<=0) {
-        throw new RangeError('Only positive numbers')
+        throw new RangeError('Only positive numbers');
     }
     let roundedCentury = (year / 100);
-    return Math.ceil(roundedCentury)
+    return Math.ceil(roundedCentury);
 }
 
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError('Цвет только строкой')
+        throw new TypeError('Цвет только строкой');
     }
     if (hexColor.length !== 7) {
-        throw new RangeError('Число выходит за допустимые пределы')
+        throw new RangeError('Число выходит за допустимые пределы');
     }
-    if (hexColor[0] !== '#')
+    if (hexColor[0] !== '#') {
         throw new RangeError('# обязателен');
+    }
     let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-        let r = parseInt(rgb[1], 16);
-        let g = parseInt(rgb[2], 16);
-        let b = parseInt(rgb[3], 16);
-    return '(' + r + ', ' + g + ', ' + b + ')'
+    let r = parseInt(rgb[1], 16);
+    let g = parseInt(rgb[2], 16);
+    let b = parseInt(rgb[3], 16);
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 function fibonacciProblem(n) {
     if (Number.isInteger(n) === false) {
-        throw new TypeError('n-это целое число')
+        throw new TypeError('n-это целое число');
     }
     if (n < 0) {
-        throw new RangeError('n-положительное число')
+        throw new RangeError('n-положительное число');
     }
     let sums;
     if (n >= 2) {
@@ -56,10 +57,10 @@ return sums
 
 function matrixProblem(matrix) {
     if (Array.isArray(matrix) === false) {
-        throw new TypeError('Должен быть массив')
+        throw new TypeError('Должен быть массив');
     }
     if (matrix.every(Array.isArray) === false) {
-        throw new TypeError('Должен быть двумерный массив')
+        throw new TypeError('Должен быть двумерный массив');
     }
 
     {
@@ -74,13 +75,13 @@ function matrixProblem(matrix) {
 
 function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(n)) {
-        throw new TypeError('Должно быть число')
+        throw new TypeError('Должно быть число');
     }
     if (!Number.isInteger(targetNs)) {
-        throw new TypeError('Система счисления должна быть числом')
+        throw new TypeError('Система счисления должна быть числом');
     }
     if ((2 <= targetNs <= 36) === false) {
-        throw new RangeError('Система счисления от 2 до 36')
+        throw new RangeError('Система счисления от 2 до 36');
     }
     return n.toString(targetNs)
 }
@@ -95,7 +96,7 @@ function phoneProblem(phoneNumber) {
 
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError('string only')
+        throw new TypeError('string only');
     }
 
     let result = text.match(/\(-:|:-\)/ig);
