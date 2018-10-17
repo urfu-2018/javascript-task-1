@@ -211,7 +211,7 @@ function ticTacToeProblem(field) {
         return field[0][0];
     }
     if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
-        return field[1][0];
+        return field[2][0];
     }
 
     return 'draw';
@@ -236,10 +236,10 @@ function vertical(field) {
         return field[0][0];
     }
     if (field[0][1] === field[1][1] && field[1][1] === field[2][1]) {
-        return field[1][1];
+        return field[0][1];
     }
-    if (field[0][1] === field[1][2] && field[1][2] === field[2][2]) {
-        return field[2][1];
+    if (field[0][2] === field[1][2] && field[1][2] === field[2][2]) {
+        return field[0][2];
     }
 
     return -1;
