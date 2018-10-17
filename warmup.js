@@ -27,7 +27,10 @@ function isNumber(value) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year) || Number(year) < 0) {
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (Number(year) < 0) {
         throw new RangeError();
     }
     if (Number(year) % 100 === 0) {
