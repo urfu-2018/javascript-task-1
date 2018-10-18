@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('передан неверный тип данных');
     }
-    if (!/^#(([0-9]|[A-F]){6})$/.test(hexColor)) {
+    if (!/^#(([0-9]|[A-F]|[a-f]){6})$/.test(hexColor)) {
         throw new RangeError('цвет должен быть в пределах #000000 - #FFFFFF');
     }
     let rgbValues = [];
