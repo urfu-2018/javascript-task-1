@@ -86,10 +86,13 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    if (typeof(mathrix) === undefined || matrix.length === 0) {
+        throw new TypeError('передан пустой массив');
+    }
     const n = matrix.length;
     const m = matrix[0].length;
     for (let j = 0; j < n; j++) {
-        if (matrix[j].length !== m) {
+        if (typeof(matrix[j]) === undefined || matrix[j].length !== m) {
             throw new TypeError('на входе не двумерный массив!');
         }
     }
