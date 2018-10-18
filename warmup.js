@@ -141,6 +141,10 @@ function matrixProblem(matrix) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
+const abc = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
+    'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+    'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
 // eslint-disable-next-line
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number') {
@@ -155,15 +159,29 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    const abc = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
-        'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
-        'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let [int, d] = n.toString().split('.');
+    let result = toTargetNs(int, targetNs);
 
-    let result = '';
+    if (d) {
+        result += '.';
+        d = n - parseInt(int);
+        while (d !== 0) {
+            d = d * 2;
+            const [i] = d.toString().split('.');
+            result += abc[i.toString()];
+            d = d - i;
+        }
+    }
 
     if (n < 0) {
-        result = '-';
+        result = '-' + result;
     }
+
+    return result.toLowerCase();
+}
+
+function toTargetNs(n, targetNs) {
+    let result = '';
 
     while (n >= targetNs) {
         const ost = n % targetNs;

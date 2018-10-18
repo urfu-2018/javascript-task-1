@@ -169,4 +169,12 @@ describe('Tic-tac-toe problem', () => {
             ['o', 'x', 'o']
         ]), 'draw');
     });
+
+    it('Должна вернуть "x"', () => {
+        assert.strictEqual(ticTacToeProblem([
+            ['o', 'o', 'x'],
+            ['o', 'x', 'x'],
+            ['x', 'o', 'o']
+        ]), 'x');
+    });
 });
