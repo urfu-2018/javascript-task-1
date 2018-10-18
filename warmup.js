@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
@@ -90,19 +90,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let len = matrix[0].length;
-    if (!matrix.length || !Array.isArray(matrix) ||
+    if (matrix.length === 0 || !Array.isArray(matrix) ||
     !matrix.some((mass)=>Array.isArray(mass) && mass.length === len)) {
         throw new TypeError();
     }
-    let res = [];
-    for (let i = 0; i < len; i++) {
-        res.push([]);
-        for (let j = 0; j < matrix.length; j++) {
-            res[i].push (matrix[j][i]);
-        }
-    }
 
-    return res;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
