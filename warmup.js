@@ -99,8 +99,10 @@ function matrixProblem(matrix) {
     if (!matrix || typeof matrix[0].length === 'undefined') {
         throw new TypeError();
     }
-    if (matrix.filter((row) => row.length === matrix[0].length).length !== matrix[0].length) {
-        throw new TypeError();
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
