@@ -185,7 +185,7 @@ function ticTacToeProblem(field) {
     let byRows = checkRows(field);
     let byCols = checkRows(matrixProblem(field));
     if (typeof byRows !== 'undefined' || typeof byCols !== 'undefined') {
-        return byRows;
+        return byRows ? byRows : byCols;
     }
 
     return checkDiagonals(field);
