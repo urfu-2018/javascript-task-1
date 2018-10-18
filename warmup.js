@@ -160,7 +160,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    let pattern = /:-\)|\(-:/;
+    let pattern = /:-\)|\(-:/g;
     let count = text.match(pattern);
 
     return count.length;
