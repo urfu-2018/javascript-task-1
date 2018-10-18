@@ -114,7 +114,7 @@ function matrixProblem(matrix) {
 
         let arr = new Array(n);
 
-        for (let i = 0; i < m; ++i) {
+        for (let i = 0; i < n; ++i) {
             arr[i] = new Array(m);
         }
         for (let i = 0; i < m; ++i) {
