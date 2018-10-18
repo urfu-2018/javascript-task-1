@@ -52,7 +52,7 @@ function colorsProblem(hexColor) {
         const r = parseInt(result[1], 16);
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
-        const answer = '(' + r + ', ' + g + ',' + b + ')';
+        const answer = '(' + r + ', ' + g + ', ' + b + ')';
 
         return answer;
     }
@@ -143,17 +143,16 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
-    if (typeof text !== 'string') {
+    if (typeof(text) !== 'string') {
         throw new TypeError ('Переданный параметр не является строкой');
     }
     let countOfSmiles = 0;
-    for (let i = 0; i < text.length - 3; i++) {
+    for (let i = 0; i < text.length - 1; i++) {
+        if (text[i] === ':' && text[i + 1] === '-' && text[i + 2] === ')') {
+            countOfSmiles++;
+        }
         if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
             countOfSmiles++;
-        } else if (text[i] === ':' && text[i + 1] === '-' && text[i] === ')') {
-            countOfSmiles++;
-        } else {
-            continue;
         }
     }
 
