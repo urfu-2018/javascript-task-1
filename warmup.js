@@ -66,7 +66,7 @@ function colorsProblem(hexColor) {
 		}
 		else
 		{
-			new throw RangeError();
+			throw new RangeError();
 		}
 	}
 	else
