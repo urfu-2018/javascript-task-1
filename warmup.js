@@ -12,7 +12,7 @@ function abProblem(a, b) {
         throw new TypeError('Arguments must be numbers');
     }
 
-    return Number(a) + Number(b);
+    return a + b;
 }
 
 /**
