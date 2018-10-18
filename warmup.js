@@ -102,10 +102,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('На вход подаются числа');
     }
-    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('Очнование системы счисления - число от 2 до 36');
     }
 
@@ -161,6 +161,8 @@ function ticTacToeProblem(field) {
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[0][2];
     }
+
+    return 'draw';
 }
 
 module.exports = {
