@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (typeof year < 0) {
+    if (typeof year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.match(!/^#(([0-9]|[A-F]|[a-f]){6})$/) === null) {
+    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
         throw new RangeError();
     }
 
@@ -144,7 +144,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
