@@ -47,13 +47,9 @@ function colorsProblem(hexColor) {
     if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError('Invalid color range');
     }
-    hexColor.toUpperCase();
-    let hexChars = '0123456789ABCDEF';
     let result = [];
     for (let i = 1; i < 4; i++) {
-        let chanelHex = hexColor.substr(i, i + 2);
-        let chanelRGB = hexChars.indexOf(chanelHex[0]) * 16 + hexChars.indexOf(chanelHex[1]);
-        result.push(chanelRGB);
+        result.push(parseInt(hexColor.substr(i, i + 2)), 16);
     }
 
     return '(' + result.join(', ') + ')';
