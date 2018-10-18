@@ -103,10 +103,14 @@ function matrixProblem(a) {
         throw new TypeError();
     }
     for (let i = 0; i < a[0].length; i++) {
-        t[i] = [];
+         let s = [];
         for (let j = 0; j < a.length; j++) {
-            t[i][j] = a[j][i];
+            s[j] = a[j][i];
         }
+        t.push(s);
+    }
+    if (!a[0].length){
+        t [0] = [];
     }
 
     return t;
