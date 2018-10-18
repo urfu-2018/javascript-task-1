@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length > 7 || hexColor.length < 4 || hexColor.search(/[g-z]/gi) >= 0) {
+    if (hexColor.search(/^#(([0-9]|[g-z]){6})$/gi) !== 0) {
         return new RangeError();
     }
     let rgb = new Array(3);
