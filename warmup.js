@@ -60,7 +60,7 @@ function colorsProblem(hexColor) {
         color.push(parseInt(hexColor.substring(i, i + 2), 16));
     }
 
-    return ',' + color[0] + ',' + color[1] + ',' + color[2] + ',';
+    return `(${color.join(', ')})`;
 }
 
 /**
