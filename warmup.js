@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year) || typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError('year should be an integer number');
     }
 
@@ -78,7 +78,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n) || typeof n !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError('n should be an integer number');
     }
     if (n < 0) {
