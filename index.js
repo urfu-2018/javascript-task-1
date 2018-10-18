@@ -14,7 +14,6 @@ const {
 
 // Выведет `2`
 console.info(abProblem(1, 1));
-
 // Выведет `21`
 console.info(centuryByYearProblem(2018));
 
@@ -46,7 +45,7 @@ console.info(smilesProblem(':-) (-:'));
 
 // Выведет "x"
 console.info(ticTacToeProblem([
-    ['x', 'x', 'x'],
-    ['o', 'o', 'x'],
-    ['o', 'x', 'o']
+    ['o', 'x', 'o'],
+    ['x', 'o', 'x'],
+    ['o', 'o', 'x']
 ]));
