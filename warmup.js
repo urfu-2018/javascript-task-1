@@ -40,29 +40,23 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-
-    if (/[g-z]/i.test(hexColor) || hexColor.length > 7 || hexColor.length < 4) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
-
-    hexColor = hexColor.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (hex, r, g, b) => {
-        return r + r + g + g + b + b;
-    });
-
-    const colors = /([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-    colors.shift();
-
-    for (let i = 0; i < colors.length; i++) {
-        colors[i] = parseInt(colors[i], 16).toString();
+    let result = '(';
+    let j = 0;
+    for (let i = 0; i < 3; i++) {
+        const x = parseInt(hexColor.substring(1 + j, 3 + j), 16) + ', ';
+        result = result + x;
+        j = j + 2;
     }
+    result = result.substring(0, result.length - 2) + ')';
 
-    return `(${colors.join(', ')})`;
+    return result;
 }
-
-const cache = {};
 
 /**
  * Находит n-ое число Фибоначчи
@@ -71,20 +65,22 @@ const cache = {};
  * @throws {RangeError} Когда положение в ряде не является целым положительным числом
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
+
 function fibonacciProblem(n) {
-    assertIfTypesDoNotMatch([n], [isNumber]);
-    if (numberIsInteger(n) && n > 0) {
-        let current = 1;
-        let next = 1;
-        for (let i = 1; i < n; ++i) {
-            let afterNext = current + next;
-            current = next;
-            next = afterNext;
+    let array = [0, 1];
+    if (typeof(n) !== 'number') {
+
+        throw new TypeError();
+    }
+    if (Number.isInteger(n) && n > 0) {
+        for (let i = 2; i <= n; i++) {
+            array[i] = array[i - 1] + array[i - 2];
         }
 
-        return current;
+        return array[array.length - 1];
     }
-    throw new RangeError(`Number should be positive, given ${n}`);
+
+    throw new RangeError();
 }
 
 /**
@@ -180,7 +176,6 @@ function ticTacToeProblem(field) {
 
     return 'draw';
 }
-
 
 module.exports = {
     abProblem,
