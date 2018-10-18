@@ -93,8 +93,9 @@ function matrixProblem(matrix) {
     const columnsCount = matrix[0].length;
     let newMatrix = Array(columnsCount).fill()
         .map(() => Array(rowsCount));
-    for (let i = 0; i < rowsCount; i++) {
-        for (let j = 0; j < columnsCount; j++) {
+    console.info(newMatrix);
+    for (let i = 0; i < columnsCount; i++) {
+        for (let j = 0; j < rowsCount; j++) {
             newMatrix[i][j] = matrix[j][i];
         }
     }
@@ -124,7 +125,7 @@ function isMatrix(array) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
