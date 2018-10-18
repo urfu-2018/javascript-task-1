@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -103,17 +104,18 @@ function matrixProblem(matrix) {
     if (!matrix.every(Array.isArray)) {
         throw new TypeError();
     }
-    let val = 0;
+    let x = matrix[0].length;
+    let newMatrix = [];
+    for (let r = 0; r < x; r++) {
+        newMatrix[r] = [];
+    }
     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0 + val; j < matrix[i].length; j++) {
-            const x = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = x;
+        for (let j = 0; j < x; j++) {
+            newMatrix[j][i] = matrix[i][j];
         }
-        val++;
     }
 
-    return matrix;
+    return newMatrix;
 }
 
 /**
@@ -174,7 +176,6 @@ function smilesProblem(text) {
     let find = '(-:';
     for (let i = 0; i < 2; i++) {
         let sign = text.indexOf(find);
-        console.info(text);
         while (sign !== -1) {
             num = num + 1;
             text = text.substring(sign + 3);
