@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -101,15 +100,11 @@ function fibonacciProblem(n) {
  */
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!matrix.every(Array.isArray)) {
         throw new TypeError();
     }
     let val = 0;
     for (let i = 0; i < matrix.length; i++) {
-        const arAr = matrix[i];
-        if (!Array.isArray(arAr)) {
-            throw new TypeError();
-        }
         for (let j = 0 + val; j < matrix[i].length; j++) {
             const x = matrix[i][j];
             matrix[i][j] = matrix[j][i];
