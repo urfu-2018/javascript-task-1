@@ -84,18 +84,20 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (matrix[0].length <= 1) {
-        throw new TypeError();
+    if (matrix.length === 1 || matrix[0])
+    const rows = matrix.length;
+    const columns = matrix[0].length;
+    const transposed = [];
+    for (let j = 0; j < columns; j++) {
+        transposed[j] = Array(rows);
     }
-    for (let i = 0; i < matrix.length; i++) {
-        for (var j = 0; j < i; j++) {
-            var changingCell = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = changingCell;
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            transposed[j][i] = matrix[i][j];
         }
     }
 
-    return matrix;
+    return transposed;
 }
 
 /**
