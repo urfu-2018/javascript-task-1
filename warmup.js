@@ -81,7 +81,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError('n should be an integer number');
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError('n should be a positive number');
     }
     var prev = 0;
