@@ -47,7 +47,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length > 7 || hexColor.length < 4 || hexColor.search(/[g-z][G-Z]/) >= 0) {
+    if (hexColor.length > 7 || hexColor.length < 4 || hexColor.search(/[g-z]/gi) >= 0) {
         return new RangeError();
     }
     hexColor = convertToNormalHex(hexColor);
