@@ -31,6 +31,7 @@ function centuryByYearProblem(year) {
     }
 
     return Math.ceil(year / 100);
+
 }
 
 /**
@@ -135,7 +136,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         return new TypeError();
     }
     if (!(targetNs >= 2 && targetNs <= 36)) {
@@ -155,7 +156,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /^8[–-]800[–-][0-9]{3}[–-][0-9]{2}[–-][0-9]{2}$/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -176,7 +177,6 @@ function smilesProblem(text) {
 
 function checkRows(field, sign) {
     for (let i = 0; i < 3; i++) {
-        //console.log(field[i][0] === field[i][1] === field[i][2] === sign);
         if ((field[i][0] === field[i][1] && field[i][1] === field[i][2] && field[i][2] === sign) ||
             (field[0][i] === field[1][i] && field[1][i] === field[2][i] && field[2][i] === sign)) {
             return true;
@@ -205,13 +205,13 @@ function ticTacToeProblem(field) {
     if (checkRows(field, 'x') || checkDiagonals(field, 'x')) {
         return 'x';
     }
-    else if (checkRows(field, 'o') || checkDiagonals(field, 'o')) {
+    if (checkRows(field, 'o') || checkDiagonals(field, 'o')) {
         return 'o';
     }
-    else {
-        return 'draw';
-    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
