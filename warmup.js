@@ -67,6 +67,7 @@ function convertToNormalHex(hex) {
         }
         hex = res;
     }
+
     return hex;
 }
 
