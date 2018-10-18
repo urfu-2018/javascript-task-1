@@ -140,12 +140,8 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError('Type Error');
     }
-    const s = text.split(':-)' || '(-:').length;
-    if (!s) {
-        return 0;
-    }
 
-    return s - 1;
+    return (text.match(/:-\)/) || []).length + (text.match(/\(-:/) || []).length;
 }
 
 function unique(arr) {
