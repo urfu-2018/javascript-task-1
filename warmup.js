@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(a) || isNaN(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -25,23 +25,14 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (isNaN(year)) {
+    if (!Number.isInteger(year)) {
         throw new TypeError ('Переданный параметр не является числом');
     } else if (year < 0) {
         throw new RangeError ('Значение года не может быть отрицательным числом!');
     } else {
-        const yearStr = year.toString();
-        const num = Number.parseInt(yearStr[0]) + Number.parseInt(yearStr[1]);
-        const secondPart1 = Number.parseInt(yearStr[yearStr.length - 1]);
-        const secondPart2 = Number.parseInt(yearStr[yearStr.length - 2]);
-        let res;
-        if (secondPart1 === 0 && secondPart2 === 0) {
-            res = num;
-        } else {
-            res = num + 1;
-        }
+        const result = Math.ceil(year / 100);
 
-        return res;
+        return result;
     }
 }
 
@@ -54,14 +45,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    if (typeof hexColor !== String) {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError ('Переданный параметр не является строкой');
     } else {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
         const r = parseInt(result[1], 16);
         const g = parseInt(result[2], 16);
         const b = parseInt(result[3], 16);
-        const answer = '(' + r + ',' + g + ',' + b + ')';
+        const answer = '(' + r + ', ' + g + ',' + b + ')';
 
         return answer;
     }
@@ -76,9 +67,9 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    if (isNaN(n)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError ('Переданный параметр не является числом');
-    } else if (n % 2 !== 0 || n <= 0) {
+    } else if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('n не является целым положительным числом');
     } else if (n === 1 || n === 2) {
         return 1;
@@ -102,8 +93,9 @@ function matrixProblem(matrix) {
             throw new TypeError('на входе не двумерный массив!');
         }
     }
-    let matrixT = [m][n];
+    let matrixT = [];
     for (let i = 0; i < m; i++) {
+        matrixT[i] = [];
         for (let j = 0; j < n; j++) {
             matrixT[i][j] = matrix[j][i];
         }
@@ -151,7 +143,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
-    if (typeof text !== String) {
+    if (typeof text !== 'string') {
         throw new TypeError ('Переданный параметр не является строкой');
     }
     let countOfSmiles = 0;
