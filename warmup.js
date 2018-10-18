@@ -96,18 +96,18 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
+    let m = matrix.length;
+    let n = matrix[0].length;
+
+    for (let i = 0; i < m; ++i) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+            throw new TypeError();
+        }
+    }
+
     return logic(matrix);
 
     function logic() {
-        let m = matrix.length;
-        let n = matrix[0].length;
-
-        for (let i = 0; i < m; ++i) {
-            if (!Array.isArray(matrix[i])) {
-                throw new TypeError();
-            }
-        }
-
         let arr = new Array(n);
 
         for (let i = 0; i < m; ++i) {
