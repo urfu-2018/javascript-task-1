@@ -26,14 +26,14 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
-    if (year % 100 === 0) {
-        return year / 100;
+    if (year === 0) {
+        return 1;
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
