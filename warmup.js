@@ -9,7 +9,7 @@ function checkThat(object) {
 
     return {
         hasType: representativeSupplier =>
-            checkThat(typeof object === typeof representativeSupplier()),
+            checker(something => typeof something === typeof representativeSupplier()),
 
         satisfies: checker
     };
@@ -64,7 +64,8 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     checkThat(year)
         .hasType(realNumber);
-    checkThat(year).satisfies(isNumber);
+    checkThat(year)
+        .satisfies(isNumber);
     if (year < 0) {
         throw new RangeError();
     }
