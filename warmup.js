@@ -44,18 +44,18 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
+
+    if (hexColor[0] === '#') {
+        hexColor = hexColor.slice(1);
+    }
     const see = /^([A-Fa-f\d]{6})$/;
     if (!see.test(hexColor)) {
         throw new RangeError();
     }
-    if (hexColor[0] === '#') {
-        hexColor = hexColor.slice(1);
-    }
 
-    let newstr = hexColor.match(/.{2}/g);
-    const r = parseInt(newstr[0], 16);
-    const g = parseInt(newstr[1], 16);
-    const b = parseInt(newstr[2], 16);
+    const r = parseInt(hexColor.substr(0, 2), 16);
+    const g = parseInt(hexColor.substr(2, 2), 16);
+    const b = parseInt(hexColor.substr(4, 2), 16);
 
     return ('(' + r + ', ' + g + ', ' + b + ')');
 }
