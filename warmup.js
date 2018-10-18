@@ -124,7 +124,7 @@ function matrixProblem(a) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError ();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
@@ -170,12 +170,9 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return field[0][0];
-    }
-    if (field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
-        return field[2][0];
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[1][1];
     }
     for (let i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
