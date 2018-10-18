@@ -111,9 +111,6 @@ function matrixProblem(a) {
         }
         t.push(s);
     }
-    if (!a[0].length) {
-        t[0] = [];
-    }
 
     return t;
 }
