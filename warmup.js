@@ -111,7 +111,7 @@ function smilesProblem(text) {
     }
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
-        throw new TypeError('Смайликов не найдено');
+        throw new TypeError('Смайликов нe найдено');
     }
 
     return result.length;
