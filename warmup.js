@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет - hex строка');
     }
-    if (!hexColor.match(/^#[a-f\d]{6}$/i)) {
+    if (!/^#[0-9A-F]{6}$/i.test(hexColor)) {
         throw new RangeError('Цвета выходят за пределы допустимых');
     }
 
@@ -66,7 +66,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n - число');
     }
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError('n - целое положительное число');
     }
     const fibNumbs = [0, 1];
