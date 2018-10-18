@@ -23,14 +23,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number'){
+    if (typeof(year) !== 'number') {
         throw new TypeError();
+    } else if (year < 0) {
+        throw new RangeError();
     } else {
-        if (year < 0) {
-            throw new RangeError();
-        } else {
-            return Math.ceil(year / 100);
-        }
+        return Math.ceil(year / 100);
     }
 }
 
@@ -43,15 +41,17 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) === 'string') {
-        var hex = /^#[a-fA-F\d]{6}$/; 
+        var hex = /^#[a-fA-F\d]{6}$/;
         if (!hex.test(hexColor)) {
             throw new RangeError();
         } else {
-            var rgbColor = "(";
-            for (let i = 1; i <= 6; i+=2) {
-                rgbColor += (Number.parseInt(hexColor[i]) * 16 + Number.parseInt(hexColor[i + 1])) + (i < 5 ? ", " : ""); 
+            var rgbColor = '(';
+            for (let i = 1; i <= 6; i += 2) {
+                rgbColor += (Number.parseInt(hexColor[i]) * 16 +
+				Number.parseInt(hexColor[i + 1])) + (i < 5 ? ', ' : '');
             }
-            rgbColor += ")";
+            rgbColor += ')';
+			
             return rgbColor;
         }
     } else {
@@ -77,6 +77,7 @@ function fibonacciProblem(n) {
                 b += a;
                 a = temp;
             }
+			
             return b;
         }
     } else {
@@ -94,11 +95,12 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     } else {
-        for (let i = 0; i<matrix.length; i++) {
+        for (let i = 0; i < matrix.length; i++) {
             if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
                 throw new TypeError();
             }
         }
+		
         return matrix[0].map((item, element) => matrix.map(matr => matr[element]));
     }
 }
@@ -130,6 +132,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var phone = /^8-800-\d{3}(-\d{2}){2}$/;
+	
     return phone.test(phoneNumber);
 }
 
@@ -143,7 +146,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     } else {
-        return (text.length - text.replace(/\:\-\)/).length - text.replace(/\(\-\:/).length) / 3;
+        return (text.length - text.replace(/:\-\)/).length - text.replace(/\(\-:/).length) / 3;
     }
 }
 
