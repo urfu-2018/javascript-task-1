@@ -63,11 +63,16 @@ function fibonacciProblem(n) {
     if (n < 1) {
         throw new RangeError();
     }
-    if (n === 1 || n === 2) {
-        return 1;
+
+    let prev = 1;
+    let current = 1;
+    for (let i = 2; i < n; i++) {
+        let sum = prev + current;
+        prev = current;
+        current = sum;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return current;
 }
 
 /**
