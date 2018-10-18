@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
         throw new RangeError();
     }
 
-    const range = [1, 1];
+    const range = [0, 1];
     for (let i = 1; i < n; i++) {
         range.push(range[i] + range[i - 1]);
     }
