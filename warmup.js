@@ -8,7 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
     return a + b;
 }
 
@@ -21,6 +24,13 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
     return Math.trunc(year / 100) + 1;
 }
 
@@ -60,7 +70,13 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+    if (n < 0) {
+        throw new RangeError();
+    }
+
     const range = [0, 1];
     for (let i = 1; i < n; i++) {
         range.push(range[i] + range[i - 1]);
@@ -80,6 +96,7 @@ function matrixProblem(matrix) {
     if (!matrix.length) {
         throw new TypeError();
     }
+
     var transposedMatrix = new Array(matrix.length);
     for (let i = 0; i < matrix.length; i++) {
         transposedMatrix[i] = new Array(matrix[0].length);
@@ -134,7 +151,7 @@ function phoneProblem(phoneNumber) {
  */
 
 function smilesProblem(text) {
-    if (!(typeof text === 'string')) {
+    if (typeof text !== 'string') {
         throw new TypeError();
     }
 
