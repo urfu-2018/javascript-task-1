@@ -79,6 +79,10 @@ function fibonacciProblem(n) {
     if (!(Number.isInteger(n) > 0)) {
         throw new RangeError();
     }
+
+    if (n < 2) {
+        return 1;
+    }
     var a = 1;
     var b = 1;
     for (var i = 3; i <= n; i++) {
@@ -157,8 +161,9 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     var smail = ':-)';
+    var smailToo = '(-:';
 
-    return text.split(smail).length - 1;
+    return (text.split(smail).length - 1) + (text.split(smailToo).length - 1);
 }
 
 /**
