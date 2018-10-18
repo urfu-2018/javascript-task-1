@@ -31,7 +31,7 @@ function symbolRange(from, length) {
 }
 
 function isNumber(number) {
-    return !isNaN(number);
+    return !isNaN(number) && number < Infinity;
 }
 
 /**
@@ -64,6 +64,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     checkThat(year)
         .hasType(realNumber);
+    checkThat(year).satisfies(isNumber);
     if (year < 0) {
         throw new RangeError();
     }
@@ -106,6 +107,8 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     checkThat(n)
         .hasType(realNumber);
+    checkThat(n)
+        .satisfies(isNumber);
     if (n < 1 || Math.trunc(n) !== n) {
         throw new RangeError();
     }
@@ -170,8 +173,12 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     checkThat(n)
         .hasType(realNumber);
+    checkThat(n)
+        .satisfies(isNumber);
     checkThat(targetNs)
         .hasType(realNumber);
+    checkThat(targetNs)
+        .satisfies(isNumber);
 
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
