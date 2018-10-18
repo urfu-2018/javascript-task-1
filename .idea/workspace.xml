@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="984d7696-10af-4657-8777-f70efae7ba55" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/warmup.js" beforeDir="false" afterPath="$PROJECT_DIR$/warmup.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,14 +40,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1498" />
-          <entry key="txt" value="146" />
+          <entry key="js" value="1503" />
+          <entry key="txt" value="149" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="1498" />
-          <entry key="PLAIN_TEXT" value="146" />
+          <entry key="JavaScript" value="1503" />
+          <entry key="PLAIN_TEXT" value="149" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -57,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="153">
+              <caret line="163" column="4" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -271,7 +272,7 @@
       <option name="presentableId" value="Default" />
       <updated>1539685346516</updated>
       <workItem from="1539685349297" duration="4669000" />
-      <workItem from="1539705369637" duration="32457000" />
+      <workItem from="1539705369637" duration="33392000" />
     </task>
     <task id="LOCAL-00001" summary="ffff">
       <created>1539726648795</created>
@@ -420,11 +421,25 @@
       <option name="project" value="LOCAL" />
       <updated>1539891478868</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="see">
+      <created>1539891687314</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1539891687314</updated>
+    </task>
+    <task id="LOCAL-00023" summary="way">
+      <created>1539891933226</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1539891933226</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37126000" />
+    <option name="totallyTimeSpent" value="38061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -477,7 +492,8 @@
     <MESSAGE value="typeof" />
     <MESSAGE value="ok" />
     <MESSAGE value="see" />
-    <option name="LAST_COMMIT_MESSAGE" value="see" />
+    <MESSAGE value="way" />
+    <option name="LAST_COMMIT_MESSAGE" value="way" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.js">
@@ -489,8 +505,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="153">
+          <caret line="163" column="4" selection-start-line="163" selection-start-column="4" selection-end-line="163" selection-end-column="4" />
         </state>
       </provider>
     </entry>
