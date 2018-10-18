@@ -131,6 +131,10 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError('first argument and radix should be numbers');
     }
 
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('number system should be in a range from 2 to 36');
+    }
+
     return n.toString(targetNs);
 }
 
