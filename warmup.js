@@ -110,6 +110,10 @@ function matrixProblem(matrix) {
         if (!Array.isArray(matrix[i])) {
             throw new TypeError(`matrix[${i}] should be an array`);
         }
+
+        if (matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
     }
 
     return matrix[0].map(function (value, i) {
@@ -129,7 +133,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError('first argument and radix should be numbers');
     }
 
