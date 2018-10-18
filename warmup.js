@@ -130,7 +130,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return n.toString(targetNs);
+    return n.toString(targetNs).toLowerCase();
 }
 
 /**
@@ -138,7 +138,12 @@ function numberSystemProblem(n, targetNs) {
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
+
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     let str = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
     let phoneMatch = phoneNumber.match(str);
     if (phoneMatch) {
