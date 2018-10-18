@@ -95,11 +95,9 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
-    try {
-        return logic(matrix);
-    } catch (e) {
-        throw new TypeError();
-    }
+
+    return logic(matrix);
+
     function logic() {
         let m = matrix.length;
         let n = matrix[0].length;
