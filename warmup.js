@@ -84,15 +84,16 @@ function fibonacciProblem(n) {
     if (n <= 0) {
         throw new RangeError('n should be a positive number');
     }
-    var prev = 0;
-    var x = 1;
-    for (var i = 0; i < n; i++) {
-        var y = prev;
-        prev = x;
-        x += y;
+
+    let f = 1;
+    let s = 1;
+    for (let i = 3; i <= n; i++) {
+        const prev = f + s;
+        f = s;
+        s = prev;
     }
 
-    return x;
+    return s;
 }
 
 /**
