@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год - целое положительное число');
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.floor(year / 100) + (year % 100 !== 0 ? 1 : 0);
 }
 
 /**
@@ -48,11 +48,11 @@ function colorsProblem(hexColor) {
         throw new RangeError('Цвета выходят за пределы допустимых');
     }
 
-    return '(' + hexColor
-        .substr(1)
-        .match(/..?/g)
-        .map(s => parseInt(s, 16))
-        .join(', ') + ')';
+    const red = parseInt(hexColor.substr(1, 2), 16);
+    const green = parseInt(hexColor.substr(3, 2), 16);
+    const blue = parseInt(hexColor.substr(5, 2), 16);
+
+    return `(${red}, ${green}, ${blue})`;
 }
 
 /**
@@ -71,7 +71,9 @@ function fibonacciProblem(n) {
     }
     const fibNumbs = [0, 1];
     for (let i = 2; i <= n; ++i) {
-        fibNumbs.push(fibNumbs[i - 1] + fibNumbs[i - 2]);
+        let temp = fibNumbs[1];
+        fibNumbs[1] = fibNumbs[1] + fibNumbs[0];
+        fibNumbs[0] = temp;
     }
 
     return fibNumbs.pop();
@@ -103,7 +105,7 @@ function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw new TypeError('На вход подаются числа');
     }
-    if (targetNs < 2 || targetNs > 36) {
+    if (targetNs < 2 || targetNs > 36 || !Number.isInteger(targetNs)) {
         throw new RangeError('Очнование системы счисления - число от 2 до 36');
     }
 
@@ -133,8 +135,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('в качестве аргумента передаётся строка');
     }
+    let match = text.match(/(:-\))|(\(-:)/g);
 
-    return text.match(/(:-\))|(\(-:)/g).length;
+    return match !== null ? match.length : 0;
 }
 
 /**
