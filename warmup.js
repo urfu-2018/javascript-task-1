@@ -90,8 +90,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every((mass)=>Array.isArray(mass)) ||
-    !matrix.some((mass)=>mass.length === matrix[0].length)) {
+    let len = matrix[0].length;
+    if (!matrix.length || !Array.isArray(matrix) ||
+    !matrix.some((mass)=>Array.isArray(mass) && mass.length === len)) {
         throw new TypeError();
     }
     let res = [];
