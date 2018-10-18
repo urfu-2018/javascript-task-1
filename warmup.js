@@ -30,6 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
     let startYear = year % 100;
+
     if (startYear === 0) {
         return Math.trunc(year / 100);
     }
@@ -99,11 +100,6 @@ function matrixProblem(matrix) {
     if (!matrix || typeof matrix[0].length === 'undefined') {
         throw new TypeError();
     }
-    for (let i = 0; i < matrix.length; i++) {
-        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
-            throw new TypeError();
-        }
-    }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
@@ -165,9 +161,13 @@ function smilesProblem(text) {
     }
 
     let pattern = /:-\)|\(-:/g;
-    let count = text.match(pattern);
+    let smileMatch = text.match(pattern);
 
-    return count.length;
+    if (smileMatch === null) {
+        return 0;
+    }
+
+    return smileMatch.length;
 }
 
 /**
