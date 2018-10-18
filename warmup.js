@@ -149,7 +149,7 @@ function smilesProblem(text) {
         throw new TypeError ('test argument is not a string');
     }
 
-    return text.match(/(:-\))|(\(-:)/g).length;
+    return (text.match(/(:-\))|(\(-:)/g) || []).length;
 }
 
 /**
