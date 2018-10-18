@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
+    if (hexColor.match(!/^#(([0-9]|[A-F]|[a-f]){6})$/) === null) {
         throw new RangeError();
     }
 
@@ -126,13 +126,11 @@ function numberSystemProblem(n, targetNs) {
     // Ваше решение
     if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError ();
-    }
-    if (targetNs < 2 || targetNs > 36) {
+    } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
+    } else {
+        return n.toString(targetNs);
     }
-
-    return n.toString(targetNs);
-
 
 }
 
