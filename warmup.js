@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,18 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    if (year % 100 === 0) {
+        return year / 100;
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -30,7 +45,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string' || hexColor.length !== 7) {
+        throw new TypeError();
+    }
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    }
+    let fromHex = (x) => Number.parseInt(x, 16);
+    let r = fromHex(hexColor.slice(1, 3));
+    let g = fromHex(hexColor.slice(3, 5));
+    let b = fromHex(hexColor.slice(5, 7));
+
+    return `(${r}, ${g}, ${b})`;
 }
 
 /**
@@ -41,7 +67,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number' || isNaN(n)) {
+        throw new TypeError();
+    }
+    if (n < 1 || !Number.isInteger(n)) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    while (n > 2) {
+        let t = b;
+        b = a + b;
+        a = t;
+        --n;
+    }
+
+    return b;
 }
 
 /**
@@ -51,7 +92,39 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
+    }
+
+    let m = matrix.length;
+    let n = matrix[0].length;
+
+    for (let i = 0; i < m; ++i) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== n) {
+            throw new TypeError();
+        }
+    }
+
+    return logic(matrix);
+
+    function logic() {
+        if (n === 0) {
+            throw new TypeError();
+        }
+
+        let arr = new Array(n);
+
+        for (let i = 0; i < n; ++i) {
+            arr[i] = new Array(m);
+        }
+        for (let i = 0; i < m; ++i) {
+            for (let j = 0; j < n; ++j) {
+                arr[j][i] = matrix[i][j];
+            }
+        }
+
+        return arr;
+    }
 }
 
 /**
@@ -63,7 +136,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +152,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -82,7 +166,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError ();
+    }
+
+    let m = text.match(/(\(-:|:-\))/g);
+
+    return m === null ? 0 : m.length;
 }
 
 /**
@@ -92,7 +182,32 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let byRows = checkRows(field);
+    let byCols = checkRows(matrixProblem(field));
+    if (typeof byRows !== 'undefined' || typeof byCols !== 'undefined') {
+        return byRows ? byRows : byCols;
+    }
+
+    return checkDiagonals(field);
+
+    function checkRows(f) {
+        for (let i = 0; i < 3; ++i) {
+            if (f[i].reduce((x, y) => x && (y === f[i][0]), true)) {
+                return f[i][0];
+            }
+        }
+
+        return undefined;
+    }
+
+    function checkDiagonals(x) {
+        if ((x[0][0] === x[1][1] && x[1][1] === x[2][2]) ||
+            (x[2][0] === x[1][1] && x[1][1] === x[0][2])) {
+            return x[1][1];
+        }
+
+        return 'draw';
+    }
 }
 
 module.exports = {
