@@ -44,12 +44,15 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
+    const see = /^([A-Fa-f\d]{6})$/;
+    if (!see.test(hexColor)) {
         throw new RangeError();
     }
+    if (hexColor[0] === '#') {
+        hexColor = hexColor.slice(1);
+    }
 
-    let str = hexColor.substring(1);
-    let newstr = str.match(/.{2}/g);
+    let newstr = hexColor.match(/.{2}/g);
     const r = parseInt(newstr[0], 16);
     const g = parseInt(newstr[1], 16);
     const b = parseInt(newstr[2], 16);
@@ -73,14 +76,10 @@ function fibonacciProblem(n) {
     if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
-    if (n <= 2) {
-        return 1;
-    }
     let firstnum = 1;
     let secnum = 1;
-    let currentnum = 0;
     for (let i = 2; i < n; i++) {
-        currentnum = firstnum + secnum;
+        let currentnum = firstnum + secnum;
         firstnum = secnum;
         secnum = currentnum;
     }
