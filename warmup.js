@@ -31,7 +31,7 @@ function symbolRange(from, length) {
 }
 
 function isNumber(number) {
-    return !isNaN(number) && number < Infinity;
+    return !isNaN(number) && isFinite(number);
 }
 
 /**
