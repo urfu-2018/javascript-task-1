@@ -25,7 +25,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if ((typeof a !== 'number') || (typeof b !== 'number')) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
 
@@ -60,7 +60,7 @@ function colorsProblem(hexColor) {
         color.push(parseInt(hexColor.substring(i, i + 2), 16));
     }
 
-    return color[1] + ',' + color[2] + ',' + color[3];
+    return ',' + color[1] + ',' + color[2] + ',' + color[3] + ',';
 }
 
 /**
