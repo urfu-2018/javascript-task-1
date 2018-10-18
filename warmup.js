@@ -8,8 +8,13 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    throwErrorIfNotInteger(a);
-    throwErrorIfNotInteger(b);
+    if (!Number.isInteger(a)) {
+        throw new TypeError(`A must be an integer`);
+    }
+    if (!Number.isInteger(b)) {
+        throw new TypeError(`B must be an integer`);
+    }
+
     return a + b;
 }
 
@@ -22,11 +27,12 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!isNumber(year)) {
-        throw new TypeError('Year must be an integer');
+        throw new TypeError('Year must be number');
     }
     if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError('Year must not be negative number');
     }
+
     return Math.ceil(year / 100);
 }
 
@@ -78,6 +84,7 @@ function fibonacciProblem(n) {
         current += previous;
         previous = tmp;
     }
+
     return current;
 }
 
@@ -132,6 +139,7 @@ function phoneProblem(phoneNumber) {
     }
 
     const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
+    
     return phoneRegex.test(phoneNumber);
 }
 
@@ -179,6 +187,14 @@ function ticTacToeProblem(field) {
     }
 
     return 'draw';
+}
+
+function isString(argument) {
+    return typeof argument === 'string';
+}
+
+function isNumber(argument) {
+    return typeof argument === 'number';
 }
 
 module.exports = {
