@@ -26,10 +26,10 @@ function abProblem(a, b) {
  */
 
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof (year) !== 'number') {
         throw new TypeError();
     }
-    if (year > 0) {
+    if (year > 0 && Number.isInteger(year)) {
         let result = Math.floor(year / 100);
         if (year % 100 === 0) {
             return result;
