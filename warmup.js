@@ -63,6 +63,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
  function colorsProblem(hexColor) {
+    hexColor.toLocaleLowerCase();
     if(!isString(hexColor)) {
         throw new TypeError('Color in Format HEX don\'t gives as a string');
     }
@@ -183,7 +184,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    
+    if(phoneNumber.length !== 15) {
+        return false;
+    }
+    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
 }
 
 /**
