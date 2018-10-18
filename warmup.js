@@ -1,24 +1,5 @@
 'use strict';
 
-function checkThat(object) {
-    function checker(predicate) {
-        if (!predicate(object)) {
-            throw new TypeError();
-        }
-    }
-
-    return {
-        hasType: representativeSupplier =>
-            checker(something => typeof something === typeof representativeSupplier()),
-
-        satisfies: checker
-    };
-}
-
-function realNumber() {
-    return 0;
-}
-
 function range(end) {
     return Array.from(Array(end)
         .keys());
@@ -30,8 +11,24 @@ function symbolRange(from, length) {
         .map(characterCode => String.fromCharCode(characterCode));
 }
 
-function isNumber(number) {
-    return !isNaN(number) && isFinite(number);
+function checkThat(object, predicate, ErrorTypeToThrow = TypeError) {
+    if (!predicate(object)) {
+        throw new ErrorTypeToThrow();
+    }
+}
+
+function isNumber(object) {
+    return typeof object === typeof 0 &&
+        !Number.isNaN(object) &&
+        Number.isFinite(object);
+}
+
+function isInteger(number) {
+    return isNumber(number) && Number.isSafeInteger(number);
+}
+
+function isString(object) {
+    return object.toString() === object;
 }
 
 /**
@@ -42,14 +39,8 @@ function isNumber(number) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    checkThat(a)
-        .hasType(realNumber);
-    checkThat(a)
-        .satisfies(isNumber);
-    checkThat(b)
-        .hasType(realNumber);
-    checkThat(b)
-        .satisfies(isNumber);
+    checkThat(a, isInteger);
+    checkThat(b, isInteger);
 
     return b + a;
 }
@@ -62,13 +53,8 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    checkThat(year)
-        .hasType(realNumber);
-    checkThat(year)
-        .satisfies(isNumber);
-    if (year < 0) {
-        throw new RangeError();
-    }
+    checkThat(year, isInteger);
+    checkThat(year, y => y >= 0, RangeError);
 
     return 1 + Math.floor(year / 100);
 }
@@ -81,8 +67,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    checkThat(hexColor)
-        .hasType(String);
+    checkThat(hexColor, isString);
     const firstSymbol = '#';
     const colorLength = firstSymbol.length + 6;
     if (hexColor.charAt(0) !== firstSymbol || hexColor.length !== colorLength) {
@@ -106,13 +91,9 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    checkThat(n)
-        .hasType(realNumber);
-    checkThat(n)
-        .satisfies(isNumber);
-    if (n < 1 || Math.trunc(n) !== n) {
-        throw new RangeError();
-    }
+    checkThat(n, isNumber);
+    checkThat(n, isInteger, RangeError);
+    checkThat(n, number => number > 0, RangeError);
 
     const fibonacciIndex = n - 1;
     const base = [1, 1];
@@ -139,15 +120,13 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    checkThat(matrix)
-        .satisfies(Array.isArray);
+    checkThat(matrix, Array.isArray);
 
     const answer = [];
 
     function writeRowToColumn(rowNumber) {
         const row = matrix[rowNumber];
-        checkThat(row)
-            .satisfies(Array.isArray);
+        checkThat(row, Array.isArray);
         for (let columnNumber = 0; columnNumber < row.length; columnNumber++) {
             if (rowNumber === 0) {
                 answer[columnNumber] = [];
@@ -172,18 +151,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    checkThat(n)
-        .hasType(realNumber);
-    checkThat(n)
-        .satisfies(isNumber);
-    checkThat(targetNs)
-        .hasType(realNumber);
-    checkThat(targetNs)
-        .satisfies(isNumber);
-
-    if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
-    }
+    checkThat(n, isNumber);
+    checkThat(targetNs, isNumber);
+    checkThat(targetNs, isInteger, RangeError);
+    checkThat(targetNs, ns => ns >= 2 && ns <= 36, RangeError);
 
     return n.toString(targetNs);
 }
@@ -194,8 +165,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    checkThat(phoneNumber)
-        .hasType(String);
+    checkThat(phoneNumber, isString);
     const eightIndexes = [0, 2];
     const zeroIndexes = [3, 4];
     const dashIndexes = [1, 5, 9, 12];
@@ -225,8 +195,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    checkThat(text)
-        .hasType(String);
+    checkThat(text, isString);
 
     const smile = '(-:';
     const reversedSmile = ':-)';
