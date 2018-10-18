@@ -31,7 +31,9 @@ function centuryByYearProblem(year) {
         throw new RangeError('year should be a positive number');
     }
 
-    return Math.floor(year / 100) + 1;
+    return year % 100 === 0
+        ? year / 100
+        : Math.floor(year / 100) + 1;
 }
 
 /**
@@ -129,10 +131,6 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError('first argument and radix should be numbers');
-    }
-
-    if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('number system should be in a range from 2 to 36');
     }
 
     return n.toString(targetNs);
