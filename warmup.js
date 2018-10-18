@@ -95,22 +95,22 @@ function fibonacciProblem(n) {
 // Ваше решение
 function matrixProblem(a) {
 
-    //let w = a.length || 0;
-   // let h = a[0] instanceof Array ? a[0].length : 0;
+    // let w = a.length || 0;
+    // let h = a[0] instanceof Array ? a[0].length : 0;
     let t = [];
 
     if (!Array.isArray(a) || !Array.isArray(a[0])) {
         throw new TypeError();
     }
     for (let i = 0; i < a[0].length; i++) {
-         let s = [];
+        let s = [];
         for (let j = 0; j < a.length; j++) {
             s[j] = a[j][i];
         }
         t.push(s);
     }
-    if (!a[0].length){
-        t [0] = [];
+    if (!a[0].length) {
+        t[0] = [];
     }
 
     return t;
