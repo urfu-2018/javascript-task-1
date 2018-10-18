@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    }
+
+    throw new TypeError('в аргументы переданы не числа');
 }
 
 /**
@@ -19,7 +23,13 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    } else if (year < 0) {
+        throw new RangeError();
+    }
+
+    return (parseInt(year / 100) + 1);
 }
 
 /**
@@ -30,7 +40,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    } else if (!/^#[A-F]{6}$/i.test(hexColor)) {
+        throw new RangeError();
+    }
+    hexColor = hexColor.slice(1).match(/.{2}/g);
+    hexColor[0] = parseInt(hexColor[0], 16);
+    hexColor[1] = parseInt(hexColor[1], 16);
+    hexColor[2] = parseInt(hexColor[2], 16);
+
+    return ('(' + hexColor[0] + ', ' + hexColor[1] + ', ' + hexColor[2] + ')');
 }
 
 /**
@@ -41,7 +61,20 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    } else if (n % 1 !== 0 || n <= 0) {
+        throw new RangeError();
+    } else if (n > 2) {
+        let fibonacciArray = [1, 1];
+        for (let i = 2; i < n; i++) {
+            fibonacciArray.push(fibonacciArray[i - 2] + fibonacciArray[i - 1]);
+        }
+
+        return (fibonacciArray[n - 1]);
+    }
+
+    return (1);
 }
 
 /**
@@ -51,7 +84,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (matrix[0].length <= 1) {
+        throw new TypeError();
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        for (var j = 0; j < i; j++) {
+            var changingCell = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = changingCell;
+        }
+    }
+
+    return matrix;
 }
 
 /**
@@ -63,7 +107,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' && targetNs !== 'number') {
+        throw new TypeError('введите числа');
+    } else if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError('второе чсло должно быть от 2 до 36');
+    }
+
+    return (n.toString(targetNs));
 }
 
 /**
@@ -72,7 +122,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('введите номер корректно');
+    }
+
+    return (/^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber));
 }
 
 /**
@@ -82,7 +136,15 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    let smileArray = text.match(/\(-:|:-\)/g);
+    if (smileArray === null) {
+        return (0);
+    }
+
+    return (smileArray.length);
 }
 
 /**
@@ -92,7 +154,37 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    for (let i = 0; i < field.length; i++) {
+        let lineCheck = [];
+        let columnCheck = [];
+        getStripWinner(field, lineCheck, columnCheck, i);
+        if (lineCheck.length === 3 || columnCheck.length === 3) {
+            return ('x');
+        } else if (lineCheck.length === 0 || columnCheck.length === 0) {
+            return ('o');
+        }
+    }
+    getCrossWinner(field);
+
+    return ('draw');
+}
+
+function getStripWinner(field, lineCheck, columnCheck, i) {
+    for (var j = 0; j < field[i].length; j++) {
+        if (field[i][j].match(/x/g) !== null) {
+            lineCheck.push(field[i][j]);
+        }
+        if (field[j][i].match(/x/g) !== null) {
+            columnCheck.push(field[j][i]);
+        }
+    }
+}
+
+function getCrossWinner(field) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
+        field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
+        return (field[1][1]);
+    }
 }
 
 module.exports = {
