@@ -74,13 +74,12 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || !(n > 0)) {
         throw new RangeError();
     }
-    n++;
     let fib = [1, 1];
-    for (let i = 0; i < n - 3; i++) {
+    for (let i = 0; i < n - 2; i++) {
         fib.push(fib[i] + fib[i + 1]);
     }
 
-    return fib[n - 2];
+    return fib[n - 1];
 }
 
 /**
