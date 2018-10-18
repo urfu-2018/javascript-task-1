@@ -31,12 +31,12 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (typeof year !== 'number' && year < 0) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
 
-    if (year === 0) {
-        return 0;
+    if (year < 0) {
+        throw new RangeError();
     }
 
     if (year % 100 !== 0) {
@@ -203,12 +203,18 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     const matchResult = text.match(/(:-\))/g);
+    const matchResult2 = text.match(/(\(-:)/g);
+    let result = 0;
 
     if (matchResult) {
-        return matchResult.length;
+        result += matchResult.length;
     }
 
-    return 0;
+    if (matchResult2) {
+        result += matchResult2.length;
+    }
+
+    return result;
 }
 
 /**
