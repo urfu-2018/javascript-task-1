@@ -42,17 +42,23 @@ function fibonacciProblem(n) {
     if (Number.isInteger(n) === false) {
         throw new TypeError('n-это целое число');
     }
-    if (n < 0) {
-        throw new RangeError('n-положительное число');
+    if (n <= 0){
+    throw new RangeError('только положительное число')
     }
-    let sums;
-    if (n >= 2) {
-        sums = fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
-    } else {
-        sums = n;
+    if (n <= 2 ){
+        return n
     }
+        let i;
+        let a = 1;
+        let b = 1;
+        let c;
+        for (i = 2; i < n; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
 
-    return sums;
+        return b;
 }
 
 function matrixProblem(matrix) {
@@ -96,11 +102,10 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('Номер строкой');
     }
-    let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
+    let pattern = /8-800-\d{3}-\d{2}-\d{2}$/;
 
     return pattern.test(phoneNumber);
 }
-
 
 function smilesProblem(text) {
     if (typeof text !== 'string') {
@@ -108,7 +113,7 @@ function smilesProblem(text) {
     }
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
-        throw new TypeError('Смайликов нe найдено');
+        return 0
     }
 
     return result.length;
