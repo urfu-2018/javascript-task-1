@@ -48,20 +48,15 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.length !== 7 || hexColor[0] !== '#') {
+    if (/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
-    try {
-        let fromHex = (x) => Number.parseInt(x, 16);
-        let r = fromHex(hexColor.slice(1, 3));
-        let g = fromHex(hexColor.slice(3, 5));
-        let b = fromHex(hexColor.slice(5, 7));
+    let fromHex = (x) => Number.parseInt(x, 16);
+    let r = fromHex(hexColor.slice(1, 3));
+    let g = fromHex(hexColor.slice(3, 5));
+    let b = fromHex(hexColor.slice(5, 7));
 
-        return `(${r}, ${g}, ${b})`;
-    } catch (e) {
-        throw new RangeError();
-    }
-}
+    return `(${r}, ${g}, ${b})`;
 
 /**
  * Находит n-ое число Фибоначчи
