@@ -174,6 +174,27 @@ function smilesProblem(text) {
     return rightSmile + leftSmile;
 }
 
+function checkRows(field, sign) {
+    for (let i = 0; i < 3; i++) {
+        //console.log(field[i][0] === field[i][1] === field[i][2] === sign);
+        if ((field[i][0] === field[i][1] && field[i][1] === field[i][2] && field[i][2] === sign) ||
+            (field[0][i] === field[1][i] && field[1][i] === field[2][i] && field[2][i] === sign)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function checkDiagonals(field, sign) {
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2] && field[2][2] === sign) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0] && field[2][0] === sign)) {
+        return true;
+    }
+
+    return false;
+}
+
 /*
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
@@ -181,29 +202,16 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const victory = [
-        [[0, 0], [1, 1], [2, 2]],
-        [[0, 2], [1, 1], [2, 0]],
-        [[0, 0], [0, 1], [0, 2]],
-        [[1, 0], [1, 1], [1, 2]],
-        [[2, 0], [2, 1], [2, 2]],
-        [[0, 0], [1, 0], [2, 0]],
-        [[0, 1], [1, 1], [2, 1]],
-        [[0, 2], [1, 2], [2, 2]]
-    ];
-    for (let i = 0; i < victory.length; i++) {
-        const [[x1, y1], [x2, y2], [x3, y3]] = victory[i];
-        const count = field[x1][y1] + field[x2][y2] + field[x3][y3];
-        if (count === 'xxx') {
-            return 'x';
-        } else if (count === 'ooo') {
-            return 'o';
-        }
+    if (checkRows(field, 'x') || checkDiagonals(field, 'x')) {
+        return 'x';
     }
-
-    return 'draw';
+    else if (checkRows(field, 'o') || checkDiagonals(field, 'o')) {
+        return 'o';
+    }
+    else {
+        return 'draw';
+    }
 }
-
 
 module.exports = {
     abProblem,
