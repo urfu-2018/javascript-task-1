@@ -122,10 +122,6 @@ function matrixProblem(matrix) {
     let matrixResult = [];
 
     for (let x = 0; x < matrix[0].length; x++) {
-        if (!Array.isArray(matrix[x])) {
-            throw new TypeError();
-        }
-
         let row = [];
         for (let y = 0; y < matrix.length; y++) {
             row.push(matrix[y][x]);

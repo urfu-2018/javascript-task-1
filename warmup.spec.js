@@ -80,6 +80,20 @@ describe('Matrix problem', () => {
                 [3, 6, 9]
             ]);
     });
+
+    it('Должна транспонировать квадратную матрицу 3x3', () => {
+        assert.deepStrictEqual(
+            matrixProblem([
+                [1, 2, 3, 4],
+                [4, 5, 6, 7],
+                [7, 8, 9, 10]
+            ]), [
+                [1, 4, 7],
+                [2, 5, 8],
+                [3, 6, 9],
+                [4, 7, 10]
+            ]);
+    });
 });
 
 describe('Number System Problem', () => {
