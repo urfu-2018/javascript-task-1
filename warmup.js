@@ -84,20 +84,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!matrix || matrix.constructor !== Array || matrix[0].constructor !== Array) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
         throw new TypeError('не двумерный массив');
     }
-    const create = (amount) => new Array(amount).fill(0);
-    const createMatrix = (rows, cols) => create(cols)
-        .map(() => create(rows));
-    const newMatrix = createMatrix(matrix[0].length, matrix.length);
-    for (let i = 0; i < matrix.length; ++i) {
-        for (let j = 0; j < matrix[i].length; ++j) {
-            newMatrix[j][i] = matrix[i][j];
-        }
-    }
 
-    return newMatrix;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
@@ -129,7 +120,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('Номер телефона строка');
     }
 
-    return RegExp('8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}').test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -142,15 +133,8 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('в качестве аргумента передаётся строка');
     }
-    let cnt = 0;
-    for (let i = 2; i < text.length; ++i) {
-        if (text[i - 2] === '(' && text[i - 1] === '-' && text[i] === ':' ||
-            text[i - 2] === ':' && text[i - 1] === '-' && text[i] === ')') {
-            ++cnt;
-        }
-    }
 
-    return cnt;
+    return text.match(/(:-\))|(\(-:)/g).length;
 }
 
 /**
