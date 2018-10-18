@@ -98,12 +98,12 @@ function fibonacciProblem(n) {
 		}
 		else
 		{
-			new throw RangeError();
+			throw new RangeError();
 		}
 	}
 	else
 	{
-		new throw TypeError();
+		throw new TypeError();
 	}
 }
 
