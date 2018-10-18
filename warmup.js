@@ -74,8 +74,8 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) === 'number') {
         if (n >= 0) {
-            b = 1;
-            for (i = 3, a = 1; i <= n; i++) {
+            var b = 1;
+            for (let i = 3, a = 1; i <= n; i++) {
                 temp = b;
                 b += a;
                 a = temp;
