@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError('"a" or "b" is not a number');
+        throw new TypeError();
     }
 
     return a + b;
@@ -24,11 +24,11 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw new TypeError('year should be an integer number');
+        throw new TypeError();
     }
 
     if (year < 0) {
-        throw new RangeError('year should be a positive number');
+        throw new RangeError();
     }
 
     return Math.floor(year / 100) + 1;
