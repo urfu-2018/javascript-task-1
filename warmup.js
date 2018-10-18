@@ -176,7 +176,6 @@ function ticTacToeProblem(field) {
 
             return field[0][i];
         }
-        
     }
 
     return 'draw';
