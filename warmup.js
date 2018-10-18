@@ -57,6 +57,7 @@ function colorsProblem(hexColor) {
     let b = fromHex(hexColor.slice(5, 7));
 
     return `(${r}, ${g}, ${b})`;
+}
 
 /**
  * Находит n-ое число Фибоначчи
