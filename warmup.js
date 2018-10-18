@@ -95,16 +95,16 @@ function fibonacciProblem(n) {
 // Ваше решение
 function matrixProblem(a) {
 
-    let w = a.length || 0;
-    let h = a[0] instanceof Array ? a[0].length : 0;
+    //let w = a.length || 0;
+   // let h = a[0] instanceof Array ? a[0].length : 0;
     let t = [];
 
     if (!Array.isArray(a) || !Array.isArray(a[0])) {
         throw new TypeError();
     }
-    for (let i = 0; i < h; i++) {
+    for (let i = 0; i < a[0].length; i++) {
         t[i] = [];
-        for (let j = 0; j < w; j++) {
+        for (let j = 0; j < a.length; j++) {
             t[i][j] = a[j][i];
         }
     }
