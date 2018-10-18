@@ -57,7 +57,7 @@ function colorsProblem(hexColor) {
 		if (hex.test(hexColor))
 		{
 			rgbColor = "(";
-			for (let i = 1; i<=6; i+=2)
+			for (let i = 1; i <= 6; i+=2)
 			{
 				rgbColor += (Number.parseInt(hexColor[i]) * 16 + Number.parseInt(hexColor[i + 1])) + (i < 5 ? ", " : ""); 
 			}
