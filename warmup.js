@@ -99,7 +99,7 @@ function matrixProblem(a) {
     let h = a[0] instanceof Array ? a[0].length : 0;
     let t = [];
 
-    if (!Array.isArray(a) || a.length !== h) {
+    if (!Array.isArray(a)) {
         throw new TypeError();
     }
     for (let i = 0; i < h; i++) {
