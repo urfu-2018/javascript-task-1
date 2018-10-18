@@ -46,12 +46,12 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string' || hexColor.length !== 7 || hexColor[0] !== '#') {
         throw new TypeError('Type Error');
     }
-    let r = parseInt(hexColor.substr(1, 2), 16);
-    let g = parseInt(hexColor.substr(3, 2), 16);
-    let b = parseInt(hexColor.substr(5, 2), 16);
-    if (((r < 0) || (r > 255)) || ((g < 0) || (g > 255)) || (b < 0) || (b > 255)) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError('Range Error');
     }
+    let r = parseInt(hexColor.slice(1, 3), 16);
+    let g = parseInt(hexColor.slice(3, 5), 16);
+    let b = parseInt(hexColor.slice(5), 16);
 
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
