@@ -168,9 +168,8 @@ function ticTacToeProblem(field) {
             return ('o');
         }
     }
-    getCrossWinner(field);
 
-    return ('draw');
+    return chekDraw(field);
 }
 
 function getStripWinner(field, lineCheck, columnCheck, i) {
@@ -189,6 +188,17 @@ function getCrossWinner(field) {
         field[2][0] === field[1][1] && field[1][1] === field[0][2]) {
         return (field[1][1]);
     }
+
+    return;
+}
+
+function chekDraw(field) {
+    if (getCrossWinner(field) === undefined) {
+
+        return ('draw');
+    }
+
+    return getCrossWinner(field);
 }
 
 module.exports = {
