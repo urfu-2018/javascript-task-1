@@ -96,7 +96,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
     try {
@@ -184,24 +184,17 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let inv = matrixProblem(field);
     let byRows = checkRows(field);
     let byCols = checkRows(matrixProblem(field));
     if (typeof byRows !== 'undefined' || typeof byCols !== 'undefined') {
         return byRows;
     }
 
-    for (let i = 0; i < 3; ++i) {
-        if (inv[i].every(x => x === 'o') || inv[i].every(x => x === 'x')) {
-            return inv[i][0];
-        }
-    }
-
     return checkDiagonals(field);
 
     function checkRows(f) {
         for (let i = 0; i < 3; ++i) {
-            if (f[i].every(x => x === 'o') || f[i].every(x => x === 'x')) {
+            if (f[i].reduce(true, (x, y) => x && (y === f[i][0]))) {
                 return f[i][0];
             }
         }
