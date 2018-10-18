@@ -154,7 +154,7 @@ function checkHorizontal(field) {
 }
 
 function checkDiagonal(field) {
-    return field[0][0] === field[1][1] && field[2][2] ? field[0][0] : false;
+    return field[0][0] === field[1][1] && field[0][0] === field[2][2] ? field[0][0] : false;
 }
 
 /**
