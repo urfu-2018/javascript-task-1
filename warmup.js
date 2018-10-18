@@ -123,6 +123,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
     phoneNumber = phoneNumber.replace(/-/g, '');
 
     return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' &&
