@@ -11,8 +11,13 @@ function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw TypeError;
     }
+<<<<<<< HEAD
 
     return a + b;
+=======
+    
+        return a + b;
+>>>>>>> 5244e84bd87dec5ff5fb8a3cd11758d92225b29c
 }
 
 /**
