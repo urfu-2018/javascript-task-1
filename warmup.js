@@ -42,9 +42,6 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    var r = parseInt(hexColor.slice(1, 3), 16);
-    var g = parseInt(hexColor.slice(3, 5), 16);
-    var b = parseInt(hexColor.slice(5, 7), 16);
     if (typeof hexColor !== 'string') {
         throw new TypeError('HEX color should be a string');
     }
@@ -53,7 +50,10 @@ function colorsProblem(hexColor) {
         throw new RangeError('HEX color must represented as #FFFFFF');
     }
 
-    return '(' + r + ', '+ g + ', '+ b + ')';
+    return `(${
+        parseInt(hexColor.slice(1, 3), 16)}, ${
+        parseInt(hexColor.slice(3, 5), 16)}, ${
+        parseInt(hexColor.slice(5, 7), 16)})`;
 }
 
 /**
@@ -65,16 +65,20 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
-        throw new TypeError ('n should be an integer number');
+        throw new TypeError('n should be an integer number');
     }
     if (n < 0) {
-        throw new RangeError ('n should be a positive number');
+        throw new RangeError('n should be a positive number');
     }
-    if (n < 2) {
-        return n;
+    var prev = 0;
+    var x = 1;
+    for (var i = 0; i < n; i++) {
+        var y = prev;
+        prev = x;
+        x += y;
     }
 
-    return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
+    return x;
 }
 
 /**
@@ -84,7 +88,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('matrix should be an array');
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
+            throw new TypeError(`matrix[${i}] should be an array`);
+        }
+    }
+
+    return matrix[0].map(function (value, i) {
+        return matrix.map(function (value2, k) {
+            return matrix[k][i];
+
+        });
+    });
 }
 
 /**
@@ -96,16 +115,31 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError('first argument and radix should be numbers');
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
+
+ }
+
+ /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('phone number should be a string');
+    }
+    if (phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/)) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -115,7 +149,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError ('test argument is not a string');
+    }
+
+    return text.match(/(:-\))|(\(-:)/g).length;
 }
 
 /**
@@ -125,7 +163,35 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const transp = matrixProblem(field);
+
+    var mainDiag = [];
+    var minorDiag = [];
+    const wins = [mainDiag, minorDiag];
+    for (var i = 0; i < 3; i++) {
+        mainDiag.push(field[i][i]);
+        minorDiag.push(field[i][2 - i]);
+        wins.push(field[i], transp[i]);
+    }
+
+    var xWon = false;
+    var oWon = false;
+
+    wins.forEach(function (win) {
+        if (win.indexOf('o') === -1) {
+            xWon = true;
+        }
+
+        if (win.indexOf('x') === -1) {
+            oWon = true;
+        }
+    });
+
+    if (xWon === oWon) {
+        return 'draw';
+    }
+
+    return xWon ? 'x' : 'o';
 }
 
 module.exports = {
