@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год - целое положительное число');
     }
 
-    return Math.floor(year / 100) + (year % 100 !== 0 ? 1 : 0);
+    return Math.floor(year / 100) + 1;
 }
 
 /**
