@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
     if (typeof year < 0) {
@@ -123,7 +123,7 @@ function matrixProblem(a) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError ();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
