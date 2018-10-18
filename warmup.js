@@ -72,11 +72,11 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw TypeError;
     }
-    if (!Number.isInteger(n) || !(n >= 0)) {
+    if (!Number.isInteger(n) || !(n - 1 > 0)) {
         throw RangeError;
     }
     let fib = [1, 1];
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < n - 3; i++) {
         fib.push(fib[i] + fib[i + 1]);
     }
 
