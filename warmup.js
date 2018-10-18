@@ -9,11 +9,11 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-    if (!(typeof a === 'number') && !(typeof b === 'number')) {
+    if ((typeof a !== 'number') || (typeof b !== 'number')) {
         throw new TypeError();
     }
 
-    return Number.parseInt(a) + Number.parseInt(b);
+    return a + b;
 }
 
 /**
@@ -72,7 +72,7 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    if (!(typeof n === 'number')) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
 
@@ -127,10 +127,11 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (!(Number.isInteger(n) > 0) && !(Number.isInteger(targetNs) > 0)) {
+    if ((typeof (n) !== 'number') || (typeof (targetNs) !== 'number')) {
         throw new TypeError();
     }
-    if ((n > 36) || (n < 2) || (targetNs > 36) || (targetNs < 2)) {
+
+    if ((targetNs > 36) || (targetNs < 2)) {
         throw new RangeError();
     }
 
@@ -144,6 +145,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    if (typeof (phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
     var phone = /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/;
 
     return phone.test(phoneNumber);
