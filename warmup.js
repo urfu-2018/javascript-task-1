@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год - целое положительное число');
     }
 
-    return (year / 100) + 1;
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -44,13 +44,14 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет - hex строка');
     }
-    if (!RegExp.test('/#[0-9A-Fa-f]{6}/g')) {
+    if (!RegExp('#[0-9A-Fa-f]{6}').test(hexColor)) {
         throw new RangeError('Цвета выходят за пределы допустимых');
     }
 
     return '(' + hexColor
         .substr(1)
         .match(/..?/g)
+        .map(s => parseInt(s, 16))
         .join(', ') + ')';
 }
 
@@ -83,11 +84,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (typeof matrix.constructor !== Array || typeof matrix[0].constructor !== Array) {
+    if (!matrix || matrix.constructor !== Array || matrix[0].constructor !== Array) {
         throw new TypeError('не двумерный массив');
     }
     const create = (amount) => new Array(amount).fill(0);
-    const createMatrix = (rows, cols) => create(cols).map((o, i) => create(rows));
+    const createMatrix = (rows, cols) => create(cols)
+        .map(() => create(rows));
     const newMatrix = createMatrix(matrix[0].length, matrix.length);
     for (let i = 0; i < matrix.length; ++i) {
         for (let j = 0; j < matrix[i].length; ++j) {
@@ -114,7 +116,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError('Очнование системы счисления - число от 2 до 36');
     }
 
-    return toString(parseInt(toString(n), targetNs));
+    return n.toString(targetNs);
 }
 
 /**
@@ -127,7 +129,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError('Номер телефона строка');
     }
 
-    return RegExp.test(phoneNumber, '/8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/g');
+    return RegExp('8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}').test(phoneNumber);
 }
 
 /**
@@ -158,26 +160,20 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let o = false;
-    let x = false;
-    const firstDiag = threeSame({ 'x': 0, 'y': 0 }, { 'x': 1, 'y': 1 }, field);
-    const secondDiag = threeSame({ 'x': 0, 'y': 2 }, { 'x': 1, 'y': -1 }, field);
-    o = o || oneIs(firstDiag, secondDiag, 'o');
-    x = x || oneIs(firstDiag, secondDiag, 'x');
     for (let i = 0; i < 3; ++i) {
-        const a = threeSame({ 'x': i, 'y': 0 }, { 'x': 1, 'y': 0 }, field);
-        const b = threeSame({ 'x': 0, 'y': i }, { 'x': 0, 'y': 1 }, field);
-        o = o || oneIs(a, b, 'o');
-        x = x || oneIs(a, b, 'x');
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][1];
+        }
     }
-    if (o) {
-        return 'o';
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
     }
-    if (x) {
-        return 'x';
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
     }
-
-    return 'draw';
 }
 
 module.exports = {
@@ -191,25 +187,3 @@ module.exports = {
     smilesProblem,
     ticTacToeProblem
 };
-
-
-function threeSame(start, shift, field) {
-    const base = field[start.x][start.y];
-    let cnt = 0;
-    for (let i = 1; i < 3; ++i) {
-        start.x += shift.x;
-        start.y += shift.y;
-        if (base === field[start.x][start.y]) {
-            ++cnt;
-        }
-    }
-    if (cnt === 3) {
-        return base;
-    }
-
-    return null;
-}
-
-function oneIs(a, b, s) {
-    return a === s || b === s;
-}
