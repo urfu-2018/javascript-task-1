@@ -60,7 +60,7 @@ function colorsProblem(hexColor) {
         color.push(parseInt(hexColor.substring(i, i + 2), 16));
     }
 
-    return ',' + color[1] + ',' + color[2] + ',' + color[3] + ',';
+    return ',' + color[0] + ',' + color[1] + ',' + color[2] + ',';
 }
 
 /**
@@ -75,6 +75,7 @@ function fibonacciProblem(n) {
     if (!(typeof n === 'number')) {
         throw new TypeError();
     }
+
     if (!(Number.isInteger(n) > 0)) {
         throw new RangeError();
     }
