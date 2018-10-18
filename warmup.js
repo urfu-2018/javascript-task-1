@@ -8,6 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError('Arguments must be numbers');
+    }
+
     return Number(a) + Number(b);
 }
 
@@ -150,7 +154,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError('Argument must be string');
     }
-    let result = text.match(/\(-:|:-\)/).length;
+    let result = (text.match(/\(-:|:-\)/g) || []).length;
 
     return result;
 }
