@@ -68,13 +68,13 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    n++;
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || !(n - 1 > 0)) {
+    if (!Number.isInteger(n) || !(n > 0)) {
         throw new RangeError();
     }
+    n++;
     let fib = [1, 1];
     for (let i = 0; i < n - 3; i++) {
         fib.push(fib[i] + fib[i + 1]);
@@ -90,7 +90,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every((mass)=>Array.isArray(mass))) {
+    if (!Array.isArray(matrix) || !matrix.every((mass)=>Array.isArray(mass)) ||
+    !matrix.every((mass)=>mass.length === matrix[0].length)) {
         throw new TypeError();
     }
     let res = [];
@@ -131,6 +132,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
 
     return regex.test(phoneNumber);
