@@ -31,12 +31,8 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
 
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' && year < 0) {
         throw new TypeError();
-    }
-
-    if (year < 0) {
-        throw new RangeError();
     }
 
     if (year === 0) {
