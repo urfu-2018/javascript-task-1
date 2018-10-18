@@ -48,7 +48,7 @@ describe('Colors problem', function () {
         try {
             colorsProblem('#ABCDEZ');
         } catch (e) {
-            assert.ok();
+            assert.ok('s');
         }
     });
 });

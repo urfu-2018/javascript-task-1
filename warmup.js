@@ -64,7 +64,7 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
 
-    if (!/#[a-f|A-F|0-9]+/.test(hexColor)) {
+    if (!/#[a-f|A-F|0-9]{6}/.test(hexColor)) {
         throw new RangeError();
     }
 
@@ -168,6 +168,7 @@ function numberSystemProblem(n, targetNs) {
     if (n < 0) {
         result = '-';
     }
+
     while (n >= targetNs) {
         const ost = n % targetNs;
         result = result + abc[ost];
