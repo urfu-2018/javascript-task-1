@@ -157,6 +157,10 @@ function checkDiagonal(field) {
     return field[0][0] === field[1][1] && field[0][0] === field[2][2] ? field[0][0] : false;
 }
 
+function checkSecondDiagonal(field) {
+    return field[2][0] === field[1][1] && field[0][2] === field[1][1] ? field[0][0] : false;
+}
+
 /**
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
@@ -167,7 +171,7 @@ function ticTacToeProblem(field) {
     let transposedField = matrixProblem(field);
 
     return checkHorizontal(field) || checkHorizontal(transposedField) || checkDiagonal(field) ||
-        'draw';
+        checkSecondDiagonal(field) || 'draw';
 }
 
 module.exports = {
