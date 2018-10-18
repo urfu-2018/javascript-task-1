@@ -160,7 +160,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     if (text.match(/:-\)|\(-:/) !== null) {
-        return text.match(/:-\)|\(-:/).length;
+        return text.match(/(:-\))|(\(-:)/gi).length;
     }
 
     return 0;
