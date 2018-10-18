@@ -39,7 +39,13 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc(year / 100) + 1;
+    if (year % 100 !== 0) {
+        return Math.trunc(year / 100) + 1;
+    }
+
+    if (year % 100 === 0) {
+        return year / 100;
+    }
 }
 
 /**
