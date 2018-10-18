@@ -30,6 +30,10 @@ function symbolRange(from, length) {
         .map(characterCode => String.fromCharCode(characterCode));
 }
 
+function isNumber(number) {
+    return !isNaN(number);
+}
+
 /**
  * Складывает два целых числа
  * @param {Number} a Первое целое
@@ -40,8 +44,12 @@ function symbolRange(from, length) {
 function abProblem(a, b) {
     checkThat(a)
         .hasType(realNumber);
+    checkThat(a)
+        .satisfies(isNumber);
     checkThat(b)
         .hasType(realNumber);
+    checkThat(b)
+        .satisfies(isNumber);
 
     return b + a;
 }
