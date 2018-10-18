@@ -99,18 +99,13 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     let n = matrix[0].length;
-    if (matrix.some((row) => !(Array.isArray(row) && row.length === n))) {
+    if (matrix.every((row) => !(Array.isArray(row) && row.length === n))) {
         throw new TypeError();
     }
-    // for (let i = 0; i < m; i++) {
-    //     if (!Array.isArray(matrix[i])) {
-    //         throw new TypeError('Argument must be two-dimensional array');
-    //     }
-    // }
     let transponseMatrix = [];
-    for (let i = 0; i < m; i++) {
+    for (let i = 0; i < n; i++) {
         transponseMatrix.push([]);
-        for (let j = 0; j < n; j++) {
+        for (let j = 0; j < m; j++) {
             transponseMatrix[i].push(matrix[j][i]);
         }
     }
