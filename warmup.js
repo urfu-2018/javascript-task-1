@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
 
@@ -31,7 +31,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.trunc((year - 1) / 100) + 1;
 }
 
 /**
@@ -70,16 +70,15 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (n <= 0 || n !== Math.floor(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
 
     let current = 1;
-    let previous = 0;
-    let temp;
+    let previous = 1;
 
     while (n > 0) {
-        temp = current;
+        const temp = current;
         current = current + previous;
         previous = temp;
         n -= 1;
@@ -117,7 +116,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || Number.isInteger(targetNs)) {
         throw new TypeError();
     }
 
@@ -144,7 +143,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    return text.match(/(:-\))|(\(-:)/g).length;
+    return (text.match(/(:-\))|(\(-:)/g) || []).length;
 }
 
 /**
