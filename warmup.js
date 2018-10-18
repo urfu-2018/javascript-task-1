@@ -9,10 +9,10 @@
  */
 function abProblem(a, b) {
     if (!Number.isInteger(a)) {
-        throw new TypeError(`A must be an integer`);
+        throw new TypeError('A must be an integer');
     }
     if (!Number.isInteger(b)) {
-        throw new TypeError(`B must be an integer`);
+        throw new TypeError('B must be an integer');
     }
 
     return a + b;
@@ -55,7 +55,7 @@ function colorsProblem(hexColor) {
 
     let colorValues = [];
     for (let i = 1; i < hexColor.length; i += 2) {
-        colorValues.push(getColor(hexColor.substring(i, i + 2)));
+        colorValues.push(parseInt(hexColor.substring(i, i + 2), 16));
     }
 
     return `(${colorValues.join(', ')})`;
@@ -118,7 +118,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isInteger(n)) {
+    if (!Number.isInteger(a)) {
         throw new TypeError('N must be an integer');
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -137,9 +137,8 @@ function phoneProblem(phoneNumber) {
     if (!isString(phoneNumber)) {
         throw new TypeError('Argument must be a string');
     }
-
     const phoneRegex = /^8-800-\d{3}-\d{2}-\d{2}$/;
-    
+
     return phoneRegex.test(phoneNumber);
 }
 
