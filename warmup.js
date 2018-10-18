@@ -98,9 +98,11 @@ function matrixProblem(a) {
     // let w = a.length || 0;
     // let h = a[0] instanceof Array ? a[0].length : 0;
     let t = [];
+    for (let i =0; i < a.length;i++) {
 
-    if (!Array.isArray(a) || !Array.isArray(a[0])) {
-        throw new TypeError();
+        if (!Array.isArray(a) || !Array.isArray(a[0]) || a[i].length !== a[0].length) {
+            throw new TypeError();
+        }
     }
     for (let i = 0; i < a[0].length; i++) {
         let s = [];
