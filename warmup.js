@@ -73,10 +73,14 @@ function fibonacciProblem(n) {
     if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
+    if (n <= 2) {
+        return 1;
+    }
     let firstnum = 1;
     let secnum = 1;
+    let currentnum = 0;
     for (let i = 2; i < n; i++) {
-        let currentnum = firstnum + secnum;
+        currentnum = firstnum + secnum;
         firstnum = secnum;
         secnum = currentnum;
     }
@@ -124,7 +128,7 @@ function matrixProblem(a) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (typeof n !== 'number' || typeof(targetNs) !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError ();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
