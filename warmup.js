@@ -47,12 +47,12 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
+    if (hexColor.length > 7 || hexColor.search(/[g-z][G-Z]/)) {
+        return new RangeError();
+    }
     let rgb = new Array(3);
     for (let i = 0; i < 3; i++) {
         rgb[i] = parseInt(hexColor.charAt(i * 2 + 1) + hexColor.charAt(i * 2 + 2), 16);
-        if (rgb[i] > 255) {
-            throw new RangeError();
-        }
     }
 
     return `(${rgb.join(', ')})`;
