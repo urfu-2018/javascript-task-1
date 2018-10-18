@@ -112,18 +112,7 @@ function matrixProblem(matrix) {
     // }
 
     // return transposedMatrix;
-    let result = [];
-    for (let i = 0; i < matrix.length; i++) {
-        result.push(new Array(matrix[0].length));
-    }
-
-    matrix
-        .forEach((acc, i) => acc
-            .forEach(function (elem, j) {
-                result[j][i] = elem;
-            }));
-
-    return result;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
