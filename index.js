@@ -22,7 +22,7 @@ console.info(centuryByYearProblem(2018));
 console.info(colorsProblem('#FFFFFF'));
 
 // Выведет `1`
-console.info(fibonacciProblem(1));
+console.info(fibonacciProblem(6));
 
 // Выведет `[
 //    [1, 4, 7],
