@@ -97,9 +97,9 @@ function matrixProblem(matrix) {
     if (!matrix.every(Array.isArray)) {
         throw new TypeError();
     }
-    let res = new Array(matrix[0].length);
+    let res = [];
     for (let i = 0; i < matrix[0].length; i++) {
-        res[i] = new Array(matrix.length);
+        res[i] = [];
     }
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
