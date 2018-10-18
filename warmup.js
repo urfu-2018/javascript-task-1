@@ -160,8 +160,10 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
+    const happysmileis = text.match(/\(-:/g) || [];
+    const sadsmileis = text.match(/:-\)/g) || [];
 
-    return (text.match(':-[)]') || []).length + (text.match('[(]-:') || []).length;
+    return happysmileis.length + sadsmileis.length;
 }
 
 /**
