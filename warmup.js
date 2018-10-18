@@ -120,7 +120,7 @@ function matrixProblem(matrix) {
             throw new TypeError();
         }
         for (let j = 0; j < columns; j++) {
-            transposedMatrix[i][j] = matrix[j][i];
+            transposedMatrix[j][i] = matrix[i][j];
         }
     }
 
