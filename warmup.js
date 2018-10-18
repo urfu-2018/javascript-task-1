@@ -20,7 +20,8 @@ function realNumber() {
 }
 
 function range(end) {
-    return Array.from(Array(end).keys());
+    return Array.from(Array(end)
+        .keys());
 }
 
 function symbolRange(from, length) {
@@ -208,21 +209,26 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    checkThat(text).hasType(String);
+    checkThat(text)
+        .hasType(String);
 
     const smile = '(-:';
     const reversedSmile = ':-)';
-    let index = 0;
-    let count = 0;
 
-    do {
-        let newIndex = text.indexOf(smile, index);
-        index = newIndex !== -1 ? newIndex : text.indexOf(reversedSmile, index);
-        count += index === -1 ? 0 : 1;
-        index += index >= 0 ? 1 : 0;
-    } while (index >= 0);
+    function searchFor(line) {
+        let index = 0;
+        let count = 0;
 
-    return count;
+        do {
+            index = text.indexOf(line, index);
+            count += index !== -1 ? 1 : 0;
+            index++;
+        } while (index > 0);
+
+        return count;
+    }
+
+    return searchFor(smile) + searchFor(reversedSmile);
 }
 
 /**
