@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('Год - целое положительное число');
     }
 
-    return Math.floor(year / 100) + 1;
+    return Math.floor(year / 100) + (year % 100 !== 0 ? 1 : 0);
 }
 
 /**
@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет - hex строка');
     }
-    if (!RegExp('^#[0-9A-Fa-f]{6}').test(hexColor)) {
+    if (!hexColor.match(/^#[a-f\d]{6}$/i)) {
         throw new RangeError('Цвета выходят за пределы допустимых');
     }
 
@@ -84,7 +84,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || matrix.length === 0) {
         throw new TypeError('не двумерный массив');
     }
 
