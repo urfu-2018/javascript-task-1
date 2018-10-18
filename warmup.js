@@ -103,7 +103,25 @@ function centuryByYearProblem(year) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if(!isNumber(n) !== 'number') {
+        throw new TypeError('Position in row give\'s not as a number');
+    }
+    if(n < 0) {
+        throw new RangeError('Position in row not positve integer');
+    }
+    if(n === 0 || n === 1) {
+        return n;
+    }
+    let q = 0;
+    let qPlus1 = 1;
+    let i = 2;
+    while (i < n) {
+        const next = q + qPlus1;
+        q = qPlus1;
+        qPlus1 = next;
+        i++;
+    }
+    return q + qPlus1;
 }
 
 /**
@@ -113,7 +131,23 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    const ARRAY_2D_RANGE_ERROR = new TypeError('transfered not an 2D array');
+    if(!Array.isArray(matrix)) {
+        throw ARRAY_2D_RANGE_ERROR;
+    }
+    for(let i = 0; i < matrix.length; i++) {
+        if(!Array.isArray(matrix[i])) {
+            throw ARRAY_2D_RANGE_ERROR;
+        }
+    }
+    const newMatrix = [];
+    const m = matrix[0].length;
+    const n = matrix.length;
+    for(let i = 0; i < m; i++) {
+        for(let j = 0; j < n; j++) {
+            newMatrix[i][j] = matrix[j][i];
+        }
+    }
 }
 
 /**
@@ -125,7 +159,22 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if(!isNumber(n)) {
+        throw new TypeError('Transfered not a decimal number');
+    }
+    if(!isNumber(targetNs)) {
+        throw new TypeError('Base of number system isn\'t a number');
+    }
+    if(2 > targetNs || targetNs > 36) {
+        throw new RangeError('Base of number system not belong [2, 36]');
+    }
+    let numbersArray = [];
+    do {
+        numbersArray.unshift(n % targetNs);
+        n = Math.floor(n / targetNs);
+    } while (n >= targetNs);
+    numbersArray.unshift(n);
+    return numbersArray.toString();
 }
 
 /**
@@ -134,7 +183,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    
 }
 
 /**
