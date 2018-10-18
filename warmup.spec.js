@@ -30,15 +30,11 @@ describe('Century by year problem', () => {
         assert.strictEqual(centuryByYearProblem(1), 1);
     });
 
-    it('Должен вернуть 1', () => {
-        assert.strictEqual(centuryByYearProblem(0), 1);
-    });
-
     it('Должен вернуть 2', () => {
         assert.strictEqual(centuryByYearProblem(200), 2);
     });
     it('Должна вернуть `10`', () => {
-        assert.strictEqual(centuryByYearProblem(1000), 11);
+        assert.strictEqual(centuryByYearProblem(1000), 10);
     });
 
 });
