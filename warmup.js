@@ -50,6 +50,18 @@ function colorsProblem(hexColor) {
         throw new RangeError('HEX color must represented as #FFFFFF');
     }
 
+    if (hexColor[0] !== '#') {
+        throw new RangeError('HEX color must begin with #');
+    }
+
+    const match = hexColor
+        .substr(1)
+        .toLowerCase()
+        .match(/[\da-f]{6}/);
+    if (!match) {
+        throw new RangeError('HEX color must be started with #');
+    }
+
     return `(${
         parseInt(hexColor.slice(1, 3), 16)}, ${
         parseInt(hexColor.slice(3, 5), 16)}, ${
