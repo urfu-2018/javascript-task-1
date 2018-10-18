@@ -40,14 +40,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="1431" />
-          <entry key="txt" value="110" />
+          <entry key="js" value="1434" />
+          <entry key="txt" value="118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="1431" />
-          <entry key="PLAIN_TEXT" value="110" />
+          <entry key="JavaScript" value="1434" />
+          <entry key="PLAIN_TEXT" value="118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+            <state relative-caret-position="289">
+              <caret line="149" column="3" lean-forward="true" selection-start-line="149" selection-start-column="3" selection-end-line="149" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -272,7 +272,7 @@
       <option name="presentableId" value="Default" />
       <updated>1539685346516</updated>
       <workItem from="1539685349297" duration="4669000" />
-      <workItem from="1539705369637" duration="29666000" />
+      <workItem from="1539705369637" duration="30467000" />
     </task>
     <task id="LOCAL-00001" summary="ffff">
       <created>1539726648795</created>
@@ -365,11 +365,25 @@
       <option name="project" value="LOCAL" />
       <updated>1539887655073</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="might">
+      <created>1539888709627</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1539888709627</updated>
+    </task>
+    <task id="LOCAL-00015" summary="mightpho">
+      <created>1539889228968</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1539889228968</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34335000" />
+    <option name="totallyTimeSpent" value="35136000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -414,7 +428,9 @@
     <MESSAGE value="work" />
     <MESSAGE value="work again" />
     <MESSAGE value="now?" />
-    <option name="LAST_COMMIT_MESSAGE" value="now?" />
+    <MESSAGE value="might" />
+    <MESSAGE value="mightpho" />
+    <option name="LAST_COMMIT_MESSAGE" value="mightpho" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.js">
@@ -426,8 +442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+        <state relative-caret-position="289">
+          <caret line="149" column="3" lean-forward="true" selection-start-line="149" selection-start-column="3" selection-end-line="149" selection-end-column="3" />
         </state>
       </provider>
     </entry>

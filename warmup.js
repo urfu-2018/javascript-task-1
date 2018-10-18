@@ -144,7 +144,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/.test(phoneNumber);
 }
 
 /**
