@@ -75,7 +75,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('Argument must be a positive integer');
     }
-    if (n < 3){
+    if (n < 3) {
         return 1;
     }
 
@@ -102,15 +102,20 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    const height = matrix.length;
-    for (let i = 0; i < height; i++) {
+    for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
             throw new TypeError();
         }
     }
-    const width = matrix[0].length;
 
+    return transposeMatrix(matrix);
+}
+
+function transposeMatrix(matrix) {
+    const height = matrix.length;
+    const width = matrix[0].length;
     let result = new Array(width);
+
     for (let i = 0; i < width; i++) {
         result[i] = new Array(height);
         for (let j = 0; j < height; j++) {
