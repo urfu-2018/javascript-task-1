@@ -23,8 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
-    if (typeof year !== 'number') {
+    if (typeof year !== 'number' || isNaN(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -93,7 +92,7 @@ function fibonacciProblem(n) {
  */
 
 function matrixProblem(matrix) {
-    if (!matrix.length) {
+    if (typeof matrix[0].length === 'undefined') {
         throw new TypeError();
     }
 
@@ -126,6 +125,7 @@ function numberSystemProblem(n, targetNs) {
         !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
+
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
@@ -145,6 +145,7 @@ function phoneProblem(phoneNumber) {
     }
 
     let str = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+
     let phoneMatch = phoneNumber.match(str);
     if (phoneMatch) {
         return phoneMatch.shift() === phoneNumber;
