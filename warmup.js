@@ -91,14 +91,13 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.every((mass)=>Array.isArray(mass)) ||
-    !matrix.every((mass)=>mass.length === matrix[0].length)) {
+    !matrix.some((mass)=>mass.length === matrix[0].length)) {
         throw new TypeError();
     }
     let res = [];
     for (let i = 0; i < matrix.length; i++) {
         res.push([]);
         for (let j = 0; j < matrix[i].length; j++) {
-
             res[i].push (matrix[j][i]);
         }
     }
