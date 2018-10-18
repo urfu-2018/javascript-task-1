@@ -47,7 +47,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    const hexRegexp = /^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$/;
+    const hexRegexp = /^#([A-Fa-f0-9]{2}){3}$/;
 
     if (!hexRegexp.test(hexColor)) {
         throw new RangeError();
@@ -73,7 +73,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n < 0 || n % 0 !== 0) {
         throw new RangeError();
     }
 
@@ -97,9 +97,9 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    var transposedMatrix = new Array(matrix.length);
+    var transposedMatrix = [];
     for (let i = 0; i < matrix.length; i++) {
-        transposedMatrix[i] = new Array(matrix[0].length);
+        transposedMatrix.push(new Array(matrix[0].length));
     }
 
     for (let i = 0; i < matrix.length; i++) {
@@ -121,7 +121,7 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' || typeof n !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -140,7 +140,7 @@ function phoneProblem(phoneNumber) {
     // Ваше решение
     let str = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
 
-    return str.test(phoneNumber);
+    return phoneNumber.match(str).shift() === phoneNumber;
 }
 
 /**
