@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || !(Math.trunc(year) === year)) {
+    if (typeof(year) !== 'number') {
         throw TypeError;
     }
     if (year < 0) {
@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    let regex = new RegExp('^#[A-Za-z0-9]{6}$');
+    let regex = new RegExp('^#[A-Fa-f0-9]{6}$');
     if (typeof(hexColor) !== 'string') {
         throw TypeError;
     }
