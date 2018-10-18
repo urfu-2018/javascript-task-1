@@ -143,22 +143,21 @@ function smilesProblem(text) {
     return matches ? matches.length : 0;
 }
 
+
 function checkHorizontal(field) {
+    let winner;
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
-            return field[i][0];
-        }
+        winner = field[i][0] === field[i][1] && field[i][0] === field[i][2] ? field[i][0] : false;
     }
 
-    return;
+    return winner;
 }
-
 function checkDiagonal(field) {
     return field[0][0] === field[1][1] && field[0][0] === field[2][2] ? field[0][0] : false;
 }
 
 function checkSecondDiagonal(field) {
-    return field[2][0] === field[1][1] && field[0][2] === field[1][1] ? field[0][0] : false;
+    return field[2][0] === field[1][1] && field[2][0] === field[0][2] ? field[2][0] : false;
 }
 
 /**
@@ -168,10 +167,10 @@ function checkSecondDiagonal(field) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let transposedField = matrixProblem(field);
 
-    return checkHorizontal(field) || checkHorizontal(transposedField) || checkDiagonal(field) ||
-        checkSecondDiagonal(field) || 'draw';
+
+    return checkHorizontal(field) || checkHorizontal(matrixProblem(field)) ||
+        checkDiagonal(field) || checkSecondDiagonal(field) || 'draw';
 }
 
 module.exports = {
