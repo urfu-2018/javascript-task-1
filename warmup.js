@@ -127,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
     if (isNAN(n) || isNAN(targetNs) || !Number.isInteger(targetNs)) {
         throw new TypeError('Аргументы неверного типа');
     } else if (targetNs < 2 || targetNs > 36) {
-        return new RangeError('Выходит за пределы от 2 до 36');
+        throw new RangeError('Выходит за пределы от 2 до 36');
     }
 
     return n.toString(targetNs);
