@@ -79,7 +79,7 @@ function matrixProblem(matrix) {
 }
 
 function numberSystemProblem(n, targetNs) {
-    if (typeof n === "string") {
+    if (typeof n === 'string') {
         throw new TypeError('Должно быть число');
     }
     if (!Number.isInteger(targetNs)) {
@@ -96,8 +96,8 @@ function phoneProblem(phoneNumber) {
     if (typeof phoneNumber !== 'string') {
         throw new TypeError('Номер строкой');
     }
-    if ((/8-800-\d{3}-\d{2}-\d{2}/i).test(phoneNumber) === false){
-        throw new RangeError('Нерпавильно набран номер')
+    if ((/8-800-\d{3}-\d{2}-\d{2}/i).test(phoneNumber) === false) {
+        throw new RangeError('Нерпавильно набран номер');
     }
     let pattern = /8-800-\d{3}-\d{2}-\d{2}/;
 
