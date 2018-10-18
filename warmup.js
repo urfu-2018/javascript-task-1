@@ -24,11 +24,11 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw new TypeError ('year should be an integer number');
+        throw new TypeError('year should be an integer number');
     }
 
     if (year < 0) {
-        throw new RangeError ('year should be a positive number');
+        throw new RangeError('year should be a positive number');
     }
 
     return Math.floor(year / 100) + 1;
@@ -42,7 +42,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    var r = parseInt(hexColor.slice(1, 3), 16);
+    var g = parseInt(hexColor.slice(3, 5), 16);
+    var b = parseInt(hexColor.slice(5, 7), 16);
+    if (typeof hexColor !== 'string') {
+        throw new TypeError('HEX color should be a string');
+    }
+
+    if (hexColor.length !== 7) {
+        throw new RangeError('HEX color must represented as #FFFFFF');
+    }
+
+    return '(' + r + ', '+ g + ', '+ b + ')';
 }
 
 /**
