@@ -95,8 +95,7 @@ function fibonacciProblem(n) {
 // Ваше решение
 function matrixProblem(a) {
 
-    // let w = a.length || 0;
-    // let h = a[0] instanceof Array ? a[0].length : 0;
+ 
     let t = [];
     for (let i = 0; i < a.length; i++) {
 
@@ -110,6 +109,9 @@ function matrixProblem(a) {
             s[j] = a[j][i];
         }
         t.push(s);
+    }
+    if (!a[0].length) {
+        t[0] = [];
     }
 
     return t;
