@@ -291,7 +291,7 @@ function ticTacToeProblem(field) {
         .map(startAndIncrementer => makeRoad(...startAndIncrementer))
         .map(roadToUniqueValue);
 
-    return uniqueValue(winners);
+    return uniqueValue(winners) || 'draw';
 }
 
 module.exports = {
