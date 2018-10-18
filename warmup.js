@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.trunc(Number.parseInt(year) / 100);
+    return Math.round(year / 100);
 
 }
 
@@ -54,9 +54,12 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
 
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+    var arrBuff = new ArrayBuffer(4);
+    var vw = new DataView(arrBuff);
+    vw.setUint32(0, parseInt(hexColor, 16), false);
+    var arrByte = new Uint8Array(arrBuff);
 
-    return result;
+    return arrByte[1] + ',' + arrByte[2] + ',' + arrByte[3];
 }
 
 /**
@@ -135,7 +138,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
-    return phoneNumber.search(/(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/);
+    var phone = /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/;
+
+    return phoneNumber.test(phone);
 }
 
 /**
