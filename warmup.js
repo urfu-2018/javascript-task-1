@@ -146,8 +146,8 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    if (text.match(/:.+\)/) !== null) {
-        return text.match(/:.?\)|\(.?:/).length;
+    if (text.match(/:-\)|\(-:/) !== null) {
+        return text.match(/:-\)|\(-:/).length;
     }
 
     return 0;
