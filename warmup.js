@@ -44,16 +44,17 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string' || hexColor.length !== 7 || hexColor[0] !== '#') {
-        throw new TypeError();
+    if (typeof(hexColor) === 'string') {
+        if (hexColor.length === 7 && (/^#[0-9,A-F]{6}/).test(hexColor)) {
+            let redColor = parseInt(hexColor.substr(1, 2), 16);
+            let greeenColor = parseInt(hexColor.substr(3, 2), 16);
+            let blueColor = parseInt(hexColor.substr(5, 2), 16);
+
+            return '(' + redColor + ', ' + greeenColor + ', ' + blueColor + ')';
+        }
+        throw new RangeError();
     }
-    let redColor = parseInt(hexColor.substr(1, 2), 16);
-    let greeenColor = parseInt(hexColor.substr(3, 2), 16);
-    let blueColor = parseInt(hexColor.substr(5, 2), 16);
-    if (redColor < 256 && greeenColor < 256 && blueColor < 256) {
-        return '(' + redColor + ', ' + greeenColor + ', ' + blueColor + ')';
-    }
-    throw new RangeError();
+    throw new TypeError();
 }
 
 /**
@@ -64,10 +65,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (n % 1 !== 0 || n < 0) {
-        throw new RangeError();
-    } else if (typeof(n) !== 'number') {
+    if (typeof(n) !== 'number') {
         throw new TypeError();
+    } else if (n % 1 !== 0 || n < 0) {
+        throw new RangeError();
     }
     let goldenRatio = 1.618039988;
 
@@ -114,13 +115,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number' || targetNs % 1 !== 0) {
-        throw new TypeError();
+    if (typeof(n) === 'number' && typeof(targetNs) === 'number' && targetNs % 1 === 0) {
+        if (targetNs >= 2 && targetNs <= 36) {
+            return n.toString(targetNs);
+        } else {
+            throw new RangeError();
+        }
     }
-    if (targetNs >= 2 && targetNs <= 36) {
-        return n.toString(targetNs);
-    }
-    throw new RangeError();
+    throw new TypeError();
 }
 
 /**
@@ -132,7 +134,7 @@ function phoneProblem(phoneNumber) {
     phoneNumber = phoneNumber.replace(/-/g, '');
 
     return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' &&
-    !isNaN(phoneNumber.substr(4));
+    (/^[0-9]*$/).test(phoneNumber.substr(4));
 }
 
 /**
