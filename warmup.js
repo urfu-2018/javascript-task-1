@@ -191,9 +191,9 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i<3; i++)
+    for (let i = 0; i < 3; i++)
 	{
-		for (let j = 1; j<3 && field[i][0] == field[i][j]; j++)
+		for (let j = 1; j < 3 && field[i][0] == field[i][j]; j++)
 		{
 			if (j == 2)
 			{
@@ -201,9 +201,9 @@ function ticTacToeProblem(field) {
 			}
 		}
 	}
-	for (let i = 0; i<3; i++)
+	for (let i = 0; i < 3; i++)
 	{
-		for (let j = 1; j<3 && field[0][i] == field[j][i]; j++)
+		for (let j = 1; j < 3 && field[0][i] == field[j][i]; j++)
 		{
 			if (j == 2)
 			{
