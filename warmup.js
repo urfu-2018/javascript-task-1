@@ -190,7 +190,7 @@ function ticTacToeProblem(field) {
 
     function checkRows(f) {
         for (let i = 0; i < 3; ++i) {
-            if (f[i].reduce(true, (x, y) => x && (y === f[i][0]))) {
+            if (f[i].reduce((x, y) => x && (y === f[i][0]), true)) {
                 return f[i][0];
             }
         }
