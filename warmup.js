@@ -50,19 +50,23 @@ function colorsProblem(hexColor) {
     if (hexColor.length > 7 || hexColor.length < 4 || hexColor.search(/[g-z][G-Z]/) >= 0) {
         return new RangeError();
     }
+    hexColor = convertToNormalHex(hexColor);
     let rgb = new Array(3);
-    if (hexColor.length === 4) {
-        let res = '#';
-        for (let i = 1; i < hexColor.length; i++) {
-            res += hexColor[i] + hexColor[i];
-        }
-        hexColor = res;
-    }
     for (let i = 0; i < 3; i++) {
         rgb[i] = parseInt(hexColor.charAt(i * 2 + 1) + hexColor.charAt(i * 2 + 2), 16);
     }
 
     return `(${rgb.join(', ')})`;
+}
+
+function convertToNormalHex(hex) {
+    if (hex === 4) {
+        let res = '#';
+        for (let i = 1; i < hex.length; i++) {
+            res += hex[i] + hex[i];
+        }
+        hexColor = res;
+    }
 }
 
 /**
