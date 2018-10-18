@@ -64,7 +64,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (Number.isInteger(n)) {
+    if (Number.isInteger(n) && n <= 0) {
         if (n === 1 || n === 2) {
             return 1;
         }
@@ -143,7 +143,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -156,7 +156,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    const results = text.match(/\(-:|:-\)/);
+    const results = text.match(/\(-:|:-\)/g);
 
     return results === null ? 0 : results.length;
 }
