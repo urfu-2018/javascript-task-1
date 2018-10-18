@@ -96,22 +96,34 @@ function fibonacciProblem(n) {
  */
 
 function matrixProblem(matrix) {
-    if (typeof matrix[0].length === 'undefined') {
+    if (!matrix || typeof matrix[0].length === 'undefined') {
         throw new TypeError();
     }
 
-    var transposedMatrix = [];
+    // var transposedMatrix = [];
+    // for (let i = 0; i < matrix.length; i++) {
+    //     transposedMatrix.push(new Array(matrix[0].length));
+    // }
+
+    // for (let i = 0; i < matrix.length; i++) {
+    //     for (let j = 0; j < matrix[i].length; j++) {
+    //         transposedMatrix[j][i] = matrix[i][j];
+    //     }
+    // }
+
+    // return transposedMatrix;
+    let result = [];
     for (let i = 0; i < matrix.length; i++) {
-        transposedMatrix.push(new Array(matrix[0].length));
+        result.push(new Array(matrix[0].length));
     }
 
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[i].length; j++) {
-            transposedMatrix[j][i] = matrix[i][j];
-        }
-    }
+    matrix
+        .forEach((acc, i) => acc
+            .forEach(function (elem, j) {
+                result[j][i] = elem;
+            }));
 
-    return transposedMatrix;
+    return result;
 }
 
 /**
