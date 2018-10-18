@@ -157,10 +157,9 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw new TypeError();
     }
-    const happysmileis = text.match(/\(-:/g) || [];
-    const sadsmileis = text.match(/:-\)/g) || [];
+    let smilies = text.match(/:-\)|\(-:/g);
 
-    return happysmileis.length + sadsmileis.length;
+    return smilies ? smilies.length : 0;
 }
 
 /**
