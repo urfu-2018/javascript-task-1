@@ -91,7 +91,7 @@ function matrixProblem(matrix) {
     let newMatrix = [];
     for (let i = 0; i < lengthArr; i++) {
         newMatrix[i] = [];
-        for (let j = 0; j , lengthMatrix; j++) {
+        for (let j = 0; j < lengthMatrix; j++) {
             newMatrix[i][j] = matrix[j][i];
         }
     }
