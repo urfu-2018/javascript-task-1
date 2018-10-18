@@ -42,23 +42,23 @@ function fibonacciProblem(n) {
     if (Number.isInteger(n) === false) {
         throw new TypeError('n-это целое число');
     }
-    if (n <= 0){
-    throw new RangeError('только положительное число')
+    if (n <= 0) {
+        throw new RangeError('только положительное число');
     }
-    if (n <= 2 ){
-        return n
+    if (n <= 2) {
+        return n;
     }
-        let i;
-        let a = 1;
-        let b = 1;
-        let c;
-        for (i = 2; i < n; i++) {
-            c = a + b;
-            a = b;
-            b = c;
-        }
+    let i;
+    let a = 1;
+    let b = 1;
+    let c;
+    for (i = 2; i < n; i++) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
 
-        return b;
+    return b;
 }
 
 function matrixProblem(matrix) {
@@ -113,7 +113,7 @@ function smilesProblem(text) {
     }
     let result = text.match(/\(-:|:-\)/ig);
     if (result === null) {
-        return 0
+        return 0;
     }
 
     return result.length;
