@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError();
-    } else if (year < 0) {
+    } else if (year <= 0) {
         throw new RangeError();
     }
 
@@ -84,6 +84,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (Array.isArray(matrix[0] === false)) {
+        throw new TypeError();
+    }
     const rows = matrix.length;
     const columns = matrix[0].length;
     const transposed = [];
