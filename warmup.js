@@ -67,7 +67,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
-    } else if (n % 1 !== 0 || n < 0) {
+    } else if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
     let goldenRatio = 1.618039988;
