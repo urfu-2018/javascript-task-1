@@ -42,7 +42,7 @@ function fibonacciProblem(n) {
     if (Number.isInteger(n) === false) {
         throw new TypeError('n-это целое число');
     }
-    if (n <= 0) {
+    if (n < 0) {
         throw new RangeError('n-положительное число');
     }
     let sums;
