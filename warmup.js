@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (typeof year < 0) {
+    if (typeof year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
@@ -99,7 +99,7 @@ function matrixProblem(a) {
     let h = a[0] instanceof Array ? a[0].length : 0;
     let t = [];
 
-    if (!Array.isArray(a)) {
+    if (!Array.isArray(a) || a.length !== h) {
         throw new TypeError();
     }
     for (let i = 0; i < h; i++) {
