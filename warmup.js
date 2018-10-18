@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || isNaN(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
     if (typeof year < 0) {
@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === 0) {
+    if (hexColor.match(/^#[a-fA-F0-9]{6}$/i) === null) {
         throw new RangeError();
     }
 
