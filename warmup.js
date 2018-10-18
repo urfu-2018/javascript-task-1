@@ -118,9 +118,8 @@ function numberSystemProblem(n, targetNs) {
     if (typeof(n) === 'number' && typeof(targetNs) === 'number' && targetNs % 1 === 0) {
         if (targetNs >= 2 && targetNs <= 36) {
             return n.toString(targetNs);
-        } else {
-            throw new RangeError();
         }
+        throw new RangeError();
     }
     throw new TypeError();
 }
