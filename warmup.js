@@ -126,11 +126,13 @@ function numberSystemProblem(n, targetNs) {
     // Ваше решение
     if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError ();
-    } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
-    } else {
-        return n.toString(targetNs);
     }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
+
 
 }
 
