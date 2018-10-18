@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return Math.ceil(year / 100);
@@ -43,10 +43,10 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     let regex = new RegExp('^#[A-Fa-f0-9]{6}$');
     if (typeof(hexColor) !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (!regex.test(hexColor)) {
-        throw RangeError;
+        throw new RangeError();
     }
     hexColor = hexColor.substr(1, hexColor.length - 1);
     let res = '(';
@@ -70,10 +70,10 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     n++;
     if (typeof(n) !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (!Number.isInteger(n) || !(n - 1 > 0)) {
-        throw RangeError;
+        throw new RangeError();
     }
     let fib = [1, 1];
     for (let i = 0; i < n - 3; i++) {
@@ -91,7 +91,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.every((mass)=>Array.isArray(mass))) {
-        throw TypeError;
+        throw new TypeError();
     }
     let res = [];
     for (let i = 0; i < matrix.length; i++) {
@@ -116,10 +116,10 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' ||
     !((targetNs - Math.trunc(targetNs)) === 0)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return (n.toString(targetNs));
@@ -144,7 +144,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     let result = text.match(/(:-\)|\(-:)/g);
     if (result !== null) {
