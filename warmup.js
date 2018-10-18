@@ -252,21 +252,23 @@ function ticTacToeProblem(field) {
         field = matrixProblem(field);
     }
 
-    for (let i = 1; i <= 2; i++) {
-        let result = '';
+    const diag1 = field[0][0] + field[1][1] + field[2][2];
+    const diag2 = field[0][2] + field[1][1] + field[2][0];
 
-        for (let j = 0; j <= 2; j++) {
-            result += field[j][j];
-        }
+    if (diag1 === 'xxx') {
+        return 'x';
+    }
 
-        if (result === 'xxx') {
-            return 'x';
-        }
+    if (diag1 === 'ooo') {
+        return 'o';
+    }
 
-        if (result === 'ooo') {
-            return 'o';
-        }
-        field = matrixProblem(field);
+    if (diag2 === 'xxx') {
+        return 'x';
+    }
+
+    if (diag2 === 'ooo') {
+        return 'o';
     }
 
     return 'draw';
