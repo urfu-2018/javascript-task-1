@@ -169,10 +169,12 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         return new TypeError();
     }
-    const rightSmile = text.split(':-)').length - 1;
-    const leftSmile = text.split('(-:').length - 1;
+    let re = text.match(/\(-:|:-\)/g);
+    if (re === null) {
+        return 0;
+    }
 
-    return rightSmile + leftSmile;
+    return re.length;
 }
 
 function checkRows(field, sign) {
