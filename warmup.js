@@ -118,7 +118,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(a)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError('N must be an integer');
     }
     if (targetNs < 2 || targetNs > 36) {
