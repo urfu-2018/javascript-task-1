@@ -75,7 +75,7 @@ function fibonacciProblem(n) {
     }
 
     let current = 1;
-    let previous = 1;
+    let previous = 0;
 
     while (n > 0) {
         const temp = current;
