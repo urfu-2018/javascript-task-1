@@ -8,10 +8,10 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a)) {
+    if (!isNumber(a) || !Number.isInteger(a)) {
         throw new TypeError('A must be an integer');
     }
-    if (!Number.isInteger(b)) {
+    if (!isNumber(b) || !Number.isInteger(b)) {
         throw new TypeError('B must be an integer');
     }
 
@@ -118,7 +118,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.isInteger(n)) {
+    if (!isNumber(n) || !Number.isInteger(n)) {
         throw new TypeError('N must be an integer');
     }
     if (targetNs < 2 || targetNs > 36) {
