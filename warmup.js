@@ -1,5 +1,6 @@
 'use strict';
 
+console.info(smilesProblem(':-)(-:'));
 
 /**
  * Складывает два целых числа
@@ -178,7 +179,8 @@ function smilesProblem(text) {
         let sign = text.indexOf(find);
         while (sign !== -1) {
             num = num + 1;
-            text = text.substring(sign + 3);
+            let begin = text.substring(0, sign);
+            text = begin + text.substring(sign + 3);
             sign = text.indexOf(find);
         }
         find = ':-)';
