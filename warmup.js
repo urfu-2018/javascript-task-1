@@ -165,6 +165,9 @@ function numberSystemProblem(n, targetNs) {
 
     let result = '';
 
+    if (n < 0) {
+        result = '-';
+    }
     while (n >= targetNs) {
         const ost = n % targetNs;
         result = result + abc[ost];
