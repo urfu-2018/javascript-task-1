@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('Argument must be number');
     }
-    if (year < 0) {
+    if (!(Number.isInteger(year) && year < 0)) {
         throw new RangeError('Argument must be non-negative');
     }
 
@@ -70,7 +70,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('Argument must be number');
     }
-    if (parseInt(n) !== n || n < 0) {
+    if (parseInt(n) !== n || n <= 0) {
         throw new RangeError('Argument must be non-negative integer');
     }
     let previous = 1;
@@ -91,17 +91,14 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Argument must be two-dimensional array');
     }
+    if (matrix.every((row) => !(Array.isArray(row) && row.length === matrix[0].length))) {
+        throw new TypeError();
+    }
     let m = matrix.length;
-    if (!Array.isArray(matrix[0])) {
-        throw new TypeError();
-    }
     let n = matrix[0].length;
-    if (matrix.every((row) => !(Array.isArray(row) && row.length === n))) {
-        throw new TypeError();
-    }
     let transponseMatrix = [];
     for (let i = 0; i < n; i++) {
         transponseMatrix.push([]);
