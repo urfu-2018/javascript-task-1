@@ -133,6 +133,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
     return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
@@ -143,6 +147,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
     return (text.match(/(:-\))|(\(-:)/g) || []).length;
 }
 
