@@ -93,7 +93,8 @@ function fibonacciProblem(n) {
  */
 
 // Ваше решение
-function matrixProblem(a) {let t = [];
+function matrixProblem(a) {
+    let t = [];
     for (let i = 0; i < a.length; i++) {
 
         if (!Array.isArray(a) || a[i].length !== a[0].length) {
