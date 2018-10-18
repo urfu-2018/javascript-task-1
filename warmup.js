@@ -169,19 +169,23 @@ function smilesProblem(text) {
  */
 
 function ticTacToeProblem(field) {
-    let somebodyWins = (
+    let somebodyWinsDiagonal = (
         field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
         field[0][2] === field[1][1] && field[1][1] === field[2][0]
     );
-    if (somebodyWins) {
+    if (somebodyWinsDiagonal) {
         return field[1][1];
     }
 
     for (let i = 0; i < 3; i++) {
-        somebodyWins = field[i][0] === field[i][1] && field[i][1] === field[i][2];
+        let somebodyWinsInRow = field[i][0] === field[i][1] && field[i][1] === field[i][2];
+        let somebodyWinsInColumn = field[0][i] === field[1][i] && field[1][i] === field[2][i];
 
-        if (somebodyWins) {
+        if (somebodyWinsInRow) {
             return field[i][0];
+        }
+        if (somebodyWinsInColumn) {
+            return field[0][i];
         }
     }
 
