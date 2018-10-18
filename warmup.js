@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
-        throw new TypeError();
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+        throw new TypeError('"a" or "b" is not a number');
     }
 
     return a + b;
@@ -24,11 +24,11 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
-        throw new TypeError();
+        throw new TypeError('year should be an integer number');
     }
 
     if (year < 0) {
-        throw new RangeError();
+        throw new RangeError('year should be a positive number');
     }
 
     return Math.floor(year / 100) + 1;
@@ -42,7 +42,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
+    if (typeof(hexColor) !== 'string') {
         throw new TypeError('HEX color should be a string');
     }
 
@@ -115,7 +115,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
         throw new TypeError('first argument and radix should be numbers');
     }
 
@@ -128,6 +128,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError('phone number should be a string');
+    }
     if (phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/)) {
         return true;
     }
@@ -142,7 +145,7 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof text !== 'string') {
+    if (typeof(text) !== 'string') {
         throw new TypeError ('test argument is not a string');
     }
 
