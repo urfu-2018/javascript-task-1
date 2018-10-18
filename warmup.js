@@ -113,32 +113,6 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function square(matrix){
-	result = matrix;
-	var delta = matrix.length - matrix[0].length;
-	if (delta > 0)
-	{
-		for (let i = 0; i < matrix.length; i++)
-		{
-			for (let j = matrix[0].length; j < matrix[0].length + delta; j++)
-			{
-				result[i][j] = 0;
-			}
-		}
-	}
-	else if(delta < 0)
-	{
-		for (let i = matrix.length; i < matrix.length - delta; i++)
-		{
-			for (let j = 0; j < matrix[0].length; j++)
-			{
-				result[i][j] = 0;
-			}
-		}
-	}
-	return result;
-}
-
 function matrixProblem(matrix) {
 	if (Array.isArray(matrix))
 	{
