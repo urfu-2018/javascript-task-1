@@ -9,6 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    return a + b;
 }
 
 /**
@@ -20,6 +21,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    return Math.trunc(year / 100) + 1;
 }
 
 /**
@@ -29,8 +31,25 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
+
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+
+    const hexRegexp = /^#([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})([A-Fa-f0-9]{2})$/;
+
+    if (!hexRegexp.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const result = [
+        parseInt(hexColor.substring(1, 3), 16),
+        parseInt(hexColor.substring(3, 5), 16),
+        parseInt(hexColor.substring(5, 7), 16)
+    ];
+
+    return '(' + result.join(', ') + ')';
 }
 
 /**
@@ -42,6 +61,12 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    const range = [0, 1];
+    for (let i = 1; i < n; i++) {
+        range.push(range[i] + range[i - 1]);
+    }
+
+    return range[n];
 }
 
 /**
@@ -50,8 +75,23 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
+
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!matrix.length) {
+        throw new TypeError();
+    }
+    var transposedMatrix = new Array(matrix.length);
+    for (let i = 0; i < matrix.length; i++) {
+        transposedMatrix[i] = new Array(matrix[0].length);
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
 }
 
 /**
@@ -62,8 +102,16 @@ function matrixProblem(matrix) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
+
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -73,6 +121,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    let str = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+
+    return str.test(phoneNumber);
 }
 
 /**
@@ -81,8 +132,16 @@ function phoneProblem(phoneNumber) {
  * @throws {TypeError} Когда в качестве аргумента передаётся не строка
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
+
 function smilesProblem(text) {
-    // Ваше решение
+    if (!(typeof text === 'string')) {
+        throw new TypeError();
+    }
+
+    let pattern = /:-\)|\(-:/;
+    let count = text.match(pattern);
+
+    return count.length;
 }
 
 /**
@@ -91,8 +150,25 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let somebodyWins = (
+        field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
+        field[0][2] === field[1][1] && field[1][1] === field[2][0]
+    );
+    if (somebodyWins) {
+        return field[1][1];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        somebodyWins = field[i][0] === field[i][1] && field[i][1] === field[i][2];
+
+        if (somebodyWins) {
+            return field[i][0];
+        }
+    }
+
+    return 'draw';
 }
 
 module.exports = {
