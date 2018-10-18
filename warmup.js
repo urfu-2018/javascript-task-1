@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number' || !Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (typeof year < 0) {
+    if (typeof year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
@@ -94,23 +94,21 @@ function fibonacciProblem(n) {
 
 // Ваше решение
 function matrixProblem(a) {
-    let t = [];
-    for (let i = 0; i < a.length; i++) {
 
-        if (!Array.isArray(a)) {
-            throw new TypeError();
-        }
+
+    if (!Array.isArray(a) || !a.every(Array.isArray || a.length === 0)) {
+        throw new TypeError();
     }
+    let t = [];
+
     for (let i = 0; i < a[0].length; i++) {
-        let s = [];
+        t[i] = [];
         for (let j = 0; j < a.length; j++) {
-            s[j] = a[j][i];
+            t[i][j] = a[j][i];
         }
-        t.push(s);
+
     }
-    if (!a[0].length) {
-        t[0] = [];
-    }
+
 
     return t;
 }
