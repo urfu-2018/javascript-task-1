@@ -96,9 +96,9 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
     let res = [];
-    for (let i = 0; i < matrix.length; i++) {
+    for (let i = 0; i < len; i++) {
         res.push([]);
-        for (let j = 0; j < matrix[i].length; j++) {
+        for (let j = 0; j < matrix.length; j++) {
             res[i].push (matrix[j][i]);
         }
     }
