@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab47fef9-334b-4a88-851e-de54424814ec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/warmup.js" beforeDir="false" afterPath="$PROJECT_DIR$/warmup.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -53,12 +52,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="14" />
-          <entry key="js" value="4371" />
+          <entry key="js" value="4378" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="4371" />
+          <entry key="JavaScript" value="4378" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -69,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/warmup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="216" column="18" selection-start-line="216" selection-start-column="18" selection-end-line="216" selection-end-column="18" />
+            <state relative-caret-position="182">
+              <caret line="165" column="20" lean-forward="true" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -337,7 +336,7 @@
       <workItem from="1539191370124" duration="6863000" />
       <workItem from="1539616808358" duration="5603000" />
       <workItem from="1539702429626" duration="5405000" />
-      <workItem from="1539874560336" duration="4642000" />
+      <workItem from="1539874560336" duration="5212000" />
     </task>
     <servers />
   </component>
@@ -374,7 +373,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22513000" />
+    <option name="totallyTimeSpent" value="23083000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,8 +463,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/warmup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="216" column="18" selection-start-line="216" selection-start-column="18" selection-end-line="216" selection-end-column="18" />
+        <state relative-caret-position="182">
+          <caret line="165" column="20" lean-forward="true" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
         </state>
       </provider>
     </entry>
