@@ -64,7 +64,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (Number.isInteger(n) && n <= 0) {
+    if (Number.isInteger(n) && n > 0) {
         if (n === 1 || n === 2) {
             return 1;
         }
