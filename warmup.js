@@ -48,8 +48,8 @@ function colorsProblem(hexColor) {
         throw new RangeError('Invalid color range');
     }
     let result = [];
-    for (let i = 1; i < 4; i++) {
-        result.push(parseInt(hexColor.substr(i, i + 2)), 16);
+    for (let i = 1; i < 7; i += 2) {
+        result.push(parseInt(hexColor.substr(i, 2), 16));
     }
 
     return '(' + result.join(', ') + ')';
