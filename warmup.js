@@ -75,6 +75,9 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError('Argument must be a positive integer');
     }
+    if (n < 3){
+        return 1;
+    }
 
     let current = 1;
     let previous = 1;
@@ -95,13 +98,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    const h = matrix.length;
-    const w = matrix[0].length;
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError();
+    }
 
-    let result = new Array(w);
-    for (let i = 0; i < w; i++) {
-        result[i] = new Array(h);
-        for (let j = 0; j < h; j++) {
+    const height = matrix.length;
+    for (let i = 0; i < height; i++) {
+        if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
+            throw new TypeError();
+        }
+    }
+    const width = matrix[0].length;
+
+    let result = new Array(width);
+    for (let i = 0; i < width; i++) {
+        result[i] = new Array(height);
+        for (let j = 0; j < height; j++) {
             result[i][j] = matrix[j][i];
         }
     }
