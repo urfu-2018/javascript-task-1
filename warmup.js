@@ -121,7 +121,9 @@ function matrixProblem(matrix) {
  */
 
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof n !== 'number' || !Number.isInteger(targetNs)) {
+    if (typeof n !== 'number' ||
+        typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -137,10 +139,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
     let str = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+    let phoneMatch = phoneNumber.match(str);
+    if (phoneMatch) {
+        return phoneMatch.shift() === phoneNumber;
+    }
 
-    return phoneNumber.match(str).shift() === phoneNumber;
+    return false;
 }
 
 /**
