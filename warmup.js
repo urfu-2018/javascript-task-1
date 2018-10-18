@@ -65,8 +65,9 @@ function convertToNormalHex(hex) {
         for (let i = 1; i < hex.length; i++) {
             res += hex[i] + hex[i];
         }
-        hexColor = res;
+        hex = res;
     }
+    return hex;
 }
 
 /**
