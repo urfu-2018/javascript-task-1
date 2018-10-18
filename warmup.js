@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
+    }
+    if (year <= 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -30,7 +41,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+    const result = /^#?([a-fA-F\d]{2})([a-fA-F\d]{2})([a-fA-F\d]{2})$/i.exec(hexColor);
+    if (!result) {
+        throw new RangeError();
+    }
+
+    return '(' + parseInt(result[1], 16) + ', ' + parseInt(result[2], 16) +
+        ', ' + parseInt(result[3], 16) + ')';
 }
 
 /**
@@ -41,7 +61,21 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (!Number.isInteger(n)) {
+        throw new TypeError();
+    }
+    if (n <= 0) {
+        throw new RangeError();
+    }
+    let previous = 1;
+    let current = 1;
+    for (let i = 2; i < n; i++) {
+        const temp = current;
+        current += previous;
+        previous = temp;
+    }
+
+    return current;
 }
 
 /**
@@ -51,7 +85,35 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (!isMatrix(matrix)) {
+        throw new TypeError();
+    }
+
+    const rowsCount = matrix.length;
+    const columnsCount = matrix[0].length;
+    let newMatrix = Array(columnsCount).fill()
+        .map(() => Array(rowsCount));
+    console.info(newMatrix);
+    for (let i = 0; i < columnsCount; i++) {
+        for (let j = 0; j < rowsCount; j++) {
+            newMatrix[i][j] = matrix[j][i];
+        }
+    }
+
+    return newMatrix;
+}
+
+function isMatrix(array) {
+    if (!Array.isArray(array) || !array.every(e => Array.isArray(e))) {
+        return false;
+    }
+
+    const rowLength = array[0].length;
+    if (!array.every(e => e.length === rowLength)) {
+        return false;
+    }
+
+    return true;
 }
 
 /**
@@ -63,7 +125,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError();
+    }
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -72,7 +141,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    const phoneFormat = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+
+    return phoneFormat.test(phoneNumber);
 }
 
 /**
@@ -82,7 +157,12 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    const smilescount = text.match(/\(-:|:-\)/g);
+
+    return smilescount === null ? 0 : smilescount.length;
 }
 
 /**
@@ -92,7 +172,40 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const linesResult = checkLines(field);
+    const diagonalResult = checkDiagonals(field);
+
+    if (linesResult !== 'draw') {
+        return linesResult;
+    }
+
+    if (diagonalResult !== 'draw') {
+        return diagonalResult;
+    }
+
+    return 'draw';
+}
+
+function checkLines(field) {
+    for (let i = 0; i < field.length; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+
+    return 'draw';
+}
+
+function checkDiagonals(field) {
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2] ||
+        field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[1][1];
+    }
+
+    return 'draw';
 }
 
 module.exports = {

@@ -18,6 +18,7 @@ console.info(abProblem(1, 1));
 // Выведет `21`
 console.info(centuryByYearProblem(2018));
 
+
 // Выведет "(255, 255, 255)"
 console.info(colorsProblem('#FFFFFF'));
 
@@ -34,6 +35,7 @@ console.info(matrixProblem([
     [4, 5, 6],
     [7, 8, 9]
 ]));
+
 
 // Выведет "1010101"
 console.info(numberSystemProblem(85, 2));
