@@ -20,13 +20,13 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw new TypeError();
+        throw new TypeError('Argument must be number');
     }
     if (year < 0) {
-        throw new RangeError();
+        throw new RangeError('Argument must be non-negative');
     }
 
-    return (year - year % 100) / 100 + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -38,10 +38,10 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Argument must be string');
     }
     if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
-        throw new RangeError();
+        throw new RangeError('Invalid color range');
     }
     hexColor.toUpperCase();
     let hexChars = '0123456789ABCDEF';
@@ -64,10 +64,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw new TypeError();
+        throw new TypeError('Argument must be number');
     }
     if (parseInt(n) !== n || n < 0) {
-        throw new RangeError();
+        throw new RangeError('Argument must be non-negative integer');
     }
     let previous = 1;
     let current = 1;
@@ -88,12 +88,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        throw new TypeError();
+        throw new TypeError('Argument must be two-dimensional array');
     }
     let m = matrix.length;
     for (let i = 0; i < m; i++) {
         if (!Array.isArray(matrix[i])) {
-            throw new TypeError();
+            throw new TypeError('Argument must be two-dimensional array');
         }
     }
     let n = matrix[0].length;
@@ -118,10 +118,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw new TypeError();
+        throw new TypeError('Invalid arguments type');
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
+        throw new RangeError('targetNs must be from 2 to 36');
     }
 
     return n.toString(targetNs);
@@ -133,6 +133,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError('Argument must be string');
+    }
+    
     return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
@@ -144,7 +148,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError();
+        throw new TypeError('Argument must be string');
     }
     let result = text.match(/\(-:|:-\)/).length;
 
