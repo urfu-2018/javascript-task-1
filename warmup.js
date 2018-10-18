@@ -20,10 +20,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw new TypeError('Argument must be number');
+        throw new TypeError();
     }
     if (year < 0) {
-        throw new RangeError('Argument must be non-negative');
+        throw new RangeError();
     }
 
     return (year - year % 100) / 100 + 1;
@@ -38,10 +38,10 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw new TypeError('Argument must be string');
+        throw new TypeError();
     }
     if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
-        throw new RangeError('Invalid color range');
+        throw new RangeError();
     }
     hexColor.toUpperCase();
     let hexChars = '0123456789ABCDEF';
@@ -64,10 +64,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw new TypeError('Argument must be number');
+        throw new TypeError();
     }
     if (parseInt(n) !== n || n < 0) {
-        throw new RangeError('Argument must be non-negative integer');
+        throw new RangeError();
     }
     let previous = 1;
     let current = 1;
@@ -88,12 +88,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        throw new TypeError('Argument must be two-dimensional array');
+        throw new TypeError();
     }
     let m = matrix.length;
     for (let i = 0; i < m; i++) {
         if (!Array.isArray(matrix[i])) {
-            throw new TypeError('Argument must be two-dimensional array');
+            throw new TypeError();
         }
     }
     let n = matrix[0].length;
@@ -118,10 +118,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw new TypeError('Invalid arguments type');
+        throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('targetNs must be from 2 to 36');
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -144,7 +144,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError('Argument must be string');
+        throw new TypeError();
     }
     let result = text.match(/\(-:|:-\)/).length;
 
