@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     }
 
     const reg = /^#[a-fA-F0-9]{6}$/;
-    if (reg.test(hexColor)) {
+    if (!reg.test(hexColor)) {
         throw new RangeError();
     }
 
