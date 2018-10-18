@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
     let numberOfCenturies = year / 100;
@@ -155,8 +155,8 @@ function ticTacToeProblem(field) {
         return field[1][1];
     }
     for (let i = 0; i < field.length; i++) {
-        if ((field[i][0] === field[i][1] && field[i][2] === field[i][1] && field[i][0] !== '') ||
-        (field[0][i] === field[1][i] && field[2][i] === field[0][i] && field[0][i] !== '')) {
+        if ((field[i][0] === field[i][1] && field[i][2] === field[i][1]) ||
+        (field[0][i] === field[1][i] && field[2][i] === field[0][i])) {
             return field[i][i];
         }
     }
