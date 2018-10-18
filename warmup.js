@@ -9,6 +9,11 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    if (!(typeof a === 'number') && !(typeof b === 'number')) {
+        throw new TypeError();
+    }
+
+    return Number.parseInt(a) + Number.parseInt(b);
 }
 
 /**
@@ -20,6 +25,16 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    if (!(typeof a === 'number') && !(typeof b === 'number')) {
+        throw new TypeError();
+    }
+
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.trunc(Number.parseInt(year) / 100);
+
 }
 
 /**
@@ -31,6 +46,17 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+
+    if (typeof hexColor !== 'string') {
+        throw new RangeError();
+    }
+
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+
+    return result;
 }
 
 /**
@@ -42,6 +68,21 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    if (!(typeof n === 'number')) {
+        throw new TypeError();
+    }
+    if (!(Number.isInteger(n) > 0)) {
+        throw new RangeError();
+    }
+    var a = 1;
+    var b = 1;
+    for (var i = 3; i <= n; i++) {
+        var c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
 
 /**
@@ -52,6 +93,19 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    if (!matrix.every(Array.isArray)) {
+        throw new TypeError();
+    }
+    var matLen = matrix.length;
+    for (var i = 0; i < matLen; i++) {
+        for (var j = 0; j < i; j++) {
+            var temp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = temp;
+        }
+    }
+
+    return matrix;
 }
 
 /**
@@ -64,6 +118,14 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    if (!(Number.isInteger(n) > 0) && !(Number.isInteger(targetNs) > 0)) {
+        throw new TypeError();
+    }
+    if ((n > 36) || (n < 2) || (targetNs > 36) || (targetNs < 2)) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -73,6 +135,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    return phoneNumber.search(/(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/);
 }
 
 /**
@@ -83,6 +146,12 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+    var smail = ':-)';
+
+    return text.split(smail).length - 1;
 }
 
 /**
@@ -93,7 +162,26 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
+
+        return field[1][1];
+    }
+    for (var i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+
+            return field[0][i];
+        }
+        
+    }
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
