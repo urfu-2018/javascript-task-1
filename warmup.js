@@ -174,14 +174,13 @@ function ticTacToeProblem(field) {
         [field[1][1], field[1][0], field[2][1]],
         [field[1][1], field[0][2], field[2][0]]
     ];
-    // let win = '';
     let newArr = unique(arr.map(x => unique(x)).filter(x => x.length === 1));
     if ((newArr.length === 0) || (newArr.length === 2)) {
 
         return 'draw';
     }
 
-    return 'x';
+    return newArr[0];
 }
 
 module.exports = {
