@@ -97,7 +97,7 @@ function matrixProblem(matrix) {
     let n = matrix[0].length;
     let transponseMatrix = [];
     for (let i = 0; i < n; i++) {
-        transponseMatrix.push([]);
+        transponseMatrix[i] = [];
         for (let j = 0; j < m; j++) {
             transponseMatrix[i][j] = matrix[j][i];
         }
