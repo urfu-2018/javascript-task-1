@@ -126,7 +126,7 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    let re = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+    let re = /^(8-800-)[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
     if (phoneNumber === 'undefined') {
         return false;
     }
