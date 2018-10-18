@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError('Год - число');
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError('Год - целое положительное число');
     }
 
@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError('Цвет - hex строка');
     }
-    if (!RegExp('#[0-9A-Fa-f]{6}').test(hexColor)) {
+    if (!RegExp('^#[0-9A-Fa-f]{6}').test(hexColor)) {
         throw new RangeError('Цвета выходят за пределы допустимых');
     }
 
@@ -66,7 +66,7 @@ function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw new TypeError('n - число');
     }
-    if (n < 0) {
+    if (n <= 0) {
         throw new RangeError('n - целое положительное число');
     }
     const fibNumbs = [0, 1];
