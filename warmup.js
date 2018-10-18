@@ -25,7 +25,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    if (!(typeof a === 'number') && !(typeof b === 'number')) {
+    if ((typeof a !== 'number') || (typeof b !== 'number')) {
         throw new TypeError();
     }
 
@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return Math.round(year / 100);
+    return Math.ceil(year / 100);
 
 }
 
@@ -50,16 +50,17 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
 
-    if (typeof hexColor !== 'string') {
+    const reg = /^#[a-fA-F0-9]{6}$/;
+    if (reg.test(hexColor)) {
         throw new RangeError();
     }
 
-    var arrBuff = new ArrayBuffer(4);
-    var vw = new DataView(arrBuff);
-    vw.setUint32(0, parseInt(hexColor, 16), false);
-    var arrByte = new Uint8Array(arrBuff);
+    var color = [];
+    for (var i = 1; i < hexColor.length; i += 2) {
+        color.push(parseInt(hexColor.substring(i, i + 2), 16));
+    }
 
-    return arrByte[1] + ',' + arrByte[2] + ',' + arrByte[3];
+    return color[1] + ',' + color[2] + ',' + color[3];
 }
 
 /**
@@ -140,7 +141,7 @@ function phoneProblem(phoneNumber) {
     // Ваше решение
     var phone = /(^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$)/;
 
-    return phoneNumber.test(phone);
+    return phone.test(phoneNumber);
 }
 
 /**
