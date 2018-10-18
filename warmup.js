@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -79,7 +79,7 @@ function convertToNormalHex(hex) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof(n) !== 'number') {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
     if (n <= 0) {
@@ -122,7 +122,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || (targetNs !== 'number' && Math.ceil(targetNs) !== targetNs)) {
+    if (typeof(n) !== 'number' || (!Number.isInteger(targetNs))) {
         throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
