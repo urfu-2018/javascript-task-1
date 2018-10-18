@@ -95,10 +95,10 @@ function matrixProblem(matrix) {
     let res = Array(matrix[0].length);
 
     for (let i = 0; i < res.length; ++i) {
-        res[i] = new Array(matrix[0].length);
+        res[i] = new Array(matrix.length);
     }
     for (let i = 0; i < matrix[0].length; ++i) {
-        for (let j = 0; j < matrix[0].length; ++j) {
+        for (let j = 0; j < matrix.length; ++j) {
             res[i][j] = matrix[j][i];
         }
     }
