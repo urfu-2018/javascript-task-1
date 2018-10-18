@@ -74,10 +74,10 @@ function fibonacciStuff(n) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError('передан неверный тип данных');
     }
-    if (n < 1) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError('порядковый номер не может быть отрицательным');
     }
 
