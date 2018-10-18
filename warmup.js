@@ -105,6 +105,10 @@ function matrixProblem(matrix) {
     if (!matrix.every(Array.isArray)) {
         throw new TypeError();
     }
+
+    if (matrix.length === 0) {
+        throw new TypeError();
+    }
     var matLen = matrix.length;
     for (var i = 0; i < matLen; i++) {
         for (var j = 0; j < i; j++) {
