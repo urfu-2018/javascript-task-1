@@ -108,6 +108,10 @@ function matrixProblem(matrix) {
     return logic(matrix);
 
     function logic() {
+        if (n === 0) {
+            throw new TypeError();
+        }
+
         let arr = new Array(n);
 
         for (let i = 0; i < m; ++i) {
