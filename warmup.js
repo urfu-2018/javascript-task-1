@@ -85,7 +85,7 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    return matrix[0].map((x,i) => matrix.map(x => x[i]));
+    return matrix[0].map((x, i) => matrix.map(x => x[i]));
 }
 
 /**
