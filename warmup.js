@@ -125,9 +125,8 @@ function phoneProblem(phoneNumber) {
     if (typeof (phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    const mask = /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/gm;
 
-    return mask.test(phoneNumber);
+    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/gm.test(phoneNumber);
 }
 
 /**
