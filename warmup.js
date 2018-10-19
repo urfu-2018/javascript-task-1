@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 1) {
         throw new RangeError();
     }
 
@@ -88,22 +88,17 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
 
-    let res = Array(matrix[0].length);
-
-    for (let i = 0; i < res.length; ++i) {
-        res[i] = new Array(matrix.length);
-    }
-    for (let i = 0; i < matrix[0].length; ++i) {
-        for (let j = 0; j < matrix.length; ++j) {
-            res[i][j] = matrix[j][i];
+    matrix.forEach(row => {
+        if (!Array.isArray(row) || row.length !== matrix[0].length) {
+            throw new TypeError();
         }
-    }
+    });
 
-    return res;
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
 }
 
 /**
