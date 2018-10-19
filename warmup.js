@@ -47,10 +47,6 @@ function colorsProblem(hexColor) {
     // Ваше решение
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('Переданный параметр не является строкой');
-    }
-    var regExp = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})/;
-    if (!regExp.test(hexColor)) {
-        throw new TypeError('Строка неверного формата');
     } else {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
         const r = parseInt(result[1], 16);
