@@ -25,7 +25,6 @@ function centuryByYearProblem(year) {
     if (yearStr.length === 4) {
         return parseInt(yearStr.substring(0, 1), 10) + 1;
     }
-    
     return 1;
 }
 
@@ -38,7 +37,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    return '(' + parseInt(hexColor.substring(1, 2), 16) + 
+    return '(' + parseInt(hexColor.substring(1, 2), 16) +
     parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
 }
 
@@ -55,7 +54,6 @@ function fibonacciProblem(n) {
     for (let i = 2; i < 61; i++) {
         fibSequence[i].push(fibSequence[i - 1] + fibSequence[i - 2]);
     }
-    
     return fibSequence[n];
 }
 
@@ -130,7 +128,6 @@ function smilesProblem(text) {
 
     return counter;
 }
-   
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -141,12 +138,12 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     // Ваше решение
     for (let i = 0; i < 3; i++) {
-        if(field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
+        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
         return field[i][0];
     }
     }
     for (let i = 0; i < 3; i++) {
-        if(field[0][i] === field[i][1] && field[0][i] === field[i][2]){
+        if (field[0][i] === field[i][1] && field[0][i] === field[i][2]){
         return field[0][i];
     }
     }
@@ -158,7 +155,7 @@ function ticTacToeProblem(field) {
     }
     
     return 'draw';
-}        
+}
 
 module.exports = {
     abProblem,
