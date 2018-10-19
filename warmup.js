@@ -84,17 +84,8 @@ function matrixProblem(matrix) {
     if (!matrix.every(Array.isArray) || matrix.length === 0) {
         throw new TypeError();
     }
-    let res = [];
-    for (let i = 0; i < matrix[0].length; i++) {
-        res[i] = [];
-    }
-    for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[i].length; j++) {
-            res[j][i] = matrix[i][j];
-        }
-    }
 
-    return res;
+    return matrix => matrix[0].map((x,i) => matrix.map(x => x[i]));
 }
 
 /**
