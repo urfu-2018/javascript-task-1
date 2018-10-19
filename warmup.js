@@ -32,6 +32,16 @@ function centuryByYearProblem(year) {
     }
 }
 
+function transformColor(hex) {
+    var rgbColor = '(';
+    for (let i = 1; i <= 6; i += 2) {
+       rgbColor += (Number.parseInt(hexColor[i]) * 16 +
+       Number.parseInt(hexColor[i + 1])) + (i < 5 ? ', ' : '');
+    }
+    rgbColor += ')';
+	 
+    return rgbColor;
+}
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
@@ -39,17 +49,6 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
- function transformColor(hex) {
-     var rgbColor = '(';
-     for (let i = 1; i <= 6; i += 2) {
-        rgbColor += (Number.parseInt(hexColor[i]) * 16 +
-        Number.parseInt(hexColor[i + 1])) + (i < 5 ? ', ' : '');
-     }
-     rgbColor += ')';
-     
-     return rgbColor;
- }
- 
 function colorsProblem(hexColor) {
     if (typeof(hexColor) === 'string') {
         var hex = /^#[a-fA-F\d]{6}$/;
@@ -63,13 +62,6 @@ function colorsProblem(hexColor) {
     }
 }
 
-/**
- * Находит n-ое число Фибоначчи
- * @param {Number} n Положение числа в ряде Фибоначчи
- * @throws {TypeError} Когда в качестве положения в ряде передано не число
- * @throws {RangeError} Когда положение в ряде не является целым положительным числом
- * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
- */
 function getFibonacci(n) {
     var b = 1;
     for (let i = 3, a = 1; i <= n; i++) {
@@ -80,7 +72,13 @@ function getFibonacci(n) {
     
     return b;
 }
- 
+/**
+ * Находит n-ое число Фибоначчи
+ * @param {Number} n Положение числа в ряде Фибоначчи
+ * @throws {TypeError} Когда в качестве положения в ряде передано не число
+ * @throws {RangeError} Когда положение в ряде не является целым положительным числом
+ * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
+ */
 function fibonacciProblem(n) {
     if (typeof(n) === 'number') {
         if (n < 0) {
@@ -93,12 +91,6 @@ function fibonacciProblem(n) {
     }
 }
 
-/**
- * Транспонирует матрицу
- * @param {(Any[])[]} matrix Матрица размерности MxN
- * @throws {TypeError} Когда в функцию передаётся не двумерный массив
- * @returns {(Any[])[]} Транспонированная матрица размера NxM
- */
 function checkMatrix(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i]) || matrix[i].length !== matrix[0].length) {
@@ -107,12 +99,16 @@ function checkMatrix(matrix) {
     }
     return true;
 }
-
- 
+/**
+ * Транспонирует матрицу
+ * @param {(Any[])[]} matrix Матрица размерности MxN
+ * @throws {TypeError} Когда в функцию передаётся не двумерный массив
+ * @returns {(Any[])[]} Транспонированная матрица размера NxM
+ */ 
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
-    } else if(!checkMatrix(matrix)){
+    } else if (!checkMatrix(matrix)){
         throw new TypeError();
     } else {
         return matrix[0].map((item, element) => matrix.map(matr => matr[element]));
