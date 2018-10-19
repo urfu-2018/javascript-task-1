@@ -142,8 +142,12 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError();
     }
+    const smiles = text.match(/(:-\))|(\(-:)/g) || [];
+    if (smiles === null) {
+        return 0;
+    }
 
-    return (text.match(/(:-\))|(\(-:)/g) || []).length;
+    return smiles.length;
 }
 
 /**
