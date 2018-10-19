@@ -198,7 +198,7 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
-    let result = draw;
+    let result = 'draw';
     const diagCheck = diagonalCheck(field);
     const lineCheck = linesCheck(field);
     const colCheck = columnCheck(field);
