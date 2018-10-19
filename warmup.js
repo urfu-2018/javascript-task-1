@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
     // Ваше решение
     if (!Number.isInteger(year)) {
         throw new TypeError ('Переданный параметр не является числом');
-    } else if (year < 0) {
+    } else if (year <= 0) {
         throw new RangeError ('Значение года не может быть отрицательным числом!');
     } else {
         const result = Math.ceil(year / 100);
