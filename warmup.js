@@ -127,7 +127,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
 
-    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/gm.test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/gm.test(phoneNumber);
 }
 
 /**
@@ -157,7 +157,7 @@ function ticTacToeProblem(field) {
         if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
             return field[i][0];
         }
-        if (field[0][i] === field[i][1] && field[0][i] === field[i][2]) {
+        if (field[0][i] === field[1][i] && field[0][i] === field[2][i]) {
             return field[0][i];
         }
     }
