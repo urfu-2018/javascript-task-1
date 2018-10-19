@@ -165,11 +165,11 @@ function smilesProblem(text) {
 }
 
 function verticalVictory(field) {
-    for (let i = 0, j = 1; i < 3; i++) {
+    for (let i = 0, j = 1, k = 0; i < 3; i++) {
         for (j = 1; j < 3 && field[i][0] === field[i][j]; j++) {
-            
+            k++;
         }
-        if (j === 2) {
+        if (j === 3) {
             return field[i][0];
         }
     }
@@ -178,11 +178,11 @@ function verticalVictory(field) {
 }
 
 function horizonlalVictory(field) {
-    for (let i = 0, j = 1; i < 3; i++) {
+    for (let i = 0, j = 1, k = 0; i < 3; i++) {
         for (j = 1; j < 3 && field[0][i] === field[j][i]; j++) {
-            
+            k++;
         }
-        if (j === 2) {
+        if (j === 3) {
             return field[0][i];
         }
     }
