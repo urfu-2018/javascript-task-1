@@ -102,10 +102,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(n) && isNaN(targetNs)) {
-
-        return n.toString(targetNs);
+    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+        throw new TypeError();
     }
+     if (targetNs > 36 || targetNs < 2) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
