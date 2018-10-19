@@ -162,12 +162,24 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    let x = 'x';
+    let o = 'o';
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] == field[i][1] == field[i][2]) {
-            return field[i][1];
+        if (x === field[i][0] && x === field[i][1] && x === field[i][2]) {
+
+            return x;
         }
-        if (field[0][i] == field[1][i] == field[2][i]) {
-            return field[1][i];
+        if (x === field[0][i] && x === field[1][i] && x === field[2][i]) {
+
+            return x;
+        }
+        if (o === field[i][0] && o === field[i][1] && o === field[i][2]) {
+
+            return o;
+        }
+        if (o === field[0][i] && o === field[1][i] && o === field[2][i]) {
+
+            return o;
         }
     }
 
