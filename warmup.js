@@ -130,9 +130,11 @@ function numberSystemCheckType (n, targetNs) {
     let flag = true;
     if (!isFinite(targetNs) || Math.abs(targetNs) !== targetNs || !Number.isInteger(targetNs)) {
         flag = false;
-    } else if (!isFinite(n) || isNaN(n) || typeof(n) === 'string') {
+    } 
+    if (!isFinite(n) || isNaN(n) || typeof(n) === 'string') {
         flag = false;
     }
+    
     return flag;
 }
 
