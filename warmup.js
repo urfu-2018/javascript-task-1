@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof a !== 'number' || typeof b !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     } else {
         return a + b;
     }
@@ -24,9 +24,9 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     } else if (year <= 0) {
-        throw RangeError;
+        throw new RangeError();
     } else {
         return Math.ceil(year / 100);
     }
@@ -41,13 +41,14 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     } else {
+        hexColor.toUpperCase();
         const R = parseInt(hexColor.slice(1, 3), 16);
         const G = parseInt(hexColor.slice(3, 5), 16);
         const B = parseInt(hexColor.slice(5, 7), 16);
-        if (isNaN(R) || isNaN(G) || isNaN(B) || !/^#[0-9A-F]{6}$/.test(hexColor)) {
-            throw RangeError;
+        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7) {
+            throw new RangeError();
         } else {
             return `(${R}, ${G}, ${B})`;
         }
@@ -63,9 +64,9 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     } else if (n <= 0) {
-        throw RangeError;
+        throw new RangeError();
     } else {
         let a = 1;
         let b = 1;
@@ -90,7 +91,7 @@ function matrixProblem(matrix) {
     if (!(Array.isArray(matrix) &&
         matrix.every(elem => Array.isArray(elem) &&
             elem.every(inception => !Array.isArray(inception))))) {
-        throw TypeError;
+        throw new TypeError();
     }
     let resultMatrix = Array.from({ length: matrix[0].length })
         .map(() => Array.from({ length: matrix.length }));
@@ -113,9 +114,9 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number') {
-        throw TypeError;
+        throw new TypeError();
     } else if (targetNs < 2 || targetNs > 36) {
-        throw RangeError;
+        throw new RangeError();
     } else {
         return n.toString(targetNs);
     }
@@ -138,7 +139,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     } else {
         return (text.match(/:-\)|\(-:/g) || []).length;
     }
