@@ -42,12 +42,14 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
+    } else if (!/^#[0-9a-fA-F]{6}$/gi.test(hexColor)) {
+        throw new RangeError();
     } else {
         hexColor.toUpperCase();
         const R = parseInt(hexColor.slice(1, 3), 16);
         const G = parseInt(hexColor.slice(3, 5), 16);
         const B = parseInt(hexColor.slice(5, 7), 16);
-        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7) {
+        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7 || ) {
             throw new RangeError();
         } else {
             return `(${R}, ${G}, ${B})`;
@@ -113,7 +115,9 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' ||
+        typeof targetNs !== 'number' ||
+        !Number.isInteger(targetNs)) {
         throw new TypeError();
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
