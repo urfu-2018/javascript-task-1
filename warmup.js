@@ -44,7 +44,8 @@ function centuryByYearProblem(year) {
     const YEARS_IN_CENTURY = 100;
     
     return Math
-        .floor(year / YEARS_IN_CENTURY) + 1;
+        .floor(year / YEARS_IN_CENTURY) + // получили индекс года
+        1; // получили номер года
 }
 
 /**
@@ -85,8 +86,8 @@ function centuryByYearProblem(year) {
     let RGBColorString = '(';
     let i = 1;
     while (true) {
-        RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX 
-            + GetNUmberBySymbal(hexColor[i + 1])).toString(); 
+        RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX +
+            GetNUmberBySymbal(hexColor[i + 1])).toString(); 
 
         if (i >= hexColor.length) {
             break;
@@ -235,7 +236,7 @@ function ticTacToeProblem(field) {
     let x0 = 1;
     let y0 = 1;
     let delta = Math.PI / 4;
-    const iterationQuantity = Math.round(2*Math.PI / delta);
+    const iterationQuantity = Math.round(2 * Math.PI / delta);
     for (let i = 0; i < iterationQuantity; i++) {
         const dX = Math.round(Math.cos(i * delta));
         const dY = Math.round(Math.sin(i * delta));
@@ -252,7 +253,7 @@ function ticTacToeProblem(field) {
         const dX = Math.round(Math.cos(-i * delta));
         const dY = Math.round(Math.sin(-i * delta));
         if (field[x0][y0] === field[x0 + dX][y0 + dY] &&
-            field[x0][y0] === field[x0 + 2*dX][y0 + 2*dY]) {
+            field[x0][y0] === field[x0 + 2 * dX][y0 + 2 * dY]) {
             return field[x0][y0];
         }
         x0 += 2 * dX;
@@ -260,7 +261,6 @@ function ticTacToeProblem(field) {
     }
     
     return 'draw';
-    
 }
 
 module.exports = {
