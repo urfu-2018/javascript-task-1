@@ -171,7 +171,9 @@ function numberSystemProblem(n, targetNs) {
     if (!isNumber(targetNs)) {
         throw new TypeError('Base of number system isn\'t a number');
     }
-    if (2 > targetNs || targetNs > 36) {
+    const maxNumberSystem = 36;
+    const minNumberSystem = 2;
+    if ((targetNs - minNumberSystem) * (maxNumberSystem - targetNs) < 0) {
         throw new RangeError('Base of number system not belong [2, 36]');
     }
 
