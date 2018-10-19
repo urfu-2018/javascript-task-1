@@ -43,11 +43,10 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw TypeError;
     } else {
-        hexColor.toUpperCase();
         const R = parseInt(hexColor.slice(1, 3), 16);
         const G = parseInt(hexColor.slice(3, 5), 16);
         const B = parseInt(hexColor.slice(5, 7), 16);
-        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7) {
+        if (isNaN(R) || isNaN(G) || isNaN(B) || !/^#[0-9A-F]{6}$/.test(hexColor)) {
             throw RangeError;
         } else {
             return `(${R}, ${G}, ${B})`;
