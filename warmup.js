@@ -44,8 +44,7 @@ function centuryByYearProblem(year) {
     const YEARS_IN_CENTURY = 100;
     
     return Math
-        .floor(year / YEARS_IN_CENTURY) //GetindexCenturyByYear
-        + 1; //GetnumberCenturyByYear
+        .floor(year / YEARS_IN_CENTURY) + 1;
 }
 
 /**
@@ -84,7 +83,7 @@ function centuryByYearProblem(year) {
         }
     }
     let RGBColorString = '(';
-    let i = 1
+    let i = 1;
     while (true) {
         RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX 
             + GetNUmberBySymbal(hexColor[i + 1])).toString(); 
