@@ -128,7 +128,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
+    return /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -141,7 +141,7 @@ function smilesProblem(text) {
     if (typeof text !== 'string') {
         throw TypeError;
     } else {
-        return (text.match(/(?::-\)|\(-:)/g) || []).length;
+        return (text.match(/:-\)|\(-:/g) || []).length;
     }
 }
 
