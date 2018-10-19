@@ -30,14 +30,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isInt(year)) {
-        if (year >= 0) {
-            return parseInt(year / 100) + 1;
-        }
-        throw new RangeError();
-
+    if (!isInt(year)) {
+        throw new TypeError();
     }
-    throw new TypeError();
+    if (year <= 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
