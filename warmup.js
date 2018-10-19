@@ -174,7 +174,7 @@ function ticTacToeProblem(field) {
     }
      return 'draw';
 }
-}
+
 
 module.exports = {
     abProblem,
