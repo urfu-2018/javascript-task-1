@@ -86,7 +86,7 @@ function fibonacciProblem(n) {
  */
 
 function checkLengthOfMatrix(matr) {
-    for (let i = 1; i < matr[0].length; i++) {
+    for (let i = 0; i < matr[0].length; i++) {
         if (!Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
             return false;
         }
@@ -94,7 +94,7 @@ function checkLengthOfMatrix(matr) {
 }
 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0]) || checkLengthOfMatrix(matrix)) {
+    if (!Array.isArray(matrix) || checkLengthOfMatrix(matrix)) {
         throw new TypeError();
     }
     const newMatrix = new Array(matrix[0].length);
