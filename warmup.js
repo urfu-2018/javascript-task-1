@@ -87,7 +87,7 @@ function fibonacciProblem(n) {
 
 function checkLengthOfMatrix(matr) {
     for (let i = 1; i < matr[0].length; i++) {
-        if (matr[i] !== matr[0] || !Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
+        if (!Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
             return false;
         }
     }
