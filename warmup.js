@@ -117,8 +117,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (!isFinite(targetNs) || Math.abs(targetNs) !== targetNs || !Number.isInteger(targetNs) 
-        || targetNs < 2  || targetNs > 36) {
+    if (!isFinite(targetNs) || Math.abs(targetNs) !== targetNs || !Number.isInteger(targetNs) || targetNs < 2  || targetNs > 36) {
         throw new TypeError ('недопустимое значение системы счисления');
     } else if (isNaN(n) || !isFinite(n)) {
         throw new RangeError('недопустимое число');
