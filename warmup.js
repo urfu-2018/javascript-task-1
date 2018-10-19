@@ -47,11 +47,10 @@ function colorsProblem(hexColor) {
     if (!(/^#[0-9A-F]{6}$/i).test(hexColor)) {
         throw new RangeError();
     }
-    const r = parseInt(hexColor.substr(1, 2), 16);
-    const g = parseInt(hexColor.substr(3, 2), 16);
-    const b = parseInt(hexColor.substr(5, 2), 16);
 
-    return '(' + r + ', ' + g + ', ' + b + ')';
+    return '(' + parseInt(hexColor.substr(1, 2), 16) + ', ' +
+    parseInt(hexColor.substr(3, 2), 16) + ', ' +
+    parseInt(hexColor.substr(5, 2), 16) + ')';
 }
 
 /**
@@ -143,9 +142,8 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError();
     }
-    let countSmiles = (text.match(/(:-\))|(\(-:)/g) || []).length;
 
-    return countSmiles;
+    return (text.match(/(:-\))|(\(-:)/g) || []).length;
 }
 
 /**
