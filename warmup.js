@@ -98,21 +98,15 @@ function fibonacciProblem(n) {
     checkThat(n, isInteger, RangeError);
     checkThat(n, number => number > 0, RangeError);
 
-    const fibonacciIndex = n - 1;
-    const base = [1, 1];
+    const position = n - 1;
+    const array = [1, 1];
+    const fibonacciRecurrence = number => array[number - 1] + array[number - 2];
 
-    function fibonacciRecurrence(unused, index, recurrence) {
-        if (index < base.length) {
-            return base[index];
-        }
-
-        return recurrence[index - 1] + recurrence[index - 2];
+    while (array.length <= position) {
+        array.push(fibonacciRecurrence(array.length));
     }
 
-    return base
-        .concat(Array(Math.max(0, fibonacciIndex - 2)))
-        .map(fibonacciRecurrence)
-        .pop();
+    return array.pop();
 }
 
 // noinspection JSValidateJSDoc
