@@ -76,7 +76,7 @@ function colorsProblem(hexColor) {
     const {
         BASE_HEX,
         isHexadimal,
-        getNumberBySymbal
+        getNumber
     } = require('./Hex');
     for (let i = 1; i < lowerHexColor.length; i++) {
         if (!isHexadimal(lowerHexColor[i])) {
@@ -84,10 +84,9 @@ function colorsProblem(hexColor) {
         }
     }
     lowerHexColor = lowerHexColor.split('#').shift();
-    const number1 = getNumberBySymbal(lowerHexColor[0]) * BASE_HEX + getNumberBySymbal(lowerHexColor[1]);
-    const number2 = getNumberBySymbal(lowerHexColor[2]) * BASE_HEX + getNumberBySymbal(lowerHexColor[3]);
-    const number3 = getNumberBySymbal(lowerHexColor[4]) * BASE_HEX + getNumberBySymbal(lowerHexColor[5]);
-
+    const number1 = getNumber(lowerHexColor[0]) * BASE_HEX + getNumber(lowerHexColor[1]);
+    const number2 = getNumber(lowerHexColor[2]) * BASE_HEX + getNumber(lowerHexColor[3]);
+    const number3 = getNumber(lowerHexColor[4]) * BASE_HEX + getNumber(lowerHexColor[5]);
     return '(' + number1 + ',' + number2 + ',' + number3 + ')';
 }
 
