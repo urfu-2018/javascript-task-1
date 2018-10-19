@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || !/^#[a-fA-F]{6}$/.test(hexColor)) {
+    if (typeof hexColor !== 'string' || !/^#[a-fA-F0-9]{6}$/.test(hexColor)) {
         throw new TypeError();
     }
     let red = parseInt(hexColor.slice(1, 3), 16);
