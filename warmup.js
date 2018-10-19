@@ -76,7 +76,7 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (!(Number.isInteger(n) > 0)) {
+    if (!(Number.isInteger(n) >= 0)) {
         throw new RangeError();
     }
 
@@ -106,9 +106,10 @@ function matrixProblem(matrix) {
         throw new TypeError();
     }
 
-    if (matrix.length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
+
     var matLen = matrix.length;
     for (var i = 0; i < matLen; i++) {
         for (var j = 0; j < i; j++) {
