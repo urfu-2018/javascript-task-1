@@ -146,6 +146,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var phone = /^8-800-\d{3}(-\d{2}){2}$/;
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
 
     return phone.test(phoneNumber);
 }
