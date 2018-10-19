@@ -27,10 +27,10 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     } else if (year <= 0) {
         throw new RangeError();
-    }
+        }
         else {
         return (Math.round(year / 100) + 1);
-    }
+            }
 }
 
 /**
@@ -94,8 +94,8 @@ function matrixProblem(matrix) {
     if (Array.isArray(matrix)) {
 
         return matrix[0].map((col, i) => matrix.map(row => row[i]));
-    }
-        else {
+        }
+    else if (!Array.isArray(matrix) {
         throw new TypeError();
     }
 }
@@ -116,7 +116,8 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
-     return (n.toString(targetNs));
+    
+    return (n.toString(targetNs));
 }
 
 /**
@@ -129,6 +130,7 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+    
     return regex.test(phoneNumber);
 }
 
@@ -139,7 +141,6 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    
     if (typeof text !== 'string') {
         throw new TypeError();
     }
@@ -147,7 +148,8 @@ function smilesProblem(text) {
     if (result !== null) {
         return result.length;
     }
-     return 0;
+    
+    return 0;
 }
 
 /**
@@ -174,7 +176,8 @@ function ticTacToeProblem(field) {
         field[1][1] === field[2][0]) {
         return field[1][1];
     }
-     return 'draw';
+    
+    return 'draw';
 }
 
 
