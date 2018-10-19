@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) === 'string') {
-        if ((/^#[0-9,A-F]{6}/).test(hexColor)) {
+        if ((/^#[0-9,A-F,a-f]{6}/).test(hexColor)) {
             let redColor = parseInt(hexColor.substr(1, 2), 16);
             let greeenColor = parseInt(hexColor.substr(3, 2), 16);
             let blueColor = parseInt(hexColor.substr(5, 2), 16);
