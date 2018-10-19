@@ -25,7 +25,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
 
-    if (!Number.isInteger(year)){
+    if (!Number.isInteger(year)) {
         throw new TypeError('');
     }
     if (year < 0) {
@@ -50,7 +50,7 @@ function colorsProblem(hexColor) {
         throw new TypeError('');
     }
 
-    if (!(/#[0-9a-fA-F]{6}/g).test(hexColor)){
+    if (!(/#[0-9a-fA-F]{6}/g).test(hexColor)) {
         throw new RangeError('');
     }
 
