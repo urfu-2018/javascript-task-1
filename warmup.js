@@ -41,14 +41,14 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || !/^#[a-fA-F0-9]{6}$/.test(hexColor)) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
     let red = parseInt(hexColor.slice(1, 3), 16);
     let green = parseInt(hexColor.slice(3, 5), 16);
     let blue = parseInt(hexColor.slice(5, 7), 16);
 
-    if (isNaN(red) || isNaN(green) || isNaN(blue)) {
+    if (isNaN(red) || isNaN(green) || isNaN(blue) || hexColor.length !== 7) {
         throw new RangeError();
     }
 
