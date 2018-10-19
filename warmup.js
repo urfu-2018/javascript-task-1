@@ -83,11 +83,11 @@ function fibonacciProblem(n) {
  */
 function transposeMatrix(matrix) {
     var newArray = [];
-    for (let i = 0; i < matrix[0].length; i++) {
+    for (var i = 0; i < matrix[0].length; i++) {
         newArray.push([]);
-        for (let j = 0; j < matrix.length; j++) {
+        for (var j = 0; j < matrix.length; j++) {
             checkArray(matrix[j]);
-            newArray[i][j] = matrix[j][i];
+            newArray[i].push(matrix[j][i]);
         }
     }
 
