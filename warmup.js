@@ -27,10 +27,10 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     } else if (year <= 0) {
         throw new RangeError();
-        }
-        else {
+    }
+    else {
         return (Math.round(year / 100) + 1);
-            }
+    }
 }
 
 /**
@@ -94,8 +94,8 @@ function matrixProblem(matrix) {
     if (Array.isArray(matrix)) {
 
         return matrix[0].map((col, i) => matrix.map(row => row[i]));
-        }
-        throw new TypeError();
+    }
+    throw new TypeError();
 }
 
 /**
@@ -114,7 +114,6 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
-    
     return (n.toString(targetNs));
 }
 
@@ -128,7 +127,6 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
-    
     return regex.test(phoneNumber);
 }
 
@@ -146,7 +144,6 @@ function smilesProblem(text) {
     if (result !== null) {
         return result.length;
     }
-    
     return 0;
 }
 
@@ -177,7 +174,6 @@ function ticTacToeProblem(field) {
     
     return 'draw';
 }
-
 
 module.exports = {
     abProblem,
