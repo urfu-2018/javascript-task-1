@@ -2,7 +2,7 @@
 
 /**
  * Проверяет является ли аргумент числом
- * @param Нет требований к аргументу
+ * @param {} Нет требований к аргументу
  * @returns {Boolean} Если является числом, то true, а иначе false
  */
 function isNumber(something) {
@@ -50,7 +50,7 @@ function centuryByYearProblem(year) {
 
 /**
   * определяет является ли аргумент строкой
-  * @param Нет требований к аргументу
+  * @param {} Нет требований к аргументу
   * @returns {Boolean} Если является строкой, то true, а иначе false
   */
 function isString(something) {
