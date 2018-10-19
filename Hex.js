@@ -18,12 +18,12 @@ function isHexadimal(symbol) {
  * @param {String} symbol Шестнадцатиричный символ, в виде строки длины 1
  * @returns {Number} Десятичнеое число, переведённое из шестнадчатиричного символа
  */
-function getNUmberBySymbal(symbol) {
+function getNumber(symbol) {
     return HEX_SYMBOLS.indexOf(symbol);
 }
 
 module.exports = {
     HEX_BASE,
     isHexadimal,
-    getNUmberBySymbal
+    getNumber
 };
