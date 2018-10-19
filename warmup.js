@@ -47,11 +47,11 @@ function colorsProblem(hexColor) {
     if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
-    let r = parseInt(hexColor.substring(1, 3), 16);
-    let g = parseInt(hexColor.substring(3, 5), 16);
-    let b = parseInt(hexColor.substring(5, 7), 16);
+    let r = parseInt(hexColor.substr(1, 2), 16);
+    let g = parseInt(hexColor.substr(3, 2), 16);
+    let b = parseInt(hexColor.substr(5, 2), 16);
 
-    return ('(' + r + ', ' + g + ', ' + b + ')');
+    return '(' + r + ', ' + g + ', ' + b + ')';
 }
 
 /**
@@ -65,7 +65,7 @@ function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 0) {
+    if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let fibArr = [1, 1];
