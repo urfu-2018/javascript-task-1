@@ -26,6 +26,9 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
     }
+    if (year < 0) {
+        throw new RangeError();
+    }
 
     return Math.ceil(year / 100);
 }
@@ -38,15 +41,19 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor === 'string') {
-        let hexChars = hexColor.replace('#', '');
-        let r = parseInt(hexChars.substr(0, 2), 16);
-        let g = parseInt(hexChars.substr(2, 2), 16);
-        let b = parseInt(hexChars.substr(4, 2), 16);
-        let rgbColor = '(' + r + ', ' + g + ', ' + b + ')';
-
-        return rgbColor;
+    if (typeof(hexColor) !== 'string') {
+        throw new TypeError();
     }
+     if (!(/^#[0-9,a-f,A-F]{6}$/).test(hexColor)) {
+        throw new RangeError();
+    }
+    let hexChars = hexColor.replace('#', '');
+    let r = parseInt(hexChars.substr(0, 2), 16);
+    let g = parseInt(hexChars.substr(2, 2), 16);
+    let b = parseInt(hexChars.substr(4, 2), 16);
+    let rgbColor = '(' + r + ', ' + g + ', ' + b + ')';
+
+    return rgbColor;
 }
 
 /**
@@ -57,18 +64,22 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isNaN(n) && parseInt(Number(n)) === n && !isNaN(parseInt(n, 10))) {
-        let a = 1;
-        let b = 1;
-        let c = 0;
-        for (let i = 3; i <= n; i++) {
-            c = a + b;
-            a = b;
-            b = c;
-        }
-
-        return b;
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
     }
+     if (n <= 0 || Math.trunc(n) !== n) {
+        throw new RangeError();
+    }
+    let a = 1;
+    let b = 1;
+    let c = 0;
+    for (let i = 3; i <= n; i++) {
+        c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return b;
 }
 
 /**
@@ -78,6 +89,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
+    if (!matrix.every(Array.isArray)) {
+        throw new TypeError();
+    }
     let lengthRows = matrix.length;
     let lengthColumns = matrix[0].length;
     let newMatrix = [];
@@ -118,19 +132,20 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber === 'string') {
-        const formatNumber = '8-800-xxx-xx-xx';
-        let array = phoneNumber.split('-');
-        for (let i = 2; i < 5; i++) {
-            array[i] = array[i].replace(/[^a-z]/g, 'x');
-        }
-        let phoneStr = array[0] + '-' + array[1] + '-' + array[2] + '-' + array[3] + '-' + array[4];
-        if (phoneStr === formatNumber) {
-            return true;
-        }
-
-        return false;
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
     }
+    const formatNumber = '8-800-xxx-xx-xx';
+    let array = phoneNumber.split('-');
+    for (let i = 2; i < 5; i++) {
+        array[i] = array[i].replace(/[^a-z]/g, 'x');
+    }
+    let phoneStr = array[0] + '-' + array[1] + '-' + array[2] + '-' + array[3] + '-' + array[4];
+    if (phoneStr === formatNumber) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -140,6 +155,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof(text) !== 'string') {
+        throw new TypeError();
+    }
     let target = ':-)';
     let pos = 0;
     let findPos = 0;
