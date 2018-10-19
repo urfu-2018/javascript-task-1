@@ -65,12 +65,12 @@ function isString(something) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    hexColor.toLocaleLowerCase();
-    if (!isString(hexColor)) {
+    const lowerHexColor = hexColor.toLocaleLowerCase();
+    if (!isString(lowerHexColor)) {
         throw new TypeError('Color in Format HEX don\'t gives as a string');
     }
     const COLOR_RANGE_ERROR = new RangeError('Value of color is incorrect');
-    if (hexColor.length !== 7 || hexColor[0] !== '#') {
+    if (lowerHexColor.length !== 7 || lowerHexColor[0] !== '#') {
         throw COLOR_RANGE_ERROR;
     }
     const {
@@ -78,24 +78,17 @@ function colorsProblem(hexColor) {
         isHexadimal,
         getNumberBySymbal
     } = require('./Hex');
-    for (let i = 1; i < hexColor.length; i++) {
-        if (!isHexadimal(hexColor[i])) {
+    for (let i = 1; i < lowerHexColor.length; i++) {
+        if (!isHexadimal(lowerHexColor[i])) {
             throw COLOR_RANGE_ERROR;
         }
     }
-    let RGBColorString = '(';
-    let i = 1;
-    const flag = true;
-    while (flag) {
-        RGBColorString += (getNumberBySymbal(hexColor[i]) * BASE_HEX +
-            getNumberBySymbal(hexColor[i + 1])).toString();
-        if (i >= hexColor.length) {
-            break;
-        }
-        RGBColorString += ', ';
-    }
+    lowerHexColor = lowerHexColor.split('#').shift();
+    const number1 = lowerHexColor[0] * BASE_HEX + lowerHexColor[1];
+    const number2 = lowerHexColor[2] * BASE_HEX + lowerHexColor[3];
+    const number3 = lowerHexColor[4] * BASE_HEX + lowerHexColor[5];
 
-    return RGBColorString;
+    return '(${number1}, ${number2}, {number3})';
 }
 
 /**
@@ -228,7 +221,7 @@ function ticTacToeProblem(field) {
         const dY = Math.round(Math.sin(i * delta));
         if (field[x0][y0] === field[x0 + dX][y0 + dY] &&
         field[x0][y0] === field[x0 - dX][x0 - dY]) {
-               return field[x0][y0];
+            return field[x0][y0];
         }
     }
     x0 = 0;
