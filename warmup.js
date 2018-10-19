@@ -86,23 +86,22 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    let reducer = (acc, value) => acc && Array.isArray(value);
-    const isMatrix = matrix.reduce(reducer, true);
-    if (!isMatrix) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray || matrix.length === 0)) {
         throw new TypeError();
     }
-    let newMatrix = [];
-    const M = matrix.length;
-    const N = matrix[0].length;
-    for (var j = 0; j < N; j++) {
-        newMatrix[j] = [];
-        for (var i = 0; i < M; i++) {
-            newMatrix[j][i] = matrix[i][j];
+    var len = matrix.length;
+    var height = matrix[0].length;
+    var newMatrix = [];
+    for (var i = 0; i < height; i++) {
+        newMatrix[i] = [];
+        for (var j = 0; j < len; j++) {
+            newMatrix[i][j] = matrix[j][i];
         }
     }
 
     return newMatrix;
 }
+
 
 /**
  * Переводит число в другую систему счисления
@@ -157,19 +156,17 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
+        return field[1][1];
+    }
     for (let i = 0; i < 3; i++) {
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
-        }
         if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
         }
-    }
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
-        return field[0][0];
-    }
-    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-        return field[0][2];
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
     }
 
     return 'draw';
