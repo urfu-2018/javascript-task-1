@@ -114,7 +114,9 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || targetNs !== 'number') {
+    if (typeof n !== 'number') {
+        throw new TypeError('введите числа');
+    } else if (typeof targetNs !== 'number') {
         throw new TypeError('введите числа');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('второе чсло должно быть от 2 до 36');
