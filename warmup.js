@@ -86,7 +86,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     checkThat(n, isNumber);
     checkThat(n, isInteger, RangeError);
-    checkThat(n, number => number > 0, RangeError);
+    checkThat(n, number => number >= 1, RangeError);
 
     const position = n - 1;
     const array = [1, 1];
