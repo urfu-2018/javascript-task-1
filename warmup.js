@@ -64,12 +64,13 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    const transposedMatrix;
+    let transposedMatrix = [];
     for (let i =0; i < matrix.length; i++){
         for (let j=0; j<matrix.length; j++){
-            matrix[i][j] = transposedMatrix[j][i];
+            transposedMatrix[j][i] = matrix[i][j];
         }
     }
+    return transposedMatrix;
 }
 
 /**
