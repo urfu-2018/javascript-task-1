@@ -30,7 +30,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
     let century = year / 100;
-    if (century % 100 !== 0){
+    if (century % 100 !== 0) {
         century++;
     }
 
@@ -96,7 +96,7 @@ function matrixProblem(matrix) {
     let newMatrix = [];
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < columns; j++) {
-            newMatrix[i, j] = matrix[j, i];
+            newMatrix[i][j] = matrix[j][i];
         }
     }
 
