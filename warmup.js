@@ -113,8 +113,10 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
+    
     return (n.toString(targetNs));
 }
+
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
@@ -125,8 +127,10 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
+    
     return regex.test(phoneNumber);
 }
+
 /**
  * Определяет количество улыбающихся смайликов в строке
  * @param {String} text Строка в которой производится поиск
@@ -139,8 +143,10 @@ function smilesProblem(text) {
     }
     let result = text.match(/(:-\)|\(-:)/g);
     if (result !== null) {
+        
         return result.length;
     }
+    
     return 0;
 }
 /**
