@@ -28,12 +28,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    let numberOfCenturies = year / 100;
-    if (year % 100 === 0) {
-        return numberOfCenturies;
-    }
 
-    return Math.floor(numberOfCenturies) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -126,10 +122,8 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    phoneNumber = phoneNumber.replace(/-/g, '');
 
-    return phoneNumber.length === 11 && phoneNumber.substr(0, 4) === '8800' &&
-    (/^[0-9]*$/).test(phoneNumber.substr(4));
+    return (/^8-800-[0-9]{3}(-[0-9]{2}){2}$/).test(phoneNumber);
 }
 
 /**
