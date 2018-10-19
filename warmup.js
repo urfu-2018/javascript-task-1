@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
     if (year < 0) {
-        throw new TypeError();
+        throw new RangeError();
     }
 
     return Math.ceil(year / 100);
