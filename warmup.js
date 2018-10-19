@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-    if ((typeof a !== 'number') || (typeof b !== 'number')) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw new TypeError();
     }
 
@@ -46,7 +46,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    if (typeof hexColor !== 'string') {
+    if (typeof hexColor !== 'string' || hexColor.length !== 7 || hexColor[0] !== '#') {
         throw new TypeError();
     }
 
@@ -105,22 +105,19 @@ function matrixProblem(matrix) {
     if (!matrix.length || !matrix[0].length) {
         throw new TypeError();
     }
-    matrix.forEach(c => {
-        if (matrix[0].length !== c.length || !c || !c.length || c.length === 0) {
-            throw new TypeError();
-        }
-    });
+    if (!matrix.every(Array.isArray)) {
+        throw new TypeError();
+    }
 
-    var matLen = matrix.length;
-    for (var i = 0; i < matLen; i++) {
-        for (var j = 0; j < i; j++) {
-            var temp = matrix[i][j];
-            matrix[i][j] = matrix[j][i];
-            matrix[j][i] = temp;
+    const newMatrix = [];
+    for (let i = 0; i < matrix[0].length; i++) {
+        newMatrix[i] = [];
+        for (let j = 0; j < matrix.length; j++) {
+            newMatrix[i][j] = matrix[j][i];
         }
     }
 
-    return matrix;
+    return newMatrix;
 }
 
 /**
