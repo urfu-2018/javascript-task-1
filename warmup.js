@@ -118,12 +118,17 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     checkThat(matrix, Array.isArray);
-
+    checkThat(matrix, array => array.length > 0);
     const answer = [];
 
     function writeRowToColumn(rowNumber) {
         const row = matrix[rowNumber];
         checkThat(row, Array.isArray);
+        checkThat(row, array => array.length > 0);
+        if (rowNumber > 0) {
+            checkThat(row, array => array.length === matrix[rowNumber - 1].length);
+        }
+
         for (let columnNumber = 0; columnNumber < row.length; columnNumber++) {
             if (rowNumber === 0) {
                 answer[columnNumber] = [];
