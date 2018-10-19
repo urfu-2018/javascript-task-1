@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const HEX_SYMBOLS = 
+const HEX_SYMBOLS =
       ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
 const HEX_BASE = 16;
 
@@ -26,4 +26,4 @@ module.exports = {
     HEX_BASE,
     isHexadimal,
     getNUmberBySymbal
-}
+};
