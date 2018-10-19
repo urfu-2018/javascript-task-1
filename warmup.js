@@ -45,7 +45,7 @@ function fibonacciProblem(n) {
     if (n <= 0) {
         throw new RangeError('только положительное число');
     }
-    if (n <= 2) {
+    if (n < 2) {
         return n;
     }
     let i;
