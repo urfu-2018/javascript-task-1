@@ -41,9 +41,14 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string' || !/^#/.test(hexColor)) {
+    if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
+
+    if (!/^#[0-9a-f]{6}$/gi.test(hexColor)) {
+        throw new RangeError();
+    }
+
     let red = parseInt(hexColor.slice(1, 3), 16);
     let green = parseInt(hexColor.slice(3, 5), 16);
     let blue = parseInt(hexColor.slice(5, 7), 16);
@@ -72,13 +77,13 @@ function fibonacciProblem(n) {
     }
     let prevNum = 1;
     let currentNum = 1;
-    for (let i = 2; i < n; i++) {
+    for (let i = 1; i < n; i++) {
         let buff = currentNum;
         currentNum += prevNum;
         prevNum = buff;
     }
 
-    return currentNum;
+    return prevNum;
 }
 
 /**
