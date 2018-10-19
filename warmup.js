@@ -16,10 +16,11 @@ function isFloat(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isFloat(a) && isFloat(b)) {
-        return a + b;
+    if (!isFloat(a) || !isFloat(b)) {
+        throw new TypeError();
     }
-    throw new TypeError();
+
+    return a + b;
 }
 
 /**
@@ -33,7 +34,7 @@ function centuryByYearProblem(year) {
     if (!isInt(year)) {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
