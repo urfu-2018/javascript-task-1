@@ -84,16 +84,14 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-
-function checkLength(matr) {
-    for (let i = 0; i < matr.length; i++) {
-        if (!Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
-            return false;
+function matrixProblem(matrix) {
+    function checkLength(matr) {
+        for (let i = 0; i < matr.length; i++) {
+            if (!Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
+                return false;
+            }
         }
     }
-}
-
-function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || checkLength(matrix)) {
         throw new TypeError();
     }
