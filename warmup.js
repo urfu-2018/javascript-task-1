@@ -123,7 +123,7 @@ function matrixProblem(matrix) {
 function checkArray(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError('Матрица должна быть двумерной');
-    } 
+    }
 }
 
 /**
