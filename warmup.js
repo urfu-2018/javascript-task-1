@@ -47,9 +47,15 @@ function colorsProblem(hexColor) {
     if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
         throw new RangeError();
     }
+<<<<<<< HEAD
     let r = parseInt(hexColor.substr(1, 2), 16);
     let g = parseInt(hexColor.substr(3, 2), 16);
     let b = parseInt(hexColor.substr(5, 2), 16);
+=======
+    let r = parseInt(hexColor.substring(1, 3), 16);
+    let g = parseInt(hexColor.substring(3, 5), 16);
+    let b = parseInt(hexColor.substring(5, 7), 16);
+>>>>>>> 5dbc4e0e6adf33f9eede5ef88db06abc15676eea
 
     return '(' + r + ', ' + g + ', ' + b + ')';
 }
@@ -65,7 +71,11 @@ function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
         throw new TypeError();
     }
+<<<<<<< HEAD
     if (n < 1 || !Number.isInteger(n)) {
+=======
+    if (n < 0) {
+>>>>>>> 5dbc4e0e6adf33f9eede5ef88db06abc15676eea
         throw new RangeError();
     }
     let fibArr = [1, 1];
@@ -84,7 +94,11 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!(matrix instanceof Array) ||
+<<<<<<< HEAD
     matrix.some(sm => !Array.isArray(sm) || sm.length !== matrix[0].length)) {
+=======
+   matrix.some(sm => !Array.isArray(sm) || sm.length !== matrix[0].length)) {
+>>>>>>> 5dbc4e0e6adf33f9eede5ef88db06abc15676eea
         throw new TypeError();
     }
     let rows = matrix.length;
