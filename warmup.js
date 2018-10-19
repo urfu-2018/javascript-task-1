@@ -76,11 +76,11 @@ function fibonacciProblem(n) {
         throw new TypeError();
     }
 
-    if (!(Number.isInteger(n) >= 0)) {
+    if (n <= 0) {
         throw new RangeError();
     }
 
-    if (n < 2) {
+    if (n <= 2) {
         return 1;
     }
     var a = 1;
@@ -132,7 +132,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if ((typeof (n) !== 'number') || (typeof (targetNs) !== 'number')) {
+    if (typeof (n) !== 'number' || typeof (targetNs) !== 'number') {
         throw new TypeError();
     }
 
