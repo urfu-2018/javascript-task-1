@@ -13,7 +13,7 @@ function abProblem(a, b) {
         throw new TypeError('');
     }
 
-    return parseInt(a) + parseInt(b);;
+    return parseInt(a) + parseInt(b);
 }
 
 /**
