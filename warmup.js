@@ -12,7 +12,7 @@ function symbolRange(from, length) {
 }
 
 function checkThat(object, predicate, ErrorTypeToThrow = TypeError) {
-    if (object !== undefined && object !== null && !predicate(object)) {
+    if (object === undefined || object === null || !predicate(object)) {
         throw new ErrorTypeToThrow();
     }
 }
@@ -175,7 +175,6 @@ function phoneProblem(phoneNumber) {
     const expectedLength = 15;
 
     const equals = object => other => other === object;
-
     const associativity = [
         [eightIndexes, equals('8')],
         [zeroIndexes, equals('0')],
@@ -185,8 +184,7 @@ function phoneProblem(phoneNumber) {
     ];
 
     return phoneNumber.length === expectedLength &&
-        associativity.every(pair => pair[0].map(i => phoneNumber.charAt(i))
-            .every(pair[1]));
+        associativity.every(pair => pair[0].map(i => phoneNumber.charAt(i)).every(pair[1]));
 
 }
 
