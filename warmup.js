@@ -220,7 +220,7 @@ function smilesProblem(text) {
                     }
                 }
                 if (isSmile) {
-                    amount++; 
+                    amount++;
                 }
             }
         }
@@ -244,7 +244,7 @@ function ticTacToeProblem(field) {
         const dX = Math.round(Math.cos(i * delta));
         const dY = Math.round(Math.sin(i * delta));
         if (field[x0][y0] === field[x0 + dX][y0 + dY] &&
-            field[x0][y0] === field[x0 - dX][x0 - dY]) {
+        field[x0][y0] === field[x0 - dX][x0 - dY]) {
                return field[x0][y0];
         }
     }
@@ -256,7 +256,7 @@ function ticTacToeProblem(field) {
         const dX = Math.round(Math.cos(-i * delta));
         const dY = Math.round(Math.sin(-i * delta));
         if (field[x0][y0] === field[x0 + dX][y0 + dY] &&
-            field[x0][y0] === field[x0 + 2 * dX][y0 + 2 * dY]) {
+        field[x0][y0] === field[x0 + 2 * dX][y0 + 2 * dY]) {
             return field[x0][y0];
         }
         x0 += 2 * dX;
