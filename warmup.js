@@ -175,3 +175,11 @@ function ticTacToeProblem(field) {
 module.exports = {
     abProblem,
     centuryByYearProblem,
+    colorsProblem,
+    fibonacciProblem,
+    matrixProblem,
+    numberSystemProblem,
+    phoneProblem,
+    smilesProblem,
+    ticTacToeProblem,
+}}
