@@ -121,7 +121,6 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    
     const formatNumber = '8–800–xxx–xx–xx';
     let array = phoneNumber.split('–');
     for (let i = 2; i < 5; i++) {
@@ -131,7 +130,7 @@ function phoneProblem(phoneNumber) {
     if (phoneStr === formatNumber) {
         return true;
     }
-    
+
     return false;
 }
 
