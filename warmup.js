@@ -103,7 +103,7 @@ function matrixProblem(matrix) {
 }
 
 function matrixCheck(matrix, n, m) {
-    flag = true;
+    let flag = true;
     if (!Array.isArray(matrix)) {
         flag = false;
     }
@@ -112,6 +112,7 @@ function matrixCheck(matrix, n, m) {
             flag = false;
         }
     }
+
     return flag;
 }
 
