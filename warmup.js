@@ -49,7 +49,7 @@ function colorsProblem(hexColor) {
         const R = parseInt(hexColor.slice(1, 3), 16);
         const G = parseInt(hexColor.slice(3, 5), 16);
         const B = parseInt(hexColor.slice(5, 7), 16);
-        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7 || ) {
+        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7) {
             throw new RangeError();
         } else {
             return `(${R}, ${G}, ${B})`;
