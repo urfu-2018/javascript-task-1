@@ -76,15 +76,11 @@ function fibonacciProblem(n) {
     if (n < 1) {
         throw new RangeError();
     }
-    let a = 1;
-    let b = 1;
-    for (let i = 3; i <= n; i++) {
-        let c = a + b;
-        a = b;
-        b = c;
-    }
+    let sqrt5 = Math.sqrt(5);
+    let a = (1 + sqrt5) * 0.5;
+    let b = (1 - sqrt5) * 0.5;
 
-    return b;
+    return (Math.pow(a, n) - Math.pow(b, n)) / sqrt5;
 }
 
 /**
