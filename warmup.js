@@ -84,9 +84,10 @@ function colorsProblem(hexColor) {
         }
     }
     lowerHexColor = lowerHexColor.split('#').shift();
-    const number1 = lowerHexColor[0] * BASE_HEX + lowerHexColor[1];
-    const number2 = lowerHexColor[2] * BASE_HEX + lowerHexColor[3];
-    const number3 = lowerHexColor[4] * BASE_HEX + lowerHexColor[5];
+    const number1 = getNumberBySymbal(lowerHexColor[0]) * BASE_HEX + getNumberBySymbal(lowerHexColor[1]);
+    const number2 = getNumberBySymbal(lowerHexColor[2]) * BASE_HEX + getNumberBySymbal(lowerHexColor[3]);
+    const number3 = getNumberBySymbal(lowerHexColor[4]) * BASE_HEX + getNumberBySymbal(lowerHexColor[5]);
+
     return '(' + number1 + ',' + number2 + ',' + number3 + ')';
 }
 
