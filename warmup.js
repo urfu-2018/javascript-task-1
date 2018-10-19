@@ -30,8 +30,9 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     }
     let century = year / 100;
-    if (century % 100 != 0)
+    if (century % 100 !== 0){
         century++;
+    }
 
     return century;
 }
@@ -66,7 +67,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof (n) != 'number') {
+    if (typeof (n) !== 'number') {
         throw new TypeError();
     }
     if (n <= 0) {
@@ -111,7 +112,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof (n) != 'number' || typeof (targetNs) != 'number') {
+    if (typeof (n) !== 'number' || typeof (targetNs) !== 'number') {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -127,12 +128,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-
-    if (typeof (phoneNumber) != 'string'){
+    if (typeof (phoneNumber) !== 'string') {
         throw new TypeError();
     }
 
-    return true;
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
@@ -142,10 +142,10 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof (text) != 'string'){
+    if (typeof (text) !== 'string') {
         throw new TypeError();
     }
-    
+
     return 5;
 }
 
@@ -155,7 +155,7 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-function ticTacToeProblem(field) {  
+function ticTacToeProblem(field) {
     return field;
 }
 
