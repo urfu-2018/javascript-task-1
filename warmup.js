@@ -24,14 +24,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (typeof(year) !== 'number' || !Number.isInteger((year))) {
         throw new TypeError();
     }
-    if (year < 1) {
+    if (year < 0) {
         throw new RangeError();
     }
 
-    return Math.trunc(year / 100) + 1;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (!Number.isInteger(targetNs) || typeof(targetNs) !== 'number' || typeof(n) !== 'number') {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
