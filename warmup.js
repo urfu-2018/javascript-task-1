@@ -76,7 +76,7 @@ function colorsProblem(hexColor) {
     const {
         BASE_HEX,
         isHexadimal,
-        getNUmberBySymbal
+        getNumberBySymbal
     } = require('./Hex');
     for (let i = 1; i < hexColor.length; i++) {
         if (!isHexadimal(hexColor[i])) {
@@ -87,8 +87,8 @@ function colorsProblem(hexColor) {
     let i = 1;
     const flag = true;
     while (flag) {
-        RGBColorString += (getNUmberBySymbal(hexColor[i]) * BASE_HEX +
-            getNUmberBySymbal(hexColor[i + 1])).toString();
+        RGBColorString += (getNumberBySymbal(hexColor[i]) * BASE_HEX +
+            getNumberBySymbal(hexColor[i + 1])).toString();
         if (i >= hexColor.length) {
             break;
         }
@@ -174,14 +174,8 @@ function numberSystemProblem(n, targetNs) {
     if (2 > targetNs || targetNs > 36) {
         throw new RangeError('Base of number system not belong [2, 36]');
     }
-    let numbersArray = [];
-    do {
-        numbersArray.unshift(n % targetNs);
-        n = Math.floor(n / targetNs);
-    } while (n >= targetNs);
-    numbersArray.unshift(n);
 
-    return numbersArray.toString();
+    return n.toString(targetNs);
 }
 
 /**
@@ -207,25 +201,11 @@ function smilesProblem(text) {
     if (!isString(text)) {
         throw new TypeError('Text didn\'t transfer like a string');
     }
-    let amount = 0;
     const smilesArray = [':-)', '(-:'];
-    for (let i = 0; i < text.length - 2; i++) {
-        for (let j = 0; j < smilesArray.length; j++) {
-            if (i + smilesArray[j].length <= text.length) {
-                let isSmile = true;
-                for (let k = 0; k < smilesArray[j].length; k++) {
-                    if (text[i + k] !== smilesArray[k]) {
-                        isSmile = false;
-                        break;
-                    }
-                }
-                if (isSmile) {
-                    amount++;
-                }
-            }
-        }
-    }
-
+    let amount = 0;
+    smilesArray.forEach(function (smile) {
+        amount += text.split(smile).length - 1;
+    });
     return amount;
 }
 
