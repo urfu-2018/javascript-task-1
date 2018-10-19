@@ -68,12 +68,15 @@ function fibonacciProblem(n) {
     if (n < 1 || !Number.isInteger(n)) {
         throw new RangeError();
     }
-    let fibArr = [1, 1];
-    for (let i = 2; i <= n; i++) {
-        fibArr[i % 2] = fibArr[0] + fibArr[1];
+    let previous = 1;
+    let current = 1;
+    for (let i = 3; i <= n; i++) {
+        let next = current + previous;
+        previous = current;
+        current = next;
     }
-
-    return fibArr[n % 2];
+    
+    return current;
 }
 
 /**
