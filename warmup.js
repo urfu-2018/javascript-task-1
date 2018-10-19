@@ -25,7 +25,7 @@ function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 0 || year % 1 !== 0) {
         throw new RangeError();
     }
 
@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) === 'string') {
-        if (hexColor.length === 7 && (/^#[0-9,A-F]{6}/).test(hexColor)) {
+        if ((/^#[0-9,A-F]{6}/).test(hexColor)) {
             let redColor = parseInt(hexColor.substr(1, 2), 16);
             let greeenColor = parseInt(hexColor.substr(3, 2), 16);
             let blueColor = parseInt(hexColor.substr(5, 2), 16);
