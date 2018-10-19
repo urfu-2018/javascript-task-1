@@ -27,7 +27,7 @@ function centuryByYearProblem(year) {
     // Ваше решение
     if (!Number.isInteger(year)) {
         throw new TypeError ('Переданный параметр не является числом');
-    } else if (year <= 0) {
+    } else if (year < 0) {
         throw new RangeError ('Значение года не может быть отрицательным числом!');
     } else {
         const result = Math.ceil(year / 100);
@@ -104,38 +104,27 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function matrixProblem(matrix) {
-    // Ваше решение
-    const n = matrix.length;
-    const m = matrix[0].length;
-    if (!matrixCheck(matrix, n, m)) {
-        throw new TypeError();
-    }
-    let matrixT = [];
-    for (let i = 0; i < m; i++) {
-        matrixT[i] = [];
-        for (let j = 0; j < n; j++) {
-            matrixT[i][j] = matrix[j][i];
-        }
-    }
-
-    return matrixT;
+function matrixProblem(matrix) { 
+    if (!Array.isArray(matrix) || matrix.length === 0) { 
+        throw new TypeError('Матрица не двумерна'); 
+    } 
+    var res = []; 
+    for (var i = 0; i < matrix[0].length; i++) { 
+        res[i] = []; 
+        for (var j = 0; j < matrix.length; j++) { 
+            checkArray(matrix[j]); 
+            res[i][j] = matrix[j][i]; 
+        } 
+    } 
+    
+    return res;
 }
-
-function matrixCheck(matrix, n, m) {
-    let flag = true;
-    if (!Array.isArray(matrix)) {
-        flag = false;
+    
+    function checkArray(matrix) { 
+    if (!Array.isArray(matrix)) { 
+    throw new TypeError('Матрица должна быть двумерной'); 
+    } 
     }
-    for (let j = 0; j < n; j++) {
-        if (!Array.isArray(matrix[j]) || matrix[j].length !== m) {
-            flag = false;
-        }
-    }
-
-    return flag;
-}
-
 /**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
