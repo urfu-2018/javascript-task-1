@@ -30,14 +30,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!isInt(year)) {
-        throw new TypeError();
-    }
-    if (year <= 0) {
+    if (isInt(year)) {
+        if (year >= 0) {
+            return parseInt(year / 100) + 1;
+        }
         throw new RangeError();
-    }
 
-    return Math.ceil(year / 100);
+    }
+    throw new TypeError();
 }
 
 /**
@@ -48,18 +48,20 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof (hexColor) !== 'string') {
+    if (typeof (hexColor) === 'string') {
+        let isHex = /^#[a-f0-9]{6}\b/gi.test(hexColor);
+        if (isHex) {
+            let result = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/gi.exec(hexColor);
+            let r = parseInt(result[1], 16).toString();
+            let g = parseInt(result[2], 16).toString();
+            let b = parseInt(result[3], 16).toString();
+
+            return '(' + r + ', ' + g + ', ' + b + ')';
+        }
         throw new RangeError();
-    }
-    let isHex = /^#[a-f0-9]{6}\b/gi.test(hexColor);
-    if (!isHex) {
+    } else {
         throw new TypeError();
     }
-    let red = parseInt(hexColor.substr(1, 2), 16);
-    let green = parseInt(hexColor.substr(3, 2), 16);
-    let blue = parseInt(hexColor.substr(5, 2), 16);
-
-    return '(' + red + ', ' + green + ', ' + blue + ')';
 }
 
 /**
