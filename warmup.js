@@ -1,16 +1,5 @@
 'use strict';
 
-function range(end) {
-    return Array.from(Array(end)
-        .keys());
-}
-
-function symbolRange(from, length) {
-    return range(length)
-        .map(number => from.charCodeAt(0) + number)
-        .map(characterCode => String.fromCharCode(characterCode));
-}
-
 function checkThat(object, predicate, ErrorTypeToThrow = TypeError) {
     if (object === undefined || object === null || !predicate(object)) {
         throw new ErrorTypeToThrow();
@@ -167,24 +156,8 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     checkThat(phoneNumber, isString);
-    const eightIndexes = [0, 2];
-    const zeroIndexes = [3, 4];
-    const dashIndexes = [1, 5, 9, 12];
-    const anyDigitIndexes = [6, 7, 8, 10, 11, 13, 14];
-    const expectedLength = 15;
 
-    const equals = object => other => other === object;
-    const associativity = [
-        [eightIndexes, equals('8')],
-        [zeroIndexes, equals('0')],
-        [dashIndexes, equals('-')],
-        [anyDigitIndexes, symbol => symbolRange('0', 10)
-            .includes(symbol)]
-    ];
-
-    return phoneNumber.length === expectedLength &&
-        associativity.every(pair => pair[0].map(i => phoneNumber.charAt(i)).every(pair[1]));
-
+    return phoneNumber.length === 15 && (/8-800-\d{3}-\d{2}-\d{2}/).test(phoneNumber);
 }
 
 /**
