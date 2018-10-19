@@ -28,7 +28,7 @@ function centuryByYearProblem(year) {
     } else if (year <= 0) {
         throw new RangeError();
     }
-    else {
+        else {
         return (Math.round(year / 100) + 1);
     }
 }
@@ -52,6 +52,7 @@ function colorsProblem(hexColor) {
     let a = parseInt(result[1], 16);
     let b = parseInt(result[2], 16);
     let c = parseInt(result[3], 16);
+
     return `(${a}, ${b}, ${c})`;
 }
 
@@ -72,13 +73,14 @@ function fibonacciProblem(n) {
     }
 
 
-    let a = 1,
-        b = 1;
+    let a = 1;
+    let b = 1;
     for (let i = 3; i <= n; i++) {
         let c = a + b;
         a = b;
         b = c;
     }
+
     return b;
 }
 
@@ -93,7 +95,7 @@ function matrixProblem(matrix) {
 
         return matrix[0].map((col, i) => matrix.map(row => row[i]));
     }
-    else {
+        else {
         throw new TypeError();
     }
 }
