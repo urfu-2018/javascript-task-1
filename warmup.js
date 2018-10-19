@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (isNaN(parseFloat(a)) && isFinite(a) || isNaN(parseFloat(b)) && isFinite(b)) {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (isNaN(parseInt(year)) || !Number.isInteger(year)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (year < 0) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return Math.ceil(year / 100);
@@ -42,12 +42,12 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
-        throw TypeError;
+        throw new TypeError();
     }
     if (hexColor.substring(1, 3) > 'FF' ||
      hexColor.substring(3, 5) > 'FF' ||
       hexColor.substring(5, 7) > 'FF') {
-        throw RangeError;
+        throw new RangeError();
     }
     const first = parseInt(hexColor.substring(1, 3), 16);
     const second = parseInt(hexColor.substring(3, 5), 16);
@@ -66,10 +66,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (isNaN(parseInt(n)) && isFinite(n)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (n < 0 || Math.floor(n) !== n) {
-        throw RangeError;
+        throw new RangeError();
     }
     if (n === 1) {
         return 1;
@@ -95,7 +95,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
 
     if (matrix.every((x) => x.length !== matrix.length)) {
-        throw TypeError;
+        throw new TypeError();
     }
 
     return matrix[0].map((col, i) => matrix.map(row => row[i]));
@@ -113,10 +113,10 @@ function numberSystemProblem(n, targetNs) {
 
     if (isNaN(parseInt(targetNs)) && isFinite(targetNs) ||
         isNaN(parseInt(n)) && isFinite(n)) {
-        throw TypeError;
+        throw new TypeError();
     }
     if (targetNs > 36 || targetNs < 2) {
-        throw RangeError;
+        throw new RangeError();
     }
 
     return n.toString(targetNs);
@@ -129,6 +129,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError('не строка');
+    }
     const pattern = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
 
     return pattern.test(phoneNumber);
@@ -142,7 +145,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        throw TypeError;
+        throw new TypeError;
     }
     let matchArray = text.match(/(:-\)|\(-:)/g);
     if (matchArray !== null) {
