@@ -8,7 +8,7 @@ const HEX_BASE = 16;
  * @param {String} symbol Шестнадцатиричный символ, в виде строки длины 1
  * @returns {Boolean} Когда символ шестнадцатиричный, то true, а иначе false
  */
-function IsHexadimal(symbol) {
+function isHexadimal(symbol) {
     return HEX_SYMBOLS.includes(symbol);
 }
 
@@ -17,12 +17,12 @@ function IsHexadimal(symbol) {
  * @param {String} symbol Шестнадцатиричный символ, в виде строки длины 1
  * @returns {Number} Десятичнеое число, переведённое из шестнадчатиричного символа
  */
-function GetNUmberBySymbal(symbol) {
+function getNUmberBySymbal(symbol) {
     return HEX_SYMBOLS.indexOf(symbol);
 }
 
 module.exports = {
     HEX_BASE,
-    IsHexadimal,
-    GetNUmberBySymbal
+    isHexadimal,
+    getNUmberBySymbal
 }
