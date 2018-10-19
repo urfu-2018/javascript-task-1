@@ -28,6 +28,9 @@ function centuryByYearProblem(year) {
     } else if (year <= 0) {
         throw new RangeError();
     }
+    if (year % 100 === 0) {
+        return (year / 100);
+    }
 
     return (parseInt(year / 100) + 1);
 }
