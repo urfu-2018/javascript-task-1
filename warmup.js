@@ -90,7 +90,7 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     if (!(Array.isArray(matrix) &&
         matrix.every(elem => Array.isArray(elem) &&
-            elem.every(inception => !Array.isArray(inception))))) {
+            elem.every(inception => !Array.isArray(inception)))) || matrix.length === 0) {
         throw new TypeError();
     }
     let resultMatrix = Array.from({ length: matrix[0].length })
