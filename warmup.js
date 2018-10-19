@@ -83,7 +83,7 @@ function getFibonacci(n) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) === 'number') {
-        if (n < 0) {
+        if (n < 1) {
             throw new RangeError();
         } else {
             return getFibonacci(n);
@@ -110,7 +110,7 @@ function checkMatrix(matrix) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */ 
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     } else if (!checkMatrix(matrix)) {
         throw new TypeError();
