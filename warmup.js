@@ -46,7 +46,11 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     // Ваше решение
     if (typeof(hexColor) !== 'string') {
-        throw new TypeError ('Переданный параметр не является строкой');
+        throw new TypeError('Переданный параметр не является строкой');
+    }
+    var regExp = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})/;
+    if (!regExp.test(hexColor)) {
+        throw new TypeError('Строка неверного формата');
     } else {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
         const r = parseInt(result[1], 16);
@@ -86,13 +90,16 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    if (typeof(mathrix) === undefined || matrix.length === 0) {
-        throw new TypeError('передан пустой массив');
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('передан не массив');
+    }
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('внутри не массив');
     }
     const n = matrix.length;
     const m = matrix[0].length;
     for (let j = 0; j < n; j++) {
-        if (typeof(matrix[j]) === undefined || matrix[j].length !== m) {
+        if (matrix[j].length !== m) {
             throw new TypeError('на входе не двумерный массив!');
         }
     }
@@ -117,7 +124,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (isNaN(n) || isNaN(targetNs)) {
+    if (Math.abs(n) !== n || !isInteger(targetNs)) {
         throw new TypeError ('Переданныe параметры не являются числом');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('недопустимое значение системы счисления');
@@ -133,6 +140,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError('не строка')
+    }
     const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
 
     return res !== null;
