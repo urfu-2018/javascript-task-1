@@ -85,7 +85,7 @@ function colorsProblem(hexColor) {
     }
     let RGBColorString = '(';
     let i = 1;
-    while () {
+    while {
         RGBColorString += (getNUmberBySymbal(hexColor[i]) * BASE_HEX +
             getNUmberBySymbal(hexColor[i + 1])).toString();
 
