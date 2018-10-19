@@ -118,7 +118,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return "a";
+    return n.toString(targetNs).toLowerCase();
 }
 
 /**
@@ -127,6 +127,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+
+    if (typeof (phoneNumber) != 'string'){
+        throw new TypeError();
+    }
 
     return true;
 }
@@ -138,6 +142,9 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
+    if (typeof (text) != 'string'){
+        throw new TypeError();
+    }
     
     return 5;
 }
@@ -148,8 +155,7 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-function ticTacToeProblem(field) {
-    
+function ticTacToeProblem(field) {  
     return field;
 }
 
