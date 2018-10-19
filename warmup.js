@@ -146,7 +146,7 @@ function matrixCheck(matrix, n, m) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (Math.abs(n) !== n || !Number.isInteger(targetNs)) {
+    if (!isFinite(n) || !Number.isInteger(targetNs)) {
         throw new TypeError ('Переданныe параметры не являются числом');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('недопустимое значение системы счисления');
