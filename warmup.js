@@ -28,7 +28,7 @@ function centuryByYearProblem(year) {
         throw new RangeError();
     }
 
-    return (Math.trunc(year / 100) + 1);
+    return (Math.ceil(year / 100));
 }
 
 /**
@@ -135,7 +135,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(/(:-\)|\(-:)/g)).length;
+    return (text.match(/:-\)|\(-:/g)).length;
 }
 
 /**
