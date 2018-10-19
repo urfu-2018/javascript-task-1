@@ -29,12 +29,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new TypeError();
     }
-    let century = year / 100;
-    if (century % 100 !== 0) {
-        century++;
-    }
 
-    return century;
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -48,15 +44,15 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
-    let r = hexColor.slice(0, 1);
-    let g = hexColor.slice(2, 3);
-    let b = hexColor.slice(4, 5);
-    if (parseInt(r, 10) > 255 || parseInt(g, 10) > 255 || parseInt(b, 10) < 255) {
+    let r = parseInt(hexColor.substring(1, 3), 16);
+    let g = parseInt(hexColor.substring(3, 5), 16);
+    let b = parseInt(hexColor.substring(5, 7), 16);
+    if (r > 255 || g > 255 || b < 255) {
         throw new RangeError();
     }
 
-    return ('(' + parseInt(r, 10).toString() + ', ' +
-        parseInt(g, 10).toString() + ', ' + parseInt(g, 10).toString() + ')');
+    return ('(' + parseInt(r, 10).toString() + ',' + ' ' +
+        parseInt(g, 10).toString() + ',' + ' ' + parseInt(g, 10).toString() + ')');
 }
 
 /**
@@ -95,6 +91,7 @@ function matrixProblem(matrix) {
     let columns = matrix[0].length;
     let newMatrix = [];
     for (let i = 0; i < rows; i++) {
+        newMatrix[i] = [];
         for (let j = 0; j < columns; j++) {
             newMatrix[i][j] = matrix[j][i];
         }
@@ -146,7 +143,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return 5;
+    return text.split(/:-\)|\(-:/).length - 1;
 }
 
 /**
@@ -156,8 +153,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    return field;
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+        (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
+        return field[1][1];
+    }
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+    }
+    
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
