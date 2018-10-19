@@ -44,7 +44,7 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-     if (!(/^#[0-9,a-f,A-F]{6}$/).test(hexColor)) {
+    if (!(/^#[0-9,a-f,A-F]{6}$/).test(hexColor)) {
         throw new RangeError();
     }
     let hexChars = hexColor.replace('#', '');
@@ -67,7 +67,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-     if (n <= 0 || Math.trunc(n) !== n) {
+    if (n <= 0 || Math.trunc(n) !== n) {
         throw new RangeError();
     }
     let a = 1;
