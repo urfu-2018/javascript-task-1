@@ -80,7 +80,7 @@ function fibonacciProblem(n) {
     let a = (1 + sqrt5) * 0.5;
     let b = (1 - sqrt5) * 0.5;
 
-    return (Math.pow(a, n) - Math.pow(b, n)) / sqrt5;
+    return Math.round((Math.pow(a, n) - Math.pow(b, n)) / sqrt5);
 }
 
 /**
