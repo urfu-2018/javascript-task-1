@@ -107,6 +107,7 @@ function matrixProblem(a) {
             t[i][j] = a[j][i];
         }
     }
+    
     return t;
 }
 
