@@ -47,14 +47,25 @@ function colorsProblem(hexColor) {
     // Ваше решение
     if (typeof(hexColor) !== 'string') {
         throw new TypeError('Переданный параметр не является строкой');
-    } else {
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
-        const r = parseInt(result[1], 16);
-        const g = parseInt(result[2], 16);
-        const b = parseInt(result[3], 16);
-        const answer = '(' + r + ', ' + g + ', ' + b + ')';
+    }
+    checkColor(hexColor);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+    const answer = '(' + r + ', ' + g + ', ' + b + ')';
+    if (r > 255 || g > 255 || b > 255) {
+        throw new RangeError();
+    }
 
-        return answer;
+    return answer;
+}
+function checkColor(hexColor) { 
+    if (hexColor.match(/#[\dA-Fa-f]{6}$/i) === null) { 
+        throw new RangeError(); 
+    } 
+    if (hexColor.length > 7) {
+        throw new RangeError();
     }
 }
 
