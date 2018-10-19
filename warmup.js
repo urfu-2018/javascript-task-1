@@ -35,8 +35,8 @@ function centuryByYearProblem(year) {
 function transformColor(hexColor) {
     var rgbColor = '(';
     for (let i = 1; i <= 6; i += 2) {
-        rgbColor += (Number.parseInt(hexColor[i]) * 16 +
-        Number.parseInt(hexColor[i + 1])) + (i < 5 ? ', ' : '');
+        rgbColor += (Number.parseInt(hexColor[i], 16) * 16 +
+        Number.parseInt(hexColor[i + 1], 16)) + (i < 5 ? ', ' : '');
     }
     rgbColor += ')';
 
@@ -160,7 +160,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     } else {
-        return (text.length - text.replace(/:-\)/).length - text.replace(/\(-:/).length) / 3;
+        return (text.length - text.replace(/:-\)/, '').length - text.replace(/\(-:/, '').length) / 3;
     }
 }
 
