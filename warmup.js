@@ -45,7 +45,7 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
-    } else if (!/^#[A-F]{6}$/i.test(hexColor)) {
+    } else if (!/^#[A-F 0-9]{6}$/i.test(hexColor)) {
         throw new RangeError();
     }
     hexColor = hexColor.slice(1).match(/.{2}/g);
