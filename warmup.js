@@ -110,7 +110,7 @@ function matrixProblem(matrix) {
     }
     var res = [];
     for (var i = 0; i < matrix[0].length; i++) {
-        res[i] = []; 
+        res[i] = [];
         for (var j = 0; j < matrix.length; j++) {
             checkArray(matrix[j]);
             res[i][j] = matrix[j][i];
@@ -119,7 +119,7 @@ function matrixProblem(matrix) {
 
     return res;
 }
-    
+
 function checkArray(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError('Матрица должна быть двумерной');
