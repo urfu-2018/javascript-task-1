@@ -105,25 +105,35 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError('Матрица не двумерна');
+    // Ваше решение
+    const n = matrix.length;
+    const m = matrix[0].length;
+    if (!matrixCheck(matrix, n, m)) {
+        throw new TypeError();
     }
-    let res = [];
-    for (let i = 0; i < matrix[0].length; i++) {
-        res[i] = [];
-        for (let j = 0; j < matrix.length; j++) {
-            checkArray(matrix[j]);
-            res[i][j] = matrix[j][i];
+    let matrixT = [];
+    for (let i = 0; i < m; i++) {
+        matrixT[i] = [];
+        for (let j = 0; j < n; j++) {
+            matrixT[i][j] = matrix[j][i];
         }
     }
 
-    return res;
+    return matrixT;
 }
 
-function checkArray(matrix) {
+function matrixCheck(matrix, n, m) {
+    let flag = true;
     if (!Array.isArray(matrix)) {
-        throw new TypeError('Матрица должна быть двумерной');
+        flag = false;
     }
+    for (let j = 0; j < n; j++) {
+        if (!Array.isArray(matrix[j]) || matrix[j].length !== m) {
+            flag = false;
+        }
+    }
+
+    return flag;
 }
 
 /**
