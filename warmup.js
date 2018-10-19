@@ -27,8 +27,7 @@ function centuryByYearProblem(year) {
         throw new TypeError();
     } else if (year <= 0) {
         throw new RangeError();
-    }
-    else {
+    } else {
         return (Math.round(year / 100) + 1);
     }
 }
@@ -116,7 +115,6 @@ function numberSystemProblem(n, targetNs) {
     }
     return (n.toString(targetNs));
 }
-
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
@@ -129,7 +127,6 @@ function phoneProblem(phoneNumber) {
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
     return regex.test(phoneNumber);
 }
-
 /**
  * Определяет количество улыбающихся смайликов в строке
  * @param {String} text Строка в которой производится поиск
@@ -146,7 +143,6 @@ function smilesProblem(text) {
     }
     return 0;
 }
-
 /**
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
