@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' || typeof b !== 'number') {
+    if (typeof a !== 'number' && typeof b !== 'number') {
         throw TypeError;
     } else {
         return a + b;
@@ -111,7 +111,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+    if (typeof n !== 'number' && typeof targetNs !== 'number') {
         throw TypeError;
     } else if (targetNs < 2 || targetNs > 36) {
         throw RangeError;
