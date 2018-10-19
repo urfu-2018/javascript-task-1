@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year < 1) {
         throw new RangeError();
     }
 
@@ -72,7 +72,7 @@ function fibonacciProblem(n) {
     }
     let prevNum = 1;
     let currentNum = 1;
-    for (let i = 3; i < n; i++) {
+    for (let i = 2; i < n; i++) {
         let buff = currentNum;
         currentNum += prevNum;
         prevNum = buff;
