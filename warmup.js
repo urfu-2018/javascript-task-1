@@ -159,6 +159,10 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
+    if (n < 0) {
+        n = -n;
+    }
+
     let [int, d] = n.toString().split('.');
     let result = toTargetNs(int, targetNs);
 
