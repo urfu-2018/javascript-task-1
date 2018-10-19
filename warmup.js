@@ -57,23 +57,24 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     checkThat(hexColor, isString);
-    const firstSymbol = '#';
-    const base = 16;
-    checkThat(hexColor, x => x.charAt(0) === firstSymbol, RangeError);
+    const wrap = string => `(${string})`;
 
-    const parsed = parseInt(hexColor.slice(1), base);
-    checkThat(parsed, isInteger, RangeError);
-
-    const tokens = [
-        parsed % Math.pow(base, 6) % Math.pow(base, 2),
-        parsed % Math.pow(base, 4) % Math.pow(base, 2),
-        parsed % Math.pow(base, 2)
-    ];
-
-    checkThat(tokens, array => array.every(entry => entry >= 0 && entry <= 255), RangeError);
-
-    return `(${tokens.join(', ')})`;
+    if (/^#[\da-fA-F]{6}$/.test(hexColor)) {
+        return wrap([1, 3, 5]
+            .map(index => hexColor.substr(index, 2))
+            .map(slice => parseInt(slice, 16))
+            .join(', '));
+    }
+    if (/^#[\da-fA-F]{3}$/.test(hexColor)) {
+        return wrap([1, 2, 3]
+            .map(index => hexColor.substr(index, 1))
+            .map(slice => slice.repeat(2))
+            .map(slice => parseInt(slice, 16))
+            .join(', '));
+    }
+    throw new RangeError();
 }
+
 
 /**
  * Находит n-ое число Фибоначчи
@@ -157,7 +158,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     checkThat(phoneNumber, isString);
 
-    return phoneNumber.length === 15 && (/8-800-\d{3}-\d{2}-\d{2}/).test(phoneNumber);
+    return /^8-800-\d{3}-\d{2}-\d{2}$/.test(phoneNumber);
 }
 
 /**
