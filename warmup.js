@@ -65,7 +65,7 @@ function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (n < 0) {
         throw new RangeError();
     }
     let fibArr = [1, 1];
@@ -83,7 +83,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+   if (!(matrix instanceof Array) ||
+   matrix.some(sm => !Array.isArray(sm) || sm.length !== matrix[0].length)) {
         throw new TypeError();
     }
     let rows = matrix.length;
