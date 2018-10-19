@@ -46,7 +46,7 @@ function colorsProblem(hexColor) {
         hexColor.toUpperCase();
         const R = parseInt(hexColor.slice(1, 3), 16);
         const G = parseInt(hexColor.slice(3, 5), 16);
-        const B = parseInt(hexColor.slice(5), 16);
+        const B = parseInt(hexColor.slice(5, 7), 16);
         if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7) {
             throw RangeError;
         } else {
@@ -65,7 +65,7 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof n !== 'number') {
         throw TypeError;
-    } else if (n < 0) {
+    } else if (n <= 0) {
         throw RangeError;
     } else {
         let a = 1;
