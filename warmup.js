@@ -139,18 +139,10 @@ function smilesProblem(text) {
     if (typeof (text) !== 'string') {
         throw new TypeError();
     }
-    const mask = /(\(-:-\))|(\(-:)|(:-\))/g;
-    let result;
-    let countSmile = 0;
-    while ((result = mask.exec(text)) !== null) {
-        if (result[0] === '(-:-)') {
-            countSmile += 2;
-        } else {
-            countSmile++;
-        }
-    }
+    let mask = /(\(-:|:-\))/g;
+    let result = text.match(mask);
 
-    return countSmile;
+    return result === null ? 0 : result.length;
 }
 
 /**
