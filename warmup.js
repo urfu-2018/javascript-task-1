@@ -32,9 +32,7 @@ function centuryByYearProblem(year) {
         throw new RangeError('');
     }
 
-    const century = year / 100;
-
-    return century % 100 !== 0 ? century + 1 : century;
+    return Math.floor((year - 1) / 100) + 1;
 }
 
 /**
