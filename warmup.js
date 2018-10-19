@@ -115,15 +115,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) === 'number' && isInt(targetNs)) {
-        if (targetNs >= 2 <= 36) {
-            let num = (isInt(n)) ? parseInt(n) : parseFloat(n);
-
-            return num.toString(targetNs).toLowerCase();
-        }
+    if (!isFloat(n) || !isInt(targetNs)) {
+        throw new TypeError();
+    }
+    if (targetNs < 2 > 36) {
         throw new RangeError();
     }
-    throw new TypeError();
+
+    return n.toString(targetNs).toLowerCase();
 }
 
 /**
