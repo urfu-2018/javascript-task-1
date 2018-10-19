@@ -75,19 +75,19 @@ function centuryByYearProblem(year) {
     }
     const {
         BASE_HEX,
-        IsHexadimal,
-        GetNUmberBySymbal
+        isHexadimal,
+        getNUmberBySymbal
     } = require('./Hex');
     for (let i = 1; i < hexColor.length; i++) {
-        if (!IsHexadimal(hexColor[i])) {
+        if (!isHexadimal(hexColor[i])) {
             throw COLOR_RANGE_ERROR;
         }
     }
     let RGBColorString = '(';
     let i = 1;
     while (true) {
-        RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX +
-            GetNUmberBySymbal(hexColor[i + 1])).toString(); 
+        RGBColorString += (getNUmberBySymbal(hexColor[i]) * BASE_HEX +
+            getNUmberBySymbal(hexColor[i + 1])).toString(); 
 
         if (i >= hexColor.length) {
             break;
