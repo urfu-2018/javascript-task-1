@@ -1,5 +1,12 @@
 'use strict';
 
+function isInt(n) {
+    return isFloat(n) && n % 1 === 0;
+}
+
+function isFloat(n) {
+    return typeof n === 'number';
+}
 
 /**
  * Складывает два целых числа
@@ -9,7 +16,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a === 'number' && typeof b === 'number') {
+    if (isFloat(a) && isFloat(b)) {
         return a + b;
     }
     throw new TypeError();
@@ -23,10 +30,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (!isInt(year)) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year <= 0) {
         throw new RangeError();
     }
 
@@ -63,7 +70,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (!isInt(n)) {
         throw new TypeError();
     }
     if (n < 1) {
@@ -112,10 +119,11 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) === 'number' && Number.isInteger(targetNs)) {
+    if (typeof(n) === 'number' && isInt(targetNs)) {
         if (targetNs >= 2 <= 36) {
+            let num = (isInt(n)) ? parseInt(n) : parseFloat(n);
 
-            return n.toString(targetNs).toLowerCase();
+            return num.toString(targetNs).toLowerCase();
         }
         throw new RangeError();
     }
