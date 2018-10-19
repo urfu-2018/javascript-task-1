@@ -24,8 +24,10 @@ function centuryByYearProblem(year) {
     const yearStr = year.toString;
     if (yearStr.length === 4) {
         return parseInt(yearStr.substring(0, 1), 10) + 1;
-}
-    else return 1;
+    }
+    else {
+        return 1
+    };
 }
 
 /**
@@ -37,7 +39,8 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    return rgbColor = '('+ parseInt(hexColor.substring(1, 2), 16) + parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
+    const rgbColor;
+    return rgbColor = '(' + parseInt(hexColor.substring(1, 2), 16) + parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
 }
 
 /**
@@ -120,7 +123,7 @@ function smilesProblem(text) {
         counter++;
         index2 = array.indexOf(element2, index2 + 1);
     }
-    
+
     return counter;
 }
    
