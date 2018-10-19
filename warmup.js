@@ -17,12 +17,13 @@ function isNumber(something) {
  * @returns {Number} Сумма аргументов
  */
  function abProblem(a, b) {
-    if(!isNumber(a)){
+    if (!isNumber(a)){
         throw new TypeError('First argument is not a number');
     }
-    if(!isNumber(b)) {
+    if (!isNumber(b)) {
         throw new TypeError('Second argument is not a number');
     }
+    
     return a + b;
 }
 
@@ -34,13 +35,14 @@ function isNumber(something) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if(!isNumber(year)) {
+    if (!isNumber(year)) {
         throw new TypeError('Argument is not a number');
     }
-    if(year < 0) {
+    if (year < 0) {
         throw new RangeError('Argument is negative')
     }
     const YEARS_IN_CENTURY = 100;
+    
     return Math
         .floor(year / YEARS_IN_CENTURY) //GetindexCenturyByYear
         + 1; //GetnumberCenturyByYear
@@ -64,11 +66,11 @@ function centuryByYearProblem(year) {
  */
  function colorsProblem(hexColor) {
     hexColor.toLocaleLowerCase();
-    if(!isString(hexColor)) {
+    if (!isString(hexColor)) {
         throw new TypeError('Color in Format HEX don\'t gives as a string');
     }
     const COLOR_RANGE_ERROR = new RangeError('Value of color is incorrect');
-    if(hexColor.length !== 7 || hexColor[0] !== '#') {
+    if (hexColor.length !== 7 || hexColor[0] !== '#') {
         throw COLOR_RANGE_ERROR;
     }
     const {
@@ -76,22 +78,23 @@ function centuryByYearProblem(year) {
         IsHexadimal,
         GetNUmberBySymbal
     } = require('./Hex');
-    for(let i = 1; i < hexColor.length; i++) {
-        if(!IsHexadimal(hexColor[i])) {
+    for (let i = 1; i < hexColor.length; i++) {
+        if (!IsHexadimal(hexColor[i])) {
             throw COLOR_RANGE_ERROR;
         }
     }
     let RGBColorString = '(';
     let i = 1
-    while(true) {
+    while (true) {
         RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX 
-            + GetNUmberBySymbal(hexColor[i+1])).toString(); 
+            + GetNUmberBySymbal(hexColor[i + 1])).toString(); 
 
-        if(i >= hexColor.length) {
+        if (i >= hexColor.length) {
             break;
         }
         RGBColorString += ', ';
     }
+    
     return RGBColorString;
 }
 
@@ -103,13 +106,13 @@ function centuryByYearProblem(year) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if(!isNumber(n) !== 'number') {
+    if (!isNumber(n) !== 'number') {
         throw new TypeError('Position in row give\'s not as a number');
     }
-    if(n < 0) {
+    if (n < 0) {
         throw new RangeError('Position in row not positve integer');
     }
-    if(n === 0 || n === 1) {
+    if (n === 0 || n === 1) {
         return n;
     }
     let q = 0;
@@ -121,6 +124,7 @@ function fibonacciProblem(n) {
         qPlus1 = next;
         i++;
     }
+    
     return q + qPlus1;
 }
 
@@ -132,22 +136,24 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     const ARRAY_2D_RANGE_ERROR = new TypeError('transfered not an 2D array');
-    if(!Array.isArray(matrix)) {
+    if (!Array.isArray(matrix)) {
         throw ARRAY_2D_RANGE_ERROR;
     }
-    for(let i = 0; i < matrix.length; i++) {
-        if(!Array.isArray(matrix[i])) {
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
             throw ARRAY_2D_RANGE_ERROR;
         }
     }
     const newMatrix = [];
     const m = matrix[0].length;
     const n = matrix.length;
-    for(let i = 0; i < m; i++) {
-        for(let j = 0; j < n; j++) {
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
             newMatrix[i][j] = matrix[j][i];
         }
     }
+    
+    return newMatrix;
 }
 
 /**
@@ -159,13 +165,13 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if(!isNumber(n)) {
+    if (!isNumber(n)) {
         throw new TypeError('Transfered not a decimal number');
     }
-    if(!isNumber(targetNs)) {
+    if (!isNumber(targetNs)) {
         throw new TypeError('Base of number system isn\'t a number');
     }
-    if(2 > targetNs || targetNs > 36) {
+    if (2 > targetNs || targetNs > 36) {
         throw new RangeError('Base of number system not belong [2, 36]');
     }
     let numbersArray = [];
@@ -174,6 +180,7 @@ function numberSystemProblem(n, targetNs) {
         n = Math.floor(n / targetNs);
     } while (n >= targetNs);
     numbersArray.unshift(n);
+    
     return numbersArray.toString();
 }
 
@@ -183,7 +190,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if(phoneNumber.length !== 15) {
+    if (phoneNumber.length !== 15) {
         return false;
     }
     return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
@@ -196,25 +203,26 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if(!isString(text)) {
+    if (!isString(text)) {
         throw new TypeError('Text didn\'t transfer like a string');
     }
     let amount = 0;
     const smilesArray = [':-)', '(-:'];
-    for(let i = 0; i < text.length - 2; i++) {
-        for(let j = 0; j < smilesArray.length; j++) {
-            if(i + smilesArray[j].length <= text.length) {
+    for (let i = 0; i < text.length - 2; i++) {
+        for (let j = 0; j < smilesArray.length; j++) {
+            if (i + smilesArray[j].length <= text.length) {
                 let isSmile = true;
-                for(let k = 0; k < smilesArray[j].length; k++) {
-                    if(text[i + k] !== smilesArray[k]) {
+                for (let k = 0; k < smilesArray[j].length; k++) {
+                    if (text[i + k] !== smilesArray[k]) {
                         isSmile = false;
                         break;
                     }
                 }
-                if(isSmile) { amount++; }
+                if (isSmile) { amount++; }
             }
         }
     }
+    
     return amount;
 }
 
@@ -227,30 +235,31 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     let x0 = 1;
     let y0 = 1;
-    let delta = Math.PI/4;
+    let delta = Math.PI / 4;
     const iterationQuantity = Math.round(2*Math.PI / delta);
-    for(let i = 0; i < iterationQuantity; i++) {
-        const dX = Math.round(Math.cos(i*delta));
-        const dY = Math.round(Math.sin(i*delta));
-        if(field[x0][y0] === field[x0+dX][y0+dY] &&
-           field[x0][y0] === field[x0-dX][x0-dY]) {
+    for (let i = 0; i < iterationQuantity; i++) {
+        const dX = Math.round(Math.cos(i * delta));
+        const dY = Math.round(Math.sin(i * delta));
+        if (field[x0][y0] === field[x0 + dX][y0 + dY] &&
+            field[x0][y0] === field[x0 - dX][x0 - dY]) {
                return field[x0][y0];
         }
     }
     x0 = 0;
     y0 = 0;
-    delta = Math.PI/2;
-    iterationQuantity = Math.round(2*Math.PI / delta);
-    for(let i = 0; i < iterationQuantity; i++) {
-        const dX = Math.round(Math.cos(-i*delta));
-        const dY = Math.round(Math.sin(-i*delta));
-        if(field[x0][y0] === field[x0+dX][y0+dY] &&
-        field[x0][y0] === field[x0 + 2*dX][y0 + 2*dY]) {
+    delta = Math.PI / 2;
+    iterationQuantity = Math.round(2 * Math.PI / delta);
+    for (let i = 0; i < iterationQuantity; i++) {
+        const dX = Math.round(Math.cos(-i * delta));
+        const dY = Math.round(Math.sin(-i * delta));
+        if (field[x0][y0] === field[x0 + dX][y0 + dY] &&
+            field[x0][y0] === field[x0 + 2*dX][y0 + 2*dY]) {
             return field[x0][y0];
         }
-        x0 += 2*dX;
-        y0 += 2*dY;
+        x0 += 2 * dX;
+        y0 += 2 * dY;
     }
+    
     return 'draw';
     
 }
