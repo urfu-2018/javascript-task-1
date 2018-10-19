@@ -43,7 +43,7 @@ function colorsProblem(hexColor) {
         let r = parseInt(hexChars.substr(0, 2), 16);
         let g = parseInt(hexChars.substr(2, 2), 16);
         let b = parseInt(hexChars.substr(4, 2), 16);
-        let rgbColor = '(' + r + ',' + g + ',' + b + ')';
+        let rgbColor = '(' + r + ' ,' + g + ' ,' + b + ')';
 
         return rgbColor;
     }
