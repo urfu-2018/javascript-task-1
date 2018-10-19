@@ -1,12 +1,5 @@
 'use strict';
 
-function isInt(n) {
-    return isFloat(n) && n % 1 === 0;
-}
-
-function isFloat(n) {
-    return typeof n === 'number';
-}
 
 /**
  * Складывает два целых числа
@@ -16,7 +9,7 @@ function isFloat(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isFloat(a) && isFloat(b)) {
+    if (typeof a === 'number' && typeof b === 'number') {
         return a + b;
     }
     throw new TypeError();
@@ -30,14 +23,14 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isInt(year)) {
-        if (year >= 0) {
-            return parseInt(year / 100) + 1;
-        }
-        throw new RangeError();
-
+    if (!Number.isInteger(year)) {
+        throw new TypeError();
     }
-    throw new TypeError();
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.ceil(year / 100);
 }
 
 /**
@@ -48,20 +41,18 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof (hexColor) === 'string') {
-        let isHex = /^#[a-f0-9]{6}\b/gi.test(hexColor);
-        if (isHex) {
-            let result = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/gi.exec(hexColor);
-            let r = parseInt(result[1], 16).toString();
-            let g = parseInt(result[2], 16).toString();
-            let b = parseInt(result[3], 16).toString();
-
-            return '(' + r + ', ' + g + ', ' + b + ')';
-        }
+    if (typeof (hexColor) !== 'string') {
         throw new RangeError();
-    } else {
+    }
+    let isHex = /^#[a-f0-9]{6}\b/gi.test(hexColor);
+    if (!isHex) {
         throw new TypeError();
     }
+    let red = parseInt(hexColor.substr(1, 2), 16);
+    let green = parseInt(hexColor.substr(3, 2), 16);
+    let blue = parseInt(hexColor.substr(5, 2), 16);
+
+    return '(' + red + ', ' + green + ', ' + blue + ')';
 }
 
 /**
@@ -72,7 +63,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!isInt(n)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
     if (n < 1) {
@@ -121,11 +112,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) === 'number' && isInt(targetNs)) {
+    if (typeof(n) === 'number' && Number.isInteger(targetNs)) {
         if (targetNs >= 2 <= 36) {
-            let num = (isInt(n)) ? parseInt(n) : parseFloat(n);
 
-            return num.toString(targetNs).toLowerCase();
+            return n.toString(targetNs).toLowerCase();
         }
         throw new RangeError();
     }
