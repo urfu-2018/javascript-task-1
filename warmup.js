@@ -36,7 +36,8 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение   
+    // Ваше решение
+    return rgbColor = '('+ parseInt(hexColor.substring(1,2), 16) + parseInt(hexColor.substring(3,4), 16) + parseInt(hexColor.substring(5,6)) + ')';
 }
 
 /**
@@ -48,6 +49,11 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
+    const fibSequence = [0,1];
+    for (let i = 2; i < 61; i++) {
+        fibSequence[i].push(fibSequence[i-1]+fibSequence[i-2]);
+    }
+    return fibSequence[n];
 }
 
 /**
@@ -58,6 +64,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
+    const transposedMatrix;
+    for (let i =0; i < matrix.length; i++){
+        for (let j=0; j<matrix.length; j++){
+            matrix[i][j] = transposedMatrix[j][i];
+        }
+    }
 }
 
 /**
@@ -70,6 +82,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    return n.toString(targetNs);
 }
 
 /**
@@ -79,6 +92,9 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    const dashsEntry = phoneNumber.charAt(1)=='-'&&phoneNumber.charAt(5)=='-'&&phoneNumber.charAt(9)=='-'&&phoneNumber.charAt(12)=='-';
+    if (dashsEntry) return true
+    else return false;
 }
 
 /**
@@ -89,7 +105,22 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
+    let counter = 0;
+    const element1 = ':-)';
+    const element2 = '(-:';
+    let index1 = array.indexOf(element1);
+    let index2 = array.indexOf(element2)
+    while(index1 != -1){
+        counter++;
+        index1 = array.indexOf(element1, index1 + 1);
+    }
+    while(index2 != -1){
+        counter++;
+        index2 = array.indexOf(element2, index2 + 1);
+    }
+    return counter;
 }
+   
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -99,7 +130,19 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    for(let i = 0; i < 3; i++)
+        if(matrix[i][0] == matrix[i][1] && matrix[i][0] == matrix[i][2])
+          return matrix[i][0];
+     for(let i = 0; i < 3; i++)
+        if(matrix[0][i] == matrix[i][1] && matrix[0][i] == matrix[i][2])
+          return matrix[0][i];
+     if(matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2])
+          return matrix[0][0];
+     if(matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0])
+          return matrix[0][2]; 
+     return 'draw';
 }
+        
 
 module.exports = {
     abProblem,
