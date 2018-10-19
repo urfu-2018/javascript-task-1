@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isNaN(parseFloat(a)) && isFinite(a) || isNaN(parseFloat(b)) && isFinite(b)) {
+    if (!Number.isInteger(a) || !Number.isInteger(b)) {
         throw new TypeError();
     }
 
@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(parseInt(year)) || !Number.isInteger(year)) {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year <= 0) {
         throw new RangeError();
     }
 
@@ -65,7 +65,7 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(parseInt(n)) && isFinite(n)) {
+    if (!Number.isInteger(n)) {
         throw new TypeError();
     }
     if (n < 0 || Math.floor(n) !== n) {
@@ -112,8 +112,8 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
 
     if (isNaN(parseInt(targetNs)) && isFinite(targetNs) ||
-        isNaN(parseInt(n)) && isFinite(n)) {
-        throw new TypeError();
+        !Number.isInteger(n)) {
+        throw new TypeError('система счисления выходит за пределы значений [2, 36]');
     }
     if (targetNs > 36 || targetNs < 2) {
         throw new RangeError();
