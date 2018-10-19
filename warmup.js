@@ -25,6 +25,7 @@ function centuryByYearProblem(year) {
     if (yearStr.length === 4) {
         return parseInt(yearStr.substring(0, 1), 10) + 1;
     }
+
     return 1;
 }
 
@@ -54,6 +55,7 @@ function fibonacciProblem(n) {
     for (let i = 2; i < 61; i++) {
         fibSequence[i].push(fibSequence[i - 1] + fibSequence[i - 2]);
     }
+
     return fibSequence[n];
 }
 
@@ -143,7 +145,7 @@ function ticTacToeProblem(field) {
         }
     }
     for (let i = 0; i < 3; i++) {
-        if (field[0][i] === field[i][1] && field[0][i] === field[i][2]){
+        if (field[0][i] === field[i][1] && field[0][i] === field[i][2]) {
             return field[0][i];
         }
     }
@@ -153,7 +155,7 @@ function ticTacToeProblem(field) {
     if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
         return field[0][2];
     }
-    
+
     return 'draw';
 }
 
