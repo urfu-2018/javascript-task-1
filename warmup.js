@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof a !== 'number' && typeof b !== 'number') {
+    if (typeof a !== 'number' || typeof b !== 'number') {
         throw TypeError;
     } else {
         return a + b;
@@ -25,7 +25,7 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (typeof year !== 'number') {
         throw TypeError;
-    } else if (year < 0) {
+    } else if (year <= 0) {
         throw RangeError;
     } else {
         return Math.floor(year / 100) + 1;
@@ -88,7 +88,9 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!(Array.isArray(matrix))) {
+    if (!(Array.isArray(matrix) &&
+        matrix.every(elem => Array.isArray(elem) &&
+            elem.every(inception => !Array.isArray(inception))))) {
         throw TypeError;
     }
     let resultMatrix = Array.from({ length: matrix[0].length })
@@ -111,7 +113,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof n !== 'number' && typeof targetNs !== 'number') {
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
         throw TypeError;
     } else if (targetNs < 2 || targetNs > 36) {
         throw RangeError;
