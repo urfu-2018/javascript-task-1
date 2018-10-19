@@ -77,7 +77,7 @@ function fibonacciProblem(n) {
             b = c;
         }
 
-        return b;
+        return a;
     }
 }
 
