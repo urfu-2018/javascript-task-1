@@ -44,14 +44,14 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    }
     let r = parseInt(hexColor.substring(1, 3), 16);
     let g = parseInt(hexColor.substring(3, 5), 16);
     let b = parseInt(hexColor.substring(5, 7), 16);
-    if (r > 255 || g > 255 || b < 255) {
-        throw new RangeError();
-    }
 
-    return ('(' + 255 + ', ' + 255 + ', ' + 255 + ')');
+    return ('(' + r + ', ' + g + ', ' + b + ')');
 }
 
 /**
