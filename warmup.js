@@ -98,15 +98,8 @@ function matrixProblem(matrix) {
     if (matrix[0].length === 0) {
         return [[]];
     }
-    const newMatrix = new Array(matrix[0].length);
-    for (let y = 0; y < matrix.length; y++) {
-        newMatrix[y] = new Array(matrix.length);
-        for (let x = 0; x < matrix[0].length; x++) {
-            newMatrix[y][x] = matrix[x][y];
-        }
-    }
 
-    return newMatrix;
+    return matrix[0].map((col, b) => matrix.map(row => row[b]));
 }
 
 /**
