@@ -117,10 +117,11 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (Math.abs(n) !== n || !Number.isInteger(targetNs)) {
-        throw new TypeError ('Переданныe параметры не являются числом');
-    } else if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError('недопустимое значение системы счисления');
+    if (!isFinite(targetNs) || Math.abs(targetNs) !== targetNs || !Number.isInteger(targetNs) 
+        || targetNs < 2  || targetNs > 36) {
+        throw new TypeError ('недопустимое значение системы счисления');
+    } else if (isNaN(n) || !isFinite(n)) {
+        throw new RangeError('недопустимое число');
     } else {
         return n.toString(targetNs);
     }
