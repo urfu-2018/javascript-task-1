@@ -47,12 +47,11 @@ function colorsProblem(hexColor) {
     if (hexColor.search(/^#[0-9a-f]{6}$/i) !== 0) {
         return new RangeError();
     }
-    let rgb = new Array(3);
-    for (let i = 0; i < 3; i++) {
-        rgb[i] = parseInt(hexColor.substr(2 * i + 1, 2), 16);
-    }
+    let r = parseInt(hexColor.substr(1, 2), 16);
+    let g = parseInt(hexColor.substr(3, 2), 16);
+    let b = parseInt(hexColor.substr(5, 2), 16);
 
-    return `(${rgb.join(', ')})`;
+    return `(${r}, ${g}, ${b})`;
 }
 
 
