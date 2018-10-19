@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(Number.isInteger(a)) && !(Number.isInteger(b))) {
+    if (!(Number.isInteger(a)) || !(Number.isInteger(b))) {
         throw new TypeError();
     }
 
@@ -26,11 +26,11 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year < 0) {
+    if (year <= 0) {
         throw new RangeError();
     }
 
-    return (Math.floor(year / 100) + 1);
+    return (Math.floor((year - 1) / 100) + 1);
 }
 
 /**
@@ -84,11 +84,19 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
+
+function checkLengthOfMatrix(matr) {
+    for (let i = 1; i < matr[0].length; i++) {
+        if (matr[i] !== matr[0] || !Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
+            return false;
+        }
+    }
+}
+
 function matrixProblem(matrix) {
-    if (!matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || !Array.isArray(matrix[0]) || checkLengthOfMatrix(matrix)) {
         throw new TypeError();
     }
-
     const newMatrix = new Array(matrix[0].length);
     for (let y = 0; y < matrix.length; y++) {
         newMatrix[y] = new Array(matrix.length);
