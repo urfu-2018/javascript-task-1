@@ -97,6 +97,9 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || checkLength(matrix)) {
         throw new TypeError();
     }
+    if (matrix[0].length === 0) {
+        return [[]];
+    }
     const newMatrix = new Array(matrix[0].length);
     for (let y = 0; y < matrix.length; y++) {
         newMatrix[y] = new Array(matrix.length);
