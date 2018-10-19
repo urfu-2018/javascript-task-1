@@ -117,7 +117,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (Number(n) === n && isInt(targetNs)) {
+    if (typeof(n) === 'number' && isInt(targetNs)) {
         if (targetNs >= 2 <= 36) {
             let num = (isInt(n)) ? parseInt(n) : parseFloat(n);
 
