@@ -23,7 +23,7 @@ function centuryByYearProblem(year) {
     // Ваше решение
     const yearStr = year.toString;
     if (yearStr.length === 4) {
-        return parseInt(yearStr.substring(0, 1), 10) + 1;
+        return parseInt(yearStr.substring(0, 2), 10) + 1;
     }
 
     return 1;
