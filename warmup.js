@@ -111,12 +111,15 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix)) {
-        throw new TypeError();
-    }
 
     if (matrix.length === 0) {
         return [];
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        if (!Array.isArray(matrix[i])) {
+            throw new TypeError();
+        }
     }
 
     let matrixResult = [];
