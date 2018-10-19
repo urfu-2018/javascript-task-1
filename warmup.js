@@ -113,6 +113,7 @@ function matrixProblem(matrix) {
     }
     let matrixT = [];
     for (let i = 0; i < m; i++) {
+        secondMatrixCheck(matrix[i], m);
         matrixT[i] = [];
         for (let j = 0; j < n; j++) {
             matrixT[i][j] = matrix[j][i];
@@ -134,6 +135,17 @@ function matrixCheck(matrix, n, m) {
     }
 
     return flag;
+}
+
+function secondMatrixCheck(matrix, m) {
+    for (let i = 0; i < m - 1; i++) {
+        if (isNaN(matrix[i]) || !isFinite(matrix[i])) {
+            throw new TypeError();
+        }
+        if (typeof(matrix[i]) !== typeof(matrix[i + 1])) {
+            throw new TypeError();
+        }
+    }
 }
 
 /**
@@ -165,9 +177,11 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError('не строка');
     }
-    const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
-
-    return res !== null;
+    let res = null;
+    if (phoneNumber.length === 15) {
+        res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
+    }
+    return res  !== null;
 }
 
 /**
