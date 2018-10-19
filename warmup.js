@@ -122,7 +122,7 @@ function matrixProblem(matrix) {
     return matrixT;
 }
 
-function matrixCheck(matrix, n, m) {
+function matrixCheck(matrix, n) {
     let flag = true;
     if (!Array.isArray(matrix)) {
         flag = false;
