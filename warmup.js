@@ -118,20 +118,19 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof(phoneNumber) !== 'string') {
-        throw new TypeError();
-    }
-    const formatNumber = '8–800–xxx–xx–xx';
-    let array = phoneNumber.split('–');
-    for (let i = 2; i < 5; i++) {
-        array[i] = array[i].replace(/[^a-z]/g, 'x');
-    }
-    let phoneStr = array[0] + '–' + array[1] + '–' + array[2] + '–' + array[3] + '–' + array[4];
-    if (phoneStr === formatNumber) {
-        return true;
-    }
+    if (typeof phoneNumber === 'string') {
+        const formatNumber = '8-800-xxx-xx-xx';
+        let array = phoneNumber.split('-');
+        for (let i = 2; i < 5; i++) {
+            array[i] = array[i].replace(/[^a-z]/g, 'x');
+        }
+        let phoneStr = array[0] + '-' + array[1] + '-' + array[2] + '-' + array[3] + '-' + array[4];
+        if (phoneStr === formatNumber) {
+            return true;
+        }
 
-    return false;
+        return false;
+    }
 }
 
 /**
