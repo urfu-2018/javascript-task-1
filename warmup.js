@@ -49,7 +49,7 @@ function colorsProblem(hexColor) {
     }
     let rgb = new Array(3);
     for (let i = 0; i < 3; i++) {
-        rgb[i] = parseInt(hexColor.substring(2 * i + 1, 2 * i + 2), 16);
+        rgb[i] = parseInt(hexColor.substring(2 * i + 1, 2 * i + 3), 16);
     }
 
     return `(${rgb.join(', ')})`;
