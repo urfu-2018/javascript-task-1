@@ -114,7 +114,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
      return (n.toString(targetNs));
-
+}
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
@@ -182,4 +182,4 @@ module.exports = {
     phoneProblem,
     smilesProblem,
     ticTacToeProblem,
-}}
+};
