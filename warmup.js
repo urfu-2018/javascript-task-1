@@ -16,14 +16,14 @@ function isNumber(something) {
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
- function abProblem(a, b) {
-    if (!isNumber(a)){
+function abProblem(a, b) {
+    if (!isNumber(a)) {
         throw new TypeError('First argument is not a number');
     }
     if (!isNumber(b)) {
         throw new TypeError('Second argument is not a number');
     }
-    
+
     return a + b;
 }
 
@@ -39,10 +39,10 @@ function centuryByYearProblem(year) {
         throw new TypeError('Argument is not a number');
     }
     if (year < 0) {
-        throw new RangeError('Argument is negative')
+        throw new RangeError('Argument is negative');
     }
     const YEARS_IN_CENTURY = 100;
-    
+
     return Math
         .floor(year / YEARS_IN_CENTURY) + // получили индекс года
         1; // получили номер года
@@ -53,7 +53,7 @@ function centuryByYearProblem(year) {
   * @param Нет требований к аргументу
   * @returns {Boolean} Если является строкой, то true, а иначе false
   */
- function isString(something) {
+function isString(something) {
     return typeof something === 'string';
 }
 
@@ -64,7 +64,7 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
- function colorsProblem(hexColor) {
+function colorsProblem(hexColor) {
     hexColor.toLocaleLowerCase();
     if (!isString(hexColor)) {
         throw new TypeError('Color in Format HEX don\'t gives as a string');
@@ -87,14 +87,14 @@ function centuryByYearProblem(year) {
     let i = 1;
     while (true) {
         RGBColorString += (getNUmberBySymbal(hexColor[i]) * BASE_HEX +
-            getNUmberBySymbal(hexColor[i + 1])).toString(); 
+            getNUmberBySymbal(hexColor[i + 1])).toString();
 
         if (i >= hexColor.length) {
             break;
         }
         RGBColorString += ', ';
     }
-    
+
     return RGBColorString;
 }
 
@@ -124,7 +124,7 @@ function fibonacciProblem(n) {
         qPlus1 = next;
         i++;
     }
-    
+
     return q + qPlus1;
 }
 
@@ -152,7 +152,7 @@ function matrixProblem(matrix) {
             newMatrix[i][j] = matrix[j][i];
         }
     }
-    
+
     return newMatrix;
 }
 
@@ -180,7 +180,7 @@ function numberSystemProblem(n, targetNs) {
         n = Math.floor(n / targetNs);
     } while (n >= targetNs);
     numbersArray.unshift(n);
-    
+
     return numbersArray.toString();
 }
 
@@ -222,7 +222,7 @@ function smilesProblem(text) {
             }
         }
     }
-    
+
     return amount;
 }
 
@@ -259,7 +259,7 @@ function ticTacToeProblem(field) {
         x0 += 2 * dX;
         y0 += 2 * dY;
     }
-    
+
     return 'draw';
 }
 
