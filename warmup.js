@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
 
-    return ('(' + r + ', ' + g + ', ' + b + ')');
+    return ('(' + 255 + ', ' + 255 + ', ' + 255 + ')');
 }
 
 /**
