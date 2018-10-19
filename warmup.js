@@ -88,7 +88,7 @@ function matrixProblem(matrix) {
     function checkLength(matr) {
         for (let i = 0; i < matr.length; i++) {
             if (!Array.isArray(matr[i]) || matr[i].length !== matr[0].length) {
-                return false;
+                return true;
             }
         }
     }
