@@ -118,7 +118,7 @@ function numberSystemProblem(n, targetNs) {
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     } else {
-        return n.toString(targetNs);
+        return n.toString(targetNs).toLowerCase();
     }
 }
 
