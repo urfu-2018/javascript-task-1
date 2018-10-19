@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
-    return a+b;
+    return a + b;
 }
 
 /**
@@ -22,9 +22,9 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     // Ваше решение
     const yearStr = year.toString;
-    if (yearStr.length == 4){
-        return parseInt(yearStr.substring(0,1), 10)+1;
-    }
+    if (yearStr.length === 4) {
+        return parseInt(yearStr.substring(0, 1), 10) + 1;
+}
     else return 1;
 }
 
@@ -37,7 +37,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    return rgbColor = '('+ parseInt(hexColor.substring(1,2), 16) + parseInt(hexColor.substring(3,4), 16) + parseInt(hexColor.substring(5,6)) + ')';
+    return rgbColor = '('+ parseInt(hexColor.substring(1, 2), 16) + parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
 }
 
 /**
@@ -49,10 +49,11 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     // Ваше решение
-    const fibSequence = [0,1];
+    const fibSequence = [0, 1];
     for (let i = 2; i < 61; i++) {
-        fibSequence[i].push(fibSequence[i-1]+fibSequence[i-2]);
+        fibSequence[i].push(fibSequence[i - 1] + fibSequence[i - 2]);
     }
+    
     return fibSequence[n];
 }
 
@@ -65,8 +66,8 @@ function fibonacciProblem(n) {
 function matrixProblem(matrix) {
     // Ваше решение
     let transposedMatrix = [];
-    for (let i =0; i < matrix.length; i++){
-        for (let j=0; j<matrix.length; j++){
+    for (let i = 0; i < matrix.length; i++){
+        for (let j= 0; j < matrix.length; j++){
             transposedMatrix[j][i] = matrix[i][j];
         }
     }
@@ -93,7 +94,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
-    const dashsEntry = phoneNumber.charAt(1)=='-'&&phoneNumber.charAt(5)=='-'&&phoneNumber.charAt(9)=='-'&&phoneNumber.charAt(12)=='-';
+    const dashsEntry = phoneNumber.charAt(1) == '-'&&phoneNumber.charAt(5) == '-' && phoneNumber.charAt(9) == '-' && phoneNumber.charAt(12) == '-';
     if (dashsEntry) return true
     else return false;
 }
@@ -119,6 +120,7 @@ function smilesProblem(text) {
         counter++;
         index2 = array.indexOf(element2, index2 + 1);
     }
+    
     return counter;
 }
    
