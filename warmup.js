@@ -92,7 +92,7 @@ function matrixProblem(matrix) {
     const n = matrix.length;
     const m = matrix[0].length;
     for (let j = 0; j < n; j++) {
-        if (matrix[j].length !== m) {
+        if (!array.isArray(matrix[j]) || matrix[j].length !== m) {
             throw new TypeError('на входе не двумерный массив!');
         }
     }
