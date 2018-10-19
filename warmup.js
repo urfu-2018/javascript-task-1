@@ -42,19 +42,16 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
-    } else if (!/^#[0-9a-fA-F]{6}$/gi.test(hexColor)) {
-        throw new RangeError();
-    } else {
-        hexColor.toUpperCase();
-        const R = parseInt(hexColor.slice(1, 3), 16);
-        const G = parseInt(hexColor.slice(3, 5), 16);
-        const B = parseInt(hexColor.slice(5, 7), 16);
-        if (isNaN(R) || isNaN(G) || isNaN(B) || hexColor.length !== 7) {
-            throw new RangeError();
-        } else {
-            return `(${R}, ${G}, ${B})`;
-        }
     }
+    if (!/^#[0-9a-fA-F]{6}$/gi.test(hexColor)) {
+        throw new RangeError();
+    }
+    hexColor.toUpperCase();
+    const R = parseInt(hexColor.slice(1, 3), 16);
+    const G = parseInt(hexColor.slice(3, 5), 16);
+    const B = parseInt(hexColor.slice(5, 7), 16);
+
+    return `(${R}, ${G}, ${B})`;
 }
 
 /**
