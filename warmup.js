@@ -206,6 +206,7 @@ function smilesProblem(text) {
     smilesArray.forEach(function (smile) {
         amount += text.split(smile).length - 1;
     });
+
     return amount;
 }
 
