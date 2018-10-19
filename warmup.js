@@ -85,10 +85,10 @@ function colorsProblem(hexColor) {
     }
     let RGBColorString = '(';
     let i = 1;
-    while {
+    const flag = true;
+    while (flag) {
         RGBColorString += (getNUmberBySymbal(hexColor[i]) * BASE_HEX +
             getNUmberBySymbal(hexColor[i + 1])).toString();
-
         if (i >= hexColor.length) {
             break;
         }
