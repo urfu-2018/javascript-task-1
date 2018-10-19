@@ -24,10 +24,9 @@ function centuryByYearProblem(year) {
     const yearStr = year.toString;
     if (yearStr.length === 4) {
         return parseInt(yearStr.substring(0, 1), 10) + 1;
-    }
-    else {
-        return 1;
-    }
+    };
+    
+    return 1;
 }
 
 /**
@@ -40,8 +39,8 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     // Ваше решение
 
-    return '(' + parseInt(hexColor.substring(1, 2), 16) 
-    + parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
+    return '(' + parseInt(hexColor.substring(1, 2), 16) + 
+    parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
 }
 
 /**
@@ -99,12 +98,11 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
-    const dashsEntry = phoneNumber.charAt(1) === '-'&&phoneNumber.charAt(5) === '-' 
-    && phoneNumber.charAt(9) === '-' && phoneNumber.charAt(12) === '-';
+    const dashsEntry = phoneNumber.charAt(1) === '-'&&phoneNumber.charAt(5) === '-' && 
+    phoneNumber.charAt(9) === '-' && phoneNumber.charAt(12) === '-';
     if (dashsEntry) {
         return true;
-    }
-    else {
+    } else {
         return false;
     };
 }
@@ -121,12 +119,12 @@ function smilesProblem(text) {
     const element1 = ':-)';
     const element2 = '(-:';
     let index1 = text.indexOf(element1);
-    let index2 = text.indexOf(element2)
-    while(index1 != -1){
+    let index2 = text.indexOf(element2);
+    while(index1 !== -1) {
         counter++;
         index1 = text.indexOf(element1, index1 + 1);
     }
-    while(index2 != -1){
+    while(index2 !== -1) {
         counter++;
         index2 = text.indexOf(element2, index2 + 1);
     }
@@ -144,17 +142,21 @@ function smilesProblem(text) {
 function ticTacToeProblem(field) {
     // Ваше решение
     for(let i = 0; i < 3; i++) {
-        if(field[i][0] == field[i][1] && field[i][0] == field[i][2])
+        if(field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
         return field[i][0];
     }
+    }
     for(let i = 0; i < 3; i++) {
-        if(field[0][i] == field[i][1] && field[0][i] == field[i][2])
+        if(field[0][i] === field[i][1] && field[0][i] === field[i][2]){
         return field[0][i];
     }
-    if(field[0][0] == field[1][1] && field[1][1] == field[2][2])
-    return field[0][0];
-    if(field[0][2] == field[1][1] && field[1][1] == field[2][0])
-    return field[0][2];
+    }
+    if(field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    }
+    if(field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
+    }
     return 'draw';
 }
         
