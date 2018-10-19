@@ -102,13 +102,14 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    if (!matrix.every(Array.isArray)) {
+    if (!matrix.length || !matrix[0].length) {
         throw new TypeError();
     }
-
-    if (!Array.isArray(matrix) || matrix.length === 0) {
-        throw new TypeError();
-    }
+    matrix.forEach(c => {
+        if (matrix[0].length !== c.length || !c || !c.length || c.length === 0) {
+            throw new TypeError();
+        }
+    });
 
     var matLen = matrix.length;
     for (var i = 0; i < matLen; i++) {
