@@ -89,6 +89,7 @@ function transposeMatrix(matrix) {
 
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < newArray.length; j++) {
+            checkArray(newArray[j]);
             newArray[j].push(matrix[i][j]);
         }
     }
@@ -96,9 +97,13 @@ function transposeMatrix(matrix) {
     return newArray;
 
 }
+function checkArray(matrix) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError();
+    }
+}
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0]) || matrix.length === 0 ||
-    matrix[0].length === 0) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
 
