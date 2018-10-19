@@ -51,8 +51,7 @@ function colorsProblem(hexColor) {
         throw new RangeError();
     }
 
-    return ('(' + parseInt(r, 10).toString() + ',' + ' ' +
-        parseInt(g, 10).toString() + ',' + ' ' + parseInt(g, 10).toString() + ')');
+    return ('(' + r + ', ' + g + ', ' + b + ')');
 }
 
 /**
@@ -165,7 +164,7 @@ function ticTacToeProblem(field) {
             return field[0][i];
         }
     }
-    
+
     return 'draw';
 }
 
