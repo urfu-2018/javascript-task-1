@@ -86,15 +86,10 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     // Ваше решение
-    if (!Array.isArray(matrix)) {
-        throw new TypeError('передан не массив');
-    }
     const n = matrix.length;
     const m = matrix[0].length;
-    for (let j = 0; j < n; j++) {
-        if (!array.isArray(matrix[j]) || matrix[j].length !== m) {
-            throw new TypeError('на входе не двумерный массив!');
-        }
+    if (!matrixCheck(matrix, n, m)) {
+        throw new TypeError();
     }
     let matrixT = [];
     for (let i = 0; i < m; i++) {
@@ -105,6 +100,19 @@ function matrixProblem(matrix) {
     }
 
     return matrixT;
+}
+
+function matrixCheck(matrix, n, m) {
+    flag = true;
+    if (!Array.isArray(matrix)) {
+        flag = false;
+    }
+    for (let j = 0; j < n; j++) {
+        if (!Array.isArray(matrix[j]) || matrix[j].length !== m) {
+            flag = false;
+        }
+    }
+    return flag;
 }
 
 /**
