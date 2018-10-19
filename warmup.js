@@ -1,7 +1,11 @@
 'use strict';
 
 function isInt(n) {
-    return Number(n) === n && n % 1 === 0;
+    return isFloat(n) && n % 1 === 0;
+}
+
+function isFloat(n) {
+    return typeof n === 'number';
 }
 
 /**
@@ -12,7 +16,7 @@ function isInt(n) {
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (isInt(a) && isInt(b)) {
+    if (isFloat(a) && isFloat(b)) {
         return a + b;
     }
     throw new TypeError();
