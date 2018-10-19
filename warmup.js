@@ -181,7 +181,7 @@ function phoneProblem(phoneNumber) {
     if (phoneNumber.length === 15) {
         res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
     }
-    
+
     return res !== null;
 }
 
