@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!(typeof (a) === 'number') && !(typeof (b) === 'number')) {
+    if (!(Number.isInteger(a)) && !(Number.isInteger(b))) {
         throw new TypeError();
     }
 
@@ -23,10 +23,10 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof (year) !== 'number') {
+    if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if ((year < 0) || !Number.isInteger(year)) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) !== 'string') {
+    if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
     if (!(/^#[0-9A-F]{6}$/i).test(hexColor)) {
@@ -86,12 +86,10 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!matrix.every(Array.isArray)) {
         throw new TypeError();
     }
-    if (matrix[0].length === 0) {
-        return [[]];
-    }
+
     const newMatrix = new Array(matrix[0].length);
     for (let y = 0; y < matrix.length; y++) {
         newMatrix[y] = new Array(matrix.length);
@@ -119,7 +117,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return n.toString(targetNs);
+    return (n.toString(targetNs)).toLowerCase();
 }
 
 /**
