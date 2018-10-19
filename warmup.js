@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof year !== 'number' || !Number.isInteger(year)) {
+    if (typeof year !== 'number') {
         throw new TypeError();
     }
     if (typeof year < 0 || !Number.isInteger(year)) {
@@ -97,22 +97,16 @@ function fibonacciProblem(n) {
 
 // Ваше решение
 function matrixProblem(a) {
-
-
     if (!Array.isArray(a) || !a.every(Array.isArray || a.length === 0)) {
         throw new TypeError();
     }
     let t = [];
-
     for (let i = 0; i < a[0].length; i++) {
         t[i] = [];
         for (let j = 0; j < a.length; j++) {
             t[i][j] = a[j][i];
         }
-
     }
-
-
     return t;
 }
 
