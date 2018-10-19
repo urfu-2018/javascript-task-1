@@ -60,10 +60,11 @@ function colorsProblem(hexColor) {
 
     return answer;
 }
-function checkColor(hexColor) { 
-    if (hexColor.match(/#[\dA-Fa-f]{6}$/i) === null) { 
-        throw new RangeError(); 
-    } 
+
+function checkColor(hexColor) {
+    if (hexColor.match(/#[\dA-Fa-f]{6}$/i) === null) {
+        throw new RangeError();
+    }
     if (hexColor.length > 7) {
         throw new RangeError();
     }
