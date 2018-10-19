@@ -165,11 +165,10 @@ function smilesProblem(text) {
 }
 
 function verticalVictory(field) {
-    for (let i = 0; i < 3; i++) {
-        for (let j = 1; j < 3 && field[i][0] === field[i][j]; j++) {
-            if (j === 2) {
-                return field[i][0];
-            }
+    for (let i = 0, j = 1; i < 3; i++) {
+        for (j = 1; j < 3 && field[i][0] === field[i][j]; j++);
+        if (j === 2) {
+            return field[i][0];
         }
     }
 
@@ -177,11 +176,10 @@ function verticalVictory(field) {
 }
 
 function horizonlalVictory(field) {
-    for (let i = 0; i < 3; i++) {
-        for (let j = 1; j < 3 && field[0][i] === field[j][i]; j++) {
-            if (j === 2) {
-                return field[0][i];
-            }
+    for (let i = 0, j = 1; i < 3; i++) {
+        for (j = 1; j < 3 && field[0][i] === field[j][i]; j++);
+        if (j === 2) {
+            return field[0][i];
         }
     }
 
@@ -206,6 +204,7 @@ function diagonalVictory(field) {
 function ticTacToeProblem(field) {
     var ver = verticalVictory(field);
     var hor = horizonlalVictory(field);
+    var diag = diagonalVictory(field);
 
     return ver !== 'no' ? ver : hor !== 'no' ? hor : diag !== 'no' ? diag : 'draw';
 }
