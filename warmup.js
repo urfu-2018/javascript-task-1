@@ -135,8 +135,9 @@ function transposeMatrix(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!isNumber(n) || !Number.isInteger(n)) {
-        throw new TypeError('N must be an integer');
+    if (!isNumber(n) || !isNumber(targetNs) || !Number.isInteger(targetNs)) {
+        throw new TypeError(
+            'Both params must be numbers (targetNs must be am integer)');
     }
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('targetNs must be in range [2, 36]');
