@@ -117,13 +117,31 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (!isFinite(targetNs) || Math.abs(targetNs) !== targetNs || !Number.isInteger(targetNs) || targetNs < 2  || targetNs > 36) {
-        throw new TypeError ('недопустимое значение системы счисления');
-    } else if (isNaN(n) || !isFinite(n)) {
-        throw new RangeError('недопустимое число');
+    if (!numberSystemCheckType(n, targetNs)) {
+        throw new TypeError();
+    } else if (!numberSystemCheckRange(targetNs)) {
+        throw new RangeError();
     } else {
         return n.toString(targetNs);
     }
+}
+
+function numberSystemCheckType (n, targetNs) {
+    let flag = true;
+    if (!isFinite(targetNs) || Math.abs(targetNs) !== targetNs || !Number.isInteger(targetNs)) {
+        flag = false;
+    } else if (!isFinite(n) || isNaN(n) || typeof(n) === 'string') {
+        flag = false;
+    }
+    return flag;
+}
+
+function numberSystemCheckRange (targetNs) {
+    let flag = true;
+    if (targetNs < 2 || targetNs > 36) {
+        flag = false;
+    }
+    return flag;
 }
 
 /**
