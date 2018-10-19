@@ -240,7 +240,7 @@ function ticTacToeProblem(field) {
     x0 = 0;
     y0 = 0;
     delta = Math.PI/2;
-    const iterationQuantity = Math.round(2*Math.PI / delta);
+    iterationQuantity = Math.round(2*Math.PI / delta);
     for(let i = 0; i < iterationQuantity; i++) {
         const dX = Math.round(Math.cos(-i*delta));
         const dY = Math.round(Math.sin(-i*delta));
