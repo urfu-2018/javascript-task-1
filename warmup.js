@@ -44,12 +44,12 @@ function colorsProblem(hexColor) {
     if (typeof (hexColor) !== 'string') {
         throw new TypeError();
     }
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+        throw new RangeError();
+    }
     let r = parseInt(hexColor.substring(1, 3), 16);
     let g = parseInt(hexColor.substring(3, 5), 16);
     let b = parseInt(hexColor.substring(5, 7), 16);
-    if (r > 255 || g > 255 || b < 255) {
-        throw new RangeError();
-    }
 
     return ('(' + r + ', ' + g + ', ' + b + ')');
 }
@@ -65,7 +65,7 @@ function fibonacciProblem(n) {
     if (typeof (n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (n < 0) {
         throw new RangeError();
     }
     let fibArr = [1, 1];
@@ -83,7 +83,8 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !Array.isArray(matrix[0])) {
+    if (!(matrix instanceof Array) ||
+    matrix.some(sm => !Array.isArray(sm) || sm.length !== matrix[0].length)) {
         throw new TypeError();
     }
     let rows = matrix.length;
