@@ -108,24 +108,23 @@ function matrixProblem(matrix) {
 function numberSystemProblem(n, targetNs) {
     if (typeof n !== 'number' || typeof targetNs !== 'number' ||
     !((targetNs - Math.trunc(targetNs)) === 0)) {
-        throw new TypeError();
+        throw TypeError;
     }
     if (targetNs < 2 || targetNs > 36) {
-        throw new RangeError();
+        throw RangeError;
     }
-     return (n.toString(targetNs));
+
+    return (n.toString(targetNs));
 }
+
 /**
  * Проверяет соответствие телефонного номера формату
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof phoneNumber !== 'string') {
-        throw new TypeError();
-    }
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
-    
+
     return regex.test(phoneNumber);
 }
 
@@ -137,14 +136,16 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError();
+        throw TypeError;
     }
     let result = text.match(/(:-\)|\(-:)/g);
     if (result !== null) {
         return result.length;
     }
-     return 0;
+
+    return 0;
 }
+
 /**
  * Определяет победителя в игре "Крестики-нолики"
  * Тестами гарантируются корректные аргументы.
@@ -169,8 +170,10 @@ function ticTacToeProblem(field) {
         field[1][1] === field[2][0]) {
         return field[1][1];
     }
-     return 'draw';
+
+    return 'draw';
 }
+
 
 module.exports = {
     abProblem,
@@ -181,5 +184,5 @@ module.exports = {
     numberSystemProblem,
     phoneProblem,
     smilesProblem,
-    ticTacToeProblem,
+    ticTacToeProblem
 };
