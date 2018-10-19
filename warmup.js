@@ -89,9 +89,6 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError('передан не массив');
     }
-    if (!Array.isArray(matrix)) {
-        throw new TypeError('внутри не массив');
-    }
     const n = matrix.length;
     const m = matrix[0].length;
     for (let j = 0; j < n; j++) {
@@ -120,7 +117,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
-    if (Math.abs(n) !== n || !isInteger(targetNs)) {
+    if (Math.abs(n) !== n || !Number.isInteger(targetNs)) {
         throw new TypeError ('Переданныe параметры не являются числом');
     } else if (targetNs < 2 || targetNs > 36) {
         throw new RangeError('недопустимое значение системы счисления');
@@ -137,7 +134,7 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     // Ваше решение
     if (typeof(phoneNumber) !== 'string') {
-        throw new TypeError('не строка')
+        throw new TypeError('не строка');
     }
     const res = phoneNumber.match(/8-800-[\d]{3}-[\d]{2}-[\d]{2}/);
 
