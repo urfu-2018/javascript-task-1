@@ -95,9 +95,7 @@ function matrixProblem(matrix) {
 
         return matrix[0].map((col, i) => matrix.map(row => row[i]));
         }
-    else if (!Array.isArray(matrix) {
         throw new TypeError();
-    }
 }
 
 /**
