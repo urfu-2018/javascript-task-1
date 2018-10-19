@@ -41,7 +41,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string') {
+    if (typeof hexColor !== 'string' || !/^#[a-fA-F]{6}$/.test(hexColor)) {
         throw new TypeError();
     }
     let red = parseInt(hexColor.slice(1, 3), 16);
@@ -149,7 +149,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return (text.match(/(?::-\)|\(-:)/g) || []).length;
+    return (text.match(/:-\)|\(-:/g) || []).length;
 }
 
 /**
