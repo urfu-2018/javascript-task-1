@@ -128,7 +128,7 @@ function matrixCheck(matrix, n, m) {
         flag = false;
     }
     for (let j = 0; j < n; j++) {
-        if (!Array.isArray(matrix[j]) || matrix[j].length !== m) {
+        if (!Array.isArray(matrix[j])) {
             flag = false;
         }
     }
