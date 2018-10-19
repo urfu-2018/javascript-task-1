@@ -81,13 +81,21 @@ function fibonacciProblem(n) {
     // Ваше решение
     if (!Number.isInteger(n)) {
         throw new TypeError ('Переданный параметр не является числом');
-    } else if (!Number.isInteger(n) || n <= 0) {
+    } else if (n <= 0) {
         throw new RangeError('n не является целым положительным числом');
-    } else if (n === 1 || n === 2) {
-        return 1;
-    } else {
-        return fibonacciProblem(n - 1) + fibonacciProblem(n - 2);
     }
+    let fib1 = 1;
+    let fib2 = 1;
+    let fibSum = 1;
+    let i = 2;
+    while (i < n) {
+        fibSum = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = fibSum;
+        i++;
+    }
+
+    return fibSum;
 }
 
 /**
