@@ -32,16 +32,17 @@ function centuryByYearProblem(year) {
     }
 }
 
-function transformColor(hex) {
+function transformColor(hexColor) {
     var rgbColor = '(';
     for (let i = 1; i <= 6; i += 2) {
-       rgbColor += (Number.parseInt(hexColor[i]) * 16 +
-       Number.parseInt(hexColor[i + 1])) + (i < 5 ? ', ' : '');
+        rgbColor += (Number.parseInt(hexColor[i]) * 16 +
+        Number.parseInt(hexColor[i + 1])) + (i < 5 ? ', ' : '');
     }
     rgbColor += ')';
-	 
+
     return rgbColor;
 }
+
 /**
  * Переводит цвет из формата HEX в формат RGB
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
@@ -69,9 +70,10 @@ function getFibonacci(n) {
         b += a;
         a = temp;
     }
-    
+
     return b;
 }
+
 /**
  * Находит n-ое число Фибоначчи
  * @param {Number} n Положение числа в ряде Фибоначчи
@@ -97,8 +99,10 @@ function checkMatrix(matrix) {
             return false;
         }
     }
+
     return true;
 }
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -108,7 +112,7 @@ function checkMatrix(matrix) {
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
-    } else if (!checkMatrix(matrix)){
+    } else if (!checkMatrix(matrix)) {
         throw new TypeError();
     } else {
         return matrix[0].map((item, element) => matrix.map(matr => matr[element]));
@@ -142,7 +146,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     var phone = /^8-800-\d{3}(-\d{2}){2}$/;
-    
+
     return phone.test(phoneNumber);
 }
 
@@ -156,8 +160,41 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     } else {
-        return (text.length - text.replace(/:\-\)/).length - text.replace(/\(\-:/).length) / 3;
+        return (text.length - text.replace(/:-\)/).length - text.replace(/\(-:/).length) / 3;
     }
+}
+
+function verticalVictory(field) {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 1; j < 3 && field[i][0] === field[i][j]; j++) {
+            if (j === 2) {
+                return field[i][0];
+            }
+        }
+    }
+
+    return 'no';
+}
+
+function horizonlalVictory(field) {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 1; j < 3 && field[0][i] === field[j][i]; j++) {
+            if (j === 2) {
+                return field[0][i];
+            }
+        }
+    }
+
+    return 'no';
+}
+
+function diagonalVictory(field) {
+    if (field[0][0] === field[1][1] && field[0][0] === field[2][2] ||
+        field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
+        return field[1][1];
+    }
+
+    return 'no';
 }
 
 /**
@@ -167,26 +204,10 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < 3; i++) {
-        for (let j = 1; j < 3 && field[i][0] === field[i][j]; j++) {
-            if (j === 2) {
-                return field[i][0];
-            }
-        }
-    }
-    for (let i = 0; i < 3; i++) {
-        for (let j = 1; j < 3 && field[0][i] === field[j][i]; j++) {
-            if (j === 2) {
-                return field[0][i];
-            }
-        }
-    }
-    if (field[0][0] === field[1][1] && field[0][0] === field[2][2] ||
-        field[0][2] === field[1][1] && field[0][2] === field[2][0]) {
-        return field[1][1];
-    }
-    
-    return 'draw';
+    var ver = verticalVictory(field);
+    var hor = horizonlalVictory(field);
+
+    return ver !== 'no' ? ver : hor !== 'no' ? hor : diag !== 'no' ? diag : 'draw';
 }
 
 module.exports = {
