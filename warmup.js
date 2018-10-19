@@ -122,13 +122,13 @@ function matrixProblem(matrix) {
     return matrixT;
 }
 
-function matrixCheck(matrix, n) {
+function matrixCheck(matrix, n, m) {
     let flag = true;
     if (!Array.isArray(matrix)) {
         flag = false;
     }
     for (let j = 0; j < n; j++) {
-        if (!Array.isArray(matrix[j])) {
+        if (!Array.isArray(matrix[j]) || matrix[j].length !== m) {
             flag = false;
         }
     }
