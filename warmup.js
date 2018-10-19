@@ -197,7 +197,26 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if(!isString(text)) {
+        throw new TypeError('Text didn\'t transfer like a string');
+    }
+    let amount = 0;
+    const smilesArray = [':-)', '(-:'];
+    for(let i = 0; i < text.length - 2; i++) {
+        for(let j = 0; j < smilesArray.length; j++) {
+            if(i + smilesArray[j].length <= text.length) {
+                let isSmile = true;
+                for(let k = 0; k < smilesArray[j].length; k++) {
+                    if(text[i + k] !== smilesArray[k]) {
+                        isSmile = false;
+                        break;
+                    }
+                }
+                if(isSmile) { amount++; }
+            }
+        }
+    }
+    return amount;
 }
 
 /**
@@ -207,7 +226,34 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    let x0 = 1;
+    let y0 = 1;
+    let delta = Math.PI/4;
+    const iterationQuantity = Math.round(2*Math.PI / delta);
+    for(let i = 0; i < iterationQuantity; i++) {
+        const dX = Math.round(Math.cos(i*delta));
+        const dY = Math.round(Math.sin(i*delta));
+        if(field[x0][y0] === field[x0+dX][y0+dY] &&
+           field[x0][y0] === field[x0-dX][x0-dY]) {
+               return field[x0][y0];
+        }
+    }
+    x0 = 0;
+    y0 = 0;
+    delta = Math.PI/2;
+    const iterationQuantity = Math.round(2*Math.PI / delta);
+    for(let i = 0; i < iterationQuantity; i++) {
+        const dX = Math.round(Math.cos(-i*delta));
+        const dY = Math.round(Math.sin(-i*delta));
+        if(field[x0][y0] === field[x0+dX][y0+dY] &&
+        field[x0][y0] === field[x0 + 2*dX][y0 + 2*dY]) {
+            return field[x0][y0];
+        }
+        x0 += 2*dX;
+        y0 += 2*dY;
+    }
+    return 'draw';
+    
 }
 
 module.exports = {
