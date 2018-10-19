@@ -2,7 +2,7 @@
 
 /**
  * Проверяет является ли аргумент числом
- * @param {Number} Нет требований к аргументу
+ * @param {Number} something Нет требований к аргументу
  * @returns {Boolean} Если является числом, то true, а иначе false
  */
 function isNumber(something) {
@@ -50,7 +50,7 @@ function centuryByYearProblem(year) {
 
 /**
   * определяет является ли аргумент строкой
-  * @param {String} Нет требований к аргументу
+  * @param {String} something Нет требований к аргументу
   * @returns {Boolean} Если является строкой, то true, а иначе false
   */
 function isString(something) {
@@ -85,7 +85,7 @@ function colorsProblem(hexColor) {
     }
     let RGBColorString = '(';
     let i = 1;
-    while (true) {
+    while () {
         RGBColorString += (getNUmberBySymbal(hexColor[i]) * BASE_HEX +
             getNUmberBySymbal(hexColor[i + 1])).toString();
 
@@ -193,6 +193,7 @@ function phoneProblem(phoneNumber) {
     if (phoneNumber.length !== 15) {
         return false;
     }
+
     return /8-800-\d{3}-\d{2}-\d{2}/.test(phoneNumber);
 }
 
@@ -218,7 +219,9 @@ function smilesProblem(text) {
                         break;
                     }
                 }
-                if (isSmile) { amount++; }
+                if (isSmile) {
+                    amount++; 
+                }
             }
         }
     }
