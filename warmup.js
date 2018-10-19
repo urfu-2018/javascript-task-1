@@ -104,27 +104,27 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function matrixProblem(matrix) { 
-    if (!Array.isArray(matrix) || matrix.length === 0) { 
-        throw new TypeError('Матрица не двумерна'); 
-    } 
-    var res = []; 
-    for (var i = 0; i < matrix[0].length; i++) { 
+function matrixProblem(matrix) {
+    if (!Array.isArray(matrix) || matrix.length === 0) {
+        throw new TypeError('Матрица не двумерна');
+    }
+    var res = [];
+    for (var i = 0; i < matrix[0].length; i++) {
         res[i] = []; 
-        for (var j = 0; j < matrix.length; j++) { 
-            checkArray(matrix[j]); 
-            res[i][j] = matrix[j][i]; 
-        } 
-    } 
-    
+        for (var j = 0; j < matrix.length; j++) {
+            checkArray(matrix[j]);
+            res[i][j] = matrix[j][i];
+        }
+    }
+
     return res;
 }
     
-    function checkArray(matrix) { 
-    if (!Array.isArray(matrix)) { 
-    throw new TypeError('Матрица должна быть двумерной'); 
-    } 
+function checkArray(matrix) {
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('Матрица должна быть двумерной');
     }
+}
 /**
  * Переводит число в другую систему счисления
  * @param {Number} n Число для перевода в другую систему счисления
