@@ -113,7 +113,6 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
-    
     return (n.toString(targetNs));
 }
 
@@ -127,7 +126,6 @@ function phoneProblem(phoneNumber) {
         throw new TypeError();
     }
     let regex = new RegExp('^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$');
-    
     return regex.test(phoneNumber);
 }
 
@@ -142,8 +140,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     let result = text.match(/(:-\)|\(-:)/g);
-    if (result !== null) {
-        
+    if (result !== null) { 
         return result.length;
     }
     
@@ -155,6 +152,7 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+
 function ticTacToeProblem(field) {
     for (let j = 0; j < 3; j++) {
         if (field[j][0] === field[j][1] && field[j][1] === field[j][2]) {
@@ -173,7 +171,6 @@ function ticTacToeProblem(field) {
         field[1][1] === field[2][0]) {
         return field[1][1];
     }
-    
     return 'draw';
 }
 
