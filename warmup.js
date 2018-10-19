@@ -108,10 +108,10 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError('Матрица не двумерна');
     }
-    var res = [];
-    for (var i = 0; i < matrix[0].length; i++) {
+    let res = [];
+    for (let i = 0; i < matrix[0].length; i++) {
         res[i] = [];
-        for (var j = 0; j < matrix.length; j++) {
+        for (let j = 0; j < matrix.length; j++) {
             checkArray(matrix[j]);
             res[i][j] = matrix[j][i];
         }
