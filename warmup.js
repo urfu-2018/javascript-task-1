@@ -8,7 +8,9 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if(Number.isInteger(a) && Number.isInteger(b)){
+        return a + b;
+    }else throw new TypeError('Incorrect input');
 }
 
 /**
@@ -19,7 +21,11 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if(Number.isInteger(year)){
+        if(year >= 0){
+            return (year % 100) + 1;
+        } else throw new RangeError('input number less than 0');
+    } else throw new TypeError('Incorrect input (not a numbers)');
 }
 
 /**
@@ -30,7 +36,12 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if(typeof hexColor === "string"){
+        if(hexColor[0] === "#" && (hexColor.length === 7 || hexColor.length === 3)){
+            let lowerReverseHex = hexColor.split('#').reverse.toLowerCase;
+            
+        }else throw new TypeError('Incorrect format');
+    } else throw new TypeError('Incorrect input (not a string)');
 }
 
 /**
@@ -41,7 +52,24 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if(Number.isInteger(n))
+    {
+        let count = 0;
+        let previous, previous2 = 1;
+        if(n === 1 || n === 2)
+            return 1;
+        else if (n <= 0){
+            throw new RangeError('Incorrect iput (less than 0)');
+        }else
+        {
+            for(let i = 3; i < n + 1; i++){
+                count = previous + previous2;
+                previous2 = previous;
+                previous = count;
+            }
+            return count;
+        }
+    }else throw new TypeError('Incorrect iput (not a number)');
 }
 
 /**
