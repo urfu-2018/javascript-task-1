@@ -39,7 +39,7 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    const rgbColor;
+    const rgbColor
     return rgbColor = '(' + parseInt(hexColor.substring(1, 2), 16) + parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
 }
 
