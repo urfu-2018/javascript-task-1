@@ -86,14 +86,18 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!matrix.every(Array.isArray)) {
+    let reducer = (acc, value) => acc && Array.isArray(value);
+    const isMatrix = matrix.reduce(reducer, true);
+    if (!isMatrix) {
         throw new TypeError();
     }
-    const newMatrix = new Array(matrix[0].length);
-    for (let i = 0; i < matrix.length; i++) {
-        newMatrix[i] = new Array(matrix.length);
-        for (let j = 0; j < matrix[0].length; j++) {
-            newMatrix[i][j] = matrix[j][i];
+    let newMatrix = [];
+    const M = matrix.length;
+    const N = matrix[0].length;
+    for (var j = 0; j < N; j++) {
+        newMatrix[j] = [];
+        for (var i = 0; i < M; i++) {
+            newMatrix[j][i] = matrix[i][j];
         }
     }
 
