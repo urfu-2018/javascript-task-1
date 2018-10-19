@@ -82,7 +82,6 @@ function centuryByYearProblem(year) {
         }
     }
     let RGBColorString = '(';
-    const BASE_HEX = 16;
     let i = 1
     while(true) {
         RGBColorString += (GetNUmberBySymbal(hexColor[i]) * BASE_HEX 
