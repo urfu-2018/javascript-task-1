@@ -12,7 +12,7 @@ function symbolRange(from, length) {
 }
 
 function checkThat(object, predicate, ErrorTypeToThrow = TypeError) {
-    if (!predicate(object)) {
+    if (object !== undefined && object !== null && !predicate(object)) {
         throw new ErrorTypeToThrow();
     }
 }
@@ -54,7 +54,7 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     checkThat(year, isInteger);
-    checkThat(year, y => y >= 0, RangeError);
+    checkThat(year, y => y > 0, RangeError);
 
     return 1 + Math.floor(year / 100);
 }
@@ -69,18 +69,21 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     checkThat(hexColor, isString);
     const firstSymbol = '#';
-    const colorLength = firstSymbol.length + 6;
-    if (hexColor.charAt(0) !== firstSymbol || hexColor.length !== colorLength) {
-        throw new RangeError();
-    }
+    const base = 16;
+    checkThat(hexColor, x => x.charAt(0) === firstSymbol, RangeError);
 
-    const tokensIndexes = [1, 3, 5];
-    const answer = tokensIndexes.map(index => hexColor.substr(index, 2))
-        .map(hex => parseInt(hex, 16))
-        .map(String)
-        .join(', ');
+    const parsed = parseInt(hexColor.slice(1), base);
+    checkThat(parsed, isInteger, RangeError);
 
-    return `(${answer})`;
+    const tokens = [
+        parsed % Math.pow(base, 6) % Math.pow(base, 2),
+        parsed % Math.pow(base, 4) % Math.pow(base, 2),
+        parsed % Math.pow(base, 2)
+    ];
+
+    checkThat(tokens, array => array.every(entry => entry >= 0 && entry <= 255), RangeError);
+
+    return `(${tokens.join(', ')})`;
 }
 
 /**
