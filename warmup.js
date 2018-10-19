@@ -154,8 +154,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     checkThat(n, isNumber);
-    checkThat(targetNs, isNumber);
-    checkThat(targetNs, isInteger, RangeError);
+    checkThat(targetNs, isInteger);
     checkThat(targetNs, ns => ns >= 2 && ns <= 36, RangeError);
 
     return n.toString(targetNs);
