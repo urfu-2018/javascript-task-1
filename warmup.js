@@ -29,15 +29,8 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    const str = String(year);
-    const alienCentury = str.length - 2;
-    const notCentury = Number(str.substring(alienCentury, str.length + 1));
-    let century = Number(str.substring(0, str.length - 2));
-    if (notCentury !== 0) {
-        return century + 1;
-    }
 
-    return century;
+    return Math.ceil(year / 100);
 }
 
 /**
