@@ -58,12 +58,13 @@ function colorsProblem(hexColor) {
             return 'RangeError';
         }
     }
-    const hex1 = hex.substr(0, 2);
-    const hex2 = hex.substr(2, 2);
-    const hex3 = hex.substr(4, 2);
-
-    return '(' + Number('0x' + hex1) + ', '+ Number('0x' + hex2) + ', ' +
-    Number('0x' + hex3) + ')';
+    let hex1 = hex.substr(0, 2);
+    let hex2 = hex.substr(2, 2);
+    let hex3 = hex.substr(4, 2);
+    hex1 = Number('0x' + hex1);
+    hex2 = Number('0x' + hex2);
+    hex3 = Number('0x' + hex3);
+    return '(' + hex1 + ', '+ hex2 + ', ' + hex3 + ')';
 }
 
 /**
@@ -205,25 +206,25 @@ function ticTacToeProblem(field) {
     const strResult = field[0].join('') + field[1].join('') + field[2].join('');
     for (let i = 0; i < 9; i = i + 3) {
         if (strResult[i] === 'x' && strResult[i + 1] === 'x' && strResult[i + 2] === 'x') {
-            return 'x';
+            return strResult[i];
         } else if (strResult[i] === 'o' && strResult[i + 1] === 'o' && strResult[i + 2] === 'o') {
-            return 'o';
+            return strResult[i];
         }
     }
     for (let i = 0; i < 3; i++) {
         if (strResult[i] === 'x' && strResult[i + 3] === 'x' && strResult[i + 6] === 'x') {
-            return 'x';
+            return strResult[i];
         } else if (strResult[i] === 'o' && strResult[i + 3] === 'o' && strResult[i + 6] === 'o') {
-            return 'o';
+            return strResult[i];
         }
     }
     if ((strResult[0] === 'x' && strResult[4] === 'x' && strResult[8] === 'x') ||
     (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
-        return 'x';
+        return strResult[0];
     }
     if ((strResult[0] === 'o' && strResult[4] === 'o' && strResult[8] === 'o') ||
     (strResult[2] === 'o' && strResult[4] === 'o' && strResult[6] === 'o')) {
-        return 'o';
+        return strResult[0];
     }
 
     return 'draw';
