@@ -18,7 +18,7 @@ function abProblem(a, b) {
 /**
  * Определяет век по году
  * @param {Number} year Год, целое положительное число
- * @throws {TypeError} Когда в качестве года передано не число
+ * @throws {TypeError} Когда в качестве года передано не целое число
  * @throws {RangeError} Когда год – отрицательное значение
  * @returns {Number} Век, полученный из года
  */
@@ -29,8 +29,15 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
+    const str = String(year);
+    const alienCentury = str.length - 2;
+    const notCentury = Number(str.substring(alienCentury, str.length + 1));
+    let century = Number(str.substring(0, str.length - 2));
+    if (notCentury !== 0) {
+        return century + 1;
+    }
 
-    return Math.ceil(year / 100);
+    return century;
 }
 
 /**
@@ -46,11 +53,8 @@ function colorsProblem(hexColor) {
     }
     let hex = hexColor.substr(1, hexColor.length - 1);
     hex = hex.toLowerCase();
-    for (let i = 0; i < hex.length; i++) {
-        if (hex.length !== 6 || !(hex[i] <= 'f' && hex[i] >= 'a') &&
-        !(hex[i] <= '9' && hex[i] >= '0')) {
-            throw new RangeError();
-        }
+    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
+        throw new RangeError();
     }
     let hex1 = hex.substr(0, 2);
     let hex2 = hex.substr(2, 2);
