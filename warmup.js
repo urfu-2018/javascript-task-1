@@ -53,8 +53,11 @@ function colorsProblem(hexColor) {
     }
     let hex = hexColor.substr(1, hexColor.length - 1);
     hex = hex.toLowerCase();
-    if (!/^#[0-9A-Fa-f]{6}$/.test(hexColor)) {
-        throw new RangeError();
+    for (let i = 0; i < hex.length; i++) {
+        if (hex.length !== 6 || !(hex[i] <= 'f' && hex[i] >= 'a') &&
+        !(hex[i] <= '9' && hex[i] >= '0')) {
+            throw new RangeError();
+        }
     }
     let hex1 = hex.substr(0, 2);
     let hex2 = hex.substr(2, 2);
@@ -77,7 +80,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 0 || !Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let fibFirst = 1;
