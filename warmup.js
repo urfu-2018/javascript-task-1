@@ -79,22 +79,18 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n > 0 || !Number.isInteger(n)) {
+    if (n < 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let fibFirst = 1;
     let fibSecond = 1;
-    let fib = 0;
-    if (n === 1 || n === 2) {
-        return fib + 1;
-    }
     for (let i = 2; i < n; i++) {
-        fib = fibFirst + fibSecond;
+        let fib = fibFirst + fibSecond;
         fibFirst = fibSecond;
         fibSecond = fib;
     }
 
-    return fib;
+    return fibSecond;
 }
 
 /**
