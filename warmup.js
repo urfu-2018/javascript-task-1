@@ -215,12 +215,9 @@ function ticTacToeProblem(field) {
             return 'o';
         }
     }
-    if ((field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x') ||
-    (field[0][2] === 'x' && field[1][1] === 'x' && field[2][0] === 'x')) {
-        return 'x';
-    } else if ((field[0][0] === 'o' && field[1][1] === 'o' && field[2][2] === 'o') ||
-    (field[0][2] === 'o' && field[1][1] === 'o' && field[2][0] === 'o')) {
-        return 'o';
+    if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
+    (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
+        return field[0][0];
     }
 
     return 'draw';
