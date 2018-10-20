@@ -153,7 +153,7 @@ function phoneProblem(phoneNumber) {
     }
     phoneNumber = phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/);
     if (phoneNumber === null) {
-        throw new RangeError(false);
+        return false;
     }
 
     return true;
@@ -169,21 +169,12 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    const regExp1 = /(\(-:)/g;
-    const regExp2 = /(:-\))/g;
-    const search1 = text.match(regExp1);
-    const search2 = text.match(regExp2);
-    if (search1 === null && search2 === null) {
-        return 'No matches found';
-    }
-    if (search1 === null && search2 !== null) {
-        return search2.length;
-    }
-    if (search1 !== null && search2 === null) {
-        return search1.length;
+    let search = text.match(/\(-:|:-\)/g);
+    if (search === null) {
+        throw new RangeError();
     }
 
-    return search1.length + search2.length;
+    return search.length;
 }
 
 /**
