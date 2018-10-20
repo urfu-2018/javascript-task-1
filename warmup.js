@@ -151,20 +151,12 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
-    if (phoneNumber.length !== 15) {
-        throw new RangeError();
-    }
-    phoneNumber = phoneNumber.replace(/-/g, '');
-    const unchangedDefault = '8800';
-    const unchanged = phoneNumber.slice(0, 4);
-    const changed = phoneNumber.slice(4, 11);
-    for (let i = 0; i < changed; i++) {
-        if (changed[i] <= '9' && changed[i] >= '0' && unchanged === unchangedDefault) {
-            return true;
-        }
+    phoneNumber = phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/);
+    if (phoneNumber === null) {
+        return false
     }
 
-    return false;
+    return true;
 }
 
 /**
