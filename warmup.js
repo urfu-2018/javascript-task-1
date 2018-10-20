@@ -64,7 +64,8 @@ function colorsProblem(hexColor) {
     hex1 = Number('0x' + hex1);
     hex2 = Number('0x' + hex2);
     hex3 = Number('0x' + hex3);
-    return '(' + hex1 + ', '+ hex2 + ', ' + hex3 + ')';
+
+    return '(' + hex1 + ', ' + hex2 + ', ' + hex3 + ')';
 }
 
 /**
@@ -203,28 +204,23 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    const strResult = field[0].join('') + field[1].join('') + field[2].join('');
-    for (let i = 0; i < 9; i = i + 3) {
-        if (strResult[i] === 'x' && strResult[i + 1] === 'x' && strResult[i + 2] === 'x') {
-            return strResult[i];
-        } else if (strResult[i] === 'o' && strResult[i + 1] === 'o' && strResult[i + 2] === 'o') {
-            return strResult[i];
-        }
-    }
     for (let i = 0; i < 3; i++) {
-        if (strResult[i] === 'x' && strResult[i + 3] === 'x' && strResult[i + 6] === 'x') {
-            return strResult[i];
-        } else if (strResult[i] === 'o' && strResult[i + 3] === 'o' && strResult[i + 6] === 'o') {
-            return strResult[i];
+        if (field[i][0] === 'x' && field[i][1] === 'x' && field[i][2] === 'x') {
+            return 'x';
+        } else if (field[i][0] === 'o' && field[i][1] === 'o' && field[i][2] === 'o') {
+            return 'o';
+        } else if (field[0][i] === 'x' && field[1][i] === 'x' && field[2][i] === 'x') {
+            return 'x';
+        } else if (field[0][i] === 'o' && field[1][i] === 'o' && field[2][i] === 'o') {
+            return 'o';
         }
     }
-    if ((strResult[0] === 'x' && strResult[4] === 'x' && strResult[8] === 'x') ||
-    (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
-        return strResult[0];
-    }
-    if ((strResult[0] === 'o' && strResult[4] === 'o' && strResult[8] === 'o') ||
-    (strResult[2] === 'o' && strResult[4] === 'o' && strResult[6] === 'o')) {
-        return strResult[0];
+    if ((field[0][0] === 'x' && field[1][1] === 'x' && field[2][2] === 'x') ||
+    (field[0][2] === 'x' && field[1][1] === 'x' && field[2][0] === 'x')) {
+        return 'x';
+    } else if ((field[0][0] === 'o' && field[1][1] === 'o' && field[2][2] === 'o') ||
+    (field[0][2] === 'o' && field[1][1] === 'o' && field[2][0] === 'o')) {
+        return 'o';
     }
 
     return 'draw';
