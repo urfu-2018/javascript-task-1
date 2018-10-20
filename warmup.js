@@ -57,7 +57,7 @@ function colorsProblem(hexColor) {
     let hex3;
     for (let i = 0; i < hex.length; i++) {
         const verification = Number(hex[i]);
-        if (isNaN(verification)){
+        if (isNaN(verification)) {
             if (!(hex[i] <= 'f' && hex[i] >= 'a') && !(hex[i] <= 'F' && hex[i] >= 'A')) {
                 return 'RangeError';
             }
@@ -66,15 +66,15 @@ function colorsProblem(hexColor) {
     if (hex.length === 4) {
         hex1 = hex[0] + hex[0];
         hex2 = hex[1] + hex[1];
-        hex3 = hex.substr(2,2);
+        hex3 = hex.substr(2, 2);
     } else if (hex.length === 3) {
         hex1 = hex[0] + hex[0];
         hex2 = hex[1] + hex[1];
         hex3 = hex[2] + hex[2];
     } else if (hex.length === 6) {
-        hex1 = hex.substr(0,2);
-        hex2 = hex.substr(2,2);
-        hex3 = hex.substr(4,2);
+        hex1 = hex.substr(0, 2);
+        hex2 = hex.substr(2, 2);
+        hex3 = hex.substr(4, 2);
     } else {
         return 'RangeError'
     }
@@ -171,10 +171,10 @@ function phoneProblem(phoneNumber) {
     if (phoneNumber.length !== 15) {
         return 'RangeError';
     }
-    phoneNumber = phoneNumber.replace(/-/g,'');
+    phoneNumber = phoneNumber.replace(/-/g, '');
     const unchangedDefault = '8800';
-    const unchanged = phoneNumber.slice(0,4);
-    const changed = phoneNumber.slice(4,11);
+    const unchanged = phoneNumber.slice(0, 4);
+    const changed = phoneNumber.slice(4, 11);
     for (let i = 0; i < changed; i++) {
         if (changed[i] <= '9' && changed[i] >= '0' && unchanged === unchangedDefault) {
             return true;
@@ -208,7 +208,7 @@ function smilesProblem(text) {
         return search1.length;
     }
 
-    return search1.length + search2.length
+    return search1.length + search2.length;
 }
 
 /**
@@ -229,29 +229,28 @@ function ticTacToeProblem(field) {
     let strResult1 = '';
     let strResult2 = '';
     let strResult3 = '';
-    let result;
     strResult1 = field[0].join(strResult1);
     strResult2 = field[1].join(strResult2);
     strResult3 = field[2].join(strResult3);
     let strResult = strResult1 + strResult2 + strResult3;
-    for (let i = 0; i < 9; i = i+3) {
-        if (strResult[i] === 'x' && strResult[i+1] === 'x' && strResult[i+2] === 'x') {
-            return 'x'
+    for (let i = 0; i < 9; i = i + 3) {
+        if (strResult[i] === 'x' && strResult[i + 1] === 'x' && strResult[i + 2] === 'x') {
+            return 'x';
         }
     }
-    for (let i = 0; i < 9; i = i+3) {
-        if (strResult[i] === 'o' && strResult[i+1] === 'o' && strResult[i+2] === 'o') {
-            return 'o'
-        }
-    }
-    for (let i = 0; i < 3; i++) {
-        if (strResult[i] === 'x' && strResult[i+3] === 'x' && strResult[i+6] === 'x') {
-            return 'x'
+    for (let i = 0; i < 9; i = i + 3) {
+        if (strResult[i] === 'o' && strResult[i + 1] === 'o' && strResult[i + 2] === 'o') {
+            return 'o';
         }
     }
     for (let i = 0; i < 3; i++) {
-        if (strResult[i] === 'o' && strResult[i+3] === 'o' && strResult[i+6] === 'o') {
-            return 'o'
+        if (strResult[i] === 'x' && strResult[i + 3] === 'x' && strResult[i + 6] === 'x') {
+            return 'x';
+        }
+    }
+    for (let i = 0; i < 3; i++) {
+        if (strResult[i] === 'o' && strResult[i + 3] === 'o' && strResult[i + 6] === 'o') {
+            return 'o';
         }
     }
     if ((strResult[0] === 'x' && strResult[4] === 'x' && strResult[8] === 'x') || (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
