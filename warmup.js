@@ -63,7 +63,7 @@ function colorsProblem(hexColor) {
     const hex3 = hex.substr(4, 2);
 
     return '(' + Number('0x' + hex1) + ', '+ Number('0x' + hex2) + ', ' +
-        Number('0x' + hex3) + ')';
+    Number('0x' + hex3) + ')';
 }
 
 /**
@@ -202,10 +202,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let strResult1 = '';
-    let strResult2 = '';
-    let strResult3 = '';
-    const strResult = field[0].join(strResult1) + field[1].join(strResult2) + field[2].join(strResult3);
+    const strResult = field[0].join('') + field[1].join('') + field[2].join('');
     for (let i = 0; i < 9; i = i + 3) {
         if (strResult[i] === 'x' && strResult[i + 1] === 'x' && strResult[i + 2] === 'x') {
             return 'x';
@@ -221,11 +218,11 @@ function ticTacToeProblem(field) {
         }
     }
     if ((strResult[0] === 'x' && strResult[4] === 'x' && strResult[8] === 'x') ||
-        (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
+    (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
         return 'x';
     }
     if ((strResult[0] === 'o' && strResult[4] === 'o' && strResult[8] === 'o') ||
-        (strResult[2] === 'o' && strResult[4] === 'o' && strResult[6] === 'o')) {
+    (strResult[2] === 'o' && strResult[4] === 'o' && strResult[6] === 'o')) {
         return 'o';
     }
 
