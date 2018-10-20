@@ -169,7 +169,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    let search = text.match(/\(-:|:-\)/g);
+    const search = text.match(/\(-:|:-\)/g);
     if (search === null) {
         throw new RangeError();
     }
@@ -193,7 +193,7 @@ function ticTacToeProblem(field) {
     }
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
     (field[0][2] === field[1][1] && field[1][1] === field[2][0])) {
-        return field[0][0];
+        return field[1][1];
     }
 
     return 'draw';
