@@ -104,11 +104,10 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
         throw new TypeError();
     }
-    const N = matrix[0].length;
     const matrixT = [];
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < matrix[0].length; i++) {
         matrixT.push([]);
-        for (let j = 0; j < M; j++) {
+        for (let j = 0; j < matrix.length; j++) {
             matrixT[i].push(matrix[j][i]);
         }
     }
