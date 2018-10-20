@@ -54,7 +54,6 @@ function colorsProblem(hexColor) {
     let hex = hexColor.substr(1, hexColor.length - 1);
     hex = hex.toLowerCase();
     for (let i = 0; i < hex.length; i++) {
-        console.log(hex[i]);
         if (hex.length !== 6 || !(hex[i] <= 'f' && hex[i] >= 'a') &&
         !(hex[i] <= '9' && hex[i] >= '0')) {
             throw new RangeError();
