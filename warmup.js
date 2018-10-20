@@ -205,14 +205,10 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     for (let i = 0; i < 3; i++) {
-        if (field[i][0] === 'x' && field[i][1] === 'x' && field[i][2] === 'x') {
-            return 'x';
-        } else if (field[i][0] === 'o' && field[i][1] === 'o' && field[i][2] === 'o') {
-            return 'o';
-        } else if (field[0][i] === 'x' && field[1][i] === 'x' && field[2][i] === 'x') {
-            return 'x';
-        } else if (field[0][i] === 'o' && field[1][i] === 'o' && field[2][i] === 'o') {
-            return 'o';
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+            return field[i][0];
+        } else if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
         }
     }
     if ((field[0][0] === field[1][1] && field[1][1] === field[2][2]) ||
