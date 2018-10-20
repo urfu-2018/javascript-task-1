@@ -19,10 +19,10 @@ console.info(abProblem(1, 1));
 console.info(centuryByYearProblem(2018));
 
 // Выведет "(255, 255, 255)"
-console.info(colorsProblem('#FFFFFF'));
+console.info(colorsProblem('#F67FFF'));
 
 // Выведет `1`
-console.info(fibonacciProblem(2));
+console.info(fibonacciProblem(1));
 
 // Выведет `[
 //    [1, 4, 7],
