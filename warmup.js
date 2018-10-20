@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-        return 'TypeError';
+        return TypeError;
     }
 
     return a + b;
@@ -24,10 +24,10 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     if (typeof(year) !== 'number') {
-        return 'TypeError';
+        return TypeError;
     }
     if (year < 0) {
-        return 'RangeError';
+        return RangeError;
     }
     const str = String(year);
     const alienCentury = str.length - 2;
@@ -49,13 +49,13 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
-        return 'TypeError';
+        return TypeError;
     }
     let hex = hexColor.substr(1, hexColor.length - 1);
     hex = hex.toLowerCase();
     for (let i = 0; i < hex.length; i++) {
         if (hex.length !== 6 || !(hex[i] <= 'f' && hex[i] >= 'a')) {
-            return 'RangeError';
+            return RangeError;
         }
     }
     let hex1 = hex.substr(0, 2);
@@ -77,10 +77,10 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
-        return 'TypeError';
+        return TypeError;
     }
     if (!Number.isInteger(n)) {
-        return 'RangeError';
+        return RangeError;
     }
     let fibFirst = 1;
     let fibSecond = 1;
@@ -105,12 +105,12 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
-        return 'TypeError';
+        return TypeError;
     }
     const M = matrix.length;
     for (let i = 0; i < M; i++) {
         if (!Array.isArray(matrix[i])) {
-            return 'TypeError';
+            return TypeError;
         }
     }
     const arr = matrix[1];
@@ -136,10 +136,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
-        return 'TypeError';
+        return TypeError;
     }
     if (targetNs < 2 || targetNs > 36) {
-        return 'RangeError';
+        return RangeError;
     }
 
     return n.toString(targetNs);
@@ -152,10 +152,10 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
-        return 'TypeError';
+        return TypeError;
     }
     if (phoneNumber.length !== 15) {
-        return 'RangeError';
+        return RangeError;
     }
     phoneNumber = phoneNumber.replace(/-/g, '');
     const unchangedDefault = '8800';
@@ -178,7 +178,7 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof(text) !== 'string') {
-        return 'TypeError';
+        return TypeError;
     }
     const regExp1 = /(\(-:)/g;
     const regExp2 = /(:-\))/g;
