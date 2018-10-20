@@ -23,7 +23,7 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number') {
+    if (!(Number.isInteger(year))) {
         throw new TypeError();
     }
     if (year < 0) {
@@ -110,8 +110,7 @@ function matrixProblem(matrix) {
             throw new TypeError();
         }
     }
-    const arr = matrix[1];
-    const N = arr.length;
+    const N = matrix[0].length;
     const matrixT = [];
     for (let i = 0; i < N; i++) {
         matrixT.push([]);
