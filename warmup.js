@@ -153,7 +153,7 @@ function phoneProblem(phoneNumber) {
     }
     phoneNumber = phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/);
     if (phoneNumber === null) {
-        return false
+        return false;
     }
 
     return true;
