@@ -107,7 +107,7 @@ function matrixProblem(matrix) {
     const M = matrix.length;
     for (let i = 0; i < M; i++) {
         if (!Array.isArray(matrix[i])) {
-            throw new RangeError();
+            throw new TypeError();
         }
     }
     const arr = matrix[1];
