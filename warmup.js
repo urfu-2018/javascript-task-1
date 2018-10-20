@@ -30,8 +30,8 @@ function centuryByYearProblem(year) {
         return 'RangeError';
     }
     const str = String(year);
-    let alienCentury = str.length - 2;
-    let notCentury = Number(str.substring(alienCentury, str.length + 1));
+    const alienCentury = str.length - 2;
+    const notCentury = Number(str.substring(alienCentury, str.length + 1));
     let century = Number(str.substring(0, str.length - 2));
     if (notCentury !== 0) {
         return century + 1;
@@ -51,35 +51,19 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         return 'TypeError';
     }
-    const hex = hexColor.substr(1, hexColor.length - 1);
-    let hex1;
-    let hex2;
-    let hex3;
+    let hex = hexColor.substr(1, hexColor.length - 1);
+    hex = hex.toLowerCase();
     for (let i = 0; i < hex.length; i++) {
-        const verification = Number(hex[i]);
-        if (isNaN(verification)) {
-            if (!(hex[i] <= 'f' && hex[i] >= 'a') && !(hex[i] <= 'F' && hex[i] >= 'A')) {
-                return 'RangeError';
-            }
+        if (hex.length !== 6 || !(hex[i] <= 'f' && hex[i] >= 'a')) {
+            return 'RangeError';
         }
     }
-    if (hex.length === 4) {
-        hex1 = hex[0] + hex[0];
-        hex2 = hex[1] + hex[1];
-        hex3 = hex.substr(2, 2);
-    } else if (hex.length === 3) {
-        hex1 = hex[0] + hex[0];
-        hex2 = hex[1] + hex[1];
-        hex3 = hex[2] + hex[2];
-    } else if (hex.length === 6) {
-        hex1 = hex.substr(0, 2);
-        hex2 = hex.substr(2, 2);
-        hex3 = hex.substr(4, 2);
-    } else {
-        return 'RangeError'
-    }
+    const hex1 = hex.substr(0, 2);
+    const hex2 = hex.substr(2, 2);
+    const hex3 = hex.substr(4, 2);
 
-    return '(' + Number('0x' + hex1) + ', ' + Number('0x' + hex2) + ', ' + Number('0x' + hex3) + ')';
+    return '(' + Number('0x' + hex1) + ', '+ Number('0x' + hex2) + ', '
+    + Number('0x' + hex3) + ')';
 }
 
 /**
@@ -99,10 +83,10 @@ function fibonacciProblem(n) {
     let fibFirst = 1;
     let fibSecond = 1;
     let fib = 0;
-    if (n === 1 || n === 2)
+    if (n === 1 || n === 2) {
         return fib + 1;
-    for(let i = 2; i < n; i++)
-    {
+    }
+    for (let i = 2; i < n; i++) {
         fib = fibFirst + fibSecond;
         fibFirst = fibSecond;
         fibSecond = fib;
@@ -218,14 +202,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (!Array.isArray(field) || field.length !== 3) {
-        return 'TypeError';
-    }
-    for (let i = 0; i < field.length; i++) {
-        if (!Array.isArray(field[i]) || field[i].length !== 3) {
-            return 'TypeError';
-        }
-    }
     let strResult1 = '';
     let strResult2 = '';
     let strResult3 = '';
@@ -236,27 +212,23 @@ function ticTacToeProblem(field) {
     for (let i = 0; i < 9; i = i + 3) {
         if (strResult[i] === 'x' && strResult[i + 1] === 'x' && strResult[i + 2] === 'x') {
             return 'x';
-        }
-    }
-    for (let i = 0; i < 9; i = i + 3) {
-        if (strResult[i] === 'o' && strResult[i + 1] === 'o' && strResult[i + 2] === 'o') {
+        } else if (strResult[i] === 'o' && strResult[i + 1] === 'o' && strResult[i + 2] === 'o') {
             return 'o';
         }
     }
     for (let i = 0; i < 3; i++) {
         if (strResult[i] === 'x' && strResult[i + 3] === 'x' && strResult[i + 6] === 'x') {
             return 'x';
-        }
-    }
-    for (let i = 0; i < 3; i++) {
-        if (strResult[i] === 'o' && strResult[i + 3] === 'o' && strResult[i + 6] === 'o') {
+        } else if (strResult[i] === 'o' && strResult[i + 3] === 'o' && strResult[i + 6] === 'o') {
             return 'o';
         }
     }
-    if ((strResult[0] === 'x' && strResult[4] === 'x' && strResult[8] === 'x') || (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
+    if ((strResult[0] === 'x' && strResult[4] === 'x' && strResult[8] === 'x')
+    || (strResult[2] === 'x' && strResult[4] === 'x' && strResult[6] === 'x')) {
         return 'x';
     }
-    if ((strResult[0] === 'o' && strResult[4] === 'o' && strResult[8] === 'o') || (strResult[2] === 'o' && strResult[4] === 'o' && strResult[6] === 'o')) {
+    if ((strResult[0] === 'o' && strResult[4] === 'o' && strResult[8] === 'o')
+    || (strResult[2] === 'o' && strResult[4] === 'o' && strResult[6] === 'o')) {
         return 'o';
     }
 
