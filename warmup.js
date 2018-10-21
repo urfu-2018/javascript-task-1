@@ -163,7 +163,8 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (var i = 0; i < 3; i++) {
+    var i;
+    for (i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] &&
             field[i][0] === field[i][2]) {
 
@@ -171,7 +172,7 @@ function ticTacToeProblem(field) {
         }
     }
 
-    for (var i = 0; i < 3; i++) {
+    for (i = 0; i < 3; i++) {
         if (field[0][i] === field[1][i] &&
             field[0][i] === field[2][i]) {
 
@@ -192,7 +193,7 @@ function ticTacToeProblem(field) {
     return 'draw';
 }
 
-/*module.exports = {
+module.exports = {
     abProblem,
     centuryByYearProblem,
     colorsProblem,
@@ -202,4 +203,4 @@ function ticTacToeProblem(field) {
     phoneProblem,
     smilesProblem,
     ticTacToeProblem
-};*/
+};
