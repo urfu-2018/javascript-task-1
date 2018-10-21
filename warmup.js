@@ -91,9 +91,9 @@ function matrixProblem(matrix) {
         if (!Array.isArray(matrix[i])) {
             throw new TypeError();
         }
-        ans.push([])
+        ans.push([]);
     }
-    
+
     for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
             ans[j][i] = matrix[i][j];
