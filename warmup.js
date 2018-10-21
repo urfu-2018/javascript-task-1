@@ -46,9 +46,9 @@ function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
-    var first = parseInt(hexColor[1] + hexColor[2]);
-    var second = parseInt(hexColor[3] + hexColor[4]);
-    var third = parseInt(hexColor[5] + hexColor[6]);
+    var first = parseInt(hexColor[1] + hexColor[2], 16);
+    var second = parseInt(hexColor[3] + hexColor[4], 16);
+    var third = parseInt(hexColor[5] + hexColor[6], 16);
     if (first > 255 || second > 255 || third > 255) {
         throw new RangeError();
     }
@@ -71,7 +71,7 @@ function fibonacciProblem(n) {
         a.push(a[i - 1] + a[i - 2]);
     }
 
-    return a[n + 1];
+    return a[n - 1];
 }
 
 /**
@@ -128,7 +128,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
 
-    return phoneNumber.search('^8–800–\\d\\d\\d–\\d\\d–\\d\\d$') !== -1;
+    return phoneNumber.search('^8-800-\\d\\d\\d-\\d\\d-\\d\\d$') !== -1;
 }
 
 /**
