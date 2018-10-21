@@ -69,7 +69,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0 || Number.isInteger(n)) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     var a = [1, 1];
