@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' || typeof(b) !== 'number'){ 
-        throw new TypeError();
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
+       throw new TypeError();
     }
 
     return a + b;
@@ -52,9 +52,8 @@ function colorsProblem(hexColor) {
     if (first > 255 || second > 255 || third > 255) {
         throw new RangeError();
     }
-
-    return '(' + first.toString() + 
-    ', ', + second.toString() + 
+    return '(' + first.toString() +
+    ', ', + second.toString() +
     ', ' + third.toString() + ')';
 }
 
@@ -84,14 +83,16 @@ function matrixProblem(matrix) {
     if (!Array.isArray(matrix)) {
         throw new TypeError();
     }
-    for (var i = 0; i < matrix.length; i++) {
+    var i;
+    var j;
+    for (i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i])) {
             throw new TypeError();
         }
     }
     var ans;
-    for (var i = 0; i < matrix.length; i++) {
-        for (var j = 0; j < matrix[i].length; j++) {
+    for (i = 0; i < matrix.length; i++) {
+        for (j = 0; j < matrix[i].length; j++) {
             ans[j][i] = matrix[i][j];
         }
     }
@@ -108,7 +109,7 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || 
+    if (typeof(n) !== 'number' ||
     typeof(targetNs) !== 'number') {
         throw new TypeError();
     }
@@ -126,7 +127,7 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
 
-    return phoneNumber.search("^8–800–\\d\\d\\d–\\d\\d–\\d\\d$") !== -1;
+    return phoneNumber.search('^8–800–\\d\\d\\d–\\d\\d–\\d\\d$') !== -1;
 }
 
 /**
@@ -165,7 +166,7 @@ function ticTacToeProblem(field) {
     for (var i = 0; i < 3; i++) {
         if (field[i][0] === field[i][1] &&
             field[i][0] === field[i][2]) {
-            
+
             return field[i][0];
         }
     }
@@ -173,7 +174,7 @@ function ticTacToeProblem(field) {
     for (var i = 0; i < 3; i++) {
         if (field[0][i] === field[1][i] &&
             field[0][i] === field[2][i]) {
-            
+
             return field[0][i];
         }
     }
@@ -191,7 +192,7 @@ function ticTacToeProblem(field) {
     return 'draw';
 }
 
-module.exports = {
+/*module.exports = {
     abProblem,
     centuryByYearProblem,
     colorsProblem,
@@ -201,4 +202,4 @@ module.exports = {
     phoneProblem,
     smilesProblem,
     ticTacToeProblem
-};
+};*/
