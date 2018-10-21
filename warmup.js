@@ -147,6 +147,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (!isString(phoneNumber)) {
+        throw new TypeError();
+    }
     var myreg = /^8-800-\d{3}-\d{2}-\d{2}$/;
     var result = myreg.exec(phoneNumber) !== null;
 
@@ -187,7 +190,7 @@ function ticTacToeProblem(field) {
         [field[2][0], field[1][1], field[0][2]]
     ];
 
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < winCombos.length; i++) {
         let hasWinner = winCombos[i][0] === winCombos[i][1] && winCombos[i][0] === winCombos[i][2];
         if (hasWinner) {
             return winCombos[i][0];
