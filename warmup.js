@@ -86,12 +86,14 @@ function matrixProblem(matrix) {
     }
     var i;
     var j;
+    var ans = [];
     for (i = 0; i < matrix.length; i++) {
         if (!Array.isArray(matrix[i])) {
             throw new TypeError();
         }
+        ans.push([])
     }
-    var ans;
+    
     for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix[i].length; j++) {
             ans[j][i] = matrix[i][j];
