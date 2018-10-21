@@ -66,6 +66,12 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
+    if (typeof(n) !== 'number') {
+        throw new TypeError();
+    }
+    if (n <= 0 || !isInteger(n)) {
+        throw new RangeError();
+    }
     var a = [1, 1];
     for (var i = 2; i < n; i++) {
         a.push(a[i - 1] + a[i - 2]);
@@ -113,7 +119,8 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (typeof(n) !== 'number' ||
-    typeof(targetNs) !== 'number') {
+    typeof(targetNs) !== 'number' ||
+    !isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
