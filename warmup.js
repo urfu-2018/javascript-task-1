@@ -129,8 +129,9 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof(phoneNumber) !== "string")
+    if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
+    }
 
     return phoneNumber.search('^8-800-\\d\\d\\d-\\d\\d-\\d\\d$') !== -1;
 }
