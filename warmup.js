@@ -9,7 +9,7 @@
  */
 function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
-       throw new TypeError();
+        throw new TypeError();
     }
 
     return a + b;
@@ -52,8 +52,9 @@ function colorsProblem(hexColor) {
     if (first > 255 || second > 255 || third > 255) {
         throw new RangeError();
     }
+
     return '(' + first.toString() +
-    ', ', + second.toString() +
+    ', ' + second.toString() +
     ', ' + third.toString() + ')';
 }
 
@@ -162,6 +163,7 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+
 function ticTacToeProblem(field) {
     var i;
     for (i = 0; i < 3; i++) {
@@ -170,9 +172,6 @@ function ticTacToeProblem(field) {
 
             return field[i][0];
         }
-    }
-
-    for (i = 0; i < 3; i++) {
         if (field[0][i] === field[1][i] &&
             field[0][i] === field[2][i]) {
 
@@ -181,12 +180,12 @@ function ticTacToeProblem(field) {
     }
     if (field[0][2] === field[1][1] &&
         field[1][1] === field[2][0]) {
-        
+
         return field[0][2];
     }
-
     if (field[0][0] === field[1][1] &&
         field[1][1] === field[2][2]) {
+
         return field[0][0];
     }
 
