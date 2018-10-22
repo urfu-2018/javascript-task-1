@@ -120,7 +120,7 @@ function numberSystemProblem(n, targetNs) {
     if (!Number.isInteger(targetNs) || typeof(targetNs) !== 'number' || typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (targetNs < 2 || targetNs > 36) {
+    if (targetNs > 36 || targetNs < 2) {
         throw new RangeError();
     }
 
