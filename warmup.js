@@ -8,8 +8,12 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (typeof(a) !== 'number' && a % 2 !== 0 || typeof(b) !== 'number' && b % 2 !== 0) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
+    }
+    if (year % 2 !== 0) {
+
+        return false;
     }
 
     return a + b;
@@ -23,11 +27,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (typeof(year) !== 'number' || year % 2 !== 0) {
+    if (typeof(year) !== 'number') {
         throw new TypeError();
     }
     if (year < 0) {
         throw new RangeError();
+    }
+    if (year % 2 !== 0) {
+
+        return false;
     }
 
     return Math.ceil(year / 100);
