@@ -83,15 +83,22 @@ function fibonacciProblem(n) {
     return current;
 }
 
+function compRed(matrix, n) {
+    if (!Array.isArray((matrix)) || matrix.length !== n) {
+        throw new TypeError();
+    }
+}
 
 function matrixProblem(matrix) {
     if (!Array.isArray(matrix) || matrix.length === 0) {
         throw new TypeError();
     }
+
     let m = matrix.length;
     let n = matrix[0].length;
     const ans = [];
     for (let i = 0; i < n; i++) {
+        compRed(matrix[i], n);
         ans[i] = [];
         for (let j = 0; j < m; j++) {
             ans[i][j] = matrix[j][i];
@@ -117,7 +124,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return n.toString(targetNs);
+    return parseFloat(n).toString(targetNs);
 }
 
 /**
@@ -126,10 +133,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
+    if (typeof(phoneNumber) !== 'string') {
+        throw new TypeError();
+    }
+
     const expression = new RegExp(/^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/g);
 
-    return (typeof(phoneNumber) === 'string' && phoneNumber.length === 15 &&
-    expression.test(phoneNumber));
+    return expression.test(phoneNumber);
 }
 
 /**
@@ -143,7 +153,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
     let count = 0;
-    for (let i = 0; i < text.length - 2; i++) {
+    for (let i = 0; i < text.length; i++) {
         if (text[i] === '(' && text[i + 1] === '-' && text[i + 2] === ':') {
             count++;
             i += 2;
