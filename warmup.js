@@ -75,7 +75,7 @@ function abProblem(a, b) {
     }
     var f = 1;
     var s = 1;
-    for (var i = 1; i <= n; i++) {
+    for (let i = 1; i <= n; i++) {
     	var now = f + s;
     	f = s;
     	s = now;
@@ -93,8 +93,8 @@ function abProblem(a, b) {
     	throw new TypeError();
     }
     let tempMatr = matrix;
-    for (i = 0; i < matrix.length; i++) {
-        for (j = 0; j < matrix.length; j++){
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix.length; j++){
             tempMatr[j][i] = matrix[i][j];
         }
     }
