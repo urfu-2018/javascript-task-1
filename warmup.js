@@ -37,7 +37,7 @@ function centuryByYearProblem(year) {
 
     }
 
-    return year / 100 + 1;
+    return Math.floor(Number(year / 100) + 1;
 }
 
 /**
@@ -79,7 +79,7 @@ function fibonacciProblem(n) {
     }
     var f = 1;
     var s = 1;
-    for (let i = 1; i <= n; i++) {
+    for (let i = 3; i <= n; i++) {
         var now = f + s;
         f = s;
         s = now;
@@ -98,8 +98,9 @@ function matrixProblem(matrix) {
     if (!matrix.every(Array.isArray) || !Array.isArray(matrix)) {
         throw new TypeError();
     }
-    let tempMatr = matrix;
+    let tempMatr = [];
     for (let i = 0; i < matrix.length; i++) {
+        tempMatr[i] = [];
         for (let j = 0; j < matrix.length; j++) {
             tempMatr[j][i] = matrix[i][j];
         }
