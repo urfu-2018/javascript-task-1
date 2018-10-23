@@ -101,8 +101,8 @@ function matrixProblem(matrix) {
     let tempMatr = [];
     for (let i = 0; i < matrix.length; i++) {
         tempMatr[i] = [];
-        for (let j = 0; j < matrix.length; j++) {
-            tempMatr[j][i] = matrix[i][j];
+        for (let j = 0; j < matrix[0].length; j++) {
+            tempMatr[i][j] = matrix[j][i];
         }
     }
 
@@ -125,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
 
-    return parseInt(n.toString, targetNs);
+    return n.toString(targetNs);
 }
 
 /**
