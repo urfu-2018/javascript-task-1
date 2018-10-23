@@ -8,7 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if ((isNaN(parseFloat(a)) && isFinite(a)) || (isNaN(parseFloat(b)) && isFinite(b))){
+    if ((isNaN(parseFloat(a)) && isFinite(a)) || (isNaN(parseFloat(b)) && isFinite(b))) {
         throw new TypeError();
     }
 
@@ -23,16 +23,16 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (isNaN(parseFloat(year)) && isFinite(year)){
+    if (isNaN(parseFloat(year)) && isFinite(year)) {
         throw new TypeError();
 
     }
 
-    if (year < 0){
-        throw new  RangeError();
+    if (year < 0) {
+        throw new RangeError();
 
     }
-    if (year % 100 === 0){
+    if (year % 100 === 0) {
         return year / 100;
 
     }
@@ -48,16 +48,16 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof hexColor !== 'string'){ 
-    	throw new TypeError();
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
 
     }
     var R = hexColor.substring(1, 3);
     var G = hexColor.substring(3, 5);
     var B = hexColor.substring(5, 7);
-    if (R > 'FF' || G > 'FF' || B > 'FF'){
-    	throw new RangeError();
-        
+    if (R > 'FF' || G > 'FF' || B > 'FF') {
+        throw new RangeError();
+
     }
 
     return '(' + parseInt(R, 16) + ', ' + parseInt(G, 16) + ', ' + parseInt(B, 16) + ')';
@@ -71,24 +71,25 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (isNaN(parseFloat(n)) && isFinite(n)){
-    
-    	throw new TypeError();
+    if (isNaN(parseFloat(n)) && isFinite(n)) {
+
+        throw new TypeError();
     }
-    if (n <= 0 || !Number.isInteger(n)){
-    	throw new RangeError();
+    if (n <= 0 || !Number.isInteger(n)) {
+        throw new RangeError();
     }
     var f = 1;
     var s = 1;
     for (let i = 1; i <= n; i++) {
-    	var now = f + s;
-    	f = s;
-    	s = now;
+        var now = f + s;
+        f = s;
+        s = now;
     }
 
     return s;
-}	
-/* Транспонирует матрицу
+}
+/**
+ * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
