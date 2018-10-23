@@ -8,8 +8,7 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if ((isNaN(parseFloat(a)) && isFinite(a)) || (isNaN(parseFloat(b)) && isFinite(b)))
-    {
+    if ((isNaN(parseFloat(a)) && isFinite(a)) || (isNaN(parseFloat(b)) && isFinite(b))){
         throw new TypeError();
     }
 
@@ -26,14 +25,16 @@ function abProblem(a, b) {
 function centuryByYearProblem(year) {
     if (isNaN(parseFloat(year)) && isFinite(year)){
         throw new TypeError();
+
     }
 
     if (year < 0){
         throw new  RangeError();
+
     }
     if (year % 100 === 0){
-
         return year / 100;
+
     }
 
     return year / 100 + 1;
@@ -49,12 +50,14 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string'){ 
     	throw new TypeError();
+
     }
     var R = hexColor.substring(1, 3);
     var G = hexColor.substring(3, 5);
     var B = hexColor.substring(5, 7);
     if (R > 'FF' || G > 'FF' || B > 'FF'){
     	throw new RangeError();
+        
     }
 
     return '(' + parseInt(R, 16) + ', ' + parseInt(G, 16) + ', ' + parseInt(B, 16) + ')';
@@ -83,9 +86,9 @@ function fibonacciProblem(n) {
     	s = now;
     }
 
-    return right;
+    return s;
 }	
-/*++ * Транспонирует матрицу
+/* Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
@@ -117,7 +120,7 @@ function numberSystemProblem(n, targetNs) {
         throw new TypeError();
     }
     if (targetNs<=2 || targetNs>=36) {
-        throw new  RangeError();
+        throw new RangeError();
     }
     
     return parseInt(n.toString, targetNs);
