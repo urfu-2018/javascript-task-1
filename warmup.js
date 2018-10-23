@@ -9,7 +9,7 @@
  */
  function abProblem(a, b) {
    if((isNaN(parseFloat(a)) && isFinite(a))||(isNaN(parseFloat(b)) && isFinite(b)))
-      throws 'TypeError';
+      throws TypeError();
   return a+b;
 }
 
@@ -22,9 +22,9 @@
  */
  function centuryByYearProblem(year) {
    if(isNaN(parseFloat(year)) && isFinite(year))
-      throws 'TypeError';
+      throws TypeError();
   if(year<0)
-      throws 'RangeError';
+      throws RangeError();
   if(year%100 == 0)
       return year/100;
   else return year/100 + 1;
@@ -39,12 +39,12 @@
  */
  function colorsProblem(hexColor) {
     if(typeof hexColor !== 'string')
-    	throws 'TypeError';
+    	throws TypeError();
     var R = hexColor.substring(1, 3);
     var G = hexColor.substring(3, 5);
     var B = hexColor.substring(5, 7);
     if(R > 'FF' || G > 'FF' || B > 'FF')
-    	throws 'RangeError';
+    	throws RangeError();
     return '('+parseInt(R, 16)+', '+parseInt(G, 16)+', '+parseInt(B, 16)+')';
 }
 
@@ -57,9 +57,9 @@
  */
  function fibonacciProblem(n) {
     if(isNaN(parseFloat(n)) && isFinite(n))
-    	throws 'TypeError';
+    	throws TypeError();
     if (n <= 0 || !Number.isInteger(n))
-    	throws 'RangeError';
+    	throws RangeError();
     var f = 1;
     var s = 1;
     for (var i = 1; i <= n; i++) {
@@ -76,7 +76,7 @@
  */
  function matrixProblem(matrix) {
     if(!matrix.every(Array.isArray)||!Array.isArray(matrix))
-    	throws 'TypeError';
+    	throws TypeError();
     let tempMatr = matrix;
     for (i = 0; i < matrix.length; i++) {
         for (j = 0; j < matrix.length; j++){
@@ -96,9 +96,9 @@
  */
  function numberSystemProblem(n, targetNs) {
    if(isNaN(parseFloat(year)) && isFinite(year))
-      throws 'TypeError';
+      throws TypeError();
   if (targetNs<=2 || targetNs>=36) 
-      throws 'RangeError';
+      throws RangeError();
   return parseInt(n.toString, targetNs);
 }
 
@@ -120,7 +120,7 @@
  */
  function smilesProblem(text) {
      if(typeof(text)!=='string')
-        throws 'TypeError';
+        throws TypeError();
     var count = 0 ;
     for (var i = 0; i < text.length; i++)
     {
@@ -139,7 +139,7 @@
  */
  function ticTacToeProblem(field) {
    if (!Array.isArray(field) || field.length !== 3) 
-    return 'TypeError';
+    return TypeError();
 
 if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) 
     return field[0][0];
