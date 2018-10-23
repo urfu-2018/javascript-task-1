@@ -121,7 +121,7 @@ function numberSystemProblem(n, targetNs) {
     if (isNaN(parseFloat(n)) && isFinite(n)) {
         throw new TypeError();
     }
-    if (targetNs <= 2 || targetNs >= 36) {
+    if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
 
