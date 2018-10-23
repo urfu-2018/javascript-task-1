@@ -72,7 +72,6 @@ function colorsProblem(hexColor) {
  */
 function fibonacciProblem(n) {
     if (isNaN(parseFloat(n)) && isFinite(n)) {
-
         throw new TypeError();
     }
     if (n <= 0 || !Number.isInteger(n)) {
@@ -95,12 +94,12 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!matrix.every(Array.isArray)||!Array.isArray(matrix)){
+    if (!matrix.every(Array.isArray) || !Array.isArray(matrix)) {
     	throw new TypeError();
     }
     let tempMatr = matrix;
     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix.length; j++){
+        for (let j = 0; j < matrix.length; j++) {
             tempMatr[j][i] = matrix[i][j];
         }
     }
@@ -117,10 +116,10 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (isNaN(parseFloat(year)) && isFinite(year)){
+    if (isNaN(parseFloat(n)) && isFinite(n)) {
         throw new TypeError();
     }
-    if (targetNs<=2 || targetNs>=36) {
+    if (targetNs <= 2 || targetNs >= 36) {
         throw new RangeError();
     }
     
@@ -145,13 +144,13 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text)!=='string'){
+    if (typeof(text) !== 'string') {
         throw new TypeError();
     }
     var count = 0 ;
-    for (var i = 0; i < text.length; i++){
+    for (var i = 0; i < text.length; i++) {
     var smile = text.substr(i, 3);
-    if(smile === ':-)'|| smile === '(-:'){
+    if(smile === ':-)' || smile === '(-:') {
         count++;
     }
     }
@@ -166,11 +165,11 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-     if (!Array.isArray(field) || field.length !== 3){
+     if (!Array.isArray(field) || field.length !== 3) {
         throw new TypeError();
     }
 
-    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]){
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
     }
 
