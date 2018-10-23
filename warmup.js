@@ -166,10 +166,6 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    if (!Array.isArray(field) || field.length !== 3) {
-        throw new TypeError();
-    }
-
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
         return field[0][0];
     }
