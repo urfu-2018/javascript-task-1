@@ -87,6 +87,7 @@ function fibonacciProblem(n) {
 
     return s;
 }
+
 /**
  * Транспонирует матрицу
  * @param {(Any[])[]} matrix Матрица размерности MxN
@@ -95,7 +96,7 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     if (!matrix.every(Array.isArray) || !Array.isArray(matrix)) {
-    	throw new TypeError();
+        throw new TypeError();
     }
     let tempMatr = matrix;
     for (let i = 0; i < matrix.length; i++) {
@@ -122,7 +123,7 @@ function numberSystemProblem(n, targetNs) {
     if (targetNs <= 2 || targetNs >= 36) {
         throw new RangeError();
     }
-    
+
     return parseInt(n.toString, targetNs);
 }
 
@@ -149,10 +150,10 @@ function smilesProblem(text) {
     }
     var count = 0 ;
     for (var i = 0; i < text.length; i++) {
-    var smile = text.substr(i, 3);
-    if(smile === ':-)' || smile === '(-:') {
-        count++;
-    }
+        var smile = text.substr(i, 3);
+        if (smile === ':-)' || smile === '(-:') {
+            count++;
+        }
     }
 
     return count;
@@ -165,7 +166,7 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-     if (!Array.isArray(field) || field.length !== 3) {
+    if (!Array.isArray(field) || field.length !== 3) {
         throw new TypeError();
     }
 
