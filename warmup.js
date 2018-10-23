@@ -7,9 +7,11 @@
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
-function abProblem(a, b) {
-   if((isNaN(parseFloat(a)) && isFinite(a))||(isNaN(parseFloat(b)) && isFinite(b)))
+ function abProblem(a, b) {
+     if ((isNaN(parseFloat(a)) && isFinite(a))||(isNaN(parseFloat(b)) && isFinite(b)))
+     {
       throw new TypeError();
+  }
   return a+b;
 }
 
@@ -21,19 +23,19 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
  function centuryByYearProblem(year) {
-   if(isNaN(parseFloat(year)) && isFinite(year))
-   {
+     if (isNaN(parseFloat(year)) && isFinite(year))
+     {
       throw new TypeError();
-   }
+  }
   if(year<0)
   {
-     throw new  RangeError();
-  }
-  if(year%100 == 0)
-  {
-      return year/100;
-  }
-  else return year/100 + 1;
+   throw new  RangeError();
+}
+if (year%100 == 0)
+{
+  return year/100;
+}
+else return year/100 + 1;
 }
 
 /**
@@ -44,14 +46,14 @@ function abProblem(a, b) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
  function colorsProblem(hexColor) {
-    if(typeof hexColor !== 'string')
+    if (typeof hexColor !== 'string')
     {
     	throw new TypeError();
     }
     var R = hexColor.substring(1, 3);
     var G = hexColor.substring(3, 5);
     var B = hexColor.substring(5, 7);
-    if(R > 'FF' || G > 'FF' || B > 'FF')
+    if (R > 'FF' || G > 'FF' || B > 'FF')
     {
     	throw new  RangeError();
     }
@@ -66,7 +68,7 @@ function abProblem(a, b) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
  function fibonacciProblem(n) {
-    if(isNaN(parseFloat(n)) && isFinite(n))
+    if (isNaN(parseFloat(n)) && isFinite(n))
     {
     	throw new TypeError();
     }
@@ -88,7 +90,7 @@ function abProblem(a, b) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
  function matrixProblem(matrix) {
-    if(!matrix.every(Array.isArray)||!Array.isArray(matrix))
+    if (!matrix.every(Array.isArray)||!Array.isArray(matrix))
     {
     	throw new TypeError();
     }
@@ -110,10 +112,10 @@ function abProblem(a, b) {
  * @returns {String} Число n в системе счисления targetNs
  */
  function numberSystemProblem(n, targetNs) {
-   if(isNaN(parseFloat(year)) && isFinite(year))
-   {
+     if (isNaN(parseFloat(year)) && isFinite(year))
+     {
       throw new TypeError();
-   }
+  }
   if (targetNs<=2 || targetNs>=36) {
       throw new  RangeError();
   }
@@ -137,18 +139,18 @@ function abProblem(a, b) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
  function smilesProblem(text) {
-     if(typeof(text)!=='string')
-     {
-        throw new TypeError();
-    }
-    var count = 0 ;
-    for (var i = 0; i < text.length; i++)
-    {
-        var smile = text.substr(i, 3);
-        if(smile === ':-)'|| smile === '(-:')
-         count++;
- }
- return count;
+   if (typeof(text)!=='string')
+   {
+    throw new TypeError();
+}
+var count = 0 ;
+for (var i = 0; i < text.length; i++)
+{
+    var smile = text.substr(i, 3);
+    if(smile === ':-)'|| smile === '(-:')
+       count++;
+}
+return count;
 }
 
 /**
@@ -158,31 +160,31 @@ function abProblem(a, b) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
  function ticTacToeProblem(field) {
-   if (!Array.isArray(field) || field.length !== 3)
-   {
-    throw new TypeError();
+     if (!Array.isArray(field) || field.length !== 3)
+     {
+        throw new TypeError();
     }
 
-if (field[0][0] === field[1][1] && field[1][1] === field[2][2])
-{
-    return field[0][0];
-}
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2])
+    {
+        return field[0][0];
+    }
 
-if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
-    return field[0][2];
-}
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
+    }
 
-for (var i = 0; i < 3; i++) {
-    if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+    for (var i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
             return field[i][0];
         }
-    
-    if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-        return field[0][i];
+
+        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+            return field[0][i];
+        }
+
     }
-    
-}
-return 'draw';
+    return 'draw';
 }
 
 
