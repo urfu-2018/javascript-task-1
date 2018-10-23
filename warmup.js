@@ -148,7 +148,7 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    var count = 0 ;
+    var count = 0;
     for (var i = 0; i < text.length; i++) {
         var smile = text.substr(i, 3);
         if (smile === ':-)' || smile === '(-:') {
@@ -186,7 +186,6 @@ function ticTacToeProblem(field) {
         if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
             return field[0][i];
         }
-
     }
 
     return 'draw';
