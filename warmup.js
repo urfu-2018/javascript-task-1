@@ -37,7 +37,7 @@ function centuryByYearProblem(year) {
 
     }
 
-    return Math.floor(Number(year / 100) + 1;
+    return Math.floor(Number(year / 100)) + 1;
 }
 
 /**
