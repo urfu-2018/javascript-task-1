@@ -7,10 +7,10 @@
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
-function abProblem(a, b) {
-	if((isNaN(parseFloat(a)) && isFinite(a))||(isNaN(parseFloat(b)) && isFinite(b)))
-		throws TypeError;
-    return a+b;
+ function abProblem(a, b) {
+   if((isNaN(parseFloat(a)) && isFinite(a))||(isNaN(parseFloat(b)) && isFinite(b)))
+      throws TypeError;
+  return a+b;
 }
 
 /**
@@ -20,14 +20,14 @@ function abProblem(a, b) {
  * @throws {RangeError} Когда год – отрицательное значение
  * @returns {Number} Век, полученный из года
  */
-function centuryByYearProblem(year) {
-         if(isNaN(parseFloat(year)) && isFinite(year))
-         	throws TypeError;
-         if(year<0)
-         	throws RangeError;
-         if(year%100 == 0)
-         	return year/100;
-         else return year/100 + 1;
+ function centuryByYearProblem(year) {
+   if(isNaN(parseFloat(year)) && isFinite(year))
+      throws TypeError;
+  if(year<0)
+      throws RangeError;
+  if(year%100 == 0)
+      return year/100;
+  else return year/100 + 1;
 }
 
 /**
@@ -37,7 +37,7 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
-function colorsProblem(hexColor) {
+ function colorsProblem(hexColor) {
     if(typeof hexColor !== 'string')
     	throws TypeError;
     var R = hexColor.substring(1, 3);
@@ -55,7 +55,7 @@ function colorsProblem(hexColor) {
  * @throws {RangeError} Когда положение в ряде не является целым положительным числом
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
-function fibonacciProblem(n) {
+ function fibonacciProblem(n) {
     if(isNaN(parseFloat(n)) && isFinite(n))
     	throws TypeError;
     if (n <= 0 || !Number.isInteger(n))
@@ -74,16 +74,16 @@ function fibonacciProblem(n) {
  * @throws {TypeError} Когда в функцию передаётся не двумерный массив
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
-function matrixProblem(matrix) {
+ function matrixProblem(matrix) {
     if(!matrix.every(Array.isArray)||!Array.isArray(matrix))
     	throws TypeError;
-   		 let tempMatr = matrix;
-        for (i = 0; i < matrix.length; i++) {
-            for (j = 0; j < matrix.length; j++){
-                tempMatr[j][i] = matrix[i][j];
-            }
+    let tempMatr = matrix;
+    for (i = 0; i < matrix.length; i++) {
+        for (j = 0; j < matrix.length; j++){
+            tempMatr[j][i] = matrix[i][j];
         }
-        return tempMatr;
+    }
+    return tempMatr;
 }
 
 /**
@@ -94,12 +94,12 @@ function matrixProblem(matrix) {
  * @throws {RangeError} Когда система счисления выходит за пределы значений [2, 36]
  * @returns {String} Число n в системе счисления targetNs
  */
-function numberSystemProblem(n, targetNs) {
-	if(isNaN(parseFloat(year)) && isFinite(year))
-		throws TypeError;
-	if (targetNs<=2 || targetNs>=36) 
-		throws RangeError;
-	return parseInt(n.toString, targetNs);
+ function numberSystemProblem(n, targetNs) {
+   if(isNaN(parseFloat(year)) && isFinite(year))
+      throws TypeError;
+  if (targetNs<=2 || targetNs>=36) 
+      throws RangeError;
+  return parseInt(n.toString, targetNs);
 }
 
 /**
@@ -107,7 +107,7 @@ function numberSystemProblem(n, targetNs) {
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
-function phoneProblem(phoneNumber) {
+ function phoneProblem(phoneNumber) {
     const template = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
     return template.test(phoneNumber);
 }
@@ -118,17 +118,17 @@ function phoneProblem(phoneNumber) {
  * @throws {TypeError} Когда в качестве аргумента передаётся не строка
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
-function smilesProblem(text) {
-   if(typeof(text)!=='string')
-   	throws TypeError;
-   var count = 0 ;
-   for (var i = 0; i < text.length; i++)
-   {
-   	var smile = text.substr(i, 3);
-      if(smile === ':-)'|| smile === '(-:')
-      	count++;
-  }
-  return count;
+ function smilesProblem(text) {
+     if(typeof(text)!=='string')
+        throws TypeError;
+    var count = 0 ;
+    for (var i = 0; i < text.length; i++)
+    {
+        var smile = text.substr(i, 3);
+        if(smile === ':-)'|| smile === '(-:')
+         count++;
+ }
+ return count;
 }
 
 /**
@@ -137,8 +137,26 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-function ticTacToeProblem(field) {
-	//sds
+ function ticTacToeProblem(field) {
+   if (!Array.isArray(field) || field.length !== 3) 
+    return TypeError;
+
+if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+    return field[0][0];
+}
+if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+    return field[0][2];
+}
+for (var i = 0; i < 3; i++) {
+    if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+        return field[i][0];
+    }
+    if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
+        return field[0][i];
+    }
+}
+return 'draw';
+}
 }
 
 module.exports = {
