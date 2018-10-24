@@ -199,11 +199,27 @@ function ticTacToeProblem(field) {
 
             return x;
         }
+        if (x === field[0][0] && x === field[1][1] && x === field[2][2]) {
+
+            return x;
+        }
+        if (x === field[0][2] && x === field[1][1] && x === field[0][2]) {
+
+            return x;
+        }
         if (o === field[i][0] && o === field[i][1] && o === field[i][2]) {
 
             return o;
         }
         if (o === field[0][i] && o === field[1][i] && o === field[2][i]) {
+
+            return o;
+        }
+        if (o === field[0][0] && o === field[1][1] && o === field[2][2]) {
+
+            return o;
+        }
+        if (o === field[0][2] && o === field[1][1] && o === field[0][2]) {
 
             return o;
         }
