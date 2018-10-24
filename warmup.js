@@ -188,41 +188,23 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let x = 'x';
-    let o = 'o';
-    for (let i = 0; i < 3; i++) {
-        if (x === field[i][0] && x === field[i][1] && x === field[i][2]) {
-
-            return x;
+    let arrayResultsGames = ['012', '345', '678', '036', '147', '258', '048', '246'];
+    let arrayResult = [].concat(field[0], field[1], field[2]);
+    let result;
+    arrayResultsGames.forEach(
+        function (item) {
+            let arrayLine = item.split('');
+            let x1 = arrayResult[arrayLine[0]];
+            let x2 = arrayResult[arrayLine[1]];
+            let x3 = arrayResult[arrayLine[2]];
+            if (x1 === x2 && x2 === x3) {
+                result = x1;
+            }
         }
-        if (x === field[0][i] && x === field[1][i] && x === field[2][i]) {
+    );
+    if (result) {
 
-            return x;
-        }
-        if (x === field[0][0] && x === field[1][1] && x === field[2][2]) {
-
-            return x;
-        }
-        if (x === field[0][2] && x === field[1][1] && x === field[0][2]) {
-
-            return x;
-        }
-        if (o === field[i][0] && o === field[i][1] && o === field[i][2]) {
-
-            return o;
-        }
-        if (o === field[0][i] && o === field[1][i] && o === field[2][i]) {
-
-            return o;
-        }
-        if (o === field[0][0] && o === field[1][1] && o === field[2][2]) {
-
-            return o;
-        }
-        if (o === field[0][2] && o === field[1][1] && o === field[0][2]) {
-
-            return o;
-        }
+        return result;
     }
 
     return 'draw';
