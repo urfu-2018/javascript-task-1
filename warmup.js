@@ -166,13 +166,13 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    let target = ':-)';
-    let pos = 0;
-    let findPos = 0;
+    let target = [':-)', '(-:'];
     let count = 0;
-    while (findPos !== -1) {
-        findPos = text.indexOf(target, pos);
-        if (findPos !== -1) {
+    for (let i = 0; i < target.length; i++) {
+        let pos = 0;
+        let findPos = 0;
+        while (pos !== -1) {
+            findPos = text.indexOf(target[i], pos);
             count++;
             pos = findPos + 1;
         }
