@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    if (year % 2 !== 0) {
+    if (year % 1 !== 0) {
 
         return false;
     }
