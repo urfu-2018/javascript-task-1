@@ -11,7 +11,7 @@ function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
-    if (year % 2 !== 0) {
+    if (a % 1 !== 0 || b % 1 !== 0) {
 
         return false;
     }
@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    if (year % 2 !== 0) {
+    if (year % 1 !== 0) {
 
         return false;
     }
@@ -75,7 +75,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0 || Math.trunc(n) !== n) {
+    if (n < 0 || Math.trunc(n) !== n) {
         throw new RangeError();
     }
     let a = 1;
