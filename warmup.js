@@ -33,7 +33,7 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
-    if (year % 1 !== 0) {
+    if (year % 2 !== 0) {
 
         return false;
     }
@@ -75,7 +75,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n < 0 || Math.trunc(n) !== n) {
+    if (n <= 0 || Math.trunc(n) !== n) {
         throw new RangeError();
     }
     let a = 1;
