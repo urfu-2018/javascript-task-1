@@ -166,10 +166,12 @@ function smilesProblem(text) {
     if (typeof(text) !== 'string') {
         throw new TypeError();
     }
-    if (text.match(/:-\)|\(-:/ig).length) {
+    if (text.match(/:-\)|\(-:/ig).length > 0) {
 
         return text.match(/:-\)|\(-:/ig).length;
     }
+
+    return 0;
 }
 
 /**
