@@ -97,7 +97,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!matrix.every(Array.isArray)) {
+    if (!matrix.every(Array.isArray) || !matrix[0] || !matrix[0][0]) {
         throw new TypeError();
     }
     let lengthRows = matrix.length;
