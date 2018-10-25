@@ -7,7 +7,7 @@
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
-function abProblem(a, b) { /////////
+function abProblem(a, b) {
     if (typeof(a) === 'number' && typeof(b) === 'number') {
         return a + b;
     }
@@ -22,7 +22,7 @@ function abProblem(a, b) { /////////
  * @throws {RangeError} Когда год – отрицательное значение
  * @returns {Number} Век, полученный из года
  */
-function centuryByYearProblem(year) { /////////
+function centuryByYearProblem(year) {
     if (!(Number.isInteger(year))) {
         throw new TypeError();
     }
@@ -47,7 +47,7 @@ function centuryByYearProblem(year) { /////////
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
-function colorsProblem(hexColor) { /////////Z
+function colorsProblem(hexColor) {
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
@@ -76,7 +76,7 @@ function colorsProblem(hexColor) { /////////Z
  * @throws {RangeError} Когда положение в ряде не является целым положительным числом
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
-function fibonacciProblem(n) { /////////
+function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
