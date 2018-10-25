@@ -132,7 +132,7 @@ function numberSystemProblem(n, targetNs) {
     }
     targetNs = (targetNs < 0) ? -targetNs : targetNs;
 
-    return n.toString(targetNs);
+    return n.toString(targetNs).toLowerCase();
 }
 
 /**
