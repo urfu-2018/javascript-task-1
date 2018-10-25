@@ -101,7 +101,8 @@ function fibonacciProblem(n) { /////////
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || matrix.length === 0) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) ||
+        matrix.length === 0) {
         throw new TypeError();
     }
     const matrixT = [];
