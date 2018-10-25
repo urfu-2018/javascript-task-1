@@ -7,7 +7,7 @@
  * @throws {TypeError} Когда в аргументы переданы не числа
  * @returns {Number} Сумма аргументов
  */
-function abProblem(a, b) {
+function abProblem(a, b) { /////////
     if (typeof(a) === 'number' && typeof(b) === 'number') {
         return a + b;
     }
@@ -22,7 +22,7 @@ function abProblem(a, b) {
  * @throws {RangeError} Когда год – отрицательное значение
  * @returns {Number} Век, полученный из года
  */
-function centuryByYearProblem(year) {
+function centuryByYearProblem(year) { /////////
     if (!(Number.isInteger(year))) {
         throw new TypeError();
     }
@@ -47,7 +47,7 @@ function centuryByYearProblem(year) {
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
-function colorsProblem(hexColor) {
+function colorsProblem(hexColor) { /////////Z
     if (typeof(hexColor) !== 'string') {
         throw new TypeError();
     }
@@ -72,15 +72,15 @@ function colorsProblem(hexColor) {
 /**
  * Находит n-ое число Фибоначчи
  * @param {Number} n Положение числа в ряде Фибоначчи
- * @throws {TypeError} Когда в качестве положения в ряде передано не целое число
- * @throws {RangeError} Когда положение в ряде не является положительным числом
+ * @throws {TypeError} Когда в качестве положения в ряде передано не число
+ * @throws {RangeError} Когда положение в ряде не является целым положительным числом
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
-function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+function fibonacciProblem(n) { /////////
+    if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let fibFirst = 1;
@@ -101,7 +101,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray)) {
+    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || matrix.length === 0) {
         throw new TypeError();
     }
     const matrixT = [];
