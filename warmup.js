@@ -45,7 +45,7 @@ function colorsProblem(hexColor) {
         throw new TypeError();
     }
     if (hexColor.search(/^#[0-9a-f]{6}$/i) !== 0) {
-        return new RangeError();
+        throw new RangeError();
     }
     let r = parseInt(hexColor.substr(1, 2), 16);
     let g = parseInt(hexColor.substr(3, 2), 16);
