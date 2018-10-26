@@ -11,10 +11,6 @@ function abProblem(a, b) {
     if (typeof(a) !== 'number' || typeof(b) !== 'number') {
         throw new TypeError();
     }
-    if (a % 1 !== 0 || b % 1 !== 0) {
-
-        return false;
-    }
 
     return a + b;
 }
@@ -32,10 +28,6 @@ function centuryByYearProblem(year) {
     }
     if (year < 0) {
         throw new RangeError();
-    }
-    if (year % 1 !== 0) {
-
-        return false;
     }
 
     return Math.ceil(year / 100);
@@ -75,7 +67,7 @@ function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0 || Math.trunc(n) !== n) {
+    if (n <= 0 || !Number.isInteger(n)) {
         throw new RangeError();
     }
     let a = 1;
@@ -124,15 +116,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (typeof(n) !== 'number' || typeof(targetNs) !== 'number') {
+    if (typeof(n) !== 'number' || !Number.isInteger(targetNs)) {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
         throw new RangeError();
     }
-    targetNs = (targetNs < 0) ? -targetNs : targetNs;
 
-    return n.toString(targetNs).toLowerCase();
+    return n.toString(targetNs);
 }
 
 /**
