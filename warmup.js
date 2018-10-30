@@ -111,10 +111,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
 
-    if (isNaN(parseInt(targetNs)) && !isFinite(targetNs) ||
+    if (!Number.parseInt(targetNs) ||
         !Number.isInteger(n)) {
         throw new TypeError('система счисления выходит за пределы значений [2, 36]');
-    }   
+    }
     if (targetNs > 36 || targetNs < 2) {
         throw new RangeError();
     }
@@ -133,7 +133,7 @@ function phoneProblem(phoneNumber) {
         phoneNumber.length > '8–800–xxx–xx–xx'.length) {
         return false;
     }
-    const pattern = /8–800–[0-9]{3}–[0-9]{2}–[0-9]{2}/;
+    const pattern = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
 
     return pattern.test(phoneNumber);
 }
