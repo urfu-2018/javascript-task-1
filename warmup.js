@@ -43,6 +43,8 @@ function centuryByYearProblem(year) {
 function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
+    } else if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
+        throw new RangeError('Incorrect color range');
     }
     if (hexColor.substring(1, 3) > 'FF' ||
      hexColor.substring(3, 5) > 'FF' ||
@@ -68,7 +70,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n <= 0 || Math.floor(n) !== n) {
+    if (n <= 0) {
         throw new RangeError();
     }
     if (n === 1) {
@@ -129,11 +131,10 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof(phoneNumber) !== 'string' ||
-        phoneNumber.length > '8–800–xxx–xx–xx'.length) {
+    if (typeof(phoneNumber) !== 'string') {
         return false;
     }
-    const pattern = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+    const pattern = /^8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
     return pattern.test(phoneNumber);
 }
