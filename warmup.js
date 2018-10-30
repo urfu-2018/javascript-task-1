@@ -121,7 +121,6 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-
     if (!Number.parseInt(targetNs) ||
         !Number.isInteger(n)) {
         throw new TypeError('система счисления выходит за пределы значений [2, 36]');
@@ -173,12 +172,14 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    for (let i = 0; i < 3; i++) {
-        if (field[0][i] === field[1][i] && field[1][i] === field[2][i]) {
-            return field[0][i];
-        }
-        if (field[i][0] === field[i][1] && field[i][1] === field[i][2]) {
+    const trasporentField = matrixProblem(field);
+
+    for (let i = 0; i < field.length; i++) {
+        if ((Array.from(new Set(field[i]))).length === 1) {
             return field[i][0];
+        }
+        if ((Array.from(new Set(trasporentField[i]))).length === 1) {
+            return trasporentField[i][0];
         }
     }
     if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
