@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (!Number.isInteger(year)) {
         throw new TypeError();
     }
-    if (year <= 0) {
+    if (year < 0) {
         throw new RangeError();
     }
 
@@ -68,7 +68,7 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (n < 0 || Math.floor(n) !== n) {
+    if (n <= 0 || Math.floor(n) !== n) {
         throw new RangeError();
     }
     if (n === 1) {
@@ -111,10 +111,10 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
 
-    if (isNaN(parseInt(targetNs)) && isFinite(targetNs) ||
+    if (isNaN(parseInt(targetNs)) && !isFinite(targetNs) ||
         !Number.isInteger(n)) {
         throw new TypeError('система счисления выходит за пределы значений [2, 36]');
-    }
+    }   
     if (targetNs > 36 || targetNs < 2) {
         throw new RangeError();
     }
@@ -129,10 +129,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (typeof(phoneNumber) !== 'string') {
-        throw new TypeError('не строка');
+    if (typeof(phoneNumber) !== 'string' ||
+        phoneNumber.length > '8–800–xxx–xx–xx'.length) {
+        return false;
     }
-    const pattern = /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/;
+    const pattern = /8–800–[0-9]{3}–[0-9]{2}–[0-9]{2}/;
 
     return pattern.test(phoneNumber);
 }
