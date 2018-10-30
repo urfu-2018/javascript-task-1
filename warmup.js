@@ -96,11 +96,20 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
 
-    if (matrix.every((x) => x.length !== matrix.length)) {
-        throw new TypeError();
+    if (!Array.isArray(matrix)) {
+        throw new TypeError('Arg is not array!');
+    } else if (matrix.length === 0) {
+        throw new TypeError('Array is empty');
+    }
+    const isGoodMatrix = matrix.every(item => Array.isArray(item) &&
+    item.length === matrix[0].length);
+    if (!isGoodMatrix) {
+        throw new TypeError('Array is not a matrix to transparent');
     }
 
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+    return matrix.reduce((prev, next) => next.map((item, i) =>
+        (prev[i] || []).concat(next[i])), []);
+
 }
 
 /**
