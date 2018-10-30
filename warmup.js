@@ -8,8 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!Number.isInteger(a) || !Number.isInteger(b)) {
-        throw new TypeError();
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError('Not numbers');
     }
 
     return a + b;
@@ -46,11 +46,6 @@ function colorsProblem(hexColor) {
     } else if (!(/^#[0-9a-fA-F]{6}$/.test(hexColor))) {
         throw new RangeError('Incorrect color range');
     }
-    if (hexColor.substring(1, 3) > 'FF' ||
-     hexColor.substring(3, 5) > 'FF' ||
-      hexColor.substring(5, 7) > 'FF') {
-        throw new RangeError();
-    }
     const first = parseInt(hexColor.substring(1, 3), 16);
     const second = parseInt(hexColor.substring(3, 5), 16);
     const third = parseInt(hexColor.substring(5, 7), 16);
@@ -67,10 +62,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (!Number.isInteger(n)) {
+    if (typeof n !== 'number') {
         throw new TypeError();
     }
-    if (n <= 0) {
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
     if (n === 1) {
