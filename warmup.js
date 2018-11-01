@@ -62,10 +62,10 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    if (typeof n !== 'number') {
+    if (typeof n !== 'number' || !Number.isInteger(n)) {
         throw new TypeError();
     }
-    if (!Number.isInteger(n) || n <= 0) {
+    if (n <= 0) {
         throw new RangeError();
     }
     var a = 1;
