@@ -70,7 +70,7 @@ function fibonacciProblem(n) {
     }
     var a = 1;
     var b = 1;
-    while (n-- > 2) {
+    for (let i = 3; i <= n; i++) {
         let c = a + b;
         a = b;
         b = c;
