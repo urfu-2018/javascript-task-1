@@ -183,5 +183,5 @@ module.exports = {
     numberSystemProblem,
     phoneProblem,
     smilesProblem,
-    ticTac
-}
+    ticTacToeProblem
+};
