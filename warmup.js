@@ -68,20 +68,18 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
-    if (n === 1 || n === 2) {
+    if (n === 1) {
         return 1;
     }
     var a = 1;
     var b = 1;
-    var c = 1;
-    console.log(Number.isInteger("123"))
-    while (n-- > 0) {
-        c = a + b;
+    while (n-- > 2) {
+        let c = a + b;
         a = b;
         b = c;
     }
 
-    return c;
+    return b;
 }
 
 /**
