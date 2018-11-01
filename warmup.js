@@ -120,7 +120,7 @@ function numberSystemProblem(n, targetNs) {
         return n.toString(targetNs);
     }
 }
-}
+
 
 /**
  * Проверяет соответствие телефонного номера формату
