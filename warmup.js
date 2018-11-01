@@ -68,12 +68,13 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
-    if (n === 1) {
+    if (n === 1 || n === 2) {
         return 1;
     }
     var a = 1;
     var b = 1;
     var c = 1;
+    console.log(Number.isInteger("123"))
     while (n-- > 0) {
         c = a + b;
         a = b;
@@ -149,15 +150,15 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    if (typeof(text) !== 'string') {
-        throw new TypeError();
-    }
-    let matchArray = text.match(/(:-\)|\(-:)/g);
-    if (matchArray !== null) {
-        return matchArray.length;
-    }
+    if (typeof text !== 'string') {
+        throw new TypeError('Text is not string');
+    } else {
+        let countSmiles = text.split(':-)').length +
+        text.split('(-:').length -
+        text.split('(-:-)').length - 1;
 
-    return 0;
+        return countSmiles;
+    }
 }
 
 /**
