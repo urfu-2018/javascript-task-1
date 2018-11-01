@@ -23,13 +23,12 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    if (!Number.isInteger(year)) {
+    if (typeof year) {
         throw new TypeError();
     }
     if (year < 0) {
         throw new RangeError();
     }
-
     return Math.ceil(year / 100);
 }
 
@@ -147,9 +146,7 @@ function smilesProblem(text) {
         throw new TypeError('Text is not string');
     } else {
         let countSmiles = text.split(':-)').length +
-        text.split('(-:').length -
-        text.split('(-:-)').length - 1;
-
+        text.split('(-:').length
         return countSmiles;
     }
 }
