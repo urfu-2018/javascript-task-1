@@ -29,6 +29,7 @@ function centuryByYearProblem(year) {
     if (year < 0) {
         throw new RangeError();
     }
+
     return Math.ceil(year / 100);
 }
 
@@ -143,12 +144,14 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     if (typeof text !== 'string') {
-        throw new TypeError('Text is not string');
-    } else {
-        let countSmiles = text.split(':-)').length +
-        text.split('(-:').length
-        return countSmiles;
+        throw new TypeError();
     }
+    let smileMatch = text.match(/(:-\)|\(-:)/g);
+    if (smileMatch === null) {
+        return 0;
+    }
+
+    return smileMatch.length;
 }
 
 /**
