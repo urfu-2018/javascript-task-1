@@ -68,9 +68,6 @@ function fibonacciProblem(n) {
     if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
-    if (n === 1) {
-        return 1;
-    }
     var a = 1;
     var b = 1;
     while (n-- > 2) {
@@ -115,16 +112,14 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    if (!Number.parseInt(targetNs) ||
-        !Number.isInteger(n)) {
-        throw new TypeError('система счисления выходит за пределы значений [2, 36]');
+    if (typeof n !== 'number' || typeof targetNs !== 'number' || !Number.isInteger(targetNs)) {
+        throw new TypeError('Args are not numbers');
+    } else if (targetNs > 36 || targetNs < 2) {
+        throw new RangeError('Invalig range of argument');
+    } else {
+        return n.toString(targetNs);
     }
-    if (targetNs > 36 || targetNs < 2) {
-        throw new RangeError();
-    }
-
-    return n.toString(targetNs);
-
+}
 }
 
 /**
