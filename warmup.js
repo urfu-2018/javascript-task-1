@@ -21,9 +21,12 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
-    const yearStr = year.toString;
+    const yearStr = year.toString();
+    if (yearStr.length === 4) {
+        return parseInt(yearStr.substring(0, 2), 10) + 1;
+    }
 
-    return parseInt(yearStr.substring(0, 2), 10) + 1;
+    return 1;
 }
 
 /**
@@ -35,8 +38,8 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
-    return '(' + parseInt(hexColor.substring(1, 2), 16) +
-    parseInt(hexColor.substring(3, 4), 16) + parseInt(hexColor.substring(5, 6)) + ')';
+    return '(' + parseInt(hexColor.substring(1, 3), 16) + ', ' +
+    parseInt(hexColor.substring(3, 5), 16) + ', ' + parseInt(hexColor.substring(5, 7), 16) + ')';
 }
 
 /**
@@ -47,10 +50,9 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
     const fibSequence = [0, 1];
     for (let i = 2; i < 61; i++) {
-        fibSequence[i].push(fibSequence[i - 1] + fibSequence[i - 2]);
+        fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);
     }
 
     return fibSequence[n];
@@ -63,8 +65,7 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
-    let transposedMatrix = [];
+    let transposedMatrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix.length; j++) {
             transposedMatrix[j][i] = matrix[i][j];
@@ -73,6 +74,7 @@ function matrixProblem(matrix) {
 
     return transposedMatrix;
 }
+
 
 /**
  * Переводит число в другую систему счисления
