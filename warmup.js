@@ -9,6 +9,7 @@
  */
 function abProblem(a, b) {
     // Ваше решение
+    return a + b;
 }
 
 /**
@@ -20,6 +21,12 @@ function abProblem(a, b) {
  */
 function centuryByYearProblem(year) {
     // Ваше решение
+    const yearStr = year.toString();
+    if (yearStr.length === 4) {
+        return parseInt(yearStr.substring(0, 2), 10) + 1;
+    }
+
+    return 1;
 }
 
 /**
@@ -31,6 +38,8 @@ function centuryByYearProblem(year) {
  */
 function colorsProblem(hexColor) {
     // Ваше решение
+    return '(' + parseInt(hexColor.substring(1, 3), 16) + ', ' +
+    parseInt(hexColor.substring(3, 5), 16) + ', ' + parseInt(hexColor.substring(5, 7), 16) + ')';
 }
 
 /**
@@ -41,7 +50,12 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    const fibSequence = [0, 1];
+    for (let i = 2; i < 61; i++) {
+        fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);
+    }
+
+    return fibSequence[n];
 }
 
 /**
@@ -51,8 +65,16 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    let transposedMatrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix.length; j++) {
+            transposedMatrix[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposedMatrix;
 }
+
 
 /**
  * Переводит число в другую систему счисления
@@ -64,6 +86,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     // Ваше решение
+    return n.toString(targetNs);
 }
 
 /**
@@ -73,6 +96,13 @@ function numberSystemProblem(n, targetNs) {
  */
 function phoneProblem(phoneNumber) {
     // Ваше решение
+    const dashsEntry = phoneNumber.charAt(1) === '-' && phoneNumber.charAt(5) === '-' &&
+    phoneNumber.charAt(9) === '-' && phoneNumber.charAt(12) === '-';
+    if (dashsEntry) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -83,6 +113,21 @@ function phoneProblem(phoneNumber) {
  */
 function smilesProblem(text) {
     // Ваше решение
+    let counter = 0;
+    const element1 = ':-)';
+    const element2 = '(-:';
+    let index1 = text.indexOf(element1);
+    let index2 = text.indexOf(element2);
+    while (index1 !== -1) {
+        counter++;
+        index1 = text.indexOf(element1, index1 + 1);
+    }
+    while (index2 !== -1) {
+        counter++;
+        index2 = text.indexOf(element2, index2 + 1);
+    }
+
+    return counter;
 }
 
 /**
@@ -93,6 +138,23 @@ function smilesProblem(text) {
  */
 function ticTacToeProblem(field) {
     // Ваше решение
+    for (let i = 0; i < 3; i++) {
+        if (field[i][0] === field[i][1] && field[i][0] === field[i][2]) {
+            return field[i][0];
+        }
+        if (field[0][i] === field[i][1] && field[0][i] === field[i][2]) {
+            return field[0][i];
+        }
+    }
+
+    if (field[0][0] === field[1][1] && field[1][1] === field[2][2]) {
+        return field[0][0];
+    }
+    if (field[0][2] === field[1][1] && field[1][1] === field[2][0]) {
+        return field[0][2];
+    }
+
+    return 'draw';
 }
 
 module.exports = {
