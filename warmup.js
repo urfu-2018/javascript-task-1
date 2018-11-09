@@ -135,8 +135,12 @@ function phoneProblem(phoneNumber) {
     if (typeof(phoneNumber) !== 'string') {
         throw new TypeError();
     }
+    phoneNumber = phoneNumber.match(/^8-800-\d{3}-\d{2}-\d{2}$/);
+    if (phoneNumber === null) {
+        return false;
+    }
 
-    return /8-800-\d{3}-\d{2}-\d{2}/gmi.test(phoneNumber);
+    return true;
 }
 
 /**
