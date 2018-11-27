@@ -44,20 +44,17 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-
-    if (hexColor[0] === '#') {
-        hexColor = hexColor.slice(1);
-    }
-    const see = /^([A-Fa-f\d]{6})$/;
-    if (!see.test(hexColor)) {
+    if (!/^#[0-9A-Fa-f]{6}$/g.test(hexColor)) {
         throw new RangeError();
     }
+    const getColor = colorString => {
+        return parseInt(colorString, 16);
+    };
+    const r = getColor(hexColor.slice(1, 3));
+    const g = getColor(hexColor.slice(3, 5));
+    const b = getColor(hexColor.slice(5, 7));
 
-    const r = parseInt(hexColor.substr(0, 2), 16);
-    const g = parseInt(hexColor.substr(2, 2), 16);
-    const b = parseInt(hexColor.substr(4, 2), 16);
-
-    return ('(' + r + ', ' + g + ', ' + b + ')');
+    return `(${r}, ${g}, ${b})`;
 }
 
 
