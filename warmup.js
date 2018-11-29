@@ -26,7 +26,7 @@ function centuryByYearProblem(year) {
     if (typeof year !== 'number' || isNaN(year)) {
         throw new TypeError();
     }
-    if (typeof year < 0 || !Number.isInteger(year)) {
+    if (year < 0 || !Number.isInteger(year)) {
         throw new RangeError();
     }
 
