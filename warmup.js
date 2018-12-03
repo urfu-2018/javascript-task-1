@@ -86,7 +86,8 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let lengthMatrix = matrix.length;
-    if (!Array.isArray(matrix) || !matrix.every(Array.isArray) || lengthMatrix === 0) {
+    if (!Array.isArray(matrix) || lengthMatrix === 0 ||
+    !matrix.every(x => Array.isArray(x) && x.length === matrix[0].length)) {
         throw new TypeError();
     }
     let lengthArr = matrix[0].length;
