@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Складывает два целых числа
+ * Складывает два целых числа ++++++++
  * @param {Number} a Первое целое
  * @param {Number} b Второе целое
  * @throws {TypeError} Когда в аргументы переданы не числа
@@ -15,7 +15,7 @@ function abProblem(a, b) {
 }
 
 /**
- * Определяет век по году
+ * Определяет век по году ++++++++
  * @param {Number} year Год, целое положительное число
  * @throws {TypeError} Когда в качестве года передано не число
  * @throws {RangeError} Когда год – отрицательное значение
@@ -33,14 +33,14 @@ function centuryByYearProblem(year) {
 }
 
 /**
- * Переводит цвет из формата HEX в формат RGB
+ * Переводит цвет из формата HEX в формат RGB ++++++++
  * @param {String} hexColor Цвет в формате HEX, например, '#FFFFFF'
  * @throws {TypeError} Когда цвет передан не строкой
  * @throws {RangeError} Когда значения цвета выходят за пределы допустимых
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) === 'string' || hexColor.length !== 7) {
+    if (typeof(hexColor) === 'string' && hexColor.length === 7) {
         if ((/^#[0-9,A-F,a-f]{6}/).test(hexColor)) {
             let redColor = parseInt(hexColor.substr(1, 2), 16);
             let greeenColor = parseInt(hexColor.substr(3, 2), 16);
@@ -54,7 +54,7 @@ function colorsProblem(hexColor) {
 }
 
 /**
- * Находит n-ое число Фибоначчи
+ * Находит n-ое число Фибоначчи ++++
  * @param {Number} n Положение числа в ряде Фибоначчи
  * @throws {TypeError} Когда в качестве положения в ряде передано не число
  * @throws {RangeError} Когда положение в ряде не является целым положительным числом
@@ -63,7 +63,8 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     if (typeof(n) !== 'number') {
         throw new TypeError();
-    } else if (!Number.isInteger(n) || n <= 0) {
+    }
+    if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
     let firstAddend = 1;
@@ -86,12 +87,15 @@ function fibonacciProblem(n) {
  */
 function matrixProblem(matrix) {
     let lengthMatrix = matrix.length;
-    if (!Array.isArray(matrix) || lengthMatrix === 0 ||
+    if (!Array.isArray(matrix) ||
     !matrix.every(x => Array.isArray(x) && x.length === matrix[0].length)) {
         throw new TypeError();
     }
     let lengthArr = matrix[0].length;
     let newMatrix = [];
+    if (lengthArr === 0) {
+        return [[]];
+    }
     for (let i = 0; i < lengthArr; i++) {
         newMatrix[i] = [];
         for (let j = 0; j < lengthMatrix; j++) {
@@ -103,7 +107,7 @@ function matrixProblem(matrix) {
 }
 
 /**
- * Переводит число в другую систему счисления
+ * Переводит число в другую систему счисления ++++++++
  * @param {Number} n Число для перевода в другую систему счисления
  * @param {Number} targetNs Система счисления, в которую нужно перевести (Число от 2 до 36)
  * @throws {TypeError} Когда переданы аргументы некорректного типа
@@ -121,7 +125,7 @@ function numberSystemProblem(n, targetNs) {
 }
 
 /**
- * Проверяет соответствие телефонного номера формату
+ * Проверяет соответствие телефонного номера формату ++++++++
  * @param {String} phoneNumber Номер телефона в формате '8–800–xxx–xx–xx'
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
@@ -134,7 +138,7 @@ function phoneProblem(phoneNumber) {
 }
 
 /**
- * Определяет количество улыбающихся смайликов в строке
+ * Определяет количество улыбающихся смайликов в строке ++++
  * @param {String} text Строка в которой производится поиск
  * @throws {TypeError} Когда в качестве аргумента передаётся не строка
  * @returns {Number} Количество улыбающихся смайликов в строке
@@ -150,7 +154,7 @@ function smilesProblem(text) {
 }
 
 /**
- * Определяет победителя в игре "Крестики-нолики"
+ * Определяет победителя в игре "Крестики-нолики" ++++++++
  * Тестами гарантируются корректные аргументы.
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
