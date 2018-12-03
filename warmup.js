@@ -40,7 +40,7 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    if (typeof(hexColor) === 'string') {
+    if (typeof(hexColor) === 'string' || hexColor.length !== 7) {
         if ((/^#[0-9,A-F,a-f]{6}/).test(hexColor)) {
             let redColor = parseInt(hexColor.substr(1, 2), 16);
             let greeenColor = parseInt(hexColor.substr(3, 2), 16);
@@ -66,10 +66,16 @@ function fibonacciProblem(n) {
     } else if (!Number.isInteger(n) || n <= 0) {
         throw new RangeError();
     }
-    let goldenRatio = 1.618039988;
+    let firstAddend = 1;
+    let secondAddend = 1;
+    while (n > 2) {
+        let i = secondAddend;
+        secondAddend += firstAddend;
+        firstAddend = i;
+        n--;
+    }
 
-    return Number(((Math.pow(goldenRatio, n) - Math.pow(1 - goldenRatio, n)) /
-    Math.sqrt(5)).toFixed());
+    return secondAddend;
 }
 
 /**
