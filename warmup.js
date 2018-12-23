@@ -51,7 +51,7 @@ function colorsProblem(hexColor) {
     }
 
     const hexColorNumbers = hexColor.slice(1);
-    let RGBColor = [];
+    const RGBColor = [];
     for (let index = 0; index < 3; index++) {
         RGBColor.push(
             parseInt(
@@ -72,7 +72,28 @@ function colorsProblem(hexColor) {
  * @returns {Number} Число Фибоначчи, находящееся на n-ой позиции
  */
 function fibonacciProblem(n) {
-    // Ваше решение
+    if (typeof n !== 'number') {
+        throw new TypeError();
+    }
+
+    if (n % 1 !== 0 || n <= 0) {
+        throw new RangeError();
+    }
+
+    let result = 1;
+    if (n > 2) {
+        let lastValue = 1;
+        let secondLastValue = 1;
+        result = 0;
+
+        for (let index = 2; index < n; index++) {
+            result = lastValue + secondLastValue;
+            secondLastValue = lastValue;
+            lastValue = result;
+        }
+    }
+
+    return result;
 }
 
 /**
