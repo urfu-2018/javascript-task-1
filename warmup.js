@@ -8,7 +8,11 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    // Ваше решение
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw new TypeError();
+    }
+
+    return a + b;
 }
 
 /**
@@ -19,7 +23,15 @@ function abProblem(a, b) {
  * @returns {Number} Век, полученный из года
  */
 function centuryByYearProblem(year) {
-    // Ваше решение
+    if (typeof year !== 'number') {
+        throw new TypeError();
+    }
+
+    if (year < 0) {
+        throw new RangeError();
+    }
+
+    return Math.floor(year / 100) + 1;
 }
 
 /**
@@ -30,7 +42,26 @@ function centuryByYearProblem(year) {
  * @returns {String} Цвет в формате RGB, например, '(255, 255, 255)'
  */
 function colorsProblem(hexColor) {
-    // Ваше решение
+    if (typeof hexColor !== 'string') {
+        throw new TypeError();
+    }
+
+    if (!/#[0-9a-fA-F]{6}/.test(hexColor)) {
+        throw new RangeError();
+    }
+
+    const hexColorNumbers = hexColor.slice(1);
+    let RGBColor = [];
+    for (let index = 0; index < 3; index++) {
+        RGBColor.push(
+            parseInt(
+                hexColorNumbers[index] + hexColorNumbers[index + 1],
+                16
+            ).toString(10)
+        );
+    }
+
+    return `(${RGBColor[0]}, ${RGBColor[1]}, ${RGBColor[2]})`;
 }
 
 /**
