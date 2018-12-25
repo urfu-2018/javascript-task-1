@@ -150,7 +150,7 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return text.match(/(-:|:-)/).length;
+    return text.match(/(-:|:-)/g).length;
 }
 
 /**
@@ -168,16 +168,29 @@ function ticTacToeProblem(field) {
     const strField = fieldStrLine.join('');
     let winner = 'draw';
     const winnerXCombinations = [
-        /xxx[xy]{6}/,
-        /x[xy]{2}x[xy]{2}x[xy]{2}/,
-        /[xy]x[xy]{2}x[xy]{2}x[xy]/,
-        /[xy]{2}x[xy]{2}x[xy]{2}x/,
-        /[xy]{6}xxx/,
-        /x[xy]{3}x[xy]{3}x/,
-        /[xy]{2}x[xy]x[xy]x[xy]{2}/
+        /xxx[xo]{6}/,
+        /x[xo]{2}x[xo]{2}x[xo]{2}/,
+        /[xo]x[xo]{2}x[xo]{2}x[xo]/,
+        /[xo]{2}x[xo]{2}x[xo]{2}x/,
+        /[xo]{6}xxx/,
+        /x[xo]{3}x[xo]{3}x/,
+        /[xo]{2}x[xo]x[xo]x[xo]{2}/
     ];
     if (winnerXCombinations.some(e => e.test(strField))) {
         winner = 'x';
+    }
+
+    const winnerOCombinations = [
+        /ooo[xo]{6}/,
+        /o[xo]{2}o[xo]{2}o[xo]{2}/,
+        /[xo]o[xo]{2}o[xo]{2}o[xo]/,
+        /[xo]{2}o[xo]{2}o[xo]{2}o/,
+        /[xo]{6}ooo/,
+        /o[xo]{3}o[xo]{3}o/,
+        /[xo]{2}o[xo]o[xo]o[xo]{2}/
+    ];
+    if (winnerOCombinations.some(e => e.test(strField))) {
+        winner = 'o';
     }
 
     return winner;
