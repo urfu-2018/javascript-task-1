@@ -168,24 +168,6 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
-const winnerXCombinations = [
-    /xxx[xo]{6}/,
-    /x[xo]{2}x[xo]{2}x[xo]{2}/,
-    /[xo]x[xo]{2}x[xo]{2}x[xo]/,
-    /[xo]{2}x[xo]{2}x[xo]{2}x/,
-    /[xo]{6}xxx/,
-    /x[xo]{3}x[xo]{3}x/,
-    /[xo]{2}x[xo]x[xo]x[xo]{2}/
-];
-const winnerOCombinations = [
-    /ooo[xo]{6}/,
-    /o[xo]{2}o[xo]{2}o[xo]{2}/,
-    /[xo]o[xo]{2}o[xo]{2}o[xo]/,
-    /[xo]{2}o[xo]{2}o[xo]{2}o/,
-    /[xo]{6}ooo/,
-    /o[xo]{3}o[xo]{3}o/,
-    /[xo]{2}o[xo]o[xo]o[xo]{2}/
-];
 function ticTacToeProblem(field) {
     const fieldStrLine = [];
     for (let index = 0; index < field.length; index++) {
@@ -193,20 +175,32 @@ function ticTacToeProblem(field) {
     }
 
     const strField = fieldStrLine.join('');
-    let winner = 'nobody';
+    const winnerXCombinations = [
+        /xxx[xo]{6}/,
+        /x[xo]{2}x[xo]{2}x[xo]{2}/,
+        /[xo]x[xo]{2}x[xo]{2}x[xo]/,
+        /[xo]{2}x[xo]{2}x[xo]{2}x/,
+        /[xo]{6}xxx/,
+        /x[xo]{3}x[xo]{3}x/,
+        /[xo]{2}x[xo]x[xo]x[xo]{2}/
+    ];
+    const winnerOCombinations = [
+        /ooo[xo]{6}/,
+        /o[xo]{2}o[xo]{2}o[xo]{2}/,
+        /[xo]o[xo]{2}o[xo]{2}o[xo]/,
+        /[xo]{2}o[xo]{2}o[xo]{2}o/,
+        /[xo]{6}ooo/,
+        /o[xo]{3}o[xo]{3}o/,
+        /[xo]{2}o[xo]o[xo]o[xo]{2}/
+    ];
+    let winner = 'draw';
 
-    const xIsWinner = winnerXCombinations.some(e => e.test(strField));
-    const oIsWinner = winnerOCombinations.some(e => e.test(strField));
-    if (xIsWinner) {
+    if (winnerXCombinations.some(e => e.test(strField))) {
         winner = 'x';
     }
 
-    if (oIsWinner) {
+    if (winnerOCombinations.some(e => e.test(strField))) {
         winner = 'o';
-    }
-
-    if (xIsWinner && oIsWinner) {
-        winner = 'draw';
     }
 
     return winner;
