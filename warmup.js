@@ -51,9 +51,10 @@ function colorsProblem(hexColor) {
     }
 
     const hexColorNumbers = hexColor.slice(1);
-    const RGBColor = [];
-    for (let index = 0; index < 3; index++) {
-        RGBColor.push(
+    const rgbColor = [];
+
+    for (let index = 0; index < 5; index += 2) {
+        rgbColor.push(
             parseInt(
                 hexColorNumbers[index] + hexColorNumbers[index + 1],
                 16
@@ -61,7 +62,7 @@ function colorsProblem(hexColor) {
         );
     }
 
-    return `(${RGBColor[0]}, ${RGBColor[1]}, ${RGBColor[2]})`;
+    return `(${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]})`;
 }
 
 /**
@@ -81,6 +82,7 @@ function fibonacciProblem(n) {
     }
 
     let result = 1;
+
     if (n > 2) {
         let lastValue = 1;
         let secondLastValue = 1;
@@ -136,7 +138,11 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    return /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/.test(phoneNumber);
+    if (typeof phoneNumber !== 'string') {
+        throw new TypeError();
+    }
+
+    return /^8-800-[\d]{3}-[\d]{2}-[\d]{2}$/.test(phoneNumber);
 }
 
 /**
@@ -150,8 +156,11 @@ function smilesProblem(text) {
         throw new TypeError();
     }
 
-    return text.match(/(-:|:-)/g).length;
+    const result = text.match(/(\(-:)|(:-\))/g);
+
+    return result ? result.length : 0;
 }
+
 
 /**
  * Определяет победителя в игре "Крестики-нолики"
@@ -159,6 +168,24 @@ function smilesProblem(text) {
  * @param {(('x' | 'o')[])[]} field Игровое поле 3x3 завершённой игры
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
+const winnerXCombinations = [
+    /xxx[xo]{6}/,
+    /x[xo]{2}x[xo]{2}x[xo]{2}/,
+    /[xo]x[xo]{2}x[xo]{2}x[xo]/,
+    /[xo]{2}x[xo]{2}x[xo]{2}x/,
+    /[xo]{6}xxx/,
+    /x[xo]{3}x[xo]{3}x/,
+    /[xo]{2}x[xo]x[xo]x[xo]{2}/
+];
+const winnerOCombinations = [
+    /ooo[xo]{6}/,
+    /o[xo]{2}o[xo]{2}o[xo]{2}/,
+    /[xo]o[xo]{2}o[xo]{2}o[xo]/,
+    /[xo]{2}o[xo]{2}o[xo]{2}o/,
+    /[xo]{6}ooo/,
+    /o[xo]{3}o[xo]{3}o/,
+    /[xo]{2}o[xo]o[xo]o[xo]{2}/
+];
 function ticTacToeProblem(field) {
     const fieldStrLine = [];
     for (let index = 0; index < field.length; index++) {
@@ -166,31 +193,20 @@ function ticTacToeProblem(field) {
     }
 
     const strField = fieldStrLine.join('');
-    let winner = 'draw';
-    const winnerXCombinations = [
-        /xxx[xo]{6}/,
-        /x[xo]{2}x[xo]{2}x[xo]{2}/,
-        /[xo]x[xo]{2}x[xo]{2}x[xo]/,
-        /[xo]{2}x[xo]{2}x[xo]{2}x/,
-        /[xo]{6}xxx/,
-        /x[xo]{3}x[xo]{3}x/,
-        /[xo]{2}x[xo]x[xo]x[xo]{2}/
-    ];
-    if (winnerXCombinations.some(e => e.test(strField))) {
+    let winner = 'nobody';
+
+    const xIsWinner = winnerXCombinations.some(e => e.test(strField));
+    const oIsWinner = winnerOCombinations.some(e => e.test(strField));
+    if (xIsWinner) {
         winner = 'x';
     }
 
-    const winnerOCombinations = [
-        /ooo[xo]{6}/,
-        /o[xo]{2}o[xo]{2}o[xo]{2}/,
-        /[xo]o[xo]{2}o[xo]{2}o[xo]/,
-        /[xo]{2}o[xo]{2}o[xo]{2}o/,
-        /[xo]{6}ooo/,
-        /o[xo]{3}o[xo]{3}o/,
-        /[xo]{2}o[xo]o[xo]o[xo]{2}/
-    ];
-    if (winnerOCombinations.some(e => e.test(strField))) {
+    if (oIsWinner) {
         winner = 'o';
+    }
+
+    if (xIsWinner && oIsWinner) {
+        winner = 'draw';
     }
 
     return winner;
