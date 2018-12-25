@@ -103,7 +103,11 @@ function fibonacciProblem(n) {
  * @returns {(Any[])[]} Транспонированная матрица размера NxM
  */
 function matrixProblem(matrix) {
-    // Ваше решение
+    if (matrix.every(element => Array.isArray(element) !== true)) {
+        throw new TypeError();
+    }
+
+    return matrix[0].map((x, i) => matrix.map(y => y[i]));
 }
 
 /**
@@ -115,7 +119,15 @@ function matrixProblem(matrix) {
  * @returns {String} Число n в системе счисления targetNs
  */
 function numberSystemProblem(n, targetNs) {
-    // Ваше решение
+    if (typeof n !== 'number' || typeof targetNs !== 'number') {
+        throw new TypeError();
+    }
+
+    if (targetNs < 2 || targetNs > 36) {
+        throw new RangeError();
+    }
+
+    return n.toString(targetNs);
 }
 
 /**
@@ -124,7 +136,7 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    // Ваше решение
+    return /8-800-[0-9]{3}-[0-9]{2}-[0-9]{2}/.test(phoneNumber);
 }
 
 /**
@@ -134,7 +146,11 @@ function phoneProblem(phoneNumber) {
  * @returns {Number} Количество улыбающихся смайликов в строке
  */
 function smilesProblem(text) {
-    // Ваше решение
+    if (typeof text !== 'string') {
+        throw new TypeError();
+    }
+
+    return text.match(/(-:|:-)/).length;
 }
 
 /**
@@ -144,7 +160,27 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    // Ваше решение
+    const fieldStrLine = [];
+    for (let index = 0; index < field.length; index++) {
+        fieldStrLine.push(field[index].join(''));
+    }
+
+    const strField = fieldStrLine.join('');
+    let winner = 'draw';
+    const winnerXCombinaties = [
+        /xxx[xy]{6}/,
+        /x[xy]{2}x[xy]{2}x[xy]{2}/,
+        /[xy]x[xy]{2}x[xy]{2}x[xy]/,
+        /[xy]{2}x[xy]{2}x[xy]{2}x/,
+        /[xy]{6}xxx/,
+        /x[xy]{3}x[xy]{3}x/,
+        /[xy]{2}x[xy]x[xy]x[xy]{2}/
+    ];
+    if (winnerXCombinaties.some(e => e.test(strField))) {
+        winner = 'x';
+    }
+
+    return winner;
 }
 
 module.exports = {
