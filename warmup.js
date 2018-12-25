@@ -167,7 +167,7 @@ function ticTacToeProblem(field) {
 
     const strField = fieldStrLine.join('');
     let winner = 'draw';
-    const winnerXCombinaties = [
+    const winnerXCombinations = [
         /xxx[xy]{6}/,
         /x[xy]{2}x[xy]{2}x[xy]{2}/,
         /[xy]x[xy]{2}x[xy]{2}x[xy]/,
@@ -176,7 +176,7 @@ function ticTacToeProblem(field) {
         /x[xy]{3}x[xy]{3}x/,
         /[xy]{2}x[xy]x[xy]x[xy]{2}/
     ];
-    if (winnerXCombinaties.some(e => e.test(strField))) {
+    if (winnerXCombinations.some(e => e.test(strField))) {
         winner = 'x';
     }
 
