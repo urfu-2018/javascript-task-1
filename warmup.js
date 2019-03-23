@@ -45,13 +45,13 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    // let hexColorArr = hexColor.split();
+    // let hexColorfield = hexColor.split();
     if (hexColor.length !== 7) {
         throw new RangeError();
     }
 
     /** 
-     *for (i = 1; i < hexColorArr.length; i++) {
+     *for (i = 1; i < hexColorfield.length; i++) {
      *
      *       if (hexColor[i] < 'F' || hexColor[i] < 9) {
      *          throw new RangeError();
@@ -135,10 +135,11 @@ function numberSystemProblem(n, targetNs) {
     }
     let numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     let result = 0;
-    let nToArray = numbers.slice(0, targetNs);
+    let nTofielday = numbers.slice(0, targetNs);
     n = String(n);
     for (let i = 0; i < n.length; i++) {
-        result = result + (nToArray.indexOf(n.substr(n.length - i - 1, 1)) * Math.pow(targetNs, i));
+        result = result + (nTofielday.indexOf(n.substr(n.length - i - 1, 1)) *
+        Math.pow(targetNs, i));
     }
 
     return String(result);
@@ -184,31 +185,22 @@ function smilesProblem(text) {
  * @returns {'x' | 'o' | 'draw'} Результат игры
  */
 function ticTacToeProblem(field) {
-    let toright = true;
-    let toDown = true;
-    let diaogonal = true;
-    let reverseDiagonal = true;
-    let torighto = true;
-    let toDowno = true;
-    let diaogonalo = true;
-    let reverseDiagonalo = true;
+    function isWin(a, b, c) {
+        return a !== 0 && a === b && a === c;
+    }
     for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            toright &= (field[j][i] == 'x');
-            toDown &= (field[i][j] == 'x');
-            torighto &= (field[j][i] == 'o');
-            toDowno &= (field[i][j] == 'o');
+        if (isWin(field[0][i], field[1][i], field[2][i])) {
+            return field[0][i];
         }
-        diaogonal &= (field[2 - i][2 - i] == 'x');
-        reverseDiagonal &= (field[2 - i][i] == 'x');
-        diaogonalo &= (field[2 - i][2 - i] == 'o');
-        reverseDiagonalo &= (field[2 - i][i] == 'o');
+        if (isWin(field[i][0], field[i][1], field[i][2])) {
+            return field[i][0];
+        }
     }
-    if (toright || toDown || diaogonal || reverseDiagonal) {
-        return 'x';
+    if (isWin(field[0][0], field[1][1], field[2][2])) {
+        return field[0][0];
     }
-    if (torighto || toDowno || diaogonalo || reverseDiagonalo) {
-        return 'o';
+    if (isWin(field[0][2], field[1][1], field[2][1])) {
+        return field[0][2];
     }
 
     return 'draw';
