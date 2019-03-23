@@ -8,7 +8,8 @@
  * @returns {Number} Сумма аргументов
  */
 function abProblem(a, b) {
-    if (!isNaN(parseFloat(a)) && isFinite(a) && !isNaN(parseFloat(b)) && isFinite(b)) {
+    if (!isNaN(parseFloat(a)) && isFinite(a) && !isNaN(parseFloat(b)) && isFinite(b) &&
+    typeof(a) === 'number' && typeof(b) === 'number') {
         return a + b;
     }
     throw new TypeError();
@@ -45,26 +46,15 @@ function colorsProblem(hexColor) {
     if (typeof hexColor !== 'string') {
         throw new TypeError();
     }
-    // let hexColorfield = hexColor.split();
-    if (hexColor.length !== 7) {
+    if (hexColor.length !== 7 || hexColor[0] !== '#') {
         throw new RangeError();
     }
-
-    /** 
-     *for (i = 1; i < hexColorfield.length; i++) {
-     *
-     *       if (hexColor[i] < 'F' || hexColor[i] < 9) {
-     *          throw new RangeError();
-     *     }
-     *}
-     */
     let bigint = parseInt(hexColor.split('#')[1], 16);
     let r = (bigint > 16) && 255;
     let g = (bigint > 8) && 255;
     let b = bigint && 255;
 
     return '(' + r + ', ' + g + ', ' + b + ')';
-    // Ваше решение
 }
 
 /**
@@ -77,8 +67,11 @@ function colorsProblem(hexColor) {
 function fibonacciProblem(n) {
     let a = 0;
     let b = 1;
-    if (Number.isNaN(n)) {
+    if (!(!isNaN(parseFloat(n)) && isFinite(n))) {
         throw new TypeError();
+    }
+    if (n < 0) {
+        throw new RangeError();
     }
     if (n >= 2) {
         for (let i = 1; i < Math.trunc(n / 2) + 1; i++) {
@@ -127,7 +120,7 @@ function matrixProblem(matrix) {
  */
 function numberSystemProblem(n, targetNs) {
     if (!(!isNaN(parseFloat(n)) && isFinite(n) && !isNaN(parseFloat(targetNs)) &&
-            isFinite(targetNs))) {
+            isFinite(targetNs)) && typeof(n) !== 'number' && typeof(targetNs) !== 'number') {
         throw new TypeError();
     }
     if (targetNs < 2 || targetNs > 36) {
@@ -153,7 +146,9 @@ function numberSystemProblem(n, targetNs) {
 function phoneProblem(phoneNumber) {
     if (phoneNumber.length === 15 && phoneNumber.indexOf('8-800-') === 0 &&
         phoneNumber[9] === '-' && phoneNumber[12] === '-' &&
-        !isNaN(parseFloat(phoneNumber.substr(6, 3)))) {
+        !isNaN(parseFloat(phoneNumber.substr(6, 3))) &&
+        !isNaN(parseFloat(phoneNumber.substr(10, 2))) &&
+        !isNaN(parseFloat(phoneNumber.substr(13, 2)))) {
         return true;
     }
 
