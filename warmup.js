@@ -107,7 +107,7 @@ function matrixProblem(matrix) {
     }
     let temp;
     for (let i = 0; i < matrix.length; i++) {
-        for (let j = 0; j < matrix[0].length; j++) {
+        for (let j = 0; j < i; j++) {
             temp = matrix[i][j];
             matrix[i][j] = matrix[j][i];
             matrix[j][i] = temp;
@@ -134,15 +134,15 @@ function numberSystemProblem(n, targetNs) {
         throw new RangeError();
     }
     let numbers = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    let result = 0;
-    let nTofielday = numbers.slice(0, targetNs);
-    n = String(n);
-    for (let i = 0; i < n.length; i++) {
-        result = result + (nTofielday.indexOf(n.substr(n.length - i - 1, 1)) *
-        Math.pow(targetNs, i));
+    let result = '';
+    let numbersArray = numbers.slice(0, targetNs);
+    while (n > 0) {
+        result = String(result) + numbersArray[n % targetNs];
+        n = Math.floor(n / targetNs);
     }
 
-    return String(result);
+    return result.split('').reverse()
+        .join('');
 }
 
 /**
@@ -151,11 +151,13 @@ function numberSystemProblem(n, targetNs) {
  * @returns {Boolean} Если соответствует формату, то true, а иначе false
  */
 function phoneProblem(phoneNumber) {
-    if (phoneNumber.length === 15 && phoneNumber.substring(0, 6) === '8–800–' &&
+    if (phoneNumber.length === 15 && phoneNumber.indexOf('8-800-') === 0 &&
         phoneNumber[9] === '-' && phoneNumber[12] === '-' &&
         !isNaN(parseFloat(phoneNumber.substr(6, 3)))) {
         return true;
     }
+
+    return false;
 }
 
 /**
