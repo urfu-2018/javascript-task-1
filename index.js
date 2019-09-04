@@ -50,3 +50,5 @@ console.info(ticTacToeProblem([
     ['o', 'o', 'x'],
     ['o', 'x', 'o']
 ]));
+
+throw new Error("133");
